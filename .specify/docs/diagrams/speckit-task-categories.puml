@@ -1,0 +1,61 @@
+@startuml speckit-task-categories
+!theme plain
+skinparam class {
+  BackgroundColor #E8F4F8
+  BorderColor #333
+}
+
+abstract class "TaskCategory" {
+  + category name
+  + dependencies
+  --
+  + getTasks()
+}
+
+class "AEM Component" as comp {
+  HTL template
+  Sling Model
+  Dialog
+  Policy
+  Clientlib (JS/SCSS)
+}
+class "Data Model" as dm {
+  entities
+  relationships
+  API contracts
+}
+class "Integration" as int {
+  external services
+  API clients
+  error handling
+}
+class "Content Structure" as content {
+  templates
+  policies
+  filter rules
+}
+class "Testing" as test {
+  unit tests
+  integration tests
+  test content
+}
+class "Documentation" as doc {
+  README
+  authoring guide
+  API docs
+}
+
+comp ..|> TaskCategory
+dm ..|> TaskCategory
+int ..|> TaskCategory
+content ..|> TaskCategory
+test ..|> TaskCategory
+doc ..|> TaskCategory
+
+comp ..> dm : uses
+comp ..> content : uses
+comp ..> test : requires
+comp ..> doc : requires
+int ..> dm : uses
+content ..> comp : configures
+@enduml

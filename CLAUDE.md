@@ -12,6 +12,8 @@ Two skills serve as primary entry points for common workflows:
 
 **page-import** - Start here when importing or migrating webpages from any URL to AEM Edge Delivery Services. This skill orchestrates the complete import workflow including scraping, analysis, structure identification, and HTML generation.
 
+**EDS-specific skills** (use for Edge Delivery blocks): eds-analytics (data layer, GA4/Adobe), eds-documentation (block README, authoring guides), eds-naming (label conventions, design-expectations.json), eds-styles (block CSS, tokens, BEM), eds-wcag (WCAG 2.2 AA accessibility).
+
 All other skills are either invoked by these primary skills or used for specific standalone tasks (e.g., searching platform documentation, finding reference implementations, reviewing PRs). Let skill descriptions guide you to the right tool for your task.
 
 ## Project Overview

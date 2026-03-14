@@ -231,6 +231,49 @@ export default async function decorate(block) {
 
 **Note:** Try to avoid this. Multiple content patterns increase complexity. Work with content authors to agree on a single, clear content model when possible.
 
+## Event Delegation
+
+Prefer event delegation over multiple handlers when handling multiple interactive elements:
+
+```javascript
+// ✅ Event delegation — one listener for multiple targets
+block.addEventListener('click', (e) => {
+  if (e.target.matches('[data-action="buy"]')) handleBuy(e);
+  if (e.target.matches('[data-action="cart"]')) handleCart(e);
+});
+
+// ❌ Multiple listeners — harder to maintain
+block.querySelectorAll('[data-action="buy"]').forEach((el) => el.addEventListener('click', handleBuy));
+block.querySelectorAll('[data-action="cart"]').forEach((el) => el.addEventListener('click', handleCart));
+```
+
+## Config Objects
+
+Use config objects for selectors and class names when logic is complex:
+
+```javascript
+const config = {
+  selectors: {
+    trigger: '[data-action="open"]',
+    content: '.block-name__content',
+  },
+  classes: {
+    active: 'block-name--active',
+    loading: 'block-name--loading',
+  },
+};
+```
+
+## Security
+
+```javascript
+// ✅ Use textContent not innerHTML for user data (XSS prevention)
+element.textContent = `Welcome ${sanitizedInput}`;
+
+// ❌ Never use innerHTML with user-provided content
+element.innerHTML = userInput; // DANGEROUS
+```
+
 ## Code Style
 
 This project uses Airbnb ESLint configuration with some modifications:

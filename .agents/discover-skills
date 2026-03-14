@@ -9,8 +9,8 @@ if [ ! -d "$SKILLS_DIR" ]; then
     exit 0
 fi
 
-# Find all SKILL.md files
-SKILL_FILES=$(find "$SKILLS_DIR" -name "SKILL.md" -type f | sort)
+# Find all SKILL.md files (exclude archive)
+SKILL_FILES=$(find "$SKILLS_DIR" -path "$SKILLS_DIR/archive" -prune -o -name "SKILL.md" -type f -print | sort)
 
 if [ -z "$SKILL_FILES" ]; then
     echo "No skills found in $SKILLS_DIR"

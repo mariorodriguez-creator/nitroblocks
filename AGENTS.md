@@ -47,6 +47,8 @@ Skills will be added to `.claude/skills/` as needed for this project. Check the 
 
 **For ALL development work involving blocks, core scripts, or functionality, you MUST start with the content-driven-development skill.** It will orchestrate other skills as needed throughout the development workflow.
 
+**EDS-specific skills** (for AEM Edge Delivery Services): eds-analytics, eds-documentation, eds-naming, eds-styles, eds-wcag. Retired aem-* skills are archived in `.claude/skills/archive/`.
+
 ## Project Overview
 
 This project is based on the https://github.com/adobe/aem-boilerplate/ project and set up as a new project. You are expected to follow the coding style and practices established in the boilerplate, but add functionality according to the needs of the site currently developed.

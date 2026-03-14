@@ -98,6 +98,8 @@ npm run test:watch
 
 **Detailed guide:** See `resources/unit-testing.md`
 
+**Block-specific logic:** See `resources/block-unit-testing.md` for optional unit tests when blocks contain isolatable logic (calculations, validation, state transitions).
+
 ### 2. Browser Testing (THROWAWAY TESTS)
 
 **When to use:** Block decoration, visual validation, DOM structure, responsive design
