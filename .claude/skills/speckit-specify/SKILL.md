@@ -45,12 +45,13 @@ Read `.specify/templates/spec-template.md` for required sections.
 Focus on WHAT and WHY, not HOW. Written for business stakeholders.
 
 - Parse user description: extract actors, actions, data, constraints
+- Consider the content authoring experience: how will authors create and modify content for this feature in the document-based authoring environment (Word, Google Docs, or da.live)? What block tables, section metadata, or default content patterns are involved?
 - For unclear aspects: make informed guesses using industry standards; mark only significant ambiguities as `[NEEDS CLARIFICATION: specific question]`
-- Prioritize clarifications by impact: scope > security/privacy > UX > technical details
-- Fill all sections: Overview, Functional Requirements, User Stories, Acceptance Criteria, Edge Cases
+- Prioritize clarifications by impact: scope > security/privacy > UX > content authoring > technical details
+- Fill all sections: Project Context, User Story & Testing, Functional Requirements, Non-Functional Requirements (if applicable), Edge Cases
 - Write to `SPEC_FILE`
 
-**Do NOT add implementation details (languages, frameworks, code structure).**
+**Do NOT add implementation details (block decoration JS, CSS selectors, loading phases, code structure).**
 
 ### 6. Spec Quality Validation
 
@@ -82,7 +83,8 @@ Output: branch name, spec file path, checklist results, and readiness for next p
 ## Guidelines
 
 - Focus on **WHAT** users need and **WHY**
-- Avoid HOW (no tech stack, APIs, code structure)
+- Avoid HOW (no block JS/CSS, decoration patterns, loading phases, or code structure)
 - Written for business stakeholders, not developers
+- Content-first: always describe the feature from the author's perspective (what they create in their document) before describing visitor-facing behavior
 - Do NOT embed checklists in the spec — they are separate files
-- Common reasonable defaults (don't ask): data retention, performance targets, error handling, auth method
+- Common reasonable defaults (don't ask): Lighthouse 100 target, WCAG 2.2 AA, responsive behavior across standard breakpoints (600/900/1200px), backward-compatible content models

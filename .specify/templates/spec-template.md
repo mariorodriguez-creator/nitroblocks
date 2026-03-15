@@ -1,4 +1,4 @@
-rea# Feature Specification: [FEATURE NAME]
+# Feature Specification: [FEATURE NAME]
 
 **Feature Branch**: `[###-feature-name]`  
 **Created**: [DATE]  
@@ -6,25 +6,29 @@ rea# Feature Specification: [FEATURE NAME]
 **Input**: User description: "$ARGUMENTS"
 **Reference**: [User provided file as argument]
 
-[Short high level description of the development work to be done to implement this feature. For example "Enhancement on the Login component to implement a JWT token based authentication to enable SSO across multiple sites on the market"]
+[Short high level description of the development work to be done to implement this feature. For example "New Tabs block that allows authors to organize content into tabbed panels, with accessible keyboard navigation and responsive stacking on mobile"]
 
 ## Project Context *(mandatory)*
 
 <!--
-  ACTION REQUIRED: Identify applicable project(s) from ./specify/memory/projects/
-  This ensures feature design aligns with project-specific requirements and constraints.
-  Principle IX: Project-Specific Context & Configuration (Constitution v1.2.0)
+  ACTION REQUIRED: Define the scope of this feature within the EDS project.
+  This ensures feature design aligns with the content-first development workflow,
+  existing block architecture, and the three-phase loading model.
+  Reference: Constitution v1.0.0, AGENTS.md
 -->
 
-**Applicable Project(s)**: [e.g., catalyst, multicat, or ALL]
+**Scope**: [e.g., new block, block modification, global style change, core script change, auto-blocking, indexing]
 
-**Project-Specific Adaptations**:
-- [Describe any UI variants, workflow differences, or integration points specific to the project(s)]
-- [Reference project documentation: ./specify/memory/projects/{project-name}/overview.md]
+**Affected Pages/Sections**: [List pages or page types where this feature will appear, e.g., "all product pages", "homepage hero section"]
 
-**Configuration Approach**:
-- [Describe how project-specific behavior will be handled via OSGi/CAC configs, not hardcoded logic]
-- [Example: OSGi/CAC config for project-specific feature flags, styling, or workflow variations]
+**Content Approach**:
+- [Describe how authors will create or modify content for this feature in the document-based authoring environment (Word, Google Docs, or da.live)]
+- [Identify block table structure if applicable, e.g., "Authors add a 2-column table labeled 'Tabs' with tab titles in column 1 and content in column 2"]
+- [Draft content location: `/drafts/{developer}/` folder]
+
+**Existing Blocks/Patterns**:
+- [Reference any existing blocks this feature builds on, extends, or interacts with]
+- [Note any Block Collection or Block Party references used as a starting point]
 
 ## User Story & Testing *(mandatory)*
 
@@ -80,14 +84,15 @@ AC3. **[Summary of what MUST be met for this aspect]**
 2. [Specific requirement using MUST statement]
 
 <!-- EXAMPLE
-AC1. **Component MUST support configuration and persistence of the new layout option**
-1. "Column Layout" dropdown MUST include "Desktop 66/33, tablet 50/50" option
-2. Layout MUST display correctly on all breakpoints in edit and preview modes
+AC1. **Block MUST support authoring via standard document table structure**
+1. Authors MUST be able to create the block using a labeled table in the document-based authoring environment
+2. Block MUST render correctly after Sidekick preview and publish
+3. Block options (variants) MUST be selectable via parenthetical notation in the block name
 
-AC2. **Layout MUST render at 66%/33% ratio on desktop viewports (≥1024px)**
-1. MUST render columns at 66% (left) and 33% (right) width
-2. Columns MUST display side-by-side with appropriate spacing
-3. MUST maintain 66%/33% ratio during window resize above 1024px
+AC2. **Columns MUST render at 66%/33% ratio on desktop viewports (≥1200px)**
+1. MUST render columns at 66% (left) and 33% (right) width on desktop
+2. Columns MUST stack vertically on mobile viewports (<600px)
+3. MUST maintain 66%/33% ratio during window resize above 1200px
 -->
 
 ### Edge Cases
@@ -131,22 +136,20 @@ AC2. **Layout MUST render at 66%/33% ratio on desktop viewports (≥1024px)**
 ### Non-Functional Requirements *(include only if feature specifically mentions requirements related to any core principle of the constitution)*
 
 <!--
-  Map requirements to Constitution principles:
-  - Code Quality (I): Maintainability, documentation, complexity
-  - Coding Standards (II): Cursor rule files, pattern consistency, AI-assisted development
-  - Testing (III): Coverage, test types, test-first workflow
-  - Security (IV): Input validation, output encoding, authentication, authorization
-  - Accessibility (V): WCAG 2.2 AA compliance, keyboard navigation, screen reader support
-  - Performance (VI): Load times, component rendering, caching, optimization
-  - Maintainability (VII): Technical debt tracking, dependency management, config externalization
-  - Observability (VIII): Logging, monitoring, alerting, tracing
-  - Project Context (IX): Multi-project reusability, configuration-based adaptations, project registry
+  Map requirements to Constitution principles (v1.0.0):
+  - Code Quality (I): Vanilla JS/CSS, ESLint/Stylelint, block selector isolation, no !important
+  - Performance & Optimization (II): Lighthouse 100, three-phase loading, eager payload < 100 KB
+  - Security (III): Client-side code exposure, .hlxignore, no secrets in repo, XSS prevention
+  - Accessibility (IV): WCAG 2.2 AA compliance, keyboard navigation, ARIA, screen reader support
+  - Maintainability & Minimal Technical Debt (V): Block architecture, backward-compatible content models, no aem.js modifications
+  - Testing (VI): Linting, PSI checks, preview URLs, browser tests
+  - Specification-Driven Development (VII): Content-first workflow, spec before code, draft content
+  - Observability & Monitoring (VIII): RUM, CWV field data, client-side error reporting
 -->
 
-- **NFR-001**: System MUST [specific constraint, e.g., "sanitize all user input (Principle IV: Security)"]
-- **NFR-002**: System MUST [specific constraint, e.g., "achieve page load <3s on 3G (Principle VI: Performance)"]
-- **NFR-003**: System MUST [specific constraint, e.g., "meet WCAG 2.2 AA contrast ratios (Principle V: Accessibility)"]
-- **NFR-004**: System MUST [specific constraint, e.g., "include structured logging with correlation IDs (Principle VIII: Observability)"]
-- **NFR-005**: System MUST [specific constraint, e.g., "externalize all configuration via OSGi (Principle VII: Maintainability)"]
-- **NFR-006**: System MUST [specific constraint, e.g., "support project-specific configurations via OSGi/runmodes (Principle IX: Project Context)"]
+- **NFR-001**: System MUST [specific constraint, e.g., "sanitize all user-supplied input rendered into the DOM (Principle III: Security)"]
+- **NFR-002**: System MUST [specific constraint, e.g., "maintain Lighthouse score of 100 on mobile and desktop (Principle II: Performance)"]
+- **NFR-003**: System MUST [specific constraint, e.g., "meet WCAG 2.2 AA contrast ratios for all text and UI components (Principle IV: Accessibility)"]
+- **NFR-004**: System MUST [specific constraint, e.g., "scope all CSS selectors to the block class to prevent style leakage (Principle I: Code Quality)"]
+- **NFR-005**: System MUST [specific constraint, e.g., "preserve backward compatibility with existing authored content (Principle V: Maintainability)"]
 
