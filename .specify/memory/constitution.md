@@ -1,5 +1,20 @@
 <!--
 === Sync Impact Report ===
+Version change: 1.0.0 (template migration to EDS — no constitution version bump)
+Changes:
+  All .specify/templates/ migrated from classic AEM to AEM Edge Delivery Services.
+Removed sections: none
+Deferred items: none
+Templates validated:
+  - .specify/templates/plan-template.md ✅ UPDATED
+  - .specify/templates/spec-template.md ✅ UPDATED
+  - .specify/templates/tasks-template.md ✅ UPDATED
+  - .specify/templates/checklist-template.md ✅ UPDATED
+  - .specify/templates/authoring-guide-template.md ✅ UPDATED
+  - .specify/templates/testcases.csv ✅ UPDATED
+  - No command templates found in .specify/templates/commands/
+
+=== Previous Sync Impact Report (1.0.0) ===
 Version change: N/A → 1.0.0 (initial ratification)
 Added principles:
   - I. Code Quality (NEW)
@@ -15,13 +30,7 @@ Added sections:
   - Development Workflow & Coding Standards (NEW)
   - Governance (NEW)
 Removed sections: none
-Templates validated:
-  - .specify/templates/plan-template.md ✅ compatible (Constitution Check section is generic)
-  - .specify/templates/spec-template.md ✅ compatible (requirements are generic)
-  - .specify/templates/tasks-template.md ✅ updated (aligned test-first language with Principle VI implementation-first approach)
-  - .specify/templates/checklist-template.md ✅ compatible (generic checklist structure)
-  - .specify/templates/agent-file-template.md ✅ compatible (generic agent file)
-  - No command templates found in .specify/templates/commands/
+Templates validated: (superseded by current report)
 Deferred items: none
 -->
 
@@ -236,7 +245,12 @@ actual visitors on real devices and networks.
 ## EDS Technical Standards
 
 This section codifies platform-specific constraints that span multiple
-principles:
+principles. The authoritative technical reference for this project is
+`AGENTS.md` at the repository root, which contains the full EDS coding
+standards, project structure, performance guidelines, skill orchestration
+rules, and deployment workflow. All agents and contributors MUST read and
+follow `AGENTS.md`; this constitution establishes the governing principles
+that `AGENTS.md` operationalizes.
 
 - **Project structure** MUST follow the AEM Boilerplate convention:
   `blocks/`, `styles/`, `scripts/`, `fonts/`, `icons/`, `head.html`,
@@ -260,9 +274,10 @@ principles:
 
 ## Development Workflow & Coding Standards
 
-- **Coding standards** are maintained as agent skills stored in
-  `.claude/skills/`. All AI-generated and human-written code MUST
-  adhere to these skills. When skills are available, agents MUST
+- **Coding standards** are defined in `AGENTS.md` (repository root)
+  and operationalized as agent skills stored in `.claude/skills/`. All
+  AI-generated and human-written code MUST adhere to `AGENTS.md` and
+  the skills it references. When skills are available, agents MUST
   discover and execute them before performing development tasks.
 - **Content-first**: Create or identify sample content before writing
   any code. Use `/drafts/{developer}/` folders for work-in-progress
@@ -300,12 +315,10 @@ and other guidance, this constitution prevails.
   compliance check. Reviewers SHOULD verify that changes respect all
   applicable principles (performance, accessibility, security, code
   quality, maintainability).
-- **Coding standards enforcement**: Agent skills in `.claude/skills/`
-  operationalize this constitution. When a skill conflicts with the
-  constitution, the constitution MUST be updated or the skill
+- **Coding standards enforcement**: `AGENTS.md` and the agent skills
+  in `.claude/skills/` operationalize this constitution. When
+  `AGENTS.md` or a skill conflicts with the constitution, the
+  constitution MUST be updated or the conflicting document
   corrected—they MUST NOT coexist in contradiction.
-- **Guidance file**: The agent-file at `.specify/templates/agent-file-template.md`
-  provides runtime development guidance and MUST be kept aligned with
-  this constitution.
 
 **Version**: 1.0.0 | **Ratified**: 2026-03-15 | **Last Amended**: 2026-03-15
