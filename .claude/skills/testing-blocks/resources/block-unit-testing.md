@@ -87,14 +87,18 @@ describe('countdown', () => {
 
 ## Test Naming
 
-Use descriptive `it()` descriptions that match what is asserted:
+Use descriptive `it()` descriptions that match **exactly** what is asserted. If the name implies multiple keys or directions, the test must cover them — or use a narrower name.
 
 ```javascript
+// ❌ Name promises "arrow keys" (plural) but only tests one direction
+it('should navigate between options with arrow keys', () => { ... });
+
+// ✅ One test per case, names match exactly what is verified
 it('should move selection to next option with ArrowRight', () => { });
 it('should wrap to last option with ArrowLeft from first option', () => { });
 ```
 
-Cover boundary/wrap-around cases when modulo or index arithmetic is involved.
+Cover boundary/wrap-around cases when modulo or index arithmetic is involved — that is where bugs hide.
 
 ## Paths
 
