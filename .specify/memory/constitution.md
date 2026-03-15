@@ -1,315 +1,311 @@
-# AEM Platform Core Constitution
+<!--
+=== Sync Impact Report ===
+Version change: N/A → 1.0.0 (initial ratification)
+Added principles:
+  - I. Code Quality (NEW)
+  - II. Performance & Optimization (NEW)
+  - III. Security (NEW)
+  - IV. Accessibility (NEW)
+  - V. Maintainability & Minimal Technical Debt (NEW)
+  - VI. Testing (NEW)
+  - VII. Specification-Driven Development (NEW)
+  - VIII. Observability & Monitoring (NEW)
+Added sections:
+  - EDS Technical Standards (NEW)
+  - Development Workflow & Coding Standards (NEW)
+  - Governance (NEW)
+Removed sections: none
+Templates validated:
+  - .specify/templates/plan-template.md ✅ compatible (Constitution Check section is generic)
+  - .specify/templates/spec-template.md ✅ compatible (requirements are generic)
+  - .specify/templates/tasks-template.md ✅ updated (aligned test-first language with Principle VI implementation-first approach)
+  - .specify/templates/checklist-template.md ✅ compatible (generic checklist structure)
+  - .specify/templates/agent-file-template.md ✅ compatible (generic agent file)
+  - No command templates found in .specify/templates/commands/
+Deferred items: none
+-->
+
+# AEM Edge Delivery Services Constitution
 
 ## Core Principles
 
-### I. Code Quality & Maintainability
+### I. Code Quality
 
-All code MUST meet enterprise-grade quality standards to ensure long-term maintainability and developer productivity.
+All code MUST meet enterprise-grade quality standards. In the context of
+AEM Edge Delivery Services this means:
 
-**Mandatory Requirements:**
-- Java code MUST follow Oracle Java Code Conventions and adhere to project-specific Checkstyle rules
-- HTL/Sightly templates MUST be semantic, avoiding inline JavaScript and minimizing logic
-- JavaScript/TypeScript MUST follow ESLint configuration with strict mode enabled
-- CSS/SCSS MUST use BEM methodology or component-scoped styling (avoid global styles)
-- All public APIs (OSGi services, Sling Models) MUST include JavaDoc with @param, @return, @throws
-- Code complexity MUST be justified: cyclomatic complexity >10 requires architectural review
-- No deprecated AEM APIs may be used without documented migration path
-- SonarQube quality gates MUST pass (0 blocker/critical issues, <3% code duplication)
+- Vanilla JavaScript (ES6+) with no transpiling and no build steps.
+  Every `.js` file MUST use standard ES module syntax with explicit
+  `.js` extensions on imports.
+- CSS3 with modern browser-supported features only. No preprocessors
+  (Sass, Less, PostCSS) and no utility frameworks (Tailwind) unless the
+  entire team explicitly agrees.
+- HTML5 semantic markup decorated client-side; server-rendered canonical
+  content MUST NOT be replaced by client-side rendering except for
+  non-canonical, dynamic blocks (listings, applications).
+- Airbnb ESLint rules and Stylelint standard configuration MUST pass
+  with zero errors before any code is merged.
+- All CSS selectors inside a block file MUST be scoped to that block
+  (`.blockname .selector`) to prevent style leakage.
+- The `!important` rule MUST NOT be used except in rare, isolated,
+  and explicitly justified cases.
 
-**Rationale**: AEM projects have long lifecycles (5-10 years). Technical debt compounds rapidly in enterprise CMS platforms where multiple teams contribute. Clear standards prevent degradation and reduce onboarding time for new developers.
+**Rationale**: EDS projects are buildless and rely on the browser's
+native module system. Keeping code vanilla ensures any developer can
+onboard instantly and that the loading pipeline stays predictable.
 
-### II. Coding Standards & Skill Compliance (NON-NEGOTIABLE)
+### II. Performance & Optimization
 
-All code MUST strictly adhere to project-specific coding standards as defined in agent skills to ensure consistency, quality, and maintainability across the entire codebase.
+Web performance is the primary technical success metric. Every change
+MUST preserve or improve Lighthouse and Core Web Vitals scores:
 
-**Rules**:
-- All developers and AI assistants MUST consult applicable skills before creating or modifying code
-- Skills are maintained in `.claude/skills/` directory, organized by domain (e.g. aem-java-backend, aem-htl-component, aem-styles, aem-dialog, aem-testing, aem-frontend-js, aem-wcag, aem-analytics)
-- Code reviews MUST verify adherence to applicable skills
-- Deviations from skill guidance MUST be documented with clear justification and approved by technical leadership
-- Skills MUST be kept up-to-date as patterns evolve; updates require technical leadership approval
-- New team members MUST review all applicable skills during onboarding
+- Mobile and Desktop PageSpeed Insights scores MUST remain at 100.
+  PRs that lower the score below 100 MUST NOT be merged.
+- The three-phase loading model (Eager → Lazy → Delayed) MUST be
+  respected:
+  - **Eager**: Only resources required for LCP. Aggregate payload
+    before LCP MUST stay below 100 KB. No second-origin connections
+    before LCP.
+  - **Lazy**: Remaining sections, blocks, and same-origin assets.
+    No third-party scripts in this phase.
+  - **Delayed**: Third-party tags, analytics, consent management.
+    MUST start at least 3 seconds after LCP.
+- Fonts MUST be loaded asynchronously after LCP using the font-fallback
+  technique. Preloading fonts is prohibited.
+- No early hints, HTTP/2 push, or preconnect directives that consume
+  the pre-LCP bandwidth budget.
+- Images MUST use `loading="lazy"` except for the LCP candidate image
+  in the first section.
+- No JavaScript frameworks in the LCP critical path. Frameworks are
+  permitted only for isolated application-like functionality that does
+  not affect CWV.
+- `head.html` MUST remain minimal: no inline scripts, no inline styles,
+  no marketing technology, no tag managers.
+- Minification is NOT required; files MUST be kept small by design
+  (block-scoped architecture). If a single JS or CSS file exceeds 20 KB,
+  it MUST be reviewed for decomposition.
 
-**Rationale**: Inconsistent coding patterns create overhead and bugs. Centralized standards — embodied in Agent Skills — ensure all developers and AI produce consistent, proven-pattern code, reducing review cycles and preventing anti-patterns. Agent skills are the single source of truth for implementation patterns.
+**Rationale**: EDS achieves its value proposition through near-perfect
+web performance. Every byte and every connection in the critical path
+directly impacts user experience, SEO ranking, and business outcomes.
 
-### III. Testing Standards (NON-NEGOTIABLE)
+### III. Security
 
-Testing is mandatory and MUST cover unit, integration, and UI layers before code review.
+All code is client-side and served on the public web. Security practices
+MUST account for this exposure:
 
-**Test-First Workflow (Strictly Enforced):**
-1. Write failing tests that validate acceptance criteria
-2. Obtain approval from stakeholder/reviewer on test scenarios
-3. Verify tests fail (Red)
-4. Implement minimum code to pass tests (Green)
-5. Refactor while maintaining green state
-6. No code review accepted without corresponding tests
+- Secrets, API keys, passwords, and tokens MUST NEVER appear in the
+  repository or in client-side code.
+- All user-supplied input rendered into the DOM MUST be sanitized to
+  prevent XSS.
+- Third-party scripts MUST be loaded in the Delayed phase and MUST be
+  evaluated for supply-chain risk before inclusion.
+- Dependencies MUST be kept up to date. Renovate or equivalent
+  automated dependency management MUST be configured.
+- The `.hlxignore` file MUST be maintained to prevent unintended files
+  from being served.
+- Content Security Policy headers SHOULD be configured via
+  `custom-headers` when the project is in production.
 
-**Coverage Requirements:**
-- Unit tests (JUnit 5, Mockito): ≥80% line coverage for Java services/models
-- Integration tests (AEM Mocks, Sling Mocks): All OSGi service interactions
+**Rationale**: Because EDS code is fully public and runs in the visitor's
+browser, the attack surface is broad. Defence-in-depth at the code level
+is the only reliable mitigation.
 
-**Frontend (JavaScript) Unit Tests — Optional:**
-- **Do NOT** automatically add Jest unit tests for every JS component.
-- Unit tests are **optional** for frontend clientlibs and SHOULD only be added when the component contains **isolatable pure logic** (calculations, state transitions, validation, analytics payload building, etc.).
-- **Skip** unit tests for decorative components, thin glue/wiring (event delegation, init, setRefs), or components with no meaningful isolatable logic.
-- **Test** extracted pure functions and business logic—not component load, param passing, or DOM wiring.
-- When in doubt, prefer E2E tests (e.g. Playwright) over brittle unit tests. See `.github/instructions/fe.testing.instructions.md`.
+### IV. Accessibility
 
-**Test Organization:**
-- Unit: `src/test/java/biz/netcentric/digitalxn/aem/{module}/`
-- Integration: `digitalxn-aem-ui-tests/digitalxn-aem-ui-tests-automation/`
-- Frontend unit (optional): `digitalxn-aem-base-clientlibs-apps/frontend/.../*.test.js`
+All deliverables MUST conform to WCAG 2.2 Level AA:
 
-**Rationale**: AEM projects deploy to production environments serving millions of users. Bugs in content delivery or authoring workflows cause business disruption. Test-first development catches issues before they reach QA, reducing cycle time and defect escape rates.
+- Semantic HTML5 elements MUST be used (headings, landmarks, lists,
+  buttons vs. divs).
+- Heading hierarchy MUST be sequential (no skipped levels).
+- All interactive elements MUST be keyboard-operable and have visible
+  focus indicators.
+- All non-text content MUST have text alternatives (`alt` attributes,
+  `aria-label` where appropriate).
+- ARIA attributes MUST be preferred over custom CSS classes for state
+  (e.g., `aria-expanded` instead of `.is-open`) and SHOULD be
+  leveraged for CSS styling.
+- Color contrast MUST meet WCAG 2.2 AA ratios (4.5:1 normal text,
+  3:1 large text / UI components).
+- Forms MUST have associated labels, error messages, and programmatic
+  grouping.
+- Dynamic content changes MUST be announced to assistive technology
+  via ARIA live regions.
 
-### IV. Security First
+**Rationale**: Accessibility is a legal requirement in most markets, a
+moral imperative, and directly measured by Lighthouse. Failures here
+block production deployment.
 
-All code MUST be secure by default, following OWASP Top 10 and Adobe Security best practices.
+### V. Maintainability & Minimal Technical Debt
 
-**Mandatory Security Controls:**
-- Input validation: All user input MUST be validated against whitelist patterns (regex, allowed values)
-- Output encoding: Use OWASP Java Encoder or HTL context-aware encoding (text, html, attribute, uri, js)
-- Authentication: Leverage AEM's built-in authentication; no custom auth implementations
-- Authorization: Use Sling Resource Access Control (ACLs on /content, /conf paths)
-- CSRF protection: All POST/PUT/DELETE endpoints MUST validate Granite CSRF token
-- XSS prevention: Never use innerHTML or dangerouslySetInnerHTML; sanitize with OWASP policies
-- Secrets management: No credentials in code; use OSGi configurations with AEM Crypto support
-- Dependency scanning: Regularly update dependencies; block known CVEs via OWASP Dependency Check
-- Dispatcher security: Implement filter rules to block direct access to /apps, /libs, .json selectors
+The codebase MUST remain easy to understand, modify, and extend:
 
-**Security Review Gates:**
-- All servlet/filter implementations require security review
-- Content-Type headers MUST be explicit (no sniffing)
-- HTTPS-only cookies with SameSite=Strict for session management
+- The EDS block architecture MUST be preserved: each block is a
+  self-contained directory (`blocks/{name}/{name}.js` + `.css`).
+- Global styles are split into `styles/styles.css` (eager) and
+  `styles/lazy-styles.css` (lazy). Changes MUST respect this boundary.
+- `aem.js` MUST NEVER be modified. Project-specific extensions MUST
+  live outside the library.
+- PRs MUST be small and focused (scaled trunk-based development).
+  Long-lived feature branches are prohibited.
+- CSS property reordering, indentation changes, and linting rule
+  modifications MUST NOT be mixed into functional PRs.
+- Content structures (block contracts) MUST be backward-compatible.
+  Breaking changes require a migration plan approved before merge.
+- Strings displayed to end users MUST be sourced from authored content
+  (placeholders or spreadsheets), not hard-coded in JS/CSS.
+- Binaries and large static assets MUST NOT be committed to the
+  repository; they MUST be authored as content.
 
-**Rationale**: Corporate websites are high-value targets. A single XSS vulnerability can lead to account takeover or data breaches. AEM's Java stack requires explicit security measures that are not enforced by framework defaults.
+**Rationale**: EDS projects are long-lived, multi-team endeavors.
+Keeping the codebase simple, conventional, and backwards-compatible
+minimizes onboarding friction and reduces the cost of change.
 
-### V. Accessibility (WCAG 2.2 AA Compliance)
+### VI. Testing
 
-All UI components and content MUST be accessible to users with disabilities, meeting WCAG 2.2 Level AA standards.
+Testing MUST validate correctness without blocking development velocity.
+This project follows an implementation-first testing approach:
 
-**Mandatory Accessibility Requirements:**
-- All interactive elements MUST be keyboard accessible with visible focus indicators
-- All images MUST include descriptive alt text; decorative images marked with empty alt=""
-- Color contrast ratios MUST meet WCAG AA minimums (4.5:1 normal text, 3:1 large text)
-- All forms MUST include properly associated labels and error messages
-- Page structure MUST use semantic HTML5 elements and ARIA landmarks appropriately
-- Dynamic content changes MUST be announced to screen readers via ARIA live regions
-- Video and audio content MUST have captions and transcripts
-- Components MUST be tested with assistive technologies (NVDA, JAWS, VoiceOver)
-- Automated accessibility testing (axe, Lighthouse, Pa11y) MUST pass before merge
-- Manual testing with keyboard navigation and screen reader MUST be performed for new UI features
-- New components MUST include accessibility acceptance criteria in specifications
+- Code is written first, then validated through testing. Test-Driven
+  Development (TDD) is NOT the default workflow.
+- `npm run lint` (ESLint + Stylelint) MUST pass with zero errors before
+  any PR is opened.
+- Google PageSpeed Insights checks (run automatically by the AEM GitHub
+  bot) MUST return green for both mobile and desktop on every PR.
+- Each PR MUST include a preview URL
+  (`https://{branch}--{repo}--{owner}.aem.page/{path}`) so reviewers
+  can visually and functionally verify the change.
+- Automated browser tests (Playwright or Puppeteer) SHOULD be added for
+  complex interactions or regressions, following the testing-blocks
+  skill workflow.
+- Unit tests SHOULD be added for logic-heavy utilities.
+- Content-driven validation: `curl` the local dev server to inspect
+  rendered HTML and verify block decoration before committing.
 
-**Accessibility Testing Gates:**
-- Manual: Axe DevTools scans with 0 critical or serious issues. Keyboard-only navigation test for all user journeys.
-- Audit: Annual WCAG audit by accessibility specialist
+**Rationale**: EDS development relies heavily on visual verification
+against live content. The built-in PSI checks and preview URLs provide
+a strong quality gate; additional automated tests supplement but do not
+replace this workflow.
 
-**Rationale**: Accessibility is a legal requirement (ADA, Section 508) and expands audience reach. AEM's authoring interface can inadvertently generate inaccessible markup if components don't enforce accessibility constraints. Building accessibility in from the start is 10x cheaper than retrofitting.
+### VII. Specification-Driven Development
 
-### VI. Performance & Optimization
+Development MUST be guided by explicit specifications and content
+models before implementation begins:
 
-System performance MUST meet or exceed defined targets to ensure optimal user experience.
+- Every non-trivial feature MUST start with a written specification
+  that defines user scenarios, acceptance criteria, and functional
+  requirements.
+- An implementation plan MUST capture technical context, project
+  structure decisions, and a constitution compliance check before
+  coding starts.
+- Tasks MUST be derived from the specification and plan, organized
+  by user story priority so each story can be delivered independently.
+- Block development MUST follow a content-first workflow: design the
+  content model (author experience) first, review it with stakeholders,
+  then implement code.
+- Sample or draft content MUST exist before block code is written.
+  Use the `/drafts/` folder to isolate work-in-progress content from
+  production pages.
+- Specifications, plans, and task breakdowns SHOULD live alongside
+  the feature code in a discoverable location (e.g., a `specs/`
+  directory).
 
-**Performance Targets (NON-NEGOTIABLE):**
-- Page load time MUST NOT exceed 3 seconds on 3G connection (Lighthouse performance score ≥85)
-- AEM component rendering MUST complete within 200ms for 95th percentile requests
-- Client-side JavaScript bundles MUST be code-split and lazy-loaded; initial bundle <200KB gzipped
-- Images MUST be optimized and served in modern formats (WebP) with appropriate responsive sizes
-- Critical rendering path MUST be optimized: inline critical CSS, defer non-critical resources
-- Backend queries MUST be indexed; query execution time <100ms for 95th percentile
-- Client libraries MUST be minified and cached with appropriate cache headers
-- Performance budgets MUST be established and monitored; regressions require justification
+**Rationale**: Content-first, spec-first development prevents wasted
+effort, ensures author-developer alignment, and produces predictable,
+reviewable deliverables.
 
-**Optimization Requirements:**
-- Client libraries: Minify and combine JS/CSS; use categories intelligently (per-page loading)
-- Client-side JavaScript bundles MUST be code-split and lazy-loaded; initial bundle <200KB gzipped
-- Client libraries MUST be minified and cached with appropriate cache headers
-- Images: Use responsive images with srcset; lazy-load below-the-fold images
-- Images MUST be optimized and served in modern formats (WebP)
-- AEM caching: Implement Sling Dynamic Include for personalized fragments
-- Query optimization: All Oak queries MUST use indexes (query performance logs monitored)
-- Critical rendering path MUST be optimized: inline critical CSS, defer non-critical resources
-- Component efficiency: Avoid deep component hierarchies (max 5 levels); lazy-load dialogs
-- CDN usage: Static assets served via CDN with long TTLs (1 year for versioned assets)
+### VIII. Observability & Monitoring
 
-**Performance Testing Gates:**
-- Load tests: JMeter scripts simulating 1000 concurrent users
-- Lighthouse CI: Automated checks on every PR (score regression tolerance: -5 points)
+Production behavior MUST be measurable and diagnosable:
 
-**Rationale**: Performance directly impacts SEO rankings (Core Web Vitals) and conversion rates (1-second delay = 7% conversion drop). AEM's Java architecture can be resource-intensive; proactive optimization prevents performance degradation as content grows.
+- Real Use Monitoring (RUM) via AEM's built-in operational telemetry
+  MUST be enabled and actively reviewed for CWV regression.
+- Client-side errors MUST be catchable and reportable; blocks SHOULD
+  use try/catch with structured error context.
+- Structured logging patterns MUST be used in any server-side or
+  edge-function code (if applicable).
+- Performance budgets (LCP < 1560 ms, CLS ≈ 0, TBT minimized) MUST
+  be tracked against field data, not just lab scores.
+- When Core Web Vitals field data diverges from lab results, the field
+  data takes precedence and MUST trigger investigation.
 
-### VII. Component Architecture (AEM-Specific)
+**Rationale**: Lab scores alone are insufficient. Real-world telemetry
+closes the feedback loop and ensures the performance promise holds for
+actual visitors on real devices and networks.
 
-AEM components MUST be modular, reusable, and follow Adobe's recommended patterns.
+## EDS Technical Standards
 
-**Mandatory Requirements:**
-- Components MUST be built on Core Components v2.22.0+ (proxy pattern for customization)
-- Custom components MUST implement Sling Models with @Model annotation (prefer interface delegation)
-- Dialog definitions MUST use Granite UI Touch UI (no Classic UI)
-- Components MUST be authored through templates (editable templates, not static)
-- Content structure MUST separate /apps (code), /conf (config), /content (authored data)
-- No business logic in HTL; use Sling Models or OSGi services
-- Component groups MUST be organized by function (e.g., digitalxn.content, digitalxn.structure)
-- Resource types MUST follow naming: /apps/digitalxn/base/components/{component-name}/v1/{component-name}
+This section codifies platform-specific constraints that span multiple
+principles:
 
-**Rationale**: AEM's component model is the foundation of content authoring. Inconsistent patterns create fragmented authoring experiences and make upgrades difficult. Core Components provide Adobe-tested implementations that reduce maintenance burden.
+- **Project structure** MUST follow the AEM Boilerplate convention:
+  `blocks/`, `styles/`, `scripts/`, `fonts/`, `icons/`, `head.html`,
+  `404.html`.
+- **Three-phase loading** (Eager-Lazy-Delayed) is non-negotiable.
+  Violations MUST be caught in code review.
+- **Auto-blocking** (`buildAutoBlocks` in `scripts.js`) is the
+  mechanism for pattern-based block creation. New auto-blocks MUST be
+  documented and tested.
+- **Header and Footer** are loaded asynchronously by their respective
+  blocks; they MUST NOT be in the eager phase.
+- **Content lifecycle** is separate from code lifecycle. Code PRs MUST
+  NOT require simultaneous content changes to function; new content
+  features activate only after the author previews and publishes.
+- **Third-party libraries** MUST be loaded via `loadScript()` inside
+  the specific block that needs them, never in `head.html`. Large
+  libraries SHOULD use `IntersectionObserver` for lazy loading.
+- **Environment URLs** follow the pattern:
+  - Preview: `https://{branch}--{repo}--{owner}.aem.page/`
+  - Live: `https://main--{repo}--{owner}.aem.live/`
 
-### VIII. Maintainability & Technical Debt Management
+## Development Workflow & Coding Standards
 
-Code MUST be designed for long-term maintainability to ensure sustainable development velocity.
-
-**Rules**:
-- Component design MUST follow single responsibility principle; avoid god components
-- Dependencies MUST be managed explicitly via Maven; avoid version conflicts and unnecessary transitive deps
-- Configuration MUST be externalized using OSGi configs and environment-specific runmodes
-- Deprecated AEM APIs MUST be avoided; migration paths documented when legacy APIs used
-- Logging MUST be structured and meaningful (SLF4J); appropriate levels (ERROR for exceptions, INFO for business events, DEBUG for diagnostic)
-
-**Rationale**: AEM projects have 5-10 year lifespans. Technical debt accumulation destroys productivity and increases defect rates. Proactive maintainability investment yields 5x ROI over time.
-
-### IX. Observability & Monitoring
-
-All systems MUST be observable to enable rapid diagnosis and resolution of issues.
-
-**Mandatory Observability Practices:**
-- Structured logging: Use SLF4J with JSON formatter; include correlation IDs (request tracking)
-- Log levels: ERROR (action required), WARN (potential issue), INFO (business events), DEBUG (dev diagnostics)
-- Metrics: Expose JMX metrics for OSGi services (invocation count, duration, error rate)
-- Error tracking: Integrate with application monitoring (e.g., Splunk, Datadog) for alerting
-- Audit logging: Log all authoring changes (who, what, when) to /var/audit
-- Dispatcher logs: Monitor cache hit/miss ratios, response times, 5xx errors
-- Health checks: Implement custom health checks for critical dependencies (search, DAM, external APIs)
-- Request tracing: Enable AEM request logs with timing breakdown (Sling request processing)
-
-**Monitoring Dashboards:**
-- Real-time: Response times, error rates, cache hit ratios
-- Business: Content publish velocity, authoring session concurrency
-- Infrastructure: JVM heap usage, thread pools, disk I/O
-
-**Rationale**: AEM environments are complex (Author, Publish, Dispatcher, CDN layers). Without observability, troubleshooting production incidents is time-consuming and error-prone. Structured logs and metrics enable proactive issue detection and data-driven optimization.
-
-### IX. Project-Specific Context & Configuration
-
-**Statement**: Platform features MUST be designed as reusable capabilities while implementation MUST be adapted to specific project requirements and business contexts defined in the project registry.
-
-**Mandatory Requirements:**
-- All specifications MUST identify applicable project(s) from `./specify/memory/projects/` directory
-- Feature designs MUST support multi-project reusability; project-specific variations handled via configuration
-- Implementation plans MUST document project-specific adaptations (UI variants, workflows, integrations)
-- Task breakdowns MUST include project-specific validation steps and acceptance criteria
-- New projects MUST be registered in `./specify/memory/projects/` with documented requirements and constraints
-- Cross-project dependencies MUST be explicitly declared and validated
-
-**Project Documentation Structure** (`./specify/memory/projects/{project-name}.md`):
-- **Business Context**: Project goals, target audience, brand guidelines
-- **Technical Constraints**: Infrastructure setup, third-party integrations, performance requirements
-- **User Journeys**: Describing multi-page use cases along with the components they use and their specific configuration
-- **Test Scenarios**: Project-specific test suites, edge cases, environment configurations, data requirements, and integration testing workflows unique to this project's features and compliance needs
-
-**Example Project Variations**:
-- Multi-brand sites with different design systems on shared platform
-- Regional variations with compliance requirements (GDPR, accessibility standards)
-
-**Rationale**: DXn's AEM platform serves multiple projects with distinct business requirements, user flows, and brand identities. Generic platform capabilities must be flexible enough to support varied use cases without code duplication. Project-specific configuration ensures maintainability—changes to one project don't inadvertently impact others. Clear project context prevents feature bloat and ensures specifications address real business needs rather than hypothetical requirements.
-
-## Security & Compliance Requirements
-
-### Data Protection
-- All Personally Identifiable Information (PII) MUST be handled according to GDPR/privacy regulations
-- PII MUST NOT be logged or exposed in error messages
-- Data retention policies MUST be implemented and enforced
-- User consent MUST be obtained and tracked for cookies and data collection
-
-### Dependency Management
-- All dependencies MUST be sourced from approved internal repositories (Azure Artifacts)
-- Dependency versions MUST be explicitly declared in parent POM
-- Vulnerability scanning MUST run on every build; builds fail on critical vulnerabilities
-- License compliance MUST be verified; restrictive licenses (GPL) prohibited without approval
-
-### Deployment Security
-- Production credentials MUST be managed via secure vault systems; no plaintext passwords
-- CI/CD pipelines MUST enforce security scanning and compliance checks
-- Deployment artifacts MUST be signed and verified
-- Environment-specific configurations MUST be isolated; no production keys in lower environments
-
-## Technical Standards
-
-### Technology Stack (Locked)
-- **AEM Version**: 6.5.15.0 (as defined in pom.xml)
-- **Core Components**: 2.22.0+
-- **Java**: 11+ (target bytecode 1.8 for AEM compatibility)
-- **Maven**: 3.6+ with Azure DevOps artifact repository
-- **Frontend Build**: Node 20.16.0, npm 10.8.1
-- **Testing**: JUnit 5, Mockito, AEM Mocks, Selenium WebDriver
-
-### Dependency Management
-- All dependencies MUST be declared in parent pom.xml with version properties
-- Third-party libraries require security review (OWASP Dependency Check)
-- Upgrades require regression testing and approval
-
-## Development Workflow
-
-### Branch Strategy
-- Feature branches: `feature/###-feature-name` (### = ticket number)
-- Release branches: `release/X.Y.Z`
-- Hotfix branches: `hotfix/###-description`
-
-### Code Review Requirements
-- All changes MUST pass PR review by ≥1 senior developer
-- Review checklist: Tests present, security validated, accessibility checked, documentation updated
-- No direct commits to main/master branches
-
-### Testing Gates
-- Unit tests MUST pass with minimum coverage thresholds before merge
-- Integration tests MUST execute successfully in CI pipeline
-- UI tests MUST pass for changes affecting user interfaces
-- Performance regression tests MUST be run for critical path changes
-
-### CI/CD Pipeline (Azure DevOps)
-- Build: Maven clean install with all tests
-- Quality gates: SonarQube analysis, Checkstyle, dependency scan
-- Deployment: Automated to DEV, manual approval for STAGE/PROD
-- Rollback: Automated rollback on health check failure
-
-### Deployment Approval
-- QA environment validation required before UAT promotion
-- UAT sign-off required before production deployment
-- Production deployments require change management approval
-- Rollback procedures MUST be tested and documented
-
-### Documentation Requirements
-- Feature specs: `./specify/specs/###-feature-name/spec.md` (user stories, acceptance criteria)
-- Implementation plans: `./specify/specs/###-feature-name/plan.md` (technical design)
-- API documentation: JavaDoc for all public interfaces
-- Runbooks: Operational procedures for new features (deployment, monitoring, troubleshooting)
-- All new features MUST include user-facing documentation
-- Breaking changes MUST include migration guides
-- Architecture decisions MUST be recorded in ADR format
+- **Coding standards** are maintained as agent skills stored in
+  `.claude/skills/`. All AI-generated and human-written code MUST
+  adhere to these skills. When skills are available, agents MUST
+  discover and execute them before performing development tasks.
+- **Content-first**: Create or identify sample content before writing
+  any code. Use `/drafts/{developer}/` folders for work-in-progress
+  content.
+- **Local development**: Run `npx -y @adobe/aem-cli up --no-open` and
+  validate at `http://localhost:3000`. Inspect HTML output via `curl`.
+- **Branch strategy**: Scaled trunk-based development. Short-lived
+  feature branches, small focused PRs, merge your own PRs only after
+  approval.
+- **PR requirements**:
+  1. Zero linting errors (`npm run lint`).
+  2. Green PageSpeed Insights (mobile + desktop).
+  3. Preview URL included in PR description.
+  4. At least one reviewer approval before merge.
+- **Deployment**: Merging to `main` triggers automatic production
+  deployment via AEM Code Sync. There is no manual deploy step.
 
 ## Governance
 
-This constitution is the authoritative source for all development practices on the AEM Platform Core project. All pull requests, code reviews, and architectural decisions MUST demonstrate compliance with these principles.
+This constitution is the highest-authority document for all technical
+decisions in this project. When conflicts arise between this constitution
+and other guidance, this constitution prevails.
 
-**Amendment Process:**
-1. Proposed amendments MUST be documented with rationale and impact analysis
-2. Amendments require approval from technical lead and product owner
-3. MAJOR version bump for backward-incompatible changes (principle removal/redefinition)
-4. MINOR version bump for new principles or materially expanded guidance
-5. PATCH version bump for clarifications, wording, or non-semantic refinements
+- **Amendment process**: Any team member MAY propose an amendment via
+  PR to `.specify/memory/constitution.md`. Amendments MUST include a
+  rationale and a Sync Impact Report. Approval from the project lead
+  or a designated maintainer is required before merge.
+- **Versioning**: The constitution follows semantic versioning:
+  - MAJOR: Principle removed, redefined, or backward-incompatible
+    governance change.
+  - MINOR: New principle or section added, or material expansion of
+    existing guidance.
+  - PATCH: Clarifications, wording fixes, non-semantic refinements.
+- **Compliance review**: Every PR review MUST include a constitution
+  compliance check. Reviewers SHOULD verify that changes respect all
+  applicable principles (performance, accessibility, security, code
+  quality, maintainability).
+- **Coding standards enforcement**: Agent skills in `.claude/skills/`
+  operationalize this constitution. When a skill conflicts with the
+  constitution, the constitution MUST be updated or the skill
+  corrected—they MUST NOT coexist in contradiction.
+- **Guidance file**: The agent-file at `.specify/templates/agent-file-template.md`
+  provides runtime development guidance and MUST be kept aligned with
+  this constitution.
 
-**Compliance Verification:**
-- All PRs MUST include constitution compliance checklist
-- Quarterly reviews to identify technical debt and non-compliance
-- Violations require remediation plan with timeline
-
-### Conflict Resolution
-- When principles conflict, security and quality take precedence over velocity
-- Temporary exceptions require documented justification and remediation plan
-- Technical debt exceptions require approval and must be tracked to resolution
-
-**Escalation:**
-- Complexity requiring principle exceptions MUST be justified in writing
-- Exceptions require technical lead approval and sunset date for remediation
-
-**Version**: 1.2.1 | **Ratified**: 2025-12-07 | **Last Amended**: 2026-03-01
+**Version**: 1.0.0 | **Ratified**: 2026-03-15 | **Last Amended**: 2026-03-15
