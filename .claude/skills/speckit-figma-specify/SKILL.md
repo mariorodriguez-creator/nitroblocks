@@ -11,9 +11,9 @@ Extracts **visual and stylistic** design context from Figma and saves it as `FEA
 Runs **after** `/speckit-specify` (spec.md must already exist).
 
 **Scope — visual only:**
-- HTML element structure and BEM class names
-- CSS/SCSS styles: colours, typography, spacing, layout, breakpoints
-- Design tokens and resolved values
+- HTML element structure and block-scoped CSS class names
+- CSS styles: colours, typography, spacing, layout, breakpoints
+- CSS custom properties and resolved values
 - Interactive state appearance (hover colours, focus rings)
 - Dynamic content element identification
 
@@ -47,34 +47,41 @@ Structure the design.md with these sections:
 ## Code Scaffold
 
 ### HTML Structure
-[BEM element hierarchy, class names, semantic elements]
+[Semantic HTML element hierarchy decorated by the block's JS]
+[Block-scoped class names added during decoration, e.g., .blockname-item, .blockname-image]
+[Initial authored structure: nested <div> rows/columns from the block table]
 
-### SCSS Skeleton
-[Structural styles using project mixins: @include tablet-up, @include desktop-up]
-[CSS variables mapped to --dxn- tokens]
-[Variant modifiers like &--reversed]
+### CSS Skeleton
+[Mobile-first vanilla CSS with block-scoped selectors]
+[CSS custom properties mapped to project tokens from styles.css]
+[Block option variants as additional classes, e.g., .blockname.wide]
 
-**AEM structure mapping**: The Figma root frame is the component's visual root. In AEM, the block class is on the wrapper; the HTL root is `__base`. Put the Figma root's styles under `&__base`, not directly under the block:
+**EDS block structure mapping**: The Figma root frame maps to the block wrapper `<div class="blockname">`. Authored content renders as nested `<div>` rows and columns inside the wrapper. The block's `decorate(block)` function reshapes this into the final semantic structure. All CSS selectors MUST be scoped to `.blockname`:
 
-```scss
-.dxn-{component} {
-  &__base {
-    /* styles from Figma root frame */
-    position: relative;
-    width: 100%;
-    ...
+```css
+.blockname {
+  /* styles from Figma root frame */
+  position: relative;
+  width: 100%;
+}
+
+.blockname .blockname-content {
+  /* descendant element styles */
+}
+
+@media (width >= 900px) {
+  .blockname {
+    /* desktop overrides */
   }
-  &__content { ... }
-  ...
 }
 ```
 
 ## Design Token Mapping
-[Table: Element | CSS Property | --dxn- variable | Fallback value]
+[Table: Element | CSS Property | Project variable (e.g., --background-color) | Fallback value]
 
 ## Breakpoints & Per-Breakpoint CSS Overrides
-[Mobile base → Tablet (768px) → Desktop (1024px) → Wide (1280px)]
-[Specific property overrides per breakpoint]
+[Mobile base → Tablet (600px) → Desktop (900px) → Wide (1200px)]
+[Specific property overrides per breakpoint, using @media (width >= Npx)]
 
 ## Dynamic Content Elements
 [Elements with content-dependent sizing, marked ≈ approximate]
@@ -82,16 +89,18 @@ Structure the design.md with these sections:
 
 ## Interactive States
 [Hover, focus, active, disabled appearance per element]
+[ARIA-driven states: use aria-expanded, aria-selected, etc. for styling]
 
 ## Visual Acceptance Checklist
 [Specific visual checks: spacing, typography, colour at mobile and desktop]
 
-## Embedded Components
-[Child components and required styles, e.g., "dxn-teaser (teaser-stage style)"]
+## Embedded Blocks
+[Child blocks or referenced fragments and their required styles]
 
-## AEM HTL Integration
-[AEM provides block class wrapper — HTL root is __base]
-[data-nc, data-nc-params, ARIA attributes go on __base]
+## EDS Block Integration
+[Block wrapper provides .blockname class on the outer <div>]
+[ARIA attributes and roles go on decorated elements for accessibility]
+[Block options (variants) add CSS classes via parenthetical notation in the block name]
 ```
 
 ## Step 4: Write design.md
@@ -107,4 +116,6 @@ Output: design.md path and summary of what was captured, and readiness for next 
 - design.md is the **source of truth for all HTML/CSS/design-specific content**
 - spec.md remains the source of truth for functional requirements
 - Do NOT create or modify spec.md — that was already done by `/speckit-specify`
-- SCSS skeleton must use project mixins (`@include tablet-up`) not raw media queries
+- CSS must be vanilla (no SCSS, no preprocessors) with block-scoped selectors
+- Use `@media (width >= Npx)` with standard EDS breakpoints: 600px, 900px, 1200px
+- Map Figma values to project CSS custom properties from `styles/styles.css` where they exist
