@@ -1,6 +1,6 @@
 ---
 name: speckit-figma-specify
-description: Extract visual design context from Figma and save it as design.md. Trigger when user asks to extract Figma design specs, create a design.md from Figma, or capture visual design reference for a feature.
+description: Extract visual design context from Figma and save it as design.md. STICK TO FIGMA OUTPUT ONLY—never invent selectors, styles, breakpoints, or structure. When Figma is ambiguous, ask the user. Trigger when user asks to extract Figma design specs, create a design.md from Figma, or capture visual design reference for a feature.
 disable-model-invocation: true
 ---
 
@@ -39,6 +39,15 @@ Call `get_design_context` on `plugin-figma-figma` MCP server with `fileKey` and 
 
 ## Step 3: Generate design.md
 
+### Step 3a: Verify Before Writing
+
+For each CSS rule, HTML element, or design decision you plan to include:
+1. **Which Figma node does this come from?** If you cannot point to a specific node or layer, do NOT include it.
+2. **Is the mapping indirect?** (e.g. child inheriting parent style) — Note the source node in a comment.
+3. **Unclear or missing in Figma?** — Stop and ask the user. Do not guess or infer.
+
+### Step 3b: Structure design.md
+
 Structure the design.md with these sections:
 
 ```markdown
@@ -53,6 +62,7 @@ Structure the design.md with these sections:
 
 ### CSS Skeleton
 [Mobile-first vanilla CSS with block-scoped selectors]
+[Each rule MUST map to a Figma node — cite node IDs in comments where practical]
 [CSS custom properties mapped to project tokens from styles.css]
 [Block option variants as additional classes, e.g., .blockname.wide]
 
@@ -80,7 +90,7 @@ Structure the design.md with these sections:
 [Table: Element | CSS Property | Project variable (e.g., --background-color) | Fallback value]
 
 ## Breakpoints & Per-Breakpoint CSS Overrides
-[Mobile base → Tablet (600px) → Desktop (900px) → Wide (1200px)]
+[Use Figma viewport widths as breakpoints when the design has multiple frames (e.g. 360, 768, 1440). If Figma breakpoints differ from project breakpoints (EDS: 600px, 900px, 1200px), ask the user which to use—do not assume]
 [Specific property overrides per breakpoint, using @media (width >= Npx)]
 
 ## Dynamic Content Elements
@@ -115,9 +125,12 @@ Output: design.md path and summary of what was captured, and readiness for next 
 
 ## Key Rules
 
+- **FIGMA ONLY**: Every CSS rule, selector, breakpoint, and structural decision MUST map to a specific Figma node or layer. No exceptions.
+- **When in doubt, omit.** Never invent selectors, styles, breakpoints, or structure. If Figma output is ambiguous, ask the user—do not guess.
+- For each element or style in design.md, include the Figma node ID in a comment where practical (e.g. `/* Figma node 1:22422 */`).
 - design.md is the **source of truth for all HTML/CSS/design-specific content**
 - spec.md remains the source of truth for functional requirements
 - Do NOT create or modify spec.md — that was already done by `/speckit-specify`
 - CSS must be vanilla (no SCSS, no preprocessors) with block-scoped selectors
-- Use `@media (width >= Npx)` with standard EDS breakpoints: 600px, 900px, 1200px
+- Breakpoints: Use Figma viewport widths first. If they differ from project breakpoints (600px, 900px, 1200px), ask the user which to use
 - Map Figma values to project CSS custom properties from `styles/styles.css` where they exist

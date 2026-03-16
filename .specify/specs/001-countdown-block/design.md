@@ -198,7 +198,8 @@ main .countdown .countdown-badge-datetime {
   gap: 4px;
 }
 
-main .countdown .countdown-badge-datetime span:first-child:not(:only-child) {
+/* Time & Date text (Figma nodes 1:22422, 1:22424): both use identical typography */
+main .countdown .countdown-badge-datetime > span:not(.countdown-badge-sep) {
   font-family: var(--body-font-family);
   font-size: 12px;
   line-height: 20px;
