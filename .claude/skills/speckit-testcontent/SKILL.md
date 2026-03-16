@@ -1,6 +1,6 @@
 ---
 name: speckit-testcontent
-description: Creates and extends test content for DigitalXn AEM components in digitalxn-aem-nc-sites-reference-content. Use when adding a new component page, creating component test variants, generating reference content, or when the user requests specific variants (e.g. "accordion with teaser", "teaser with CTA button", "with container examples").
+description: Creates and extends test content for DigitalXn AEM components in digitalxn-aem-nc-sites-reference-content. Explicit invocation only — never load from context or topic. Use only when the user types the exact command "speckit-testcontent".
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: speckit-testcases
-description: Generate a testcases.csv from a speckit feature spec. Trigger when user asks to generate test cases, create a CSV of test cases, or produce author-executable tests from the feature spec.
+description: Generate a testcases.csv from a speckit feature spec. Explicit invocation only — never load from context or topic. Use only when the user types the exact command "speckit-testcases".
 disable-model-invocation: true
 ---
 

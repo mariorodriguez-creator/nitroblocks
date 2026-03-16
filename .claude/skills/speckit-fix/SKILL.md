@@ -1,6 +1,6 @@
 ---
 name: speckit-fix
-description: Auto-apply fixes from speckit-validate output. Trigger when user provides a VALIDATE-OUTPUT block from speckit-validate and wants to fix HTL, dialog, ESLint, or Stylelint issues.
+description: Auto-apply fixes from speckit-validate output. Explicit invocation only — never load from context or topic. Use only when the user types the exact command "speckit-fix".
 disable-model-invocation: true
 ---
 

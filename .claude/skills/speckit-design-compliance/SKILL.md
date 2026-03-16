@@ -1,6 +1,6 @@
 ---
 name: speckit-design-compliance
-description: Generate design-expectations.json from design.md and run assert-design-compliance CSS checks. Trigger when user asks to run design compliance, generate design expectations, or verify CSS matches design.md specifications.
+description: Generate design-expectations.json from design.md and run assert-design-compliance CSS checks. Explicit invocation only — never load from context or topic. Use only when the user types the exact command "speckit design-compliance".
 disable-model-invocation: true
 ---
 

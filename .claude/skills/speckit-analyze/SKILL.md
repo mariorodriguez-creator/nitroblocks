@@ -1,6 +1,6 @@
 ---
 name: speckit-analyze
-description: Analyze cross-artifact consistency across spec.md, plan.md, and tasks.md. Trigger when user invokes the speckit analyze workflow, asks to check consistency between artifacts, or wants to find gaps before implementation.
+description: Analyze cross-artifact consistency across spec.md, plan.md, and tasks.md. Explicit invocation only — never load from context or topic. Use only when the user types the exact command "speckit-analyze".
 disable-model-invocation: true
 ---
 

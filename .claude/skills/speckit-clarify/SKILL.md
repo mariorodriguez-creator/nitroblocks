@@ -1,6 +1,6 @@
 ---
 name: speckit-clarify
-description: Clarify ambiguous requirements in a speckit feature spec. Trigger when user invokes the speckit clarify workflow, asks to resolve spec ambiguities, or wants to reduce vagueness before planning.
+description: Clarify ambiguous requirements in a speckit feature spec. Explicit invocation only — never load from context or topic. Use only when the user types the exact command "speckit-clarify".
 disable-model-invocation: true
 ---
 
@@ -24,6 +24,14 @@ Run: `.specify/scripts/bash/check-prerequisites.sh --json --paths-only` from rep
 
 Perform structured scan across:
 - **Functional Scope**: Core user goals, out-of-scope declarations, user roles
+- **Content Model & Authoring** (CDD Phase 1.2 validation from ): The spec's content model defines the author-developer contract. Scan for:
+  - Is the canonical model type identified (Standalone, Collection, Configuration, Auto-Blocked)?
+  - Is the block table structure complete — rows, columns, header label, semantic formatting conventions?
+  - Are block options/variants clearly defined with parenthetical notation?
+  - Could authors intuitively create this content without developer guidance?
+  - Are there content model assumptions that could break existing authored content (backward compatibility)?
+  - For modifications: does the new model preserve or gracefully extend the existing structure?
+  - Max 4 cells per row? Smart defaults to minimize author input?
 - **Domain & Data Model**: Entities, relationships, lifecycle/state transitions
 - **Interaction & UX Flow**: User journeys, error/empty/loading states, accessibility
 - **Non-Functional**: Performance targets, scalability, reliability, security
@@ -31,8 +39,9 @@ Perform structured scan across:
 - **Edge Cases**: Negative scenarios, rate limiting, conflict resolution
 - **Constraints**: Technical constraints, explicit tradeoffs
 - **Terminology**: Canonical terms, avoided synonyms
-- **Spec–Design Alignment** (when design.md exists): Gaps or conflicts between spec.md and design.md — e.g. spec describes components/variants/behaviors not reflected in design.md; design shows elements (BEM, breakpoints, states) not addressed in spec; missing author-configurable mapping; unclear dynamic content behavior
+- **Spec–Design Alignment** (when design.md exists): Gaps or conflicts between spec.md and design.md — e.g. spec describes components/variants/behaviors not reflected in design.md; design shows elements (BEM, breakpoints, states) not addressed in spec; missing author-configurable mapping; unclear dynamic content behavior. Also check that design variants map to block options defined in the content model.
 - **Visual & Structural Gaps** (when design.md exists): Breakpoints, responsive behavior, interactive states, design tokens, embedded components, or dynamic content elements that lack clear spec coverage or acceptance criteria
+- **Content Model–Design Alignment** (when design.md exists): The content model in spec.md and the HTML scaffold in design.md must be consistent — visual elements should trace back to authored content (block table cells) or decoration-added structure, not invent content that isn't in the model
 
 Mark each category: Clear / Partial / Missing. Build priority queue.
 
@@ -53,7 +62,7 @@ Present ONE question at a time. For each:
 
 2. **Short-answer questions**: Provide suggested answer with reasoning.
 
-Only ask questions that materially impact: architecture, data modeling, task decomposition, test design, UX behavior, security posture, or (when design.md exists) spec–design alignment, variant coverage, breakpoint behavior, or author-configurable mapping. Max 15 questions total across session.
+Only ask questions that materially impact: architecture, data modeling, content model design, task decomposition, test design, UX behavior, security posture, or (when design.md exists) spec–design alignment, variant coverage, breakpoint behavior, or author-configurable mapping. Max 15 questions total across session.
 
 **When design.md exists:** Ask clarifying questions that bridge spec and design — e.g. which design elements map to spec acceptance criteria, whether variants/styles in design match spec scenarios, or how dynamic/author-configurable content should behave per breakpoint or state.
 

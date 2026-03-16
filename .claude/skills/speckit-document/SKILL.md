@@ -1,6 +1,6 @@
 ---
 name: speckit-document
-description: Generate or update the component authoring guide after implementation. Trigger when user asks to document a component, create an authoring guide, or generate component documentation before raising a PR.
+description: Generate or update the component authoring guide after implementation. Explicit invocation only — never load from context or topic. Use only when the user types the exact command "speckit-document".
 disable-model-invocation: true
 ---
 

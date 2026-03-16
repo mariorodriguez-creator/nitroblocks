@@ -23,7 +23,6 @@
 
 **Content Approach**:
 - [Describe how authors will create or modify content for this feature in the document-based authoring environment (Word, Google Docs, or da.live)]
-- [Identify block table structure if applicable, e.g., "Authors add a 2-column table labeled 'Tabs' with tab titles in column 1 and content in column 2"]
 - [Draft content location: `/drafts/{developer}/` folder]
 
 **Existing Blocks/Patterns**:
@@ -109,6 +108,47 @@ AC2. **Columns MUST render at 66%/33% ratio on desktop viewports (≥1200px)**
 
 - **[Potential regression 1]**: [Affected system element, description of breaking change, likelihood and severity]
 - **[Potential regression 2]**: [Affected system element, description of breaking change, likelihood and severity]
+
+## Content Model *(mandatory for block features)*
+
+<!--
+  ACTION REQUIRED (CDD Phase 1.2): Define the author-facing content model.
+  The block table structure is the contract between authors and developers.
+  Use the content-modeling skill for canonical model types and best practices.
+  Focus on WHAT authors create, not HOW the code processes it.
+-->
+
+**Canonical Model Type**: [Standalone | Collection | Configuration | Auto-Blocked]
+
+<!--
+  - Standalone: distinct visual or narrative element (Hero, Blockquote)
+  - Collection: repeating semi-structured content (Cards, Carousel)
+  - Configuration: API-driven or dynamic content with key/value settings (Blog Listing, Search)
+  - Auto-Blocked: simplified authoring via sections/default content transformed into blocks (Tabs, Embed)
+-->
+
+**Block Table Structure**:
+
+| [Block Name] |  |
+|---|---|
+| [Row 1, Cell 1 description] | [Row 1, Cell 2 description] |
+| [Row 2, Cell 1 description] | [Row 2, Cell 2 description] |
+
+<!--
+  Guidelines:
+  - Max 4 cells per row
+  - Use semantic formatting to define meaning (bold = heading, link = CTA, etc.)
+  - Prefer block variants over config cells
+  - Be flexible about input structure — decoration code should handle variations
+-->
+
+**Semantic Formatting**:
+- [e.g., Bold text → heading, Regular paragraph → description, Link → call-to-action]
+- [e.g., Image → hero/background image]
+
+**Block Options (Variants)**: [e.g., `Block (dark)`, `Block (wide, centered)` — each option becomes a CSS class on the block wrapper]
+
+**Section Metadata**: [If applicable, describe section-level metadata keys and values, e.g., `Style: dark` adds a class to the containing section]
 
 ## Requirements *(mandatory)*
 

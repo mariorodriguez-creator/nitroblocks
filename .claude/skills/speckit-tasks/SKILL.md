@@ -1,6 +1,6 @@
 ---
 name: speckit-tasks
-description: Generate a tasks.md for a speckit feature. Trigger when user invokes the speckit tasks workflow, asks to generate tasks from a plan, or needs task breakdown for implementation.
+description: Generate a tasks.md for a speckit feature. Explicit invocation only — never load from context or topic. Use only when the user types the exact command "speckit-tasks".
 disable-model-invocation: true
 ---
 
@@ -14,17 +14,17 @@ Run: `.specify/scripts/bash/check-prerequisites.sh --json` from repo root. Parse
 
 ## Load Documents
 
-- **Required**: `plan.md` (tech stack, architecture), `spec.md` (user stories, requirements)
+- **Required**: `plan.md` (tech stack, architecture), `spec.md` (user stories, requirements, content model) and draft test content
 - **Optional**: `data-model.md`, `research.md`, `quickstart.md`
 - Use `.specify/templates/tasks-template.md` as structure template
 
 ## Complexity Classification
 
-**Simple (4-6 tasks)**: Changes to 1-2 files, no new Java classes, no external integrations, minimal JS/CSS.
+**Simple (2-4 tasks)**: CSS-only tweaks, minor JS fixes to an existing block, single-file changes.
 
-**Standard (8-12 tasks)**: 3-6 files, new/modified Sling Models, client library changes, complex dialogs.
+**Standard (5-8 tasks)**: New block (JS + CSS), auto-blocking changes, block with multiple variants.
 
-**Complex (15-20 tasks)**: Multiple modules, new OSGi service, external API, state management, new data contracts.
+**Complex (9-15 tasks)**: Multiple new blocks, core script changes combined with new blocks, third-party integrations via delayed.js, cross-block interactions.
 
 State complexity in tasks.md header.
 
@@ -34,19 +34,18 @@ State complexity in tasks.md header.
 - [ ] [Category-ID] [P] Description with file path
 ```
 
-| Category | Prefix |
-|----------|--------|
-| Backend: Models | `BM` |
-| Backend: Dialog | `BD` |
-| Backend: HTL | `BH` |
-| Frontend: JS | `FJ` |
-| Frontend: CSS | `FC` |
-| Integration | `IN` |
-| Testing | `TS` |
-| Documentation | `DC` |
-| Content | `CT` |
-| Setup | `T` |
-| Scaffolding | `SC` |
+| Category | Prefix | Typical files |
+|----------|--------|---------------|
+| Block JS | `BJ` | `blocks/{name}/{name}.js` |
+| Block CSS | `BC` | `blocks/{name}/{name}.css` |
+| Core Scripts | `CS` | `scripts/scripts.js`, `scripts/delayed.js` |
+| Global Styles | `GS` | `styles/styles.css`, `styles/lazy-styles.css` |
+| Content | `CT` | `drafts/` test content, `head.html`, icons |
+| Integration | `IN` | Third-party scripts, auto-blocking, indexing |
+| Testing | `TS` | Linting, browser tests, PSI validation |
+| Documentation | `DC` | Block README, authoring guides |
+| Setup | `T` | Project structure, configuration |
+| Scaffolding | `SC` | New block directory creation |
 
 Include `[P]` only when task operates on different files than all incomplete tasks.
 
@@ -54,41 +53,42 @@ Include `[P]` only when task operates on different files than all incomplete tas
 
 | Collapse | To | Exception |
 |----------|-----|-----------|
-| BD001+BD003+FC002+FC003 | SC001 (invoke `create-component` skill) | Always for new components |
-| BM001+BM002 | "Create Sling Model interface and implementation" | — |
-| FC001+FC002+FC003 | "Create clientlib with styles" | **fe-build**: Keep FC002 separate |
+| SC001+BJ001+BC001 | "Create block with JS and CSS" | Keep separate if block has complex decoration AND complex styling |
+| BJ001+BC001 | "Implement block decoration and styles" | Keep separate when design.md exists (CSS from design, JS from content model) |
 
-**Never skip**: SC001 (new component), BM001+BM002 (unless pure static), BH001 (always), TS005+TS006 (always).
+**Never skip**: SC001 (new block), BJ001 (block JS for any block with decoration logic), TS001+TS002 (always — linting gates).
 
-**DigitalXn fe-build rule**: When plan.md mentions `@netcentric/fe-build`, keep FC002 as separate task (runs before TS006).
+## SC001: Block Scaffolding
 
-## SC001: create-component Invocation
+Create the block directory and files:
+```
+blocks/{blockname}/
+  ├── {blockname}.js    # exports default function decorate(block)
+  └── {blockname}.css   # scoped to .{blockname}
+```
 
-When the component has **embedded child components** (from spec, _cq_template, or plan — e.g. button, accordion items, tabs, carousel slides):
-
-- Add `--is-container` to the create-component invocation.
-- Example: `dxn-countdown --title "Countdown" --with-js --is-container` when the component embeds a button child.
+Use the `building-blocks` skill for the decorate function pattern and CSS conventions.
 
 ## Phase Structure
 
-- **Phase 1: Setup** — project structure, shared config
-- **Phase 2: Foundation** — shared models/services (blocking prereqs)
-  - SC001 is always the first Foundation task when creating a new component
-- **Phase 3.X: User Stories** — one sub-phase per user story
-- **Final Phase: QA & Polish** — TS005 (Spotbugs), TS006 (lint), accessibility, documentation
+- **Phase 1: Setup** — block directory, test content verification (CDD Phase 2 gate)
+- **Phase 2: Foundation** — core script changes, auto-blocking, shared utilities (blocking prereqs)
+- **Phase 3.X: User Stories** — one sub-phase per user story from spec
+- **Final Phase: QA & Polish** — TS001 (ESLint), TS002 (Stylelint), accessibility checks, documentation
 
 ## Design.md Source of Truth
 
 When `design.md` exists:
-- BH001 (HTL): HTML structure from design.md HTML scaffold
-- FC001 (SCSS): Implement exactly per design.md SCSS skeleton — all breakpoints, all variants
-- `_cq_template`: Include `cq:styleIds` per design.md Embedded Components
+- BJ001 (Block JS): HTML structure from design.md Code Scaffold — decoration must produce this structure
+- BC001 (Block CSS): Implement per design.md CSS Skeleton — vanilla CSS, all breakpoints, all variants, block-scoped selectors
+- Use design.md Design Token Mapping to reference project CSS custom properties from `styles/styles.css`
 
 ## Test Tasks
 
-- TS001-TS004 (unit tests): Generate ONLY when explicitly requested in spec or arguments
-- TS007 (Jest): Generate when component has isolated, testable JS logic AND tests requested
-- TS005 + TS006: **Always** generate (code quality gates)
+- TS001 (ESLint) + TS002 (Stylelint): **Always** generate — `npm run lint` must pass before PR
+- TS003 (browser test): Generate when block has interactive behavior — use Playwright/Puppeteer for ad-hoc validation
+- TS004 (PSI check): Generate for any change that could affect performance — verify Lighthouse 100 on preview URL
+- TS005 (accessibility): Generate when block has interactive elements — keyboard navigation, ARIA, screen reader
 
 ## Report
 

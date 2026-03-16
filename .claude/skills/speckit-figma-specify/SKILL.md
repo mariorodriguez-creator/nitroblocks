@@ -1,6 +1,6 @@
 ---
 name: speckit-figma-specify
-description: Extract visual design context from Figma and save it as design.md. Trigger when user asks to extract Figma design specs, create a design.md from Figma, or capture visual design reference for a feature.
+description: Extract visual design context from Figma and save it as design.md. Explicit invocation only — never load from context or topic. Use only when the user types the exact command "speckit figma-specify".
 disable-model-invocation: true
 ---
 
@@ -17,7 +17,15 @@ Runs **after** `/speckit-specify` (spec.md must already exist).
 - Interactive state appearance (hover colours, focus rings)
 - Dynamic content element identification
 
-**NOT captured here** (owned by spec.md): functional requirements, acceptance criteria, author-configurable content, business-language descriptions, behavioral logic.
+**NOT captured here** (owned by spec.md): functional requirements, acceptance criteria, author-configurable content, business-language descriptions, behavioral logic, content model (block table structure).
+
+**Content Model Alignment (CDD Phase 1.2)**
+
+The spec.md already contains the content model (block table structure, variants, authoring approach) defined during `/speckit-specify`. The Figma design must align with — not override — this content model. When extracting design context:
+
+- **Map visual elements to authored content**: Identify which visual elements correspond to author-provided content (text, images, links from the block table) vs. decoration-added structure (wrappers, icons, layout containers). Note this mapping in the "EDS Block Integration" section of design.md.
+- **Validate variant coverage**: Check that Figma design variants (e.g., different visual states or layouts) correspond to the block options defined in the spec's content model. Flag any design variants that have no matching block option, or spec variants missing from the design.
+- **Respect the authored structure**: The Figma root frame maps to the block wrapper, but the inner content comes from authored rows/columns. design.md's HTML scaffold must reflect this — authored content is the input, not something to invent.
 
 ## Step 1: Locate Spec Directory
 
@@ -114,8 +122,9 @@ Output: design.md path and summary of what was captured, and readiness for next 
 ## Key Rules
 
 - design.md is the **source of truth for all HTML/CSS/design-specific content**
-- spec.md remains the source of truth for functional requirements
+- spec.md remains the source of truth for functional requirements and the **content model** (block table structure, variants, authoring approach)
 - Do NOT create or modify spec.md — that was already done by `/speckit-specify`
+- If the Figma design implies content model changes (new variants, different content structure), flag them in the Report as requiring a spec update — do not silently diverge from the spec's content model
 - CSS must be vanilla (no SCSS, no preprocessors) with block-scoped selectors
 - Use `@media (width >= Npx)` with standard EDS breakpoints: 600px, 900px, 1200px
 - Map Figma values to project CSS custom properties from `styles/styles.css` where they exist

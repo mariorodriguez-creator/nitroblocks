@@ -1,6 +1,6 @@
 ---
 name: speckit-specify
-description: Create a new feature specification from a natural language description. Trigger when user invokes the speckit specify workflow, asks to create a feature spec, or starts a new feature with a description.
+description: Create a new feature specification from a natural language description. Explicit invocation only — never load from context or topic. Use only when the user types the exact command "speckit-specify".
 disable-model-invocation: true
 ---
 
@@ -18,6 +18,7 @@ The feature description provided after the skill invocation. Process this as the
 
 Create a concise 2-4 word short name from the feature description:
 - Action-noun format: `user-auth`, `analytics-dashboard`, `fix-payment-timeout`
+- No longer than 30 characters
 - Preserve technical terms (OAuth2, API, JWT)
 - Ask user for ticket number (gitflow naming: `feature/<number>-<short-name>`)
 
@@ -45,10 +46,12 @@ Read `.specify/templates/spec-template.md` for required sections.
 Focus on WHAT and WHY, not HOW. Written for business stakeholders.
 
 - Parse user description: extract actors, actions, data, constraints
-- Consider the content authoring experience: how will authors create and modify content for this feature in the document-based authoring environment (Word, Google Docs, or da.live)? What block tables, section metadata, or default content patterns are involved?
 - For unclear aspects: make informed guesses using industry standards; mark only significant ambiguities as `[NEEDS CLARIFICATION: specific question]`
 - Prioritize clarifications by impact: scope > security/privacy > UX > content authoring > technical details
 - Fill all sections: Project Context, User Story & Testing, Functional Requirements, Non-Functional Requirements (if applicable), Edge Cases
+- Consider Phases 1.1 and 1.2 from the **Content Driven Development** skill (.claude/skills/content-driven-development):
+   - Content Discovery (CDD Phase 1.1): Search `blocks/` for existing blocks relevant to this feature. For modifications, identify pages already using the block (via `find-block-content.js` or user). Document findings in "Existing Blocks/Patterns" section. See `content-driven-development` skill for the full process.
+   - Content Model Design (CDD Phase 1.2): Design the author-facing content model and include it in the spec's "Content Approach" section. Use the `content-modeling` skill for canonical model types and best practices. The content model defines WHAT authors create — it belongs in the spec, not in implementation artifacts.
 - Write to `SPEC_FILE`
 
 **Do NOT add implementation details (block decoration JS, CSS selectors, loading phases, code structure).**
@@ -85,6 +88,7 @@ Output: branch name, spec file path, checklist results, and readiness for next p
 - Focus on **WHAT** users need and **WHY**
 - Avoid HOW (no block JS/CSS, decoration patterns, loading phases, or code structure)
 - Written for business stakeholders, not developers
-- Content-first: always describe the feature from the author's perspective (what they create in their document) before describing visitor-facing behavior
+- **Content-first**: always describe the feature from the author's perspective (what they create in their document) before describing visitor-facing behavior. The content model in the spec defines the author-developer contract.
+- The content model section defines the block table structure, not implementation — it belongs in the spec because it answers "what do authors create?"
 - Do NOT embed checklists in the spec — they are separate files
-- Common reasonable defaults (don't ask): Lighthouse 100 target, WCAG 2.2 AA, responsive behavior across standard breakpoints (600/900/1200px), backward-compatible content models
+- Common reasonable defaults (don't ask): Lighthouse 100 target, WCAG 2.2 AA, responsive behavior across standard breakpoints, backward-compatible content models

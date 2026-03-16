@@ -1,6 +1,6 @@
 ---
 name: speckit-implement
-description: Execute the implementation plan for a speckit feature. Trigger when user invokes the speckit implement workflow, asks to implement tasks from tasks.md, or start the implementation phase.
+description: Execute the implementation plan for a speckit feature. Explicit invocation only — never load from context or topic. Use only when the user types the exact command "speckit-implement".
 disable-model-invocation: true
 ---
 
@@ -18,15 +18,13 @@ Before implementing, scan `FEATURE_DIR/checklists/` for incomplete items. If any
 
 ## Load Context
 
-- **REQUIRED**: `tasks.md`, `plan.md`
-- **IF EXISTS**: `data-model.md`, `research.md`, `quickstart.md`
-- **SC001 present**: Invoke `create-component` skill BEFORE any BD/BH/FC tasks in Phase 2. Extract from plan.md: component name (kebab-case, no `dxn-` prefix), title, description, group, super-type, is-container, version. Add `--with-js` if FJ tasks exist. After skill completes: BD001, BD003, FC002, FC003 already exist — **edit/populate only, never recreate**.
-- **Dialog tasks (BD002)**: Apply `aem-dialog` skill — Coral 3 only, correct structure, DXn patterns.
-- **FC002 (clientlib .content.xml)**: Create at `digitalxn-aem-base-clientlibs-apps/src/main/jcr_root/apps/digitalxn/base/clientlibs/publish/components/[name]/.content.xml` with `categories="[digitalxn.components.dxn-[name]]"` and `allowProxy="{Boolean}true"`. Run before TS006.
-- **design.md source of truth**: For BH001/FC001/layout/variants/breakpoints, cross-check design.md. Do not rely on quickstart.md summaries.
-- **HTL root = `__base`**: AEM provides block class wrapper. HTL root must be `__base`. Put `data-nc`, `data-nc-params`, ARIA on `__base`.
-- **data-nc-params**: Plain expressions only — no HTL `@ context=...` in JSON params.
-- **_cq_template with parsys**: Check design.md Embedded Components for required `cq:styleIds` on default children.
+- **REQUIRED**: `tasks.md`, `plan.md`, draft test content
+- **IF EXISTS**: `data-model.md`, `research.md`, `quickstart.md`, `design.md`
+- **design.md source of truth**: For BJ001/BC001/layout/variants/breakpoints, cross-check design.md. Do not rely on quickstart.md summaries.
+
+## Implementation Approach (CDD Phase 2)
+
+For block development, follow the `content-driven-development` skill, Phase 2 — this invokes the `building-blocks` skill with the content model and test content URL(s). For core functionality changes (scripts.js, delayed.js, global styles), test against the identified content throughout development.
 
 ## Execution Rules
 
@@ -34,19 +32,15 @@ Before implementing, scan `FEATURE_DIR/checklists/` for incomplete items. If any
 2. Respect dependencies: sequential tasks in order, parallel tasks [P] together
 3. For completed tasks: mark as `[X]` in tasks.md
 4. Halt on non-parallel task failure; continue parallel tasks and report failures
-5. SC → BD/FC guard: after SC001, verify file exists before editing
+5. SC → BJ/BC guard: after SC001 (block scaffolding), verify files exist before editing
 
-## Build Validation (Token-Efficient)
+## Build Validation
 
 ```bash
-# Maven (from repo root)
-mvn clean install -q 2>&1 | grep -E '(BUILD SUCCESS|BUILD FAILURE|\[ERROR\]|Tests run:)'
-
-# Frontend (from digitalxn-aem-base/digitalxn-aem-base-clientlibs-apps/frontend/)
-npm run build 2>&1 | grep -iE '(error|Error|failed|FAIL|completed|Compiled)'
-npm run lint:js 2>&1 | grep -E '(error|Error|\d+ problem)'
-npm run lint:css 2>&1 | grep -E '(error|Error|\d+ problem)'
+npm run lint
 ```
+
+No build step in EDS — linting is the primary code quality gate. Verify rendering on `localhost:3000` against test content after each significant change.
 
 ## Completion
 

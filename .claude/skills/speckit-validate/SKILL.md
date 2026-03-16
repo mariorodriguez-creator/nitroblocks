@@ -1,6 +1,6 @@
 ---
 name: speckit-validate
-description: Validate generated AEM component code after speckit-implement. Trigger when user asks to validate a component, run HTL/dialog rule checks, or verify lint passes after implementation.
+description: Validate generated AEM component code after speckit-implement. Explicit invocation only — never load from context or topic. Use only when the user types the exact command "speckit-validate".
 disable-model-invocation: true
 ---
 

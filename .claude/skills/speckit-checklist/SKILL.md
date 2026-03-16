@@ -1,6 +1,6 @@
 ---
 name: speckit-checklist
-description: Generate requirements quality checklists for a speckit feature. Trigger when user asks to create a checklist, validate spec quality, or generate "unit tests for requirements" for a feature domain.
+description: Generate requirements quality checklists for a speckit feature. Explicit invocation only — never load from context or topic. Use only when the user types the exact command "speckit-checklist".
 disable-model-invocation: true
 ---
 
