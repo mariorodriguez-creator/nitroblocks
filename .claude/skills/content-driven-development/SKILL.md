@@ -39,7 +39,8 @@ When in doubt, follow the CDD process. The time invested pays dividends in quali
 
 This skill orchestrates other skills at the appropriate stages:
 
-- **content-modeling**: Invoked when new content models need to be designed or existing models modified
+- **speckit-specify**: When spec.md exists in `.specify/specs/`, use it as input. Attach with `@.specify/specs/{feature}/spec.md`. Content Approach informs content-modeling; spec does not replace it.
+- **content-modeling**: Invoked when new content models need to be designed or existing models modified. When spec exists, content-modeling uses Content Approach as starting point and formalizes the table structure.
 - **building-blocks**: Invoked during implementation phase for block creation or modification
 - **testing-blocks**: Referenced during validation phase for comprehensive testing
 - **block-collection-and-party**: Used to find similar blocks and reference implementations
@@ -51,6 +52,18 @@ Follow these phases in order. Do not skip steps.
 ### Phase 1: Content Discovery and Modeling
 
 The first phase establishes what content you're working with and ensures the content model is author-friendly.
+
+#### Step 1.0: Check for spec.md (from /speckit-specify)
+
+**When the user attaches or provides a path to `spec.md` in `.specify/specs/`** (e.g. `@.specify/specs/001-countdown-block/spec.md`):
+
+1. Read the spec file.
+2. Use its **Content Approach** as input to content modeling (Step 1.2)—it describes table structure in prose but does not replace the formal content model.
+3. Use **Acceptance Criteria**, **Functional Requirements**, and **Edge Cases** when creating test content and during implementation.
+4. **Do NOT skip Step 1.2.** The spec informs content modeling; the content-modeling skill formalizes the table structure, validates against best practices, and produces the canonical model.
+5. Proceed to Step 1.1. When Step 1.2 (Content Model Design) runs, provide the spec so content-modeling uses Content Approach as the starting point.
+
+**When spec.md is not provided:** Proceed to Step 1.1.
 
 #### Step 1.1: Determine Content Availability
 
@@ -76,7 +89,9 @@ Ask the user: "Does content using this block already exist that we can use for t
 - All new blocks
 - Structural changes to existing blocks (adding/removing/modifying sections, variants, or the authoring structure)
 
-**Ask the user:**
+**When spec.md was provided in Step 1.0:** Use its Content Approach as the starting point. Invoke the **content-modeling** skill with the spec—it will formalize the table structure, validate against best practices, and produce the canonical model. Proceed to Step 1.3 when done.
+
+**When spec.md was not provided, ask the user:**
 "This requires a new content model. Would you like me to use the content-modeling skill to design an author-friendly content model now?"
 
 - **YES** → Invoke the **content-modeling** skill
@@ -158,6 +173,8 @@ Now that test content exists, proceed with implementation:
 
 Invoke the **building-blocks** skill:
 - Provide the skill with the content model and test content URL(s)
+- **When spec.md exists** (from `/speckit-specify`): Provide path to `FEATURE_DIR/spec.md` (e.g. `.specify/specs/001-block-name/spec.md`). Use it as the source for content model, acceptance criteria, functional requirements, and edge cases.
+- **When design.md exists** (from `/speckit-figma-specify`): Provide path to `FEATURE_DIR/design.md` (e.g. `.specify/specs/001-block-name/design.md`). The building-blocks skill will use it as the source of truth for HTML structure, CSS, breakpoints, and visual acceptance.
 - Follow the building-blocks process for implementation
 - Return to this skill when implementation is complete
 - Proceed to Phase 3
@@ -233,8 +250,9 @@ The test content URL will be used as the PR validation link.
 
 ```
 1. CONTENT DISCOVERY
+   └─ spec.md provided? → Use Content Approach as input to content-modeling
    └─ Existing content? → Use it
-   └─ New block/structure? → Design content model → Create test content
+   └─ New block/structure? → Design content model (content-modeling formalizes spec) → Create test content
 
 2. IMPLEMENTATION
    └─ Build code against the real content model

@@ -9,7 +9,7 @@ This skill guides you through designing content models for AEM Edge Delivery Ser
 
 ## Related Skills
 
-- **content-driven-development**: This skill is typically invoked FROM the CDD skill during Phase 1 (Content Model Design)
+- **content-driven-development**: This skill is typically invoked FROM the CDD skill during Phase 1 (Content Model Design). When CDD provides spec.md from `/speckit-specify`, use its Content Approach as the starting point.
 - **building-blocks**: After content modeling is complete, this skill handles implementation
 - **block-collection-and-party**: Use to find similar blocks and their content models for reference
 
@@ -38,6 +38,17 @@ Before designing a content model, ensure you understand:
 1. **Block Purpose**: What is this block meant to accomplish?
 2. **Content Requirements**: What content elements are needed (images, text, links, etc.)?
 3. **User Experience**: How should this block appear and function on the page?
+
+## When spec.md Is Provided (from /speckit-specify)
+
+**When the CDD skill invokes this skill with a spec file** (e.g. `.specify/specs/001-block-name/spec.md`):
+
+1. Read the spec's **Content Approach** section—it describes the table structure in prose (rows, purposes, formats).
+2. Use Content Approach as the **starting point** for Steps 1–4. Do not skip validation.
+3. **Formalize** the prose into the canonical output: explicit markdown table, canonical model type, validation against best practices.
+4. The spec provides row purposes and formats; you produce the formal content model document.
+
+**The spec does not replace this skill.** It informs the design; you validate and formalize.
 
 ## The Content Modeling Process
 

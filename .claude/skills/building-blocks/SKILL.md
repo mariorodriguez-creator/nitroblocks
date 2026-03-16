@@ -39,16 +39,20 @@ This skill handles:
 1. **Block name**: What should the block be called?
 2. **Content model**: The defined structure authors will use
 3. **Test content URL**: Path to test content for development
+4. **spec.md** (optional): When spec exists from `/speckit-specify`, provide path to `FEATURE_DIR/spec.md`. Use it as source for content model, acceptance criteria, functional requirements, and edge cases. Read spec.md before implementing.
+5. **design.md** (optional): When design spec exists from `/speckit-figma-specify`, provide path to `FEATURE_DIR/design.md`. Use it as source of truth for HTML structure, CSS skeleton, design token mapping, breakpoints, interactive states, and visual acceptance checklist. Read design.md before implementing decoration and styles.
 
 ## Process Overview
 
 1. Verify Prerequisites (CDD completed)
-2. Find Similar Blocks (for patterns and reuse)
-3. Create or Modify Block Structure (files and directories)
-4. Implement JavaScript Decoration (DOM transformation)
-5. Add CSS Styling (scoped, responsive styles)
-6. Test the Implementation (local testing, linting)
-7. Document Block (developer and author-facing docs)
+2. Apply Spec (when spec.md provided)—content model, acceptance criteria, requirements, edge cases
+3. Apply Design Spec (when design.md provided)
+4. Find Similar Blocks (for patterns and reuse)
+5. Create or Modify Block Structure (files and directories)
+6. Implement JavaScript Decoration (DOM transformation)
+7. Add CSS Styling (scoped, responsive styles)
+8. Test the Implementation (local testing, linting)
+9. Document Block (developer and author-facing docs)
 
 ## Detailed Process
 
@@ -66,7 +70,32 @@ If prerequisites are not met, STOP and invoke the **content-driven-development**
 
 If prerequisites are met, get the test content URL from the user and proceed to step 2.
 
-### 2. Find Similar Blocks
+### 2. Apply Spec (when spec.md provided)
+
+**When spec.md path is provided:**
+
+1. Read `spec.md` from the given path
+2. Use **Content Approach** as the authoritative content model
+3. Use **Acceptance Criteria** and **Functional Requirements** as implementation requirements
+4. Use **Edge Cases** to inform test content creation and validation
+5. Validate implementation against spec requirements before considering complete
+
+**When spec.md is not provided:** Proceed to step 3 using content model from CDD and similar blocks as reference.
+
+### 3. Apply Design Spec (when design.md provided)
+
+**When design.md path is provided:**
+
+1. Read `design.md` from the given path
+2. Use **Code Scaffold** (HTML structure, CSS skeleton) as the implementation target
+3. Map design tokens to project variables from `styles/styles.css`
+4. Implement breakpoints and per-breakpoint overrides exactly as specified
+5. Apply interactive states (hover, focus) per design.md
+6. Use **Visual Acceptance Checklist** during implementation and validation
+
+**When design.md is not provided:** Proceed to step 4 using content model and similar blocks as reference.
+
+### 4. Find Similar Blocks
 
 **For new blocks or major modifications:**
 
@@ -75,9 +104,9 @@ If prerequisites are met, get the test content URL from the user and proceed to 
 
 Review the implementation patterns in similar blocks to inform your approach.
 
-**For minor modifications to existing blocks:** Skip to step 3.
+**For minor modifications to existing blocks:** Skip to step 5.
 
-### 3. Create or Modify Block Structure
+### 5. Create or Modify Block Structure
 
 **For new blocks:**
 
@@ -93,7 +122,7 @@ Review the implementation patterns in similar blocks to inform your approach.
 2. Review the current implementation before making changes
 3. Understand the existing decoration logic and styles
 
-### 4. Implement JavaScript Decoration
+### 6. Implement JavaScript Decoration
 
 Follow patterns and conventions in `resources/js-guidelines.md`:
 
@@ -104,7 +133,7 @@ Follow patterns and conventions in `resources/js-guidelines.md`:
 
 **Read `resources/js-guidelines.md` for detailed examples, code standards, and best practices.**
 
-### 5. Add CSS Styling
+### 7. Add CSS Styling
 
 Follow patterns and conventions in `resources/css-guidelines.md`:
 
@@ -117,7 +146,7 @@ Follow patterns and conventions in `resources/css-guidelines.md`:
 
 **Read `resources/css-guidelines.md` for detailed examples, code standards, and best practices.**
 
-### 6. Test the Implementation
+### 8. Test the Implementation
 
 **After implementation is complete, invoke the testing-blocks skill:**
 
@@ -133,9 +162,9 @@ Provide the testing-blocks skill with:
 - Test content URL (from CDD process)
 - Any variants that need testing
 
-Return to this skill after testing is complete to proceed to step 7.
+Return to this skill after testing is complete to proceed to step 9.
 
-### 7. Document Block
+### 9. Document Block
 
 Blocks require two types of documentation:
 

@@ -111,6 +111,8 @@ Write to `FEATURE_DIR/design.md`.
 
 Output: design.md path and summary of what was captured, and readiness for next phase: `/speckit-plan` (default when design is ready), or optionally `/speckit-clarify` (if ambiguities remain).
 
+**CDD handoff**: When building the block via content-driven-development, provide the design.md path to the building-blocks skill (e.g. `.specify/specs/001-block-name/design.md`). The building-blocks skill uses design.md as the source of truth for HTML structure, CSS, breakpoints, and visual acceptance.
+
 ## Key Rules
 
 - design.md is the **source of truth for all HTML/CSS/design-specific content**
