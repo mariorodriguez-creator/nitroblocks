@@ -19,6 +19,14 @@ Runs **after** `/speckit-specify` (spec.md must already exist).
 
 **NOT captured here** (owned by spec.md): functional requirements, acceptance criteria, author-configurable content, business-language descriptions, behavioral logic.
 
+**Design vs implementation**: design.md = what Figma shows. spec.md = what the system must do. Implementation (e.g. building-blocks, CDD) = how to satisfy both. When spec requires something Figma cannot show (accessibility, focus management, etc.), pass it through as a requirement, not as markup in design.md.
+
+## Out of Scope (Do NOT Add to design.md)
+
+- **ARIA attributes, roles, semantic HTML**: Figma does not expose these. Do not add `aria-live`, `aria-atomic`, `aria-hidden`, `role`, etc. to the HTML structure.
+- **Accessibility implementation**: When spec.md has requirements (e.g. NFR "ARIA live region"), reference them: *"Per spec NFR-001: implementation must add live region for time-remaining announcements."* Do not prescribe specific markup. Leave implementation to the building phase.
+- **Behavioral or UX patterns** that require design decisions (e.g. throttle rate, announcement format) — note the spec requirement only.
+
 ## Step 1: Locate Spec Directory
 
 Find the most recent spec directory in `.specify/specs/` (or one matching user's input).
@@ -56,9 +64,11 @@ Structure the design.md with these sections:
 ## Code Scaffold
 
 ### HTML Structure
-[Semantic HTML element hierarchy decorated by the block's JS]
+[Elements and classes from Figma only. Semantic HTML element hierarchy decorated by the block's JS]
 [Block-scoped class names added during decoration, e.g., .blockname-item, .blockname-image]
 [Initial authored structure: nested <div> rows/columns from the block table]
+
+**Spec requirements (do not implement here)**: If spec.md references accessibility, semantics, or behavior (e.g. live regions, roles), add a bullet: "Per [NFR-X]: implementation must [requirement]." Do not add aria-*, role, or other attributes—those are implementation details.
 
 ### CSS Skeleton
 [Mobile-first vanilla CSS with block-scoped selectors]
@@ -98,8 +108,7 @@ Structure the design.md with these sections:
 [These must NOT get fixed dimension expectations in design-expectations.json]
 
 ## Interactive States
-[Hover, focus, active, disabled appearance per element]
-[ARIA-driven states: use aria-expanded, aria-selected, etc. for styling]
+[Hover, focus, active, disabled appearance per element — from Figma only. Visual states only]
 
 ## Visual Acceptance Checklist
 [Specific visual checks: spacing, typography, colour at mobile and desktop]
@@ -109,8 +118,8 @@ Structure the design.md with these sections:
 
 ## EDS Block Integration
 [Block wrapper provides .blockname class on the outer <div>]
-[ARIA attributes and roles go on decorated elements for accessibility]
 [Block options (variants) add CSS classes via parenthetical notation in the block name]
+[Accessibility: cite spec requirements only; do not prescribe ARIA/roles in design.md]
 ```
 
 ## Step 4: Write design.md
@@ -125,7 +134,8 @@ Output: design.md path and summary of what was captured, and readiness for next 
 
 ## Key Rules
 
-- **FIGMA ONLY**: Every CSS rule, selector, breakpoint, and structural decision MUST map to a specific Figma node or layer. No exceptions.
+- **FIGMA ONLY for structure and styling**: HTML elements, CSS, layout, and visual tokens must map to Figma nodes.
+- **Spec as requirement reference**: For non-visual concerns (accessibility, semantics), cite the spec (e.g. "NFR-001") but do not implement. Write "implementation must [requirement]" not concrete markup.
 - **When in doubt, omit.** Never invent selectors, styles, breakpoints, or structure. If Figma output is ambiguous, ask the user—do not guess.
 - For each element or style in design.md, include the Figma node ID in a comment where practical (e.g. `/* Figma node 1:22422 */`).
 - design.md is the **source of truth for all HTML/CSS/design-specific content**

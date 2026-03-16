@@ -4,46 +4,43 @@
 
 ### HTML Structure
 
-The block wrapper receives `class="countdown"` from EDS. Authored content (pretitle, title, datetime, CTA, milestones) arrives as nested `<div>` rows/columns from the block table. The `decorate(block)` function reshapes this into the final semantic structure:
+The block wrapper receives `class="countdown"` from EDS. Authored content (pretitle, title, datetime, CTA, milestones) arrives as nested `<div>` rows/columns from the block table. The `decorate(block)` function reshapes this into the final semantic structure.
+
+Structure derived from Figma nodes 1:22670 (root), 1:23434 (mobile), 1:22744 (tablet):
 
 ```html
 <div class="countdown">
-  <!-- Caption + Title (from rows 1–2) -->
   <div class="countdown-header">
     <p class="countdown-pretitle">Alpe d'Huez, France</p>
     <h2 class="countdown-title">Tomorrowland Winter</h2>
   </div>
-
-  <!-- Countdown units (from row 3 datetime, JS-populated) -->
   <div class="countdown-timer">
     <div class="countdown-unit">
-      <span class="countdown-value" aria-live="polite" aria-atomic="true">12</span>
+      <span class="countdown-value">12</span>
       <span class="countdown-label">DAYS</span>
     </div>
-    <div class="countdown-divider" aria-hidden="true"></div>
+    <div class="countdown-divider"></div>
     <div class="countdown-unit">
-      <span class="countdown-value" aria-live="polite" aria-atomic="true">17</span>
+      <span class="countdown-value">17</span>
       <span class="countdown-label">HOURS</span>
     </div>
-    <div class="countdown-divider" aria-hidden="true"></div>
+    <div class="countdown-divider"></div>
     <div class="countdown-unit">
-      <span class="countdown-value" aria-live="polite" aria-atomic="true">18</span>
+      <span class="countdown-value">18</span>
       <span class="countdown-label">MINUTES</span>
     </div>
-    <div class="countdown-divider" aria-hidden="true"></div>
+    <div class="countdown-divider"></div>
     <div class="countdown-unit">
-      <span class="countdown-value" aria-live="polite" aria-atomic="true">14</span>
+      <span class="countdown-value">14</span>
       <span class="countdown-label">SECONDS</span>
     </div>
   </div>
-
-  <!-- Milestones (from rows 5–6, optional, max 2) -->
   <div class="countdown-events">
     <div class="countdown-badge">
       <span class="countdown-badge-title">Qualifying</span>
       <div class="countdown-badge-datetime">
         <span>14:00 GMT</span>
-        <span class="countdown-badge-sep" aria-hidden="true"></span>
+        <span class="countdown-badge-sep"></span>
         <span>27th OCT</span>
       </div>
     </div>
@@ -51,13 +48,11 @@ The block wrapper receives `class="countdown"` from EDS. Authored content (preti
       <span class="countdown-badge-title">RACE</span>
       <div class="countdown-badge-datetime">
         <span>14:00 GMT</span>
-        <span class="countdown-badge-sep" aria-hidden="true"></span>
+        <span class="countdown-badge-sep"></span>
         <span>27th OCT</span>
       </div>
     </div>
   </div>
-
-  <!-- CTA (from row 4, optional) -->
   <div class="countdown-cta">
     <a href="..." class="button accent">View event</a>
   </div>
@@ -66,11 +61,15 @@ The block wrapper receives `class="countdown"` from EDS. Authored content (preti
 
 Block-scoped class names: `.countdown`, `.countdown-header`, `.countdown-pretitle`, `.countdown-title`, `.countdown-timer`, `.countdown-unit`, `.countdown-value`, `.countdown-label`, `.countdown-divider`, `.countdown-events`, `.countdown-badge`, `.countdown-badge-title`, `.countdown-badge-datetime`, `.countdown-badge-sep`, `.countdown-cta`.
 
+**Spec requirements (do not implement here):**
+- Per NFR-001: implementation must add live region for time-remaining announcements, appropriate aria-labels, and keyboard accessibility.
+
 ### CSS Skeleton
 
-Mobile-first vanilla CSS with block-scoped selectors. All selectors scoped to `main .countdown`:
+Mobile-first vanilla CSS. All selectors scoped to `main .countdown`. Figma node IDs cited per rule.
 
 ```css
+/* Figma node 1:23434 (mobile root), 1:22744 (tablet), 1:22670 (desktop) */
 main .countdown {
   --countdown-bg: #6e6e6e;
   --countdown-accent: #fab401;
@@ -90,6 +89,7 @@ main .countdown {
   color: var(--countdown-text);
 }
 
+/* Figma I1:23434;1:22835 (Caption + Title) */
 main .countdown .countdown-header {
   display: flex;
   flex-direction: column;
@@ -100,6 +100,7 @@ main .countdown .countdown-header {
   letter-spacing: 0;
 }
 
+/* Figma I1:23434;1:22836 (pretitle) */
 main .countdown .countdown-pretitle {
   margin: 0;
   font-family: var(--heading-font-family);
@@ -109,6 +110,7 @@ main .countdown .countdown-pretitle {
   color: var(--countdown-accent);
 }
 
+/* Figma I1:23434;1:22837 (title) */
 main .countdown .countdown-title {
   margin: 0;
   font-family: var(--heading-font-family);
@@ -118,6 +120,7 @@ main .countdown .countdown-title {
   color: var(--countdown-text);
 }
 
+/* Figma node 1:21771 (mobile timer) */
 main .countdown .countdown-timer {
   display: flex;
   align-items: center;
@@ -126,6 +129,7 @@ main .countdown .countdown-timer {
   max-width: 312px;
 }
 
+/* Figma node 1:21772 (mobile unit) */
 main .countdown .countdown-unit {
   flex: 1 0 0;
   display: flex;
@@ -136,6 +140,7 @@ main .countdown .countdown-unit {
   text-shadow: var(--countdown-text-shadow);
 }
 
+/* Figma I1:21772;1:21948 (value) */
 main .countdown .countdown-value {
   font-family: var(--heading-font-family);
   font-weight: 700;
@@ -143,6 +148,7 @@ main .countdown .countdown-value {
   line-height: 40px;
 }
 
+/* Figma I1:21772;1:21949 (label) */
 main .countdown .countdown-label {
   font-family: var(--body-font-family);
   font-weight: 500;
@@ -150,6 +156,7 @@ main .countdown .countdown-label {
   line-height: 16px;
 }
 
+/* Figma node 1:21749 (divider, tablet/mobile variant) */
 main .countdown .countdown-divider {
   position: relative;
   width: 1px;
@@ -159,6 +166,7 @@ main .countdown .countdown-divider {
   opacity: 0.5;
 }
 
+/* Figma I1:23434;1:22839 (events) */
 main .countdown .countdown-events {
   display: flex;
   gap: 16px;
@@ -167,6 +175,7 @@ main .countdown .countdown-events {
   width: 100%;
 }
 
+/* Figma I1:23434;1:22840 (badge) */
 main .countdown .countdown-badge {
   backdrop-filter: blur(12px);
   background: var(--countdown-badge-bg);
@@ -182,6 +191,7 @@ main .countdown .countdown-badge {
   width: 148px;
 }
 
+/* Figma 1:23434;1:22840;1:22906 (badge title) */
 main .countdown .countdown-badge-title {
   font-family: var(--heading-font-family);
   font-weight: 700;
@@ -191,6 +201,7 @@ main .countdown .countdown-badge-title {
   text-transform: uppercase;
 }
 
+/* Figma 1:23434;1:22840;1:22907 (Time & Date) */
 main .countdown .countdown-badge-datetime {
   display: flex;
   flex-direction: column;
@@ -198,13 +209,14 @@ main .countdown .countdown-badge-datetime {
   gap: 4px;
 }
 
-/* Time & Date text (Figma nodes 1:22422, 1:22424): both use identical typography */
+/* Figma nodes 1:22422, 1:22424 (both same typography) */
 main .countdown .countdown-badge-datetime > span:not(.countdown-badge-sep) {
   font-family: var(--body-font-family);
   font-size: 12px;
   line-height: 20px;
 }
 
+/* Figma: divider in badge (20px) */
 main .countdown .countdown-badge-sep {
   width: 20px;
   height: 1px;
@@ -212,39 +224,46 @@ main .countdown .countdown-badge-sep {
   opacity: 0.5;
 }
 
-/* Tablet: 600px */
-@media (width >= 600px) {
+/* Tablet: Figma 1:22744 viewport 768px */
+@media (width >= 768px) {
+  /* node 1:22744 */
   main .countdown {
     gap: 64px;
     padding-left: 150px;
     padding-right: 150px;
   }
 
+  /* node I1:22744;1:22782 */
   main .countdown .countdown-pretitle {
     font-size: 20px;
     line-height: 24px;
   }
 
+  /* node 1:21768 */
   main .countdown .countdown-timer {
     max-width: 478px;
     gap: 12px;
   }
 
+  /* node I1:21605;1:21584 */
   main .countdown .countdown-value {
     font-size: 40px;
     line-height: 40px;
   }
 
+  /* node I1:21605;1:21585 */
   main .countdown .countdown-label {
     font-size: 16px;
     line-height: 20px;
   }
 
+  /* node 1:22939 */
   main .countdown .countdown-badge {
     width: 220px;
     padding: 32px 16px;
   }
 
+  /* node 1:22420 */
   main .countdown .countdown-badge-title {
     font-size: 20px;
     line-height: 24px;
@@ -261,49 +280,57 @@ main .countdown .countdown-badge-sep {
   }
 }
 
-/* Desktop: 900px */
-@media (width >= 900px) {
+/* Desktop: Figma 1:22670 viewport 1440px */
+@media (width >= 1440px) {
+  /* node 1:22670 */
   main .countdown {
     padding-left: 174px;
     padding-right: 174px;
   }
 
+  /* node I1:22670;1:22415 */
   main .countdown .countdown-title {
     font-size: 40px;
     line-height: 44px;
   }
 
+  /* node 1:21769 */
   main .countdown .countdown-timer {
     max-width: 1090px;
     gap: 0;
   }
 
+  /* node I1:21681;1:21538 */
   main .countdown .countdown-value {
     font-size: 140px;
     line-height: 140px;
   }
 
+  /* node I1:21681;1:21539 */
   main .countdown .countdown-label {
     font-size: 20px;
     line-height: 24px;
   }
 
+  /* node 1:21559 (Desktop divider) */
   main .countdown .countdown-divider {
     height: 32px;
   }
 
+  /* node I1:22670;1:22460 */
   main .countdown .countdown-events {
     max-width: 422px;
     gap: 24px;
   }
 
+  /* node 1:22431 */
   main .countdown .countdown-badge {
     width: 199px;
     padding: 32px 16px;
   }
 }
 
-/* Block variants: spacing-small, spacing-medium, spacing-large */
+/* Block variants from spec: spacing-small, spacing-medium, spacing-large */
 main .countdown.spacing-small { margin-bottom: var(--spacing-small, 24px); }
 main .countdown.spacing-medium { margin-bottom: var(--spacing-medium, 40px); }
 main .countdown.spacing-large { margin-bottom: var(--spacing-large, 64px); }
@@ -311,57 +338,55 @@ main .countdown.spacing-large { margin-bottom: var(--spacing-large, 64px); }
 
 ## Design Token Mapping
 
-| Element | CSS Property | Project variable / Fallback |
-|---------|--------------|-----------------------------|
-| Block background | background-color | `--countdown-bg` = #6e6e6e |
-| Pretitle / accent | color | `--countdown-accent` = #fab401 |
-| Text on dark | color | `--countdown-text` = white |
-| Badge border | border-color | `--countdown-border` = #282828 |
-| Badge background | background | `--countdown-badge-bg` = rgba(255,255,255,0.1) |
-| Heading font | font-family | `--heading-font-family` |
-| Body font | font-family | `--body-font-family` |
-| Badge radius | border-radius | 8px |
-| Text shadow (countdown values) | text-shadow | 0 4px 36px rgba(0,0,0,0.5) |
-
-Figma-specific tokens used in design: `--colours/text/on-secondary` (white), `--typography/font-family/heading` (Helvetica Neue Bold), `--radius/l` (8px). Mapped to project equivalents above.
+| Element | CSS Property | Project variable / Fallback | Figma node |
+|---------|--------------|-----------------------------|------------|
+| Block background | background-color | `--countdown-bg` = #6e6e6e | 1:22670, 1:22744, 1:23434 |
+| Pretitle / accent | color | `--countdown-accent` = #fab401 | 1:22414, 1:22782, 1:22836 |
+| Text on dark | color | `--countdown-text` = white | — |
+| Badge border | border-color | `--countdown-border` = #282828 | 1:22431 |
+| Badge background | background | `--countdown-badge-bg` = rgba(255,255,255,0.1) | 1:22431 |
+| Heading font | font-family | `--heading-font-family` | — |
+| Body font | font-family | `--body-font-family` | — |
+| Badge radius | border-radius | 8px | var(--radius/l, 8px) |
+| Text shadow | text-shadow | 0 4px 36px rgba(0,0,0,0.5) | countdown units |
 
 ## Breakpoints & Per-Breakpoint CSS Overrides
 
+Figma viewport widths: 360px (mobile), 768px (tablet), 1440px (desktop). Breakpoints used: **768px**, **1440px**.
+
 | Breakpoint | Key Overrides |
-|------------|----------------|
-| Mobile (base) | gap 40px, padding 24px, pretitle 16px, title 32px, timer value 40px, label 12px, badge 148px, badges stacked vertically |
-| 600px (Tablet) | gap 64px, padding 150px, pretitle 20px, timer max-width 478px, label 16px, badge 220px, badge datetime row layout |
-| 900px (Desktop) | padding 174px, title 40px, timer max-width 1090px, value 140px, label 20px, divider 32px, badge 199px, events gap 24px |
+|------------|---------------|
+| Mobile (base < 768px) | gap 40px, padding 24px, pretitle 16px, title 32px, value 40px, label 12px, timer max 312px, badge 148px, badge datetime column |
+| 768px (Tablet) | gap 64px, padding 150px, pretitle 20px, timer max 478px, label 16px, badge 220px, badge datetime row |
+| 1440px (Desktop) | padding 174px, title 40px, timer max 1090px, value 140px, label 20px, divider 32px, badge 199px, events gap 24px |
 
 ## Dynamic Content Elements
 
-- **`.countdown-value`** (days, hours, minutes, seconds): Content is JS-populated. Width ≈ varies by digit count. Do NOT set fixed dimensions in design-expectations. Use `min-width` only if needed for alignment.
+- **`.countdown-value`** (days, hours, minutes, seconds): JS-populated. Content-dependent sizing. Do NOT set fixed dimensions in design-expectations.json.
 - **`.countdown-pretitle`**, **`.countdown-title`**: Authored text length varies.
 - **`.countdown-badge-title`**, **`.countdown-badge-datetime`**: Milestone content varies.
 
 ## Interactive States
 
-- **CTA button**: Use standard `.button.accent` from `styles.css`. Hover/focus per existing button styles.
-- **ARIA live region**: `.countdown-value` elements use `aria-live="polite"` and `aria-atomic="true"` for screen reader announcements.
-- Focus: CTA and any focusable elements receive standard focus ring (no custom design override).
+No hover, focus, or active states defined in Figma for this component. CTA button uses standard `.button.accent` from `styles.css`.
 
 ## Visual Acceptance Checklist
 
-- [ ] Mobile: Block background #6e6e6e; pretitle #fab401 16px; title white 32px; countdown values 40px with 12px labels; dividers 20px tall; badges 148px wide, stacked vertically; padding 24px horizontal, 140px vertical
-- [ ] Tablet (600px): pretitle 20px; badges 220px, datetime row layout; padding 150px horizontal
-- [ ] Desktop (900px): title 40px; countdown values 140px with 20px labels; dividers 32px; badges 199px; events gap 24px; padding 174px horizontal
-- [ ] Text shadow on countdown values: 0 4px 36px rgba(0,0,0,0.5)
-- [ ] Badge: backdrop-blur 12px, semi-transparent white bg, #282828 border, 8px radius
-- [ ] Spacing variants (spacing-small, spacing-medium, spacing-large) affect bottom margin as intended
+- [ ] Mobile (< 768px): Background #6e6e6e; pretitle #fab401 16px; title 32px; values 40px, labels 12px; dividers 20px; badges 148px, datetime column; padding 24px, 140px vertical
+- [ ] Tablet (768px): pretitle 20px; timer max 478px; labels 16px; badges 220px, datetime row; padding 150px horizontal
+- [ ] Desktop (1440px): title 40px; values 140px, labels 20px; dividers 32px; badges 199px; events gap 24px; padding 174px horizontal
+- [ ] Text shadow on values: 0 4px 36px rgba(0,0,0,0.5)
+- [ ] Badge: backdrop-blur 12px, rgba(255,255,255,0.1), border #282828, radius 8px
+- [ ] Spacing variants affect bottom margin per spec
 
 ## Embedded Blocks
 
-None. Countdown is a standalone block. CTA uses standard `.button` from global styles.
+None. CTA uses standard `.button` from global styles.
 
 ## EDS Block Integration
 
 - Block wrapper provides `.countdown` class on outer `<div>`.
 - `decorate(block)` reshapes authored table rows into the structure above.
-- Block options (spacing-small, spacing-medium, spacing-large) add classes via parenthetical notation: `Countdown (spacing-large)`.
-- ARIA: `aria-live`, `aria-atomic` on countdown values; `aria-hidden` on decorative dividers.
-- Divider between countdown units: use CSS gradient or SVG (Figma assets: line SVG, rotated 90° for vertical separator). Asset URLs from Figma plugin are localhost; production should use embedded SVG or project asset path.
+- Block options: `Countdown (spacing-small)`, `Countdown (spacing-medium)`, `Countdown (spacing-large)`.
+- Accessibility: Per NFR-001. Implementation must add live region, aria-labels, keyboard support—do not prescribe markup in design.md.
+- Divider: CSS gradient fallback. Figma uses SVG (line assets); implementation may embed SVG or use project asset path.
