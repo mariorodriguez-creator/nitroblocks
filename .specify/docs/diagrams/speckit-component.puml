@@ -28,8 +28,6 @@ component "speckit.clarify" as s3
 component "speckit.plan" as s4
 component "speckit.tasks" as s5
 component "speckit.implement" as s6
-component "speckit.validate" as s6a
-component "speckit.fix" as s6b
 component "speckit.testcases" as s7
 component "speckit.design-compliance" as s8
 component "speckit.testcontent" as s8a
@@ -47,7 +45,6 @@ s5 --> tasks
 s6 ..> spec : uses
 s6 ..> design : uses
 s6 ..> plan : uses
-s6a ..> tasks : uses
 s7 --> tc
 s8 --> de
 s8 ..> design : reads

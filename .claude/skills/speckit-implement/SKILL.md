@@ -36,11 +36,7 @@ For block development, follow the `content-driven-development` skill, Phase 2 â€
 
 ## Build Validation
 
-```bash
-npm run lint
-```
-
-No build step in EDS â€” linting is the primary code quality gate. Verify rendering on `localhost:3000` against test content after each significant change.
+Follow the content-driven-development skill, Phase 3, Step 3.2 (Run Quality Checks). Verify rendering on `localhost:3000` against test content after each significant change.
 
 ## Completion
 
@@ -48,4 +44,4 @@ Mark all tasks `[X]`, verify features match spec, confirm tests pass and coverag
 
 ## Report
 
-Output: tasks completed, build status, and readiness for next phase. **Recommended next step:** Run `/speckit-validate` to validate the implementation. Or optionally `/speckit-design-compliance` (run after validate when PASS).
+Output: tasks completed, build status, and readiness for next phase. **Recommended next step:** Run `/speckit-validate` to validate the implementation. Or optionally `/speckit-design-compliance` (when design.md exists).

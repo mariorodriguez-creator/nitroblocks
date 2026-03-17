@@ -56,13 +56,11 @@ UML Class Diagram of implementation task categories and their dependencies.
 | DEV 1 | `/speckit.plan` | plan.md, research.md, data-model.md, quickstart.md | spec.md | tasks |
 | DEV 2 | `/speckit.tasks` | tasks.md | plan.md | analyze or implement |
 | DEV 3 | `/speckit.analyze` *(optional)* | Consistency report (read-only) | tasks.md | implement |
-| DEV 4 | `/speckit.implement` | Codebase changes | tasks.md, plan.md | validate |
-| QA 1 | `/speckit.validate` | Validation report, VALIDATE-OUTPUT block (if issues) | Implementation complete | fix or design-compliance |
-| QA 2 | `/speckit.fix` | Auto-fixes | VALIDATE-OUTPUT from validate | validate (re-run) |
-| QA 3 | `/speckit.design-compliance` *(recommended if design.md)* | design-expectations.json, compliance result | design.md | testcontent or document |
-| QA 4 | `/speckit.testcases` *(optional)* | testcases.csv | spec.md | testcontent |
-| QA 5 | `/speckit.testcontent` *(optional)* | Reference content in digitalxn-aem-nc-sites-reference-content | testcases.csv or spec | document |
-| QA 6 | `/speckit.document` *(optional)* | Authoring guide in .specify/memory/components/authoring-guides/ | Implementation complete | PR |
+| DEV 4 | `/speckit.implement` | Codebase changes | tasks.md, plan.md | design-compliance or testcontent |
+| QA 1 | `/speckit.design-compliance` *(recommended if design.md)* | design-expectations.json, compliance result | design.md | testcontent or document |
+| QA 2 | `/speckit.testcases` *(optional)* | testcases.csv | spec.md | testcontent |
+| QA 3 | `/speckit.testcontent` *(optional)* | Reference content in digitalxn-aem-nc-sites-reference-content | testcases.csv or spec | document |
+| QA 4 | `/speckit.document` *(optional)* | Authoring guide in .specify/memory/components/authoring-guides/ | Implementation complete | PR |
 
 **RE order when Figma exists:** specify → figma-specify → clarify → plan. When no Figma: specify → clarify → plan.
 
@@ -74,7 +72,7 @@ UML Class Diagram of implementation task categories and their dependencies.
 
 | Command | Setup Script |
 |---------|--------------|
-| clarify, plan, tasks, implement, validate, fix, design-compliance, testcases, testcontent, document | `check-prerequisites.sh --json [--require-tasks] [--include-tasks]` |
+| clarify, plan, tasks, implement, design-compliance, testcases, testcontent, document | `check-prerequisites.sh --json [--require-tasks] [--include-tasks]` |
 | specify | `create-new-feature.sh --json --number <n> --short-name "<name>" "<description>"` |
 | plan | `setup-plan.sh --json` |
 

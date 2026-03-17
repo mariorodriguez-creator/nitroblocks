@@ -20,12 +20,10 @@ rectangle "Development" {
   usecase "speckit.implement" as UC7
 }
 rectangle "Quality Assurance" {
-  usecase "speckit.validate" as UC8
-  usecase "speckit.fix" as UC9
-  usecase "speckit.design-compliance" as UC10
-  usecase "speckit.testcases" as UC11
-  usecase "speckit.testcontent" as UC12
-  usecase "speckit.document" as UC13
+  usecase "speckit.design-compliance" as UC8
+  usecase "speckit.testcases" as UC9
+  usecase "speckit.testcontent" as UC10
+  usecase "speckit.document" as UC11
 }
 
 user --> UC1
@@ -39,6 +37,4 @@ user --> UC8
 user --> UC9
 user --> UC10
 user --> UC11
-user --> UC12
-user --> UC13
 @enduml

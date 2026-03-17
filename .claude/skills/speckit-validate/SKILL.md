@@ -1,62 +1,37 @@
 ---
 name: speckit-validate
-description: Validate generated AEM component code after speckit-implement. Explicit invocation only — never load from context or topic. Use only when the user types the exact command "speckit-validate".
+description: Validate implementation by running CDD Phase 3 steps 3.1 and 3.3, plus EDS skills compliance check. Explicit invocation only — never load from context or topic. Use only when the user types the exact command "speckit-validate".
 disable-model-invocation: true
 ---
 
 # Speckit Validate Workflow
 
-Validates generated HTL, dialog XML, SCSS, and JS against AEM rules and runs linters.
+Executes **Phase 3, steps 3.1 and 3.3** from the `content-driven-development` skill. Run after `/speckit-implement`.
 
-## Scope Resolution
+## Setup
 
-1. Run: `.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks` from repo root
-2. Determine scope:
-   - User provided file paths → validate those files only
-   - User provided component name → resolve to files under `digitalxn-aem-base/`
-   - Neither → parse `tasks.md` for component name, glob for matching files
+Run: `.specify/scripts/bash/check-prerequisites.sh --json --require-tasks` from repo root. Parse `FEATURE_DIR`. Identify test content URL(s) from tasks.md, plan.md, or spec.
 
-## Files to Validate
+## Steps
 
-- **HTL**: `**/*.html` under `digitalxn-aem-base/digitalxn-aem-base-apps/.../components/`
-- **Dialogs**: `**/_cq_dialog/**/*.content.xml`
-- **Frontend (SCSS/JS)**: `digitalxn-aem-base/digitalxn-aem-base-clientlibs-apps/frontend/` (lint runs on entire directory)
-
-## Rule-Based Reviews
-
-- **HTL files**: Apply `aem-htl-component` skill rules — check all rules, report violations with rule reference and fix
-- **Dialog files**: Apply `aem-dialog` skill rules — Coral 3 compliance, typed parameters, tab structure
-
-## Frontend Linters
-
-Run from `digitalxn-aem-base/digitalxn-aem-base-clientlibs-apps/frontend/`:
-```bash
-npm run lint:css  # Stylelint on SCSS
-npm run lint:js   # ESLint on JS
-```
-
-Report errors only; filter warnings.
-
-## VALIDATE-OUTPUT Format
-
-When issues exist, emit this compact block for piping to `speckit-fix`:
-
-```
----VALIDATE-OUTPUT---
-SCOPE:<component-name>
-HTL:<count>
-DLG:<count>
-LINT:<count>
----
-file:PATH|rule:ID|line:L|col:C|fix:FIX
----END---
-```
-
-Rule IDs: `HTL-N` (HTL section N), `DLG-N` (dialog section N), `ESL` (ESLint), `STL` (Stylelint).
+1. **Test with Real Content** — Read and follow the content-driven-development skill, Phase 3, Step 3.1.
+2. **Comprehensive Testing** — Read and follow the content-driven-development skill, Phase 3, Step 3.3.
+3. **Skills Compliance** — Second-round check: review the implementation against each applicable skill. Read each skill and verify the implementation satisfies its rules. Flag and fix any gaps. Skills to check:
+   * eds-wcag
+   * eds-styles
+   * eds-naming
+   * eds-documentation
+   * eds-analytics
+   * code-review
+   * eds-analytics: applies only to interactive blocks
+   * eds-documentation: applies when block/docs exist.
 
 ## Report
 
-Output: table of HTL files (PASS/FAIL with violation count), table of dialog files (PASS/FAIL with violation count), lint results (CSS and JS pass/fail with error summary), overall status, and readiness for next phase:
+Output: validation result (PASS/FAIL), readiness for next phase, and **recommended next step:** `/speckit-design-compliance` (when design.md exists), or `/speckit-testcontent`, `/speckit-document`.
 
-- **If FAIL** (any HTL, dialog, or lint issues): `/speckit-fix` (emit the compact VALIDATE-OUTPUT block so the user can paste it)
-- **If PASS**: `/speckit-design-compliance` (recommended only if `design.md` exists). Optionally `/speckit-testcases` or `/speckit-document`.
+**If any step fails:** Output failures as a table with columns `Failure` and `Recommended Action`:
+
+| Failure | Recommended Action |
+|---------|-------------------|
+| *[description of what failed]* | *[concrete action to fix]* |

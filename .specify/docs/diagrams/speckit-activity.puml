@@ -24,12 +24,6 @@ note right: Consistency report
 :speckit.implement;
 note right: Codebase changes
 |#LightYellow|QA|
-:speckit.validate;
-if (Issues?) then (yes)
-  :speckit.fix;
-  :speckit.validate;
-else (no)
-endif
 if (design.md exists?) then (yes)
   :speckit.design-compliance;
 endif
