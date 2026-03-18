@@ -56,6 +56,34 @@ When creating local `.plain.html` files for testing blocks in the `drafts/` fold
 </div>
 ```
 
+## Draft Block Template (Block Test Pages)
+
+For draft pages that showcase a single block and its variants, use this structure:
+
+1. **Intro section** (first section): Block name as `h1` and a short description as `p`.
+2. **Each variant** in its own section with an `h2` title describing the variant.
+
+```html
+<div>
+  <h1>Block Name Block</h1>
+  <p>Short description of what the block does.</p>
+</div>
+
+<div>
+  <h2>Default / Post (default)</h2>
+  <div class="block-name">
+    <!-- block content -->
+  </div>
+</div>
+
+<div>
+  <h2>Variant name (e.g. spacing-large)</h2>
+  <div class="block-name variant-name">
+    <!-- block content -->
+  </div>
+</div>
+```
+
 ## File Naming Convention
 
 **IMPORTANT:** HTML files must use the `.plain.html` extension:
