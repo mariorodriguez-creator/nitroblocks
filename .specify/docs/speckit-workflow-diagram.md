@@ -2,7 +2,7 @@
 
 Specification-Driven Development (SDD) workflow for AEM Platform Core. Based on [GitHub Spec Kit](https://github.com/github/spec-kit), customized for AEM.
 
-*Source: `.specify/docs/diagrams/*.puml`. To regenerate PNGs: run `./.specify/scripts/bash/regenerate-diagrams.sh` (uses [Kroki](https://kroki.io)), or use PlantUML locally with Graphviz.*
+_Source: `.specify/docs/diagrams/_.puml`. To regenerate PNGs: run `./.specify/scripts/bash/regenerate-diagrams.sh` (uses [Kroki](https://kroki.io)), or use PlantUML locally with Graphviz.\*
 
 ---
 
@@ -48,19 +48,20 @@ UML Class Diagram of implementation task categories and their dependencies.
 
 ## Quick Reference: Command Order
 
-| Phase | Command | Output | Prerequisite | Next |
-|-------|---------|--------|--------------|------|
-| RE 1 | `/speckit.specify` | spec.md, branch, checklists/requirements-readiness-check.md | — | figma-specify, clarify, or plan |
-| RE 2 | `/speckit.figma-specify` *(optional)* | design.md | spec.md | clarify or plan |
-| RE 3 | `/speckit.clarify` | Refined spec (adds ## Clarifications) | spec.md; design.md if Figma used | plan |
-| DEV 1 | `/speckit.plan` | plan.md, research.md, data-model.md, quickstart.md | spec.md | tasks |
-| DEV 2 | `/speckit.tasks` | tasks.md | plan.md | analyze or implement |
-| DEV 3 | `/speckit.analyze` *(optional)* | Consistency report (read-only) | tasks.md | implement |
-| DEV 4 | `/speckit.implement` | Codebase changes | tasks.md, plan.md | design-compliance or testcontent |
-| QA 1 | `/speckit.design-compliance` *(recommended if design.md)* | design-expectations.json, compliance result | design.md | testcontent or document |
-| QA 2 | `/speckit.testcases` *(optional)* | testcases.csv | spec.md | testcontent |
-| QA 3 | `/speckit.testcontent` *(optional)* | Reference content in digitalxn-aem-nc-sites-reference-content | testcases.csv or spec | document |
-| QA 4 | `/speckit.document` *(optional)* | Authoring guide in .specify/memory/components/authoring-guides/ | Implementation complete | PR |
+| Phase | Command                                                   | Output                                                          | Prerequisite                     | Next                             |
+| ----- | --------------------------------------------------------- | --------------------------------------------------------------- | -------------------------------- | -------------------------------- |
+| RE 1  | `/speckit.specify`                                        | spec.md, branch, checklists/requirements-readiness-check.md     | —                                | figma-specify, clarify, or plan  |
+| RE 2  | `/speckit.figma-specify` _(optional)_                     | design.md                                                       | spec.md                          | clarify or plan                  |
+| RE 3  | `/speckit.clarify`                                        | Refined spec (adds ## Clarifications)                           | spec.md; design.md if Figma used | plan                             |
+| DEV 1 | `/speckit.plan`                                           | plan.md, research.md, data-model.md, quickstart.md              | spec.md                          | tasks                            |
+| DEV 2 | `/speckit.tasks`                                          | tasks.md                                                        | plan.md                          | analyze or implement             |
+| DEV 3 | `/speckit.analyze` _(optional)_                           | Consistency report (read-only)                                  | tasks.md                         | implement                        |
+| DEV 4 | `/speckit.implement`                                      | Codebase changes, CDD Phase 3 (implement portion): unit tests, lint, block-scoped verification | tasks.md, plan.md                | validate                         |
+| DEV 5 | `/speckit.validate`                                       | CDD Phase 3 (validate portion): test with content, comprehensive testing, PR readiness         | tasks.md, implementation         | design-compliance or testcontent |
+| DEV 6 | `/speckit.design-compliance` _(recommended if design.md)_ | design-expectations.json, compliance result                     | design.md                        | testcontent or document          |
+| QA 1  | `/speckit.testcases` _(optional)_                         | testcases.csv                                                   | spec.md                          | testcontent                      |
+| QA 2  | `/speckit.testcontent` _(optional)_                       | Reference content in digitalxn-aem-nc-sites-reference-content   | testcases.csv or spec            | document                         |
+| QA 3  | `/speckit.document` _(optional)_                          | Authoring guide in .specify/memory/components/authoring-guides/ | Implementation complete          | PR                               |
 
 **RE order when Figma exists:** specify → figma-specify → clarify → plan. When no Figma: specify → clarify → plan.
 
@@ -70,11 +71,11 @@ UML Class Diagram of implementation task categories and their dependencies.
 
 ## Prerequisites & Scripts
 
-| Command | Setup Script |
-|---------|--------------|
-| clarify, plan, tasks, implement, design-compliance, testcases, testcontent, document | `check-prerequisites.sh --json [--require-tasks] [--include-tasks]` |
-| specify | `create-new-feature.sh --json --number <n> --short-name "<name>" "<description>"` |
-| plan | `setup-plan.sh --json` |
+| Command                                                                                        | Setup Script                                                                      |
+| ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| clarify, plan, tasks, implement, validate, design-compliance, testcases, testcontent, document | `check-prerequisites.sh --json [--require-tasks] [--include-tasks]`               |
+| specify                                                                                        | `create-new-feature.sh --json --number <n> --short-name "<name>" "<description>"` |
+| plan                                                                                           | `setup-plan.sh --json`                                                            |
 
 `check-prerequisites.sh` outputs: `FEATURE_DIR`, `FEATURE_SPEC`, `FEATURE_DESIGN`, `IMPL_PLAN`, `TASKS`, `AVAILABLE_DOCS`. Requires feature branch (e.g. `feature/001-name`).
 
@@ -84,26 +85,28 @@ UML Class Diagram of implementation task categories and their dependencies.
 
 All spec artifacts live under `.specify/specs/<number>-<short-name>/`:
 
-| Artifact | Path |
-|----------|------|
-| spec.md | `FEATURE_DIR/spec.md` |
-| design.md | `FEATURE_DIR/design.md` |
-| plan.md | `FEATURE_DIR/plan.md` |
-| research.md | `FEATURE_DIR/research.md` |
-| data-model.md | `FEATURE_DIR/data-model.md` |
-| quickstart.md | `FEATURE_DIR/quickstart.md` |
-| tasks.md | `FEATURE_DIR/tasks.md` |
-| testcases.csv | `FEATURE_DIR/testcases.csv` |
+| Artifact                 | Path                                   |
+| ------------------------ | -------------------------------------- |
+| spec.md                  | `FEATURE_DIR/spec.md`                  |
+| design.md                | `FEATURE_DIR/design.md`                |
+| plan.md                  | `FEATURE_DIR/plan.md`                  |
+| research.md              | `FEATURE_DIR/research.md`              |
+| data-model.md            | `FEATURE_DIR/data-model.md`            |
+| quickstart.md            | `FEATURE_DIR/quickstart.md`            |
+| tasks.md                 | `FEATURE_DIR/tasks.md`                 |
+| testcases.csv            | `FEATURE_DIR/testcases.csv`            |
 | design-expectations.json | `FEATURE_DIR/design-expectations.json` |
-| checklists/*.md | `FEATURE_DIR/checklists/` |
+| checklists/\*.md         | `FEATURE_DIR/checklists/`              |
 
 ---
 
 ## Key Rules
 
+- **CDD Phase 3 split**: Implement owns creation (unit tests, lint, block-scoped verification); validate owns verification (full project) and PR readiness.
 - **spec.md** is the source of truth for functional requirements.
 - **design.md** (from `/speckit.figma-specify`) is the source of truth for HTML/CSS when present. Plan, quickstart, and task summaries must not override it.
 - **clarify** reads design.md when it exists as read-only context to refine spec; design.md is never modified.
+- **implement** creates unit tests for logic-heavy utilities (final step); **validate** verifies they exist and pass.
 - **design-compliance** requires design.md. Generates design-expectations.json and runs CSS compliance check.
 - **testcases** can run after specify or clarify when spec is ready; also after implementation. Drives testcontent when present.
 - **testcontent** best run after testcases; creates reference content in digitalxn-aem-nc-sites-reference-content.

@@ -7,7 +7,7 @@ skinparam SwimlaneTitleFontSize 12
 |#LightBlue|RE|
 start
 :speckit.specify;
-note right: spec.md, branch
+note right: spec.md, branch,\nchecklists/requirements-readiness-check.md
 if (Figma design?) then (yes)
   :speckit.figma-specify;
   note right: design.md
@@ -22,7 +22,9 @@ note right: tasks.md
 :speckit.analyze;
 note right: Consistency report
 :speckit.implement;
-note right: Codebase changes
+note right: Codebase changes, unit tests,\nlint, block-scoped verification
+:speckit.validate;
+note right: Test with content,\ncomprehensive testing, PR readiness
 |#LightYellow|QA|
 if (design.md exists?) then (yes)
   :speckit.design-compliance;

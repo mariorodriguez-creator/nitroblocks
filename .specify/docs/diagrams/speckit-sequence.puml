@@ -8,6 +8,7 @@ participant "speckit.plan" as plan
 participant "speckit.tasks" as tasks
 participant "speckit.analyze" as analyze
 participant "speckit.implement" as implement
+participant "speckit.validate" as validate
 participant "speckit.design-compliance" as dc
 participant "speckit.testcases" as tc
 participant "speckit.testcontent" as tcontent
@@ -29,6 +30,8 @@ User -> analyze : verify consistency
 analyze --> User : report
 User -> implement : implement
 implement --> User : codebase changes
+User -> validate : validate
+validate --> User : PASS/FAIL, PR readiness
 opt design.md exists
   User -> dc : design-compliance
   dc --> User : design-expectations.json, PASS/FAIL
