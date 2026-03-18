@@ -70,6 +70,10 @@
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   display: none;
   margin: 0;
