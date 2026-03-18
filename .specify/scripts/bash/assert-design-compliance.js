@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 /**
- * Assert design compliance: checks that compiled component CSS matches
- * expectations from design-expectations.json (derived from design.md).
+ * Assert design compliance: checks that block CSS matches expectations from
+ * design-expectations.json (derived from design.md).
  *
  * Use this to catch drift in spacing, typography, and layout after implementation.
- * Run after building CSS (e.g. npm run build:css in clientlibs frontend).
+ * Block CSS is the source; no build step.
  *
  * Usage:
- *   node assert-design-compliance.js <path-to-design-expectations.json> [path-to-bundle.css]
- *   If path-to-bundle.css is omitted, uses cssPath from the expectations file (relative to repo root).
+ *   node assert-design-compliance.js <path-to-design-expectations.json> [path-to-block.css]
+ *   If path-to-block.css is omitted, uses cssPath from the expectations file (relative to repo root).
  *
  * Exit: 0 if all expectations pass, 1 otherwise.
  */
@@ -65,9 +65,9 @@ function parseCSS(css) {
     skipWhitespaceAndComments();
     if (i >= len) break;
 
-    const mediaMatch = css.slice(i).match(/^@media\s+(?:only\s+screen\s+and\s+)?\(min-width:\s*(\d+)px\)[^{]*\{/);
+    const mediaMatch = css.slice(i).match(/^@media\s+(?:only\s+screen\s+and\s+)?\((?:min-width:\s*(\d+)px|width\s*>=\s*(\d+)px)\)[^{]*\{/);
     if (mediaMatch) {
-      const mediaPx = mediaMatch[1];
+      const mediaPx = mediaMatch[1] || mediaMatch[2];
       i += mediaMatch[0].length;
       const close = findMatchingClose(i);
       const inner = css.slice(i, close);
@@ -99,7 +99,7 @@ function normalizeSelector(sel) {
 
 function buildCascadeByBreakpoint(rules) {
   const bySelector = {};
-  const breakpoints = [null, '768', '1024', '1280'];
+  const breakpoints = [null, '600', '768', '900', '1024', '1200', '1280', '1440'];
   for (const rule of rules) {
     const sel = normalizeSelector(rule.selector);
     if (!bySelector[sel]) bySelector[sel] = {};
@@ -124,7 +124,7 @@ function buildCascadeByBreakpoint(rules) {
 
 /**
  * Build a global map of CSS custom properties per breakpoint (merged in cascade order).
- * Variables defined in any rule (e.g. .dxn-teaser or .dxn-teaser__content)
+ * Variables defined in any rule (e.g. .countdown or .countdown-header)
  * are available when resolving values; later rules override.
  */
 function buildGlobalVarScope(rules) {
@@ -136,7 +136,7 @@ function buildGlobalVarScope(rules) {
       if (k.startsWith('--') && v) byMedia[media][k] = v.trim();
     }
   }
-  const breakpoints = ['0', '768', '1024', '1280'];
+  const breakpoints = ['0', '600', '768', '900', '1024', '1200', '1280', '1440'];
   const merged = {};
   let acc = {};
   for (const bp of breakpoints) {
@@ -212,7 +212,7 @@ function parseVar(value) {
 /**
  * Resolve a CSS value by expanding var() using the given variable scope.
  * Handles var(--name) and var(--name, fallback). Recurses so nested vars
- * (e.g. --component-gap -> var(--dxn-layout-spacing-l, 24px) -> 24px) resolve.
+ * (e.g. --countdown-bg -> var(--countdown-bg, #6e6e6e) -> #6e6e6e) resolve.
  * Cycle detection: if we re-enter the same var we use fallback or return unresolved.
  */
 function resolveVar(value, varScope, visited) {
@@ -261,18 +261,11 @@ function valueMatches(actual, expected, tolerancePx, acceptVar, resolvedActual) 
 
 /**
  * Derive the source path from the CSS path.
- * EDS blocks: blocks/<name>/<name>.css -> same path (CSS is the source)
- * AEM clientlibs: target/.../components/<name>/<name>.bundle.css -> frontend/.../components/<name>/<name>.clientlibs.scss
+ * Block CSS at blocks/<name>/<name>.css is the source.
  */
 function getSourcePathFromCssPath(cssPath) {
   const rel = path.relative(REPO_ROOT, cssPath);
-  // EDS: blocks/*.css is the source
-  if (rel.replace(/\\/g, '/').startsWith('blocks/')) {
-    return path.resolve(REPO_ROOT, rel);
-  }
-  // AEM clientlibs: target/... -> frontend/...
-  const sourceRel = rel.replace(/target[/\\]jcr_root[/\\]apps/, 'frontend').replace(/\.bundle\.css$/i, '.clientlibs.scss');
-  return path.resolve(REPO_ROOT, sourceRel);
+  return path.resolve(REPO_ROOT, rel);
 }
 
 function runAssertions(expectationsPath, cssPathOverride) {
@@ -286,7 +279,7 @@ function runAssertions(expectationsPath, cssPathOverride) {
     : path.resolve(REPO_ROOT, raw.cssPath || '');
   if (!fs.existsSync(cssPath)) {
     console.error(`CSS file not found: ${cssPath}`);
-    console.error('Run the frontend CSS build first (e.g. npm run build:css in clientlibs-apps/frontend).');
+    console.error('Ensure the block CSS file exists at blocks/{block-name}/{block-name}.css');
     process.exit(1);
   }
   const css = fs.readFileSync(cssPath, 'utf-8');
@@ -348,7 +341,7 @@ function main() {
   const expectationsPath = args[0];
   const cssPathOverride = args[1];
   if (!expectationsPath) {
-    console.error('Usage: node assert-design-compliance.js <path-to-design-expectations.json> [path-to-bundle.css]');
+    console.error('Usage: node assert-design-compliance.js <path-to-design-expectations.json> [path-to-block.css]');
     process.exit(1);
   }
   const { failures, cssPathUsed } = runAssertions(expectationsPath, cssPathOverride);
@@ -356,7 +349,7 @@ function main() {
     const sourcePath = getSourcePathFromCssPath(cssPathUsed);
     const sourceRel = path.relative(REPO_ROOT, sourcePath);
     const existsNote = fs.existsSync(sourcePath) ? '' : ' (file not found)';
-    const sourceLabel = sourceRel.replace(/\\/g, '/').includes('blocks/') ? 'Source CSS' : 'Source SCSS';
+    const sourceLabel = 'Source CSS';
     const RED = '\x1b[31m';
     const RESET = '\x1b[0m';
     console.error(`Design compliance: ${RED}✗ FAIL${RESET}\n`);
