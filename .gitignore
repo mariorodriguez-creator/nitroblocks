@@ -8,6 +8,10 @@ helix-importer-ui
 *.bak
 .idea
 
+# Throwaway test artifacts (testing-blocks skill)
+test/tmp/
+drafts/tmp/
+
 # Ensure these files are tracked
 !CLAUDE.md
 !AGENTS.md
