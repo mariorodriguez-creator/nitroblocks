@@ -18,7 +18,7 @@ Before implementing, scan `FEATURE_DIR/checklists/` for incomplete items. If any
 
 ## Load Context
 
-- **REQUIRED**: `tasks.md`, `plan.md`, draft test content
+- **REQUIRED**: `tasks.md`, `plan.md`, draft test content, `.specify/memory/constitution.md`
 - **IF EXISTS**: `data-model.md`, `research.md`, `quickstart.md`, `design.md`
 - **design.md source of truth**: For BJ001/BC001/layout/variants/breakpoints, cross-check design.md. Do not rely on quickstart.md summaries.
 
@@ -38,9 +38,9 @@ For block development, follow the `content-driven-development` skill, Phase 2 �
 
 Implement owns the **creation** and **block-scoped verification** parts of CDD Phase 3. Complete these before marking implementation done:
 
-- **Step 3.2 — Run Quality Checks**: `npm run lint` (and `npm run lint:fix` if needed). Linting must pass before completion.
-- **Unit test creation**: For logic-heavy utilities (parse, transform, validate, compute), add keeper unit tests at `blocks/{blockname}/{blockname}.test.js`. Unit tests are part of implementation completion.
-- **Testing-blocks**: Follow the **testing-blocks** skill: create keeper unit tests, run `npm test`, run lint, and run browser validation. Report any failures before proceeding to Completion.
+- **Unit test creation (Constitution VI)**: If `tasks.md` contains a TS006 (or equivalent) unit test task, execute it before Completion. Create keeper unit tests at `blocks/{blockname}/{blockname}.test.js`. Export logic-heavy helpers (parse, transform, validate) for testing. Follow **testing-blocks** and **block-unit-testing** resources. Run `npm test` before proceeding.
+- **Step 3.2 — Run Quality Checks**: Run `npm run lint` (and `npm run lint:fix` if needed) **after** unit test creation. Linting must pass before completion. Test files are subject to lint—running lint only before creating tests can miss errors introduced by new test files.
+- **Testing-blocks**: Run `npm test` and follow the **testing-blocks** skill for browser validation. Report any failures before proceeding to Completion.
 
 ### Server Verification (Required — Do Not Skip)
 

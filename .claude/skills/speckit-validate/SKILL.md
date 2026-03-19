@@ -8,6 +8,10 @@ disable-model-invocation: true
 
 Executes **CDD Phase 3 (validate portion)** from the `content-driven-development` skill. Run after `/speckit-implement`. Implement handles Phase 3 creation (unit tests, lint, block-scoped verification); validate handles Phase 3 verification (full project) and PR readiness.
 
+## Principle
+
+**Validate is verification-only.** Validate NEVER creates or modifies files. Validate ONLY runs scripts, inspects output, and reports PASS/FAIL with recommended actions and fix suggestions.
+
 ## Setup
 
 Run: `.specify/scripts/bash/check-prerequisites.sh --json --require-tasks` from repo root. Parse `FEATURE_DIR`. Identify test content URL(s) from tasks.md, plan.md, or spec.
@@ -25,10 +29,10 @@ Validate owns **verification** and **PR readiness**:
 
 1. **Step 3.1 — Test with Real Content** — Read and follow the content-driven-development skill, Phase 3, Step 3.1. View test content, verify all variants, responsive behavior, edge cases, accessibility basics.
 2. **Step 3.2 — Run Quality Checks** — Run `npm run lint`. Fail validation if lint fails.
-3. **Step 3.3 — Comprehensive Testing** — Run `npm test` (full project). For browser and accessibility validation, follow the **testing-blocks** skill (manual verification, throwaway tests, or screenshots per the skill's guidance).
-   **Unit tests (Constitution VI)**: If the block or feature has logic-heavy functions (parse, transform, validate, compute), **verify** unit tests exist at `blocks/{blockname}/{blockname}.test.js`. Fail validation if tests are missing or failing.
+3. **Step 3.3 — Comprehensive Testing** — Run `npm test` (full project). If tests exist, they must pass. For browser and accessibility, follow the **testing-blocks** skill.
+   **Unit tests (Constitution VI)**: Constitution Article VI: "Unit tests SHOULD be added for logic-heavy utilities." Inspect the block for logic-heavy functions (parse, transform, validate, compute). If present and unit tests are MISSING → FAIL validation. If present and unit tests are FAILING → FAIL validation. Do NOT create or fix tests. Recommended Action for missing: Re-run `/speckit-implement`.
 4. **Step 3.4 — PR Preparation** — Verify: test content exists (CMS or drafts), test content URL is accessible for PSI checks, author documentation is updated (if applicable).
-5. **Skills Compliance** — Review the implementation against each applicable skill. Read each skill and verify the implementation satisfies its rules. Flag and fix any gaps. Skills to check:
+5. **Skills Compliance** — Review the implementation against each applicable skill. Flag gaps only. Do NOT create or modify files. Output failures in the report table. Skills to check:
    - eds-wcag
    - eds-styles
    - eds-naming
@@ -49,9 +53,4 @@ Output: validation result (PASS/FAIL), readiness for next phase, and **recommend
 | ------------------------------ | -------------------------- |
 | _[description of what failed]_ | _[concrete action to fix]_ |
 
-**Unit test failure:** Tests missing → re-run `/speckit-implement` to create. Tests failing → run diagnosis and include fix proposal in the failure report:
-
-1. Run `npm test` and capture failure output.
-2. Identify failing file and assertion.
-3. Determine likely cause (implementation bug vs. wrong assertion).
-4. Propose concrete fix (code change) with reasoning. Do not auto-apply.
+**Unit test failure:** Tests missing (when required per Constitution VI) → FAIL. Recommended Action: Re-run `/speckit-implement`. Tests failing → FAIL. Include fix suggestions (proposed changes, reasoning) in the report. Do NOT apply fixes.

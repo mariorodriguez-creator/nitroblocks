@@ -56,7 +56,7 @@ Include `[P]` only when task operates on different files than all incomplete tas
 | SC001+BJ001+BC001 | "Create block with JS and CSS" | Keep separate if block has complex decoration AND complex styling |
 | BJ001+BC001 | "Implement block decoration and styles" | Keep separate when design.md exists (CSS from design, JS from content model) |
 
-**Never skip**: SC001 (new block), BJ001 (block JS for any block with decoration logic), TS001+TS002 (always — linting gates).
+**Never skip**: SC001 (new block), BJ001 (block JS for any block with decoration logic), TS001+TS002 (always — linting gates). TS006 when logic-heavy code is present per Logic-Heavy Block Detection.
 
 ## SC001: Block Scaffolding
 
@@ -89,6 +89,19 @@ When `design.md` exists:
 - TS003 (browser test): Generate when block has interactive behavior — use Playwright/Puppeteer for ad-hoc validation
 - TS004 (PSI check): Generate for any change that could affect performance — verify Lighthouse 100 on preview URL
 - TS005 (accessibility): Generate when block has interactive elements — keyboard navigation, ARIA, screen reader
+- TS006 (unit tests): Generate when block JS includes **logic-heavy helpers** (parse, transform, validate, compute). Indicators: label-based row parsing, config extraction, variant parsing from block name, teaser grouping. Create keeper tests at `blocks/{blockname}/{blockname}.test.js` for isolatable functions. Follow **testing-blocks** and **block-unit-testing** resources. Skip for decorative/wiring-only blocks.
+
+## Logic-Heavy Block Detection (for TS006)
+
+Add TS006 when the block's BJ001 description or data-model/research indicate:
+
+- Label-based row/table parsing (e.g. "parse block table rows by label")
+- Config extraction from DOM (e.g. readBlockConfig-style logic)
+- Variant/option parsing from block name (e.g. "(reversed, dark)" → modifier classes)
+- Teaser/item grouping or aggregation from flat rows
+- Any explicit parse, transform, validate, or compute logic
+
+Do NOT add TS006 for: pure DOM reshaping (rows → list), simple class toggling, wiring-only decorate().
 
 ## Report
 

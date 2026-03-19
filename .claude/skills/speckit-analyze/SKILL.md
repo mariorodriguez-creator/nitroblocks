@@ -16,12 +16,17 @@ Run AFTER `/speckit-tasks` has produced a complete `tasks.md`.
 
 Run: `.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks` from repo root. Parse `FEATURE_DIR`.
 
-## Load Artifacts (Minimal)
+## Load Artifacts
 
+**Always:**
 - **spec.md**: Overview, Functional Requirements, Non-Functional Requirements, User Stories, Edge Cases
 - **plan.md**: Architecture/stack, Data Model references, Phases, Technical constraints
 - **tasks.md**: Task IDs, descriptions, phase grouping, parallel markers [P], file paths
 - **constitution**: `.specify/memory/constitution.md` for principle validation
+
+**When present:**
+- **design.md**: Code Scaffold, CSS Skeleton, variant classes, Layout Caveats
+- **Block CSS**: Path from plan.md or tasks.md (e.g. `blocks/{blockname}/{blockname}.css`)
 
 ## Detection Passes
 
@@ -36,6 +41,8 @@ Run: `.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --incl
 **Coverage Gaps**: Requirements with zero tasks; tasks with no mapped requirement; non-functional requirements not in tasks.
 
 **Inconsistency**: Terminology drift across files; entities in plan but not in spec; task ordering contradictions.
+
+**Variant Implementation** (when design.md and block CSS exist): For each variant class mentioned in design.md (e.g. `.blockname--dark`, `.blockname--light`) for colour or visual overrides, verify the block CSS file contains rules for that selector. If design.md says "adds .blockname--dark for colour overrides" but the block CSS has no `.blockname--dark` (or equivalent) selector with colour properties, flag as MEDIUM. Recommendation: Add CSS for the variant or ensure design.md includes the concrete rules.
 
 ## Severity
 
