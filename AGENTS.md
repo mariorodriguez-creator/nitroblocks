@@ -298,6 +298,20 @@ Pages are progressively loaded in three phases. This architecture is critical to
 - If the LCP element comes from an async lookup (fragment, JSON, service), the loading sequence must wait for the first block to update the DOM before guessing the LCP candidate
 - For dual hero images (desktop + mobile), remove the unused one from the DOM to avoid wasting bandwidth
 - LCP can also be a video or long text — understand how the LCP candidate is computed for your case
+## Testing & Quality Assurance
+
+### Performance
+- Follow AEM Edge Delivery performance best practices https://www.aem.live/developer/keeping-it-100
+- Images uploaded by authors are automatically optimized, all images and assets committed to git must be optimized and checked for size
+- Use lazy loading for non-critical resources (`lazy-styles.css` and `delayed.js`)
+- Minimize JavaScript bundle size by avoiding dependencies, using automatic code splitting provided by `/blocks/`
+
+### Accessibility
+- Ensure proper heading hierarchy
+- Include alt text for images
+- Test with screen readers
+- Follow WCAG 2.2 AA guidelines
+
 
 ## Development Workflow
 
@@ -360,7 +374,10 @@ Keep dependencies up to date, even the minimal boilerplate linting dependencies.
 
 ### Environments
 
-Edge Delivery Services provides three environments. Your local development server at `http://localhost:3000` serves code from your local working copy (even uncommitted code) and content that has been previewed by authors.
+Your local development server at `http://localhost:3000` serves code from your local working copy (even uncommitted code) and content that has been previewed by authors. You can access this at any time when the development server is running.
+
+For all other environments, you need to know the GitHub owner and repository name (`gh repo view --json nameWithOwner` or `git remote -v`) and the current branch name (`git branch`)
+
 
 For all other environments, you need the GitHub owner and repository name (`gh repo view --json nameWithOwner` or `git remote -v`) and the current branch name (`git branch`).
 
@@ -373,6 +390,7 @@ Every resource in your GitHub repo is available on your website: a file at `/scr
 ### Publishing Process
 1. Push changes to a feature branch
 2. AEM Code Sync automatically processes changes making them available on feature preview environment for that branch
+
 3. Open a pull request to merge changes to `main`
    - **REQUIRED:** Include preview link in PR description: `https://{branch}--{repo}--{owner}.aem.page/{path}`
    - This link is used for automated PageSpeed Insights testing
@@ -411,23 +429,31 @@ Changes to `scripts.js`, `delayed.js`, or other core functionality require caref
 
 **For AEM documentation:** Use the **docs-search** skill to search aem.live documentation and blogs for feature information, implementation guidance, and best practices.
 
-**For reference implementations:** Use the **block-collection-and-party** skill to find similar blocks, patterns, and code examples from the [Block Collection](https://www.aem.live/developer/block-collection) and [Block Party](https://www.aem.live/developer/block-party/) repositories.
+**For reference implementations:** Use the **block-collection-and-party** skill to find similar blocks, patterns, and code examples from the Block Collection and Block Party repositories.
 
-**Manual search:** `site:www.aem.live` when searching the web — this prevents confusion with other AEM technology stacks.
+**Key documentation resources:**
+- [AEM Edge Delivery documentation](https://www.aem.live/docs/)
+- [Developer Tutorial](https://www.aem.live/developer/tutorial)
+- [The Anatomy of a Project](https://www.aem.live/developer/anatomy-of-a-project)
+- [David's Model](https://www.aem.live/docs/davidsmodel)
+
+**Manual search:** `site:www.aem.live` when searching the web. To search the full text of the documentation: `curl -s https://www.aem.live/docpages-index.json | jq -r '.data[] | select(.content | test("KEYWORD"; "i")) | "\(.path): \(.title)"'`
 
 ## Security Considerations
 
 - Never commit sensitive information (API keys, passwords)
-- Everything you write is client-side code served on the public web
+- Consider that everything you do is client-side code served on the public web
 - Follow Adobe security guidelines
 - Regularly update dependencies
-- Use the `.hlxignore` file to prevent files from being served publicly
+- Use the .hlxignore file to prevent files from being served (same format as .gitignore)
 
 ## Contributing
 
 - Follow the existing code style and patterns (see Code Style Guidelines above)
 - Use the **content-driven-development** skill for all development tasks
 - Use the **testing-blocks** skill before opening any PR
+- Test changes locally before committing
+- Follow the Publishing Process documented above
 - Ensure all linting passes: `npm run lint`
 - Update documentation for significant changes
 
