@@ -20,7 +20,7 @@ Create a concise 2-4 word short name from the feature description:
 - Action-noun format: `user-auth`, `analytics-dashboard`, `fix-payment-timeout`
 - No longer than 30 characters
 - Preserve technical terms (OAuth2, API, JWT)
-- Ask user for ticket number (gitflow naming: `feature/<number>-<short-name>`)
+- Ask user for ticket number (branch naming: `f/<number>-<short-name>`)
 
 ### 2. Check for Existing Branches
 

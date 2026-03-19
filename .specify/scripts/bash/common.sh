@@ -62,13 +62,12 @@ has_git() {
     git rev-parse --show-toplevel >/dev/null 2>&1
 }
 
-# Strip feature/ prefix from branch name to get the directory name
-# e.g., "feature/004-feature-name" -> "004-feature-name"
+# Strip f/ prefix from branch name to get the directory name
+# e.g., "f/004-feature-name" -> "004-feature-name"
 strip_feature_prefix() {
     local branch="$1"
-    # Remove feature/ prefix if present (case-insensitive for backwards compatibility)
     shopt -s nocasematch
-    if [[ "$branch" =~ ^feature/(.+)$ ]]; then
+    if [[ "$branch" =~ ^f/(.+)$ ]]; then
         shopt -u nocasematch
         echo "${BASH_REMATCH[1]}"
     else
@@ -87,12 +86,12 @@ check_feature_branch() {
         return 0
     fi
 
-    # Strip feature/ prefix for validation
+    # Strip f/ prefix for validation
     local branch_without_prefix=$(strip_feature_prefix "$branch")
 
     if [[ ! "$branch_without_prefix" =~ ^[0-9]+- ]]; then
         echo "ERROR: Not on a feature branch. Current branch: $branch" >&2
-        echo "Feature branches should be named like: feature/001-feature-name or 001-feature-name" >&2
+        echo "Feature branches should be named like: f/001-feature-name or 001-feature-name" >&2
         return 1
     fi
 
@@ -103,13 +102,13 @@ get_feature_dir() { echo "$1/.specify/specs/$2"; }
 
 # Find feature directory by numeric prefix instead of exact branch match
 # This allows multiple branches to work on the same spec (e.g., 004-fix-bug, 004-add-feature)
-# Handles feature/ prefix in branch names (e.g., feature/004-feature-name)
+# Handles f/ prefix in branch names (e.g., f/004-feature-name)
 find_feature_dir_by_prefix() {
     local repo_root="$1"
     local branch_name="$2"
     local specs_dir="$repo_root/.specify/specs"
 
-    # Strip feature/ prefix to get the directory name
+    # Strip f/ prefix to get the directory name
     local dir_name=$(strip_feature_prefix "$branch_name")
 
     # Extract numeric prefix from directory name (e.g., "004" or "325234" from "004-whatever" or "325234-whatever")

@@ -34,10 +34,10 @@ eval $(get_feature_paths)
 check_feature_branch "$CURRENT_BRANCH" "$HAS_GIT" || exit 1
 
 # Ensure the feature directory exists
-# FEATURE_DIR from get_feature_paths() should already have the correct path with feature/ prefix stripped
+# FEATURE_DIR from get_feature_paths() should already have the correct path with f/ prefix stripped
 # However, to be explicit and ensure new directories use the stripped branch name, recalculate if needed
 if [[ ! -d "$FEATURE_DIR" ]]; then
-    # Get the directory name by stripping feature/ prefix from branch name
+    # Get the directory name by stripping f/ prefix from branch name
     DIR_NAME=$(strip_feature_prefix "$CURRENT_BRANCH")
     SPECS_DIR="$REPO_ROOT/.specify/specs"
     FEATURE_DIR="$SPECS_DIR/$DIR_NAME"

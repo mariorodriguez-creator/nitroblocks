@@ -3,6 +3,7 @@
 set -e
 
 JSON_MODE=false
+DRY_RUN=false
 SHORT_NAME=""
 BRANCH_NUMBER=""
 ARGS=()
@@ -10,8 +11,11 @@ i=1
 while [ $i -le $# ]; do
     arg="${!i}"
     case "$arg" in
-        --json) 
-            JSON_MODE=true 
+        --json)
+            JSON_MODE=true
+            ;;
+        --dry-run)
+            DRY_RUN=true
             ;;
         --short-name)
             if [ $((i + 1)) -gt $# ]; then
@@ -45,6 +49,7 @@ while [ $i -le $# ]; do
             echo ""
             echo "Options:"
             echo "  --json              Output in JSON format"
+            echo "  --dry-run           Generate branch name only, do not create branch or spec dir"
             echo "  --short-name <name> Provide a custom short name (2-4 words) for the branch"
             echo "  --number N          Specify branch number manually (overrides auto-detection)"
             echo "  --help, -h          Show this help message"
@@ -84,6 +89,23 @@ find_repo_root() {
 clean_branch_name() {
     local name="$1"
     echo "$name" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-//' | sed 's/-$//'
+}
+
+# EDS: ref--repo--owner subdomain must fit in 63 chars (RFC FQDN).
+# Returns max allowed branch length. Uses 40 if remote cannot be determined.
+get_max_branch_length() {
+    local url
+    url=$(git remote get-url origin 2>/dev/null) || true
+    if [[ -n "$url" ]] && [[ "$url" =~ github\.com[:/]([^/]+)/([^/]+) ]]; then
+        local owner="${BASH_REMATCH[1]}"
+        local repo="${BASH_REMATCH[2]%.git}"
+        # ref--repo--owner: 63 - len(repo) - len(owner) - 4 (two "--")
+        local max=$((63 - ${#repo} - ${#owner} - 4))
+        [[ $max -lt 10 ]] && max=10
+        echo "$max"
+    else
+        echo "40"
+    fi
 }
 
 # Resolve repository root. Prefer git information when available, but fall back
@@ -166,44 +188,42 @@ else
 fi
 
 FEATURE_NUM=$(printf "%03d" "$BRANCH_NUMBER")
-BRANCH_NAME="feature/${FEATURE_NUM}-${BRANCH_SUFFIX}"
+MAX_BRANCH_LENGTH=$(get_max_branch_length)
+MAX_SUFFIX_LENGTH=$((MAX_BRANCH_LENGTH - 6))
 
-# GitHub enforces a 244-byte limit on branch names
-# Validate and truncate if necessary
-MAX_BRANCH_LENGTH=244
-if [ ${#BRANCH_NAME} -gt $MAX_BRANCH_LENGTH ]; then
-    # Calculate how much we need to trim from suffix
-    # Account for: feature number (3) + hyphen (1) = 4 chars
-    MAX_SUFFIX_LENGTH=$((MAX_BRANCH_LENGTH - 4))
-    
-    # Truncate suffix at word boundary if possible
-    TRUNCATED_SUFFIX=$(echo "$BRANCH_SUFFIX" | cut -c1-$MAX_SUFFIX_LENGTH)
-    # Remove trailing hyphen if truncation created one
-    TRUNCATED_SUFFIX=$(echo "$TRUNCATED_SUFFIX" | sed 's/-$//')
-    
-    ORIGINAL_BRANCH_NAME="$BRANCH_NAME"
-    BRANCH_NAME="${FEATURE_NUM}-${TRUNCATED_SUFFIX}"
-    
-    >&2 echo "[specify] Warning: Branch name exceeded GitHub's 244-byte limit"
-    >&2 echo "[specify] Original: $ORIGINAL_BRANCH_NAME (${#ORIGINAL_BRANCH_NAME} bytes)"
-    >&2 echo "[specify] Truncated to: $BRANCH_NAME (${#BRANCH_NAME} bytes)"
+# EDS: ref--repo--owner subdomain must fit in 63 chars total (RFC FQDN)
+BRANCH_NAME="f/${FEATURE_NUM}-${BRANCH_SUFFIX}"
+if [ ${#BRANCH_NAME} -gt "$MAX_BRANCH_LENGTH" ]; then
+    ORIGINAL_SUFFIX="$BRANCH_SUFFIX"
+    # Truncate suffix to fit limit; remove trailing hyphen if cut mid-word
+    BRANCH_SUFFIX=$(echo "$BRANCH_SUFFIX" | cut -c1-$MAX_SUFFIX_LENGTH)
+    BRANCH_SUFFIX=$(echo "$BRANCH_SUFFIX" | sed 's/-$//')
+    BRANCH_NAME="f/${FEATURE_NUM}-${BRANCH_SUFFIX}"
+
+    >&2 echo "[specify] Warning: Branch name exceeded ${MAX_BRANCH_LENGTH}-char limit (ref--repo--owner ≤63)"
+    >&2 echo "[specify] Original: f/${FEATURE_NUM}-${ORIGINAL_SUFFIX}"
+    >&2 echo "[specify] Truncated to: $BRANCH_NAME"
 fi
 
-if [ "$HAS_GIT" = true ]; then
-    git checkout -b "$BRANCH_NAME"
-else
-    >&2 echo "[specify] Warning: Git repository not detected; skipped branch creation for $BRANCH_NAME"
+if [ "$DRY_RUN" = false ]; then
+    if [ "$HAS_GIT" = true ]; then
+        git checkout -b "$BRANCH_NAME"
+    else
+        >&2 echo "[specify] Warning: Git repository not detected; skipped branch creation for $BRANCH_NAME"
+    fi
+
+    FEATURE_DIR="$SPECS_DIR/${FEATURE_NUM}-${BRANCH_SUFFIX}"
+    mkdir -p "$FEATURE_DIR"
+
+    TEMPLATE="$REPO_ROOT/.specify/templates/spec-template.md"
+    SPEC_FILE="$FEATURE_DIR/spec.md"
+    if [ -f "$TEMPLATE" ]; then cp "$TEMPLATE" "$SPEC_FILE"; else touch "$SPEC_FILE"; fi
+
+    export SPECIFY_FEATURE="$BRANCH_NAME"
 fi
 
 FEATURE_DIR="$SPECS_DIR/${FEATURE_NUM}-${BRANCH_SUFFIX}"
-mkdir -p "$FEATURE_DIR"
-
-TEMPLATE="$REPO_ROOT/.specify/templates/spec-template.md"
 SPEC_FILE="$FEATURE_DIR/spec.md"
-if [ -f "$TEMPLATE" ]; then cp "$TEMPLATE" "$SPEC_FILE"; else touch "$SPEC_FILE"; fi
-
-# Set the SPECIFY_FEATURE environment variable for the current session
-export SPECIFY_FEATURE="$BRANCH_NAME"
 
 if $JSON_MODE; then
     printf '{"BRANCH_NAME":"%s","SPEC_FILE":"%s","FEATURE_NUM":"%s"}\n' "$BRANCH_NAME" "$SPEC_FILE" "$FEATURE_NUM"

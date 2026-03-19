@@ -77,7 +77,7 @@ UML Class Diagram of implementation task categories and their dependencies.
 | specify                                                                                        | `create-new-feature.sh --json --number <n> --short-name "<name>" "<description>"` |
 | plan                                                                                           | `setup-plan.sh --json`                                                            |
 
-`check-prerequisites.sh` outputs: `FEATURE_DIR`, `FEATURE_SPEC`, `FEATURE_DESIGN`, `IMPL_PLAN`, `TASKS`, `AVAILABLE_DOCS`. Requires feature branch (e.g. `feature/001-name`).
+`check-prerequisites.sh` outputs: `FEATURE_DIR`, `FEATURE_SPEC`, `FEATURE_DESIGN`, `IMPL_PLAN`, `TASKS`, `AVAILABLE_DOCS`. Requires feature branch (e.g. `f/001-name`).
 
 ---
 
