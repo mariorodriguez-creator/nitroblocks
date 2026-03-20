@@ -17,7 +17,7 @@ Run: `.specify/scripts/bash/setup-plan.sh --json` from repo root. Parse JSON for
 1. Read `FEATURE_SPEC` (spec.md) and `.specify/memory/constitution.md`
 2. Load `IMPL_PLAN` template (already copied)
 3. **Silently check for `design.md`**: If `FEATURE_DIR/design.md` exists, read it — it is the **source of truth for all HTML/CSS/design content**. `spec.md` is source of truth for functional requirements.
-   - From design.md: use **Code Scaffold** (HTML/CSS skeleton), **Design Token Mapping**, **Breakpoints + Per-Breakpoint CSS Overrides**, **Dynamic Content Elements**, **Interactive States**, **Visual Acceptance Checklist**
+   - From design.md: use **Code Scaffold** (HTML/CSS skeleton — **mobile-first order**: base → 600px → 900px → optional 1200px), **`## Layout matrix (flex / grid)`** (mandatory for layout-heavy blocks; Figma-derived `flex-direction` / gap per breakpoint), **Design Token Mapping**, **Breakpoints + Per-Breakpoint CSS Overrides**, **Dynamic Content Elements**, **Interactive States**, **Visual Acceptance Checklist**
 
 ## Phase 0: Research
 

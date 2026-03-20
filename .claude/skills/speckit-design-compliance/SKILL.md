@@ -37,14 +37,17 @@ From plan.md, spec.md, or FEATURE_DIR basename (e.g. `countdown` from `.specify/
 
 ### 3. Generate design-expectations.json
 
-Write to `FEATURE_DIR/design-expectations.json`. Extract selectors and values from design.md **Per-Breakpoint CSS Overrides** and **Visual Acceptance Checklist**.
+Write to `FEATURE_DIR/design-expectations.json`. Extract selectors and values from design.md **Per-Breakpoint CSS Overrides**, **`## Layout matrix (flex / grid)`**, and **Visual Acceptance Checklist**.
 
 **Include**:
 - Typography: `font-size`, `line-height`, `font-weight`, `letter-spacing`
 - Dimensions: `padding`, `margin`, `gap`, `width`, `height` for **fixed** design elements
+- Layout (when design.md documents them): `flex-direction`, `flex-wrap`, `justify-content`, `align-items` — especially values called out in the **Layout matrix** for mobile vs tablet vs desktop
 - Colors: `color`, `background-color`, `border-color`
 - Borders: `border-width`, `border-style`, `border-radius`
 - Shadows: `box-shadow`, `text-shadow`
+
+**Layout matrix alignment**: When generating expectations for `@media (width >= 900px)`, ensure desktop `flex-direction` (and related) match the matrix — missing desktop rules in CSS often inherit tablet; expectations should reflect **intended** desktop layout from design.md, not accidental inheritance.
 
 **Skip**:
 - Embedded/child blocks (they have their own tests)

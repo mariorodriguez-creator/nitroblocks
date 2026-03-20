@@ -44,6 +44,8 @@ Run: `.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --incl
 
 **Variant Implementation** (when design.md and block CSS exist): For each variant class mentioned in design.md (e.g. `.blockname--dark`, `.blockname--light`) for colour or visual overrides, verify the block CSS file contains rules for that selector. If design.md says "adds .blockname--dark for colour overrides" but the block CSS has no `.blockname--dark` (or equivalent) selector with colour properties, flag as MEDIUM. Recommendation: Add CSS for the variant or ensure design.md includes the concrete rules.
 
+**Layout matrix vs CSS** (when `## Layout matrix (flex / grid)` exists in design.md): For each row, verify block CSS applies the stated `flex-direction` (and critical `gap`/width) at the correct breakpoint. If desktop should be `column` but only tablet sets `row` and desktop omits `flex-direction`, flag **MEDIUM** (inherited tablet layout). Verify **mobile-first file order** in `*.css`: base → 600px → 900px → optional 1200px.
+
 ## Severity
 
 - **CRITICAL**: Constitution MUST violation, missing core artifact, or zero-coverage requirement blocking baseline

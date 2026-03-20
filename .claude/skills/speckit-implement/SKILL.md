@@ -21,6 +21,7 @@ Before implementing, scan `FEATURE_DIR/checklists/` for incomplete items. If any
 - **REQUIRED**: `tasks.md`, `plan.md`, draft test content, `.specify/memory/constitution.md`
 - **IF EXISTS**: `data-model.md`, `research.md`, `quickstart.md`, `design.md`
 - **design.md source of truth**: For BJ001/BC001/layout/variants/breakpoints, cross-check design.md. Do not rely on quickstart.md summaries.
+- **When design.md exists**: Block CSS (`blocks/{name}/{name}.css`) MUST follow **mobile-first file order**: base (no `@media`) → `@media (width >= 600px)` → `@media (width >= 900px)` → optional `1200px`, same as the **CSS Skeleton** in design.md. Match **`## Layout matrix (flex / grid)`** for `flex-direction` / `gap` per breakpoint; if desktop differs from tablet, repeat properties in the **900px** block (do not rely on cascade inheritance without intent). If design.md lacks a Layout matrix, flag for a `design.md` refresh via `/speckit figma-specify` before claiming design parity.
 
 ## Implementation Approach (CDD Phase 2)
 

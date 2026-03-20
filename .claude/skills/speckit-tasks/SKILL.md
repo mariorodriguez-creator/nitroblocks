@@ -80,7 +80,7 @@ Use the `building-blocks` skill for the decorate function pattern and CSS conven
 
 When `design.md` exists:
 - BJ001 (Block JS): HTML structure from design.md Code Scaffold — decoration must produce this structure
-- BC001 (Block CSS): Implement per design.md CSS Skeleton — vanilla CSS, all breakpoints, all variants, block-scoped selectors
+- BC001 (Block CSS): Implement per design.md CSS Skeleton — vanilla CSS, all breakpoints, all variants, block-scoped selectors; **physical order** must be mobile-first (base → `@media (width >= 600px)` → `900px` → optional `1200px`). Match **`## Layout matrix (flex / grid)`** for `flex-direction` / `gap` per breakpoint; repeat desktop overrides when they differ from tablet.
 - Use design.md Design Token Mapping to reference project CSS custom properties from `styles/styles.css`
 
 ## Test Tasks
