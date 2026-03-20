@@ -64,10 +64,10 @@ main .block-name .block-name-inner {
 }
 ```
 
-**Variants / options** — extra classes on the **block** (from decoration or block options), e.g. `dark`, `wide`, or block-prefixed flags like `block-name-reversed`:
+**Variants / options** — extra classes on the **block** (from decoration or block options), e.g. `reversed`, `dark`, `wide` (short tokens; scope with the block root: `.block-name.reversed`):
 
 ```css
-main .block-name.block-name-reversed .block-name-inner {
+main .block-name.reversed .block-name-inner {
   /* layout variant */
 }
 
@@ -162,6 +162,6 @@ main .block-name a:focus:not(:focus-visible) {
 
 - [ ] Ran `npm run lint` — no Stylelint errors
 - [ ] No hardcoded colors/typography (use `var(--*)` from styles)
-- [ ] EDS block-scoped naming (`{block}-{element}`, variants on block — see above)
+- [ ] BEM-like naming convention followed
 - [ ] All selectors scoped to block
 - [ ] Mobile-first responsive
