@@ -160,6 +160,20 @@ export default async function decorate(block) {
 }
 ```
 
+**External image URLs (drafts)**: Draft content often uses picsum.photos or placehold.co. `createOptimizedPicture()` adds AEM pipeline params (`width`, `format`, `optimize`) that external services do not support. When `img.src` is from picsum.photos or placehold.co, use the original `<img>` or clone the source picture—do not pass external URLs to `createOptimizedPicture()`. Check the URL host before calling:
+
+```javascript
+function isExternalImageUrl(src) {
+  if (!src || !src.startsWith('http')) return false;
+  try {
+    const host = new URL(src).hostname;
+    return host.includes('picsum.photos') || host.includes('placehold.co');
+  } catch {
+    return false;
+  }
+}
+```
+
 ### Fetching Data
 
 Use async/await for data fetching:

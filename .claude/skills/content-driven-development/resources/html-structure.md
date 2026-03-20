@@ -357,7 +357,8 @@ Images should always use the `<picture>` element with `<source>` elements for re
 ```
 
 **Important notes:**
-- Place images in the `/media/` folder or appropriate project location
+- **Production/CMS content:** Place images in the `/media/` folder or appropriate project location
+- **Generated drafts:** Use https://picsum.photos for placeholder images; if unavailable, use https://placehold.co (see "Placeholder images for generated drafts" section)
 - Always provide meaningful `alt` text for accessibility
 - Use `loading="eager"` only for hero/above-the-fold images
 - The platform's `createOptimizedPicture()` JavaScript helper generates this structure automatically in decoration code
@@ -374,6 +375,56 @@ For brevity, examples in this document may show simplified picture tags:
 In actual test files, you can use either:
 1. The full responsive structure shown above (recommended for realistic testing)
 2. The simplified format (acceptable for quick prototyping, though less realistic)
+
+### Placeholder images for generated drafts
+
+When **generating** draft `.plain.html` files (e.g. via speckit workflows), use a standard placeholder image service. **Primary:** Lorem Picsum. **Fallback:** if picsum.photos is unreachable, use placehold.co.
+
+#### Primary: Lorem Picsum (https://picsum.photos)
+
+**Format:** `https://picsum.photos/{width}/{height}[?random={seed}]`
+
+**Examples:**
+- Hero/background (full-width): `https://picsum.photos/1920/1280`
+- Hero (shorter): `https://picsum.photos/1920/640`
+- Teaser/card thumbnails: `https://picsum.photos/400/400?random=1`, `?random=2`, etc.
+
+**Variants:** Use `?random=N` (N = 1, 2, 3…) so each block instance gets a distinct photo.
+
+**Usage:**
+```html
+<picture>
+  <img src="https://picsum.photos/1920/1280" alt="Hero background">
+</picture>
+```
+
+#### Fallback: Placehold.co (if picsum.photos is unreachable)
+
+**Format:** `https://placehold.co/{width}x{height}` (dimensions joined by `x`)
+
+**Examples:**
+- Hero: `https://placehold.co/1920x1280`
+- Teaser: `https://placehold.co/400x400`
+
+Placehold.co returns solid-color placeholders with dimensions; not photos. Use only when picsum.photos fails (e.g. service down or network restrictions).
+
+#### Checking availability
+
+If images fail to load in drafts, verify picsum.photos:
+```bash
+curl -sI https://picsum.photos/200/200 | head -1
+```
+Expect `HTTP/2 302` or `200`. If it times out or returns 5xx, switch draft image URLs to placehold.co.
+
+#### When to use
+
+- When generating draft content (e.g. speckit-testcontent, speckit-implement draft creation)
+- Drafts in `drafts/` (`.plain.html`) created by automation
+
+#### When not to use
+
+- Production content or CMS-authored pages — use `/media/` or project asset paths
+- PR validation URLs — use real assets for PSI checks
 
 ## Block Content Structure
 
@@ -543,7 +594,7 @@ Here's a complete example of a test `.plain.html` file for a hero block:
 
 **Images:**
 - Use `<picture>` elements with proper responsive structure (see Images section)
-- Reference images from the `/media/` folder or appropriate location
+- Reference images from the `/media/` folder or appropriate location; when **generating** drafts, use picsum.photos (or placehold.co fallback) per "Placeholder images for generated drafts"
 - Always include `alt` attributes for accessibility
 
 **Testing considerations:**

@@ -52,11 +52,15 @@ Verify compliance with AEM Edge Delivery Services Constitution (v1.0.0):
 ```text
 specs/[###-feature]/
 ├── plan.md              # This file (/speckit.plan command output)
+├── spec.md
+├── design.md            # From /speckit figma-specify — includes Layout matrix + mobile-first CSS Skeleton
 ├── research.md          # Phase 0 output (speckit-plan skill)
 ├── data-model.md        # Phase 1 output (speckit-plan skill)
 ├── quickstart.md        # Phase 1 output (speckit-plan skill)
 └── tasks.md             # Phase 2 output (speckit-tasks skill - NOT created by speckit-plan)
 ```
+
+**design.md** (when present): Block CSS in implementation MUST follow the **CSS Skeleton** order (base → 600px → 900px) and match **`## Layout matrix (flex / grid)`**. Template: `.specify/templates/design-reference-template.md`.
 
 ### Source Code (repository root)
 <!--
