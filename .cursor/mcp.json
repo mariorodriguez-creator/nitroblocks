@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "da-mcp": {
+      "url": "https://mcp.adobeaemcloud.com/adobe/mcp/da"
+    },
+    "playwright-mcp-server": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@executeautomation/playwright-mcp-server"
+      ]
+    },
+    "browsermcp": {
+      "command": "npx",
+      "args": [
+        "@browsermcp/mcp@latest"
+      ]
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["chrome-devtools-mcp@latest"]
+    }
+  }
+}
