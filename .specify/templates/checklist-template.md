@@ -26,7 +26,7 @@
 - [ ] CHK001 All Java code follows Oracle conventions and Checkstyle rules
 - [ ] CHK002 HTL templates are semantic with no inline JavaScript
 - [ ] CHK003 JavaScript/TypeScript follows ESLint config with strict mode
-- [ ] CHK004 CSS/SCSS uses BEM methodology or component-scoped styling
+- [ ] CHK004 CSS/SCSS follows project conventions (nitroblocks EDS: block-scoped `{block}-{element}` naming per `.claude/skills/building-blocks/resources/css-guidelines.md`; other repos: BEM or component-scoped per AGENTS/rules)
 - [ ] CHK005 JavaDoc present for all public APIs (@param, @return, @throws)
 - [ ] CHK006 SonarQube quality gates pass (0 blocker/critical, <3% duplication)
 - [ ] CHK007 Cyclomatic complexity ≤10 (or justified if higher)

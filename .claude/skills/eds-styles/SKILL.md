@@ -1,6 +1,6 @@
 ---
 name: eds-styles
-description: EDS block CSS styling. Trigger when writing CSS for AEM Edge Delivery blocks, using shared tokens (--dxn-* or project vars), or applying BEM naming to block styles.
+description: EDS block CSS styling. Trigger when writing CSS for AEM Edge Delivery blocks, using shared tokens (--dxn-* or project vars), or applying block-scoped (BEM-like) class naming.
 ---
 
 # EDS Styles Rules
@@ -38,28 +38,53 @@ Examples:
 
 Only: `margin: 0`, `padding: 0`, `width: 100%`, `display: flex`, `position: absolute`, `z-index: 1000`.
 
-## BEM Methodology
+## Block-scoped class naming (EDS, BEM-like)
+
+EDS follows **BEM ideas** (block → elements → variants/states) but **not** classic BEM punctuation. In this codebase, class names use **kebab-case and single hyphens only** — avoid `__` and `--` in selectors (matches real blocks and Stylelint-friendly patterns).
+
+**Block** — root class is the block name:
 
 ```css
-/* Block - scoped to main */
 main .block-name {
   /* block styles */
 }
+```
 
-/* Element */
-main .block-name__element {
-  /* element styles */
+(Some blocks use `.block-name` without the `main` prefix; `resources/css-guidelines.md` recommends `main .block-name` when you want an extra scope guard.)
+
+**Elements** — repeat the block prefix, then the element name: `{block-name}-{element}`:
+
+```css
+main .block-name .block-name-media {
+  /* “element” = sub-part of the block */
 }
 
-/* Modifier */
-main .block-name--modifier {
-  /* modifier styles */
-}
-
-main .block-name.is-active {
-  /* state modifier */
+main .block-name .block-name-inner {
+  /* … */
 }
 ```
+
+**Variants / options** — extra classes on the **block** (from decoration or block options), e.g. `dark`, `wide`, or block-prefixed flags like `block-name-reversed`:
+
+```css
+main .block-name.block-name-reversed .block-name-inner {
+  /* layout variant */
+}
+
+main .block-name.dark {
+  /* theme variant */
+}
+```
+
+**States** — prefer a separate class or attribute hook; `.is-active` is fine when you already use that pattern:
+
+```css
+main .block-name .block-name-tab.is-active {
+  /* selected tab */
+}
+```
+
+This is **BEM-like** (structure and intent), not strict BEM (`block__elem--mod`).
 
 ## File Location
 
@@ -95,7 +120,7 @@ main .block-name {
   --block-name-bg: var(--background-color);
 }
 
-main .block-name__element {
+main .block-name .block-name-content {
   color: var(--block-name-color);
   background: var(--block-name-bg);
 }
@@ -137,6 +162,6 @@ main .block-name a:focus:not(:focus-visible) {
 
 - [ ] Ran `npm run lint` — no Stylelint errors
 - [ ] No hardcoded colors/typography (use `var(--*)` from styles)
-- [ ] BEM-like naming convention followed
+- [ ] EDS block-scoped naming (`{block}-{element}`, variants on block — see above)
 - [ ] All selectors scoped to block
 - [ ] Mobile-first responsive

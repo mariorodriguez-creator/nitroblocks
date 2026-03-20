@@ -79,7 +79,7 @@ The **`### CSS Skeleton`** section MUST emit rules in this **physical order** so
 
 Add **`## Layout matrix (flex / grid)`** immediately **after** `## Code Scaffold` (after the CSS Skeleton subsection and any Absolute Overlay notes — **before** Design Token Mapping). Use a table derived from Step 2b:
 
-| Container (BEM class) | Mobile (base) | Tablet (≥600px) | Desktop (≥900px) | Wide (≥1200px) |
+| Container (block-scoped class) | Mobile (base) | Tablet (≥600px) | Desktop (≥900px) | Wide (≥1200px) |
 |------------------------|-----------------|------------------|---------------------|----------------|
 | e.g. `.blockname-inner` | `flex-direction: column; gap: 24px` | `flex-direction: row; …` | `…` or *unchanged from tablet* | … |
 
@@ -225,7 +225,7 @@ Output: design.md path and summary of what was captured; **confirm** Mobile-firs
 - Map Figma values to project CSS custom properties from `styles/styles.css` where they exist
 - **Dynamic content**: Apply dimension rules strictly. design.md is read later without Figma context — if dimensions are wrong here, implementation will be wrong.
 - **FIGMA ONLY**: Store only what Figma explicitly has. Do not convert, infer, or "improve" (e.g. width → max-width).
-- **Variant colour overrides**: When design.md mentions variant classes (e.g. `.blockname--dark`, `.blockname--light`) for colour or visual overrides, include the actual CSS rules in the CSS Skeleton—do not leave "adds .blockname--dark for colour overrides" without the concrete properties and values. If Figma has no frame for that variant, add a "Variant CSS (when used)" section with suggested values and note that implementer should verify.
+- **Variant colour overrides**: When design.md mentions variant classes for colour or visual overrides, use **EDS-style** names when generating nitroblocks output (e.g. `.blockname.dark`, `.blockname.blockname-reversed`) unless the spec explicitly documents strict BEM `--` modifiers. Include the actual CSS rules in the CSS Skeleton—do not leave a variant mentioned without concrete properties and values. If Figma has no frame for that variant, add a "Variant CSS (when used)" section with suggested values and note that implementer should verify.
 - **Mobile-first file order**: CSS Skeleton MUST follow base → `@media (width >= 600px)` → `@media (width >= 900px)` → optional 1200px; never interleave desktop before mobile for the same component.
 - **Layout matrix**: MUST exist and match Figma auto-layout per breakpoint; implementers and `/speckit-implement` use it to avoid missing desktop overrides.
 - **Spec vs Figma**: If spec.md prose conflicts with Figma layout, **flag in Report**; do not overwrite spec.md here.
