@@ -1,0 +1,36 @@
+@startuml speckit-activity
+!theme plain
+skinparam ActivityBackgroundColor #E8F4F8
+skinparam ActivityBorderColor #333
+skinparam SwimlaneTitleFontSize 12
+
+|#LightBlue|RE|
+start
+:speckit.specify;
+note right: spec.md, branch,\nchecklists/requirements-readiness-check.md
+if (Figma design?) then (yes)
+  :speckit.figma-specify;
+  note right: design.md
+endif
+:speckit.clarify;
+note right: Refined spec
+|#LightGreen|DEV|
+:speckit.plan;
+note right: plan.md, research.md,\ndata-model.md, quickstart.md
+:speckit.tasks;
+note right: tasks.md
+:speckit.analyze;
+note right: Consistency report
+:speckit.implement;
+note right: Codebase changes, unit tests,\nlint, block-scoped verification
+:speckit.validate;
+note right: Test with content,\ncomprehensive testing, PR readiness
+|#LightYellow|QA|
+if (design.md exists?) then (yes)
+  :speckit.design-compliance;
+endif
+:speckit.testcases *(optional)*;
+:speckit.testcontent *(optional)*;
+:speckit.document *(optional)*;
+stop
+@enduml

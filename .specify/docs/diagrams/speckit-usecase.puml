@@ -1,0 +1,42 @@
+@startuml speckit-usecase
+!theme plain
+left to right direction
+skinparam useCase {
+  BackgroundColor #E8F4F8
+  BorderColor #333
+}
+
+actor "Author / Developer" as user
+
+rectangle "Requirements" {
+  usecase "speckit.specify" as UC1
+  usecase "speckit.figma-specify" as UC2
+  usecase "speckit.clarify" as UC3
+}
+rectangle "Development" {
+  usecase "speckit.plan" as UC4
+  usecase "speckit.tasks" as UC5
+  usecase "speckit.analyze" as UC6
+  usecase "speckit.implement" as UC7
+  usecase "speckit.validate" as UC8
+}
+rectangle "Quality Assurance" {
+  usecase "speckit.design-compliance" as UC9
+  usecase "speckit.testcases" as UC10
+  usecase "speckit.testcontent" as UC11
+  usecase "speckit.document" as UC12
+}
+
+user --> UC1
+user --> UC2
+user --> UC3
+user --> UC4
+user --> UC5
+user --> UC6
+user --> UC7
+user --> UC8
+user --> UC9
+user --> UC10
+user --> UC11
+user --> UC12
+@enduml

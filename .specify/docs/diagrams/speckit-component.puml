@@ -1,0 +1,58 @@
+@startuml speckit-component
+!theme plain
+skinparam component {
+  BackgroundColor #E8F4F8
+  BorderColor #333
+}
+
+package "RE Phase" {
+  [spec.md] as spec
+  [design.md] as design
+}
+package "DEV Phase" {
+  [plan.md] as plan
+  [research.md] as research
+  [data-model.md] as dm
+  [quickstart.md] as qs
+  [tasks.md] as tasks
+}
+package "QA Phase" {
+  [testcases.csv] as tc
+  [design-expectations.json] as de
+  [Authoring guides] as doc
+}
+
+component "speckit.specify" as s1
+component "speckit.figma-specify" as s2
+component "speckit.clarify" as s3
+component "speckit.plan" as s4
+component "speckit.tasks" as s5
+component "speckit.implement" as s6
+component "speckit.validate" as s6a
+component "speckit.testcases" as s7
+component "speckit.design-compliance" as s8
+component "speckit.testcontent" as s8a
+component "speckit.document" as s9
+
+s1 --> spec
+s2 --> design
+s3 ..> spec : refines
+s3 ..> design : reads (context)
+s4 --> plan
+s4 --> research
+s4 --> dm
+s4 --> qs
+s5 --> tasks
+s6 ..> spec : uses
+s6 ..> design : uses
+s6 ..> plan : uses
+s6a ..> tasks : verifies
+s6a ..> plan : uses
+s7 --> tc
+s8 --> de
+s8 ..> design : reads
+s8a ..> tc : when present
+s8a ..> spec : fallback
+s9 --> doc
+s9 ..> spec : uses
+@enduml

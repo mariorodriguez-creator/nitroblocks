@@ -1,0 +1,61 @@
+---
+This is a template for the testcases csv file. [PLACEHODERS] need to be replaced with the final value.
+The rest of the template contains sample data that needs to be tailored to the actual specification.
+---
+
+# Test Cases: [STORY NAME] ([STORY NUMBER])
+
+Author-oriented test cases. All steps can be performed by a content author in AEM Editor or on the published site. 
+
+---
+
+ID,Work Item Type,Title,Test Step,Step Action,Step Expected,Area Path,Assigned To,State
+"","Test Case","Layout Container | Author can find and use Responsive Layout Gap in Style System",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Open a page in AEM Editor that contains a Layout Container (or add one)","Page is open in edit mode with a Layout Container",,,
+,,,"2","Select the Layout Container and open the Style System (e.g. from component toolbar or properties)","Style System dialog opens",,,
+,,,"3","Look for a style group about gap or spacing between components","A style group named 'Responsive Layout Gap' (or equivalent) is visible",,,
+,,,"4","Check the options under that group","Exactly three options are available: Small, Medium, and Large",,,
+,,,"5","Select one option (e.g. Medium) and apply; then try selecting another","Only one option can be active at a time; applying a different option replaces the previous choice",,,
+,,,"6","Close the dialog and look at the page preview","Page preview updates; no errors appear",,,
+"","Test Case","Layout Container | Selecting a gap style shows visible space between components on the same row",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Open or create a page with a Layout Container that has two components side by side (e.g. two components each using 6 columns)","Page shows two components next to each other in one row",,,
+,,,"2","Open Style System for that Layout Container and select Responsive Layout Gap 'Medium'","Style is applied",,,
+,,,"3","View the page (in preview or on the published site)","A visible horizontal gap appears between the two components",,,
+,,,"4","Change the style to 'Small' and view again","The gap is smaller than with Medium",,,
+,,,"5","Change the style to 'Large' and view again","The gap is larger than with Medium",,,
+"","Test Case","Layout Container | Gap appears only between components, not at the outer edges",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Use a Layout Container with two components side by side and Responsive Layout Gap (e.g. Medium) applied","Layout with gap style is ready",,,
+,,,"2","View the page and look at the left edge of the first component","There is no extra empty space before the first component",,,
+,,,"3","Look at the right edge of the last component on the same row","There is no extra empty space after the last component",,,
+,,,"4","Look at the space between the two components","The gap appears only between the two components",,,
+"","Test Case","Layout Container | On narrow screens, components stack without extra vertical spacing",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Use a Layout Container with two components side by side and Responsive Layout Gap applied","Layout with gap is ready",,,
+,,,"2","View the page at desktop width","A horizontal gap is visible between the two components",,,
+,,,"3","Resize the browser to a narrow width (e.g. mobile) so the two components stack vertically","Components stack into two full-width rows",,,
+,,,"4","Look at the vertical space between the two stacked components","Vertical spacing looks normal; there is no obvious double spacing or extra gap between the stacked components",,,
+"","Test Case","Layout Container | When no gap style is selected, components touch as before",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Open a page with a Layout Container that has two components side by side","Layout with two components in one row is ready",,,
+,,,"2","Ensure no Responsive Layout Gap style is selected (open Style System and leave Responsive Layout Gap unset if needed)","No gap style is applied",,,
+,,,"3","View the page","The two components sit next to each other with no visible gap between them",,,
+"","Test Case","Layout Container | Single component or full-width row: gap style has no visible effect",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Add or open a Layout Container that has only one component (e.g. one component using full width)","Container with a single component is ready",,,
+,,,"2","Open Style System and select Responsive Layout Gap (e.g. Medium)","Style is applied",,,
+,,,"3","View the page","The layout looks normal; no odd empty space or broken layout appears",,,
+"","Test Case","Layout Container | Gap style works together with other container styles",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Open a Layout Container that has two components side by side","Layout with two components is ready",,,
+,,,"2","In Style System, apply another style you normally use (e.g. a background colour, or a spacing style)","That style is applied",,,
+,,,"3","In Style System, also select Responsive Layout Gap (e.g. Medium)","Both styles are applied",,,
+,,,"4","View the page","The other style (e.g. background or spacing) still looks correct, and a gap is visible between the two components",,,
+"","Test Case","Layout Container | Gap size looks consistent at different screen sizes",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Use a Layout Container with two components side by side and Responsive Layout Gap (e.g. Medium) applied","Layout with gap is ready",,,
+,,,"2","View the page at desktop width and note how the gap looks","Gap is visible",,,
+,,,"3","Resize the browser to tablet width (so the two components are still side by side)","Layout remains side by side",,,
+,,,"4","Compare the gap between the components","The gap looks the same as at desktop; it does not suddenly get much bigger or smaller",,,
+"","Test Case","Layout Container | Published page shows the gap correctly",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","On a page with a Layout Container (two components side by side), apply Responsive Layout Gap (e.g. Medium)","Gap style is applied in the editor",,,
+,,,"2","Publish the page","Page is published successfully",,,
+,,,"3","Open the published page in a browser (outside the editor)","Published page loads",,,
+,,,"4","Check the area where the two components sit side by side","The same gap is visible on the published page",,,
+"","Test Case","Layout Container | Existing pages without the gap style look unchanged",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Open an existing page that has Layout Containers with components side by side and where you have not applied Responsive Layout Gap","Existing page is open",,,
+,,,"2","View the page (preview or published)","The layout looks the same as before; components that were touching are still touching; no unexpected spacing or layout change appears",,,
