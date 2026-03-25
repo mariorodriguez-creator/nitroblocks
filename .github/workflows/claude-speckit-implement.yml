@@ -97,6 +97,4 @@ jobs:
           additional_permissions: |
             actions: read
           # Allow Claude to run git commit/push and npm commands
-          claude_args: >-
-            --allowedTools
-            Bash(git add:*),Bash(git commit:*),Bash(git push:*),Bash(git status:*),Bash(git log:*),Bash(git diff:*),Bash(npm run lint:*),Bash(npm run lint:fix:*),Bash(npm test:*),Bash(npx:*),Bash(curl:*),Read,Write,Edit,Glob,Grep
+          claude_args: '--allowedTools Bash(git add:*),Bash(git commit:*),Bash(git push:*),Bash(git status:*),Bash(git log:*),Bash(git diff:*),Bash(npm run lint:*),Bash(npm run lint:fix:*),Bash(npm test:*),Bash(npx:*),Bash(curl:*),Read,Write,Edit,Glob,Grep'
