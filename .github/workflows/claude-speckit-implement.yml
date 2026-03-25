@@ -1,0 +1,102 @@
+name: Claude Speckit Implement
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to check out and implement against'
+        required: true
+        default: 'main'
+      spec_id:
+        description: 'Optional spec ID (e.g. 567234-tic-tac-toe) — leave blank to let Claude auto-detect from .specify/specs/'
+        required: false
+        default: ''
+  issue_comment:
+    types: [created]
+
+jobs:
+  speckit-implement:
+    # Manual trigger OR a PR/issue comment containing /speckit-implement
+    if: |
+      (github.event_name == 'workflow_dispatch') ||
+      (github.event_name == 'issue_comment' &&
+       contains(github.event.comment.body, '/speckit-implement') &&
+       github.event.issue.pull_request != null)
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write        # Checkout, commit, and push changes
+      pull-requests: write   # Comment on PRs, create/update PRs
+      issues: write          # Comment on issues with status updates
+      id-token: write        # OIDC token (required by claude-code-action)
+      actions: read          # Allow Claude to read CI check results
+
+    steps:
+      # ── Resolve target branch ──────────────────────────────────────────────
+      - name: Resolve target branch
+        id: resolve-branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "branch=${{ github.event.inputs.branch }}" >> "$GITHUB_OUTPUT"
+          else
+            # Comment on a PR — fetch the PR head ref via GitHub API
+            PR_NUMBER=$(jq -r '.issue.number' "$GITHUB_EVENT_PATH")
+            BRANCH=$(gh api "repos/${{ github.repository }}/pulls/${PR_NUMBER}" --jq '.head.ref')
+            echo "branch=${BRANCH}" >> "$GITHUB_OUTPUT"
+          fi
+
+      # ── Checkout ───────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.resolve-branch.outputs.branch }}
+          fetch-depth: 0          # Full history so Claude can inspect git log
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # ── Git identity for commits ───────────────────────────────────────────
+      - name: Configure git identity
+        run: |
+          git config --global user.name  "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      # ── Build Claude prompt ────────────────────────────────────────────────
+      - name: Build prompt
+        id: build-prompt
+        run: |
+          SPEC_ID="${{ github.event.inputs.spec_id }}"
+          if [ -n "${SPEC_ID}" ]; then
+            SPEC_HINT=" for spec ${SPEC_ID}"
+          else
+            SPEC_HINT=""
+          fi
+
+          # Write the prompt to a file to avoid shell-quoting issues
+          cat > /tmp/claude-prompt.txt <<'PROMPT_EOF'
+          Read and execute the speckit-implement skill:
+          1. Read .claude/skills/speckit-implement/SKILL.md and follow its instructions exactly.
+          2. SPEC_HINT_PLACEHOLDER
+          3. After implementing all tasks in tasks.md, commit the changes to the current branch with a descriptive commit message, then push to origin.
+          4. Report a summary of what was implemented and the commit SHA.
+          PROMPT_EOF
+
+          # Substitute the spec hint
+          sed -i "s|SPEC_HINT_PLACEHOLDER|Run speckit-implement${SPEC_HINT}.|g" /tmp/claude-prompt.txt
+
+          echo "prompt_file=/tmp/claude-prompt.txt" >> "$GITHUB_OUTPUT"
+
+      # ── Run Claude ─────────────────────────────────────────────────────────
+      - name: Run Claude Speckit Implement
+        id: claude
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt_file: ${{ steps.build-prompt.outputs.prompt_file }}
+          additional_permissions: |
+            actions: read
+          # Allow Claude to run git commit/push and npm commands
+          claude_args: >-
+            --allowedTools
+            Bash(git add:*),Bash(git commit:*),Bash(git push:*),Bash(git status:*),Bash(git log:*),Bash(git diff:*),Bash(npm run lint:*),Bash(npm run lint:fix:*),Bash(npm test:*),Bash(npx:*),Bash(curl:*),Read,Write,Edit,Glob,Grep
