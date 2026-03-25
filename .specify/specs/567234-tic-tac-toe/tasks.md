@@ -15,7 +15,7 @@
 
 **Purpose**: Verify test content and confirm block does not already exist
 
-- [ ] T001 Verify draft test content at `drafts/tic-tac-toe/tic-tac-toe.plain.html` covers all variants and edge cases (CDD Phase 2 gate)
+- [X] T001 Verify draft test content at `drafts/tic-tac-toe/tic-tac-toe.plain.html` covers all variants and edge cases (CDD Phase 2 gate)
 
 ---
 
@@ -23,7 +23,7 @@
 
 **Purpose**: Scaffold the block directory so user story work can begin
 
-- [ ] SC001 Create block directory and files: `blocks/tic-tac-toe/tic-tac-toe.js` (exports `default function decorate(block)`) and `blocks/tic-tac-toe/tic-tac-toe.css` (scoped to `.tic-tac-toe`)
+- [X] SC001 Create block directory and files: `blocks/tic-tac-toe/tic-tac-toe.js` (exports `default function decorate(block)`) and `blocks/tic-tac-toe/tic-tac-toe.css` (scoped to `.tic-tac-toe`)
 
 **Checkpoint**: Block structure ready — user story implementation can begin
 
@@ -39,7 +39,7 @@
 
 **File**: `blocks/tic-tac-toe/tic-tac-toe.js`
 
-- [ ] BJ001 Implement `decorate(block)` with full game logic in `blocks/tic-tac-toe/tic-tac-toe.js`
+- [X] BJ001 Implement `decorate(block)` with full game logic in `blocks/tic-tac-toe/tic-tac-toe.js`
   - Extract title from authored content row; omit `<h2>` if empty
   - Build decorated DOM: title, status bar (timer + score), 3×3 grid of `<button>` cells, outcome area (`aria-live="polite"`), Play Again button, SR announcement region
   - Implement minimax algorithm for AI move computation (`checkWinner`, `isDraw`, `minimax`, `getBestMove`)
@@ -58,7 +58,7 @@
 
 **File**: `blocks/tic-tac-toe/tic-tac-toe.css`
 
-- [ ] BC001 [P] Implement block styles and animations in `blocks/tic-tac-toe/tic-tac-toe.css`
+- [X] BC001 [P] Implement block styles and animations in `blocks/tic-tac-toe/tic-tac-toe.css`
   - Define block-scoped CSS custom properties on `main .tic-tac-toe` (`--ttt-bg`, `--ttt-accent-x`, `--ttt-accent-o`, `--ttt-accent-win`, etc.) — self-contained dark palette
   - Base layout: flex column, centered, dark background, `--ttt-radius` rounding
   - Title: Orbitron display font, uppercase, letter-spacing, `clamp()` sizing
@@ -78,7 +78,7 @@
 
 ### Content Validation
 
-- [ ] CT001 Verify all block variants render correctly on `localhost:3000/drafts/tic-tac-toe/tic-tac-toe`
+- [X] CT001 Verify all block variants render correctly on `localhost:3000/drafts/tic-tac-toe/tic-tac-toe`
   - Default (medium): game plays with ~400ms AI delay, 60/40 optimal/random
   - Easy: ~200ms delay, 30/70 mix
   - Hard: ~700ms delay, 100% optimal (unbeatable)
@@ -96,8 +96,8 @@
 
 ### Linting (always required)
 
-- [ ] TS001 Run ESLint and fix violations: `npm run lint` — `blocks/tic-tac-toe/tic-tac-toe.js`
-- [ ] TS002 [P] Run Stylelint and fix violations: `npm run lint` — `blocks/tic-tac-toe/tic-tac-toe.css`
+- [X] TS001 Run ESLint and fix violations: `npm run lint` — `blocks/tic-tac-toe/tic-tac-toe.js`
+- [X] TS002 [P] Run Stylelint and fix violations: `npm run lint` — `blocks/tic-tac-toe/tic-tac-toe.css`
 
 ### Testing
 
@@ -117,7 +117,7 @@
   - Verify outcome announced via `aria-live` region
   - Verify minimum 44×44px touch targets at all breakpoints
 
-- [ ] TS006 Unit tests for logic-heavy helpers in `blocks/tic-tac-toe/tic-tac-toe.test.js`
+- [X] TS006 Unit tests for logic-heavy helpers in `blocks/tic-tac-toe/tic-tac-toe.test.js`
   - `checkWinner()`: detect row/column/diagonal wins, return null for no winner
   - `isDraw()`: detect full board with no winner
   - `minimax()` + `getBestMove()`: verify optimal move selection on known board states

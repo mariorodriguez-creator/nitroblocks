@@ -1,0 +1,263 @@
+/* Font fallback to prevent CLS while Orbitron loads */
+@font-face {
+  font-family: Orbitron;
+  src: local('Arial');
+  font-weight: 400 900;
+  size-adjust: 95%;
+}
+
+/* === Block-scoped custom properties and base layout === */
+main .tic-tac-toe {
+  --ttt-bg: #0f0f0f;
+  --ttt-bg-cell: #1a1a1a;
+  --ttt-bg-cell-hover: #252525;
+  --ttt-text: #f0f0f0;
+  --ttt-text-muted: #888;
+  --ttt-accent-x: #3b82f6;
+  --ttt-accent-o: #f97316;
+  --ttt-accent-win: #22c55e;
+  --ttt-font-display: 'Orbitron', sans-serif;
+  --ttt-font-mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  --ttt-grid-gap: 6px;
+  --ttt-cell-size: clamp(80px, 22vw, 120px);
+  --ttt-mark-stroke: 4px;
+  --ttt-radius: 8px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 2rem 1rem;
+  background-color: var(--ttt-bg);
+  border-radius: var(--ttt-radius);
+  color: var(--ttt-text);
+  text-align: center;
+}
+
+/* Title */
+main .tic-tac-toe .ttt-title {
+  margin: 0;
+  font-family: var(--ttt-font-display);
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ttt-text);
+}
+
+/* Status bar */
+main .tic-tac-toe .ttt-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: calc(var(--ttt-cell-size) * 3 + var(--ttt-grid-gap) * 2);
+}
+
+main .tic-tac-toe .ttt-timer {
+  font-family: var(--ttt-font-mono);
+  font-size: 1.125rem;
+  color: var(--ttt-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+main .tic-tac-toe .ttt-score {
+  display: flex;
+  gap: 0.75rem;
+  font-family: var(--ttt-font-mono);
+  font-size: 0.875rem;
+  color: var(--ttt-text-muted);
+}
+
+main .tic-tac-toe .ttt-wins { color: var(--ttt-accent-win); }
+
+main .tic-tac-toe .ttt-losses { color: var(--ttt-accent-o); }
+
+main .tic-tac-toe .ttt-draws { color: var(--ttt-text-muted); }
+
+/* Grid */
+main .tic-tac-toe .ttt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, var(--ttt-cell-size));
+  grid-template-rows: repeat(3, var(--ttt-cell-size));
+  gap: var(--ttt-grid-gap);
+}
+
+/* Cells — ordered low to high specificity to prevent descending-specificity violations */
+main .tic-tac-toe .ttt-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ttt-cell-size);
+  height: var(--ttt-cell-size);
+  border: none;
+  border-radius: calc(var(--ttt-radius) / 2);
+  background-color: var(--ttt-bg-cell);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+main .tic-tac-toe .ttt-cell:focus-visible {
+  outline: 2px solid var(--ttt-accent-x);
+  outline-offset: 2px;
+}
+
+main .tic-tac-toe .ttt-cell:disabled {
+  cursor: default;
+}
+
+main .tic-tac-toe .ttt-cell:hover:not(:disabled) {
+  background-color: var(--ttt-bg-cell-hover);
+}
+
+/* X mark — two crossing diagonal lines via pseudo-elements */
+main .tic-tac-toe .ttt-cell--x::before,
+main .tic-tac-toe .ttt-cell--x::after {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: var(--ttt-mark-stroke);
+  background-color: var(--ttt-accent-x);
+  border-radius: 2px;
+  animation: ttt-mark-in 0.15s ease-out;
+}
+
+main .tic-tac-toe .ttt-cell--x::before { transform: rotate(45deg); }
+
+main .tic-tac-toe .ttt-cell--x::after { transform: rotate(-45deg); }
+
+/* O mark — circle outline via pseudo-element */
+main .tic-tac-toe .ttt-cell--o::before {
+  content: '';
+  position: absolute;
+  width: 55%;
+  aspect-ratio: 1;
+  border: var(--ttt-mark-stroke) solid var(--ttt-accent-o);
+  border-radius: 50%;
+  animation: ttt-mark-in 0.15s ease-out;
+}
+
+/* Win highlight */
+main .tic-tac-toe .ttt-cell--win {
+  box-shadow: 0 0 0 2px var(--ttt-accent-win), 0 0 12px var(--ttt-accent-win);
+}
+
+/* AI thinking pulse */
+main .tic-tac-toe .ttt-cell--thinking {
+  animation: ttt-pulse 0.6s ease-in-out infinite;
+}
+
+/* Outcome message — base rule before :empty modifier */
+main .tic-tac-toe .ttt-outcome {
+  font-family: var(--ttt-font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+main .tic-tac-toe .ttt-outcome:empty {
+  display: none;
+}
+
+main .tic-tac-toe .ttt-outcome--visible {
+  opacity: 1;
+}
+
+/* Play Again button */
+main .tic-tac-toe .ttt-play-again {
+  padding: 0.625rem 1.5rem;
+  border: 2px solid var(--ttt-text);
+  border-radius: 2rem;
+  background: transparent;
+  color: var(--ttt-text);
+  font-family: var(--ttt-font-display);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+main .tic-tac-toe .ttt-play-again:focus-visible {
+  outline: 2px solid var(--ttt-accent-x);
+  outline-offset: 2px;
+}
+
+main .tic-tac-toe .ttt-play-again:hover {
+  background-color: var(--ttt-text);
+  color: var(--ttt-bg);
+}
+
+/* SR-only helper */
+main .tic-tac-toe .ttt-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* === Animations === */
+@keyframes ttt-mark-in {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes ttt-pulse {
+  0%,
+  100% {
+    background-color: var(--ttt-bg-cell);
+  }
+
+  50% {
+    background-color: var(--ttt-bg-cell-hover);
+  }
+}
+
+/* === 600px breakpoint === */
+@media (width >= 600px) {
+  main .tic-tac-toe {
+    padding: 2.5rem 2rem;
+    gap: 1.5rem;
+  }
+
+  main .tic-tac-toe .ttt-title {
+    font-size: 1.5rem;
+  }
+
+  main .tic-tac-toe .ttt-timer {
+    font-size: 1.25rem;
+  }
+}
+
+/* === 900px breakpoint === */
+@media (width >= 900px) {
+  main .tic-tac-toe {
+    --ttt-cell-size: 120px;
+    --ttt-grid-gap: 8px;
+
+    padding: 3rem;
+    max-width: 520px;
+    margin-inline: auto;
+  }
+
+  main .tic-tac-toe .ttt-title {
+    font-size: 1.75rem;
+  }
+}
