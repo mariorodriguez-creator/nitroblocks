@@ -1,90 +1,128 @@
-# [COMPONENT_TITLE] Component – Authoring Guide
-<!-- From .content.xml jcr:title. Use the same title consistently in Overview and body. -->
+<!--
+  AGENT INSTRUCTIONS — Edge Delivery block authoring guides (Speckit and manual).
+  Do not copy this comment block into the author-facing README. Deliver clean Markdown only: strip every `<!-- ... -->` from output files.
+
+  Output paths:
+  - Preferred: `blocks/{block-name}/README.md`
+  - Alternate: `.specify/memory/components/authoring-guides/{name}.md` (multi-block features or team policy)
+
+  Pick authoring surface in **Authoring** (check the repo):
+  - **Sidekick Library** — if `tools/sidekick/library.html` (or project equivalent) exists; see https://github.com/adobe/franklin-sidekick-library
+  - **Document Authoring (DA) Library** — if the team uses DA; see https://docs.da.live/administrators/guides/setup-library
+  - **Generic doc** — block table in Word/Google Docs/SharePoint; https://www.aem.live/developer/markup-sections-blocks
+
+  **Mermaid** (only if you add diagrams): no HTML in node labels (`<br/>`, `<b>`, `<i>`, etc.); plain text and line breaks in labels only.
+
+  **Tone / scope**: author-facing wording; avoid implementation file names in body text except optional **Testing** paths/URLs for QA. Skip performance and “future enhancements” unless the spec requires it. Document options, errors, and troubleshooting briefly when authors need them.
+
+  **Cross-references**: Link related blocks or guides when helpful.
+
+  Non-Speckit doc polish (optional read): `.claude/skills/eds-documentation/SKILL.md`
+-->
+
+# [BLOCK_DISPLAY_NAME] Block – Authoring Guide
+
+<!-- [BLOCK_DISPLAY_NAME]: Human-friendly title (from spec or block purpose). Example: "Embed Instagram". -->
 
 [INTRO_PARAGRAPH]
-<!-- One or two sentences: what the component does and for whom. End with: "This guide explains how to add and configure the component in AEM." -->
+<!-- One or two sentences: what the block does for visitors and authors. No JavaScript or implementation file names. -->
 
 ---
 
 ## Overview
 
-| Property | Value |
-|----------|--------|
-| **Component name** | [COMPONENT_TITLE] |
-| **Component group** | [COMPONENT_GROUP] |
-| **Description** | [COMPONENT_DESCRIPTION] |
-<!-- [COMPONENT_GROUP]: From .content.xml componentGroup (e.g. DigitalXn General). -->
-<!-- [COMPONENT_DESCRIPTION]: One short sentence for the table; optional—omit the row if not needed. -->
+[BULK_OVERVIEW]
+<!-- Short paragraph expanding purpose, typical placement, and what authors control vs what is automatic. -->
 
-## User Interface
+## Block Details
+
+| Item | Value |
+|------|--------|
+| **Block name (table)** | `[block-name]` |
+<!-- Lowercase hyphenated name as it appears in the first cell of the block table, e.g. embed-instagram. -->
+| **Files** | `blocks/[block-name]/[block-name].js`, `blocks/[block-name]/[block-name].css` |
+| **Content summary** | [CONTENT_MODEL_SUMMARY]
+<!-- One line: what rows/cells represent (e.g. "One row per card; columns for image, title, link."). -->
 
 [SCREENSHOT]
-<!-- Screenshot: Markdown image line if the spec or implementation has a component image; otherwise use "Screenshot to be added." -->
-
-## Functionality
-
-[BEHAVIOUR]
-<!-- Bullet list of what the component renders and key author-configurable behaviour. Include: main output, optional features (e.g. variations, styles, inheritance), accessibility or config notes. -->
-
-## Prerequisites
-
-[PREREQUISITES]
-<!-- Short list of what authors need (e.g. DAM assets, CAC config), or "None. Required fields are indicated in the dialog." -->
+<!-- Optional. Markdown image, or "Screenshot to be added after preview." Use author-visible UI or published page, not code. -->
 
 ---
 
-## Adding the Component
+## Content Model
 
-[ADDING_STEPS]
-<!-- Numbered steps: open page in Edit mode → Component browser → [COMPONENT_GROUP] → drag [COMPONENT_TITLE] onto page. Adjust if the component is added differently. -->
+<!-- Authors use a block table in Word/Google Docs, SharePoint, or Document Authoring. Max 4 cells per row where applicable; follow project conventions. See https://www.aem.live/developer/markup-sections-blocks -->
 
----
-
-## Configuring the Component
-
-[DIALOG_INTRO]
-<!-- One sentence: "Double-click the component, use the Configure (wrench) icon, or find the component on the component tree side panel to open the dialog. The dialog has N tabs: Tab1, Tab2, …." -->
-
-[TABS_AND_FIELDS]
-<!-- For each dialog tab (from _cq_dialog): "### Tab name" then a table: Field | Description | Required. Use fieldLabel, fieldDescription, and required from the dialog. For multifields, describe the structure. For tabs that only apply in certain conditions, add one line (e.g. "This tab is relevant when…"). Preserve tab order. -->
-
-[STYLES_SECTION]
+[CONTENT_MODEL_TABLE]
 <!--
-  Choose ONE of the following according to whether the component has policy-defined styles:
+  Replace with a markdown table:
 
-  A) Component has NO or only minimal Styles tab:
-     Use a single short paragraph, e.g.:
-     "The Styles tab (if present) is provided by the AEM Style System. Options depend on template policy."
+  | Cell / column | Content | Required |
+  |---------------|---------|----------|
+  | … | … | yes/no |
 
-  B) Component HAS many style groups / layout variants:
-     Add a "### Styles" subsection here that briefly states that options depend on template policy (and brand/site if relevant), then add a separate top-level section below (after "---" and before "Where the Component Can Be Used") titled "## Styles and layouts (reference)" containing [STYLE_GROUPS_AND_OPTIONS].
+  Describe header row vs data rows, repeating rows, and any metadata row patterns from data-model.md or spec.
 -->
 
 ---
 
-[STYLES_AND_LAYOUTS_REFERENCE]
+## Authoring
+
+[AUTHORING_STEPS]
 <!--
-  ONLY when the component has many policy-defined style groups:
-  Add "## Styles and layouts (reference)" with intro sentence that which options appear depends on template/brand.
-  Then for each style group from the policy (cq:styleGroupLabel), add a "### Group name" and a table of style labels and short descriptions (cq:styleLabel). You MUST use "Style label | Description" table. For description, inspect related CSS code and thoroughly describe layout and features. 
-  Some styles might be prefixed with brand (velo, dxn, glo, vuse...). Create brand titled subtables for those, with the same columns.
-  DON'T group multiple styles into the same rows.
-  When the component has NO such styles, omit this entire section (leave placeholder empty or remove it).
+  Numbered steps for this project’s surface:
+
+  - Sidekick Library: how to insert from library (if tools/sidekick/library.html exists).
+  - DA Library: how to insert from DA (if used).
+  - Else: how to add a block table with the correct block name in the first row and fill cells.
+
+  Use "Authors add…", "In the first row…". Block options / variants go in parentheses on the same line as the block name where applicable (e.g. Columns (wide)).
 -->
 
-[VARIATION_SECTIONS]
-<!-- Optional. If the component has named usage variations (e.g. a distinct "mode" with its own steps), add "## [Variation name]" with a short summary and numbered steps. Otherwise omit this block. -->
+[SECTION_METADATA_NOTES]
+<!-- Optional. If the block relies on Section Metadata or section-level styles, describe how authors set them. If none, delete this subsection or write "None.". -->
 
 ---
 
-## Where the Component Can Be Used
+## Variants
 
-[WHERE_USED]
-<!-- One or two sentences: the component is available on templates that include it in their policy mapping; if authors do not see it in the component browser, the page template may not allow it in that location. Optionally name example templates (e.g. content page, column control). -->
+[VARIANTS]
+<!--
+  List each variant (block options in parentheses → CSS class). Table or bullets.
+
+  Example: | Option (authoring) | Effect |
+  
+  If no variants: "No block options; styling is fixed."
+-->
+
+---
+
+## Accessibility
+
+[ACCESSIBILITY]
+<!--
+  Author-facing: required alt text, visible labels, link behavior. No ARIA implementation detail unless it helps authors (e.g. "Do not remove heading in first cell — it becomes the accessible name").
+-->
+
+---
+
+## Testing
+
+[TESTING]
+<!--
+  Draft paths, preview URLs (`https://{branch}--{repo}--{owner}.aem.page/...`), or CMS paths QA should use. Optional short note for developers: keeper tests, lint — keep minimal and separate from author steps if needed.
+-->
 
 ---
 
 ## Use cases
 
 [USE_CASES]
-<!-- What this component is best suited for from a marketer’s perspective, and when it is not suitable. One or two short paragraphs. -->
+<!-- When to use this block vs default content or another block. When not to use it. One or two short paragraphs. -->
+
+---
+
+## Prerequisites
+
+[PREREQUISITES]
+<!-- Assets, placeholders, external accounts, or "None beyond a normal edit surface and publish/preview access." -->

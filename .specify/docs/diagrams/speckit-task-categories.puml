@@ -12,37 +12,37 @@ abstract class "TaskCategory" {
   + getTasks()
 }
 
-class "AEM Component" as comp {
-  HTL template
-  Sling Model
-  Dialog
-  Policy
-  Clientlib (JS/SCSS)
+class "EDS block" as comp {
+  blocks/*.js (decorate)
+  blocks/*.css (scoped)
+  block table / content model
+  variants (block options)
+  section metadata (if any)
 }
 class "Data Model" as dm {
-  entities
-  relationships
-  API contracts
+  authored examples
+  rows / cells / metadata
+  placeholders (if any)
 }
 class "Integration" as int {
   external services
-  API clients
+  loadScript / delayed.js
   error handling
 }
-class "Content Structure" as content {
-  templates
-  policies
-  filter rules
+class "Content structure" as content {
+  section breaks
+  default content
+  block tables in source docs
 }
 class "Testing" as test {
-  unit tests
-  integration tests
-  test content
+  unit tests (keeper)
+  browser / preview checks
+  drafts / test URLs
 }
 class "Documentation" as doc {
-  README
+  block README
   authoring guide
-  API docs
+  spec / quickstart
 }
 
 comp ..|> TaskCategory
