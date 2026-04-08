@@ -1,0 +1,67 @@
+{
+  "skill_name": "site-audit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I need to migrate astrazeneca.com to EDS. Let's start with an audit. Here are the representative pages I picked:\n- https://www.astrazeneca.com/ (homepage)\n- https://www.astrazeneca.com/careers/great-place-to-work.html (content page)\n- https://www.astrazeneca.com/our-therapy-areas.html (listing/index page)\nThis is a fresh EDS project with only boilerplate blocks.",
+      "expected_output": "A complete gap analysis at .specify/migration/gap-analysis.md with patterns deduplicated across the 3 pages, classified into tiers, and a recommended execution order. Also patterns.md and block-inventory.md.",
+      "files": [],
+      "expectations": [
+        "The migration directory structure is created with pages/ subdirectories for each of the 3 URLs",
+        "Each scraped page directory contains at least screenshot.png and cleaned.html",
+        "identify-page-structure analysis is performed for each page (sections and content sequences documented)",
+        "A block-inventory.md file is created listing ONLY local blocks and Block Collection blocks — no 'Blocks to Create' or 'Blocks to Modify' sections",
+        "A patterns.md file is created with deduplicated patterns across all 3 pages",
+        "A gap-analysis.md file is created as the primary deliverable",
+        "gap-analysis.md contains classification tables for Tier 1 (Covered), Tier 2 (Variant), and Tier 3 (New Block)",
+        "Tier 3 and Tier 2 tables include an Effort column with S/M/L ratings",
+        "gap-analysis.md includes a Page Readiness Matrix showing which pages are blocked on which blocks",
+        "gap-analysis.md includes a Recommended Execution Order section",
+        "gap-analysis.md includes Global Style Observations (colors, typography, spacing)",
+        "gap-analysis.md includes a Structural Decisions section with key architectural choices",
+        "gap-analysis.md includes a Risk Assessment table with likelihood, impact, and mitigation",
+        "Patterns in patterns.md have frequency counts and list of pages where each appears",
+        "Similar patterns across different pages are grouped as one pattern (deduplication happened)",
+        "block-inventory.md does NOT contain any classification, tier, or recommendation content — it is purely descriptive of existing blocks",
+        "Every pattern in patterns.md appears in exactly one tier of gap-analysis.md (no orphans, no duplicates)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I want to migrate our company site to Edge Delivery Services. Can you audit these pages to figure out what blocks we need?\n- https://www.astrazeneca.com/our-therapy-areas.html\n- https://www.astrazeneca.com/sustainability.html\nJust two pages for now, I'll add more later.",
+      "expected_output": "The skill handles a minimal 2-page audit gracefully, warns the user that 2 pages may not cover all templates, and still produces complete artifacts.",
+      "files": [],
+      "expectations": [
+        "The skill warns or notes that 2 pages is fewer than the recommended minimum (5-15 pages)",
+        "Both pages are scraped and analyzed (2 page directories exist with scrape outputs)",
+        "gap-analysis.md is produced with all required sections (summary, tiers, execution order, page readiness, structural decisions, risk assessment)",
+        "patterns.md lists patterns with frequency counts that correctly reflect the 2-page set",
+        "The output acknowledges that coverage may be incomplete and suggests adding more pages",
+        "block-inventory.md contains ONLY existing blocks — no prescriptive sections about what to build",
+        "Tier tables include Effort column with S/M/L ratings"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We're migrating from our old CMS to AEM Edge Delivery. I've identified these pages as representative of all our templates:\n- https://www.astrazeneca.com/ (homepage)\n- https://www.astrazeneca.com/careers/great-place-to-work.html (careers content)\n- https://www.astrazeneca.com/our-therapy-areas.html (therapy areas landing)\n- https://www.astrazeneca.com/sustainability.html (sustainability landing)\n- https://www.astrazeneca.com/investor-relations.html (investor relations)\nAfter the audit I want to feed the results into speckit for block development. Make sure the output is ready for that.",
+      "expected_output": "A thorough 5-page audit with speckit integration clearly marked — Tier 3 blocks tagged for full speckit pipeline, Tier 2 for abbreviated, Tier 1 for no speckit.",
+      "files": [],
+      "expectations": [
+        "All 5 pages are scraped into separate page directories with scrape outputs",
+        "If parallel scraping fails, sequential fallback is attempted (skill mentions this option)",
+        "Pattern deduplication produces fewer unique patterns than total content sequences across all pages",
+        "Tier 3 (New Block) entries reference the full speckit pipeline: specify → plan → tasks → implement → validate",
+        "Tier 2 (Variant) entries reference the abbreviated speckit flow: specify → plan → implement → validate",
+        "Tier 1 (Covered) entries explicitly state no speckit workflow is needed",
+        "gap-analysis.md summary table shows counts for all three tiers",
+        "Tier 3 and Tier 2 tables include Effort column with S/M/L ratings",
+        "Recommended Execution Order prioritizes patterns by frequency (high-frequency first)",
+        "Page Readiness Matrix shows which specific blocks are blocking each page",
+        "Structural Decisions section identifies key architectural choices (e.g., extend header vs new mega-nav)",
+        "Risk Assessment table lists migration risks with likelihood, impact, and mitigation",
+        "block-inventory.md is purely descriptive of existing blocks — no 'Blocks to Create' sections",
+        "block-inventory.md exists listing both local and Block Collection blocks"
+      ]
+    }
+  ]
+}

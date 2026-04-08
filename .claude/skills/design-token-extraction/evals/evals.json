@@ -1,0 +1,61 @@
+{
+  "skill_name": "design-token-extraction",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I've already run the site-audit on astrazeneca.com and have the gap-analysis ready. Now I need to extract the design tokens from the source site and update my EDS styles to match. The homepage URL is https://www.astrazeneca.com/. This is a fresh EDS boilerplate — only the default roboto fonts and boilerplate colors are set.",
+      "expected_output": "Updated styles/styles.css with AstraZeneca's brand colors, typography (lexia serif headings, sans-serif body), and spacing. Updated styles/fonts.css with @font-face for the AZ web fonts. Font files copied to fonts/. A design-tokens.md report at .specify/migration/design-tokens.md.",
+      "files": [],
+      "expectations": [
+        "The extraction script runs successfully and produces .specify/migration/tokens/tokens.json",
+        "tokens.json contains a colors object with at least body_bg, body_text, link, light, and dark keys",
+        "tokens.json contains a typography object with body and headings sections",
+        "tokens.json contains a fonts array or fontFaces array with at least one entry",
+        "tokens.json contains a palette array with at least 10 color entries",
+        "styles/styles.css :root block is updated with new color values (not the boilerplate defaults)",
+        "styles/styles.css :root contains --background-color, --text-color, --link-color, --link-hover-color",
+        "styles/styles.css :root contains --body-font-family and --heading-font-family with non-roboto values",
+        "styles/styles.css :root contains heading sizes (--heading-font-size-xxl through --heading-font-size-xs)",
+        "styles/styles.css contains @font-face fallback declarations with size-adjust",
+        "styles/fonts.css contains @font-face declarations with font-display: swap",
+        "styles/fonts.css references font files in ../fonts/ directory",
+        "At least one .woff2 font file exists in the fonts/ directory",
+        ".specify/migration/design-tokens.md exists and contains a Token Mapping table",
+        ".specify/migration/design-tokens.md contains a Color Palette section",
+        ".specify/migration/design-tokens.md contains a Font Inventory section",
+        "The CSS passes npm run lint without new errors introduced by the token changes"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Extract the design tokens from https://www.mozilla.org/en-US/ and apply them to my EDS project. I want the styles to match Mozilla's visual identity. No site-audit has been run — just do the token extraction directly.",
+      "expected_output": "Updated styles/styles.css and styles/fonts.css with Mozilla's brand tokens. Mozilla uses a distinctive typography and color scheme. The design-tokens.md report should document the mapping decisions.",
+      "files": [],
+      "expectations": [
+        "The extraction script runs and produces tokens.json in the output directory",
+        "styles/styles.css :root is updated with color values different from the boilerplate defaults",
+        "styles/styles.css :root --body-font-family is updated (not roboto)",
+        "styles/styles.css :root --heading-font-family is updated (not roboto-condensed)",
+        "styles/styles.css contains heading font size tokens for at least xxl, xl, l, m",
+        "styles/fonts.css is updated with @font-face declarations",
+        "A design-tokens.md report exists with Token Mapping and Decisions Log sections",
+        "The --nav-height token is updated based on the extracted nav height"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I need to match the visual style of https://developer.chrome.com/ for my EDS project. Extract design tokens — colors, fonts, sizes, spacing — and update my styles. This site probably uses Google Fonts so licensing should be straightforward.",
+      "expected_output": "Updated EDS style files matching Chrome Developer site's clean, modern aesthetic. Google Fonts should be self-hosted with proper @font-face. Design tokens report documents all decisions.",
+      "files": [],
+      "expectations": [
+        "tokens.json is produced with color palette and typography data",
+        "styles/styles.css :root updated with new color tokens",
+        "styles/styles.css :root --body-font-family reflects the source site's body font",
+        "styles/styles.css contains --heading-font-size-xxl through at least --heading-font-size-m",
+        "styles/fonts.css contains @font-face declarations",
+        "design-tokens.md report exists with at least Token Mapping and Font Inventory sections",
+        "The report mentions Google Fonts or notes that font licensing is permissive"
+      ]
+    }
+  ]
+}
