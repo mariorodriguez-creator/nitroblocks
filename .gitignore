@@ -1,16 +1,16 @@
 .hlx/*
 coverage/*
 logs/*
-node_modules/*
+node_modules/
 
 helix-importer-ui
 .DS_Store
 *.bak
 .idea
 
-# Throwaway test artifacts (testing-blocks skill)
+# Import artifacts and throwaway test content
+drafts/
 test/tmp/
-drafts/tmp/
 
 # Ensure these files are tracked
 !CLAUDE.md
