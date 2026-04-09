@@ -1,0 +1,13 @@
+{
+  "name": "scrape-site-scripts",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "Full site crawler for AEM migration",
+  "dependencies": {
+    "crawlee": "^3",
+    "playwright": "^1",
+    "pixelmatch": "^6",
+    "pngjs": "^7"
+  }
+}

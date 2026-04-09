@@ -2,6 +2,7 @@
 coverage/*
 logs/*
 node_modules/*
+.claude/skills/**/scripts/node_modules/
 
 helix-importer-ui
 .DS_Store
@@ -11,6 +12,11 @@ helix-importer-ui
 # Throwaway test artifacts (testing-blocks skill)
 test/tmp/
 drafts/tmp/
+
+# Agent-generated working directories
+canvas/
+scrape/
+storage/
 
 # Ensure these files are tracked
 !CLAUDE.md
