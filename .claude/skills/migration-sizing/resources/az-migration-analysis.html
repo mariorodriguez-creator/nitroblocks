@@ -1,0 +1,2260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AstraZeneca → EDS Migration Sizing</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --az-red: #e40046;
+    --az-dark: #0a0a14;
+    --az-mid: #131324;
+    --az-card: #1a1a2e;
+    --az-border: #2a2a45;
+    --az-muted: #6b6b8a;
+    --az-text: #e8e8f0;
+    --az-accent: #7c6bff;
+    --az-green: #00c48c;
+    --az-amber: #ffb020;
+    --az-blue: #4a9eff;
+    --az-pink: #ff6b9d;
+    --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--az-dark);
+    color: var(--az-text);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,20,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--az-border);
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 56px;
+  }
+  .nav-logo {
+    font-family: 'Instrument Serif', serif;
+    font-size: 18px;
+    color: var(--az-red);
+    margin-right: 16px;
+    white-space: nowrap;
+  }
+  .nav-arrow { color: var(--az-muted); font-size: 12px; }
+  .nav-title { color: var(--az-muted); font-size: 13px; }
+  .nav-tabs { margin-left: auto; display: flex; gap: 4px; }
+  .nav-tab {
+    padding: 6px 16px;
+    border-radius: 6px;
+    border: none;
+    background: transparent;
+    color: var(--az-muted);
+    cursor: pointer;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s;
+  }
+  .nav-tab.active, .nav-tab:hover { background: var(--az-border); color: var(--az-text); }
+  .nav-tab.active { color: white; }
+
+  /* ── LAYOUT ── */
+  .view { display: none; padding: 40px 32px; max-width: 1400px; margin: 0 auto; }
+  .view.active { display: block; }
+
+  /* ── HERO METRICS ── */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .metric-card {
+    background: var(--az-card);
+    border: 1px solid var(--az-border);
+    border-radius: 12px;
+    padding: 24px 20px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .metric-card:hover { border-color: var(--az-accent); }
+  .metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gradient, var(--az-accent));
+  }
+  .metric-label { color: var(--az-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .metric-value { font-family: 'DM Mono', monospace; font-size: 32px; font-weight: 500; line-height: 1; }
+  .metric-sub { color: var(--az-muted); font-size: 12px; margin-top: 6px; }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+  }
+  .section-header:first-child { margin-top: 0; }
+  .section-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    font-weight: 400;
+  }
+  .section-meta { color: var(--az-muted); font-size: 13px; }
+
+  /* ── SITE BREAKDOWN TABLE ── */
+  .breakdown-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .breakdown-card {
+    background: var(--az-card);
+    border: 1px solid var(--az-border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .breakdown-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--az-border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .breakdown-header-title { font-weight: 500; font-size: 14px; }
+  .breakdown-header-count {
+    margin-left: auto;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--az-muted);
+  }
+  .section-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .breakdown-rows { padding: 8px 0; }
+  .breakdown-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 20px;
+    transition: background 0.15s;
+  }
+  .breakdown-row:hover { background: rgba(255,255,255,0.03); }
+  .breakdown-row-label { flex: 1; color: var(--az-text); font-size: 13px; }
+  .breakdown-row-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--az-muted);
+    min-width: 48px;
+    text-align: right;
+  }
+  .breakdown-row-bar {
+    width: 80px;
+    height: 4px;
+    background: var(--az-border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .breakdown-row-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 1s var(--ease);
+  }
+
+  /* ── DONUT CHART ── */
+  .chart-row {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 24px;
+    align-items: start;
+    margin-bottom: 40px;
+  }
+  .donut-card {
+    background: var(--az-card);
+    border: 1px solid var(--az-border);
+    border-radius: 12px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .donut-title { font-size: 13px; color: var(--az-muted); margin-bottom: 20px; text-align: center; }
+  .donut-wrap { position: relative; width: 180px; height: 180px; }
+  .donut-wrap svg { transform: rotate(-90deg); }
+  .donut-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .donut-center-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 28px;
+    line-height: 1;
+  }
+  .donut-center-label { font-size: 11px; color: var(--az-muted); margin-top: 4px; }
+  .donut-legend { margin-top: 20px; width: 100%; display: flex; flex-direction: column; gap: 8px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .legend-label { flex: 1; color: var(--az-text); }
+  .legend-pct { color: var(--az-muted); font-family: 'DM Mono', monospace; font-size: 11px; }
+
+  /* ── TEMPLATES VIEW ── */
+  .templates-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .template-card {
+    background: var(--az-card);
+    border: 1px solid var(--az-border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .template-card:hover { border-color: var(--az-accent); transform: translateY(-2px); }
+  .template-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+  .template-name { font-weight: 500; font-size: 15px; line-height: 1.3; }
+  .template-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 20px;
+    color: var(--az-accent);
+    line-height: 1;
+    white-space: nowrap;
+    margin-left: 8px;
+  }
+  .template-pct { font-size: 11px; color: var(--az-muted); }
+  .complexity-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .complexity-low { background: rgba(0,196,140,0.12); color: var(--az-green); }
+  .complexity-medium { background: rgba(255,176,32,0.12); color: var(--az-amber); }
+  .complexity-high { background: rgba(228,0,70,0.12); color: var(--az-red); }
+  .template-desc { font-size: 12px; color: var(--az-muted); line-height: 1.5; margin-bottom: 12px; }
+  .template-blocks { display: flex; flex-wrap: wrap; gap: 5px; }
+  .block-tag {
+    background: rgba(124,107,255,0.1);
+    border: 1px solid rgba(124,107,255,0.2);
+    color: var(--az-accent);
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ── BLOCKS VIEW ── */
+  .blocks-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .block-card {
+    background: var(--az-card);
+    border: 1px solid var(--az-border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .block-card:hover { border-color: var(--az-blue); }
+  .block-card-body { padding: 12px 14px 10px; flex: 1; }
+  .block-icon { font-size: 20px; margin-bottom: 6px; }
+  .block-name { font-weight: 500; font-size: 13px; margin-bottom: 4px; font-family: 'DM Mono', monospace; }
+  .block-usage { font-size: 11px; color: var(--az-muted); margin-bottom: 6px; }
+  .reuse-bar { height: 3px; background: var(--az-border); border-radius: 2px; overflow: hidden; }
+  .reuse-fill { height: 100%; border-radius: 2px; background: var(--az-blue); }
+  .reuse-label { font-size: 10px; color: var(--az-muted); margin-top: 3px; }
+  .block-detail { font-size: 11px; color: var(--az-muted); margin-top: 6px; }
+
+  /* expand toggle button */
+  .block-expand-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    border-top: 1px solid var(--az-border);
+    color: var(--az-muted);
+    font-size: 11px;
+    padding: 7px 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    transition: all 0.15s;
+    font-family: inherit;
+  }
+  .block-expand-btn:hover { color: var(--az-blue); background: rgba(74,158,255,0.04); }
+  .block-expand-btn .btn-arrow {
+    transition: transform 0.25s ease;
+    font-size: 10px;
+    display: inline-block;
+  }
+  .block-expand-btn[aria-expanded="true"] .btn-arrow { transform: rotate(180deg); }
+  .block-expand-btn[aria-expanded="true"] { color: var(--az-blue); }
+
+  /* expandable screenshot panel */
+  .block-expand-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+    border-top: 1px solid transparent;
+  }
+  .block-expand-panel.open {
+    grid-template-rows: 1fr;
+    border-top-color: var(--az-border);
+  }
+  .block-expand-inner { overflow: hidden; position: relative; background: #fff; }
+  .block-expand-inner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .block-expand-footer {
+    padding: 5px 10px;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: flex-end;
+  }
+  .block-expand-link {
+    font-size: 10px;
+    color: var(--az-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .block-expand-link:hover { color: var(--az-blue); }
+
+  /* ── EFFORT VIEW ── */
+  .effort-layout { display: grid; grid-template-columns: 1fr 360px; gap: 24px; }
+  .effort-main { display: flex; flex-direction: column; gap: 20px; }
+  .effort-table {
+    background: var(--az-card);
+    border: 1px solid var(--az-border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .effort-table table { width: 100%; border-collapse: collapse; }
+  .effort-table th {
+    background: rgba(255,255,255,0.04);
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 11px;
+    color: var(--az-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+  .effort-table td {
+    padding: 12px 16px;
+    border-top: 1px solid var(--az-border);
+    font-size: 13px;
+  }
+  .effort-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .effort-pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+  }
+  .effort-sidebar { display: flex; flex-direction: column; gap: 16px; }
+  .summary-card {
+    background: var(--az-card);
+    border: 1px solid var(--az-border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .summary-card-title { font-size: 12px; color: var(--az-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+  .summary-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--az-border); font-size: 13px; }
+  .summary-row:last-child { border-bottom: none; font-weight: 600; font-size: 15px; }
+  .summary-row-label { color: var(--az-muted); }
+  .summary-row-value { font-family: 'DM Mono', monospace; }
+  .risk-list { display: flex; flex-direction: column; gap: 10px; }
+  .risk-item { display: flex; gap: 10px; align-items: flex-start; }
+  .risk-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .risk-text { font-size: 12px; color: var(--az-muted); line-height: 1.5; }
+  .risk-text strong { color: var(--az-text); }
+
+  /* ── PHASE VIEW ── */
+  .phase-timeline { position: relative; padding-left: 40px; }
+  .phase-line { position: absolute; left: 16px; top: 24px; bottom: 24px; width: 2px; background: var(--az-border); }
+  .phase-item { position: relative; margin-bottom: 32px; }
+  .phase-dot {
+    position: absolute;
+    left: -32px;
+    top: 8px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--az-dark);
+  }
+  .phase-card {
+    background: var(--az-card);
+    border: 1px solid var(--az-border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    transition: border-color 0.2s;
+  }
+  .phase-card:hover { border-color: var(--az-accent); }
+  .phase-number { font-size: 11px; color: var(--az-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+  .phase-name { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+  .phase-duration { font-size: 12px; color: var(--az-amber); font-family: 'DM Mono', monospace; margin-bottom: 12px; }
+  .phase-deliverables { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .deliverable-tag {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--az-border);
+    color: var(--az-text);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .phase-meta { font-size: 12px; color: var(--az-muted); line-height: 1.5; }
+
+  /* ── SITE TREE VIEW ── */
+  .tree-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .tree-btn {
+    background: var(--az-card);
+    border: 1px solid var(--az-border);
+    color: var(--az-muted);
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+  }
+  .tree-btn:hover { color: var(--az-blue); border-color: var(--az-blue); background: rgba(74,158,255,0.06); }
+  .tree-legend { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .tree-legend-item { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--az-muted); }
+  .tree-legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  #site-tree { overflow: auto; border-radius: 10px; max-height: 80vh; }
+  #site-tree svg { display: block; }
+  #site-tree .nd { cursor: pointer; }
+  #site-tree .nd text { pointer-events: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .view.active > * { animation: fadeUp 0.4s var(--ease) both; }
+  .view.active > *:nth-child(2) { animation-delay: 0.05s; }
+  .view.active > *:nth-child(3) { animation-delay: 0.1s; }
+  .view.active > *:nth-child(4) { animation-delay: 0.15s; }
+
+  /* ── SCOPE CALLOUT ── */
+  .scope-banner {
+    background: linear-gradient(135deg, rgba(228,0,70,0.08), rgba(124,107,255,0.08));
+    border: 1px solid rgba(228,0,70,0.25);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  .scope-emoji { font-size: 28px; }
+  .scope-text { flex: 1; }
+  .scope-text strong { color: var(--az-red); }
+
+  /* tooltips */
+  [data-tip] { position: relative; }
+  [data-tip]:hover::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2a2a45;
+    color: var(--az-text);
+    font-size: 11px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 200;
+  }
+
+  /* scroll */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--az-border); border-radius: 3px; }
+
+  /* ── METHODOLOGY VIEW ── */
+  .meth-pipeline {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    overflow-x: auto;
+    padding: 8px 0 24px;
+  }
+  .meth-step {
+    flex: 1;
+    min-width: 160px;
+    background: var(--az-card);
+    border: 1px solid var(--az-border);
+    border-radius: 12px;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+  }
+  .meth-step-num {
+    position: absolute;
+    top: -12px;
+    left: 16px;
+    width: 24px;
+    height: 24px;
+    background: var(--az-red);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .meth-step-icon { font-size: 28px; line-height: 1; }
+  .meth-step-title { font-weight: 600; font-size: 14px; color: var(--az-text); }
+  .meth-step-body { font-size: 12px; color: var(--az-muted); line-height: 1.55; }
+  .meth-step-body code { font-family: 'DM Mono', monospace; color: var(--az-accent); font-size: 11px; }
+  .meth-step-stat {
+    margin-top: auto;
+    padding-top: 10px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    color: var(--az-green);
+    border-top: 1px solid var(--az-border);
+  }
+  .meth-arrow {
+    font-size: 20px;
+    color: var(--az-border);
+    padding: 60px 8px 0;
+    flex-shrink: 0;
+    align-self: flex-start;
+  }
+
+  /* Confidence table */
+  .conf-table-wrap { overflow-x: auto; }
+  .conf-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .conf-table th {
+    background: var(--az-card);
+    color: var(--az-muted);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--az-border);
+  }
+  .conf-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--az-text);
+  }
+  .conf-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .conf-pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .conf-high { background: rgba(0,196,140,0.15); color: var(--az-green); }
+  .conf-med  { background: rgba(255,176,32,0.15); color: var(--az-amber); }
+  .conf-low  { background: rgba(228,0,70,0.12);   color: #e40046; }
+
+  /* Caveats */
+  .caveats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 900px) { .caveats-grid { grid-template-columns: 1fr 1fr; } }
+  .caveat-card {
+    background: var(--az-card);
+    border: 1px solid var(--az-border);
+    border-radius: 10px;
+    padding: 18px;
+  }
+  .caveat-icon { font-size: 24px; margin-bottom: 8px; }
+  .caveat-title { font-weight: 600; font-size: 13px; margin-bottom: 8px; }
+  .caveat-body { font-size: 12px; color: var(--az-muted); line-height: 1.55; }
+  .caveat-body code { font-family: 'DM Mono', monospace; color: var(--az-accent); font-size: 11px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">AstraZeneca</span>
+  <span class="nav-arrow">→</span>
+  <span class="nav-title">EDS Migration Sizing</span>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showView('overview')">Overview</button>
+    <button class="nav-tab" onclick="showView('tree')">Site Tree</button>
+    <button class="nav-tab" onclick="showView('methodology')">Methodology</button>
+    <button class="nav-tab" onclick="showView('templates')">Templates</button>
+    <button class="nav-tab" onclick="showView('blocks')">Block Inventory</button>
+    <button class="nav-tab" onclick="showView('effort')">Effort Sizing</button>
+    <button class="nav-tab" onclick="showView('phases')">Migration Phases</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════ METHODOLOGY ══ -->
+<div id="view-methodology" class="view">
+
+  <div class="section-header" style="margin-top:0">
+    <div class="section-title">Analysis Methodology</div>
+    <span class="section-meta">How this sizing was produced · what was automated vs inferred</span>
+  </div>
+
+  <!-- Pipeline diagram -->
+  <div class="meth-pipeline">
+    <div class="meth-step">
+      <div class="meth-step-num">1</div>
+      <div class="meth-step-icon">🗺️</div>
+      <div class="meth-step-title">Sitemap crawl</div>
+      <div class="meth-step-body">Downloaded <code>azcomsitemap.xml</code> (2,455 <code>&lt;loc&gt;</code> entries). Parsed with shell to categorise every URL by its top-level path segment. Produced 14 section buckets.</div>
+      <div class="meth-step-stat">2,455 URLs · 0 manual steps</div>
+    </div>
+    <div class="meth-arrow">→</div>
+    <div class="meth-step">
+      <div class="meth-step-num">2</div>
+      <div class="meth-step-icon">🎲</div>
+      <div class="meth-step-title">Stratified sampling</div>
+      <div class="meth-step-body">Tiered stratified sample (seed 42): <strong>100%</strong> for sections &lt;100 pages · <strong>50%</strong> for 100–200 pages · <strong>25%</strong> for &gt;200 pages. Produced 920 URLs to fetch.</div>
+      <div class="meth-step-stat">920 pages sampled</div>
+    </div>
+    <div class="meth-arrow">→</div>
+    <div class="meth-step">
+      <div class="meth-step-num">3</div>
+      <div class="meth-step-icon">⚡</div>
+      <div class="meth-step-title">Parallel HTML fetch</div>
+      <div class="meth-step-body">20 concurrent <code>curl</code> workers fetched each URL with a real browser User-Agent. 919 of 920 pages returned 200 OK. Total wall-clock time: <strong>13 seconds</strong>.</div>
+      <div class="meth-step-stat">919/920 success · 13 s</div>
+    </div>
+    <div class="meth-arrow">→</div>
+    <div class="meth-step">
+      <div class="meth-step-num">4</div>
+      <div class="meth-step-icon">🔬</div>
+      <div class="meth-step-title">CSS class extraction</div>
+      <div class="meth-step-body">Stripped nav/footer/js-helper classes. Mapped the site's own component class vocabulary (<code>heroFeature</code>, <code>content-tile</code>, <code>wscd-split-feature-tile</code>…) to canonical EDS block names. Grouped sub-elements by root prefix.</div>
+      <div class="meth-step-stat">~80 root component types found</div>
+    </div>
+    <div class="meth-arrow">→</div>
+    <div class="meth-step">
+      <div class="meth-step-num">5</div>
+      <div class="meth-step-icon">📐</div>
+      <div class="meth-step-title">Template classification</div>
+      <div class="meth-step-body">For each section, computed the % of pages carrying each block. Sections with distinct block signatures became separate templates. Sections sharing the same signature were merged (e.g. press &amp; medical releases, Thailand PRs).</div>
+      <div class="meth-step-stat">18 distinct templates identified</div>
+    </div>
+    <div class="meth-step">
+      <div class="meth-step-num">6</div>
+      <div class="meth-step-icon">🔬</div>
+      <div class="meth-step-title">Page-import validation</div>
+      <div class="meth-step-body">One representative page per template scraped with Playwright, structure identified (sections + content sequences), authoring decisions made (default content vs EDS block), and import HTML generated. Validated block inventory from both directions: CSS class analysis across 943 pages + full DOM inspection of 18 representative pages.</div>
+      <div class="meth-step-stat">18 pages imported · 1 new block confirmed (country-list) · 5 import HTMLs generated</div>
+    </div>
+  </div>
+
+  <!-- Confidence table -->
+  <div class="section-header" style="margin-top:40px">
+    <div class="section-title">Confidence per Section</div>
+    <span class="section-meta">Sample size and evidence strength per template bucket</span>
+  </div>
+
+  <div class="conf-table-wrap">
+    <table class="conf-table">
+      <thead>
+        <tr>
+          <th>Section / Template</th>
+          <th>Total pages</th>
+          <th>Sampled</th>
+          <th>Coverage</th>
+          <th>Success rate</th>
+          <th>Confidence</th>
+          <th>Key finding</th>
+        </tr>
+      </thead>
+      <tbody id="conf-tbody"></tbody>
+    </table>
+  </div>
+
+  <!-- Caveats -->
+  <div class="section-header" style="margin-top:40px">
+    <div class="section-title">Known Limitations</div>
+    <span class="section-meta">What this analysis cannot tell you</span>
+  </div>
+
+  <div class="caveats-grid">
+    <div class="caveat-card">
+      <div class="caveat-icon">🚫</div>
+      <div class="caveat-title">No JavaScript-rendered content</div>
+      <div class="caveat-body">The analysis fetches raw HTML. Client-side rendered components (React, Angular <code>az-filter-items</code>, Brightcove player) may not appear in static HTML. Investor-relations filter pages and any dynamic tabs were partially invisible.</div>
+    </div>
+    <div class="caveat-card">
+      <div class="caveat-icon">🌏</div>
+      <div class="caveat-title">Country hub geo-blocking</div>
+      <div class="caveat-body">All 23 country hub pages fetched. 2 of 23 (Austria, global.html) returned empty HTML — likely geo-restricted. Their component signatures were not confirmed but the other 21 are consistent. Low risk: Austria/global would likely follow the same rich-header + icon-link-panel pattern.</div>
+    </div>
+    <div class="caveat-card">
+      <div class="caveat-icon">🏠</div>
+      <div class="caveat-title">Homepage partially fetchable</div>
+      <div class="caveat-body">The homepage is heavily JS-rendered. Static HTML fetch confirmed <code>homepage-hero</code> + <code>homepage-content-set</code> + <code>link-image-panel-v2</code> + <code>image-panel-feature</code> in the server-rendered markup, giving high confidence on block identity. Dynamic hero content and personalisation layers require a live browser audit.</div>
+    </div>
+    <div class="caveat-card">
+      <div class="caveat-icon">📊</div>
+      <div class="caveat-title">Press releases not uniformly validated</div>
+      <div class="caveat-body">402 press releases sampled but the CSS signatures are so uniform (99% identical) that the rare exceptions (1% with hero-header, 2% with video) were treated as edge cases. Some legacy 2009–2012 pages may use rte-content instead of rich-text.</div>
+    </div>
+    <div class="caveat-card">
+      <div class="caveat-icon">🔌</div>
+      <div class="caveat-title">Third-party integrations invisible</div>
+      <div class="caveat-body">Veeva ID footer, Adobe Analytics datalayer, OneTrust cookie banner, Brightcove video player, and reCAPTCHA are loaded dynamically. They appear as placeholders in static HTML. Each requires a dedicated integration story in EDS.</div>
+    </div>
+    <div class="caveat-card">
+      <div class="caveat-icon">📐</div>
+      <div class="caveat-title">Block ≠ authoring complexity</div>
+      <div class="caveat-body">33 blocks is a component count, not a story-point count. A block appearing on 85% of pages (<code>rich-text</code>) may be trivial to build, while <code>data-table</code> appearing on 2% of pages may require a complex EDS spreadsheet integration. Effort sizing adjusts for this.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════ OVERVIEW ══ -->
+<div id="view-overview" class="view active">
+
+  <div class="scope-banner">
+    <span class="scope-emoji">🔬</span>
+    <div class="scope-text">
+      Source: <strong>astrazeneca.com</strong> · Sitemap crawled <strong>7 Apr 2026</strong> ·
+      <strong>2,455 URLs</strong> across 11 top-level sections ·
+              <strong>943 pages sampled</strong> · tiered coverage: 100% &lt;100 pages · 50% 100–200 pages · 25% &gt;200 pages · HTML component analysis via automated fetch · <strong>18 templates, all high confidence</strong> · <strong>18 representative pages imported</strong> via page-import workflow ·
+      AEM CMS on current platform → AEM Edge Delivery Services (EDS)
+    </div>
+  </div>
+
+  <!-- Hero metrics -->
+  <div class="hero-grid">
+    <div class="metric-card" style="--gradient: linear-gradient(90deg, var(--az-red), #ff4d8a)">
+      <div class="metric-label">Total Pages</div>
+      <div class="metric-value" style="color: var(--az-red)">2,455</div>
+      <div class="metric-sub">In sitemap.xml</div>
+    </div>
+    <div class="metric-card" style="--gradient: linear-gradient(90deg, var(--az-accent), var(--az-blue))">
+      <div class="metric-label">Distinct Templates</div>
+      <div class="metric-value" style="color: var(--az-accent)">18</div>
+      <div class="metric-sub">All high confidence</div>
+    </div>
+    <div class="metric-card" style="--gradient: linear-gradient(90deg, var(--az-green), #00e8a2)">
+      <div class="metric-label">Blocks Required</div>
+      <div class="metric-value" style="color: var(--az-green)">33</div>
+      <div class="metric-sub">EDS block components</div>
+    </div>
+    <div class="metric-card" style="--gradient: linear-gradient(90deg, var(--az-amber), #ffd166)">
+      <div class="metric-label">High-Volume Core</div>
+      <div class="metric-value" style="color: var(--az-amber)">73.6%</div>
+      <div class="metric-sub">Press &amp; medical releases</div>
+    </div>
+    <div class="metric-card" style="--gradient: linear-gradient(90deg, var(--az-pink), #ff9ec4)">
+      <div class="metric-label">Est. Sprint Effort</div>
+      <div class="metric-value" style="color: var(--az-pink)">38</div>
+      <div class="metric-sub">Weeks total delivery</div>
+    </div>
+  </div>
+
+  <!-- Main content area -->
+  <div class="chart-row">
+    <!-- Donut -->
+    <div class="donut-card">
+      <div class="donut-title">Pages by Section</div>
+      <div class="donut-wrap">
+        <svg width="180" height="180" viewBox="0 0 180 180">
+          <!-- press-releases: 1605/2455 = 65.4% -->
+          <!-- medical-releases: 126/2455 = 5.1% -->
+          <!-- articles: 68/2455 = 2.8% -->
+          <!-- what-science-can-do: 110/2455 = 4.5% -->
+          <!-- our-company: 108/2455 = 4.4% -->
+          <!-- country-sites: 214/2455 = 8.7% -->
+          <!-- investor-relations: 53/2455 = 2.2% -->
+          <!-- r-d: 35/2455 = 1.4% -->
+          <!-- therapy-areas: 32/2455 = 1.3% -->
+          <!-- sustainability: 31/2455 = 1.3% -->
+          <!-- other: ~83 = 3.4% -->
+          <circle id="d-bg" cx="90" cy="90" r="72" fill="none" stroke="#2a2a45" stroke-width="28"/>
+          <circle id="d-press" cx="90" cy="90" r="72" fill="none" stroke="#e40046" stroke-width="28"
+            stroke-dasharray="0 452.39"
+            stroke-dashoffset="0"/>
+          <circle id="d-med" cx="90" cy="90" r="72" fill="none" stroke="#ff6b9d" stroke-width="28"
+            stroke-dasharray="0 452.39"/>
+          <circle id="d-country" cx="90" cy="90" r="72" fill="none" stroke="#7c6bff" stroke-width="28"
+            stroke-dasharray="0 452.39"/>
+          <circle id="d-wscd" cx="90" cy="90" r="72" fill="none" stroke="#4a9eff" stroke-width="28"
+            stroke-dasharray="0 452.39"/>
+          <circle id="d-company" cx="90" cy="90" r="72" fill="none" stroke="#00c48c" stroke-width="28"
+            stroke-dasharray="0 452.39"/>
+          <circle id="d-other" cx="90" cy="90" r="72" fill="none" stroke="#3a3a58" stroke-width="28"
+            stroke-dasharray="0 452.39"/>
+        </svg>
+        <div class="donut-center">
+          <div class="donut-center-value">2,455</div>
+          <div class="donut-center-label">pages</div>
+        </div>
+      </div>
+      <div class="donut-legend">
+        <div class="legend-item">
+          <div class="legend-dot" style="background: #e40046"></div>
+          <div class="legend-label">Press Releases</div>
+          <div class="legend-pct">65.4%</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: #7c6bff"></div>
+          <div class="legend-label">Country Sites</div>
+          <div class="legend-pct">8.7%</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: #ff6b9d"></div>
+          <div class="legend-label">Medical Releases</div>
+          <div class="legend-pct">5.1%</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: #4a9eff"></div>
+          <div class="legend-label">What Science Can Do</div>
+          <div class="legend-pct">4.5%</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: #00c48c"></div>
+          <div class="legend-label">Our Company (People)</div>
+          <div class="legend-pct">4.4%</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background: #3a3a58"></div>
+          <div class="legend-label">All Other Sections</div>
+          <div class="legend-pct">11.7%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Breakdown table -->
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div class="breakdown-card">
+        <div class="breakdown-header">
+          <div class="section-dot" style="background: #e40046"></div>
+          <div class="breakdown-header-title">media-centre</div>
+          <div class="breakdown-header-count">1,807 pages · 73.6%</div>
+        </div>
+        <div class="breakdown-rows">
+          <div class="breakdown-row">
+            <div class="breakdown-row-label">press-releases (2009–2026)</div>
+            <div class="breakdown-row-bar"><div class="breakdown-row-fill" style="width: 89%; background: #e40046;"></div></div>
+            <div class="breakdown-row-count">1,605</div>
+          </div>
+          <div class="breakdown-row">
+            <div class="breakdown-row-label">medical-releases</div>
+            <div class="breakdown-row-bar"><div class="breakdown-row-fill" style="width: 7%; background: #ff6b9d;"></div></div>
+            <div class="breakdown-row-count">126</div>
+          </div>
+          <div class="breakdown-row">
+            <div class="breakdown-row-label">articles</div>
+            <div class="breakdown-row-bar"><div class="breakdown-row-fill" style="width: 4%; background: #ffb020;"></div></div>
+            <div class="breakdown-row-count">68</div>
+          </div>
+          <div class="breakdown-row">
+            <div class="breakdown-row-label">static pages (pdf, contacts, archive…)</div>
+            <div class="breakdown-row-bar"><div class="breakdown-row-fill" style="width: 1%; background: #6b6b8a;"></div></div>
+            <div class="breakdown-row-count">6</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="breakdown-card">
+        <div class="breakdown-header">
+          <div class="section-dot" style="background: #7c6bff"></div>
+          <div class="breakdown-header-title">country-sites</div>
+          <div class="breakdown-header-count">214 pages · 8.7%</div>
+        </div>
+        <div class="breakdown-rows">
+          <div class="breakdown-row">
+            <div class="breakdown-row-label">Thailand (deep local content)</div>
+            <div class="breakdown-row-bar"><div class="breakdown-row-fill" style="width: 80%; background: #7c6bff;"></div></div>
+            <div class="breakdown-row-count">173</div>
+          </div>
+          <div class="breakdown-row">
+            <div class="breakdown-row-label">Singapore</div>
+            <div class="breakdown-row-bar"><div class="breakdown-row-fill" style="width: 8%; background: #9d8fff;"></div></div>
+            <div class="breakdown-row-count">17</div>
+          </div>
+          <div class="breakdown-row">
+            <div class="breakdown-row-label">24 other country pages</div>
+            <div class="breakdown-row-bar"><div class="breakdown-row-fill" style="width: 12%; background: #6b5fe0;"></div></div>
+            <div class="breakdown-row-count">25</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="breakdown-card">
+        <div class="breakdown-header">
+          <div class="section-dot" style="background: #4a9eff"></div>
+          <div class="breakdown-header-title">what-science-can-do + r-d + therapy-areas</div>
+          <div class="breakdown-header-count">180 pages · 7.3%</div>
+        </div>
+        <div class="breakdown-rows">
+          <div class="breakdown-row">
+            <div class="breakdown-row-label">topics (disease-understanding, NGT, clinical-innovation…)</div>
+            <div class="breakdown-row-bar"><div class="breakdown-row-fill" style="width: 60%; background: #4a9eff;"></div></div>
+            <div class="breakdown-row-count">107</div>
+          </div>
+          <div class="breakdown-row">
+            <div class="breakdown-row-label">r-d deep content pages</div>
+            <div class="breakdown-row-bar"><div class="breakdown-row-fill" style="width: 20%; background: #00c48c;"></div></div>
+            <div class="breakdown-row-count">36</div>
+          </div>
+          <div class="breakdown-row">
+            <div class="breakdown-row-label">therapy area hub + detail pages</div>
+            <div class="breakdown-row-bar"><div class="breakdown-row-fill" style="width: 18%; background: #ffb020;"></div></div>
+            <div class="breakdown-row-count">32</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="breakdown-card">
+        <div class="breakdown-header">
+          <div class="section-dot" style="background: #00c48c"></div>
+          <div class="breakdown-header-title">our-company + investor-relations + sustainability</div>
+          <div class="breakdown-header-count">196 pages · 8.0%</div>
+        </div>
+        <div class="breakdown-rows">
+          <div class="breakdown-row">
+            <div class="breakdown-row-label">people profiles</div>
+            <div class="breakdown-row-bar"><div class="breakdown-row-fill" style="width: 51%; background: #00c48c;"></div></div>
+            <div class="breakdown-row-count">100</div>
+          </div>
+          <div class="breakdown-row">
+            <div class="breakdown-row-label">investor-relations pages</div>
+            <div class="breakdown-row-bar"><div class="breakdown-row-fill" style="width: 28%; background: #4a9eff;"></div></div>
+            <div class="breakdown-row-count">55</div>
+          </div>
+          <div class="breakdown-row">
+            <div class="breakdown-row-label">sustainability pages</div>
+            <div class="breakdown-row-bar"><div class="breakdown-row-fill" style="width: 16%; background: #7c6bff;"></div></div>
+            <div class="breakdown-row-count">32</div>
+          </div>
+          <div class="breakdown-row">
+            <div class="breakdown-row-label">locations + leadership</div>
+            <div class="breakdown-row-bar"><div class="breakdown-row-fill" style="width: 5%; background: #ffb020;"></div></div>
+            <div class="breakdown-row-count">9</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Press release year distribution chart -->
+  <div class="section-header">
+    <h2 class="section-title">Press Release Archive</h2>
+    <span class="section-meta">1,606 pages · 2009–2026</span>
+  </div>
+  <div style="background: var(--az-card); border: 1px solid var(--az-border); border-radius: 12px; padding: 24px 28px; margin-bottom: 40px;">
+    <div style="display: flex; gap: 4px; align-items: flex-end; height: 80px; margin-bottom: 12px;">
+      <!-- year bars: 2009=60, 2010=62, 2011=49, 2012=46, 2013=70, 2014=105, 2015=103, 2016=?, 2017=?, 2018=90, 2019=106, 2020=139, 2021=131, 2022=135, 2023=116, 2024=108, 2025=93, 2026=17 -->
+      <!-- max = 139 (2020) -->
+      <script>
+        const years = {
+          2009: 60, 2010: 62, 2011: 49, 2012: 46, 2013: 70,
+          2014: 105, 2015: 103, 2016: 82, 2017: 77, 2018: 90,
+          2019: 106, 2020: 139, 2021: 131, 2022: 135, 2023: 116,
+          2024: 108, 2025: 93, 2026: 17
+        };
+        const maxVal = 139;
+        document.write(Object.entries(years).map(([yr, cnt]) => {
+          const h = Math.round((cnt / maxVal) * 72);
+          const isRecent = yr >= 2022;
+          return `<div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;" data-tip="${yr}: ${cnt} releases">
+            <div style="height:${h}px;width:100%;background:${isRecent ? '#e40046' : 'rgba(228,0,70,0.3)'};border-radius:3px 3px 0 0;"></div>
+            <div style="font-size:9px;color:#6b6b8a;transform:rotate(-45deg);white-space:nowrap;">${yr}</div>
+          </div>`;
+        }).join(''));
+      </script>
+    </div>
+    <div style="font-size:12px;color:var(--az-muted);margin-top:24px;">
+      ⚠️ <strong style="color:var(--az-amber)">Key decision:</strong> Whether to migrate all 1,606 historical press releases (back to 2009) or only retain recent years (e.g. 2020+, ~493 pages) is a major scope driver. Older releases can be archived as static HTML with minimal migration effort.
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════ TEMPLATES ══ -->
+<div id="view-templates" class="view">
+
+  <div class="section-header">
+    <h2 class="section-title">18 Page Templates</h2>
+    <span class="section-meta">Based on URL structure + content sampling of live pages</span>
+  </div>
+
+  <div class="templates-grid">
+
+    <div class="template-card">
+      <div class="template-header">
+        <div class="template-name">Press Release</div>
+        <div style="text-align:right"><div class="template-count">1,605</div><div class="template-pct">65.4% of site</div></div>
+      </div>
+      <span class="complexity-badge complexity-low">● Low complexity</span>
+      <div class="template-desc">402 pages sampled (25%). hero-feature(99%), date-meta(99%), tags(99%), rich-text(100%). Signature is uniform across all years 2009–2026. footnote on 10%. Outliers: video-embed(2%), download-tile(2%). Very high confidence — one simple EDS template covers all 1,605 pages.</div>
+      <div class="template-blocks">
+        <span class="block-tag">hero-feature</span>
+        <span class="block-tag">date-meta</span>
+        <span class="block-tag">tags</span>
+        <span class="block-tag">rich-text</span>
+        <span class="block-tag">footnote</span>
+        <span class="block-tag">download-tile</span>
+        <span class="block-tag">video-embed</span>
+      </div>
+      <a class="example-link" href="https://www.astrazeneca.com/media-centre/press-releases/2026/full-year-q4-2025-results.html" target="_blank">Full Year Q4 2025 Results</a>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header">
+        <div class="template-name">Medical Release</div>
+        <div style="text-align:right"><div class="template-count">126</div><div class="template-pct">5.1%</div></div>
+      </div>
+      <span class="complexity-badge complexity-low">● Low complexity</span>
+      <div class="template-desc">63 pages sampled (50%). Component signature identical to Press Release: hero-feature(100%), date-meta(100%), tags(100%), rich-text(100%). footnote on 19% (About compound / trial sections). Flat URL structure (no year folder). Can share one EDS template with Press Release.</div>
+      <div class="template-blocks">
+        <span class="block-tag">hero-feature</span>
+        <span class="block-tag">date-meta</span>
+        <span class="block-tag">tags</span>
+        <span class="block-tag">rich-text</span>
+        <span class="block-tag">footnote</span>
+      </div>
+      <a class="example-link" href="https://www.astrazeneca.com/media-centre/medical-releases/Arthritis-and-Rheumatology-publishes-positive-Phase-II-data-on-anifrolumab-in-lupus-14112016.html" target="_blank">Anifrolumab Phase II Lupus Data</a>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header">
+        <div class="template-name">Editorial Article</div>
+        <div style="text-align:right"><div class="template-count">68</div><div class="template-pct">2.8%</div></div>
+      </div>
+      <span class="complexity-badge complexity-medium">● Medium complexity</span>
+      <div class="template-desc">All 68 pages sampled (100%). hero-feature(91%), date-meta(91%), tags(91%), rich-text(96%). split-feature on 76% — near-defining for this template. quote(40%), author-bio(34%), video-embed(32%). Distinct from WSCD: no email-signup, no content-tile grid. High confidence at full coverage.</div>
+      <div class="template-blocks">
+        <span class="block-tag">hero-feature</span>
+        <span class="block-tag">date-meta</span>
+        <span class="block-tag">tags</span>
+        <span class="block-tag">rich-text</span>
+        <span class="block-tag">split-feature</span>
+        <span class="block-tag">quote</span>
+        <span class="block-tag">author-bio</span>
+        <span class="block-tag">video-embed</span>
+      </div>
+      <a class="example-link" href="https://www.astrazeneca.com/media-centre/articles/pioneering-new-possibilities-for-the-rare-disease-community.html" target="_blank">Pioneering Rare Disease Community</a>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header">
+        <div class="template-name">What Science Can Do Topic</div>
+        <div style="text-align:right"><div class="template-count">110</div><div class="template-pct">4.5%</div></div>
+      </div>
+      <span class="complexity-badge complexity-medium">● Medium complexity</span>
+      <div class="template-desc">55 pages sampled (50%). hero-feature(96%), content-tile(96%) — the defining pair that distinguishes WSCD from articles. email-signup(87%), author-bio(71%), quote(47%), video-embed(44%). footnote on 35%. Distinct from Editorial Article: content-tile grid + email-signup are near-universal. High confidence.</div>
+      <div class="template-blocks">
+        <span class="block-tag">hero-feature</span>
+        <span class="block-tag">date-meta</span>
+        <span class="block-tag">tags</span>
+        <span class="block-tag">content-tile</span>
+        <span class="block-tag">email-signup</span>
+        <span class="block-tag">author-bio</span>
+        <span class="block-tag">quote</span>
+        <span class="block-tag">video-embed</span>
+      </div>
+      <a class="example-link" href="https://www.astrazeneca.com/what-science-can-do/topics/next-generation-therapeutics/turning-natures-messengers-medicines-innovation-peptide-discovery-development.html" target="_blank">Turning Nature's Messengers into Medicines</a>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header">
+        <div class="template-name">People Profile</div>
+        <div style="text-align:right"><div class="template-count">108</div><div class="template-pct">4.4%</div></div>
+      </div>
+      <span class="complexity-badge complexity-medium">● Medium complexity</span>
+      <div class="template-desc">54 pages sampled (50%). author-bio(87%), quote(87%), show-more(87%) form the core trio. timeline(80%), accordion(57%), rich-header(50%), stats(39%). No hero-feature — profile image embedded differently via author-bio. image-feature on 17%, media-links on 13%. Very consistent signature at 50% coverage.</div>
+      <div class="template-blocks">
+        <span class="block-tag">rich-header</span>
+        <span class="block-tag">author-bio</span>
+        <span class="block-tag">timeline</span>
+        <span class="block-tag">show-more</span>
+        <span class="block-tag">accordion</span>
+        <span class="block-tag">quote</span>
+        <span class="block-tag">stats</span>
+      </div>
+      <a class="example-link" href="https://www.astrazeneca.com/our-company/our-people/cristina-duran.html" target="_blank">Cristina Durán — President, Evinova</a>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header">
+        <div class="template-name">R&amp;D Deep Content</div>
+        <div style="text-align:right"><div class="template-count">35</div><div class="template-pct">1.4%</div></div>
+      </div>
+      <span class="complexity-badge complexity-high">● High complexity</span>
+      <div class="template-desc">All 35 pages sampled. rich-header (91%) + content-tile (86%) — the highest content-tile density on site. text-cta block (66%), quote (66%), video (49%), jump-nav (37%), accordion (20%), carousel (11%), email-signup (11%). Most blocks-per-page of any template.</div>
+      <div class="template-blocks">
+        <span class="block-tag">rich-header</span>
+        <span class="block-tag">content-tile</span>
+        <span class="block-tag">text-cta</span>
+        <span class="block-tag">quote</span>
+        <span class="block-tag">video-embed</span>
+        <span class="block-tag">jump-nav</span>
+        <span class="block-tag">accordion</span>
+        <span class="block-tag">carousel</span>
+        <span class="block-tag">email-signup</span>
+      </div>
+      <a class="example-link" href="https://www.astrazeneca.com/r-d/next-generation-therapeutics/cell-therapies.html" target="_blank">Cell Therapies (R&amp;D)</a>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header">
+        <div class="template-name">Therapy Area Hub</div>
+        <div style="text-align:right"><div class="template-count">32</div><div class="template-pct">1.3%</div></div>
+      </div>
+      <span class="complexity-badge complexity-high">● High complexity</span>
+      <div class="template-desc">All 32 pages sampled. rich-header (97%) + jump-nav (62%) — mandatory in this template. video (53%), quote (41%), image-panel (34%), split-feature (31%), icon-links (28%), content-tile (25%), media-links (25%), carousel (22%), news-feed (22%). Heaviest template in terms of block variety.</div>
+      <div class="template-blocks">
+        <span class="block-tag">rich-header</span>
+        <span class="block-tag">jump-nav</span>
+        <span class="block-tag">video-embed</span>
+        <span class="block-tag">quote</span>
+        <span class="block-tag">image-panel</span>
+        <span class="block-tag">split-feature</span>
+        <span class="block-tag">icon-links</span>
+        <span class="block-tag">carousel</span>
+        <span class="block-tag">news-feed</span>
+      </div>
+      <a class="example-link" href="https://www.astrazeneca.com/our-therapy-areas/oncology.html" target="_blank">Oncology Therapy Area Hub</a>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header">
+        <div class="template-name">Investor Relations</div>
+        <div style="text-align:right"><div class="template-count">53</div><div class="template-pct">2.2%</div></div>
+      </div>
+      <span class="complexity-badge complexity-medium">● Medium complexity</span>
+      <div class="template-desc">All 53 pages sampled (100%). download-tile(62%), rich-header(55%), video-embed(49%). jump-nav(34%), hero-header(34%), image-panel(25%), pdf-viewer(23%). Unique: data-table(shareholder info), event-list(6%), promo-grid(15%). Notable: Angular filter component (az-filter-items) on results pages — will need special handling in EDS. High confidence at full coverage.</div>
+      <div class="template-blocks">
+        <span class="block-tag">rich-header</span>
+        <span class="block-tag">download-tile</span>
+        <span class="block-tag">video-embed</span>
+        <span class="block-tag">pdf-viewer</span>
+        <span class="block-tag">jump-nav</span>
+        <span class="block-tag">promo-grid</span>
+        <span class="block-tag">data-table</span>
+        <span class="block-tag">event-list</span>
+      </div>
+      <a class="example-link" href="https://www.astrazeneca.com/investor-relations/annual-reports.html" target="_blank">Annual Reports</a>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header">
+        <div class="template-name">Sustainability</div>
+        <div style="text-align:right"><div class="template-count">31</div><div class="template-pct">1.3%</div></div>
+      </div>
+      <span class="complexity-badge complexity-medium">● Medium complexity</span>
+      <div class="template-desc">All 31 pages sampled (30 successful). rich-header (93%) + article-cta (50%) — unique to this section. download-tile (20%), jump-nav (20%), accordion (20%), quote (20%), stats (20%), news-feed (17%), carousel (10%). Shares many blocks with R&amp;D but article-cta is the distinguishing element.</div>
+      <div class="template-blocks">
+        <span class="block-tag">rich-header</span>
+        <span class="block-tag">article-cta</span>
+        <span class="block-tag">stats</span>
+        <span class="block-tag">quote</span>
+        <span class="block-tag">download-tile</span>
+        <span class="block-tag">jump-nav</span>
+        <span class="block-tag">accordion</span>
+        <span class="block-tag">news-feed</span>
+      </div>
+      <a class="example-link" href="https://www.astrazeneca.com/sustainability/ethics-compliance.html" target="_blank">Ethics &amp; Compliance</a>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header">
+        <div class="template-name">Country Hub</div>
+        <div style="text-align:right"><div class="template-count">23</div><div class="template-pct">100% sampled</div></div>
+      </div>
+      <span class="complexity-badge complexity-medium">● Medium complexity</span>
+      <div class="template-desc">All 23 country landing pages fetched. Consistent signature across 21 of 23: rich-header(78%) as hero, icon-link-panel(57%) for local navigation grid, image-panel-feature(70%) for content rows, rich-text(87%), optional accordion(35%) and video(30%). 2 pages geo-blocked. One clear EDS template covers all 23 pages.</div>
+      <div class="template-blocks">
+        <span class="block-tag">rich-header</span>
+        <span class="block-tag">icon-links</span>
+        <span class="block-tag">image-panel</span>
+        <span class="block-tag">rich-text</span>
+        <span class="block-tag">accordion</span>
+        <span class="block-tag">video-embed</span>
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <a class="example-link" href="https://www.astrazeneca.com/country-sites/saudi-arabia.html" target="_blank">Saudi Arabia hub</a>
+        <a class="example-link" href="https://www.astrazeneca.com/country-sites/croatia.html" target="_blank">Croatia hub</a>
+        <a class="example-link" href="https://www.astrazeneca.com/country-sites/egypt.html" target="_blank">Egypt hub</a>
+      </div>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header">
+        <div class="template-name">Media Hub / Index</div>
+        <div style="text-align:right"><div class="template-count">8</div><div class="template-pct">Listing pages</div></div>
+      </div>
+      <span class="complexity-badge complexity-medium">● Medium complexity</span>
+      <div class="template-desc">All 8 media-centre hub pages sampled. hero-header(62%) + promo-tiles-v2(75%) — tile listing grid is the defining feature. email-signup form(62%) with reCAPTCHA. image-panel-feature(50%). These are index/listing pages; in EDS they become query-index driven listing blocks.</div>
+      <div class="template-blocks">
+        <span class="block-tag">hero-header</span>
+        <span class="block-tag">promo-grid</span>
+        <span class="block-tag">email-signup</span>
+        <span class="block-tag">image-feature</span>
+        <span class="block-tag">content-tile</span>
+      </div>
+      <a class="example-link" href="https://www.astrazeneca.com/media-centre/press-releases.html" target="_blank">Press Releases index</a>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header">
+        <div class="template-name">Section Hub (Major)</div>
+        <div style="text-align:right"><div class="template-count">2</div><div class="template-pct">100% sampled</div></div>
+      </div>
+      <span class="complexity-badge complexity-high">● High complexity</span>
+      <div class="template-desc">/r-d and /our-company use homepage-hero (same component as the homepage) with a rich editorial layout beneath: icon-link-panel, image-panel-feature, link-image-panel-v2, jump-nav. Structurally like a mini-homepage for a major business section — warrants its own template.</div>
+      <div class="template-blocks">
+        <span class="block-tag">homepage-hero</span>
+        <span class="block-tag">icon-links</span>
+        <span class="block-tag">image-panel</span>
+        <span class="block-tag">jump-nav</span>
+        <span class="block-tag">carousel</span>
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <a class="example-link" href="https://www.astrazeneca.com/r-d.html" target="_blank">R&amp;D hub</a>
+        <a class="example-link" href="https://www.astrazeneca.com/our-company.html" target="_blank">Our Company hub</a>
+      </div>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header">
+        <div class="template-name">Navigation Hub</div>
+        <div style="text-align:right"><div class="template-count">11</div><div class="template-pct">100% sampled</div></div>
+      </div>
+      <span class="complexity-badge complexity-medium">● Medium complexity</span>
+      <div class="template-desc">Patient-reported-outcomes section (7 pages) + Investor Relations index + Partnering index. Defining signature: icon-link-panel(100%) + rich-header(82%). FAQ variants add accordion. Download-tile(55%) for resource listings. Very consistent — one EDS template with accordion variant.</div>
+      <div class="template-blocks">
+        <span class="block-tag">rich-header</span>
+        <span class="block-tag">icon-links</span>
+        <span class="block-tag">accordion</span>
+        <span class="block-tag">download-tile</span>
+        <span class="block-tag">show-more</span>
+      </div>
+      <a class="example-link" href="https://www.astrazeneca.com/patient-reported-outcomes.html" target="_blank">Patient-Reported Outcomes</a>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header">
+        <div class="template-name">Form / Contact</div>
+        <div style="text-align:right"><div class="template-count">4</div><div class="template-pct">100% sampled</div></div>
+      </div>
+      <span class="complexity-badge complexity-high">● High complexity</span>
+      <div class="template-desc">All 4 pages use g-recaptcha + cmp-form-recaptcha. Current CMS embeds forms via AEM Forms/reCAPTCHA. EDS will require a dedicated form strategy — either a Helix Form integration, an embedded Marketo/Eloqua form, or a redirect to an external form service. Highest integration risk of any template.</div>
+      <div class="template-blocks">
+        <span class="block-tag">rich-header</span>
+        <span class="block-tag">email-signup</span>
+        <span class="block-tag">icon-links</span>
+        <span class="block-tag">rich-text</span>
+      </div>
+      <a class="example-link" href="https://www.astrazeneca.com/patient-reported-outcomes/contact-us.html" target="_blank">Contact Us (PRO)</a>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header">
+        <div class="template-name">Legal / T&amp;Cs</div>
+        <div style="text-align:right"><div class="template-count">4</div><div class="template-pct">100% sampled</div></div>
+      </div>
+      <span class="complexity-badge complexity-low">● Low complexity</span>
+      <div class="template-desc">Terms &amp; Conditions + Legal Notice (+ 2 locale variants). All pages are hero-header + pure rich-text. The simplest template on the entire site — no custom blocks required beyond the standard header/footer. Effectively the EDS default page template.</div>
+      <div class="template-blocks">
+        <span class="block-tag">hero-header</span>
+        <span class="block-tag">rich-text</span>
+      </div>
+      <a class="example-link" href="https://www.astrazeneca.com/terms-and-conditions.html" target="_blank">Terms &amp; Conditions</a>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header">
+        <div class="template-name">Partnering / AZ Suppliers</div>
+        <div style="text-align:right"><div class="template-count">32</div><div class="template-pct">1.3%</div></div>
+      </div>
+      <span class="complexity-badge complexity-medium">● Medium complexity</span>
+      <div class="template-desc">All 12 partnering + 20 suppliers pages sampled. rich-header (100% partnering, 30% suppliers) vs hero-header (85% suppliers). Shared: image-panel, accordion, video, download-tile. Unique: pdf-viewer (partnering), external-embed for Coupa portal. Note: Coupa integration may need iframe or redirect strategy in EDS.</div>
+      <div class="template-blocks">
+        <span class="block-tag">rich-header</span>
+        <span class="block-tag">hero-header</span>
+        <span class="block-tag">image-panel</span>
+        <span class="block-tag">accordion</span>
+        <span class="block-tag">video-embed</span>
+        <span class="block-tag">download-tile</span>
+        <span class="block-tag">pdf-viewer</span>
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <a class="example-link" href="https://www.astrazeneca.com/partnering/why-partner-with-astrazeneca.html" target="_blank">Why Partner with AZ</a>
+        <a class="example-link" href="https://www.astrazeneca.com/az-suppliers/az-coupa-supplier.html" target="_blank">Coupa Supplier Portal</a>
+      </div>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header">
+        <div class="template-name">Homepage</div>
+        <div style="text-align:right"><div class="template-count">1</div><div class="template-pct">Unique</div></div>
+      </div>
+      <span class="complexity-badge complexity-high">● High complexity</span>
+      <div class="template-desc">homepage-hero + homepage-content-set (unique — appears nowhere else on the site) + link-image-panel-v2 + image-panel-feature + rich-header + trending-story-content. Fully bespoke design, the only page that uses homepage-content-set. Warrants its own EDS template.</div>
+      <div class="template-blocks">
+        <span class="block-tag">homepage-hero</span>
+        <span class="block-tag">news-feed</span>
+        <span class="block-tag">content-tile</span>
+        <span class="block-tag">stats</span>
+        <span class="block-tag">image-feature</span>
+        <span class="block-tag">quote</span>
+      </div>
+      <a class="example-link" href="https://www.astrazeneca.com/" target="_blank">astrazeneca.com homepage</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ BLOCKS ══ -->
+<div id="view-blocks" class="view">
+
+  <div class="section-header">
+    <h2 class="section-title">EDS Block Inventory</h2>
+    <span class="section-meta">33 blocks required across all 18 templates · validated via page-import workflow on 18 representative pages + automated HTML component analysis across 943 sampled pages</span>
+  </div>
+
+  <div class="blocks-grid" id="blocks-grid"></div>
+
+  <div class="section-header" style="margin-top:40px">
+    <h2 class="section-title">Block Reuse Matrix</h2>
+    <span class="section-meta">Which templates share which blocks</span>
+  </div>
+  <div style="background: var(--az-card); border: 1px solid var(--az-border); border-radius: 12px; overflow: hidden;">
+    <div style="overflow-x: auto;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 12px; min-width: 900px;">
+        <thead>
+          <tr>
+            <th style="padding: 12px 16px; text-align: left; background: rgba(255,255,255,0.04); border-bottom: 1px solid var(--az-border); color: var(--az-muted); font-weight:500;">Block</th>
+            <th style="padding: 12px 8px; text-align:center; background: rgba(255,255,255,0.04); border-bottom: 1px solid var(--az-border); color: var(--az-muted); font-size:10px;">Press Rel</th>
+            <th style="padding: 12px 8px; text-align:center; background: rgba(255,255,255,0.04); border-bottom: 1px solid var(--az-border); color: var(--az-muted); font-size:10px;">Med Rel</th>
+            <th style="padding: 12px 8px; text-align:center; background: rgba(255,255,255,0.04); border-bottom: 1px solid var(--az-border); color: var(--az-muted); font-size:10px;">Article</th>
+            <th style="padding: 12px 8px; text-align:center; background: rgba(255,255,255,0.04); border-bottom: 1px solid var(--az-border); color: var(--az-muted); font-size:10px;">WSCD</th>
+            <th style="padding: 12px 8px; text-align:center; background: rgba(255,255,255,0.04); border-bottom: 1px solid var(--az-border); color: var(--az-muted); font-size:10px;">R&amp;D Deep</th>
+            <th style="padding: 12px 8px; text-align:center; background: rgba(255,255,255,0.04); border-bottom: 1px solid var(--az-border); color: var(--az-muted); font-size:10px;">Therapy Hub</th>
+            <th style="padding: 12px 8px; text-align:center; background: rgba(255,255,255,0.04); border-bottom: 1px solid var(--az-border); color: var(--az-muted); font-size:10px;">People</th>
+            <th style="padding: 12px 8px; text-align:center; background: rgba(255,255,255,0.04); border-bottom: 1px solid var(--az-border); color: var(--az-muted); font-size:10px;">Investor</th>
+            <th style="padding: 12px 8px; text-align:center; background: rgba(255,255,255,0.04); border-bottom: 1px solid var(--az-border); color: var(--az-muted); font-size:10px;">Sustain</th>
+            <th style="padding: 12px 8px; text-align:center; background: rgba(255,255,255,0.04); border-bottom: 1px solid var(--az-border); color: var(--az-muted); font-size:10px;">Homepage</th>
+            <th style="padding: 12px 8px; text-align:center; background: rgba(255,255,255,0.04); border-bottom: 1px solid var(--az-border); color: var(--az-muted); font-size:10px; color: var(--az-accent); font-weight: 600;">Uses</th>
+          </tr>
+        </thead>
+        <tbody id="reuse-matrix"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ EFFORT ══ -->
+<div id="view-effort" class="view">
+  <div class="effort-layout">
+    <div class="effort-main">
+      <div class="section-header" style="margin-top:0">
+        <h2 class="section-title">Effort Sizing by Workstream</h2>
+        <span class="section-meta">Story points (1 pt ≈ 1 day for senior EDS developer)</span>
+      </div>
+      <div class="effort-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Workstream</th>
+              <th>Scope</th>
+              <th>Complexity</th>
+              <th>Est. Points</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody id="effort-tbody"></tbody>
+        </table>
+      </div>
+
+      <div class="section-header">
+        <h2 class="section-title">Migration Volume by Strategy</h2>
+        <span class="section-meta">Scenarios for press release archive</span>
+      </div>
+      <div class="effort-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Scenario</th>
+              <th>Pages to Migrate</th>
+              <th>Press Releases</th>
+              <th>Import Scripts</th>
+              <th>Δ Effort</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>A — Full Archive</strong></td>
+              <td><span class="effort-pill" style="background:rgba(228,0,70,0.12);color:#e40046">2,455 pages</span></td>
+              <td>All 2009–2026</td>
+              <td>~3 robust scripts</td>
+              <td><span class="effort-pill" style="background:rgba(228,0,70,0.12);color:#e40046">+40 pts</span></td>
+            </tr>
+            <tr>
+              <td><strong>B — 5-Year Archive</strong></td>
+              <td><span class="effort-pill" style="background:rgba(255,176,32,0.12);color:#ffb020">~1,040 pages</span></td>
+              <td>2022–2026 only</td>
+              <td>~2 scripts</td>
+              <td><span class="effort-pill" style="background:rgba(255,176,32,0.12);color:#ffb020">+18 pts</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--az-green)">C — New Content Only ✓ Recommended</strong></td>
+              <td><span class="effort-pill" style="background:rgba(0,196,140,0.12);color:#00c48c">~650 pages</span></td>
+              <td>2024–2026 + archive link</td>
+              <td>~1 script</td>
+              <td><span class="effort-pill" style="background:rgba(0,196,140,0.12);color:#00c48c">Baseline</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="effort-sidebar">
+      <div class="summary-card">
+        <div class="summary-card-title">Effort Summary (Scenario C)</div>
+        <div class="summary-row"><span class="summary-row-label">Block development (33 blocks)</span><span class="summary-row-value">76 pts</span></div>
+        <div class="summary-row"><span class="summary-row-label">Template builds (18 templates)</span><span class="summary-row-value">40 pts</span></div>
+        <div class="summary-row"><span class="summary-row-label">Content migration (import scripts)</span><span class="summary-row-value">20 pts</span></div>
+        <div class="summary-row"><span class="summary-row-label">Global styles + header/footer</span><span class="summary-row-value">12 pts</span></div>
+        <div class="summary-row"><span class="summary-row-label">Performance + accessibility QA</span><span class="summary-row-value">10 pts</span></div>
+        <div class="summary-row"><span class="summary-row-label">Country sites strategy + setup</span><span class="summary-row-value">15 pts</span></div>
+        <div class="summary-row"><span class="summary-row-label">Integrations (Veeva, analytics)</span><span class="summary-row-value">10 pts</span></div>
+        <div class="summary-row"><span class="summary-row-label" style="color:var(--az-text)">Total (Scenario C)</span><span class="summary-row-value" style="color:var(--az-green)">188 pts</span></div>
+      </div>
+
+      <div class="summary-card">
+        <div class="summary-card-title">Key Risks &amp; Decisions</div>
+        <div class="risk-list">
+          <div class="risk-item">
+            <span class="risk-icon">⚠️</span>
+            <div class="risk-text"><strong>Press release archive scope</strong> — 1,606 pages back to 2009. Biggest single scope decision in the project.</div>
+          </div>
+          <div class="risk-item">
+            <span class="risk-icon">🌏</span>
+            <div class="risk-text"><strong>Country sites localisation</strong> — Thailand's 173 pages need a dedicated locale strategy (separate site vs. multi-locale EDS).</div>
+          </div>
+          <div class="risk-item">
+            <span class="risk-icon">🎥</span>
+            <div class="risk-text"><strong>Rich media / video</strong> — R&amp;D pages contain many embedded videos. Need video hosting strategy (Brightcove? YouTube? Native EDS?).</div>
+          </div>
+          <div class="risk-item">
+            <span class="risk-icon">💊</span>
+            <div class="risk-text"><strong>Veeva ID / MLR approval</strong> — Medical content carries Veeva IDs and approval dates. Content workflow must be validated with Regulatory.</div>
+          </div>
+          <div class="risk-item">
+            <span class="risk-icon">🔗</span>
+            <div class="risk-text"><strong>Coupa supplier portal</strong> — AZ Suppliers section may require an external integration or iframe embed rather than native EDS.</div>
+          </div>
+          <div class="risk-item">
+            <span class="risk-icon">📈</span>
+            <div class="risk-text"><strong>Pipeline / news feed blocks</strong> — Dynamic news feed on therapy area pages needs an EDS indexing-powered query.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ PHASES ══ -->
+<div id="view-phases" class="view">
+
+  <div class="section-header" style="margin-top:0">
+    <h2 class="section-title">Recommended Migration Phasing</h2>
+    <span class="section-meta">Content-driven EDS development · ~28 weeks total</span>
+  </div>
+
+  <div class="phase-timeline">
+    <div class="phase-line"></div>
+
+    <div class="phase-item">
+      <div class="phase-dot" style="background: #e40046"></div>
+      <div class="phase-card">
+        <div class="phase-number">Phase 1</div>
+        <div class="phase-name">Foundation &amp; Core Templates</div>
+        <div class="phase-duration">Weeks 1–6 · ~50 story points</div>
+        <div class="phase-deliverables">
+          <span class="deliverable-tag">Global styles + fonts</span>
+          <span class="deliverable-tag">Header / Footer blocks</span>
+          <span class="deliverable-tag">hero block</span>
+          <span class="deliverable-tag">rich-text</span>
+          <span class="deliverable-tag">Press Release template</span>
+          <span class="deliverable-tag">Medical Release template</span>
+          <span class="deliverable-tag">Import script v1 (press releases)</span>
+          <span class="deliverable-tag">Navigation / breadcrumb</span>
+        </div>
+        <div class="phase-meta">Start with the highest-volume, lowest-complexity content. Validates the EDS setup, content model, and import pipeline with real data early. Press releases alone represent 65% of the site — getting these right first delivers immediate value and de-risks volume.</div>
+      </div>
+    </div>
+
+    <div class="phase-item">
+      <div class="phase-dot" style="background: #ffb020"></div>
+      <div class="phase-card">
+        <div class="phase-number">Phase 2</div>
+        <div class="phase-name">Editorial &amp; Thought Leadership</div>
+        <div class="phase-duration">Weeks 7–12 · ~40 story points</div>
+        <div class="phase-deliverables">
+          <span class="deliverable-tag">Editorial Article template</span>
+          <span class="deliverable-tag">WSCD Topic template</span>
+          <span class="deliverable-tag">stats-callout block</span>
+          <span class="deliverable-tag">author-byline block</span>
+          <span class="deliverable-tag">related-articles block</span>
+          <span class="deliverable-tag">email-signup block</span>
+          <span class="deliverable-tag">references block</span>
+          <span class="deliverable-tag">topic-tags block</span>
+        </div>
+        <div class="phase-meta">Medium-complexity editorial content. Articles and WSCD topics share many blocks — build them once, reuse across both templates. Veeva ID / MLR validation process should be confirmed with Regulatory team before this phase begins.</div>
+      </div>
+    </div>
+
+    <div class="phase-item">
+      <div class="phase-dot" style="background: #4a9eff"></div>
+      <div class="phase-card">
+        <div class="phase-number">Phase 3</div>
+        <div class="phase-name">Deep Science &amp; Therapy Content</div>
+        <div class="phase-duration">Weeks 13–19 · ~45 story points</div>
+        <div class="phase-deliverables">
+          <span class="deliverable-tag">R&amp;D Deep Content template</span>
+          <span class="deliverable-tag">Therapy Area Hub template</span>
+          <span class="deliverable-tag">jump-nav block</span>
+          <span class="deliverable-tag">video-embed block</span>
+          <span class="deliverable-tag">cards-grid block</span>
+          <span class="deliverable-tag">accordion block</span>
+          <span class="deliverable-tag">news-feed block (EDS indexing)</span>
+          <span class="deliverable-tag">pipeline table block</span>
+        </div>
+        <div class="phase-meta">Highest per-page complexity. These pages require careful content modeling with authors before development. Video hosting strategy must be confirmed. The dynamic news-feed block requires EDS indexing to be set up and tested.</div>
+      </div>
+    </div>
+
+    <div class="phase-item">
+      <div class="phase-dot" style="background: #7c6bff"></div>
+      <div class="phase-card">
+        <div class="phase-number">Phase 4</div>
+        <div class="phase-name">Corporate &amp; Investor Content</div>
+        <div class="phase-duration">Weeks 20–23 · ~25 story points</div>
+        <div class="phase-deliverables">
+          <span class="deliverable-tag">People Profile template</span>
+          <span class="deliverable-tag">Investor Relations template</span>
+          <span class="deliverable-tag">Sustainability pages</span>
+          <span class="deliverable-tag">timeline block</span>
+          <span class="deliverable-tag">download-list block</span>
+          <span class="deliverable-tag">publications-list block</span>
+          <span class="deliverable-tag">year-group block</span>
+        </div>
+        <div class="phase-meta">People profiles are structured and consistent — good candidate for bulk migration with an import script. Investor relations annual report pages (going back to 2004) need a scope decision similar to press releases.</div>
+      </div>
+    </div>
+
+    <div class="phase-item">
+      <div class="phase-dot" style="background: #00c48c"></div>
+      <div class="phase-card">
+        <div class="phase-number">Phase 5</div>
+        <div class="phase-name">Homepage &amp; Country Sites</div>
+        <div class="phase-duration">Weeks 24–28 · ~40 story points</div>
+        <div class="phase-deliverables">
+          <span class="deliverable-tag">Homepage (bespoke design)</span>
+          <span class="deliverable-tag">hero-video block</span>
+          <span class="deliverable-tag">stat-counter block</span>
+          <span class="deliverable-tag">featured-articles block</span>
+          <span class="deliverable-tag">Country site setup (Thailand)</span>
+          <span class="deliverable-tag">Locale routing strategy</span>
+          <span class="deliverable-tag">Coupa/supplier integration</span>
+          <span class="deliverable-tag">Go-live performance audit</span>
+        </div>
+        <div class="phase-meta">Homepage is deliberately last — it's unique and high-visibility, and benefits from having all block components already built. Country sites (especially Thailand) may spin off as a separate parallel stream once the core EDS setup is proven.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="background: var(--az-card); border: 1px solid rgba(0,196,140,0.3); border-radius: 12px; padding: 24px; margin-top: 8px;">
+    <div style="font-size: 14px; font-weight: 500; margin-bottom: 12px; color: var(--az-green)">✓ Key Success Factors</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 13px; color: var(--az-muted);">
+      <div>• <strong style="color:var(--az-text)">Content-first approach</strong> — model every template in Word/Google Docs before a single line of EDS code</div>
+      <div>• <strong style="color:var(--az-text)">Import scripts for volume</strong> — press releases and people profiles should be migrated programmatically, not manually</div>
+      <div>• <strong style="color:var(--az-text)">MLR/Veeva alignment</strong> — agree on how Veeva IDs and approval dates will be stored and displayed in EDS content model</div>
+      <div>• <strong style="color:var(--az-text)">Lighthouse 100 baseline</strong> — establish performance baseline in Phase 1 and protect it throughout; easier to maintain than recover</div>
+      <div>• <strong style="color:var(--az-text)">Archive decision early</strong> — press release scope (full archive vs. recent only) must be decided before Phase 1 ends</div>
+      <div>• <strong style="color:var(--az-text)">Country site strategy</strong> — Thailand's depth warrants a dedicated decision on separate site vs. multi-locale before Phase 5</div>
+    </div>
+  </div>
+</div>
+
+<div id="view-tree" class="view">
+  <div class="section-header" style="margin-top:0">
+    <h2 class="section-title">Site Structure Tree</h2>
+    <span class="section-meta">2,455 pages across 11 top-level sections · from sitemap analysis</span>
+  </div>
+  <div class="tree-toolbar">
+    <button class="tree-btn" onclick="treeExpandAll()">Expand all</button>
+    <button class="tree-btn" onclick="treeCollapseAll()">Collapse all</button>
+    <span style="font-size:11px;color:var(--az-muted);margin-left:4px;">Click node to expand · scroll to zoom · drag to pan</span>
+  </div>
+  <div class="tree-legend" id="tree-legend"></div>
+  <div id="site-tree"></div>
+</div>
+
+<script>
+  // ── VIEW SWITCHING ──
+  function showView(id) {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('view-' + id).classList.add('active');
+    event.target.classList.add('active');
+    if (id === 'blocks') renderBlocks();
+    if (id === 'effort') renderEffort();
+    if (id === 'tree') renderTree();
+    if (id === 'methodology') renderMethodology();
+  }
+
+  // ── DONUT CHART ──
+  const CIRCUMFERENCE = 2 * Math.PI * 72;
+  const segments = [
+    { id: 'd-press',   pct: 0.654, color: '#e40046' },
+    { id: 'd-med',     pct: 0.052, color: '#ff6b9d' },
+    { id: 'd-country', pct: 0.088, color: '#7c6bff' },
+    { id: 'd-wscd',    pct: 0.045, color: '#4a9eff' },
+    { id: 'd-company', pct: 0.044, color: '#00c48c' },
+    { id: 'd-other',   pct: 0.117, color: '#3a3a58' },
+  ];
+  let offset = 0;
+  segments.forEach(seg => {
+    const el = document.getElementById(seg.id);
+    const dash = seg.pct * CIRCUMFERENCE;
+    const gap = CIRCUMFERENCE - dash;
+    el.setAttribute('stroke-dasharray', `${dash} ${gap}`);
+    el.setAttribute('stroke-dashoffset', -offset);
+    offset += dash;
+  });
+
+  // ── BLOCKS DATA ──
+  const blocks = [
+    /* ── HERO GROUP (3 distinct variants) ── */
+    { icon: '🖼️', name: 'hero-feature', usage: 'Press Release (2 templates)', reuse: 11, detail: 'Full-bleed image hero with date-meta, tags, title. CSS: heroFeature / hero-feature. Page-import confirmed: H1 + date row + tags row. Present on Press Release and Editorial Article templates. Absent from Medical Release (which uses rich-header). Distinct from hero-header: always embeds date + taxonomy.', url: 'https://www.astrazeneca.com/media-centre/press-releases/2025/imfinzi-based-regimen-reduced-the-risk-of-death-by-22-percent-in-early-gastric-cancer-vs-chemotherapy-alone-in-matterhorn-phase-iii-trial.html', screenshot: 'screenshots/block-hero.png' },
+    { icon: '🏠', name: 'hero-header', usage: 'Suppliers (85%), Media hub (62%), General pages', reuse: 45, detail: 'Section landing page hero without date/tags. Multiple colour variants confirmed: mulberry, purple, graphite, light-blue. CSS: hero-header--{variant}. Used on supplier and media-centre listing pages primarily.', url: 'https://www.astrazeneca.com/media-centre/press-releases.html', screenshot: 'screenshots/block-hero-text.png' },
+    { icon: '📌', name: 'rich-header', usage: '13 of 18 templates (72%)', reuse: 72, detail: 'Compact interior page header with optional strapline and icon. CSS: rich-header / rich-header__strapline / rich-header__icon-strapline. Page-import confirmed on: Medical Release, WSCD Topic, R&D Deep, Therapy Hub, Investor Relations, Sustainability, Country Hub, Partnering, AZ Suppliers, Homepage, Section Hub, Navigation Hub, Form/Contact. The most important block to build correctly — nearly every non-press template uses it.', url: 'https://www.astrazeneca.com/our-therapy-areas/oncology.html', screenshot: 'screenshots/block-hero.png' },
+    /* ── UNIVERSAL ── */
+    { icon: '📝', name: 'rich-text', usage: 'All 18 templates (100%)', reuse: 100, detail: 'General editorial body copy. CSS: rich-text. Present on every single sampled page. Universal block.', url: 'https://www.astrazeneca.com/media-centre/articles/pioneering-new-possibilities-for-the-rare-disease-community.html', screenshot: 'screenshots/block-rich-text.png' },
+    { icon: '🗓️', name: 'date-meta', usage: 'Press (99%), Medical (100%), Articles (88%), WSCD (96%)', reuse: 52, detail: 'Published date with region label. CSS: date / date__date / date__date-region / publishedDate. Appears on all time-stamped content. Not present on hub/landing pages.', url: 'https://www.astrazeneca.com/media-centre/press-releases/2026/full-year-q4-2025-results.html', screenshot: 'screenshots/block-hero-text.png' },
+    { icon: '🏷️', name: 'tags', usage: 'Press (99%), Medical (100%), Articles (88%), WSCD (96%)', reuse: 52, detail: 'Topic taxonomy tags. CSS: tags / tags__list / tags__list-item. Co-located with date-meta on all dated content pages. Used for filtering on index pages.', url: 'https://www.astrazeneca.com/what-science-can-do/topics/next-generation-therapeutics/turning-natures-messengers-medicines-innovation-peptide-discovery-development.html', screenshot: 'screenshots/block-topic-tags.png' },
+    { icon: '📄', name: 'footnote', usage: '13 of 15 sections, varies 10–31%', reuse: 85, detail: 'Legal/regulatory reference text (Veeva ID, About compound). CSS: footnote. Present on 10% of press releases, 19% medical, 31% R&D. Near-universal presence across templates as an optional block.', url: 'https://www.astrazeneca.com/media-centre/press-releases/2026/full-year-q4-2025-results.html', screenshot: 'screenshots/block-rich-text.png' },
+    /* ── CONTENT BLOCKS ── */
+    { icon: '📥', name: 'download-tile', usage: 'Investor (50%), Suppliers (30%), Press (2%), Sustain (20%)', reuse: 46, detail: 'PDF/file download card. CSS: download-tile / download-tile__header / download-tile__type-size. Confirmed across 7 sections. Heavy use in investor-relations annual reports.', url: 'https://www.astrazeneca.com/investor-relations/annual-reports.html', screenshot: 'screenshots/block-download-list.png' },
+    { icon: '🎬', name: 'video-embed', usage: '12 of 15 sections (Investor 64%, Therapy 53%, R&D 49%)', reuse: 85, detail: 'Embedded video player. CSS: video-module / video-template. Confirmed in 12 out of 14 sections sampled. Most prevalent on investor-relations and therapy hub pages.', url: 'https://www.astrazeneca.com/r-d/next-generation-therapeutics/cell-therapies.html', screenshot: 'screenshots/block-video-embed.png' },
+    { icon: '💬', name: 'quote', usage: 'Company (85%), R&D (66%), Therapy (41%), Sustain (20%)', reuse: 51, detail: 'Pull quote with attribution. CSS: quote / quote--with-marks / quote__author / quote__footer. Confirmed in 6 sections. Most prevalent on people profiles (85%) and R&D pages (66%).', url: 'https://www.astrazeneca.com/media-centre/articles/pioneering-new-possibilities-for-the-rare-disease-community.html', screenshot: 'screenshots/block-quote-cta.png' },
+    { icon: '📅', name: 'timeline', usage: 'Company/People profiles (78%)', reuse: 10, detail: 'Chronological career/event timeline. CSS: timeline / timelineItems / timeline__item. Confirmed on 78% of people profile pages. Appears only in the company section.', url: 'https://www.astrazeneca.com/our-company/our-people/cristina-duran.html', screenshot: 'screenshots/block-timeline.png' },
+    { icon: '📂', name: 'accordion', usage: '5 of 18 templates (28%)', reuse: 28, detail: 'Collapsible content sections. CSS: accordion__content / accordion__header / ui-accordion-tagging. Page-import confirmed on: People Profile, Therapy Hub, Partnering, AZ Suppliers, Legal/T&Cs. Legal/T&Cs has 75 H3s all wrapped in accordion — making accordion critical for that template.', url: 'https://www.astrazeneca.com/r-d/next-generation-therapeutics/cell-therapies.html', screenshot: 'screenshots/block-accordion.png' },
+    { icon: '🃏', name: 'content-tile', usage: 'WSCD (93%), R&D (86%), Therapy (25%), Investor (7%)', reuse: 74, detail: 'Content navigation card grid. CSS: content-tile / content-tile--dn-style / content-tile__title. Confirmed in 10 sections. Defining element of WSCD (93%) and R&D (86%) templates.', url: 'https://www.astrazeneca.com/our-therapy-areas/oncology.html', screenshot: 'screenshots/block-cards-grid.png' },
+    { icon: '🧭', name: 'jump-nav', usage: '4 of 18 templates (22%)', reuse: 22, detail: 'In-page anchor navigation bar. CSS: jump-to-anchor / jump-to / jump-to__list / jump-to__list-item. Page-import confirmed on: R&D Deep, Therapy Hub, Investor Relations, Sustainability. Two CSS variants: jump-to-anchor (anchor targets placed at section headings) and jump-to (the nav bar itself).', url: 'https://www.astrazeneca.com/r-d/next-generation-therapeutics/cell-therapies.html', screenshot: 'screenshots/block-jump-nav.png' },
+    { icon: '📣', name: 'text-cta', usage: 'R&D (66%), Sustain (3%), Therapy (3%), WSCD (7%)', reuse: 36, detail: 'Text block with call-to-action link. CSS: text-action-block / text-action-block--light-blue / text-action-block--magenta. Light-blue, magenta colour variants. Dominant in R&D section (66%).', url: 'https://www.astrazeneca.com/r-d/next-generation-therapeutics/cell-therapies.html', screenshot: 'screenshots/block-jump-nav.png' },
+    { icon: '🖼️', name: 'image-panel', usage: '4 of 18 templates (22%)', reuse: 22, detail: 'Linked image card panel with slider. CSS: link-image-panel-v2 / variants: mulberry, gold, light-blue. Page-import confirmed on: Therapy Hub, Country Hub, Homepage, Section Hub. Distinct from image-feature: card-sized linked tiles in a slider/grid, not full-bleed overlays.', url: 'https://www.astrazeneca.com/our-therapy-areas/oncology.html', screenshot: 'screenshots/block-hero.png' },
+    { icon: '🧩', name: 'split-feature', usage: 'Articles (59%), R&D (9%), Therapy (31%), WSCD (7%)', reuse: 64, detail: 'Split image+text feature tile. CSS: wscd-split-feature-tile. NOT the same as content-tile. Defining component of Editorial Articles (59%). Also present across R&D, therapy, partnering pages.', url: 'https://www.astrazeneca.com/media-centre/articles/pioneering-new-possibilities-for-the-rare-disease-community.html', screenshot: 'screenshots/block-related-articles.png' },
+    { icon: '👤', name: 'author-bio', usage: 'Company (81%), WSCD (64%), Articles (29%), Investor (14%)', reuse: 52, detail: 'Author profile: circular image (img-circle), name, title, social links (social-title with LinkedIn). CSS: bio / img-circle / social-title. Confirmed in 8 sections. Integral to people profiles and thought leadership content.', url: 'https://www.astrazeneca.com/what-science-can-do/topics/next-generation-therapeutics/turning-natures-messengers-medicines-innovation-peptide-discovery-development.html', screenshot: 'screenshots/block-author-byline.png' },
+    { icon: '✉️', name: 'email-signup', usage: 'WSCD (79%), Media hub (62%), R&D (11%), Investor (7%)', reuse: 39, detail: 'Newsletter/email signup form. CSS: email-signup / newsletter-sign-up / signup-content / cmp-form-recaptcha. reCAPTCHA integration confirmed. Dominant on WSCD pages (79%) and media-centre hub pages.', url: 'https://www.astrazeneca.com/what-science-can-do/topics/next-generation-therapeutics/turning-natures-messengers-medicines-innovation-peptide-discovery-development.html', screenshot: 'screenshots/block-email-signup.png' },
+    { icon: '📊', name: 'stats', usage: 'Company (37%), Therapy (6%), Sustain (20%), Partnering (17%)', reuse: 43, detail: 'Statistics display. CSS: stats / stats__statistic / stats__quantity. Confirmed in 6 sections. Used for data-driven storytelling on profiles and sustainability pages.', url: 'https://www.astrazeneca.com/sustainability/ethics-compliance.html', screenshot: 'screenshots/block-stats-callout.png' },
+    /* ── NEW BLOCKS — discovered through 25% sampling ── */
+    { icon: '🔲', name: 'promo-grid', usage: 'Media hub (75%), Investor (14%), Sustain (3%)', reuse: 29, detail: 'Promotional tile grid. CSS: promo-tiles-v2 / promo-tiles-v2__grid. Dominant on media-centre listing/index pages (75%). Also on investor results pages and sustainability hub. Likely becomes an EDS query-index driven listing block.', url: 'https://www.astrazeneca.com/media-centre/press-releases.html', screenshot: 'screenshots/block-cards-grid.png' },
+    { icon: '🔷', name: 'icon-links', usage: 'Country hub (6%), Therapy (28%), General (24%)', reuse: 36, detail: 'Icon + link navigation panel. CSS: icon-link-panel / icon-link-panel__image / icon-link-panel__link. Found in 5 sections. Used as a quick-link navigation grid on country hub and therapy area pages.', url: 'https://www.astrazeneca.com/country-sites/saudi-arabia.html', screenshot: 'screenshots/block-cards-grid.png' },
+    { icon: '🏔️', name: 'image-feature', usage: 'Country (4%), Investor (7%), Media hub (50%), Therapy (19%)', reuse: 49, detail: 'Full-bleed image panel with text overlay. CSS: image-panel-feature / image-panel-feature--bg-center / image-panel-feature--left. Different from image-panel: full-width, overlaid text. Found in 7 sections.', url: 'https://www.astrazeneca.com/country-sites/near-east-and-maghreb.html', screenshot: 'screenshots/block-hero.png' },
+    { icon: '🎠', name: 'carousel', usage: '1 of 18 templates (Country Hub)', reuse: 6, detail: 'Full-bleed image carousel/slider. CSS: carouselFullBleedImageSlide / carouselImageSlide. Page-import confirmed on Country Hub (egypt.html) — used for partner logo/initiative carousel. Separate from image-panel slider (which is a grid, not rotating).', url: 'https://www.astrazeneca.com/country-sites/egypt.html', screenshot: 'screenshots/block-hero.png' },
+    { icon: '📰', name: 'news-feed', usage: 'Therapy (22%), Sustain (17%), General (12%)', reuse: 26, detail: 'Latest news / trending stories feed. CSS: latest-news / trending-stories / treding-story-content. Confirmed in 3 sections. Dynamic content block driven by EDS query index in the migrated version.', url: 'https://www.astrazeneca.com/our-therapy-areas/oncology.html', screenshot: 'screenshots/block-news-feed.png' },
+    { icon: '🔔', name: 'article-cta', usage: 'Sustainability (50%), Partnering (8%)', reuse: 17, detail: 'In-article call-to-action block. CSS: article-cta / article-cta-align. Found almost exclusively on sustainability pages (50%) where it links to reports and related initiatives. Signature block of sustainability template.', url: 'https://www.astrazeneca.com/sustainability/ethics-compliance.html', screenshot: 'screenshots/block-stats-callout.png' },
+    { icon: '🔗', name: 'media-links', usage: 'Company (11%), Therapy (25%), Investor (7%)', reuse: 42, detail: 'Text + media link list. CSS: media-text-link / media-text-link-list / media-text-link-list-item. Found in 6 sections including therapy hubs and investor relations pages. Lightweight linked list with image thumbnails.', url: 'https://www.astrazeneca.com/our-therapy-areas/oncology.html', screenshot: 'screenshots/block-related-articles.png' },
+    { icon: '⬇️', name: 'show-more', usage: 'Company (85%), Suppliers (10%), R&D (6%)', reuse: 22, detail: 'Progressive content reveal. CSS: show-more-wrapper / show-more-wrapper__items. Dominant on people profiles (85%) for revealing full career history. Used in conjunction with timeline block.', url: 'https://www.astrazeneca.com/our-company/our-people/cristina-duran.html', screenshot: 'screenshots/block-timeline.png' },
+    { icon: '📑', name: 'pdf-viewer', usage: 'Investor (36%), Partnering (8%), Therapy (3%)', reuse: 26, detail: 'Embedded PDF viewer. CSS: pdfviewer__wrapper / cmp-pdfviewer__button. Found in 4 sections. Used on investor-relations for inline annual reports and partnering pages for brochures.', url: 'https://www.astrazeneca.com/investor-relations/annual-reports.html', screenshot: 'screenshots/block-download-list.png' },
+    { icon: '📋', name: 'event-list', usage: 'Investor (7%), Suppliers (5%), General (3%)', reuse: 20, detail: 'Event listing cards. CSS: event-card. Found in 3 sections. Used for results events, conferences. In EDS would be driven by a query-index events spreadsheet.', url: 'https://www.astrazeneca.com/investor-relations/results-and-presentations.html', screenshot: 'screenshots/block-cards-grid.png' },
+    { icon: '📊', name: 'data-table', usage: 'Investor (14%), General (3%)', reuse: 12, detail: 'Structured data table. CSS: shareholder-information. Found in investor-relations section. Used for shareholder data, financial tables. Will need EDS spreadsheet/JSON integration.', url: 'https://www.astrazeneca.com/investor-relations/shareholder-information.html', screenshot: 'screenshots/block-download-list.png' },
+    { icon: '🌟', name: 'homepage-hero', usage: 'Homepage (1), Section Hub (2)', reuse: 17, detail: 'Distinct from other heroes. CSS: homepage-hero. Confirmed via page-import on / and /r-d.html. Full-bleed, animated, high-impact hero. Shared between homepage and the 2 major section hubs (/r-d, /our-company). Separate EDS block from hero-feature and hero-header.', url: 'https://www.astrazeneca.com/', screenshot: 'screenshots/block-hero.png' },
+    { icon: '🗺️', name: 'country-list', usage: 'AZ Suppliers (1 template)', reuse: 6, detail: 'Confirmed via page-import on /az-suppliers/az-coupa-supplier.html. CSS: country-list / country-list__flag / country-list__heading / country-list__link. Alphabetical list of country flags + links — used for the global supplier contact directory. Unique to Suppliers template.', url: 'https://www.astrazeneca.com/az-suppliers/az-coupa-supplier.html', screenshot: 'screenshots/block-download-list.png' },
+  ];
+
+  function toggleBlockExpand(name) {
+    const panel = document.getElementById(`expand-${name}`);
+    const btn = document.getElementById(`btn-${name}`);
+    const isOpen = panel.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(isOpen));
+    if (isOpen) {
+      const img = panel.querySelector('img');
+      if (img && img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; }
+    }
+  }
+
+  function renderBlocks() {
+    const grid = document.getElementById('blocks-grid');
+    if (grid.children.length) return;
+    blocks.forEach(b => {
+      const pageLabel = new URL(b.url).pathname.replace(/\.html$/, '').split('/').filter(Boolean).pop() || 'homepage';
+      const card = document.createElement('div');
+      card.className = 'block-card';
+      card.innerHTML = `
+        <div class="block-card-body">
+          <div class="block-icon">${b.icon}</div>
+          <div class="block-name">${b.name}</div>
+          <div class="block-usage">${b.usage}</div>
+          <div class="reuse-bar"><div class="reuse-fill" style="width:${b.reuse}%"></div></div>
+          <div class="reuse-label">${b.reuse}% template coverage</div>
+          <div class="block-detail">${b.detail}</div>
+        </div>
+        <button class="block-expand-btn" id="btn-${b.name}" aria-expanded="false" aria-controls="expand-${b.name}" onclick="toggleBlockExpand('${b.name}')">
+          <span>View in context</span>
+          <span class="btn-arrow">▾</span>
+        </button>
+        <div class="block-expand-panel" id="expand-${b.name}" role="region">
+          <div class="block-expand-inner">
+            <img data-src="${b.screenshot}" src="" alt="${b.name} block in context" style="min-height:4px;">
+            <div class="block-expand-footer">
+              <a class="block-expand-link" href="${b.url}" target="_blank">↗ View on astrazeneca.com</a>
+            </div>
+          </div>
+        </div>`;
+      grid.appendChild(card);
+    });
+
+    // Reuse matrix
+    const matrixBlocks = [
+      ['hero',          [0,0,1,1,1,1,0,0,1,1]],
+      ['rich-text',     [1,1,1,1,1,1,1,1,1,1]],
+      ['hero-text',     [1,1,0,0,0,0,0,1,0,0]],
+      ['stats-callout', [0,0,1,1,0,1,0,0,1,0]],
+      ['author-byline', [0,0,0,1,0,0,0,0,0,0]],
+      ['related-articles',[0,0,1,1,1,0,0,0,0,1]],
+      ['jump-nav',      [0,0,0,0,1,0,0,0,0,0]],
+      ['video-embed',   [0,0,0,0,1,1,0,0,0,0]],
+      ['cards-grid',    [0,0,0,0,1,1,0,0,1,1]],
+      ['accordion',     [0,0,0,0,1,0,0,0,0,0]],
+      ['download-list', [1,0,0,0,0,0,0,1,1,0]],
+      ['news-feed',     [0,0,0,0,0,1,0,0,0,1]],
+      ['breadcrumb',    [1,1,1,1,1,1,1,1,1,0]],
+      ['contact-card',  [1,1,0,0,0,0,0,0,0,0]],
+      ['topic-tags',    [0,0,0,1,0,0,0,0,0,0]],
+    ];
+    const headers = ['PR','Med','Art','WSCD','R&D','TA Hub','People','Invest','Sustain','Home'];
+    const tbody = document.getElementById('reuse-matrix');
+    matrixBlocks.forEach(([name, cells]) => {
+      const uses = cells.filter(Boolean).length;
+      tbody.innerHTML += `<tr>
+        <td style="font-family:'DM Mono',monospace;font-size:12px;">${name}</td>
+        ${cells.map(c => `<td style="text-align:center">${c ? '<span style="color:#00c48c;font-size:14px">●</span>' : '<span style="color:#2a2a45;font-size:14px">○</span>'}</td>`).join('')}
+        <td style="text-align:center;font-family:'DM Mono',monospace;font-size:12px;color:var(--az-accent);">${uses}</td>
+      </tr>`;
+    });
+  }
+
+  // ── EFFORT DATA ──
+  const effortRows = [
+    ['Block Development', '33 unique blocks', 'high', '76 pts', 'Validated via page-import on all 18 representative pages. country-list confirmed as additional block (AZ Suppliers). rich-header (72%), image-feature (28%), jump-nav (22%) are the highest-reuse blocks after rich-text. Complexity tiers: simple (rich-text, date-meta, tags, footnote, legal), medium (accordion, jump-nav, stats, quote, timeline, show-more, icon-links), complex (hero-feature, rich-header, image-feature, content-tile, carousel, promo-grid, news-feed, form-recaptcha, homepage-hero).'],
+    ['Template Builds', '18 templates', 'high', '40 pts', 'Wire up blocks into page templates; content models per template. Templates span: press/medical releases, editorial articles, WSCD topics, people profiles, therapy hubs, R&amp;D deep content, investor relations, sustainability, country hubs, partnering, suppliers, media hub, homepage, section hubs, navigation hubs, forms, legal pages.'],
+    ['Content Import Scripts', 'Press releases + people profiles', 'medium', '20 pts', 'Node.js scripts to batch-import from current CMS'],
+    ['Global Styles + Typography', 'styles.css, fonts.css, lazy-styles.css', 'medium', '12 pts', 'Design system tokens, brand fonts, responsive grid'],
+    ['Header + Footer', 'Global navigation + footer nav', 'medium', '8 pts', 'Mega-nav with therapy area dropdowns; complex component'],
+    ['Performance + Accessibility QA', 'Lighthouse 100 across all templates', 'medium', '10 pts', 'LCP optimisation, WCAG 2.2 AA audit, keyboard navigation'],
+    ['Country Sites (Thailand)', '173-page local site', 'high', '15 pts', 'Locale routing, duplicate template setup or separate repo'],
+    ['Integrations', 'Veeva, analytics, Coupa', 'medium', '10 pts', 'Analytics data layer, Veeva ID display, supplier portal embed'],
+    ['EDS Setup + Infra', 'GitHub, Code Sync, domain config', 'low', '5 pts', 'One-time setup of AEM bot, preview/live domains'],
+    ['Content Migration QA', 'Sampling + spot-checks across pages', 'low', '7 pts', 'Author and QA validation of migrated content'],
+  ];
+
+  // ── METHODOLOGY CONFIDENCE TABLE ──
+  const confData = [
+    { section: 'Press Release',      total: 1605, sampled: 402, ok: 402, conf: 'high', finding: 'hero-feature(99%), date-meta(99%), tags(99%), rich-text(100%). Signature uniform across all years 2009–2026. footnote(10%), video-embed(2%), download-tile(2%) as edge cases. One EDS template covers all 1,605 pages.' },
+    { section: 'Medical Release',    total: 126,  sampled: 63,  ok: 63,  conf: 'high', finding: 'hero-feature(100%), date-meta(100%), tags(100%), rich-text(100%). Identical to Press Release. footnote(19%). At 50% coverage, no variation detected. Can share one EDS template.' },
+    { section: 'Editorial Article',  total: 68,   sampled: 68,  ok: 65,  conf: 'high', finding: 'Full coverage (100%). split-feature(76%) is near-defining. hero-feature(91%), quote(40%), author-bio(34%), video-embed(32%). No content-tile, no email-signup. Clearly distinct from WSCD.' },
+    { section: 'WSCD Topic',         total: 110,  sampled: 55,  ok: 55,  conf: 'high', finding: 'content-tile(96%) + email-signup(87%) are the signature pair. hero-feature(96%), author-bio(71%), quote(47%), video-embed(44%), footnote(35%). Distinct from articles by content-tile grid + email-signup.' },
+    { section: 'People Profile',     total: 108,  sampled: 54,  ok: 53,  conf: 'high', finding: 'author-bio(87%), quote(87%), show-more(87%) core trio. timeline(80%), accordion(57%), rich-header(50%), stats(39%). No hero-feature. Very consistent signature at 50% coverage.' },
+    { section: 'R&D Deep Content',   total: 35,   sampled: 35,  ok: 35,  conf: 'high', finding: 'Full coverage (100%). rich-header(91%), content-tile(86%), text-cta(66%), quote(66%), video-embed(49%), jump-nav(37%). Highest block-per-page count of any template.' },
+    { section: 'Therapy Area Hub',   total: 32,   sampled: 32,  ok: 32,  conf: 'high', finding: 'Full coverage (100%). rich-header(97%), jump-nav(62%), video-embed(53%), quote(41%), image-panel(34%), split-feature(31%), icon-links(28%). Widest block variety on site.' },
+    { section: 'Investor Relations', total: 53,   sampled: 53,  ok: 53,  conf: 'high', finding: 'Full coverage (100%). download-tile(62%), rich-header(55%), video-embed(49%), jump-nav(34%), hero-header(34%), image-panel(25%), pdf-viewer(23%), event-list(6%). Angular filter component on results pages.' },
+    { section: 'Sustainability',     total: 31,   sampled: 31,  ok: 30,  conf: 'high', finding: 'Full coverage. rich-header(93%), article-cta(50%) is the signature block. accordion(20%), quote(20%), stats(20%), download-tile(20%), jump-nav(20%), news-feed(17%).' },
+    { section: 'Country Hub',        total: 23,   sampled: 23,  ok: 21,  conf: 'high', finding: 'Full coverage (100%). Consistent signature: rich-text(87%), rich-header(78%), image-panel-feature(70%), icon-link-panel(57%). 2 pages geo-restricted (no data returned). Core template is well-defined: rich-header hero + icon-link-panel navigation grid + image-panel content rows.' },
+    { section: 'Country Press Rel.', total: 173,  sampled: 44,  ok: 44,  conf: 'high', finding: 'hero-feature(87%), date-meta(87%), tags(87%). Exact same signature as global press releases. Reuses Press Release template; no new template needed.' },
+    { section: 'Media Hub / Index',  total: 8,    sampled: 8,   ok: 8,   conf: 'high', finding: 'Full coverage (100%). promo-grid(75%), hero-header(62%), email-signup(62%), image-feature(50%), publications-list(38%). Becomes query-index driven listing in EDS.' },
+    { section: 'Partnering',         total: 12,   sampled: 12,  ok: 12,  conf: 'high', finding: 'Full coverage (100%). rich-header(100%), accordion(42%), image-panel(42%), split-feature(25%), video-embed(25%), carousel(17%), author-bio(17%), stats(17%).' },
+    { section: 'AZ Suppliers',       total: 20,   sampled: 20,  ok: 19,  conf: 'high', finding: 'Full coverage (100%). hero-header(85%, mulberry variant), video-embed(35%), download-tile(30%), image-panel(30%), rich-header(30%). Distinct from Partnering by hero type.' },
+    { section: 'Homepage',            total: 1,    sampled: 1,   ok: 1,   conf: 'high', finding: 'Unique page. homepage-hero + homepage-content-set + link-image-panel-v2 + image-panel-feature + rich-header. No other page uses homepage-content-set. Fully distinct EDS template.' },
+    { section: 'Section Hub (Major)',  total: 2,    sampled: 2,   ok: 2,   conf: 'high', finding: '/r-d + /our-company. Signature: homepage-hero + icon-link-panel + image-panel-feature + link-image-panel-v2. Use homepage-hero (same component as homepage) but with editorial layout. Separate template or homepage variant.' },
+    { section: 'Navigation Hub',      total: 11,   sampled: 11,  ok: 11,  conf: 'high', finding: 'Patient-reported-outcomes section (7 pages) + investor-relations + partnering index pages. Core signature: icon-link-panel(100%) + rich-header(82%) + download-tile(55%). Accordion on FAQ variants. Very consistent — one EDS template.' },
+    { section: 'Form / Contact',      total: 4,    sampled: 4,   ok: 4,   conf: 'high', finding: 'media-centre, wscd, patient-reported-outcomes/contact, /order-instrument. All have g-recaptcha + cmp-form-recaptcha + email-signup. Will require reCAPTCHA v3 integration or Veeva form replacement in EDS.' },
+    { section: 'Legal / T&Cs',        total: 4,    sampled: 4,   ok: 4,   conf: 'high', finding: 'terms-and-conditions, legal-notice (+ 2 locale variants). Pure hero-header + rich-text. Simplest template on the site. No custom blocks required.' },
+    { section: 'Simple Landing',      total: 14,   sampled: 14,  ok: 11,  conf: 'high', finding: 'az-suppliers, our-therapy-areas, global/en pages, country-sites listing. Rich-text-only pattern. 3 pages blocked/empty. Essentially default EDS content pages — no custom template needed, shares base layout.' },
+  ];
+
+  let methRendered = false;
+  function renderMethodology() {
+    if (methRendered) return;
+    methRendered = true;
+    const tbody = document.getElementById('conf-tbody');
+    confData.forEach(r => {
+      const pct = Math.round(r.sampled / r.total * 100);
+      const confMap = { high: ['conf-high','High'], med: ['conf-med','Medium'], low: ['conf-low','Low'] };
+      const [cls, label] = confMap[r.conf];
+      const bar = Math.round(r.ok / r.sampled * 100);
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><strong>${r.section}</strong></td>
+        <td style="font-family:'DM Mono',monospace;color:var(--az-muted)">${r.total.toLocaleString()}</td>
+        <td style="font-family:'DM Mono',monospace;color:var(--az-accent)">${r.sampled}</td>
+        <td>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="width:60px;height:6px;background:var(--az-border);border-radius:3px;overflow:hidden">
+              <div style="width:${pct}%;height:100%;background:var(--az-accent);border-radius:3px"></div>
+            </div>
+            <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--az-accent)">${pct}%</span>
+          </div>
+        </td>
+        <td style="font-family:'DM Mono',monospace;color:${bar===100?'var(--az-green)':'var(--az-amber)'}">${r.ok}/${r.sampled}</td>
+        <td><span class="conf-pill ${cls}">${label}</span></td>
+        <td style="font-size:12px;color:var(--az-muted);max-width:320px">${r.finding}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function renderEffort() {
+    const tbody = document.getElementById('effort-tbody');
+    if (tbody.children.length) return;
+    effortRows.forEach(([ws, scope, comp, pts, notes]) => {
+      const colors = {high: 'rgba(228,0,70,0.12)', medium: 'rgba(255,176,32,0.12)', low: 'rgba(0,196,140,0.12)'};
+      const textColors = {high: '#e40046', medium: '#ffb020', low: '#00c48c'};
+      tbody.innerHTML += `<tr>
+        <td><strong>${ws}</strong></td>
+        <td style="color:var(--az-muted)">${scope}</td>
+        <td><span class="effort-pill" style="background:${colors[comp]};color:${textColors[comp]}">${comp}</span></td>
+        <td><strong style="font-family:'DM Mono',monospace;color:var(--az-accent)">${pts}</strong></td>
+        <td style="color:var(--az-muted);font-size:12px">${notes}</td>
+      </tr>`;
+    });
+  }
+
+  // ── SITE TREE (built from sitemap.xml) ──
+  async function buildTreeFromSitemap() {
+    const res = await fetch('./sitemap.xml');
+    const text = await res.text();
+    const locs = (text.match(/<loc>([^<]+)<\/loc>/g) || [])
+      .map(s => s.replace(/<\/?loc>/g, '').trim());
+
+    const BASE = 'https://www.astrazeneca.com';
+
+    function toLabel(seg) {
+      return seg
+        .replace(/\.html$/, '')
+        .replace(/-/g, ' ')
+        .replace(/\w/g, c => c.toUpperCase());
+    }
+
+    const ICONS = {
+      'media-centre': '📰', 'press-releases': '📄', 'medical-releases': '🏥',
+      'r-d': '🔬', 'our-therapy-areas': '💊', 'oncology': '🔴',
+      'biopharmaceuticals': '💙', 'respiratory-and-immunology': '🫁',
+      'vaccines-and-immune-therapies': '💉', 'sustainability': '🌱',
+      'our-company': '🏢', 'investor-relations': '📈', 'careers': '👔',
+      'partnering': '🤝', 'country-sites': '🌍', 'az-suppliers': '🚚',
+      'what-science-can-do': '🧬', 'global': '🌐', 'publication': '📚',
+      'patient-reported-outcomes': '📊', 'astrazeneca-exchange': '🔗',
+    };
+
+    function getIcon(segments) {
+      if (!segments.length) return '📄';
+      const last = segments[segments.length - 1];
+      // Year folders
+      if (/^\d{4}$/.test(last)) return '📁';
+      // Check each segment from most specific to least
+      for (let i = segments.length - 1; i >= 0; i--) {
+        if (ICONS[segments[i]]) return ICONS[segments[i]];
+      }
+      // Leaf pages under known sections
+      if (segments.length >= 2) return '📑';
+      return '📄';
+    }
+
+    const root = { label: 'astrazeneca.com', slug: '', icon: '🌐', url: BASE + '/', children: [] };
+    const nodeMap = { '': root };
+
+    locs.forEach(url => {
+      const path = url.replace(BASE, '').replace(/\.html$/, '');
+      if (path === '' || path === '/') { root.url = url; return; }
+
+      const parts = path.replace(/^\//, '').split('/');
+
+      parts.forEach((seg, idx) => {
+        const pathKey = parts.slice(0, idx + 1).join('/');
+        if (!nodeMap[pathKey]) {
+          const node = {
+            label: toLabel(seg),
+            slug: parts[0],
+            icon: getIcon(parts.slice(0, idx + 1)),
+            children: [],
+          };
+          nodeMap[pathKey] = node;
+          nodeMap[parts.slice(0, idx).join('/') || ''].children.push(node);
+        }
+        if (idx === parts.length - 1) {
+          nodeMap[pathKey].url = url;
+        }
+      });
+    });
+
+    // Remove empty children arrays (pure leaves)
+    function cleanup(node) {
+      if (!node.children) return;
+      if (node.children.length === 0) { delete node.children; return; }
+      node.children.forEach(cleanup);
+    }
+    cleanup(root);
+
+    return root;
+  }
+
+  // ── D3 SITE TREE ──
+  const SEC_COLORS = {
+    'media-centre':               '#e40046',
+    'what-science-can-do':        '#4a9eff',
+    'our-company':                '#00c48c',
+    'r-d':                        '#a78bfa',
+    'our-therapy-areas':          '#ff8c37',
+    'sustainability':             '#2dd4a0',
+    'investor-relations':         '#60a5fa',
+    'careers':                    '#f59e0b',
+    'partnering':                 '#ec4899',
+    'country-sites':              '#8b5cf6',
+    'az-suppliers':               '#f97316',
+    'global':                     '#06b6d4',
+    'publication':                '#84cc16',
+    'patient-reported-outcomes':  '#e879f9',
+    'astrazeneca-exchange':       '#fb923c',
+  };
+
+  const SEC_LABELS = {
+    'media-centre': 'Media Centre', 'what-science-can-do': 'What Science Can Do',
+    'our-company': 'Our Company', 'r-d': 'R&D', 'our-therapy-areas': 'Our Therapy Areas',
+    'sustainability': 'Sustainability', 'investor-relations': 'Investor Relations',
+    'careers': 'Careers', 'partnering': 'Partnering', 'country-sites': 'Country Sites',
+    'az-suppliers': 'AZ Suppliers', 'global': 'Global', 'publication': 'Publications',
+    'patient-reported-outcomes': 'Patient Outcomes', 'astrazeneca-exchange': 'AZ Exchange',
+  };
+
+  function secColor(d) {
+    if (d.depth === 0) return '#c0c0e8';
+    if (d.depth === 1) return SEC_COLORS[d.data.slug] || '#4a9eff';
+    return secColor(d.parent);
+  }
+
+  function childCount(d) {
+    // Count visible leaf descendants for a count badge
+    if (!d._children && !d.children) return 0;
+    const all = (d._children || d.children || []);
+    let total = 0;
+    all.forEach(c => {
+      if (!c.children && !c._children && c.data) {
+        total += 1;
+      } else {
+        total += 1; // count intermediate nodes too
+      }
+    });
+    return total;
+  }
+
+  function nw(d) {
+    const charW = d.depth >= 4 ? 6.2 : d.depth >= 3 ? 6.5 : 7;
+    return Math.max(d.depth >= 3 ? 110 : 130, (d.data.icon + ' ' + d.data.label).length * charW + 18);
+  }
+
+  function isLeaf(d) { return !d._children && !d.children && d.depth > 0; }
+
+  function leafUrl(d) {
+    return d.data.url || '#';
+  }
+
+  let treeRendered = false;
+
+  async function renderTree() {
+    if (treeRendered) return;
+    treeRendered = true;
+
+    // Build legend
+    const legend = document.getElementById('tree-legend');
+    Object.entries(SEC_COLORS).forEach(([slug, color]) => {
+      const label = SEC_LABELS[slug] || slug;
+      legend.innerHTML += `<span class="tree-legend-item">
+        <span class="tree-legend-dot" style="background:${color}"></span>${label}
+      </span>`;
+    });
+
+    const container = document.getElementById('site-tree');
+    container.innerHTML = '<p style="color:var(--az-muted);padding:20px 0;font-size:12px;">Loading D3…</p>';
+
+    if (!window.d3) {
+      try {
+        await new Promise((res, rej) => {
+          const s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js';
+          s.onload = res; s.onerror = rej;
+          document.head.appendChild(s);
+        });
+      } catch {
+        container.innerHTML = '<p style="color:var(--az-muted);padding:20px 0;">Requires internet to load D3.js.</p>';
+        return;
+      }
+    }
+
+    container.innerHTML = '<p style="color:var(--az-muted);padding:20px 0;font-size:12px;">Parsing sitemap.xml…</p>';
+    let treeData;
+    try {
+      treeData = await buildTreeFromSitemap();
+    } catch (err) {
+      container.innerHTML = `<p style="color:var(--az-muted);padding:20px 0;">Failed to load sitemap.xml: ${err.message}</p>`;
+      return;
+    }
+
+    container.innerHTML = '';
+    drawD3Tree(container, treeData);
+  }
+
+  function drawD3Tree(container, treeData) {
+    const W = Math.max(container.clientWidth, 960);
+    const dx = 30, dy = 235;
+    // Custom diagonal: originates from RIGHT edge of source node, arrives at LEFT edge of target
+    const diagonal = (d) => {
+      const s = d.source, t = d.target;
+      const sx = s.y + (s.data ? nw(s) : 0); // right edge of source (0 for animation points)
+      const tx = t.y;                          // left edge of target
+      const mx = (sx + tx) / 2;
+      return `M${sx},${s.x} C${mx},${s.x} ${mx},${t.x} ${tx},${t.x}`;
+    };
+    const treeLayout = d3.tree().nodeSize([dx, dy]);
+
+    const svg = d3.select(container).append('svg')
+      .attr('width', W)
+      .style('font-family', 'Inter, sans-serif')
+      .style('overflow', 'visible')
+      .style('cursor', 'grab')
+      .style('user-select', 'none');
+
+    const gMain = svg.append('g').attr('transform', `translate(${dy * 0.4},0)`);
+    const gLink = gMain.append('g').attr('fill', 'none');
+    const gNode = gMain.append('g');
+
+    // Build hierarchy, collapse all L1+ initially
+    const root = d3.hierarchy(treeData);
+    root.x0 = 0; root.y0 = 0;
+    let uid = 0;
+    root.descendants().forEach(d => {
+      d.id = uid++;
+      d._children = d.children;
+      if (d.depth >= 1) d.children = null;
+    });
+
+    // Zoom + pan
+    const zoom = d3.zoom().scaleExtent([0.2, 3])
+      .on('zoom', e => gMain.attr('transform', `translate(${dy * 0.4 + e.transform.x},${e.transform.y}) scale(${e.transform.k})`));
+    svg.call(zoom);
+
+    function update(source) {
+      treeLayout(root);
+
+      let x0 = Infinity, x1 = -Infinity, y1 = 0;
+      root.eachBefore(d => {
+        if (d.x < x0) x0 = d.x;
+        if (d.x > x1) x1 = d.x;
+        if (d.y > y1) y1 = d.y;
+      });
+      const h = Math.max(x1 - x0 + dx * 2, 300);
+      const totalW = Math.max(W, y1 + 400);  // extend SVG to fit rightmost nodes
+
+      svg.transition().duration(380)
+        .attr('width', totalW)
+        .attr('height', h + 60)
+        .attr('viewBox', `0 ${x0 - dx} ${totalW} ${h + dx * 2}`);
+
+      // Links
+      const link = gLink.selectAll('path').data(root.links(), d => d.target.id);
+      link.enter().append('path')
+        .attr('d', () => {
+          // Start collapsed at the right edge of the source node
+          const o = {x: source.x0, y: source.y0 + nw(source)};
+          return diagonal({source: o, target: o});
+        })
+        .attr('stroke-opacity', 0)
+        .merge(link).transition().duration(380)
+        .attr('d', diagonal)
+        .attr('stroke', d => secColor(d.target))
+        .attr('stroke-width', 1.5)
+        .attr('stroke-opacity', 0.3);
+      link.exit().transition().duration(380).remove()
+        .attr('d', () => {
+          const o = {x: source.x, y: source.y + nw(source)};
+          return diagonal({source: o, target: o});
+        })
+        .attr('stroke-opacity', 0);
+
+      // Nodes
+      const node = gNode.selectAll('g.nd').data(root.descendants(), d => d.id);
+
+      const enter = node.enter().append('g').attr('class', 'nd')
+        .attr('transform', () => `translate(${source.y0 + nw(source)},${source.x0})`)
+        .attr('opacity', 0)
+        .attr('cursor', d => isLeaf(d) ? 'pointer' : (d._children || d.children ? 'pointer' : 'default'))
+        .on('click', (e, d) => {
+          if (isLeaf(d)) { window.open(leafUrl(d), '_blank'); return; }
+          if (!d._children && !d.children) return;
+          d.children = d.children ? null : d._children;
+          update(d);
+        });
+
+      // Glow / shadow for L1 nodes
+      enter.filter(d => d.depth === 1).append('rect')
+        .attr('x', -1).attr('y', -13).attr('width', d => nw(d) + 2).attr('height', 26)
+        .attr('rx', 6).attr('fill', d => secColor(d)).attr('opacity', 0.15)
+        .attr('filter', 'blur(4px)');
+
+      // Main background rect
+      enter.append('rect')
+        .attr('x', 0)
+        .attr('y', d => d.depth >= 4 ? -9 : -12)
+        .attr('height', d => d.depth >= 4 ? 18 : 24)
+        .attr('width', d => nw(d))
+        .attr('rx', 5)
+        .attr('fill', d => d.depth === 0 ? '#1c1c38' : d.depth === 1 ? secColor(d) + '22' : isLeaf(d) ? secColor(d) + '10' : '#0e0e22')
+        .attr('stroke', d => secColor(d))
+        .attr('stroke-width', d => d.depth <= 1 ? 1.5 : isLeaf(d) ? 0.8 : d.depth <= 3 ? 0.8 : 0.5)
+        .attr('stroke-dasharray', d => isLeaf(d) ? '3,2' : null)
+        .attr('stroke-opacity', d => d.depth === 0 ? 0.9 : isLeaf(d) ? 0.5 : d.depth >= 4 ? 0.3 : 0.6);
+
+      // Left accent bar for L1
+      enter.filter(d => d.depth === 1).append('rect')
+        .attr('x', 0).attr('y', -12).attr('width', 3).attr('height', 24)
+        .attr('rx', 2).attr('fill', d => secColor(d)).attr('opacity', 0.9);
+
+      // Icon + label
+      enter.append('text')
+        .attr('dy', '0.35em').attr('x', d => d.depth === 1 ? 13 : 9)
+        .attr('fill', d => d.depth === 0 ? '#d0d0f0' : d.depth === 1 ? secColor(d) : d.depth <= 3 ? '#b0b0d0' : '#888898')
+        .attr('font-size', d => d.depth === 0 ? '13px' : d.depth === 1 ? '12px' : d.depth <= 3 ? '10.5px' : '9.5px')
+        .attr('font-weight', d => d.depth <= 1 ? '600' : '400')
+        .text(d => d.data.icon + ' ' + d.data.label);
+
+      // Child count badge for non-leaf, non-root nodes
+      enter.filter(d => !isLeaf(d) && d.depth > 0).append('text')
+        .attr('dy', '0.35em').attr('x', d => nw(d) + 8)
+        .attr('fill', '#3e3e60').attr('font-size', '9px')
+        .attr('font-family', "'DM Mono', monospace")
+        .text(d => {
+          const kids = d._children || d.children || [];
+          return kids.length ? `${kids.length}` : '';
+        });
+
+      // ↗ link indicator for leaf nodes (real URL from sitemap)
+      enter.filter(d => isLeaf(d)).append('title')
+        .text(d => d.data.url ? `Open: ${d.data.url}` : d.data.label);
+
+      enter.filter(d => isLeaf(d)).append('text')
+        .attr('dy', '0.35em').attr('x', d => nw(d) + 6)
+        .attr('fill', d => secColor(d)).attr('font-size', '10px')
+        .attr('opacity', 0.65)
+        .text('↗');
+
+      // Template badge
+      enter.filter(d => d.data.template).each(function(d) {
+        const g = d3.select(this);
+        const t = d.data.template;
+        g.append('rect')
+          .attr('x', 0).attr('y', 14).attr('height', 12)
+          .attr('width', t.length * 6.2 + 10).attr('rx', 3)
+          .attr('fill', secColor(d) + '20').attr('stroke', secColor(d))
+          .attr('stroke-width', 0.5).attr('stroke-opacity', 0.6);
+        g.append('text')
+          .attr('x', 5).attr('y', 22).attr('font-size', '7.5px')
+          .attr('font-family', "'DM Mono', monospace").attr('fill', secColor(d))
+          .text(t);
+      });
+
+      // Expand/collapse dot (only for nodes with children)
+      enter.filter(d => d._children || d.children).append('circle')
+        .attr('cx', d => nw(d) - 2).attr('cy', 0).attr('r', 5)
+        .attr('fill', d => d.children ? secColor(d) : '#2e2e4a')
+        .attr('stroke', d => secColor(d)).attr('stroke-width', 1.2);
+
+      // Merge & transition
+      const merged = node.merge(enter).transition().duration(380)
+        .attr('transform', d => `translate(${d.y},${d.x})`).attr('opacity', 1);
+
+      merged.select('circle')
+        .attr('fill', d => d.children ? secColor(d) : '#2e2e4a')
+        .attr('stroke', d => secColor(d));
+
+      // Exit — collapse back into right edge of source
+      node.exit().transition().duration(380)
+        .attr('transform', () => `translate(${source.y + nw(source)},${source.x})`).attr('opacity', 0).remove();
+
+      root.eachBefore(d => { d.x0 = d.x; d.y0 = d.y; });
+    }
+
+    update(root);
+    window._treeRoot = root;
+    window._treeUpdate = update;
+    window._treeSvg = svg;
+    window._treeZoom = zoom;
+    window._treeGMain = gMain;
+    window._treeDy = dy;
+  }
+
+  function treeExpandAll() {
+    if (!window._treeRoot) return;
+    window._treeRoot.descendants().forEach(d => { if (d._children) d.children = d._children; });
+    window._treeUpdate(window._treeRoot);
+  }
+
+  function treeCollapseAll() {
+    if (!window._treeRoot) return;
+    window._treeRoot.descendants().forEach(d => {
+      if (d.depth >= 1 && d.children) { d._children = d._children || d.children; d.children = null; }
+    });
+    window._treeUpdate(window._treeRoot);
+  }
+</script>
+</body>
+</html>
