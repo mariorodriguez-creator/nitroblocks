@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AstraZeneca → EDS Migration Sizing</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --az-red: #e40046;
+    --az-dark: #0a0a14;
+    --az-mid: #131324;
+    --az-card: #1a1a2e;
+    --az-border: #2a2a45;
+    --az-muted: #6b6b8a;
+    --az-text: #e8e8f0;
+    --az-accent: #7c6bff;
+    --az-green: #00c48c;
+    --az-amber: #ffb020;
+    --az-blue: #4a9eff;
+    --az-pink: #ff6b9d;
+    --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--az-dark); color: var(--az-text); font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.6; min-height: 100vh; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,20,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--az-border);
+    padding: 0 32px; display: flex; align-items: center; gap: 8px; height: 56px;
+  }
+  .nav-logo { font-family: 'Instrument Serif', serif; font-size: 18px; color: var(--az-red); margin-right: 4px; white-space: nowrap; }
+  .nav-arrow { color: var(--az-muted); font-size: 14px; }
+  .nav-title { color: var(--az-muted); font-size: 13px; }
+  .nav-tabs { margin-left: auto; display: flex; gap: 4px; }
+  .nav-tab { padding: 6px 16px; border-radius: 6px; border: none; background: transparent; color: var(--az-muted); cursor: pointer; font-size: 13px; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+  .nav-tab.active, .nav-tab:hover { background: var(--az-border); color: var(--az-text); }
+  .nav-tab.active { color: white; }
+
+  /* ── LAYOUT ── */
+  .view { display: none; padding: 40px 32px; max-width: 1400px; margin: 0 auto; }
+  .view.active { display: block; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .view.active > * { animation: fadeUp 0.4s var(--ease) both; }
+  .view.active > *:nth-child(2) { animation-delay: 0.05s; }
+  .view.active > *:nth-child(3) { animation-delay: 0.1s; }
+  .view.active > *:nth-child(4) { animation-delay: 0.15s; }
+  .view.active > *:nth-child(5) { animation-delay: 0.2s; }
+
+  /* ── SCOPE BANNER ── */
+  .scope-banner {
+    background: linear-gradient(135deg, rgba(228,0,70,0.08), rgba(124,107,255,0.08));
+    border: 1px solid rgba(228,0,70,0.25); border-radius: 12px;
+    padding: 20px 24px; margin-bottom: 32px; display: flex; gap: 20px; align-items: center;
+  }
+  .scope-emoji { font-size: 28px; }
+  .scope-text { flex: 1; font-size: 13px; color: var(--az-muted); line-height: 1.6; }
+  .scope-text strong { color: var(--az-red); }
+
+  /* ── HERO METRICS ── */
+  .hero-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 40px; }
+  .metric-card { background: var(--az-card); border: 1px solid var(--az-border); border-radius: 12px; padding: 24px 20px; position: relative; overflow: hidden; transition: border-color 0.2s; }
+  .metric-card:hover { border-color: var(--az-accent); }
+  .metric-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gradient, var(--az-accent)); }
+  .metric-label { color: var(--az-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .metric-value { font-family: 'DM Mono', monospace; font-size: 32px; font-weight: 500; line-height: 1; }
+  .metric-sub { color: var(--az-muted); font-size: 12px; margin-top: 6px; }
+
+  /* ── SECTION HEADERS ── */
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 20px; margin-top: 40px; }
+  .section-header:first-child { margin-top: 0; }
+  .section-title { font-family: 'Instrument Serif', serif; font-size: 22px; font-weight: 400; }
+  .section-meta { color: var(--az-muted); font-size: 13px; }
+
+  /* ── BREAKDOWN GRID ── */
+  .breakdown-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
+  .breakdown-card { background: var(--az-card); border: 1px solid var(--az-border); border-radius: 12px; overflow: hidden; }
+  .section-breakdown-card { background: var(--az-card); border: 1px solid var(--az-border); border-radius: 12px; padding: 20px 22px; overflow: auto; max-height: 420px; }
+  .section-breakdown-card h3 { font-size: 12px; color: var(--az-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; font-weight: 600; }
+  .sec-row { display: grid; grid-template-columns: 10px 1fr auto 56px auto; align-items: center; gap: 10px; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.03); }
+  .sec-row:last-child { border-bottom: none; }
+  .sec-dot-sm { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .sec-name { font-size: 12px; color: var(--az-text); }
+  .sec-bar-wrap { height: 5px; background: var(--az-border); border-radius: 3px; overflow: hidden; }
+  .sec-bar-fill { height: 100%; border-radius: 3px; }
+  .sec-count { font-size: 11px; font-family: 'DM Mono', monospace; color: var(--az-muted); text-align: right; }
+  .sec-pct { font-size: 10px; font-family: 'DM Mono', monospace; color: var(--az-muted); text-align: right; }
+  .breakdown-header { padding: 16px 20px; border-bottom: 1px solid var(--az-border); display: flex; align-items: center; gap: 10px; }
+  .breakdown-header-title { font-weight: 500; font-size: 14px; }
+  .breakdown-header-count { margin-left: auto; font-family: 'DM Mono', monospace; font-size: 13px; color: var(--az-muted); }
+  .section-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .breakdown-rows { padding: 8px 0; }
+  .breakdown-row { display: flex; align-items: center; gap: 12px; padding: 8px 20px; transition: background 0.15s; }
+  .breakdown-row:hover { background: rgba(255,255,255,0.03); }
+  .breakdown-row-label { flex: 1; color: var(--az-text); font-size: 13px; }
+  .breakdown-row-count { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--az-muted); min-width: 48px; text-align: right; }
+  .breakdown-row-bar { width: 80px; height: 4px; background: var(--az-border); border-radius: 2px; overflow: hidden; }
+  .breakdown-row-fill { height: 100%; border-radius: 2px; transition: width 1s var(--ease); }
+
+  /* ── DONUT ── */
+  .chart-row { display: grid; grid-template-columns: 340px 1fr; gap: 24px; align-items: start; margin-bottom: 40px; }
+  .donut-card { background: var(--az-card); border: 1px solid var(--az-border); border-radius: 12px; padding: 28px; display: flex; flex-direction: column; align-items: center; }
+  .donut-title { font-size: 13px; color: var(--az-muted); margin-bottom: 20px; text-align: center; }
+  .donut-wrap { position: relative; width: 180px; height: 180px; }
+  .donut-wrap svg { transform: rotate(-90deg); }
+  .donut-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .donut-center-value { font-family: 'DM Mono', monospace; font-size: 28px; line-height: 1; }
+  .donut-center-label { font-size: 11px; color: var(--az-muted); margin-top: 4px; }
+  .donut-legend { margin-top: 20px; width: 100%; display: flex; flex-direction: column; gap: 8px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .legend-label { flex: 1; color: var(--az-text); }
+  .legend-pct { color: var(--az-muted); font-family: 'DM Mono', monospace; font-size: 11px; }
+
+  /* ── TEMPLATES ── */
+  .templates-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .template-card { background: var(--az-card); border: 1px solid var(--az-border); border-radius: 12px; padding: 20px; transition: all 0.2s; cursor: pointer; }
+  .template-card-variant { opacity: 0.82; border-style: dashed; }
+  .template-card-variant:hover { opacity: 1; }
+  .template-variant-badge { display: inline-block; font-size: 10px; font-family: 'DM Mono', monospace; color: var(--az-muted); background: rgba(255,255,255,0.04); border: 1px solid var(--az-border); border-radius: 4px; padding: 2px 7px; margin-bottom: 8px; letter-spacing: 0.03em; }
+  .template-card:hover { border-color: var(--az-accent); transform: translateY(-2px); }
+  .template-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+  .template-name { font-weight: 500; font-size: 15px; line-height: 1.3; }
+  .template-count { font-family: 'DM Mono', monospace; font-size: 20px; color: var(--az-accent); line-height: 1; white-space: nowrap; margin-left: 8px; }
+  .template-pct { font-size: 11px; color: var(--az-muted); text-align: right; }
+  .complexity-badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 500; margin-bottom: 10px; }
+  .complexity-low { background: rgba(0,196,140,0.12); color: var(--az-green); }
+  .complexity-medium { background: rgba(255,176,32,0.12); color: var(--az-amber); }
+  .complexity-high { background: rgba(228,0,70,0.12); color: var(--az-red); }
+  .template-desc { font-size: 12px; color: var(--az-muted); line-height: 1.5; margin-bottom: 12px; }
+  .template-blocks { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+  .block-tag { background: rgba(124,107,255,0.1); border: 1px solid rgba(124,107,255,0.2); color: var(--az-accent); font-size: 10px; padding: 2px 8px; border-radius: 4px; font-family: 'DM Mono', monospace; }
+  .block-tag-new { background: rgba(228,0,70,0.1); border-color: rgba(228,0,70,0.2); color: var(--az-red); }
+  .example-link { font-size: 11px; color: var(--az-muted); text-decoration: none; border-bottom: 1px solid var(--az-border); padding-bottom: 1px; transition: color 0.15s, border-color 0.15s; }
+  .example-link:hover { color: var(--az-blue); border-color: var(--az-blue); }
+
+  /* ── BLOCKS GRID ── */
+  .blocks-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .block-card { background: var(--az-card); border: 1px solid var(--az-border); border-radius: 10px; overflow: hidden; transition: border-color 0.2s; min-width: 0; display: flex; flex-direction: column; }
+  .block-card:hover { border-color: var(--az-blue); }
+  .block-card-body { padding: 12px 14px 10px; flex: 1; }
+  .block-icon { font-size: 20px; margin-bottom: 6px; }
+  .block-name { font-weight: 500; font-size: 13px; margin-bottom: 4px; font-family: 'DM Mono', monospace; }
+  .block-usage { font-size: 11px; color: var(--az-muted); margin-bottom: 6px; }
+  .reuse-bar { height: 3px; background: var(--az-border); border-radius: 2px; overflow: hidden; }
+  .reuse-fill { height: 100%; border-radius: 2px; }
+  .reuse-label { font-size: 10px; color: var(--az-muted); margin-top: 3px; }
+  .block-detail { font-size: 11px; color: var(--az-muted); margin-top: 6px; line-height: 1.5; }
+  .block-tier-badge { display: inline-block; padding: 1px 7px; border-radius: 4px; font-size: 10px; font-family: 'DM Mono', monospace; font-weight: 600; margin-bottom: 6px; }
+  .tier3-badge { background: rgba(228,0,70,0.14); color: var(--az-red); }
+  .tier2-badge { background: rgba(255,176,32,0.14); color: var(--az-amber); }
+  .tier1-badge { background: rgba(0,196,140,0.14); color: var(--az-green); }
+  .block-expand-btn { width: 100%; background: none; border: none; border-top: 1px solid var(--az-border); color: var(--az-muted); font-size: 11px; padding: 7px 14px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 6px; transition: all 0.15s; font-family: inherit; }
+  .block-expand-btn:hover { color: var(--az-blue); background: rgba(74,158,255,0.04); }
+  .block-expand-btn .btn-arrow { transition: transform 0.25s ease; font-size: 10px; display: inline-block; }
+  .block-expand-btn[aria-expanded="true"] .btn-arrow { transform: rotate(180deg); }
+  .block-expand-btn[aria-expanded="true"] { color: var(--az-blue); }
+  .block-expand-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease; }
+  .block-expand-panel.open { grid-template-rows: 1fr; }
+  .block-expand-inner { overflow: hidden; padding: 0 14px; }
+  .block-expand-inner-content { padding: 12px 0; font-size: 12px; color: var(--az-muted); line-height: 1.6; border-top: 1px solid var(--az-border); }
+  .block-expand-inner-content code { font-family: 'DM Mono', monospace; color: var(--az-accent); font-size: 11px; }
+
+  /* Reuse matrix */
+  .matrix-wrap { overflow-x: auto; }
+  .matrix-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 800px; }
+  .matrix-table th { background: var(--az-card); color: var(--az-muted); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; padding: 10px 10px; text-align: center; border-bottom: 1px solid var(--az-border); }
+  .matrix-table th:first-child { text-align: left; }
+  .matrix-table td { padding: 8px 10px; border-bottom: 1px solid rgba(255,255,255,0.04); text-align: center; }
+  .matrix-table td:first-child { text-align: left; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--az-text); }
+  .matrix-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* ── EFFORT ── */
+  .effort-layout { display: grid; grid-template-columns: 1fr 360px; gap: 24px; }
+  .effort-main { display: flex; flex-direction: column; gap: 20px; }
+  .effort-table { background: var(--az-card); border: 1px solid var(--az-border); border-radius: 12px; overflow: hidden; }
+  .effort-table table { width: 100%; border-collapse: collapse; }
+  .effort-table th { background: rgba(255,255,255,0.04); padding: 12px 16px; text-align: left; font-size: 11px; color: var(--az-muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
+  .effort-table td { padding: 12px 16px; border-top: 1px solid var(--az-border); font-size: 13px; }
+  .effort-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .effort-pill { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-family: 'DM Mono', monospace; }
+  .effort-sidebar { display: flex; flex-direction: column; gap: 16px; }
+  .summary-card { background: var(--az-card); border: 1px solid var(--az-border); border-radius: 12px; padding: 24px; }
+  .summary-card-title { font-size: 12px; color: var(--az-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+  .summary-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--az-border); font-size: 13px; }
+  .summary-row:last-child { border-bottom: none; font-weight: 600; font-size: 15px; }
+  .summary-row-label { color: var(--az-muted); }
+  .summary-row-value { font-family: 'DM Mono', monospace; }
+  .risk-list { display: flex; flex-direction: column; gap: 10px; }
+  .risk-item { display: flex; gap: 10px; align-items: flex-start; }
+  .risk-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .risk-text { font-size: 12px; color: var(--az-muted); line-height: 1.5; }
+  .risk-text strong { color: var(--az-text); }
+
+  /* ── PHASES (vertical timeline) ── */
+  .phase-timeline { position: relative; padding-left: 40px; }
+  .phase-line { position: absolute; left: 16px; top: 24px; bottom: 24px; width: 2px; background: var(--az-border); }
+  .phase-item { position: relative; margin-bottom: 32px; }
+  .phase-dot { position: absolute; left: -32px; top: 8px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--az-dark); }
+  .phase-card { background: var(--az-card); border: 1px solid var(--az-border); border-radius: 12px; padding: 20px 24px; transition: border-color 0.2s; }
+  .phase-card:hover { border-color: var(--az-accent); }
+  .phase-number { font-size: 11px; color: var(--az-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+  .phase-name { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+  .phase-duration { font-size: 12px; color: var(--az-amber); font-family: 'DM Mono', monospace; margin-bottom: 12px; }
+  .phase-deliverables { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .deliverable-tag { background: rgba(255,255,255,0.06); border: 1px solid var(--az-border); color: var(--az-text); font-size: 11px; padding: 3px 10px; border-radius: 20px; }
+  .phase-meta { font-size: 12px; color: var(--az-muted); line-height: 1.5; }
+
+  /* ── SITE TREE ── */
+  .tree-toolbar { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .tree-btn { background: var(--az-card); border: 1px solid var(--az-border); color: var(--az-muted); font-size: 11px; padding: 4px 12px; border-radius: 5px; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+  .tree-btn:hover { color: var(--az-blue); border-color: var(--az-blue); background: rgba(74,158,255,0.06); }
+  .tree-legend { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .tree-legend-item { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--az-muted); }
+  .tree-legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  #site-tree { overflow: auto; border-radius: 10px; max-height: 80vh; background: var(--az-card); border: 1px solid var(--az-border); padding: 16px 20px; }
+  .tree-root { list-style: none; padding: 0; margin: 0; }
+  .tree-root details, .tree-root li { margin: 2px 0; }
+  .tree-root summary { list-style: none; display: flex; align-items: center; gap: 8px; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 13px; user-select: none; transition: background 0.12s; position: relative; }
+  .tree-root summary::-webkit-details-marker { display: none; }
+  .tree-root summary:hover { background: rgba(255,255,255,0.04); }
+  .tree-root details > summary::before { content: '▶'; font-size: 8px; color: var(--az-muted); width: 10px; flex-shrink: 0; transition: transform 0.15s; }
+  .tree-root details[open] > summary::before { transform: rotate(90deg); }
+  .tree-root .tree-leaf { display: flex; align-items: center; gap: 8px; padding: 4px 10px 4px 28px; border-radius: 5px; font-size: 12px; color: var(--az-muted); }
+  .tree-root .tree-icon { font-size: 13px; }
+  .tree-root .tree-label { flex: 1; }
+  .tree-root .tree-count { font-size: 10px; font-family: 'DM Mono', monospace; padding: 1px 6px; border-radius: 3px; }
+  .tree-root .tree-children { list-style: none; padding: 0 0 0 22px; margin: 0; border-left: 1px solid var(--az-border); margin-left: 18px; }
+  /* depth-0 root node */
+  .tree-root > li > summary { font-size: 14px; font-weight: 600; color: var(--az-text); background: rgba(255,255,255,0.03); border: 1px solid var(--az-border); }
+  /* depth-1 section nodes */
+  .tree-sec > summary { font-weight: 600; font-size: 13px; }
+  /* depth-2+ */
+  .tree-root .tree-children summary { font-size: 12px; color: #b0b0d0; }
+  .tree-root .tree-children .tree-children summary { font-size: 11.5px; color: #8a8aaa; }
+  .tree-link { text-decoration: none; display: contents; }
+  .tree-link:hover .tree-label { text-decoration: underline; text-underline-offset: 2px; }
+  .tree-link::after { content: '↗'; font-size: 9px; opacity: 0; margin-left: 4px; transition: opacity 0.15s; vertical-align: super; }
+  .tree-leaf:hover .tree-link::after, summary:hover .tree-link::after { opacity: 0.6; }
+
+  /* ── METHODOLOGY ── */
+  .meth-pipeline { display: flex; align-items: flex-start; gap: 0; overflow-x: auto; padding: 8px 0 24px; }
+  .meth-step { flex: 1; min-width: 155px; background: var(--az-card); border: 1px solid var(--az-border); border-radius: 12px; padding: 20px 16px; display: flex; flex-direction: column; gap: 8px; position: relative; }
+  .meth-step-num { position: absolute; top: -12px; left: 16px; width: 24px; height: 24px; background: var(--az-red); color: #fff; border-radius: 50%; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .meth-step-icon { font-size: 28px; line-height: 1; }
+  .meth-step-title { font-weight: 600; font-size: 14px; color: var(--az-text); }
+  .meth-step-body { font-size: 12px; color: var(--az-muted); line-height: 1.55; }
+  .meth-step-body code { font-family: 'DM Mono', monospace; color: var(--az-accent); font-size: 11px; }
+  .meth-step-stat { margin-top: auto; padding-top: 10px; font-size: 11px; font-family: 'DM Mono', monospace; color: var(--az-green); border-top: 1px solid var(--az-border); }
+  .meth-arrow { font-size: 20px; color: var(--az-border); padding: 60px 8px 0; flex-shrink: 0; align-self: flex-start; }
+
+  /* Confidence table */
+  .conf-table-wrap { overflow-x: auto; }
+  .conf-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .conf-table th { background: var(--az-card); color: var(--az-muted); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--az-border); }
+  .conf-table td { padding: 9px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .conf-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .conf-pill { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+  .conf-high { background: rgba(0,196,140,0.15); color: var(--az-green); }
+  .conf-med  { background: rgba(255,176,32,0.15);  color: var(--az-amber); }
+  .conf-low  { background: rgba(228,0,70,0.12);    color: var(--az-red); }
+
+  /* Caveats */
+  .caveats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .caveat-card { background: var(--az-card); border: 1px solid var(--az-border); border-radius: 10px; padding: 18px; }
+  .caveat-icon { font-size: 24px; margin-bottom: 8px; }
+  .caveat-title { font-weight: 600; font-size: 13px; margin-bottom: 8px; }
+  .caveat-body { font-size: 12px; color: var(--az-muted); line-height: 1.55; }
+  .caveat-body code { font-family: 'DM Mono', monospace; color: var(--az-accent); font-size: 11px; }
+
+  /* tooltips */
+  [data-tip] { position: relative; }
+  [data-tip]:hover::after { content: attr(data-tip); position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: #2a2a45; color: var(--az-text); font-size: 11px; padding: 5px 10px; border-radius: 6px; white-space: nowrap; pointer-events: none; z-index: 200; }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--az-border); border-radius: 3px; }
+
+  @media (max-width: 1100px) {
+    .hero-grid { grid-template-columns: repeat(3, 1fr); }
+    .effort-layout { grid-template-columns: 1fr; }
+    .chart-row { grid-template-columns: 1fr; }
+    .templates-grid { grid-template-columns: repeat(2, 1fr); }
+    .blocks-grid { grid-template-columns: repeat(2, 1fr); }
+    .caveats-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">AstraZeneca</span>
+  <span class="nav-arrow">→</span>
+  <span class="nav-title">EDS Migration Sizing</span>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showView('overview')">Overview</button>
+    <button class="nav-tab" onclick="showView('tree')">Site Tree</button>
+    <button class="nav-tab" onclick="showView('methodology')">Methodology</button>
+    <button class="nav-tab" onclick="showView('templates')">Templates</button>
+    <button class="nav-tab" onclick="showView('blocks')">Block Inventory</button>
+    <button class="nav-tab" onclick="showView('effort')">Effort Sizing</button>
+    <button class="nav-tab" onclick="showView('phases')">Migration Phases</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════ OVERVIEW ══ -->
+<div id="view-overview" class="view active">
+
+  <div class="scope-banner">
+    <span class="scope-emoji">🔬</span>
+    <div class="scope-text">
+      Source: <strong>astrazeneca.com</strong> · Mirror crawled <strong>9 Apr 2026</strong> ·
+      <strong>1,162 pages</strong> across 15 top-level sections ·
+      <strong>1,083 HTML pages analyzed</strong> · full site, no sampling · 6.8% miss rate (not in mirror) ·
+      <strong>19 templates identified</strong> · <strong>26 unique UI patterns</strong> ·
+      AEM Classic CMS → AEM Edge Delivery Services (EDS)
+    </div>
+  </div>
+
+  <div class="hero-grid">
+    <div class="metric-card" style="--gradient: linear-gradient(90deg, var(--az-red), #ff4d8a)">
+      <div class="metric-label">Total Pages</div>
+      <div class="metric-value" style="color: var(--az-red)">1,162</div>
+      <div class="metric-sub">In local mirror</div>
+    </div>
+    <div class="metric-card" style="--gradient: linear-gradient(90deg, var(--az-accent), var(--az-blue))">
+      <div class="metric-label">Pages Analyzed</div>
+      <div class="metric-value" style="color: var(--az-accent)">1,083</div>
+      <div class="metric-sub">93.2% of full site</div>
+    </div>
+    <div class="metric-card" style="--gradient: linear-gradient(90deg, var(--az-blue), #00c8ff)">
+      <div class="metric-label">Templates Found</div>
+      <div class="metric-value" style="color: var(--az-blue)">19</div>
+      <div class="metric-sub">10 high confidence</div>
+    </div>
+    <div class="metric-card" style="--gradient: linear-gradient(90deg, var(--az-green), #00e8a2)">
+      <div class="metric-label">UI Patterns (26 total)</div>
+      <div style="display:flex;flex-direction:column;gap:5px;margin:6px 0 2px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:10px;font-family:'DM Mono',monospace;color:var(--az-muted);width:42px;flex-shrink:0">T3 · new</span>
+          <div style="flex:1;height:6px;background:var(--az-border);border-radius:3px;overflow:hidden"><div style="width:42%;height:100%;background:#e40046;border-radius:3px"></div></div>
+          <span style="font-size:13px;font-weight:600;color:#e40046;width:16px;text-align:right">11</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:10px;font-family:'DM Mono',monospace;color:var(--az-muted);width:42px;flex-shrink:0">T2 · var</span>
+          <div style="flex:1;height:6px;background:var(--az-border);border-radius:3px;overflow:hidden"><div style="width:38%;height:100%;background:#ffb020;border-radius:3px"></div></div>
+          <span style="font-size:13px;font-weight:600;color:#ffb020;width:16px;text-align:right">10</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:10px;font-family:'DM Mono',monospace;color:var(--az-muted);width:42px;flex-shrink:0">T1 · ok</span>
+          <div style="flex:1;height:6px;background:var(--az-border);border-radius:3px;overflow:hidden"><div style="width:19%;height:100%;background:var(--az-green);border-radius:3px"></div></div>
+          <span style="font-size:13px;font-weight:600;color:var(--az-green);width:16px;text-align:right">5</span>
+        </div>
+      </div>
+    </div>
+    <div class="metric-card" style="--gradient: linear-gradient(90deg, var(--az-pink), #ff9ec4)">
+      <div class="metric-label">Est. Total Effort</div>
+      <div class="metric-value" style="color: var(--az-pink)">107</div>
+      <div class="metric-sub">Points · ~10.7 wks (1 dev)</div>
+    </div>
+  </div>
+
+  <div class="chart-row">
+    <div class="donut-card">
+      <div class="donut-title">Pages by Section</div>
+      <div class="donut-wrap">
+        <svg width="180" height="180" viewBox="0 0 180 180" id="donut-svg">
+          <circle cx="90" cy="90" r="72" fill="none" stroke="#2a2a45" stroke-width="28"/>
+        </svg>
+        <div class="donut-center">
+          <div class="donut-center-value">1,162</div>
+          <div class="donut-center-label">pages</div>
+        </div>
+      </div>
+      <div class="donut-legend" id="donut-legend"></div>
+    </div>
+
+    <div class="section-breakdown-card" id="section-breakdown"></div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════ SITE TREE ══ -->
+<div id="view-tree" class="view">
+  <div class="section-header" style="margin-top:0">
+    <h2 class="section-title">Site Structure Tree</h2>
+    <span class="section-meta">1,162 pages across 15 top-level sections · click to expand / collapse</span>
+  </div>
+  <div class="tree-toolbar">
+    <button class="tree-btn" onclick="treeExpandAll()">Expand all</button>
+    <button class="tree-btn" onclick="treeCollapseAll()">Collapse all</button>
+  </div>
+  <div class="tree-legend" id="tree-legend"></div>
+  <div id="site-tree"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════ METHODOLOGY ══ -->
+<div id="view-methodology" class="view">
+
+  <div class="section-header" style="margin-top:0">
+    <div class="section-title">Analysis Methodology</div>
+    <span class="section-meta">Path A — local scrape-site mirror · 6 automated steps</span>
+  </div>
+
+  <div class="meth-pipeline">
+    <div class="meth-step">
+      <div class="meth-step-num">1</div>
+      <div class="meth-step-icon">🗂️</div>
+      <div class="meth-step-title">URL Extraction</div>
+      <div class="meth-step-body">Read <code>mirror-index.json</code> from the local scrape-site mirror. Extracted all <code>1,162</code> crawled URLs. No network calls — fully offline analysis.</div>
+      <div class="meth-step-stat">1,162 URLs · 0 network requests</div>
+    </div>
+    <div class="meth-arrow">→</div>
+    <div class="meth-step">
+      <div class="meth-step-num">2</div>
+      <div class="meth-step-icon">🎯</div>
+      <div class="meth-step-title">Categorisation</div>
+      <div class="meth-step-body">Grouped every URL by first path segment using <code>extract-urls.sh</code>. Produced <strong>15</strong> section buckets. Identified large (>200), mid (100–200), and small (<100) sections to set sample rates.</div>
+      <div class="meth-step-stat">15 sections identified</div>
+    </div>
+    <div class="meth-arrow">→</div>
+    <div class="meth-step">
+      <div class="meth-step-num">3</div>
+      <div class="meth-step-icon">🎲</div>
+      <div class="meth-step-title">Stratified Sampling</div>
+      <div class="meth-step-body">Tiered sampling: <strong>100%</strong> for sections &lt;100 pages · <strong>50%</strong> for 100–200 · <strong>25%</strong> for &gt;200. Ensured statistical coverage without over-fetching.</div>
+      <div class="meth-step-stat">1,162 pages · full site (no sampling)</div>
+    </div>
+    <div class="meth-arrow">→</div>
+    <div class="meth-step">
+      <div class="meth-step-num">4</div>
+      <div class="meth-step-icon">🔬</div>
+      <div class="meth-step-title">CSS Fingerprinting</div>
+      <div class="meth-step-body">Read HTML from local mirror (no live fetches). Extracted multi-word kebab-case CSS class names (<code>VALID_CLASS_RE</code>). Skipped utility prefixes <code>is-</code>, <code>has-</code>, <code>js-</code>. Found <strong>290</strong> unique class names. 1,083/1,162 pages matched in mirror (93.2%).</div>
+      <div class="meth-step-stat">1,083/1,162 pages · 290 class names</div>
+    </div>
+    <div class="meth-arrow">→</div>
+    <div class="meth-step">
+      <div class="meth-step-num">5</div>
+      <div class="meth-step-icon">📐</div>
+      <div class="meth-step-title">Template Classification</div>
+      <div class="meth-step-body">Computed class prevalence per section. Most classes are global framework utilities (<code>tablesaw-enhanced</code>, <code>modal-content</code>). Section-specific signals: <code>ol-*</code>/<code>v-*</code> (Sustainability), <code>salvatorre-layout</code> (Media), <code>custom-price</code> (IR). Classified <strong>9</strong> distinct templates.</div>
+      <div class="meth-step-stat">9 distinct templates · 11 high confidence</div>
+    </div>
+    <div class="meth-arrow">→</div>
+    <div class="meth-step">
+      <div class="meth-step-num">6</div>
+      <div class="meth-step-icon">🧠</div>
+      <div class="meth-step-title">Semantic Analysis</div>
+      <div class="meth-step-body">Read HTML of representative pages per template. Identified content sequences using neutral visual descriptions. Deduplicated across templates to find patterns. Classified into 3 tiers against existing block inventory.</div>
+      <div class="meth-step-stat">26 patterns · 11 new · 10 variants · 5 covered</div>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <div class="section-title">Confidence per Section</div>
+    <span class="section-meta">Sample coverage and analysis quality per template bucket</span>
+  </div>
+
+  <div class="conf-table-wrap">
+    <table class="conf-table">
+      <thead>
+        <tr>
+          <th>Section / Template</th>
+          <th>Total pages</th>
+          <th>Analyzed</th>
+          <th>Coverage</th>
+          <th>Success rate</th>
+          <th>Confidence</th>
+          <th>Key finding</th>
+        </tr>
+      </thead>
+      <tbody id="conf-tbody"></tbody>
+    </table>
+  </div>
+
+  <div class="section-header">
+    <div class="section-title">Known Limitations</div>
+    <span class="section-meta">What this analysis cannot tell you</span>
+  </div>
+
+  <div class="caveats-grid">
+    <div class="caveat-card">
+      <div class="caveat-icon">🚫</div>
+      <div class="caveat-title">JS-rendered content invisible</div>
+      <div class="caveat-body">The filterable listing pages (<code>az-filter-items</code>), investor stock widget (<code>custom-price</code>), and Sustainability Vue/Vuetify dashboards are client-side rendered. Their full component structure required live browser inspection beyond CSS class analysis.</div>
+    </div>
+    <div class="caveat-card">
+      <div class="caveat-icon">📁</div>
+      <div class="caveat-title">DAM assets counted as pages</div>
+      <div class="caveat-body">The <strong>content</strong> section contains 173 DAM asset URLs (<code>/content/dam/az/…</code>) — these are images/files, not HTML pages. They skew the URL total but require no migration effort beyond asset management.</div>
+    </div>
+    <div class="caveat-card">
+      <div class="caveat-icon">🌏</div>
+      <div class="caveat-title">Country sites partially sampled</div>
+      <div class="caveat-body">135 country-site pages sampled at 50%. Thailand's ~101 pages are mostly press releases matching the same template as global. Deeper country-specific editorial patterns may exist in unsampled pages.</div>
+    </div>
+    <div class="caveat-card">
+      <div class="caveat-icon">🔌</div>
+      <div class="caveat-title">Third-party integrations invisible</div>
+      <div class="caveat-body">Veeva ID footer, Adobe Analytics datalayer, OneTrust cookie banner, Brightcove video, reCAPTCHA, and the AZ stock price feed are loaded dynamically. Each is a separate integration story not reflected in the block count.</div>
+    </div>
+    <div class="caveat-card">
+      <div class="caveat-icon">🏗️</div>
+      <div class="caveat-title">CSS classes = structural signals only</div>
+      <div class="caveat-body">The source site's CSS (AEM Classic framework) uses <code>tablesaw-enhanced</code>, <code>modal-content</code>, <code>block-wrapper</code> on 85–100% of pages. These are layout utilities, not EDS block identifiers. Semantic analysis took precedence over CSS analysis for block naming.</div>
+    </div>
+    <div class="caveat-card">
+      <div class="caveat-icon">📐</div>
+      <div class="caveat-title">Block count ≠ authoring complexity</div>
+      <div class="caveat-body">11 new blocks is a component count, not a direct story-point count. The <code>header</code> mega-nav and <code>filterable-list</code> together represent more effort than 6 simpler blocks combined. Effort sizing adjusts for this — see Effort Sizing tab.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════ TEMPLATES ══ -->
+<div id="view-templates" class="view">
+
+  <div class="section-header">
+    <h2 class="section-title">19 Page Templates</h2>
+    <span class="section-meta">9 primary + 10 variants · identified via full-site CSS fingerprinting + semantic analysis · dashed border = variant of a primary template</span>
+  </div>
+
+  <div class="templates-grid" id="templates-grid"></div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════ BLOCKS ══ -->
+<div id="view-blocks" class="view">
+
+  <div class="section-header">
+    <h2 class="section-title">EDS Block Gap Analysis</h2>
+    <span class="section-meta">26 patterns · 11 new (Tier 3) · 10 variants (Tier 2) · 5 covered (Tier 1)</span>
+  </div>
+
+  <div class="blocks-grid" id="blocks-grid"></div>
+
+  <div class="section-header" style="margin-top:40px">
+    <h2 class="section-title">Block × Template Readiness Matrix</h2>
+    <span class="section-meta">Which templates are blocked on which new blocks</span>
+  </div>
+  <div style="background:var(--az-card);border:1px solid var(--az-border);border-radius:12px;overflow:hidden;">
+    <div class="matrix-wrap">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Block</th>
+            <th>Homepage</th><th>Hub Page</th><th>Article</th><th>Filtered List</th>
+            <th>Press Rel.</th><th>Investor</th><th>Sustain.</th><th>Media Lib.</th>
+            <th style="color:var(--az-accent);font-weight:600">Uses</th>
+          </tr>
+        </thead>
+        <tbody id="reuse-matrix"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════ EFFORT ══ -->
+<div id="view-effort" class="view">
+  <div class="effort-layout">
+    <div class="effort-main">
+      <div class="section-header" style="margin-top:0">
+        <h2 class="section-title">Effort Sizing by Workstream</h2>
+        <span class="section-meta">Points · 1 pt ≈ 1 day for a senior EDS developer</span>
+      </div>
+      <div class="effort-table">
+        <table>
+          <thead><tr><th>Workstream</th><th>Scope</th><th>Complexity</th><th>Est. Points</th><th>Notes</th></tr></thead>
+          <tbody id="effort-tbody"></tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="effort-sidebar">
+      <div class="summary-card">
+        <div class="summary-card-title">Effort Summary</div>
+        <div class="summary-row"><span class="summary-row-label">Tier 3 new blocks (11)</span><span class="summary-row-value">41 pts</span></div>
+        <div class="summary-row"><span class="summary-row-label">Tier 2 variant blocks (10)</span><span class="summary-row-value">10 pts</span></div>
+        <div class="summary-row"><span class="summary-row-label">Template wire-up (9 × 2)</span><span class="summary-row-value">18 pts</span></div>
+        <div class="summary-row"><span class="summary-row-label">Core scripts + global styles</span><span class="summary-row-value">8 pts</span></div>
+        <div class="summary-row"><span class="summary-row-label">Integration (stock ticker)</span><span class="summary-row-value">10 pts</span></div>
+        <div class="summary-row"><span class="summary-row-label">Content migration (~232 pp)</span><span class="summary-row-value">12 pts</span></div>
+        <div class="summary-row"><span class="summary-row-label">QA / performance validation</span><span class="summary-row-value">8 pts</span></div>
+        <div class="summary-row"><span class="summary-row-label" style="color:var(--az-text)">Total</span><span class="summary-row-value" style="color:var(--az-green)">107 pts</span></div>
+      </div>
+
+      <div class="summary-card">
+        <div class="summary-card-title">Key Risks &amp; Decisions</div>
+        <div class="risk-list">
+          <div class="risk-item"><span class="risk-icon">⚠️</span><div class="risk-text"><strong>Mega-nav underestimation</strong> — Multi-tier dropdown, search, country-switcher, sticky scroll. #1 delivery risk. Prototype first; allocate 5–8 days.</div></div>
+          <div class="risk-item"><span class="risk-icon">📈</span><div class="risk-text"><strong>Stock ticker API contract</strong> — Live IR data requires approved vendor + compliance sign-off. May block Investor Relations template.</div></div>
+          <div class="risk-item"><span class="risk-icon">🔍</span><div class="risk-text"><strong>Query-index schema undefined</strong> — filterable-list depends on EDS query-index being configured with correct columns. Must be done in Week 1.</div></div>
+          <div class="risk-item"><span class="risk-icon">🌿</span><div class="risk-text"><strong>Sustainability dashboards</strong> — Vue/Vuetify + OpenLayers rebuild in vanilla JS. Consider iframe interim while native rebuild is validated.</div></div>
+          <div class="risk-item"><span class="risk-icon">📷</span><div class="risk-text"><strong>Responsive image CLS</strong> — Dual hero images (desktop/mobile) may download both. Remove unused image from DOM in block decoration.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ PHASES ══ -->
+<div id="view-phases" class="view">
+
+  <div class="section-header" style="margin-top:0">
+    <h2 class="section-title">Recommended Migration Phasing</h2>
+    <span class="section-meta">Unblock highest-frequency templates first · ~11 weeks total (1 developer)</span>
+  </div>
+
+  <div class="phase-timeline">
+    <div class="phase-line"></div>
+
+    <div class="phase-item">
+      <div class="phase-dot" style="background:#e40046"></div>
+      <div class="phase-card">
+        <div class="phase-number">Phase 1</div>
+        <div class="phase-name">Foundation</div>
+        <div class="phase-duration">Weeks 1–3 · ~25 story points</div>
+        <div class="phase-deliverables">
+          <span class="deliverable-tag">header (mega-nav rebuild)</span>
+          <span class="deliverable-tag">footer rebuild</span>
+          <span class="deliverable-tag">hero (image-swap) variant</span>
+          <span class="deliverable-tag">outbound-modal auto-block</span>
+          <span class="deliverable-tag">Core scripts + design tokens</span>
+          <span class="deliverable-tag">query-index schema definition</span>
+        </div>
+        <div class="phase-meta">All 19 templates are blocked until header and footer are complete. Hero variant unblocks 14 of 19 templates for basic rendering. Define EDS query-index columns (title, date, tags, path) before leaving Phase 1 — required for filterable-list in Phase 2. Lighthouse 100 baseline must be established here and defended throughout.</div>
+      </div>
+    </div>
+
+    <div class="phase-item">
+      <div class="phase-dot" style="background:#ffb020"></div>
+      <div class="phase-card">
+        <div class="phase-number">Phase 2</div>
+        <div class="phase-name">Core Content Templates</div>
+        <div class="phase-duration">Weeks 3–6 · ~25 story points</div>
+        <div class="phase-deliverables">
+          <span class="deliverable-tag">image-panel block</span>
+          <span class="deliverable-tag">filterable-list block</span>
+          <span class="deliverable-tag">featured-stories block</span>
+          <span class="deliverable-tag">cards (therapy / people / events)</span>
+          <span class="deliverable-tag">Template: Homepage</span>
+          <span class="deliverable-tag">Template: Hub Page</span>
+          <span class="deliverable-tag">Template: Article Detail</span>
+          <span class="deliverable-tag">Template: Press Release</span>
+          <span class="deliverable-tag">Template: Simple Text</span>
+        </div>
+        <div class="phase-meta">image-panel unblocks the Homepage and all Hub Pages. filterable-list unblocks What Science Can Do and Media Centre — the highest-volume content templates on the site. featured-stories completes the Homepage. By end of Phase 2, 12 of 19 templates are importable.</div>
+      </div>
+    </div>
+
+    <div class="phase-item">
+      <div class="phase-dot" style="background:#4a9eff"></div>
+      <div class="phase-card">
+        <div class="phase-number">Phase 3</div>
+        <div class="phase-name">Supporting Blocks</div>
+        <div class="phase-duration">Weeks 6–8 · ~20 story points</div>
+        <div class="phase-deliverables">
+          <span class="deliverable-tag">quote (feature) variant</span>
+          <span class="deliverable-tag">tabs (jump-nav) variant</span>
+          <span class="deliverable-tag">carousel (content)</span>
+          <span class="deliverable-tag">accordion (faq)</span>
+          <span class="deliverable-tag">table (downloads)</span>
+          <span class="deliverable-tag">language-selector</span>
+          <span class="deliverable-tag">Template: Country Sites</span>
+          <span class="deliverable-tag">Template: Filtered Listing</span>
+          <span class="deliverable-tag">Template: AZ Suppliers</span>
+        </div>
+        <div class="phase-meta">Smaller, well-scoped blocks that enhance existing templates. Jump-nav and carousel are needed for Our Company and Therapy Area full fidelity. Accordion serves both AZ Suppliers and Investor Relations FAQs. Content authors can begin authoring and testing during this phase.</div>
+      </div>
+    </div>
+
+    <div class="phase-item">
+      <div class="phase-dot" style="background:#7c6bff"></div>
+      <div class="phase-card">
+        <div class="phase-number">Phase 4</div>
+        <div class="phase-name">Specialist Features</div>
+        <div class="phase-duration">Weeks 8–11 · ~28 story points</div>
+        <div class="phase-deliverables">
+          <span class="deliverable-tag">stock-ticker (pending API contract)</span>
+          <span class="deliverable-tag">media-gallery block</span>
+          <span class="deliverable-tag">data-map (Leaflet rebuild)</span>
+          <span class="deliverable-tag">data-dashboard (vanilla JS)</span>
+          <span class="deliverable-tag">Template: Investor Relations</span>
+          <span class="deliverable-tag">Template: Sustainability Dashboard</span>
+          <span class="deliverable-tag">Template: Media Library</span>
+          <span class="deliverable-tag">QA · Lighthouse 100 · WCAG AA</span>
+        </div>
+        <div class="phase-meta">Highest-complexity individual blocks, each serving only 1 template. Stock ticker is deliberately last — it depends on a vendor contract and compliance sign-off that should be initiated in Phase 1. Sustainability dashboards: consider an iframe interim if vanilla JS rebuild isn't complete before go-live date.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="background:var(--az-card);border:1px solid rgba(0,196,140,0.3);border-radius:12px;padding:24px;margin-top:8px">
+    <div style="font-size:14px;font-weight:500;margin-bottom:12px;color:var(--az-green)">✓ Key Success Factors</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px;color:var(--az-muted)">
+      <div>• <strong style="color:var(--az-text)">Content-first approach</strong> — model every template in Word/Google Docs before writing EDS code</div>
+      <div>• <strong style="color:var(--az-text)">Prototype the mega-nav first</strong> — it blocks everything; budget 5–8 days and get approval early</div>
+      <div>• <strong style="color:var(--az-text)">Define query-index schema in Week 1</strong> — filterable-list, featured-stories, and news feeds all depend on it</div>
+      <div>• <strong style="color:var(--az-text)">Lighthouse 100 baseline in Phase 1</strong> — easier to maintain than recover after regressions</div>
+      <div>• <strong style="color:var(--az-text)">Stock ticker vendor early</strong> — engage AZ IR tech team Week 1; don't let it be a Phase 4 surprise</div>
+      <div>• <strong style="color:var(--az-text)">Authoring workshop before Phase 2</strong> — AEM Classic authors need Word/Google Docs onboarding for every new block type</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── VIEW SWITCHING ──
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('view-' + id).classList.add('active');
+  event.target.classList.add('active');
+  if (id === 'blocks') renderBlocks();
+  if (id === 'effort') renderEffort();
+  if (id === 'tree') renderTree();
+  if (id === 'methodology') renderMethodology();
+  if (id === 'templates') renderTemplates();
+}
+
+// ── SECTION DATA (full site, 1162 pages) ──
+const SECTIONS = [
+  { label: 'Media Centre',          pages: 491, color: '#e40046' },
+  { label: 'Country Sites',         pages: 173, color: '#8b5cf6' },
+  { label: 'Our Therapy Areas',     pages: 135, color: '#ff8c37' },
+  { label: 'Our Company',           pages: 121, color: '#00c48c' },
+  { label: 'What Science Can Do',   pages:  51, color: '#4a9eff' },
+  { label: 'Investor Relations',    pages:  51, color: '#60a5fa' },
+  { label: 'R&D',                   pages:  48, color: '#a78bfa' },
+  { label: 'Sustainability',        pages:  34, color: '#2dd4a0' },
+  { label: 'Root Pages',            pages:  26, color: '#fb923c' },
+  { label: 'Content (DAM)',         pages:  15, color: '#84cc16' },
+  { label: 'Partnering',            pages:  14, color: '#ec4899' },
+  { label: 'Careers',               pages:  12, color: '#f59e0b' },
+  { label: 'AZ Suppliers',          pages:  11, color: '#f97316' },
+  { label: 'Global',                pages:   4, color: '#06b6d4' },
+  { label: 'Legal / Terms',         pages:   2, color: '#e879f9' },
+];
+const TOTAL_PAGES = SECTIONS.reduce((s, r) => s + r.pages, 0);
+
+// ── DONUT ──
+(function() {
+  const C = 2 * Math.PI * 72;
+  const svg = document.getElementById('donut-svg');
+  let off = 0;
+  SECTIONS.forEach(s => {
+    const pct = s.pages / TOTAL_PAGES;
+    const el = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    const dash = pct * C, gap = C - dash;
+    el.setAttribute('cx', 90); el.setAttribute('cy', 90); el.setAttribute('r', 72);
+    el.setAttribute('fill', 'none'); el.setAttribute('stroke', s.color); el.setAttribute('stroke-width', 28);
+    el.setAttribute('stroke-dasharray', `${dash} ${gap}`); el.setAttribute('stroke-dashoffset', -off);
+    el.setAttribute('title', `${s.label}: ${s.pages} pages`);
+    svg.appendChild(el);
+    off += dash;
+  });
+})();
+
+// ── POPULATE DONUT LEGEND + SECTION BREAKDOWN ──
+(function() {
+  const legend = document.getElementById('donut-legend');
+  const breakdown = document.getElementById('section-breakdown');
+  breakdown.innerHTML = '<h3>All Sections — Page Count</h3>';
+  const maxPages = SECTIONS[0].pages;
+  SECTIONS.forEach(s => {
+    const pct = (s.pages / TOTAL_PAGES * 100).toFixed(1);
+    legend.innerHTML += `<div class="legend-item"><div class="legend-dot" style="background:${s.color}"></div><div class="legend-label">${s.label}</div><div class="legend-pct">${pct}%</div></div>`;
+    const barW = Math.round(s.pages / maxPages * 100);
+    breakdown.innerHTML += `<div class="sec-row">
+      <div class="sec-dot-sm" style="background:${s.color}"></div>
+      <div class="sec-name">${s.label}</div>
+      <div class="sec-bar-wrap"><div class="sec-bar-fill" style="width:${barW}%;background:${s.color}"></div></div>
+      <div class="sec-count">${s.pages.toLocaleString()}</div>
+      <div class="sec-pct">${pct}%</div>
+    </div>`;
+  });
+})();
+
+// ── TEMPLATES DATA ──
+const TEMPLATES = [
+  { name: 'Homepage', pages: 1, pct: 'Unique', complexity: 'high', desc: 'Full-bleed hero + editorial featured stories + KPI stats strip + image panel feature bands + 4-up content cards. The only page using <code>homepage-content-set</code>. Highest density of unique components.', blocks: [['hero(image-swap)', false], ['image-panel', true], ['featured-stories', true], ['cards', false], ['quote(feature)', false]], url: 'https://www.astrazeneca.com/' },
+  { name: 'Hub Page', pages: '~200', pct: '17%', complexity: 'medium', desc: 'Rich header hero + alternating image panels + carousel + cards grids + in-page jump navigation. Covers: Our Company, R&D, Sustainability, Therapy Areas, Partnering, Careers.', blocks: [['hero(image-swap)', false], ['image-panel', true], ['tabs(jump-nav)', false], ['carousel', false], ['cards(people)', false]], url: 'https://www.astrazeneca.com/our-company.html' },
+  { name: 'Article Detail', pages: '~350', pct: '30%', complexity: 'low', desc: 'Long-form article: title, date, author, flowing body text with inline images and video embeds. Breadcrumb + related links + social sharing at bottom. Simplest template — ready as soon as header/footer exist.', blocks: [['hero(image-swap)', false], ['embed', false], ['default content', false]], url: 'https://www.astrazeneca.com/what-science-can-do/topics/next-generation-therapeutics/liquid-biopsy-ctdna.html' },
+  { name: 'Filtered Listing', pages: '~10', pct: '<1%', complexity: 'high', desc: 'Keyword search bar + tag/year filter chips + paginated results list. Powers What Science Can Do, Media Centre, Country Sites press releases. Requires EDS query-index configuration.', blocks: [['filterable-list', true], ['hero(image-swap)', false], ['form(email-signup)', false]], url: 'https://www.astrazeneca.com/what-science-can-do.html' },
+  { name: 'Press Release Detail', pages: '~100', pct: '9%', complexity: 'low', desc: 'Press release hero + rich text body + related links + social sharing. Very similar to Article Detail — shares the same block set. High-volume template that benefits from a bulk import script.', blocks: [['hero(image-swap)', false], ['default content', false]], url: 'https://www.astrazeneca.com/media-centre/press-releases.html' },
+  { name: 'Investor Relations', pages: 45, pct: '4%', complexity: 'high', desc: 'Live multi-exchange stock ticker (LSE, NASDAQ, NYSE, OMX) + upcoming events calendar + annual report PDF downloads + shareholder tools. Highest integration complexity on the site.', blocks: [['hero(image-swap)', false], ['stock-ticker', true], ['cards(events)', false], ['table(downloads)', false]], url: 'https://www.astrazeneca.com/investor-relations.html' },
+  { name: 'Sustainability Dashboard', pages: '~5', pct: '<1%', complexity: 'high', desc: 'Interactive OpenLayers map + Vue/Vuetify data table showing pharmaceutical environmental risk data across 40 substances × 122 regions. Requires full rebuild from Vue.js into vanilla JS + Leaflet.', blocks: [['data-map', true], ['data-dashboard', true], ['default content', false]], url: 'https://www.astrazeneca.com/sustainability.html' },
+  { name: 'Media Library', pages: '~3', pct: '<1%', complexity: 'medium', desc: 'Masonry image gallery ("Salvatorre" layout) with search + tag filter chips and lightbox on click. Replaces jQuery Salvatorre library with vanilla JS masonry.', blocks: [['media-gallery', true], ['default content', false]], url: 'https://www.astrazeneca.com/media-centre/image-and-broadcast-library.html' },
+  { name: 'Simple Text / Legal', pages: '~10', pct: '1%', complexity: 'low', desc: 'Rich text body with optional FAQ accordion. Simplest pages on the site — ready to import immediately after Phase 1 foundation blocks are complete.', blocks: [['accordion(faq)', false], ['default content', false]], url: 'https://www.astrazeneca.com/legal-notice-and-terms-of-use.html' },
+  { name: 'Careers Hub', pages: 12, pct: '1%', complexity: 'medium', desc: 'Variant of Hub Page with a full-bleed Slick.js values carousel (carousel-full-bleed) and inclusion/diversity editorial sections. Shares the Hub Page block set; the carousel variant is the only addition.', blocks: [['hero(image-swap)', false], ['carousel(content)', false], ['cards', false], ['tabs(jump-nav)', false]], url: 'https://www.astrazeneca.com/careers/great-place-to-work.html', variant: 'Hub Page' },
+  { name: 'Country Sites', pages: 173, pct: '15%', complexity: 'low', desc: 'Localised editorial pages (35 country microsites). Thailand alone accounts for 173 pages. Structurally identical to the standard Hub Page and Press Release Detail templates — no new blocks required, only content migration effort.', blocks: [['hero(image-swap)', false], ['default content', false], ['filterable-list', true]], url: 'https://www.astrazeneca.com/country-sites.html', variant: 'Hub Page / Press Release' },
+  { name: 'AZ Suppliers Portal', pages: 11, pct: '1%', complexity: 'low', desc: 'Coupa supplier portal landing page with a country/language selector grid (9 languages) revealing matching content sections, plus FAQ accordions and responsive tables. Low priority — single page type.', blocks: [['language-selector', true], ['accordion(faq)', false], ['default content', false]], url: 'https://www.astrazeneca.com/az-suppliers/az-coupa-supplier.html', variant: 'Simple Text / Legal' },
+  { name: 'Terms & Conditions (Tabbed)', pages: '~3', pct: '<1%', complexity: 'low', desc: 'Standard legal body text wrapped in a regional tabbed panel (North America / LATAM / EMEA / APAC). The generic-tabs component collapses to a dropdown on mobile. New in full-site analysis.', blocks: [['tabs(tab-panel)', false], ['default content', false]], url: 'https://www.astrazeneca.com/terms-and-conditions.html', variant: 'Simple Text / Legal' },
+  { name: 'Global / Website Listing', pages: 4, pct: '<1%', complexity: 'low', desc: 'Flat directory of all AstraZeneca country websites, organised by region in a tabbed panel. Shares the tabs(tab-panel) block introduced for Terms & Conditions. Low volume.', blocks: [['tabs(tab-panel)', false], ['cards', false], ['default content', false]], url: 'https://www.astrazeneca.com/global/en/AstraZeneca-Websites.html', variant: 'Simple Text / Legal' },
+  { name: 'Publications List', pages: 1, pct: '<1%', complexity: 'high', desc: 'Single-page filterable publications index powered by an AngularJS client-side filter (az-filter-items, ng-scope). In EDS, replaced by the filterable-list block reading from a query-index of publications metadata.', blocks: [['filterable-list', true], ['hero(image-swap)', false]], url: 'https://www.astrazeneca.com/publication.html', variant: 'Filtered Listing' },
+  { name: 'Root / Redirect Pages', pages: 26, pct: '2%', complexity: 'low', desc: 'Mix of root-level pages including the homepage, redirect targets, and lightweight landing pages. Most share standard Hub Page or Article Detail patterns. The homepage itself is a distinct template (see Homepage).', blocks: [['default content', false]], url: 'https://www.astrazeneca.com/', variant: 'Homepage / Hub Page' },
+  { name: '404 Error Page', pages: 1, pct: '<1%', complexity: 'low', desc: 'Standard error page with site navigation, a "Page not found" heading, and a search box or link back to the homepage. ~0.5 days — typically a single static HTML file in EDS.', blocks: [['default content', false]], url: 'https://www.astrazeneca.com/404.html', variant: 'Simple Text' },
+  { name: 'AstraZeneca Exchange', pages: 1, pct: '<1%', complexity: 'low', desc: 'Single editorial redirect/landing page using an 8-column centered layout (l-eight-block-center). Simple default content page — no unique blocks required.', blocks: [['default content', false]], url: 'https://www.astrazeneca.com/astrazeneca-exchange.html', variant: 'Simple Text' },
+  { name: 'Content / DAM Assets', pages: 15, pct: '1%', complexity: 'low', desc: 'Not HTML pages — these are DAM asset URLs (/content/dam/…). No page migration effort required; assets are managed separately and referenced from authored content via their CDN paths.', blocks: [['asset management only', false]], url: 'https://www.astrazeneca.com/', variant: 'N/A — assets only' },
+];
+
+let templatesRendered = false;
+function renderTemplates() {
+  if (templatesRendered) return;
+  templatesRendered = true;
+  const grid = document.getElementById('templates-grid');
+  grid.innerHTML = TEMPLATES.map(t => `
+    <div class="template-card${t.variant ? ' template-card-variant' : ''}">
+      <div class="template-header">
+        <div class="template-name">${t.name}</div>
+        <div style="text-align:right"><div class="template-count">${t.pages}</div><div class="template-pct">${t.pct} of site</div></div>
+      </div>
+      ${t.variant ? `<div class="template-variant-badge">Variant of: ${t.variant}</div>` : ''}
+      <span class="complexity-badge complexity-${t.complexity}">● ${t.complexity.charAt(0).toUpperCase()+t.complexity.slice(1)} complexity</span>
+      <div class="template-desc">${t.desc}</div>
+      <div class="template-blocks">${t.blocks.map(([b,isNew]) => `<span class="block-tag${isNew?' block-tag-new':''}">${b}${isNew?' ★':''}</span>`).join('')}</div>
+      <a class="example-link" href="${t.url}" target="_blank">View on astrazeneca.com ↗</a>
+    </div>`).join('');
+}
+
+// ── BLOCKS DATA ──
+const BLOCKS = [
+  // Tier 3
+  { icon: '🗺️', name: 'header', tier: 3, usage: 'All 19 templates (global)', reuse: 100, effort: 'L', pts: 5, detail: 'Full mega-nav rebuild. Multi-tier dropdown (4+ levels), full-text search with type-ahead, country/region switcher, sticky on scroll with transparent/opaque transition. The boilerplate header is a 2-level nav and must be fully replaced. Single highest-risk component in the migration.' },
+  { icon: '🦶', name: 'footer', tier: 3, usage: 'All 19 templates (global)', reuse: 100, effort: 'M', pts: 3, detail: 'Multi-column link groups, AZ logo, social icons (LinkedIn, Instagram, Facebook, Twitter, YouTube), legal text (Veeva ID, review date), country site selector, and utility links. Full rebuild of boilerplate footer.' },
+  { icon: '🔍', name: 'filterable-list', tier: 3, usage: 'Filtered Listing, country-sites, Media Centre', reuse: 40, effort: 'L', pts: 5, detail: 'Keyword search + multi-tag + year filter chips driving a date-sorted paginated results list. Uses EDS query-index API. Must be accessible: ARIA live regions required for results updates. Count of results + "Load more" pagination. Filter state in URL query params.' },
+  { icon: '🖼️', name: 'image-panel', tier: 3, usage: 'Homepage, Hub Pages (6+ templates)', reuse: 67, effort: 'M', pts: 3, detail: 'Full-width band with full-bleed background image on one half and text + CTA on the other. Left/right variants (alternating for visual rhythm). Includes CEO quote variant with blockquote and gold quote marks. object-fit: cover responsive image.' },
+  { icon: '📰', name: 'featured-stories', tier: 3, usage: 'Homepage, Our Company, R&D, WSCD', reuse: 44, effort: 'M', pts: 3, detail: '1 large featured article card (background image + title + topic tag + link) alongside a list of 2–3 smaller trending article teasers. Content pulled from EDS query-index. Featured article auto-selected by date or editorial flag.' },
+  { icon: '📈', name: 'stock-ticker', tier: 3, usage: 'Investor Relations only', reuse: 11, effort: 'L', pts: 5, detail: 'Live-updating panel showing AstraZeneca stock across LSE (GBp), NASDAQ (USD), NYSE (USD), and OMX Stockholm (SEK). Each row: exchange name, current price, % change (colour-coded), high/low, timestamp. Requires real-time market data API contract. Load in delayed.js to avoid LCP impact.' },
+  { icon: '🗺️', name: 'data-map', tier: 3, usage: 'Sustainability dashboard only', reuse: 11, effort: 'L', pts: 5, detail: 'Interactive geospatial map. Replace OpenLayers with Leaflet.js (~42kb gzipped). Layer controls, zoom, region search, data overlay with tooltips showing pharmaceutical environmental risk quotients. Data from a structured JSON dataset (40 substances × 122 regions).' },
+  { icon: '📊', name: 'data-dashboard', tier: 3, usage: 'Sustainability dashboard only', reuse: 11, effort: 'L', pts: 5, detail: 'Risk-quotient chart + sortable/filterable data table. Replace Vue.js/Vuetify v-data-table with vanilla JS + Chart.js (loaded via loadScript() in block). Full dataset is 40 substances × 122 regions. Archive dashboard is read-only — prioritize it first.' },
+  { icon: '🖼️', name: 'media-gallery', tier: 3, usage: 'Media Centre image library', reuse: 11, effort: 'M', pts: 3, detail: 'Responsive masonry image grid (replace Salvatorre jQuery plugin with CSS grid + JS resize observer). Search bar + tag filter chips. Click opens lightbox with full image + caption + download button. Lazy-loads images on scroll.' },
+  { icon: '🔗', name: 'outbound-modal', tier: 3, usage: 'All pages (auto-block)', reuse: 100, effort: 'S', pts: 2, detail: 'Auto-block added in buildAutoBlocks() in scripts.js. Intercepts clicks on external links and shows a modal: "You are now leaving AstraZeneca.com" + disclaimer + Continue/Cancel buttons. ~1 day to implement.' },
+  { icon: '🌐', name: 'language-selector', tier: 3, usage: 'AZ Suppliers only', reuse: 11, effort: 'S', pts: 2, detail: 'Grid of 9 language/flag buttons. Selecting a language reveals the corresponding content section. Used on the AZ Coupa Supplier Hub for multi-language training resources. Lowest priority — single page type.' },
+  // Tier 2
+  { icon: '🦸', name: 'hero (image-swap)', tier: 2, usage: '14 of 19 templates', reuse: 74, effort: 'S', pts: 1, detail: 'Add responsive dual-image swap (desktop/mobile) to existing hero block. Hero block exists locally. Mobile image loaded via picture/srcset; unused breakpoint image removed from DOM to avoid downloading both. Critical for preventing CLS on hero sections.' },
+  { icon: '🃏', name: 'cards (therapy)', tier: 2, usage: 'Homepage, Hub Pages, Therapy Areas', reuse: 67, effort: 'S', pts: 1, detail: 'Base cards block + 6-up therapy area layout variant. Each card: icon/image, therapy area name, short description, "Learn more" link. CSS only — no JS changes needed. New option class: cards (therapy).' },
+  { icon: '👤', name: 'cards (people)', tier: 2, usage: 'Our Company, R&D people pages', reuse: 22, effort: 'S', pts: 1, detail: 'Base cards block + headshot-first people variant. Each card: circular headshot photo, full name, job title, link to bio. CSS only. Matches author-bio block CSS pattern from source.' },
+  { icon: '📅', name: 'cards (events)', tier: 2, usage: 'Investor Relations', reuse: 11, effort: 'S', pts: 1, detail: 'Base cards block + event-calendar variant. Date displayed prominently (ISO <time> element), event name, type label, "Add to Calendar" link. JS decoration adds structured date parsing.' },
+  { icon: '🎠', name: 'carousel (content)', tier: 2, usage: 'Our Company Values, R&D', reuse: 22, effort: 'S', pts: 1, detail: 'Pull carousel block from Block Collection; apply AZ brand CSS. Previous/next arrows + dot indicators. Keyboard navigable. 1-up on mobile → 3-up on desktop. No JS changes needed beyond brand tokens.' },
+  { icon: '❓', name: 'accordion (faq)', tier: 2, usage: 'AZ Suppliers, Investor Relations FAQs', reuse: 22, effort: 'S', pts: 1, detail: 'Pull accordion block from Block Collection. CSS-only variant for numbered FAQ styling (counter-increment on items). Single-open behaviour. Works out of the box for AZ Legal/Terms 75-item accordion.' },
+  { icon: '💬', name: 'quote (feature)', tier: 2, usage: 'Homepage (CEO quote), Our Company', reuse: 22, effort: 'M', pts: 1, detail: 'Add optional full-width background image + CTA button to existing quote block. JS decoration change: if block has 3+ rows, row 1 = background image, row 2 = quote/cite, row 3 = CTA links. Gold quote marks via CSS ::before.' },
+  { icon: '📥', name: 'table (downloads)', tier: 2, usage: 'Investor Relations Annual Reports, Media Centre', reuse: 22, effort: 'S', pts: 1, detail: 'Pull table block from Block Collection. CSS variant for year-grouped rows: year as section heading + document rows with PDF badge + file size + download link. Year grouping via CSS :first-of-type on year column.' },
+  { icon: '🧭', name: 'tabs (jump-nav)', tier: 2, usage: 'Our Company, Our Therapy Areas', reuse: 22, effort: 'S', pts: 1, detail: 'Convert existing tabs block into in-page anchor navigation variant. Renders as horizontal anchor links that smooth-scroll to named sections on click. Becomes sticky on scroll (IntersectionObserver). New option class: tabs (jump-nav).' },
+  { icon: '📑', name: 'tabs (tab-panel)', tier: 2, usage: 'Terms & Conditions, Global', reuse: 8, effort: 'S', pts: 1, detail: 'Pull tabs block from Block Collection. Apply AZ brand styling. On mobile, collapses to a dropdown selector (generic-tabs__current-selection pattern). Full keyboard navigation (arrow keys switch tabs, Enter/Space activates). Used for regional legal content and country website listings.' },
+  // Tier 1
+  { icon: '📝', name: 'rich text body', tier: 1, usage: 'All article, press release, R&D, legal templates', reuse: 78, effort: '-', pts: 0, detail: 'Headings, paragraphs, inline images with captions, numbered footnotes, blockquotes — all default content in EDS. No block needed. Authors write naturally in Word/Google Docs; EDS renders semantic HTML.' },
+  { icon: '📌', name: 'section header (h2)', tier: 1, usage: 'All templates', reuse: 100, effort: '-', pts: 0, detail: 'Centered or left-aligned h2 + optional paragraph — standard default content. Styled via global CSS design tokens (font-size, color, spacing). No block needed.' },
+  { icon: '🍞', name: 'breadcrumb (auto-block)', tier: 1, usage: '17 of 19 templates (all sub-pages)', reuse: 89, effort: '-', pts: 0, detail: 'Auto-generated from URL path in buildAutoBlocks() in scripts.js. No authored content needed. "Home / Section / Sub-section / Page" trail. Truncated on mobile (last 2 segments). ~0.5 days to implement in core.' },
+  { icon: '✉️', name: 'email signup form', tier: 1, usage: 'Media Centre listing pages', reuse: 11, effort: '-', pts: 0, detail: 'Single-field email form — handled by the Block Collection form block. No custom development. Authors add the form block to listing pages with a single text field.' },
+  { icon: '📤', name: 'social sharing strip', tier: 1, usage: 'Articles, Press Releases, Our Company sub-pages', reuse: 33, effort: '-', pts: 0, detail: 'Share to LinkedIn/Twitter/Facebook/Email — rendered as a simple list of links styled with CSS icons. Default content + CSS. No block needed.' },
+];
+
+function toggleBlockExpand(name) {
+  const panel = document.getElementById('expand-' + name);
+  const btn = document.getElementById('btn-' + name);
+  const isOpen = panel.classList.toggle('open');
+  btn.setAttribute('aria-expanded', String(isOpen));
+}
+
+let blocksRendered = false;
+function renderBlocks() {
+  if (blocksRendered) return;
+  blocksRendered = true;
+  const grid = document.getElementById('blocks-grid');
+  const tierColors = { 3: { fill: 'var(--az-red)', bar: '#e40046', badgeClass: 'tier3-badge', label: 'Tier 3 — New' }, 2: { fill: 'var(--az-amber)', bar: '#ffb020', badgeClass: 'tier2-badge', label: 'Tier 2 — Variant' }, 1: { fill: 'var(--az-green)', bar: '#00c48c', badgeClass: 'tier1-badge', label: 'Tier 1 — Covered' } };
+  BLOCKS.forEach(b => {
+    const tc = tierColors[b.tier];
+    const card = document.createElement('div');
+    card.className = 'block-card';
+    const effortMap = { L: ['effort-l', 'rgba(228,0,70,0.12)', '#e40046'], M: ['effort-m', 'rgba(255,176,32,0.12)', '#ffb020'], S: ['effort-s', 'rgba(0,196,140,0.12)', '#00c48c'], '-': [null, null, null] };
+    const [eCls, eBg, eTxt] = effortMap[b.effort];
+    card.innerHTML = `
+      <div class="block-card-body">
+        <div class="block-icon">${b.icon}</div>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <div class="block-name">${b.name}</div>
+          ${eBg ? `<span class="effort-pill" style="background:${eBg};color:${eTxt}">${b.effort} · ${b.pts}pt${b.pts!==1?'s':''}</span>` : ''}
+        </div>
+        <span class="block-tier-badge ${tc.badgeClass}">${tc.label}</span>
+        <div class="block-usage">${b.usage}</div>
+        <div class="reuse-bar"><div class="reuse-fill" style="width:${b.reuse}%;background:${tc.bar}"></div></div>
+        <div class="reuse-label">${b.reuse}% template coverage</div>
+      </div>
+      <button class="block-expand-btn" id="btn-${b.name.replace(/\s/g,'-')}" aria-expanded="false" aria-controls="expand-${b.name.replace(/\s/g,'-')}" onclick="toggleBlockExpand('${b.name.replace(/\s/g,'-')}')">
+        <span>Details</span><span class="btn-arrow">▾</span>
+      </button>
+      <div class="block-expand-panel" id="expand-${b.name.replace(/\s/g,'-')}" role="region">
+        <div class="block-expand-inner">
+          <div class="block-expand-inner-content">${b.detail}</div>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+
+  // Reuse matrix
+  const matrixRows = [
+    ['header',          [1,1,1,1,1,1,1,1,1]],
+    ['filterable-list', [0,0,0,1,0,0,0,0,0]],
+    ['image-panel',     [1,1,0,0,0,0,0,0,0]],
+    ['featured-stories',[1,1,0,1,0,0,0,0,0]],
+    ['stock-ticker',    [0,0,0,0,0,1,0,0,0]],
+    ['data-map',        [0,0,0,0,0,0,1,0,0]],
+    ['data-dashboard',  [0,0,0,0,0,0,1,0,0]],
+    ['media-gallery',   [0,0,0,0,0,0,0,1,0]],
+    ['hero(image-swap)',[1,1,1,1,1,1,1,1,1]],
+    ['cards variants',  [1,1,0,0,0,1,0,0,0]],
+    ['carousel',        [0,1,0,0,0,0,0,0,0]],
+    ['accordion(faq)',  [0,1,0,0,0,1,0,0,1]],
+    ['quote(feature)',  [1,1,0,0,0,0,0,0,0]],
+    ['tabs(jump-nav)',  [0,1,0,0,0,0,0,0,0]],
+    ['table(downloads)',[0,0,0,0,0,1,0,0,0]],
+  ];
+  const tbody = document.getElementById('reuse-matrix');
+  matrixRows.forEach(([name, cells]) => {
+    const uses = cells.filter(Boolean).length;
+    tbody.innerHTML += `<tr>
+      <td>${name}</td>
+      ${cells.map(c => `<td>${c ? '<span style="color:#00c48c;font-size:14px">●</span>' : '<span style="color:#2a2a45;font-size:14px">○</span>'}</td>`).join('')}
+      <td style="font-family:\'DM Mono\',monospace;font-size:12px;color:var(--az-accent)">${uses}</td>
+    </tr>`;
+  });
+}
+
+// ── EFFORT DATA ──
+const EFFORT_ROWS = [
+  ['Mega-nav + Footer Rebuild', 'header + footer (Tier 3)', 'high', '8 pts', 'Full header replacement (multi-tier dropdown, search, country-switcher, sticky) + footer rebuild. Blocks ALL templates until done. Header alone is 5 pts — highest single-item effort.'],
+  ['filterable-list block', 'Search + filters + EDS query-index pagination', 'high', '5 pts', 'Keyword search + multi-tag + year filters driving a date-sorted list. ARIA live regions for accessibility. Filter state in URL params. Needs query-index schema defined in Week 1.'],
+  ['image-panel block', 'Full-bleed split band: image + text/CTA', 'medium', '3 pts', 'Left/right variants, CEO quote variant. CSS background-image with object-fit. Unblocks Homepage and all Hub pages.'],
+  ['featured-stories block', '1 featured + 2–3 trending teasers', 'medium', '3 pts', 'Reads from EDS query-index. Featured article + trending list. Editorial section unique to Homepage, Our Company, R&D, WSCD.'],
+  ['stock-ticker block', 'Live LSE/NASDAQ/NYSE/OMX prices', 'high', '5 pts', 'Real-time market data integration. Requires vendor API contract. Load in delayed.js. Include share calculator tool. Placeholder static data during development.'],
+  ['data-map block', 'Interactive Leaflet map (Sustainability)', 'high', '5 pts', 'Replace OpenLayers with Leaflet.js. Layer controls, data overlay, region search. JSON dataset: 40 substances × 122 regions.'],
+  ['data-dashboard block', 'Vanilla JS data table + chart (Sustainability)', 'high', '5 pts', 'Replace Vue/Vuetify with vanilla JS + Chart.js. Sortable/filterable table + risk-quotient chart. Prioritize archive (read-only) first.'],
+  ['media-gallery block', 'Masonry image grid + lightbox', 'medium', '3 pts', 'CSS masonry + ResizeObserver. Search + tag filters. Click lightbox with download. Replace Salvatorre jQuery plugin.'],
+  ['outbound-modal + language-selector', '2 simple Tier 3 blocks', 'low', '4 pts', 'outbound-modal: auto-block in buildAutoBlocks() — ~1 day. language-selector: flag grid + content reveal — ~1 day. AZ Suppliers only.'],
+  ['Tier 2 Variant Blocks', '10 variants of existing blocks', 'low', '10 pts', 'hero(image-swap), cards(therapy/people/events), carousel, accordion(faq), quote(feature), table(downloads), tabs(jump-nav), tabs(tab-panel). 1 pt each. Mostly CSS-only.'],
+  ['Template Wire-up', '9 core templates × 2 pts', 'medium', '18 pts', 'Author sample content, configure block combinations, verify rendering, validate against source design for the 9 primary templates (utility pages like 404, legal, global share the same basic patterns).'],
+  ['Core Scripts + Global Styles', 'scripts.js, styles.css, lazy-styles.css, fonts.css', 'medium', '8 pts', 'Design tokens (colors, typography, spacing), font fallback setup, global responsive grid, breadcrumb auto-block, delayed.js integrations.'],
+  ['Integration — stock ticker API', 'Market data vendor + compliance', 'high', '10 pts', 'Vendor selection, API contract, compliance review of real-time pricing display. Treat as a separate workstream starting Week 1.'],
+  ['Content migration (assisted)', '~232 pages · 20% of 1,162', 'medium', '12 pts', 'Help AZ authors migrate key templates. Import scripts for high-volume repeating pages (press releases, people profiles). Manual author for hub/specialty pages.'],
+  ['QA + Performance Validation', 'Lighthouse 100, WCAG AA, cross-browser', 'medium', '8 pts', 'Lighthouse CWV scores across all 19 templates. WCAG 2.2 AA audit (keyboard, ARIA, contrast). Performance budget: <100kb eager payload. CLS < 0.1 on all templates.'],
+];
+
+let effortRendered = false;
+function renderEffort() {
+  if (effortRendered) return;
+  effortRendered = true;
+  const tbody = document.getElementById('effort-tbody');
+  EFFORT_ROWS.forEach(([ws, scope, comp, pts, notes]) => {
+    const colors = { high: ['rgba(228,0,70,0.12)', '#e40046'], medium: ['rgba(255,176,32,0.12)', '#ffb020'], low: ['rgba(0,196,140,0.12)', '#00c48c'] };
+    const [bg, txt] = colors[comp];
+    tbody.innerHTML += `<tr>
+      <td><strong>${ws}</strong></td>
+      <td style="color:var(--az-muted)">${scope}</td>
+      <td><span class="effort-pill" style="background:${bg};color:${txt}">${comp}</span></td>
+      <td><strong style="font-family:'DM Mono',monospace;color:var(--az-accent)">${pts}</strong></td>
+      <td style="color:var(--az-muted);font-size:12px">${notes}</td>
+    </tr>`;
+  });
+}
+
+// ── METHODOLOGY CONFIDENCE DATA ──
+const CONF_DATA = [
+  { section: 'media-centre', total: 491, sampled: 491, ok: 463, conf: 'high', finding: 'Uniform signature across all subfolders (press-releases, articles). Differentiators: salvatorre-layout/media-library (image library), slider-grid (gallery). One base template + 2 specialty sub-templates.' },
+  { section: 'our-therapy-areas', total: 135, sampled: 135, ok: 135, conf: 'high', finding: 'image-replace (100%). Therapy area hubs + detail pages both use Hub Page template with jump-nav and cards(therapy) variants.' },
+  { section: 'our-company', total: 121, sampled: 121, ok: 121, conf: 'high', finding: 'social-title (42 pages) = people profiles with LinkedIn. Hub page + people profiles + leadership are distinct sub-types of the Hub Page template.' },
+  { section: 'country-sites', total: 173, sampled: 173, ok: 173, conf: 'high', finding: 'Same base signature as global press-releases. Hub pages follow Hub Page template. No new template required; reuse existing press-release + hub templates.' },
+  { section: 'what-science-can-do', total: 51, sampled: 51, ok: 51, conf: 'high', finding: 'image-replace(100%) distinguishes from other sections. Listing page: az-filter-items (JS-rendered). Detail page: rich article body. Two sub-templates: listing + article-detail.' },
+  { section: 'investor-relations', total: 51, sampled: 51, ok: 51, conf: 'high', finding: 'custom-price + custom-p (stock widget on 2 pages), iframe-wrapper (embeds), rich-text. Dedicated Investor Relations template with stock-ticker blocker.' },
+  { section: 'r-d', total: 48, sampled: 48, ok: 48, conf: 'high', finding: 'image-replace (97%) distinguishes from other sections. Deep content pages share Hub Page template. No unique template needed.' },
+  { section: 'sustainability', total: 34, sampled: 34, ok: 34, conf: 'high', finding: 'ol-zoom, ol-viewport, v-btn, v-data-table (OpenLayers + Vuetify) on 2 pages = Sustainability Dashboard template. Other pages follow Hub Page template.' },
+  { section: 'partnering', total: 14, sampled: 14, ok: 14, conf: 'high', finding: 'modal-window (100%), image-panel-feature variants. Hub Page template with image-panel + accordion + partners list.' },
+  { section: 'careers', total: 12, sampled: 12, ok: 12, conf: 'high', finding: 'Hub Page template with values carousel (slick.js) and inclusion/diversity content sections. carousel(content) Tier 2 variant applies.' },
+  { section: 'az-suppliers', total: 11, sampled: 11, ok: 11, conf: 'med', finding: 'tablesaw-enhanced (responsive tables), country-list (2 pages), language selector. Simple Text / Legal + language-selector block. Coupa portal may need external iframe.' },
+  { section: 'content (DAM assets)', total: 15, sampled: 15, ok: 0, conf: 'low', finding: 'These are DAM image/file URLs, not HTML pages. No migration effort required — asset management only.' },
+  { section: 'global', total: 4, sampled: 4, ok: 4, conf: 'med', finding: 'generic-tabs (regional tabs panel). Sitemap and global navigation pages — tabs(tab-panel) Tier 2 variant. Low volume.' },
+  { section: 'legal-notice-and-terms-of-use', total: 2, sampled: 2, ok: 2, conf: 'low', finding: 'l-six-block-center — rich text layout only. Simple Text / Legal template with accordion(faq).' },
+  { section: 'terms-and-conditions', total: 1, sampled: 1, ok: 1, conf: 'low', finding: 'generic-tabs (North America / LATAM / EMEA panels). tabs(tab-panel) Tier 2 variant.' },
+  { section: 'root', total: 26, sampled: 26, ok: 26, conf: 'high', finding: 'Homepage (unique), homepage-hero, homepage-content-set. Remaining root pages are simple rich-text or redirect targets.' },
+  { section: 'publication', total: 1, sampled: 1, ok: 1, conf: 'low', finding: 'az-filter-items with ng-scope. filterable-list (Tier 3) applies. Low-volume standalone page.' },
+  { section: 'astrazeneca-exchange', total: 1, sampled: 1, ok: 1, conf: 'low', finding: 'l-eight-block-center — simple editorial layout. Default content. Low effort.' },
+  { section: '404', total: 2, sampled: 2, ok: 2, conf: 'low', finding: 'Error page. Default content with nav/footer. ~0.5 days.' },
+];
+
+let methRendered = false;
+function renderMethodology() {
+  if (methRendered) return;
+  methRendered = true;
+  const tbody = document.getElementById('conf-tbody');
+  CONF_DATA.forEach(r => {
+    const pct = r.total > 0 ? Math.round(r.sampled / r.total * 100) : 100;
+    const bar = r.ok === 0 ? 0 : Math.round(r.ok / r.sampled * 100);
+    const confMap = { high: ['conf-high', 'High'], med: ['conf-med', 'Medium'], low: ['conf-low', 'Low'] };
+    const [cls, label] = confMap[r.conf];
+    tbody.innerHTML += `<tr>
+      <td><strong>${r.section}</strong></td>
+      <td style="font-family:'DM Mono',monospace;color:var(--az-muted)">${r.total.toLocaleString()}</td>
+      <td style="font-family:'DM Mono',monospace;color:var(--az-accent)">${r.sampled}</td>
+      <td>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:60px;height:6px;background:var(--az-border);border-radius:3px;overflow:hidden">
+            <div style="width:${pct}%;height:100%;background:var(--az-accent);border-radius:3px"></div>
+          </div>
+          <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--az-accent)">${pct}%</span>
+        </div>
+      </td>
+      <td style="font-family:'DM Mono',monospace;color:${bar>=90?'var(--az-green)':bar>0?'var(--az-amber)':'var(--az-muted)'}">${r.ok}/${r.sampled}</td>
+      <td><span class="conf-pill ${cls}">${label}</span></td>
+      <td style="font-size:12px;color:var(--az-muted);max-width:300px">${r.finding}</td>
+    </tr>`;
+  });
+}
+
+// ── SITE TREE ──
+const SEC_COLORS = {
+  'media-centre': '#e40046', 'what-science-can-do': '#4a9eff', 'our-company': '#00c48c',
+  'r-d': '#a78bfa', 'our-therapy-areas': '#ff8c37', 'sustainability': '#2dd4a0',
+  'investor-relations': '#60a5fa', 'careers': '#f59e0b', 'partnering': '#ec4899',
+  'country-sites': '#8b5cf6', 'az-suppliers': '#f97316', 'global': '#06b6d4',
+  'content': '#84cc16', 'root': '#fb923c', 'legal-notice-and-terms-of-use': '#e879f9',
+};
+const SEC_LABELS = {
+  'media-centre': 'Media Centre', 'what-science-can-do': 'What Science Can Do',
+  'our-company': 'Our Company', 'r-d': 'R&D', 'our-therapy-areas': 'Our Therapy Areas',
+  'sustainability': 'Sustainability', 'investor-relations': 'Investor Relations',
+  'careers': 'Careers', 'partnering': 'Partnering', 'country-sites': 'Country Sites',
+  'az-suppliers': 'AZ Suppliers', 'global': 'Global', 'content': 'Content (DAM)',
+  'root': 'Root Pages', 'legal-notice-and-terms-of-use': 'Legal / Terms',
+};
+const TREE_DATA = {
+  label: 'astrazeneca.com', slug: '', icon: '🌐', count: 1162, url: 'https://www.astrazeneca.com/',
+  children: [
+    { label: 'Media Centre', slug: 'media-centre', icon: '📰', count: 491, url: 'https://www.astrazeneca.com/media-centre.html', children: [
+      { label: 'Press Releases', slug: 'media-centre', icon: '📄', url: 'https://www.astrazeneca.com/media-centre/press-releases.html', children: [
+        { label: '2026', slug: 'media-centre', icon: '📁', url: 'https://www.astrazeneca.com/media-centre/press-releases/2026.html' },
+        { label: '2025', slug: 'media-centre', icon: '📁', url: 'https://www.astrazeneca.com/media-centre/press-releases/2025.html' },
+        { label: '2024', slug: 'media-centre', icon: '📁', url: 'https://www.astrazeneca.com/media-centre/press-releases/2024.html' },
+        { label: '2023', slug: 'media-centre', icon: '📁', url: 'https://www.astrazeneca.com/media-centre/press-releases/2023.html' },
+        { label: '2022 & older', slug: 'media-centre', icon: '📁', url: 'https://www.astrazeneca.com/media-centre/press-releases/2022.html' },
+      ]},
+      { label: 'Articles', slug: 'media-centre', icon: '✍️', url: 'https://www.astrazeneca.com/media-centre/articles.html' },
+      { label: 'Image Library', slug: 'media-centre', icon: '🖼️', url: 'https://www.astrazeneca.com/media-centre/image-and-broadcast-library.html' },
+      { label: 'Archive', slug: 'media-centre', icon: '📦', url: 'https://www.astrazeneca.com/media-centre/archive.html' },
+    ]},
+    { label: 'Country Sites', slug: 'country-sites', icon: '🌍', count: 173, url: 'https://www.astrazeneca.com/country-sites.html', children: [
+      { label: 'Thailand', slug: 'country-sites', icon: '🇹🇭', count: 173, url: 'https://www.astrazeneca.com/country-sites/thailand.html' },
+      { label: 'Singapore', slug: 'country-sites', icon: '🇸🇬', url: 'https://www.astrazeneca.com/country-sites/singapore.html' },
+      { label: '33 Other Countries', slug: 'country-sites', icon: '🗺️', url: 'https://www.astrazeneca.com/country-sites.html' },
+    ]},
+    { label: 'Our Therapy Areas', slug: 'our-therapy-areas', icon: '💊', count: 135, url: 'https://www.astrazeneca.com/our-therapy-areas.html', children: [
+      { label: 'Oncology', slug: 'our-therapy-areas', icon: '🔴', url: 'https://www.astrazeneca.com/our-therapy-areas/oncology.html' },
+      { label: 'CVRM', slug: 'our-therapy-areas', icon: '❤️', url: 'https://www.astrazeneca.com/our-therapy-areas/cardiovascular-renal-and-metabolism.html' },
+      { label: 'Respiratory', slug: 'our-therapy-areas', icon: '🫁', url: 'https://www.astrazeneca.com/our-therapy-areas/respiratory-and-immunology.html' },
+      { label: 'Rare Disease', slug: 'our-therapy-areas', icon: '🦋', url: 'https://www.astrazeneca.com/our-therapy-areas/rare-disease.html' },
+    ]},
+    { label: 'Our Company', slug: 'our-company', icon: '🏢', count: 121, url: 'https://www.astrazeneca.com/our-company.html', children: [
+      { label: 'Our People', slug: 'our-company', icon: '👥', url: 'https://www.astrazeneca.com/our-company/our-people.html' },
+      { label: 'Leadership', slug: 'our-company', icon: '⭐', url: 'https://www.astrazeneca.com/our-company/our-leadership.html' },
+      { label: 'History', slug: 'our-company', icon: '📜', url: 'https://www.astrazeneca.com/our-company/our-history.html' },
+      { label: 'Locations', slug: 'our-company', icon: '📍', url: 'https://www.astrazeneca.com/our-company/our-locations.html' },
+    ]},
+    { label: 'What Science Can Do', slug: 'what-science-can-do', icon: '🧬', count: 51, url: 'https://www.astrazeneca.com/what-science-can-do.html', children: [
+      { label: 'Topics', slug: 'what-science-can-do', icon: '🏷️', url: 'https://www.astrazeneca.com/what-science-can-do/science-features.html', children: [
+        { label: 'Next Gen Therapeutics', slug: 'what-science-can-do', icon: '🔬', url: 'https://www.astrazeneca.com/what-science-can-do/next-generation-therapeutics.html' },
+        { label: 'Disease Understanding', slug: 'what-science-can-do', icon: '🩺', url: 'https://www.astrazeneca.com/what-science-can-do/disease-understanding.html' },
+        { label: 'Clinical Innovation', slug: 'what-science-can-do', icon: '💡', url: 'https://www.astrazeneca.com/what-science-can-do/clinical-innovation.html' },
+        { label: 'Data Science & AI', slug: 'what-science-can-do', icon: '🤖', url: 'https://www.astrazeneca.com/what-science-can-do/data-science-and-artificial-intelligence.html' },
+      ]},
+    ]},
+    { label: 'Investor Relations', slug: 'investor-relations', icon: '📈', count: 51, url: 'https://www.astrazeneca.com/investor-relations.html', children: [
+      { label: 'Annual Reports', slug: 'investor-relations', icon: '📊', url: 'https://www.astrazeneca.com/investor-relations/annual-reports.html' },
+      { label: 'Results & Presentations', slug: 'investor-relations', icon: '📋', url: 'https://www.astrazeneca.com/investor-relations/results-and-presentations.html' },
+      { label: 'Shareholder Info', slug: 'investor-relations', icon: '💼', url: 'https://www.astrazeneca.com/investor-relations/shareholder-information.html' },
+    ]},
+    { label: 'R&D', slug: 'r-d', icon: '🔬', count: 48, url: 'https://www.astrazeneca.com/r-d.html', children: [
+      { label: 'Next Gen Therapeutics', slug: 'r-d', icon: '💊', url: 'https://www.astrazeneca.com/r-d/next-generation-therapeutics.html' },
+      { label: 'Our Approach', slug: 'r-d', icon: '🧪', url: 'https://www.astrazeneca.com/r-d/our-approach-to-rd.html' },
+      { label: 'R&D Centres', slug: 'r-d', icon: '🏗️', url: 'https://www.astrazeneca.com/r-d/our-research-and-development-centres.html' },
+    ]},
+    { label: 'Sustainability', slug: 'sustainability', icon: '🌱', count: 34, url: 'https://www.astrazeneca.com/sustainability.html', children: [
+      { label: 'Climate & Nature', slug: 'sustainability', icon: '🌿', url: 'https://www.astrazeneca.com/sustainability/environment-and-climate.html' },
+      { label: 'Health Equity', slug: 'sustainability', icon: '⚖️', url: 'https://www.astrazeneca.com/sustainability/access-to-healthcare.html' },
+      { label: 'Data Dashboards', slug: 'sustainability', icon: '📊', url: 'https://www.astrazeneca.com/sustainability/our-approach/data-and-reporting.html' },
+    ]},
+    { label: 'Partnering', slug: 'partnering', icon: '🤝', count: 14, url: 'https://www.astrazeneca.com/partnering.html' },
+    { label: 'Careers', slug: 'careers', icon: '👔', count: 12, url: 'https://www.astrazeneca.com/careers.html' },
+    { label: 'AZ Suppliers', slug: 'az-suppliers', icon: '🚚', count: 11, url: 'https://www.astrazeneca.com/az-suppliers.html' },
+    { label: 'Global', slug: 'global', icon: '🌐', count: 4, url: 'https://www.astrazeneca.com/global/en/AstraZeneca-Websites.html' },
+    { label: 'Legal / Terms', slug: 'legal-notice-and-terms-of-use', icon: '⚖️', count: 2, url: 'https://www.astrazeneca.com/legal-notice-and-terms-of-use.html' },
+    { label: 'Content (DAM)', slug: 'content', icon: '📦', count: 15, url: 'https://www.astrazeneca.com/content/dam/' },
+  ]
+};
+
+let treeRendered = false;
+function renderTree() {
+  if (treeRendered) return;
+  treeRendered = true;
+  const legend = document.getElementById('tree-legend');
+  Object.entries(SEC_COLORS).forEach(([slug, color]) => {
+    legend.innerHTML += `<span class="tree-legend-item"><span class="tree-legend-dot" style="background:${color}"></span>${SEC_LABELS[slug] || slug}</span>`;
+  });
+  const container = document.getElementById('site-tree');
+  container.innerHTML = buildTreeHTML(TREE_DATA, 0, null);
+}
+
+function buildTreeHTML(node, depth, secSlug) {
+  const slug = node.slug || secSlug;
+  const color = SEC_COLORS[slug] || '#4a9eff';
+  const countBadge = node.count ? `<span class="tree-count" style="background:${color}18;color:${color}">${node.count} pp</span>` : '';
+
+  const linkOpen = node.url ? `<a href="${node.url}" target="_blank" rel="noopener" class="tree-link" style="color:${color}" title="Open ${node.label} on astrazeneca.com">` : '';
+  const linkClose = node.url ? '</a>' : '';
+  const labelHTML = `${linkOpen}<span class="tree-icon">${node.icon}</span><span class="tree-label">${node.label}</span>${linkClose}${countBadge}`;
+
+  if (!node.children || node.children.length === 0) {
+    if (depth === 0) return `<ul class="tree-root"><li>${buildTreeHTML({...node, children: []}, 0, slug)}</li></ul>`;
+    return `<li class="tree-leaf">${labelHTML}</li>`;
+  }
+
+  const childrenHTML = node.children.map(c => buildTreeHTML(c, depth + 1, slug)).join('');
+  const colorStyle = depth === 1 ? `style="color:${color};border-left:3px solid ${color};padding-left:9px;"` : '';
+
+  if (depth === 0) {
+    return `<ul class="tree-root"><li><details open><summary ${colorStyle}>${labelHTML}</summary><ul class="tree-children">${childrenHTML}</ul></details></li></ul>`;
+  }
+  return `<li class="tree-sec"><details><summary ${colorStyle}>${labelHTML}</summary><ul class="tree-children">${childrenHTML}</ul></details></li>`;
+}
+
+function treeExpandAll() {
+  document.querySelectorAll('#site-tree details').forEach(d => d.open = true);
+}
+function treeCollapseAll() {
+  document.querySelectorAll('#site-tree details').forEach((d, i) => { if (i > 0) d.open = false; });
+}
+
+// Init on load
+renderTemplates();
+renderMethodology();
+</script>
+</body>
+</html>

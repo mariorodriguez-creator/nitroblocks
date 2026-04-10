@@ -1,0 +1,4186 @@
+{
+  "summary": {
+    "total_urls_sampled": 579,
+    "total_pages_ok": 579,
+    "sections": 15,
+    "templates_identified": 15,
+    "blocks_identified": 288,
+    "high_confidence_templates": 11,
+    "med_confidence_templates": 3,
+    "low_confidence_templates": 1
+  },
+  "templates": [
+    {
+      "section": "az-suppliers",
+      "total_sampled": 5,
+      "ok": 5,
+      "failed": 0,
+      "confidence": "med",
+      "signature": "tablesaw-enhanced (100%), modal-content (100%), archive-link-popup (100%), object-fit (100%), pt-column-control-inverted (100%), block-wrapper (100%)",
+      "top_classes": [
+        {
+          "class": "tablesaw-enhanced",
+          "prevalence": 1.0
+        },
+        {
+          "class": "modal-content",
+          "prevalence": 1.0
+        },
+        {
+          "class": "archive-link-popup",
+          "prevalence": 1.0
+        },
+        {
+          "class": "object-fit",
+          "prevalence": 1.0
+        },
+        {
+          "class": "pt-column-control-inverted",
+          "prevalence": 1.0
+        },
+        {
+          "class": "block-wrapper",
+          "prevalence": 1.0
+        }
+      ],
+      "representative_url": "https://www.astrazeneca.com/az-suppliers/az-coupa-supplier.html"
+    },
+    {
+      "section": "careers",
+      "total_sampled": 6,
+      "ok": 6,
+      "failed": 0,
+      "confidence": "med",
+      "signature": "tablesaw-enhanced (100%), modal-content (100%), archive-link-popup (100%), object-fit (100%), pt-column-control-inverted (100%), block-wrapper (100%)",
+      "top_classes": [
+        {
+          "class": "tablesaw-enhanced",
+          "prevalence": 1.0
+        },
+        {
+          "class": "modal-content",
+          "prevalence": 1.0
+        },
+        {
+          "class": "archive-link-popup",
+          "prevalence": 1.0
+        },
+        {
+          "class": "object-fit",
+          "prevalence": 1.0
+        },
+        {
+          "class": "pt-column-control-inverted",
+          "prevalence": 1.0
+        },
+        {
+          "class": "block-wrapper",
+          "prevalence": 1.0
+        }
+      ],
+      "representative_url": "https://www.astrazeneca.com/careers/great-place-to-work/unlocking-innovation-through-lifelong-learning.html#modal-historic-confirmation"
+    },
+    {
+      "section": "content",
+      "total_sampled": 86,
+      "ok": 86,
+      "failed": 0,
+      "confidence": "high",
+      "signature": "NOT_IN_MIRROR (42%)",
+      "top_classes": [
+        {
+          "class": "NOT_IN_MIRROR",
+          "prevalence": 0.42
+        }
+      ],
+      "representative_url": "https://www.astrazeneca.com/content/dam/az/Image%20Bank/Locations/Shanghai-Zhangjiang.jpg/jcr:content/renditions/cq5dam.web.320.Shanghai-Zhangjiang.jpg"
+    },
+    {
+      "section": "country-sites",
+      "total_sampled": 68,
+      "ok": 68,
+      "failed": 0,
+      "confidence": "high",
+      "signature": "tablesaw-enhanced (100%), modal-content (100%), archive-link-popup (100%), object-fit (100%), pt-column-control-inverted (100%), block-wrapper (100%)",
+      "top_classes": [
+        {
+          "class": "tablesaw-enhanced",
+          "prevalence": 1.0
+        },
+        {
+          "class": "modal-content",
+          "prevalence": 1.0
+        },
+        {
+          "class": "archive-link-popup",
+          "prevalence": 1.0
+        },
+        {
+          "class": "object-fit",
+          "prevalence": 1.0
+        },
+        {
+          "class": "pt-column-control-inverted",
+          "prevalence": 1.0
+        },
+        {
+          "class": "block-wrapper",
+          "prevalence": 1.0
+        }
+      ],
+      "representative_url": "https://www.astrazeneca.com/country-sites/singapore/press-releases/singhealth-polyclinics-launches-primary-care-research-institute.html#modal-historic-confirmation"
+    },
+    {
+      "section": "global",
+      "total_sampled": 3,
+      "ok": 3,
+      "failed": 0,
+      "confidence": "med",
+      "signature": "tablesaw-enhanced (100%), modal-content (100%), archive-link-popup (100%), object-fit (100%), pt-column-control-inverted (100%), l-three-block (100%)",
+      "top_classes": [
+        {
+          "class": "tablesaw-enhanced",
+          "prevalence": 1.0
+        },
+        {
+          "class": "modal-content",
+          "prevalence": 1.0
+        },
+        {
+          "class": "archive-link-popup",
+          "prevalence": 1.0
+        },
+        {
+          "class": "object-fit",
+          "prevalence": 1.0
+        },
+        {
+          "class": "pt-column-control-inverted",
+          "prevalence": 1.0
+        },
+        {
+          "class": "l-three-block",
+          "prevalence": 1.0
+        }
+      ],
+      "representative_url": "https://www.astrazeneca.com/global/en/sitemap.html"
+    },
+    {
+      "section": "investor-relations",
+      "total_sampled": 45,
+      "ok": 45,
+      "failed": 0,
+      "confidence": "high",
+      "signature": "object-fit (100%), pt-column-control-inverted (100%), tablesaw-enhanced (100%), rich-text (100%), footer-component (100%), block-wrapper (100%)",
+      "top_classes": [
+        {
+          "class": "object-fit",
+          "prevalence": 1.0
+        },
+        {
+          "class": "pt-column-control-inverted",
+          "prevalence": 1.0
+        },
+        {
+          "class": "tablesaw-enhanced",
+          "prevalence": 1.0
+        },
+        {
+          "class": "rich-text",
+          "prevalence": 1.0
+        },
+        {
+          "class": "footer-component",
+          "prevalence": 1.0
+        },
+        {
+          "class": "block-wrapper",
+          "prevalence": 1.0
+        }
+      ],
+      "representative_url": "https://www.astrazeneca.com/investor-relations/stock-exchange-announcements.html"
+    },
+    {
+      "section": "legal-notice-and-terms-of-use",
+      "total_sampled": 1,
+      "ok": 1,
+      "failed": 0,
+      "confidence": "low",
+      "signature": "tablesaw-enhanced (100%), l-six-block-center (100%), modal-content (100%), archive-link-popup (100%), object-fit (100%), pt-column-control-inverted (100%)",
+      "top_classes": [
+        {
+          "class": "tablesaw-enhanced",
+          "prevalence": 1.0
+        },
+        {
+          "class": "l-six-block-center",
+          "prevalence": 1.0
+        },
+        {
+          "class": "modal-content",
+          "prevalence": 1.0
+        },
+        {
+          "class": "archive-link-popup",
+          "prevalence": 1.0
+        },
+        {
+          "class": "object-fit",
+          "prevalence": 1.0
+        },
+        {
+          "class": "pt-column-control-inverted",
+          "prevalence": 1.0
+        }
+      ],
+      "representative_url": "https://www.astrazeneca.com/legal-notice-and-terms-of-use/id.html"
+    },
+    {
+      "section": "media-centre",
+      "total_sampled": 123,
+      "ok": 123,
+      "failed": 0,
+      "confidence": "high",
+      "signature": "tablesaw-enhanced (100%), modal-content (100%), archive-link-popup (100%), object-fit (100%), pt-column-control-inverted (100%), block-wrapper (100%)",
+      "top_classes": [
+        {
+          "class": "tablesaw-enhanced",
+          "prevalence": 1.0
+        },
+        {
+          "class": "modal-content",
+          "prevalence": 1.0
+        },
+        {
+          "class": "archive-link-popup",
+          "prevalence": 1.0
+        },
+        {
+          "class": "object-fit",
+          "prevalence": 1.0
+        },
+        {
+          "class": "pt-column-control-inverted",
+          "prevalence": 1.0
+        },
+        {
+          "class": "block-wrapper",
+          "prevalence": 1.0
+        }
+      ],
+      "representative_url": "https://www.astrazeneca.com/media-centre/press-releases/2024/fixed-duration-calquence-plus-venetoclax-demonstrated-superior-pfs-vs-standard-care-previously-untreated-cll-with-77-of-patients-progression-free-3-years-amplify-phase-iii-trial.html"
+    },
+    {
+      "section": "our-company",
+      "total_sampled": 51,
+      "ok": 51,
+      "failed": 0,
+      "confidence": "high",
+      "signature": "tablesaw-enhanced (100%), modal-content (100%), archive-link-popup (100%), object-fit (100%), pt-column-control-inverted (100%), block-wrapper (100%)",
+      "top_classes": [
+        {
+          "class": "tablesaw-enhanced",
+          "prevalence": 1.0
+        },
+        {
+          "class": "modal-content",
+          "prevalence": 1.0
+        },
+        {
+          "class": "archive-link-popup",
+          "prevalence": 1.0
+        },
+        {
+          "class": "object-fit",
+          "prevalence": 1.0
+        },
+        {
+          "class": "pt-column-control-inverted",
+          "prevalence": 1.0
+        },
+        {
+          "class": "block-wrapper",
+          "prevalence": 1.0
+        }
+      ],
+      "representative_url": "https://www.astrazeneca.com/our-company/our-people/qing-dong-wang.html"
+    },
+    {
+      "section": "our-therapy-areas",
+      "total_sampled": 30,
+      "ok": 30,
+      "failed": 0,
+      "confidence": "high",
+      "signature": "tablesaw-enhanced (100%), image-replace (100%), modal-content (100%), archive-link-popup (100%), object-fit (100%), pt-column-control-inverted (100%)",
+      "top_classes": [
+        {
+          "class": "tablesaw-enhanced",
+          "prevalence": 1.0
+        },
+        {
+          "class": "image-replace",
+          "prevalence": 1.0
+        },
+        {
+          "class": "modal-content",
+          "prevalence": 1.0
+        },
+        {
+          "class": "archive-link-popup",
+          "prevalence": 1.0
+        },
+        {
+          "class": "object-fit",
+          "prevalence": 1.0
+        },
+        {
+          "class": "pt-column-control-inverted",
+          "prevalence": 1.0
+        }
+      ],
+      "representative_url": "https://www.astrazeneca.com/our-therapy-areas/oncology/patient-experience.html"
+    },
+    {
+      "section": "partnering",
+      "total_sampled": 12,
+      "ok": 12,
+      "failed": 0,
+      "confidence": "high",
+      "signature": "modal-content (100%), archive-link-popup (100%), object-fit (100%), pt-column-control-inverted (100%), block-wrapper (100%), modal-window (100%)",
+      "top_classes": [
+        {
+          "class": "modal-content",
+          "prevalence": 1.0
+        },
+        {
+          "class": "archive-link-popup",
+          "prevalence": 1.0
+        },
+        {
+          "class": "object-fit",
+          "prevalence": 1.0
+        },
+        {
+          "class": "pt-column-control-inverted",
+          "prevalence": 1.0
+        },
+        {
+          "class": "block-wrapper",
+          "prevalence": 1.0
+        },
+        {
+          "class": "modal-window",
+          "prevalence": 1.0
+        }
+      ],
+      "representative_url": "https://www.astrazeneca.com/partnering/sustainable-procurement.html"
+    },
+    {
+      "section": "r-d",
+      "total_sampled": 33,
+      "ok": 33,
+      "failed": 0,
+      "confidence": "high",
+      "signature": "tablesaw-enhanced (97%), image-replace (97%), modal-content (97%), archive-link-popup (97%), object-fit (97%), pt-column-control-inverted (97%)",
+      "top_classes": [
+        {
+          "class": "tablesaw-enhanced",
+          "prevalence": 0.97
+        },
+        {
+          "class": "image-replace",
+          "prevalence": 0.97
+        },
+        {
+          "class": "modal-content",
+          "prevalence": 0.97
+        },
+        {
+          "class": "archive-link-popup",
+          "prevalence": 0.97
+        },
+        {
+          "class": "object-fit",
+          "prevalence": 0.97
+        },
+        {
+          "class": "pt-column-control-inverted",
+          "prevalence": 0.97
+        }
+      ],
+      "representative_url": "https://www.astrazeneca.com/r-d/next-generation-therapeutics/bispecific-antibody.html"
+    },
+    {
+      "section": "root",
+      "total_sampled": 26,
+      "ok": 26,
+      "failed": 0,
+      "confidence": "high",
+      "signature": "tablesaw-enhanced (100%), modal-content (100%), archive-link-popup (100%), object-fit (100%), pt-column-control-inverted (100%), block-wrapper (100%)",
+      "top_classes": [
+        {
+          "class": "tablesaw-enhanced",
+          "prevalence": 1.0
+        },
+        {
+          "class": "modal-content",
+          "prevalence": 1.0
+        },
+        {
+          "class": "archive-link-popup",
+          "prevalence": 1.0
+        },
+        {
+          "class": "object-fit",
+          "prevalence": 1.0
+        },
+        {
+          "class": "pt-column-control-inverted",
+          "prevalence": 1.0
+        },
+        {
+          "class": "block-wrapper",
+          "prevalence": 1.0
+        }
+      ],
+      "representative_url": "https://www.astrazeneca.com/what-science-can-do.html?filters=Topics/next-generation-therapeutics,Next%20generation%20therapeutics#filter"
+    },
+    {
+      "section": "sustainability",
+      "total_sampled": 30,
+      "ok": 30,
+      "failed": 0,
+      "confidence": "high",
+      "signature": "tablesaw-enhanced (100%), modal-content (100%), archive-link-popup (100%), object-fit (100%), pt-column-control-inverted (100%), block-wrapper (100%)",
+      "top_classes": [
+        {
+          "class": "tablesaw-enhanced",
+          "prevalence": 1.0
+        },
+        {
+          "class": "modal-content",
+          "prevalence": 1.0
+        },
+        {
+          "class": "archive-link-popup",
+          "prevalence": 1.0
+        },
+        {
+          "class": "object-fit",
+          "prevalence": 1.0
+        },
+        {
+          "class": "pt-column-control-inverted",
+          "prevalence": 1.0
+        },
+        {
+          "class": "block-wrapper",
+          "prevalence": 1.0
+        }
+      ],
+      "representative_url": "https://www.astrazeneca.com/sustainability/nature/pharmaceuticals-in-the-environment/dashboard-archive.html"
+    },
+    {
+      "section": "what-science-can-do",
+      "total_sampled": 60,
+      "ok": 60,
+      "failed": 0,
+      "confidence": "high",
+      "signature": "tablesaw-enhanced (100%), image-replace (100%), modal-content (100%), archive-link-popup (100%), object-fit (100%), pt-column-control-inverted (100%)",
+      "top_classes": [
+        {
+          "class": "tablesaw-enhanced",
+          "prevalence": 1.0
+        },
+        {
+          "class": "image-replace",
+          "prevalence": 1.0
+        },
+        {
+          "class": "modal-content",
+          "prevalence": 1.0
+        },
+        {
+          "class": "archive-link-popup",
+          "prevalence": 1.0
+        },
+        {
+          "class": "object-fit",
+          "prevalence": 1.0
+        },
+        {
+          "class": "pt-column-control-inverted",
+          "prevalence": 1.0
+        }
+      ],
+      "representative_url": "https://www.astrazeneca.com/what-science-can-do/topics/next-generation-therapeutics/liquid-biopsy-ctdna.html"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "modal-content",
+      "page_count": 492,
+      "prevalence": 0.85,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "legal-notice-and-terms-of-use",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 14
+    },
+    {
+      "name": "archive-link-popup",
+      "page_count": 492,
+      "prevalence": 0.85,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "legal-notice-and-terms-of-use",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 14
+    },
+    {
+      "name": "object-fit",
+      "page_count": 492,
+      "prevalence": 0.85,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "legal-notice-and-terms-of-use",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 14
+    },
+    {
+      "name": "pt-column-control-inverted",
+      "page_count": 492,
+      "prevalence": 0.85,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "legal-notice-and-terms-of-use",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 14
+    },
+    {
+      "name": "block-wrapper",
+      "page_count": 492,
+      "prevalence": 0.85,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "legal-notice-and-terms-of-use",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 14
+    },
+    {
+      "name": "modal-window",
+      "page_count": 492,
+      "prevalence": 0.85,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "legal-notice-and-terms-of-use",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 14
+    },
+    {
+      "name": "rich-text",
+      "page_count": 492,
+      "prevalence": 0.85,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "legal-notice-and-terms-of-use",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 14
+    },
+    {
+      "name": "modal-close",
+      "page_count": 492,
+      "prevalence": 0.85,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "legal-notice-and-terms-of-use",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 14
+    },
+    {
+      "name": "modal-inner",
+      "page_count": 492,
+      "prevalence": 0.85,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "legal-notice-and-terms-of-use",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 14
+    },
+    {
+      "name": "footer-component",
+      "page_count": 492,
+      "prevalence": 0.85,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "legal-notice-and-terms-of-use",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 14
+    },
+    {
+      "name": "main-section",
+      "page_count": 492,
+      "prevalence": 0.85,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "legal-notice-and-terms-of-use",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 14
+    },
+    {
+      "name": "l-constrained",
+      "page_count": 492,
+      "prevalence": 0.85,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "legal-notice-and-terms-of-use",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 14
+    },
+    {
+      "name": "tablesaw-enhanced",
+      "page_count": 491,
+      "prevalence": 0.848,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "legal-notice-and-terms-of-use",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 14
+    },
+    {
+      "name": "l-margin",
+      "page_count": 380,
+      "prevalence": 0.656,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "l-three-block-c1",
+      "page_count": 353,
+      "prevalence": 0.61,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 13
+    },
+    {
+      "name": "l-three-block-c0",
+      "page_count": 353,
+      "prevalence": 0.61,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 13
+    },
+    {
+      "name": "l-three-block-c2",
+      "page_count": 352,
+      "prevalence": 0.608,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 13
+    },
+    {
+      "name": "responsive-image",
+      "page_count": 342,
+      "prevalence": 0.591,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 13
+    },
+    {
+      "name": "image-replace",
+      "page_count": 340,
+      "prevalence": 0.587,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 13
+    },
+    {
+      "name": "responsive-bg",
+      "page_count": 320,
+      "prevalence": 0.553,
+      "sections": [
+        "careers",
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 9
+    },
+    {
+      "name": "hero-feature",
+      "page_count": 237,
+      "prevalence": 0.409,
+      "sections": [
+        "careers",
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "r-d",
+        "what-science-can-do"
+      ],
+      "reuse_score": 6
+    },
+    {
+      "name": "ui-widget",
+      "page_count": 222,
+      "prevalence": 0.383,
+      "sections": [
+        "az-suppliers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "ui-widget-content",
+      "page_count": 221,
+      "prevalence": 0.382,
+      "sections": [
+        "az-suppliers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "ui-corner-all",
+      "page_count": 221,
+      "prevalence": 0.382,
+      "sections": [
+        "az-suppliers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "ui-corner-bottom",
+      "page_count": 221,
+      "prevalence": 0.382,
+      "sections": [
+        "az-suppliers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "ui-icon",
+      "page_count": 221,
+      "prevalence": 0.382,
+      "sections": [
+        "az-suppliers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "ui-accordion",
+      "page_count": 219,
+      "prevalence": 0.378,
+      "sections": [
+        "az-suppliers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "ui-helper-reset",
+      "page_count": 219,
+      "prevalence": 0.378,
+      "sections": [
+        "az-suppliers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "ui-accordion-header-collapsed",
+      "page_count": 218,
+      "prevalence": 0.377,
+      "sections": [
+        "az-suppliers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "ui-corner-top",
+      "page_count": 218,
+      "prevalence": 0.377,
+      "sections": [
+        "az-suppliers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "ui-state-default",
+      "page_count": 218,
+      "prevalence": 0.377,
+      "sections": [
+        "az-suppliers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "ui-accordion-icons",
+      "page_count": 218,
+      "prevalence": 0.377,
+      "sections": [
+        "az-suppliers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "ui-accordion-header-icon",
+      "page_count": 218,
+      "prevalence": 0.377,
+      "sections": [
+        "az-suppliers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "ui-accordion-header",
+      "page_count": 218,
+      "prevalence": 0.377,
+      "sections": [
+        "az-suppliers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "ui-accordion-content",
+      "page_count": 218,
+      "prevalence": 0.377,
+      "sections": [
+        "az-suppliers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "rich-header",
+      "page_count": 172,
+      "prevalence": 0.297,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "l-three-block",
+      "page_count": 158,
+      "prevalence": 0.273,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 13
+    },
+    {
+      "name": "l-padded",
+      "page_count": 156,
+      "prevalence": 0.269,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "legal-notice-and-terms-of-use",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 14
+    },
+    {
+      "name": "l-eight-block-center",
+      "page_count": 139,
+      "prevalence": 0.24,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "l-eight-block-center-c0",
+      "page_count": 139,
+      "prevalence": 0.24,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "l-two-block-c1",
+      "page_count": 119,
+      "prevalence": 0.206,
+      "sections": [
+        "careers",
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 10
+    },
+    {
+      "name": "l-two-block-c0",
+      "page_count": 119,
+      "prevalence": 0.206,
+      "sections": [
+        "careers",
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 10
+    },
+    {
+      "name": "l-two-block",
+      "page_count": 119,
+      "prevalence": 0.206,
+      "sections": [
+        "careers",
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 10
+    },
+    {
+      "name": "l-one-block",
+      "page_count": 109,
+      "prevalence": 0.188,
+      "sections": [
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "legal-notice-and-terms-of-use",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 13
+    },
+    {
+      "name": "img-circle",
+      "page_count": 106,
+      "prevalence": 0.183,
+      "sections": [
+        "careers",
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "partnering",
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 9
+    },
+    {
+      "name": "content-tile",
+      "page_count": 103,
+      "prevalence": 0.178,
+      "sections": [
+        "careers",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 10
+    },
+    {
+      "name": "video-template",
+      "page_count": 99,
+      "prevalence": 0.171,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "video-module",
+      "page_count": 99,
+      "prevalence": 0.171,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "l-one-block-c0",
+      "page_count": 92,
+      "prevalence": 0.159,
+      "sections": [
+        "careers",
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 11
+    },
+    {
+      "name": "jump-to-anchor",
+      "page_count": 78,
+      "prevalence": 0.135,
+      "sections": [
+        "careers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 12
+    },
+    {
+      "name": "email-signup",
+      "page_count": 72,
+      "prevalence": 0.124,
+      "sections": [
+        "media-centre",
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 4
+    },
+    {
+      "name": "signup-content",
+      "page_count": 72,
+      "prevalence": 0.124,
+      "sections": [
+        "media-centre",
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 4
+    },
+    {
+      "name": "newsletter-sign-up",
+      "page_count": 67,
+      "prevalence": 0.116,
+      "sections": [
+        "investor-relations",
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 4
+    },
+    {
+      "name": "row-container",
+      "page_count": 66,
+      "prevalence": 0.114,
+      "sections": [
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 3
+    },
+    {
+      "name": "vertical-align",
+      "page_count": 66,
+      "prevalence": 0.114,
+      "sections": [
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 3
+    },
+    {
+      "name": "col-right",
+      "page_count": 66,
+      "prevalence": 0.114,
+      "sections": [
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 3
+    },
+    {
+      "name": "signup-container",
+      "page_count": 66,
+      "prevalence": 0.114,
+      "sections": [
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 3
+    },
+    {
+      "name": "col-left",
+      "page_count": 66,
+      "prevalence": 0.114,
+      "sections": [
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 3
+    },
+    {
+      "name": "email-first-name",
+      "page_count": 66,
+      "prevalence": 0.114,
+      "sections": [
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 3
+    },
+    {
+      "name": "email-last-name",
+      "page_count": 66,
+      "prevalence": 0.114,
+      "sections": [
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 3
+    },
+    {
+      "name": "ui-accordion-tagging",
+      "page_count": 65,
+      "prevalence": 0.112,
+      "sections": [
+        "az-suppliers",
+        "country-sites",
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability"
+      ],
+      "reuse_score": 9
+    },
+    {
+      "name": "section-header",
+      "page_count": 64,
+      "prevalence": 0.111,
+      "sections": [
+        "az-suppliers",
+        "careers",
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability"
+      ],
+      "reuse_score": 11
+    },
+    {
+      "name": "l-flex-three-block-c2",
+      "page_count": 61,
+      "prevalence": 0.105,
+      "sections": [
+        "careers",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 9
+    },
+    {
+      "name": "l-flex-three-block",
+      "page_count": 61,
+      "prevalence": 0.105,
+      "sections": [
+        "careers",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 9
+    },
+    {
+      "name": "l-flex-three-block-c0",
+      "page_count": 61,
+      "prevalence": 0.105,
+      "sections": [
+        "careers",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 9
+    },
+    {
+      "name": "l-flex-three-block-c1",
+      "page_count": 61,
+      "prevalence": 0.105,
+      "sections": [
+        "careers",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 9
+    },
+    {
+      "name": "hero-header",
+      "page_count": 55,
+      "prevalence": 0.095,
+      "sections": [
+        "az-suppliers",
+        "country-sites",
+        "global",
+        "investor-relations",
+        "legal-notice-and-terms-of-use",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "r-d",
+        "root",
+        "sustainability"
+      ],
+      "reuse_score": 11
+    },
+    {
+      "name": "show-more-wrapper",
+      "page_count": 51,
+      "prevalence": 0.088,
+      "sections": [
+        "az-suppliers",
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "our-company"
+      ],
+      "reuse_score": 5
+    },
+    {
+      "name": "image-panel-feature",
+      "page_count": 50,
+      "prevalence": 0.086,
+      "sections": [
+        "careers",
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "r-d",
+        "root"
+      ],
+      "reuse_score": 8
+    },
+    {
+      "name": "link-image-panel-v2",
+      "page_count": 49,
+      "prevalence": 0.085,
+      "sections": [
+        "careers",
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 9
+    },
+    {
+      "name": "g-recaptcha",
+      "page_count": 46,
+      "prevalence": 0.079,
+      "sections": [
+        "media-centre",
+        "partnering",
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 5
+    },
+    {
+      "name": "cmp-form-recaptcha",
+      "page_count": 46,
+      "prevalence": 0.079,
+      "sections": [
+        "media-centre",
+        "partnering",
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 5
+    },
+    {
+      "name": "submit-captcha-btn",
+      "page_count": 46,
+      "prevalence": 0.079,
+      "sections": [
+        "media-centre",
+        "partnering",
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 5
+    },
+    {
+      "name": "g-recaptcha-response",
+      "page_count": 46,
+      "prevalence": 0.079,
+      "sections": [
+        "media-centre",
+        "partnering",
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 5
+    },
+    {
+      "name": "grecaptcha-badge",
+      "page_count": 45,
+      "prevalence": 0.078,
+      "sections": [
+        "media-centre",
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 4
+    },
+    {
+      "name": "grecaptcha-logo",
+      "page_count": 45,
+      "prevalence": 0.078,
+      "sections": [
+        "media-centre",
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 4
+    },
+    {
+      "name": "grecaptcha-error",
+      "page_count": 45,
+      "prevalence": 0.078,
+      "sections": [
+        "media-centre",
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 4
+    },
+    {
+      "name": "social-title",
+      "page_count": 42,
+      "prevalence": 0.073,
+      "sections": [
+        "our-company"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "wscd-split-feature-tile",
+      "page_count": 41,
+      "prevalence": 0.071,
+      "sections": [
+        "careers",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability"
+      ],
+      "reuse_score": 8
+    },
+    {
+      "name": "l-four-block-c0",
+      "page_count": 41,
+      "prevalence": 0.071,
+      "sections": [
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 11
+    },
+    {
+      "name": "l-four-block-c1",
+      "page_count": 41,
+      "prevalence": 0.071,
+      "sections": [
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 11
+    },
+    {
+      "name": "l-four-block-c3",
+      "page_count": 41,
+      "prevalence": 0.071,
+      "sections": [
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 11
+    },
+    {
+      "name": "l-four-block",
+      "page_count": 41,
+      "prevalence": 0.071,
+      "sections": [
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 11
+    },
+    {
+      "name": "l-four-block-c2",
+      "page_count": 41,
+      "prevalence": 0.071,
+      "sections": [
+        "country-sites",
+        "global",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 11
+    },
+    {
+      "name": "tablesaw-stack",
+      "page_count": 39,
+      "prevalence": 0.067,
+      "sections": [
+        "az-suppliers",
+        "investor-relations",
+        "media-centre",
+        "r-d",
+        "sustainability"
+      ],
+      "reuse_score": 5
+    },
+    {
+      "name": "mode-stack",
+      "page_count": 39,
+      "prevalence": 0.067,
+      "sections": [
+        "az-suppliers",
+        "investor-relations",
+        "media-centre",
+        "r-d",
+        "sustainability"
+      ],
+      "reuse_score": 5
+    },
+    {
+      "name": "tablesaw-bar",
+      "page_count": 39,
+      "prevalence": 0.067,
+      "sections": [
+        "az-suppliers",
+        "investor-relations",
+        "media-centre",
+        "r-d",
+        "sustainability"
+      ],
+      "reuse_score": 5
+    },
+    {
+      "name": "download-tile",
+      "page_count": 39,
+      "prevalence": 0.067,
+      "sections": [
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 8
+    },
+    {
+      "name": "NOT_IN_MIRROR",
+      "page_count": 36,
+      "prevalence": 0.062,
+      "sections": [
+        "content"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "slick-active",
+      "page_count": 32,
+      "prevalence": 0.055,
+      "sections": [
+        "careers",
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 9
+    },
+    {
+      "name": "slick-slide",
+      "page_count": 32,
+      "prevalence": 0.055,
+      "sections": [
+        "careers",
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 9
+    },
+    {
+      "name": "carousel-outer-wrapper",
+      "page_count": 32,
+      "prevalence": 0.055,
+      "sections": [
+        "careers",
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 9
+    },
+    {
+      "name": "slick-slider",
+      "page_count": 32,
+      "prevalence": 0.055,
+      "sections": [
+        "careers",
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 9
+    },
+    {
+      "name": "slick-list",
+      "page_count": 32,
+      "prevalence": 0.055,
+      "sections": [
+        "careers",
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 9
+    },
+    {
+      "name": "slick-track",
+      "page_count": 32,
+      "prevalence": 0.055,
+      "sections": [
+        "careers",
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 9
+    },
+    {
+      "name": "slick-initialized",
+      "page_count": 32,
+      "prevalence": 0.055,
+      "sections": [
+        "careers",
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 9
+    },
+    {
+      "name": "slick-current",
+      "page_count": 32,
+      "prevalence": 0.055,
+      "sections": [
+        "careers",
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 9
+    },
+    {
+      "name": "jump-to",
+      "page_count": 32,
+      "prevalence": 0.055,
+      "sections": [
+        "country-sites",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability"
+      ],
+      "reuse_score": 7
+    },
+    {
+      "name": "slick-disabled",
+      "page_count": 30,
+      "prevalence": 0.052,
+      "sections": [
+        "careers",
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 9
+    },
+    {
+      "name": "slick-prev",
+      "page_count": 30,
+      "prevalence": 0.052,
+      "sections": [
+        "careers",
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 9
+    },
+    {
+      "name": "slick-arrow",
+      "page_count": 30,
+      "prevalence": 0.052,
+      "sections": [
+        "careers",
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 9
+    },
+    {
+      "name": "slick-next",
+      "page_count": 30,
+      "prevalence": 0.052,
+      "sections": [
+        "careers",
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 9
+    },
+    {
+      "name": "text-action-block",
+      "page_count": 29,
+      "prevalence": 0.05,
+      "sections": [
+        "careers",
+        "investor-relations",
+        "our-therapy-areas",
+        "r-d",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 7
+    },
+    {
+      "name": "homepage-hero-story-wrapper",
+      "page_count": 29,
+      "prevalence": 0.05,
+      "sections": [
+        "our-therapy-areas",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 4
+    },
+    {
+      "name": "treding-story-content",
+      "page_count": 29,
+      "prevalence": 0.05,
+      "sections": [
+        "our-therapy-areas",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 4
+    },
+    {
+      "name": "homepage-hero",
+      "page_count": 29,
+      "prevalence": 0.05,
+      "sections": [
+        "our-therapy-areas",
+        "root",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 4
+    },
+    {
+      "name": "generic-tabs",
+      "page_count": 26,
+      "prevalence": 0.045,
+      "sections": [
+        "careers",
+        "global",
+        "investor-relations",
+        "legal-notice-and-terms-of-use",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root",
+        "sustainability"
+      ],
+      "reuse_score": 10
+    },
+    {
+      "name": "icon-link-panel",
+      "page_count": 24,
+      "prevalence": 0.041,
+      "sections": [
+        "careers",
+        "country-sites",
+        "investor-relations",
+        "our-therapy-areas",
+        "r-d",
+        "root",
+        "sustainability"
+      ],
+      "reuse_score": 7
+    },
+    {
+      "name": "carousel-full-bleed",
+      "page_count": 24,
+      "prevalence": 0.041,
+      "sections": [
+        "careers",
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 8
+    },
+    {
+      "name": "tablesaw-cell-label",
+      "page_count": 23,
+      "prevalence": 0.04,
+      "sections": [
+        "az-suppliers",
+        "investor-relations",
+        "media-centre",
+        "r-d",
+        "sustainability"
+      ],
+      "reuse_score": 5
+    },
+    {
+      "name": "tablesaw-cell-content",
+      "page_count": 23,
+      "prevalence": 0.04,
+      "sections": [
+        "az-suppliers",
+        "investor-relations",
+        "media-centre",
+        "r-d",
+        "sustainability"
+      ],
+      "reuse_score": 5
+    },
+    {
+      "name": "az-filter-items",
+      "page_count": 23,
+      "prevalence": 0.04,
+      "sections": [
+        "country-sites",
+        "media-centre",
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 5
+    },
+    {
+      "name": "ng-scope",
+      "page_count": 23,
+      "prevalence": 0.04,
+      "sections": [
+        "country-sites",
+        "media-centre",
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 5
+    },
+    {
+      "name": "publications-list",
+      "page_count": 23,
+      "prevalence": 0.04,
+      "sections": [
+        "country-sites",
+        "media-centre",
+        "r-d",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 5
+    },
+    {
+      "name": "l-six-block-center",
+      "page_count": 21,
+      "prevalence": 0.036,
+      "sections": [
+        "country-sites",
+        "investor-relations",
+        "legal-notice-and-terms-of-use",
+        "our-company",
+        "our-therapy-areas",
+        "r-d",
+        "root"
+      ],
+      "reuse_score": 7
+    },
+    {
+      "name": "l-six-block-center-c0",
+      "page_count": 21,
+      "prevalence": 0.036,
+      "sections": [
+        "country-sites",
+        "investor-relations",
+        "legal-notice-and-terms-of-use",
+        "our-company",
+        "our-therapy-areas",
+        "r-d",
+        "root"
+      ],
+      "reuse_score": 7
+    },
+    {
+      "name": "content-set-curator",
+      "page_count": 19,
+      "prevalence": 0.033,
+      "sections": [
+        "our-therapy-areas",
+        "partnering",
+        "root",
+        "what-science-can-do"
+      ],
+      "reuse_score": 4
+    },
+    {
+      "name": "article-cta-align",
+      "page_count": 18,
+      "prevalence": 0.031,
+      "sections": [
+        "partnering",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 3
+    },
+    {
+      "name": "article-container",
+      "page_count": 18,
+      "prevalence": 0.031,
+      "sections": [
+        "partnering",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 3
+    },
+    {
+      "name": "article-cta",
+      "page_count": 18,
+      "prevalence": 0.031,
+      "sections": [
+        "partnering",
+        "sustainability",
+        "what-science-can-do"
+      ],
+      "reuse_score": 3
+    },
+    {
+      "name": "l-three-block-wide-c0",
+      "page_count": 16,
+      "prevalence": 0.028,
+      "sections": [
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root"
+      ],
+      "reuse_score": 8
+    },
+    {
+      "name": "l-three-block-wide",
+      "page_count": 16,
+      "prevalence": 0.028,
+      "sections": [
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root"
+      ],
+      "reuse_score": 8
+    },
+    {
+      "name": "l-three-block-wide-c2",
+      "page_count": 16,
+      "prevalence": 0.028,
+      "sections": [
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root"
+      ],
+      "reuse_score": 8
+    },
+    {
+      "name": "l-three-block-wide-c1",
+      "page_count": 16,
+      "prevalence": 0.028,
+      "sections": [
+        "country-sites",
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "our-therapy-areas",
+        "partnering",
+        "r-d",
+        "root"
+      ],
+      "reuse_score": 8
+    },
+    {
+      "name": "btn-outline-mulberry",
+      "page_count": 16,
+      "prevalence": 0.028,
+      "sections": [
+        "partnering",
+        "sustainability"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "l-flex-four-block-c0",
+      "page_count": 15,
+      "prevalence": 0.026,
+      "sections": [
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "root",
+        "sustainability"
+      ],
+      "reuse_score": 5
+    },
+    {
+      "name": "l-flex-four-block",
+      "page_count": 15,
+      "prevalence": 0.026,
+      "sections": [
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "root",
+        "sustainability"
+      ],
+      "reuse_score": 5
+    },
+    {
+      "name": "media-text-link",
+      "page_count": 14,
+      "prevalence": 0.024,
+      "sections": [
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "partnering"
+      ],
+      "reuse_score": 4
+    },
+    {
+      "name": "l-flex-four-block-c3",
+      "page_count": 12,
+      "prevalence": 0.021,
+      "sections": [
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "root",
+        "sustainability"
+      ],
+      "reuse_score": 5
+    },
+    {
+      "name": "l-flex-four-block-c2",
+      "page_count": 12,
+      "prevalence": 0.021,
+      "sections": [
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "root",
+        "sustainability"
+      ],
+      "reuse_score": 5
+    },
+    {
+      "name": "l-flex-four-block-c1",
+      "page_count": 12,
+      "prevalence": 0.021,
+      "sections": [
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "root",
+        "sustainability"
+      ],
+      "reuse_score": 5
+    },
+    {
+      "name": "promo-tiles",
+      "page_count": 11,
+      "prevalence": 0.019,
+      "sections": [
+        "investor-relations",
+        "media-centre",
+        "partnering",
+        "root"
+      ],
+      "reuse_score": 4
+    },
+    {
+      "name": "media-text-link-list",
+      "page_count": 11,
+      "prevalence": 0.019,
+      "sections": [
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "partnering"
+      ],
+      "reuse_score": 4
+    },
+    {
+      "name": "media-text-link-list-item",
+      "page_count": 11,
+      "prevalence": 0.019,
+      "sections": [
+        "investor-relations",
+        "our-company",
+        "our-therapy-areas",
+        "partnering"
+      ],
+      "reuse_score": 4
+    },
+    {
+      "name": "promo-tiles-v2",
+      "page_count": 11,
+      "prevalence": 0.019,
+      "sections": [
+        "investor-relations",
+        "media-centre",
+        "root",
+        "sustainability"
+      ],
+      "reuse_score": 4
+    },
+    {
+      "name": "animated-header",
+      "page_count": 10,
+      "prevalence": 0.017,
+      "sections": [
+        "investor-relations",
+        "what-science-can-do"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "chapter-outer-wrapper",
+      "page_count": 10,
+      "prevalence": 0.017,
+      "sections": [
+        "investor-relations",
+        "what-science-can-do"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "pt-story",
+      "page_count": 10,
+      "prevalence": 0.017,
+      "sections": [
+        "investor-relations",
+        "what-science-can-do"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "chapter-heading",
+      "page_count": 10,
+      "prevalence": 0.017,
+      "sections": [
+        "investor-relations",
+        "what-science-can-do"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "chapter-navigation",
+      "page_count": 10,
+      "prevalence": 0.017,
+      "sections": [
+        "investor-relations",
+        "what-science-can-do"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "carousel-content",
+      "page_count": 10,
+      "prevalence": 0.017,
+      "sections": [
+        "investor-relations",
+        "our-company",
+        "root"
+      ],
+      "reuse_score": 3
+    },
+    {
+      "name": "nav-wrapper",
+      "page_count": 10,
+      "prevalence": 0.017,
+      "sections": [
+        "investor-relations",
+        "what-science-can-do"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "cmp-pdfviewer",
+      "page_count": 9,
+      "prevalence": 0.016,
+      "sections": [
+        "investor-relations",
+        "partnering"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "cq-colctrl-default",
+      "page_count": 8,
+      "prevalence": 0.014,
+      "sections": [
+        "country-sites",
+        "global",
+        "investor-relations",
+        "r-d",
+        "root"
+      ],
+      "reuse_score": 5
+    },
+    {
+      "name": "cq-colctrl-default-c0",
+      "page_count": 8,
+      "prevalence": 0.014,
+      "sections": [
+        "country-sites",
+        "global",
+        "investor-relations",
+        "r-d",
+        "root"
+      ],
+      "reuse_score": 5
+    },
+    {
+      "name": "l-four-block-center",
+      "page_count": 8,
+      "prevalence": 0.014,
+      "sections": [
+        "country-sites",
+        "investor-relations",
+        "our-company",
+        "r-d"
+      ],
+      "reuse_score": 4
+    },
+    {
+      "name": "l-four-block-center-c0",
+      "page_count": 8,
+      "prevalence": 0.014,
+      "sections": [
+        "country-sites",
+        "investor-relations",
+        "our-company",
+        "r-d"
+      ],
+      "reuse_score": 4
+    },
+    {
+      "name": "l-flex-two-block-c1",
+      "page_count": 8,
+      "prevalence": 0.014,
+      "sections": [
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "sustainability"
+      ],
+      "reuse_score": 4
+    },
+    {
+      "name": "l-flex-two-block",
+      "page_count": 8,
+      "prevalence": 0.014,
+      "sections": [
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "sustainability"
+      ],
+      "reuse_score": 4
+    },
+    {
+      "name": "l-flex-two-block-c0",
+      "page_count": 8,
+      "prevalence": 0.014,
+      "sections": [
+        "investor-relations",
+        "media-centre",
+        "our-company",
+        "sustainability"
+      ],
+      "reuse_score": 4
+    },
+    {
+      "name": "media-text-link-container",
+      "page_count": 8,
+      "prevalence": 0.014,
+      "sections": [
+        "our-company"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "wscd-split-feature",
+      "page_count": 5,
+      "prevalence": 0.009,
+      "sections": [
+        "our-therapy-areas",
+        "r-d"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "download-lockup",
+      "page_count": 4,
+      "prevalence": 0.007,
+      "sections": [
+        "investor-relations",
+        "partnering"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "event-card",
+      "page_count": 4,
+      "prevalence": 0.007,
+      "sections": [
+        "investor-relations",
+        "root"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "contact-tile",
+      "page_count": 4,
+      "prevalence": 0.007,
+      "sections": [
+        "investor-relations",
+        "our-company"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "bg-image-wrapper",
+      "page_count": 4,
+      "prevalence": 0.007,
+      "sections": [
+        "investor-relations",
+        "what-science-can-do"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "l-two-block-small-med-stacked-large-eight-four-c1",
+      "page_count": 4,
+      "prevalence": 0.007,
+      "sections": [
+        "our-therapy-areas",
+        "r-d"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "l-two-block-small-med-stacked-large-eight-four",
+      "page_count": 4,
+      "prevalence": 0.007,
+      "sections": [
+        "our-therapy-areas",
+        "r-d"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "l-two-block-small-med-stacked-large-eight-four-c0",
+      "page_count": 4,
+      "prevalence": 0.007,
+      "sections": [
+        "our-therapy-areas",
+        "r-d"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "isolated-news-component",
+      "page_count": 3,
+      "prevalence": 0.005,
+      "sections": [
+        "careers",
+        "partnering",
+        "root"
+      ],
+      "reuse_score": 3
+    },
+    {
+      "name": "news-component",
+      "page_count": 3,
+      "prevalence": 0.005,
+      "sections": [
+        "careers",
+        "partnering",
+        "root"
+      ],
+      "reuse_score": 3
+    },
+    {
+      "name": "event-listing-cards",
+      "page_count": 3,
+      "prevalence": 0.005,
+      "sections": [
+        "investor-relations",
+        "root"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "refine-results",
+      "page_count": 3,
+      "prevalence": 0.005,
+      "sections": [
+        "investor-relations",
+        "media-centre"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "shareholder-information",
+      "page_count": 3,
+      "prevalence": 0.005,
+      "sections": [
+        "investor-relations",
+        "root"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "ui-menu",
+      "page_count": 3,
+      "prevalence": 0.005,
+      "sections": [
+        "media-centre",
+        "partnering"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "ui-selectmenu-icon",
+      "page_count": 3,
+      "prevalence": 0.005,
+      "sections": [
+        "media-centre",
+        "partnering"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "ui-front",
+      "page_count": 3,
+      "prevalence": 0.005,
+      "sections": [
+        "media-centre",
+        "partnering"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "ui-selectmenu-button",
+      "page_count": 3,
+      "prevalence": 0.005,
+      "sections": [
+        "media-centre",
+        "partnering"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "ui-button",
+      "page_count": 3,
+      "prevalence": 0.005,
+      "sections": [
+        "media-centre",
+        "partnering"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "ui-selectmenu-text",
+      "page_count": 3,
+      "prevalence": 0.005,
+      "sections": [
+        "media-centre",
+        "partnering"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "ui-selectmenu-menu",
+      "page_count": 3,
+      "prevalence": 0.005,
+      "sections": [
+        "media-centre",
+        "partnering"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "ui-selectmenu-button-closed",
+      "page_count": 3,
+      "prevalence": 0.005,
+      "sections": [
+        "media-centre",
+        "partnering"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "quick-view",
+      "page_count": 3,
+      "prevalence": 0.005,
+      "sections": [
+        "media-centre",
+        "partnering"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "latest-news",
+      "page_count": 3,
+      "prevalence": 0.005,
+      "sections": [
+        "our-therapy-areas"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "country-list",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "az-suppliers"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "iframe-wrapper",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "investor-relations"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "heading-level-one",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "investor-relations",
+        "what-science-can-do"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "story-overview",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "investor-relations",
+        "what-science-can-do"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "simple-show-more",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "investor-relations",
+        "r-d"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "custom-p",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "investor-relations"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "custom-price",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "investor-relations"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "ui-menu-disabled",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "media-centre"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "ui-selectmenu-disabled",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "media-centre"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "ui-state-disabled",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "media-centre"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "salvatorre-layout",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "media-centre"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "slider-grid",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "media-centre"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "media-library",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "media-centre"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "l-two-block-small-stacked-large-nine-three-c1",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "our-therapy-areas",
+        "r-d"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "l-two-block-small-stacked-large-nine-three-c0",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "our-therapy-areas",
+        "r-d"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "l-two-block-small-stacked-large-nine-three",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "our-therapy-areas",
+        "r-d"
+      ],
+      "reuse_score": 2
+    },
+    {
+      "name": "ol-zoom",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "ol-viewport",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-icon",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-expansion-panel",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "ol-control",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-btn",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-label",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-toolbar",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-text-field",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "ol-rotate-reset",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "ol-rotate",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "ol-zoom-in",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "ol-hidden",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "ol-zoom-out",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "mdi-information",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "mdi-refresh",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-data-table",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "ol-compass",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "font-weight-bold",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "mdi-arrow-up",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "ol-overlaycontainer",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "geo-map-overlay",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-expansion-panels",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "ol-overlaycontainer-stopevent",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "ol-attribution",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "mdi-chevron-down",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "ol-unselectable",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "ol-uncollapsible",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-input",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "ol-layer",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-application",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-main",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "ol-layers",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-card",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "mdi-chevron-up",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "btn-outline-white",
+      "page_count": 2,
+      "prevalence": 0.003,
+      "sections": [
+        "what-science-can-do"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "l-two-block-small-stacked-large-three-nine",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "country-sites"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "l-two-block-small-stacked-large-three-nine-c0",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "country-sites"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "l-two-block-small-stacked-large-three-nine-c1",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "country-sites"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "about-copy",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "investor-relations"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "table-cta",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "investor-relations"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "light-blue",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "investor-relations"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "pipeline-filter",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "investor-relations"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "l-sm",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "investor-relations"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "featured-article-video-promo",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "investor-relations"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "events-listing",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "investor-relations"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "hcp-popup",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "media-centre"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "l-two-block-offset-left-c1",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "our-therapy-areas"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "l-two-block-offset-left-c0",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "our-therapy-areas"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "l-two-block-offset-left",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "our-therapy-areas"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "l-eight-medium-six-large-block-center",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "our-therapy-areas"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "l-eight-medium-six-large-block-center-c0",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "our-therapy-areas"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "content-wrapper",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "partnering"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "g-recaptcha-bubble-arrow",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "partnering"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "form-consent",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "partnering"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "label-one",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "root"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "single-content-item",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "root"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "homepage-content-set",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "root"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "dynamic-news-container",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "root"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "l-six-block-stacked",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "root"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "l-six-block-stacked-c5",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "root"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "l-six-block-stacked-c2",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "root"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "l-six-block-stacked-c4",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "root"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "l-six-block-stacked-c3",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "root"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "l-six-block-stacked-c1",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "root"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "l-six-block-stacked-c0",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "root"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "text-action-block-light-platinum",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "root"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-expansion-panel-header",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-sheet",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-data-table-header",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "ol-attribution-collpase",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-overlay",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-item-group",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "text-start",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-row",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "stat-field",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-col",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-field",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-expansion-panel-title",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-spacer",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-container",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-list",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "test-geo",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "ol-attribution-collapse",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "text-white",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "w-auto",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-progress-linear",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "gm-wrapper",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-layout",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "bg-accent",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-table",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "bg-white",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "bg-actions",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-col-true",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-expansion-panel-text",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "v-field-label",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "sustainability"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "read-more",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "what-science-can-do"
+      ],
+      "reuse_score": 1
+    },
+    {
+      "name": "tray-launch",
+      "page_count": 1,
+      "prevalence": 0.002,
+      "sections": [
+        "what-science-can-do"
+      ],
+      "reuse_score": 1
+    }
+  ]
+}
