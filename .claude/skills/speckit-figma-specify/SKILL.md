@@ -56,7 +56,45 @@ For **each** Figma frame that maps to a breakpoint (mobile base, tablet, desktop
 
 **Teaser / card groups**: Frame names like “Cards Stacked” are **not** sufficient — state the **actual** `flex-direction` per breakpoint (Figma is source of truth). If spec.md uses vague language (“horizontal on larger screens”) that **conflicts** with Figma, flag it in the Report: *“Spec vs Figma layout conflict — resolve in spec or design before `/speckit-plan`.”* Do not silently prefer spec prose over Figma.
 
-## Step 3: Generate design.md
+## Step 3: Extract Design Assets (optional)
+
+**Ask the user** whether they want to download design assets (background images, SVGs, icons). **Default: skip.** If the user declines or does not respond, skip this entire step and proceed to Step 4.
+
+When the user opts in, execute downloads using the **primary** strategy below. You may use a **subagent or background job** for `curl` + `sips` when orchestrating many files (e.g. in `speckit-fast` Phase 0); the logic is the same.
+
+### 3a. Identify and classify image assets
+
+From the `get_design_context` response, identify assets and classify each as **content** or **stylistic**:
+
+| Type | Criteria | AEM Handling |
+|------|----------|--------------|
+| `content` | Photographic fills, background photos, hero images, illustrations that an author would replace per page/campaign | Upload to DAM; referenced via dialog/JCR property |
+| `stylistic` | Decorative SVGs, divider lines, icons, ornamental shapes, fixed brand marks that never change per instance | Inline in HTL/SCSS, or ship as a static clientlib asset |
+
+**Classification heuristics:**
+- Image fills on large containers (full-width backgrounds, hero sections) → `content`
+- The same image URL reused across breakpoints with different container crops → `content`
+- Small SVG nodes, line separators, geometric shapes, fixed icons → `stylistic`
+- Brand logos that are identical across all instances → `stylistic`; logos that vary per page → `content`
+
+Then determine download strategy:
+
+- **Standalone assets** (SVGs, icons, decorative elements): download directly from the asset URL in the `get_design_context` output via `curl -sL -o <filename> "<url>"`.
+- **Per-breakpoint images** (backgrounds, hero images): **Primary** — use the **raw image URL** from `get_design_context`, download once with `curl`, then **resize and crop per breakpoint with `sips`** (Step 3b). This matches Figma container dimensions from the response and avoids serial `get_screenshot` MCP calls.
+- **Fallback** — use Figma MCP **`get_screenshot`** for a specific node only when: the raw URL is missing/expired, `curl` fails, or you need a pixel-perfect clip that `sips` cannot reproduce from node bounds. Do **not** call `get_screenshot` for nodes already fully covered by `get_design_context` unless you need a separate export of a child layer.
+
+### 3b. Download assets
+
+1. Create directory `drafts/media/` if it does not exist.
+2. **Standalone assets** (SVGs, icons): download via `curl -sL -o <filename> "<url>"`. Derive filenames from the Figma layer name (slugified, lowercase, hyphens). Preserve original extension.
+3. **Per-breakpoint images** (**primary — `curl` + `sips`**): when the same image URL appears across breakpoints with different containing nodes, produce a cropped rendition for each breakpoint:
+   - Download the raw asset once, resize to the Figma design width (e.g. `sips --resampleWidth <figma_width> source.png --out resized.png`).
+   - For each breakpoint, compute the crop: `y_offset = (resized_height - container_height) / 2`, `x_offset` from the Figma node position. Then crop: `sips --cropOffset <y> <x> -c <container_h> <viewport_w> resized.png --out <name>-<breakpoint>.png`.
+   - Delete the intermediate source/resized files. Keep only the per-breakpoint crops.
+   - Name with a `-{breakpoint}` suffix: `background-image-desktop.png`, `background-image-tablet.png`, `background-image-mobile.png`.
+4. **Fallback** — if the per-breakpoint `curl` + `sips` steps in item 3 fail for a breakpoint, call `get_screenshot` with the **image fill node's** `fileKey` and `nodeId` for that breakpoint's crop, save to the same path naming convention, and note *"exported via get_screenshot fallback"* in the Report.
+
+## Step 4: Generate design.md
 
 Before writing each CSS rule: If the selector targets a Dynamic Content Element or its container, verify you are not adding width/height (element) or max-width/max-height (container) unless that exact property exists in Figma for that node.
 
@@ -184,7 +222,7 @@ When the design uses `position: absolute; inset: 0` for both a background elemen
 [Block options (variants) add CSS classes via parenthetical notation in the block name]
 ```
 
-## Step 4: Write design.md
+## Step 5: Write design.md
 
 Write to `FEATURE_DIR/design.md`.
 

@@ -1,0 +1,707 @@
+/* === Template-level: hide site chrome for presentation pages === */
+
+body.presentation > header,
+body.presentation > footer {
+  display: none;
+}
+
+body.presentation {
+  overflow: hidden;
+}
+
+body.presentation main {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+body.presentation .section {
+  margin: 0;
+  padding: 0;
+}
+
+/* Hide config section */
+body.presentation .presentation-container {
+  display: none !important;
+}
+
+/* === Slide base === */
+
+body.presentation .section.presentation-slide {
+  display: flex;
+  position: absolute;
+  inset: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: calc(56px + 3rem) 5rem calc(48px + 2.5rem);
+  box-sizing: border-box;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%);
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.45s ease;
+  background-size: cover;
+  background-position: center;
+  background-color: #fff;
+  overflow-y: auto;
+  z-index: 0;
+}
+
+body.presentation .section.presentation-slide.slide-before {
+  transform: translateX(-100%);
+  z-index: 1;
+}
+
+body.presentation .section.presentation-slide.slide-after {
+  transform: translateX(100%);
+  z-index: 1;
+}
+
+body.presentation .section.presentation-slide.active-slide {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  pointer-events: auto;
+  z-index: 2;
+}
+
+/* Content width constraint */
+body.presentation .section.presentation-slide .default-content-wrapper {
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Background image overlay */
+body.presentation .section.has-background::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 45%);
+  z-index: 0;
+}
+
+body.presentation .section.has-background > * {
+  position: relative;
+  z-index: 1;
+}
+
+body.presentation .section.has-background {
+  color: #fff;
+}
+
+/* === Header bar === */
+
+.presentation-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  background: #0a0a0a;
+  border-bottom: 1px solid rgb(255 255 255 / 8%);
+  z-index: 100;
+}
+
+.presentation-header.hidden {
+  display: none;
+}
+
+.presentation-header-left {
+  display: flex;
+  align-items: center;
+}
+
+.presentation-header-left img {
+  height: 30px;
+  width: auto;
+  display: block;
+}
+
+.presentation-header-right {
+  display: flex;
+  align-items: center;
+}
+
+.presentation-header-title {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgb(255 255 255 / 55%);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--body-font-family);
+}
+
+/* === Footer bar === */
+
+.presentation-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  background: #0a0a0a;
+  border-top: 1px solid rgb(255 255 255 / 8%);
+  z-index: 100;
+  font-size: 0.8125rem;
+  color: rgb(255 255 255 / 55%);
+}
+
+.presentation-footer.hidden {
+  display: none;
+}
+
+.presentation-footer-left {
+  flex: 0 0 auto;
+}
+
+.presentation-footer-left img {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+
+.presentation-footer-center {
+  flex: 1 1 auto;
+  text-align: center;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.04em;
+}
+
+.presentation-footer-right {
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+}
+
+/* === Navigation controls === */
+
+.presentation-chrome {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.presentation-nav {
+  position: fixed;
+  bottom: 56px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: auto;
+}
+
+body.presentation .presentation-nav:hover,
+body.presentation .presentation-nav:focus-within {
+  opacity: 1;
+}
+
+.presentation-prev,
+.presentation-next,
+.presentation-fullscreen {
+  background: rgb(0 0 0 / 55%);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.2s;
+  pointer-events: auto;
+}
+
+.presentation-prev:hover,
+.presentation-next:hover,
+.presentation-fullscreen:hover {
+  background: rgb(0 0 0 / 85%);
+}
+
+.presentation-prev.hidden,
+.presentation-next.hidden {
+  visibility: hidden;
+}
+
+.presentation-prev img,
+.presentation-next img,
+.presentation-fullscreen img {
+  width: 20px;
+  height: 20px;
+  filter: invert(1);
+}
+
+/* Dots */
+
+.presentation-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.presentation-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid rgb(255 255 255 / 55%);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.presentation-dot:hover {
+  border-color: #fff;
+  transform: scale(1.25);
+}
+
+.presentation-dot.active {
+  background: #fff;
+  border-color: #fff;
+  transform: scale(1.25);
+}
+
+/* === Slide type: Title === */
+
+body.presentation .section.slide-title {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem;
+  color: #fff;
+  background-color: #050505;
+  background-image: radial-gradient(ellipse 90% 70% at 50% 50%, rgb(30 30 55 / 70%) 0%, transparent 70%);
+}
+
+body.presentation .section.slide-title h1 {
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  margin: 0 0 0.3em;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+}
+
+body.presentation .section.slide-title h2,
+body.presentation .section.slide-title p {
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  opacity: 0.55;
+  margin: 0 0 0.3em;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+/* === Slide type: Agenda === */
+
+body.presentation .section.slide-agenda {
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: #111;
+  color: #fff;
+}
+
+body.presentation .section.slide-agenda h2 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 0.8em;
+  letter-spacing: -0.025em;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: #fff;
+  border-bottom: 2px solid rgb(255 255 255 / 12%);
+  padding-bottom: 0.4em;
+  width: 100%;
+}
+
+body.presentation .section.slide-agenda ol,
+body.presentation .section.slide-agenda ul {
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  line-height: 1.9;
+  padding-left: 1.5em;
+  color: rgb(255 255 255 / 75%);
+}
+
+body.presentation .section.slide-agenda li {
+  padding-left: 0.25em;
+}
+
+/* === Slide type: Content === */
+
+body.presentation .section.slide-content {
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: #fff;
+}
+
+body.presentation .section.slide-content h2 {
+  font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+  margin-bottom: 0.65em;
+  letter-spacing: -0.025em;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: #0a0a0a;
+  border-left: 6px solid #0a0a0a;
+  padding-left: 0.5em;
+  line-height: 1.1;
+}
+
+body.presentation .section.slide-content ul,
+body.presentation .section.slide-content ol {
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  line-height: 1.9;
+  padding-left: 1.5em;
+  color: #222;
+}
+
+body.presentation .section.slide-content li {
+  padding-left: 0.25em;
+  margin-bottom: 0.1em;
+}
+
+body.presentation .section.slide-content p {
+  font-size: clamp(1rem, 1.6vw, 1.35rem);
+  line-height: 1.65;
+  color: #333;
+}
+
+body.presentation .section.slide-content picture {
+  display: block;
+  max-width: 60%;
+  margin: 1.5rem auto;
+}
+
+body.presentation .section.slide-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+/* === Slide type: Image === */
+
+body.presentation .section.slide-image {
+  padding: 0;
+  padding-bottom: 48px;
+}
+
+body.presentation .section.slide-image picture {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+body.presentation .section.slide-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+body.presentation .section.slide-image > .default-content-wrapper > p:last-child {
+  position: absolute;
+  bottom: 56px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 1.25rem;
+  background: rgb(0 0 0 / 55%);
+  color: #fff;
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+/* === Slide type: Split === */
+
+body.presentation .section.slide-split {
+  padding: 0;
+  align-items: stretch;
+}
+
+body.presentation .section.slide-split .default-content-wrapper {
+  flex: 1 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: none;
+  width: 100%;
+}
+
+body.presentation .section.slide-split .split-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 0 48px;
+  box-sizing: border-box;
+}
+
+body.presentation .section.slide-split .split-image picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+body.presentation .section.slide-split .split-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+body.presentation .section.slide-split .split-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: calc(56px + 2.5rem) 3.5rem calc(48px + 2.5rem);
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+body.presentation .section.slide-split .split-content h2 {
+  font-size: clamp(1.75rem, 2.8vw, 2.75rem);
+  margin-bottom: 0.6em;
+  letter-spacing: -0.025em;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: #0a0a0a;
+  border-left: 6px solid #0a0a0a;
+  padding-left: 0.5em;
+  line-height: 1.1;
+}
+
+body.presentation .section.slide-split .split-content ul,
+body.presentation .section.slide-split .split-content ol {
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+  line-height: 1.85;
+  padding-left: 1.5em;
+  color: #222;
+}
+
+body.presentation .section.slide-split .split-content li {
+  padding-left: 0.25em;
+  margin-bottom: 0.1em;
+}
+
+body.presentation .section.slide-split .split-content p {
+  font-size: clamp(0.95rem, 1.4vw, 1.2rem);
+  line-height: 1.65;
+  color: #333;
+}
+
+/* === Buttons in slides === */
+
+body.presentation .button-wrapper {
+  margin: 0.75em 0;
+}
+
+body.presentation .button {
+  display: inline-block;
+  padding: 0.75em 1.75em;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: inherit;
+  transition: background 0.2s, color 0.2s;
+  letter-spacing: 0.02em;
+}
+
+body.presentation .button.primary {
+  background: #0a0a0a;
+  color: #fff;
+}
+
+body.presentation .button.primary:hover {
+  background: #333;
+}
+
+body.presentation .button.secondary {
+  background: transparent;
+  color: #0a0a0a;
+  border: 2px solid #0a0a0a;
+}
+
+body.presentation .button.secondary:hover {
+  background: #0a0a0a;
+  color: #fff;
+}
+
+body.presentation .button.accent {
+  background: #dc2626;
+  color: #fff;
+}
+
+body.presentation .button.accent:hover {
+  background: #b91c1c;
+}
+
+/* === Dark theme === */
+
+body.presentation.dark .section.presentation-slide {
+  background-color: #111;
+  color: #e8e8e8;
+}
+
+body.presentation.dark .section.slide-title {
+  background-color: #050505;
+}
+
+body.presentation.dark .section.slide-content {
+  background-color: #111;
+}
+
+body.presentation.dark .section.slide-content h2 {
+  color: #f0f0f0;
+  border-left-color: #fff;
+}
+
+body.presentation.dark .section.slide-content ul,
+body.presentation.dark .section.slide-content ol,
+body.presentation.dark .section.slide-content p {
+  color: #ccc;
+}
+
+body.presentation.dark .section.slide-content a,
+body.presentation.dark .section.slide-agenda a {
+  color: #aaa;
+}
+
+body.presentation.dark .button.primary {
+  background: #fff;
+  color: #0a0a0a;
+}
+
+body.presentation.dark .button.secondary {
+  color: #fff;
+  border-color: #fff;
+}
+
+body.presentation.dark .button.secondary:hover {
+  background: #fff;
+  color: #0a0a0a;
+}
+
+body.presentation.dark .section.slide-split .split-content h2 {
+  color: #f0f0f0;
+  border-left-color: #fff;
+}
+
+body.presentation.dark .section.slide-split .split-content ul,
+body.presentation.dark .section.slide-split .split-content ol,
+body.presentation.dark .section.slide-split .split-content p {
+  color: #ccc;
+}
+
+/* === Reduced motion === */
+
+@media (prefers-reduced-motion: reduce) {
+  body.presentation .section.presentation-slide {
+    transition: none;
+  }
+
+  .presentation-nav {
+    transition: none;
+  }
+}
+
+/* === Responsive: tablet === */
+
+@media (width <= 900px) {
+  body.presentation .section.presentation-slide {
+    padding: calc(56px + 2rem) 3rem calc(48px + 1.5rem);
+  }
+
+  body.presentation .section.slide-title {
+    padding: 4rem 3rem;
+  }
+
+  body.presentation .section.slide-content picture {
+    max-width: 85%;
+  }
+}
+
+/* === Responsive: mobile === */
+
+@media (width <= 600px) {
+  body.presentation .section.presentation-slide {
+    padding: calc(48px + 1.5rem) 1.75rem calc(40px + 1rem);
+  }
+
+  body.presentation .section.slide-title {
+    padding: 3rem 1.75rem;
+  }
+
+  .presentation-header {
+    height: 48px;
+    padding: 0 1.25rem;
+  }
+
+  .presentation-header-left img {
+    height: 24px;
+  }
+
+  .presentation-header-title {
+    display: none;
+  }
+
+  .presentation-footer {
+    height: 40px;
+    font-size: 0.75rem;
+    padding: 0 1.25rem;
+  }
+
+  .presentation-footer-left img {
+    height: 20px;
+  }
+
+  .presentation-nav {
+    bottom: 48px;
+  }
+
+  .presentation-prev,
+  .presentation-next,
+  .presentation-fullscreen {
+    width: 38px;
+    height: 38px;
+  }
+
+  .presentation-dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  body.presentation .section.slide-split .default-content-wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: 50% 50%;
+  }
+
+  body.presentation .section.slide-split .split-image {
+    padding: 48px 0 40px;
+  }
+
+  /* image-right: swap visual order so image always stacks on top on mobile */
+  body.presentation .section.slide-split.image-right .split-image {
+    order: -1;
+  }
+
+  body.presentation .section.slide-split .split-content {
+    padding: 1.5rem 1.75rem 1rem;
+  }
+}

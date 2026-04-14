@@ -1,0 +1,193 @@
+# Test Cases: Event Countdown Timer (000-countdown)
+
+Author-oriented test cases. All steps can be performed by a content author in the document-based authoring environment (Word, Google Docs, or da.live) and on the published site.
+
+---
+
+ID,Work Item Type,Title,Test Step,Step Action,Step Expected,Area Path,Assigned To,State
+"","Test Case","Countdown | Author can create a Countdown block in the document editor",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Open a page document in the authoring environment (Word, Google Docs, or da.live)","Page document is open and editable",,,
+,,,"2","Create a table with ""Countdown"" as the text in the first merged row","A table is created with the block header ""Countdown""",,,
+,,,"3","Add a row with ""Date"" in the left cell and ""2026-10-12T14:00:00"" in the right cell","Date row is added to the table",,,
+,,,"4","Add a row with ""Timezone"" in the left cell and ""Europe/London"" in the right cell","Timezone row is added to the table",,,
+,,,"5","Preview the page using Sidekick","Page preview loads in the browser",,,
+,,,"6","Locate the Countdown block on the previewed page","A Countdown block is rendered with a live timer counting down to the configured date",,,
+"","Test Case","Countdown | Block renders correctly with only required fields (Date and Timezone)",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block table with two rows: Date set to a future date/time (e.g. ""2026-12-31T23:59:59"") and Timezone set to ""America/New_York""","Countdown block table with only required fields is ready",,,
+,,,"2","Preview the page using Sidekick","Page preview loads",,,
+,,,"3","Verify the block displays a countdown timer with four units","Four countdown units are visible showing days, hours, minutes, and seconds",,,
+,,,"4","Check the labels beneath each unit","Labels read ""DAYS"", ""HOURS"", ""MINUTES"", ""SECONDS""",,,
+,,,"5","Verify no additional elements are displayed","No pretitle, title, button, milestones, or background image are visible",,,
+"","Test Case","Countdown | Block renders with variant in table header",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a table with ""Countdown (spacing-large)"" as the header row","Block table with spacing variant is created",,,
+,,,"2","Add required Date (future) and Timezone rows with valid values","Table has all required fields",,,
+,,,"3","Preview the page using Sidekick","Page preview loads",,,
+,,,"4","Verify the block renders a countdown timer","Countdown timer is displayed and ticking",,,
+,,,"5","Check the spacing below the block","A visibly large amount of bottom spacing is applied below the Countdown block",,,
+"","Test Case","Countdown | Timer updates every second",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Open a page containing a Countdown block configured with a future date at least several minutes away","Page loads with a visible countdown timer",,,
+,,,"2","Observe the seconds value displayed in the countdown","A seconds value is shown (e.g. 45)",,,
+,,,"3","Wait approximately 5 seconds while watching the seconds display","The seconds value decreases by approximately 5 (e.g. from 45 to 40)",,,
+,,,"4","Continue observing for another 5 seconds","The seconds value continues to decrease each second without pausing or jumping",,,
+"","Test Case","Countdown | Timer shows correct remaining time in days, hours, minutes, and seconds",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with Date set to exactly 2 days from now at 15:00 and Timezone matching your local timezone","Countdown block table is created",,,
+,,,"2","Preview the page","Countdown block renders",,,
+,,,"3","Verify the days display shows approximately ""02""","Days shows ""02"" (or ""01"" if close to crossover)",,,
+,,,"4","Verify the hours, minutes, and seconds displays show plausible values consistent with the time remaining","Hours, minutes, and seconds values are reasonable and counting down",,,
+"","Test Case","Countdown | Timer freezes at zero when event time arrives",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with Date and Timezone set to approximately 1 minute in the future","Block table is created with an imminent target time",,,
+,,,"2","Preview the page and observe the timer counting down","Timer is ticking down toward zero",,,
+,,,"3","Wait until the target time passes","Timer reaches 00 for all four units",,,
+,,,"4","Verify the display shows ""00"" for days, hours, minutes, and seconds","All four units display ""00""",,,
+,,,"5","Wait an additional 10 seconds","Timer remains at 00 : 00 : 00 : 00 and does not change",,,
+"","Test Case","Countdown | Timer calculates correctly using the authored timezone",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with Date set to ""2026-10-12T14:00:00"" and Timezone set to ""Europe/London""","Block table is created with London timezone",,,
+,,,"2","Preview the page","Countdown block renders",,,
+,,,"3","Manually calculate the expected remaining time from now until 14:00 London time on the target date","Expected remaining time is known",,,
+,,,"4","Compare the displayed countdown against your manual calculation","The displayed countdown matches the expected remaining time (within a few seconds tolerance)",,,
+"","Test Case","Countdown | Default labels display when no label overrides are authored",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with only Date (future) and Timezone rows — no label rows","Block table is created without label overrides",,,
+,,,"2","Preview the page","Countdown block renders",,,
+,,,"3","Check the label beneath each countdown unit","Labels read ""DAYS"", ""HOURS"", ""MINUTES"", ""SECONDS"" respectively",,,
+"","Test Case","Countdown | Custom labels override defaults",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with Date, Timezone, and four label-override rows: ""Days Label"" = ""JOURS"", ""Hours Label"" = ""HEURES"", ""Minutes Label"" = ""MIN"", ""Seconds Label"" = ""SEC""","Block table with custom labels is created",,,
+,,,"2","Preview the page","Countdown block renders",,,
+,,,"3","Check the labels beneath the countdown units","Labels read ""JOURS"", ""HEURES"", ""MIN"", ""SEC"" instead of the English defaults",,,
+"","Test Case","Countdown | Partial label overrides work alongside defaults",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with Date, Timezone, and only one label override: ""Days Label"" = ""DIAS""","Block table with a single label override is created",,,
+,,,"2","Preview the page","Countdown block renders",,,
+,,,"3","Check the days label","Days label reads ""DIAS""",,,
+,,,"4","Check the remaining three labels","Hours label reads ""HOURS"", minutes label reads ""MINUTES"", seconds label reads ""SECONDS""",,,
+"","Test Case","Countdown | No milestones render when no Milestone rows are authored",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with Date, Timezone, Pretitle, and Title — but no Milestone rows","Block table without milestones is created",,,
+,,,"2","Preview the page","Countdown block renders",,,
+,,,"3","Look for milestone panels in the block","No milestone panels or milestone content are visible anywhere in the block",,,
+"","Test Case","Countdown | One milestone renders correctly",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with Date, Timezone, and one Milestone row with values: ""OCTOBER"" | ""10-12"" | ""2025""","Block table with one milestone is created",,,
+,,,"2","Preview the page","Countdown block renders",,,
+,,,"3","Locate the milestone area in the block","One milestone panel is displayed",,,
+,,,"4","Verify the milestone content","Panel shows ""OCTOBER"", ""10-12"", and ""2025"" with a visual separator between the second and third values",,,
+"","Test Case","Countdown | Two milestones render correctly",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with Date, Timezone, and two Milestone rows: first = ""OCTOBER"" | ""10-12"" | ""2025"", second = ""QUALIFYING"" | ""14:00 GMT"" | ""27th OCT""","Block table with two milestones is created",,,
+,,,"2","Preview the page","Countdown block renders",,,
+,,,"3","Locate the milestone area in the block","Two milestone panels are displayed side by side or stacked",,,
+,,,"4","Verify the first milestone content","First panel shows ""OCTOBER"", ""10-12"", ""2025""",,,
+,,,"5","Verify the second milestone content","Second panel shows ""QUALIFYING"", ""14:00 GMT"", ""27th OCT""",,,
+"","Test Case","Countdown | Only first two milestones are processed when more are authored",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with Date, Timezone, and three Milestone rows with distinct values in each","Block table with three milestones is created",,,
+,,,"2","Preview the page","Countdown block renders",,,
+,,,"3","Count the number of milestone panels displayed","Exactly two milestone panels are visible",,,
+,,,"4","Look for content from the third Milestone row","The third milestone's content does not appear anywhere in the block",,,
+"","Test Case","Countdown | Single background image used across all viewports",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with Date, Timezone, and a Background row containing one image","Block table with one background image is created",,,
+,,,"2","Preview the page at desktop width","Background image is visible behind the countdown content",,,
+,,,"3","Resize the browser to approximately tablet width (around 900px)","The same background image is still displayed",,,
+,,,"4","Resize the browser to approximately mobile width (around 400px)","The same background image is still displayed",,,
+"","Test Case","Countdown | Two background images split desktop-tablet and mobile",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with a Background row containing two distinct images in two cells","Block table with two background images is created",,,
+,,,"2","Preview the page at desktop width","The first image is displayed as the background",,,
+,,,"3","Resize the browser to approximately tablet width","The first image is still displayed as the background",,,
+,,,"4","Resize the browser to approximately mobile width (below 600px)","The second image is now displayed as the background",,,
+"","Test Case","Countdown | Three background images apply per breakpoint",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with a Background row containing three distinct images in three cells (desktop, tablet, mobile)","Block table with three background images is created",,,
+,,,"2","Preview the page at desktop width (above 1200px)","The first image is displayed as the background",,,
+,,,"3","Resize the browser to tablet width (between 600px and 1200px)","The second image is displayed as the background",,,
+,,,"4","Resize the browser to mobile width (below 600px)","The third image is displayed as the background",,,
+"","Test Case","Countdown | Pretitle renders as accented text above the title",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with Date, Timezone, Pretitle = ""PARQUE MAEDA - SAO PAULO"", and Title = ""BELGIAN GP""","Block table with pretitle and title is created",,,
+,,,"2","Preview the page","Countdown block renders",,,
+,,,"3","Locate the pretitle text","Text ""PARQUE MAEDA - SAO PAULO"" appears above the title",,,
+,,,"4","Compare the pretitle and title styling","The pretitle is visually distinct from the title (different size, weight, or style)",,,
+"","Test Case","Countdown | Title renders as the main heading of the block",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with Date, Timezone, and Title = ""BELGIAN GP""","Block table with title is created",,,
+,,,"2","Preview the page","Countdown block renders",,,
+,,,"3","Locate the title text in the block","Text ""BELGIAN GP"" is prominently displayed as the main heading of the Countdown block",,,
+"","Test Case","Countdown | CTA button renders and navigates to the authored URL",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with Date, Timezone, and a Button row containing a link labeled ""Buy Tickets"" pointing to ""/events/tickets""","Block table with CTA button is created",,,
+,,,"2","Preview the page","Countdown block renders",,,
+,,,"3","Locate the CTA button in the block","A button labeled ""Buy Tickets"" is visible in the block",,,
+,,,"4","Click the ""Buy Tickets"" button","Browser navigates to the /events/tickets page",,,
+"","Test Case","Countdown | Block renders without pretitle, title, or button when those rows are omitted",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with only Date (future) and Timezone rows","Block table with minimal fields is created",,,
+,,,"2","Preview the page","Countdown block renders",,,
+,,,"3","Check for any pretitle text above the timer","No pretitle text is displayed",,,
+,,,"4","Check for any title heading in the block","No title heading is displayed",,,
+,,,"5","Check for any CTA button in the block","No CTA button is displayed",,,
+,,,"6","Verify the countdown timer is present and functioning","Timer is ticking down correctly",,,
+"","Test Case","Countdown | spacing-small variant applies small bottom spacing",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a table with ""Countdown (spacing-small)"" as the header and add Date and Timezone rows","Block with spacing-small variant is created",,,
+,,,"2","Add another block or content section immediately below the Countdown block","A reference element is below the block",,,
+,,,"3","Preview the page","Countdown block renders",,,
+,,,"4","Observe the gap between the bottom of the Countdown block and the content below it","A small amount of bottom spacing is visible",,,
+"","Test Case","Countdown | spacing-medium variant applies medium bottom spacing",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a table with ""Countdown (spacing-medium)"" as the header and add Date and Timezone rows","Block with spacing-medium variant is created",,,
+,,,"2","Add another block or content section immediately below the Countdown block","A reference element is below the block",,,
+,,,"3","Preview the page","Countdown block renders",,,
+,,,"4","Observe the gap between the bottom of the Countdown block and the content below it","A medium amount of bottom spacing is visible, noticeably more than spacing-small",,,
+"","Test Case","Countdown | spacing-large variant applies large bottom spacing",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a table with ""Countdown (spacing-large)"" as the header and add Date and Timezone rows","Block with spacing-large variant is created",,,
+,,,"2","Add another block or content section immediately below the Countdown block","A reference element is below the block",,,
+,,,"3","Preview the page","Countdown block renders",,,
+,,,"4","Observe the gap between the bottom of the Countdown block and the content below it","A large amount of bottom spacing is visible, noticeably more than spacing-medium",,,
+"","Test Case","Countdown | No spacing variant applies no additional bottom padding",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a table with ""Countdown"" as the header (no variant) and add Date and Timezone rows","Block without spacing variant is created",,,
+,,,"2","Add another block or content section immediately below the Countdown block","A reference element is below the block",,,
+,,,"3","Preview the page","Countdown block renders",,,
+,,,"4","Observe the gap between the bottom of the Countdown block and the content below it","No extra bottom padding is applied beyond default content spacing",,,
+"","Test Case","Countdown | Published page shows live countdown correctly",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with all optional fields: Pretitle, Title, Date (future), Timezone, four custom labels, Button, Background (one image), and two Milestones","Full-featured Countdown block table is created",,,
+,,,"2","Preview the page using Sidekick and verify the block renders correctly","Block renders with all elements visible in preview",,,
+,,,"3","Publish the page using Sidekick","Page is published successfully",,,
+,,,"4","Open the published page URL in a new browser tab","Published page loads",,,
+,,,"5","Verify the countdown timer is counting down on the published page","Timer is live and ticking",,,
+,,,"6","Verify pretitle, title, custom labels, button, milestones, and background image all display correctly","All authored content elements are present and rendered correctly on the published page",,,
+"","Test Case","Countdown | Event date in the past shows 00:00:00:00 immediately",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with Date set to a date/time that has already passed (e.g. yesterday) and a valid Timezone","Block with past date is created",,,
+,,,"2","Preview the page","Countdown block renders",,,
+,,,"3","Check the countdown display","Timer immediately shows ""00"" for all four units (days, hours, minutes, seconds)",,,
+,,,"4","Wait several seconds","Timer remains at 00 : 00 : 00 : 00 and does not change or show negative values",,,
+"","Test Case","Countdown | Missing or unparseable date renders gracefully without timer",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with a Timezone row but no Date row; also add Pretitle and Title rows","Block without a Date row is created",,,
+,,,"2","Preview the page","Countdown block renders",,,
+,,,"3","Check for a countdown timer in the block","No countdown timer is displayed (or the timer area is absent)",,,
+,,,"4","Check for the pretitle and title text","Pretitle and title are still displayed correctly",,,
+"","Test Case","Countdown | Invalid timezone renders gracefully without timer",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with a valid Date (future) but Timezone set to an invalid value (e.g. ""Not/A/Timezone""); also add Pretitle and Title rows","Block with invalid timezone is created",,,
+,,,"2","Preview the page","Countdown block renders",,,
+,,,"3","Check for a countdown timer in the block","No countdown timer is displayed (or timer area is absent) due to unparseable timezone",,,
+,,,"4","Check for the pretitle and title text","Pretitle and title are still displayed correctly",,,
+,,,"5","Check for button, milestones, and background if authored","Non-timer elements still render normally",,,
+"","Test Case","Countdown | Very long countdown (365+ days) displays correctly",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with Date set to more than one year in the future (e.g. 400+ days from now) and a valid Timezone","Block with far-future date is created",,,
+,,,"2","Preview the page","Countdown block renders",,,
+,,,"3","Check the days value in the countdown","Days value displays a number greater than 365",,,
+,,,"4","Check the hours, minutes, and seconds values","All values are plausible and the timer is counting down",,,
+"","Test Case","Countdown | Minimal configuration renders a default countdown",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with only Date (future) and Timezone rows — no other rows","Minimal block table is created",,,
+,,,"2","Preview the page","Countdown block renders",,,
+,,,"3","Verify a countdown timer is displayed","Four countdown units are visible and ticking",,,
+,,,"4","Verify default labels are shown","Labels read ""DAYS"", ""HOURS"", ""MINUTES"", ""SECONDS""",,,
+,,,"5","Verify no optional elements are present","No pretitle, title, button, milestones, or background are rendered",,,
+"","Test Case","Countdown | Timer remains accurate after browser tab is hidden and restored",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Open a page with a Countdown block showing a future countdown","Countdown timer is visible and ticking",,,
+,,,"2","Note the current countdown value (e.g. the minutes and seconds)","Current value is recorded",,,
+,,,"3","Switch to a different browser tab or minimize the window for approximately 30 seconds","Browser tab with countdown is in the background",,,
+,,,"4","Return to the countdown page tab","Page is visible again",,,
+,,,"5","Check the countdown value","Timer shows a value approximately 30 seconds less than what was noted, not the value it would show if it had simply stopped while hidden",,,
+"","Test Case","Countdown | Countdown to a post-DST-transition date shows correct time",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Create a Countdown block with Date set to a date/time after the next DST transition in the authored timezone (e.g. Date = ""2026-11-01T14:00:00"", Timezone = ""America/New_York"")","Block targeting a post-DST date is created",,,
+,,,"2","Preview the page before the DST transition occurs","Countdown block renders",,,
+,,,"3","Manually calculate the expected remaining time from now until 14:00 Eastern time on the target date, accounting for the DST change","Expected remaining time is known",,,
+,,,"4","Compare the displayed countdown against your manual calculation","The displayed countdown matches the expected time (within a few seconds), confirming the one-hour DST shift is handled correctly",,,
+"","Test Case","Countdown | Timer content is accessible to screen readers",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Open a page with a Countdown block showing an active countdown","Countdown timer is visible and ticking",,,
+,,,"2","Activate a screen reader (e.g. VoiceOver on macOS or NVDA on Windows)","Screen reader is active",,,
+,,,"3","Navigate to the countdown area using the screen reader","Screen reader reaches the countdown region",,,
+,,,"4","Listen to the screen reader announcement","The countdown values (days, hours, minutes, seconds) are announced in an understandable way",,,
+,,,"5","Wait 10-15 seconds and listen for update announcements","Updates are announced without being excessively frequent or verbose",,,
+"","Test Case","Countdown | Existing blocks on the same page are unaffected by the Countdown block",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+,,,"1","Open a page that contains other blocks (e.g. Hero, Cards, Columns) alongside a Countdown block","Page with multiple block types is ready",,,
+,,,"2","Preview the page","Page renders",,,
+,,,"3","Verify the Countdown block renders and functions correctly","Countdown timer is ticking; all authored elements display",,,
+,,,"4","Verify all other blocks on the page render as expected","Hero, Cards, Columns, and any other blocks display their content correctly with no visual regressions",,,
+,,,"5","Check the area around the Countdown block for layout issues","No layout shifts, overlapping content, or broken spacing around the Countdown block",,,

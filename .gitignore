@@ -1,6 +1,9 @@
 .hlx/*
 coverage/*
 logs/*
+
+# Speckit timer logs (keep .gitkeep, ignore actual logs)
+.specify/logs/*.log
 node_modules/*
 
 helix-importer-ui

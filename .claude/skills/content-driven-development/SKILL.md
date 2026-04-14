@@ -52,106 +52,84 @@ Follow these phases in order. Do not skip steps.
 
 The first phase establishes what content you're working with and ensures the content model is author-friendly.
 
-#### Step 1.1: Determine Content Availability
+**Initialize timing.** Use the block name as the run identifier (e.g., `countdown` → `cdd-countdown`):
 
-**For new blocks:**
+```bash
+python3 .specify/scripts/phase-timer.py init cdd-{block-name}
+python3 .specify/scripts/phase-timer.py start cdd-discovery cdd-{block-name}
+```
 
-Skip to Step 1.2 (Content Model Design). Searching for content that doesn't exist is a waste of time.
+#### Single Discovery Prompt
 
-**For modifications to existing blocks:**
+**Ask the user all of the following in one message:**
 
-Ask the user: "Does content using this block already exist that we can use for testing?"
+> "To set up the development context, please answer these upfront:
+>
+> 1. **New or modification?** Creating a new block or modifying an existing one?
+> 2. **Block name:** What should the block be called? (e.g., `countdown`)
+> 3. **Existing content:** *(Modification only)* Do pages with this block already exist that we can test against? If yes — URL or path. If no — say "none".
+> 4. **Content model:** How should we handle the content model?
+>    - (a) Use the content-modeling skill to design it now
+>    - (b) I'll describe the structure myself
+>    - (c) Already defined — I'll describe or link to it
+> 5. **Test content location:** Where should test content live?
+>    - (a) CMS now (Google Drive/SharePoint/DA/Universal Editor)
+>    - (b) Local HTML drafts (temporary — CMS content required before PR)
+> 6. **Author docs:** Should test content also serve as author documentation? (yes/no)"
 
-- **YES** → Identify existing content to test against
-  - Use the `scripts/find-block-content.js` script to search for pages containing the block
-  - Or ask the user: "What are the path(s) to page(s) with this block?"
-  - Validate the content loads correctly in your local dev environment
-  - Proceed to Phase 2 (skip content modeling if structure isn't changing)
+#### Branching After Discovery
 
-- **NO existing content** → Proceed to Step 1.2
+Once answers are received, branch **without asking further questions**:
 
-#### Step 1.2: Content Model Design
+**Content model:**
+- Answer (a) → Invoke **content-modeling** skill; return here when done
+- Answer (b) or (c) → Document the described model and continue
 
-**REQUIRED for:**
-- All new blocks
-- Structural changes to existing blocks (adding/removing/modifying sections, variants, or the authoring structure)
+**Modification with existing content (URL provided):**
+- Validate the content loads locally
+- Use it as test content → skip directly to Phase 2
 
-**Ask the user:**
-"This requires a new content model. Would you like me to use the content-modeling skill to design an author-friendly content model now?"
+**New block or modification with no existing content:**
 
-- **YES** → Invoke the **content-modeling** skill
-  - Follow the content modeling process completely
-  - Return to this skill when content model is defined
-  - Proceed to Step 1.3
-
-- **NO** → The user may want to define it themselves
-  - Ask: "Please describe the content structure authors will use"
-  - Document their description for reference
-  - Proceed to Step 1.3
-
-#### Step 1.3: Content Creation
-
-Once the content model is defined (from Step 1.2), you need test content.
-
-**Ask the user:**
-"We need test content for development and validation. This content will serve multiple purposes:
-- Testing during development
-- PR validation link for PSI checks
-- Author documentation and examples
-
-Would you like to:
-1. Create this content in the CMS now (Google Drive/SharePoint/DA/Universal Editor)
-2. Create temporary local HTML files for testing (will need CMS content before PR)"
-
-**Option 1: CMS Content (Recommended)**
+*Option 5a — CMS content (recommended):*
 - Guide the user through creating content in their CMS
-- Wait for user confirmation that content is created and published
+- Wait for confirmation content is created and published
 - Get the content URL(s) from the user
 - Validate content loads in local dev environment
-- Proceed to Phase 2
 
-**Option 2: Local HTML Files (Temporary)**
-- Create HTML file(s) in `drafts/` folder matching the content model structure
+*Option 5b — Local HTML drafts (temporary):*
+- Create HTML file(s) in `drafts/` matching the content model structure
 - Reference the [HTML Structure Guide](resources/html-structure.md) for proper file format
-- When generating drafts with images: Use https://picsum.photos/{width}/{height} (with `?random=N` for variety). If picsum.photos is unreachable, use https://placehold.co/{width}x{height} as fallback.
-- Remind user: "Restart your dev server with: `aem up --html-folder drafts`"
-- Note: "You will need to create actual CMS content before raising a PR"
-- Proceed to Phase 2
+- When generating drafts with images: use `drafts/dev/media/*` if available, otherwise `https://picsum.photos/{width}/{height}`. Fallback: `https://placehold.co/{width}x{height}`
+- Remind user: restart dev server with `aem up --html-folder drafts`
+- Note: CMS content is required before raising a PR
 
-##### Making Test Content Serve as Author Documentation
+**Author documentation (answer 6 = yes):**
+- Structure test content with documentation in mind
+- Create comprehensive examples showing all variants and edge cases
+- Use realistic content; avoid "lorem ipsum"
+- Place in an appropriate location:
+  - Sidekick Library projects: `/tools/sidekick/library/` or equivalent
+  - Document Authoring: DA Library structure
+  - Simple docs: `/drafts/docs/` or `/drafts/library/`
+  - Universal Editor: follow project-specific patterns
 
-Test content can often double as author-facing documentation, saving time and keeping documentation current. Consider this when creating test content:
+**End timing:**
 
-**When test content IS sufficient as author documentation:**
-- The block is straightforward with clear patterns
-- Test content shows all variants and use cases
-- Content demonstrates best practices authors should follow
-- Examples are realistic and relatable to actual use cases
-
-**When separate author documentation is needed:**
-- Block has complex configuration or many variants requiring explanation
-- There are edge cases or gotchas authors need to understand
-- Project standards require formal documentation in a specific location/format
-- Block behavior isn't self-evident from examples alone
-
-**Structuring test content to serve both purposes:**
-1. **Create comprehensive examples**: Show all variants, edge cases, and common patterns
-2. **Use realistic content**: Avoid "lorem ipsum" or technical placeholders
-3. **Demonstrate best practices**: Structure content the way authors should
-4. **Consider location**: Place content where it can serve as documentation
-   - Sidekick Library projects: Consider creating in `/tools/sidekick/library/` or appropriate library location
-   - Document Authoring: Place in DA Library structure
-   - Simple documentation: Use `/drafts/docs/` or `/drafts/library/`
-   - Universal Editor: Follow project-specific documentation patterns
-
-**Ask the user about documentation approach:**
-"Should this test content also serve as author documentation? If so, we can structure it accordingly and place it in an appropriate location (e.g., `/drafts/library/{block-name}` or your project's library system)."
-
-If yes, guide content creation with documentation in mind. If no, proceed with test-focused content and note that author documentation will be needed later.
+```bash
+python3 .specify/scripts/phase-timer.py end cdd-discovery cdd-{block-name}
+python3 .specify/scripts/phase-timer.py start cdd-test-content cdd-{block-name}
+# content creation happens here — end after content is confirmed accessible
+python3 .specify/scripts/phase-timer.py end cdd-test-content cdd-{block-name}
+```
 
 ### Phase 2: Implementation
 
 **CRITICAL: Do not begin Phase 2 until you have confirmed test content exists and is accessible.**
+
+```bash
+python3 .specify/scripts/phase-timer.py start cdd-implement cdd-{block-name}
+```
 
 Now that test content exists, proceed with implementation:
 
@@ -160,7 +138,10 @@ Now that test content exists, proceed with implementation:
 Invoke the **building-blocks** skill:
 - Provide the skill with the content model and test content URL(s)
 - Follow the building-blocks process for implementation
-- Return to this skill when implementation is complete
+- When building-blocks returns, end the implementation timer:
+  ```bash
+  python3 .specify/scripts/phase-timer.py end cdd-implement cdd-{block-name}
+  ```
 - Proceed to Phase 3
 
 #### For Core Functionality Changes
@@ -174,6 +155,10 @@ Follow standard development practices:
 ### Phase 3: Validation
 
 The final phase ensures the implementation works correctly with real content.
+
+```bash
+python3 .specify/scripts/phase-timer.py start cdd-validate cdd-{block-name}
+```
 
 #### Step 3.1: Test with Real Content
 
@@ -217,6 +202,14 @@ For other code changes, or for additional testing guidance, invoke the **testing
 - ✅ Author documentation is updated (if applicable)
 
 The test content URL will be used as the PR validation link.
+
+**Finalize timing:**
+
+```bash
+python3 .specify/scripts/phase-timer.py end cdd-validate cdd-{block-name}
+python3 .specify/scripts/phase-timer.py finalize cdd-{block-name}
+python3 .specify/scripts/phase-timer.py report cdd-{block-name}
+```
 
 ## Anti-Patterns to Avoid
 

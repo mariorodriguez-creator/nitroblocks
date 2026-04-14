@@ -71,10 +71,23 @@ Use the `building-blocks` skill for the decorate function pattern and CSS conven
 
 ## Phase Structure
 
-- **Phase 1: Setup** — block directory, test content verification (CDD Phase 2 gate)
+- **Phase 1: Setup** — test content verification, block directory scaffolding (CDD Phase 2 gate)
 - **Phase 2: Foundation** — core script changes, auto-blocking, shared utilities (blocking prereqs)
 - **Phase 3.X: User Stories** — one sub-phase per user story from spec
 - **Final Phase: QA & Polish** — TS001 (ESLint), TS002 (Stylelint), accessibility checks, documentation
+
+## T001: Test Content Verification (Phase 1 Gate)
+
+T001 verifies that test content exists, uses the correct file format, and **renders decorated blocks in the browser**. This is a gate — do not proceed to implementation until T001 passes.
+
+**T001 must include ALL of the following checks:**
+
+1. **File format**: Draft test content uses `.plain.html` extension per the [HTML Structure Guide](../content-driven-development/resources/html-structure.md). Files must contain only section content (`<div>` wrappers with blocks/default content) — NOT a full HTML page with `<!DOCTYPE html>`, `<head>`, or `<body>`.
+2. **Dev server**: Dev server must be running with `aem up --html-folder .` (or `--html-folder drafts` if files are in `drafts/`). Without this flag, `.plain.html` files will 404.
+3. **Browser render**: Load the page at the extensionless URL (e.g., `localhost:3000/drafts/block-test` for `drafts/block-test.plain.html`) and confirm blocks are decorated — the AEM decoration pipeline (scripts.js) must run and the block's `decorate()` function must execute. Raw content with no styling = broken.
+4. **Variant coverage**: All block variants and edge cases from the spec are present in the test content.
+
+**Common failure mode**: Content file created as `.html` (standalone page) or `.plain.html` accessed directly at the `.plain.html` URL — both bypass the AEM decoration pipeline and serve raw undecorated HTML. The correct URL never includes the file extension.
 
 ## Design.md Source of Truth
 
@@ -82,6 +95,17 @@ When `design.md` exists:
 - BJ001 (Block JS): HTML structure from design.md Code Scaffold — decoration must produce this structure
 - BC001 (Block CSS): Implement per design.md CSS Skeleton — vanilla CSS, all breakpoints, all variants, block-scoped selectors; **physical order** must be mobile-first (base → `@media (width >= 600px)` → `900px` → optional `1200px`). Match **`## Layout matrix (flex / grid)`** for `flex-direction` / `gap` per breakpoint; repeat desktop overrides when they differ from tablet.
 - Use design.md Design Token Mapping to reference project CSS custom properties from `styles/styles.css`
+
+## CT001: Content Validation (Post-Implementation)
+
+CT001 verifies that all block variants render correctly **in the browser** after implementation. This is NOT a file-existence check — it requires loading the page and confirming visual/functional correctness.
+
+**CT001 must specify:**
+- The exact URL to load (extensionless, e.g., `localhost:3000/drafts/block-test`)
+- What to verify per variant (rendered DOM, visual appearance, interactive behavior)
+- That no console errors appear
+
+**CT001 is NOT done until someone (human or automation) has loaded the URL in a browser and confirmed the blocks are decorated and functional.** Checking file contents or DOM structure in code is not a substitute for browser verification.
 
 ## Test Tasks
 

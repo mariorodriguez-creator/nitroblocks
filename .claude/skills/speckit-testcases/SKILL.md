@@ -27,7 +27,20 @@ Run: `.specify/scripts/bash/check-prerequisites.sh --json` from repo root. Parse
 | User journeys/primary flows | Happy path | One per distinct journey |
 | Acceptance Criteria | Functional verification | One or more per AC |
 | Edge cases/boundary conditions | Negative/boundary | One per edge case |
+| Required-field misconfiguration | Negative/boundary | See sweep rules below |
 | Published page behaviour | Publication verification | At least one end-to-end |
+
+### Required-Field Misconfiguration Sweep
+
+For every field the spec marks as **required**, generate test cases for each of these failure modes:
+
+1. **Row absent** — the key-value row is missing entirely
+2. **Value empty** — the row is present but the value cell is blank
+3. **Value malformed** — the row is present but the value is not in the expected format (e.g. non-ISO date, invented timezone)
+
+Additionally, always include a **zero-input boundary** test: the block header exists but contains no configuration rows at all.
+
+These cases may overlap with edge cases listed in the spec. Deduplicate by title, but never skip a failure mode just because the spec didn't call it out explicitly. The spec's edge-case list is a floor, not a ceiling.
 
 ## Test Case Writing Rules
 
@@ -67,6 +80,7 @@ ID,Work Item Type,Title,Test Step,Step Action,Step Expected,Area Path,Assigned T
 - [ ] Every user journey has at least one test case
 - [ ] Every acceptance criterion has at least one test case
 - [ ] Every identified edge case has at least one test case
+- [ ] Required-field misconfiguration sweep completed (absent / empty / malformed for each required field, plus zero-input boundary)
 - [ ] All test case titles are unique
 - [ ] All steps have both action and expected result
 - [ ] No step references implementation details

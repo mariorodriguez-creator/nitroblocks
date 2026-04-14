@@ -42,42 +42,37 @@ This skill handles:
 
 ## Process Overview
 
-1. Verify Prerequisites (CDD completed)
-2. Find Similar Blocks (for patterns and reuse)
-3. Create or Modify Block Structure (files and directories)
-4. Implement JavaScript Decoration (DOM transformation)
-5. Add CSS Styling (scoped, responsive styles)
-6. Test the Implementation (local testing, linting)
-7. Document Block (developer and author-facing docs)
+1. Find Similar Blocks (for patterns and reuse)
+2. Create or Modify Block Structure (files and directories)
+3. Implement JavaScript Decoration (DOM transformation)
+4. Add CSS Styling (scoped, responsive styles)
+5. Test the Implementation (local testing, linting)
+6. Document Block (developer and author-facing docs)
 
 ## Detailed Process
 
-### 1. Verify Prerequisites
+Prerequisites were confirmed during CDD Phase 1 — proceed directly to Step 1.
 
-**Before proceeding, confirm with the user:**
-
-"Do you have:
-- ✅ Test content created (URL or path)?
-- ✅ Content model defined?
-
-If not, we need to use the content-driven-development skill first."
-
-If prerequisites are not met, STOP and invoke the **content-driven-development** skill.
-
-If prerequisites are met, get the test content URL from the user and proceed to step 2.
-
-### 2. Find Similar Blocks
+### 1. Find Similar Blocks
 
 **For new blocks or major modifications:**
+
+```bash
+python3 .specify/scripts/phase-timer.py start cdd-block-search cdd-{block-name}
+```
 
 1. Search the codebase for similar blocks that might provide useful patterns or code we can re-use
 2. Use the **block-collection-and-party** skill to find relevant reference blocks
 
 Review the implementation patterns in similar blocks to inform your approach.
 
-**For minor modifications to existing blocks:** Skip to step 3.
+```bash
+python3 .specify/scripts/phase-timer.py end cdd-block-search cdd-{block-name}
+```
 
-### 3. Create or Modify Block Structure
+**For minor modifications to existing blocks:** Skip to step 2.
+
+### 2. Create or Modify Block Structure
 
 **For new blocks:**
 
@@ -93,7 +88,11 @@ Review the implementation patterns in similar blocks to inform your approach.
 2. Review the current implementation before making changes
 3. Understand the existing decoration logic and styles
 
-### 4. Implement JavaScript Decoration
+### 3. Implement JavaScript Decoration
+
+```bash
+python3 .specify/scripts/phase-timer.py start cdd-js cdd-{block-name}
+```
 
 Follow patterns and conventions in `resources/js-guidelines.md`:
 
@@ -104,7 +103,15 @@ Follow patterns and conventions in `resources/js-guidelines.md`:
 
 **Read `resources/js-guidelines.md` for detailed examples, code standards, and best practices.**
 
-### 5. Add CSS Styling
+```bash
+python3 .specify/scripts/phase-timer.py end cdd-js cdd-{block-name}
+```
+
+### 4. Add CSS Styling
+
+```bash
+python3 .specify/scripts/phase-timer.py start cdd-css cdd-{block-name}
+```
 
 Follow patterns and conventions in `resources/css-guidelines.md`:
 
@@ -117,7 +124,11 @@ Follow patterns and conventions in `resources/css-guidelines.md`:
 
 **Read `resources/css-guidelines.md` for detailed examples, code standards, and best practices.**
 
-### 6. Test the Implementation
+```bash
+python3 .specify/scripts/phase-timer.py end cdd-css cdd-{block-name}
+```
+
+### 5. Test the Implementation
 
 **After implementation is complete, invoke the testing-blocks skill:**
 
@@ -133,9 +144,9 @@ Provide the testing-blocks skill with:
 - Test content URL (from CDD process)
 - Any variants that need testing
 
-Return to this skill after testing is complete to proceed to step 7.
+Return to this skill after testing is complete to proceed to step 6.
 
-### 7. Document Block
+### 6. Document Block
 
 Blocks require two types of documentation:
 

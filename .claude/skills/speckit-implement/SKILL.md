@@ -12,6 +12,13 @@ Executes all tasks in `tasks.md` phase by phase, following the implementation pl
 
 Run: `.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks` from repo root. Parse `FEATURE_DIR` and `AVAILABLE_DOCS`.
 
+**Initialize execution timer:**
+```bash
+RUN_ID="run-$(date +%Y%m%d-%H%M%S)"
+python3 .specify/scripts/phase-timer.py init $RUN_ID
+python3 .specify/scripts/phase-timer.py start 3-implement $RUN_ID
+```
+
 ## Checklist Status Check
 
 Before implementing, scan `FEATURE_DIR/checklists/` for incomplete items. If any checklist is incomplete, ask user to confirm before proceeding.
@@ -60,5 +67,12 @@ Verify rendering on `localhost:3000` against test content after each significant
 Mark all tasks `[X]`, verify features match spec, confirm tests pass per testing-blocks.
 
 ## Report
+
+**End timer and report:**
+```bash
+python3 .specify/scripts/phase-timer.py end 3-implement $RUN_ID
+python3 .specify/scripts/phase-timer.py finalize $RUN_ID
+python3 .specify/scripts/phase-timer.py report $RUN_ID
+```
 
 Output: tasks completed, build status, **testing-blocks status** (passed or failed with details), and readiness for next phase. **Recommended next step:** Run `/speckit-validate` to validate the implementation. Or optionally `/speckit-design-compliance` (when design.md exists).

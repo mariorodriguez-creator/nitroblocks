@@ -157,13 +157,29 @@ rm -rf test/tmp/*
 
 **When to use:** Before every commit
 
-**Quick start:**
+**Scoped lint during development** — when the block name is known, scope lint to just that block (~1–2s instead of ~5–10s for the whole repo):
+
 ```bash
-# Run linting
+eslint "blocks/{blockname}/**/*.js" && stylelint "blocks/{blockname}/**/*.css"
+```
+
+**Full lint sweep before PR** (once):
+
+```bash
+# Run full linting
 npm run lint
 
 # Auto-fix issues
 npm run lint:fix
+```
+
+**Run scoped lint and browser test in parallel** (saves ~10s per cycle — no shared state between them):
+
+```bash
+eslint "blocks/{blockname}/**/*.js" && stylelint "blocks/{blockname}/**/*.css" &
+LINT_PID=$!
+node test/tmp/test-{blockname}-browser.js
+wait $LINT_PID
 ```
 
 **Linting MUST pass before opening a PR.** Non-negotiable.
@@ -193,30 +209,36 @@ For detailed step-by-step workflow, see `resources/testing-workflow.md`.
 
 **Quick summary:**
 
-### During Development
 1. Write unit tests for new utilities
-2. Run `npm run test:watch`
+2. Run `npm run test:watch` during active development
 3. Manually test in browser
-
-### Before Committing
-4. Run `npm test` - all tests pass
-5. Run `npm run lint` - linting passes
-6. Write throwaway browser test in `test/tmp/`
-7. Create test content in `drafts/tmp/`
+4. Run unit tests: `npm test` — all pass
+5. Write throwaway browser test in `test/tmp/`
+6. Create test content in `drafts/tmp/`
+7. Run scoped lint and browser test in parallel:
+   ```bash
+   python3 .specify/scripts/phase-timer.py start cdd-lint cdd-{block-name}
+   python3 .specify/scripts/phase-timer.py start cdd-browser-test cdd-{block-name}
+   eslint "blocks/{blockname}/**/*.js" && stylelint "blocks/{blockname}/**/*.css" &
+   LINT_PID=$!
+   node test/tmp/test-{blockname}-browser.js
+   wait $LINT_PID
+   python3 .specify/scripts/phase-timer.py end cdd-browser-test cdd-{block-name}
+   python3 .specify/scripts/phase-timer.py end cdd-lint cdd-{block-name}
+   ```
 8. Review screenshots from `test/tmp/screenshots/`
 9. Manual validation in browser
-
-### Before Opening PR
-10. Commit and push to feature branch (test/tmp/ won't be included)
-11. Verify branch preview loads
-12. Run `gh checks`
-13. Create PR with test link
-14. Monitor `gh pr checks`
+10. Run full lint sweep (once before PR): `npm run lint` — must pass
+11. Commit and push to feature branch (test/tmp/ won't be included)
+12. Verify branch preview loads
+13. Run `gh checks`
+14. Create PR with test link
+15. Monitor `gh pr checks`
 
 ### After PR Review
-15. Address feedback
-16. Re-test
-17. Verify checks pass
+16. Address feedback
+17. Re-test
+18. Verify checks pass
 
 ## Troubleshooting
 
