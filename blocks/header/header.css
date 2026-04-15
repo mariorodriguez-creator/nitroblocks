@@ -567,20 +567,16 @@ header .block.header.zonnic .bat-header-stores .bat-header-stores-link > a .bat-
   display: block;
 }
 
-/* Healthcare: mask from `icons/zonnic-nav-health.svg` + solid fill so hover matches `--color-zonnic-nav-hover`. */
+/* Healthcare: SVG mask from `icons/zonnic-nav-health.svg`; unprefixed `mask-*` + `background-color` for tint/hover. */
 header .block.header.zonnic .header-zonnic-nav-icon-health {
   display: block;
   width: 25px;
   height: 25px;
   flex-shrink: 0;
   background-color: #182465;
-  -webkit-mask-image: var(--header-zonnic-nav-health-icon);
   mask-image: var(--header-zonnic-nav-health-icon);
-  -webkit-mask-size: contain;
   mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  -webkit-mask-position: center;
   mask-position: center;
 }
 
