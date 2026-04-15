@@ -166,14 +166,35 @@ async function loadLazy(doc) {
     }
     meta.setAttribute('content', 'default');
   } else if (
-    /* Draft zonnic-header: inject variant when head has no header-variant meta */
+    /* Draft zonnic-header: full chrome (header + footer) when metas absent */
     /^\/drafts\/zonnic-header\/?$/.test(window.location.pathname)
-    && !getMetadata('header-variant')
   ) {
-    const meta = document.createElement('meta');
-    meta.setAttribute('name', 'header-variant');
-    meta.setAttribute('content', 'zonnic');
-    document.head.appendChild(meta);
+    if (!getMetadata('header-variant')) {
+      const hm = document.createElement('meta');
+      hm.setAttribute('name', 'header-variant');
+      hm.setAttribute('content', 'zonnic');
+      document.head.appendChild(hm);
+    }
+    if (!getMetadata('footer-variant')) {
+      const fm = document.createElement('meta');
+      fm.setAttribute('name', 'footer-variant');
+      fm.setAttribute('content', 'zonnic');
+      document.head.appendChild(fm);
+    }
+    if (!getMetadata('footer')) {
+      const fpath = document.createElement('meta');
+      fpath.setAttribute('name', 'footer');
+      fpath.setAttribute('content', '/footer');
+      document.head.appendChild(fpath);
+    }
+  } else if (/^\/drafts\/hero-with-teasers\/?$/.test(window.location.pathname)) {
+    /* Zonnic-shaped /footer would render wrong as raw sections; use a simple default fragment */
+    if (!getMetadata('footer')) {
+      const fp = document.createElement('meta');
+      fp.setAttribute('name', 'footer');
+      fp.setAttribute('content', '/drafts/footer-default');
+      document.head.appendChild(fp);
+    }
   }
 
   loadHeader(doc.querySelector('header'));

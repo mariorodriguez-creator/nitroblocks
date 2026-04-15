@@ -1,7 +1,6 @@
 /**
  * Pure / DOM helpers for the Zonnic header variant (testable, no innerHTML for structure).
- * Block assets in /blocks/header/zonnic-assets/: logos only. Health warning WebP: /content/dam/...
- * after `npm run sync:zonnic:dam`. No live fetches.
+ * Block assets in /blocks/header/zonnic-assets/: logos + health-warning WebPs. No live fetches.
  */
 
 export const ZONNIC_ASSET_DIR = '/blocks/header/zonnic-assets';
@@ -15,28 +14,15 @@ export function zonnicBlockAssetUrl(basePath, filename) {
   return `${b}${ZONNIC_ASSET_DIR}/${filename}`;
 }
 
-/**
- * URL for a file at the same path as the crawl (`sync:zonnic:dam` mirrors `content/dam/...`).
- * @param {string} basePath - `window.hlx.codeBasePath` or ''
- * @param {string} absolutePath - begins with `/content/dam/`
- */
-export function zonnicDamAssetUrl(basePath, absolutePath) {
-  const b = (basePath ?? '').replace(/\/$/, '');
-  const p = absolutePath.startsWith('/') ? absolutePath : `/${absolutePath}`;
-  return `${b}${p}`;
-}
-
 export const ZONNIC_HOME_HREF = 'https://www.zonnic.ca/ca/en';
 
 export const ZONNIC_HEALTHCARE_HREF = 'https://www.zonnic.ca/ca/en/healthcare-professionals';
 
 export const ZONNIC_HEALTH_WARNING_ALT = 'Nicotine Replacement Therapy Health Warning';
 
-const ZONNIC_HW_DAM_DIR = '/content/dam/zonnic-content/ca/2025/health-warning/hw/en';
-
-/** Same paths as crawled `bat-image-default` (ca/en/pouches/index.html). */
-export const ZONNIC_HW_DESKTOP_DAM_PATH = `${ZONNIC_HW_DAM_DIR}/ZONNIC-HW_Desktop_En.webp`;
-export const ZONNIC_HW_MOBILE_DAM_PATH = `${ZONNIC_HW_DAM_DIR}/ZONNIC-HW_Mobile_En.webp`;
+/** English health-warning art (same filenames as AEM DAM). */
+export const ZONNIC_HW_DESKTOP_FILE = 'ZONNIC-HW_Desktop_En.webp';
+export const ZONNIC_HW_MOBILE_FILE = 'ZONNIC-HW_Mobile_En.webp';
 
 export const ZONNIC_LOGO_DESKTOP_FILE = 'zonnic-logo-desktop.svg';
 export const ZONNIC_LOGO_MOBILE_FILE = 'zonnic-logo-mobile.svg';
@@ -287,9 +273,9 @@ export function createZonnicHealthWarningPicture(doc, basePath) {
   const picture = doc.createElement('picture');
   const source = doc.createElement('source');
   source.media = '(min-width: 768px)';
-  source.setAttribute('srcset', zonnicDamAssetUrl(basePath, ZONNIC_HW_DESKTOP_DAM_PATH));
+  source.setAttribute('srcset', zonnicBlockAssetUrl(basePath, ZONNIC_HW_DESKTOP_FILE));
   const img = doc.createElement('img');
-  img.src = zonnicDamAssetUrl(basePath, ZONNIC_HW_MOBILE_DAM_PATH);
+  img.src = zonnicBlockAssetUrl(basePath, ZONNIC_HW_MOBILE_FILE);
   img.alt = ZONNIC_HEALTH_WARNING_ALT;
   img.loading = 'eager';
   img.decoding = 'async';

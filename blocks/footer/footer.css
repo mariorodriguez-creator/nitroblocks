@@ -18,3 +18,651 @@ footer .footer p {
     padding: 40px 32px 24px;
   }
 }
+
+footer .footer.zonnic .sr-only {
+  border: 0;
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+footer .footer.zonnic .bat-footer-zonnic {
+  --bg-color: var(--color-zonnic-footer-bg);
+  --border-color: var(--color-zonnic-footer-border);
+  --text-color: var(--color-zonnic-footer-fg);
+  --footer-header-bg-color: var(--color-zonnic-footer-strip-bg);
+  --footer-link-color: var(--color-zonnic-footer-link-hover);
+
+  background-color: var(--bg-color);
+  box-sizing: border-box;
+  color: var(--text-color);
+  font-family: var(--font-zonnic-header);
+  margin: 0;
+  max-width: none;
+  padding: 0;
+  position: relative;
+}
+
+@media (prefers-color-scheme: dark) {
+  footer .footer.zonnic .bat-footer-zonnic {
+    --bg-color: #3a3a3f;
+    --text-color: #fff;
+    --footer-header-bg-color: #2f2f2f;
+  }
+}
+
+footer .footer.zonnic .bat-footer-zonnic.dark-mode {
+  --bg-color: #3a3a3f;
+  --text-color: #fff;
+  --footer-header-bg-color: #2f2f2f;
+
+  background-color: var(--bg-color);
+}
+
+footer .footer.zonnic .bat-footer-zonnic-main {
+  background-color: var(--bg-color);
+  box-sizing: border-box;
+  color: #fff;
+  font-family: var(--font-zonnic-header);
+  padding: 0 20px;
+  position: relative;
+}
+
+footer .footer.zonnic .bat-footer-zonnic-main > .bat-footer-social-nav {
+  display: none;
+}
+
+@media (width <= 991.98px) {
+  footer .footer.zonnic .bat-footer-zonnic-main > .bat-footer-social-nav {
+    display: block;
+    margin: 20px 0;
+  }
+}
+
+@media (width <= 767.98px) {
+  footer .footer.zonnic .bat-footer-zonnic-main {
+    overflow: hidden;
+  }
+}
+
+@media (width >= 992px) {
+  footer .footer.zonnic .bat-footer-zonnic-main {
+    padding: 42px 20px;
+  }
+
+  footer .footer.zonnic .bat-footer-zonnic-main > .bat-footer-social-nav {
+    display: none;
+  }
+}
+
+footer .footer.zonnic .bat-footer-zonnic-top {
+  background-color: var(--footer-header-bg-color);
+  box-sizing: border-box;
+  height: 55px;
+  padding: 0;
+}
+
+@media (width <= 991.98px) {
+  footer .footer.zonnic .bat-footer-zonnic-top {
+    padding: 0 20px;
+  }
+}
+
+@media (width <= 991.98px) {
+  footer .footer.zonnic .bat-logo--top {
+    display: none;
+  }
+}
+
+@media (width >= 992px) {
+  footer .footer.zonnic .bat-logo--top {
+    display: block;
+  }
+}
+
+@media (width <= 991.98px) {
+  footer .footer.zonnic .bat-logo--bottom {
+    display: block;
+  }
+}
+
+@media (width >= 992px) {
+  footer .footer.zonnic .bat-logo--bottom {
+    display: none;
+  }
+}
+
+footer .footer.zonnic .bat-logo--bottom a {
+  display: block;
+}
+
+footer .footer.zonnic .bat-footer-zonnic--row {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1500px;
+  position: relative;
+}
+
+@media (width <= 991.98px) {
+  footer .footer.zonnic .bat-footer-zonnic--row {
+    flex-direction: column;
+  }
+}
+
+@media (width >= 992px) {
+  footer .footer.zonnic .bat-footer-zonnic--row:first-of-type {
+    justify-content: flex-end;
+  }
+}
+
+footer .footer.zonnic .bat-footer-zonnic--row:last-of-type {
+  margin-top: 95px;
+  z-index: 10;
+}
+
+@media (width <= 991.98px) {
+  footer .footer.zonnic .bat-footer-zonnic--row:last-of-type {
+    margin-top: 0;
+  }
+}
+
+footer .footer.zonnic .bat-footer-zonnic-container {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+}
+
+@media (width <= 991.98px) {
+  footer .footer.zonnic .bat-footer-zonnic-container {
+    justify-content: center;
+  }
+}
+
+footer .footer.zonnic .bat-footer-zonnic-label-page-breadcrumb {
+  padding-right: 0;
+}
+
+@media (width >= 768px) {
+  footer .footer.zonnic .bat-footer-zonnic-label-page-breadcrumb {
+    padding-right: 20px;
+  }
+}
+
+footer .footer.zonnic .bat-footer-zonnic-label-page-breadcrumb .breadcrumb-description {
+  color: #f6f6f6;
+  font-size: 12px;
+}
+
+@media (width <= 991.98px) {
+  footer .footer.zonnic .bat-footer-zonnic-label-page-breadcrumb .breadcrumb-description {
+    display: none;
+  }
+}
+
+footer .footer.zonnic .bat-footer-zonnic-label-page-breadcrumb .current-page {
+  color: #dedede;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+@media (width <= 991.98px) {
+  footer .footer.zonnic .bat-footer-zonnic-label-page-breadcrumb .current-page {
+    color: #fff;
+  }
+}
+
+footer .footer.zonnic .bat-footer-zonnic-label-page-breadcrumb p {
+  margin: 0;
+}
+
+footer .footer.zonnic .bat-footer-zonnic-copyright {
+  max-width: 1500px;
+  padding-left: 0;
+}
+
+@media (width >= 768px) {
+  footer .footer.zonnic .bat-footer-zonnic-copyright {
+    padding-left: 20px;
+  }
+}
+
+@media (width <= 991.98px) {
+  footer .footer.zonnic .bat-footer-zonnic-copyright {
+    display: none;
+  }
+}
+
+footer .footer.zonnic .bat-footer-zonnic-copyright p {
+  color: var(--text-color);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
+  margin: 0;
+  text-align: center;
+}
+
+footer .footer.zonnic .bat-footer-zonnic-copyright--bottom {
+  margin: 1em 0;
+}
+
+@media (width >= 992px) {
+  footer .footer.zonnic .bat-footer-zonnic-copyright--bottom {
+    display: none;
+  }
+}
+
+footer .footer.zonnic .bat-footer-zonnic-copyright--bottom p {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  margin: 0;
+  text-align: center;
+}
+
+footer .footer.zonnic .bat-footer-zonnic-logo {
+  left: 0;
+  margin: 5% auto 0;
+  padding: 0;
+  position: relative;
+  right: 0;
+  z-index: 1;
+}
+
+@media (width >= 768px) {
+  footer .footer.zonnic .bat-footer-zonnic-logo {
+    left: unset;
+    margin-top: 20px;
+    padding: 0;
+    position: relative;
+    right: 0;
+    top: unset;
+    z-index: 1;
+  }
+}
+
+footer .footer.zonnic .bat-footer-zonnic-logo-icon {
+  max-width: 48px;
+}
+
+footer .footer.zonnic .bat-footer-zonnic-logo a {
+  display: inline-block;
+  line-height: 0;
+}
+
+footer .footer.zonnic .bat-footer-zonnic-logo img {
+  display: block;
+  height: auto;
+  max-width: 160px;
+  width: 100%;
+}
+
+footer .footer.zonnic .bat-footer-zonnic-logo-icon:empty {
+  display: none;
+}
+
+footer .footer.zonnic .bat-footer-zonnic-nav {
+  display: flex;
+  flex: none;
+  flex-flow: column wrap;
+  justify-content: flex-end;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+@media (width <= 1199.98px) {
+  footer .footer.zonnic .bat-footer-zonnic-nav {
+    flex-direction: column;
+  }
+}
+
+@media (width >= 992px) {
+  footer .footer.zonnic .bat-footer-zonnic-nav {
+    flex: 1 1 auto;
+    flex-direction: row;
+  }
+}
+
+footer .footer.zonnic .bat-footer-zonnic-nav-menu {
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+@media (width <= 991.98px) {
+  footer .footer.zonnic .bat-footer-zonnic-nav-menu {
+    border-bottom: 1px solid var(--border-color);
+    min-width: unset;
+    width: 100%;
+  }
+
+  footer .footer.zonnic .bat-footer-zonnic-nav-menu:last-of-type {
+    border-bottom: 0;
+  }
+
+  footer .footer.zonnic .bat-footer-zonnic-nav-menu:first-of-type {
+    border-top: 1px solid var(--border-color);
+  }
+}
+
+@media (width >= 992px) {
+  footer .footer.zonnic .bat-footer-zonnic-nav-menu {
+    padding-right: 40px;
+    width: 28.3%;
+  }
+}
+
+footer .footer.zonnic .bat-footer-zonnic-nav-menu > .bat-footer-social-nav {
+  display: block;
+}
+
+@media (width <= 991.98px) {
+  footer .footer.zonnic .bat-footer-zonnic-nav-menu > .bat-footer-social-nav {
+    display: none;
+  }
+}
+
+footer .footer.zonnic .bat-footer-zonnic-nav-menu-title {
+  border-bottom: 1px solid var(--border-color);
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font-family: var(--font-zonnic-header);
+  font-size: 14px;
+  font-weight: 700;
+  justify-content: space-between;
+  line-height: 20px;
+  padding: 10px 0 12px;
+  position: relative;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+footer .footer.zonnic .bat-footer-zonnic-nav-menu-title:focus,
+footer .footer.zonnic .bat-footer-zonnic-nav-menu-title:focus-visible {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 4px #182465;
+  outline: 3px solid #182465;
+  outline-offset: 2px;
+}
+
+@media (width <= 991.98px) {
+  footer .footer.zonnic .bat-footer-zonnic-nav-menu-title {
+    align-items: center;
+    border-bottom: 0;
+    font-size: 12px;
+    height: 50px;
+    justify-content: space-between;
+    letter-spacing: 1.5px;
+    line-height: 18px;
+    margin-bottom: 0;
+    padding: 0;
+  }
+}
+
+footer .footer.zonnic .bat-footer-zonnic-nav-menu-title button.bat-icon {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  height: 28px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 28px;
+}
+
+/* Crawl uses icomoon on ::before; fallback glyphs until icomoon is bundled */
+footer .footer.zonnic .bat-footer-zonnic-nav-menu-title button.bat-icon::before {
+  color: #fff;
+  content: '+';
+  font-size: 20px;
+  font-weight: 300;
+  left: 50%;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+footer .footer.zonnic .bat-footer-zonnic-nav-menu-title button.bat-icon:not(.icon-plus)::before {
+  content: '−';
+}
+
+@media (width >= 992px) {
+  footer .footer.zonnic .bat-footer-zonnic-nav-menu-title button.bat-icon {
+    display: none;
+  }
+}
+
+footer .footer.zonnic .bat-footer-zonnic-submenu {
+  display: none;
+  padding-top: 1em;
+}
+
+@media (width <= 991.98px) {
+  footer .footer.zonnic .bat-footer-zonnic-submenu {
+    padding-top: 0;
+  }
+}
+
+@media (width >= 992px) {
+  footer .footer.zonnic .bat-footer-zonnic-submenu {
+    display: block;
+  }
+}
+
+@media (width <= 991.98px) {
+  footer .footer.zonnic .bat-footer-zonnic-nav-menu.is-submenu-open .bat-footer-zonnic-submenu {
+    display: block;
+  }
+}
+
+footer .footer.zonnic .bat-footer-zonnic-nav ul {
+  list-style: none;
+  margin: 0 0 30px;
+  padding: 0;
+}
+
+@media (width >= 992px) {
+  footer .footer.zonnic .bat-footer-zonnic-nav ul {
+    margin-bottom: 8px;
+  }
+}
+
+footer .footer.zonnic .bat-footer-zonnic-nav ul:first-child {
+  font-weight: 700;
+}
+
+footer .footer.zonnic .bat-footer-zonnic-nav ul li {
+  display: flex;
+  list-style-type: none;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+footer .footer.zonnic .bat-footer-zonnic-nav ul li .no-link,
+footer .footer.zonnic .bat-footer-zonnic-nav ul li a {
+  /* brand.min uses `var(--font-color)` but never sets it on the footer — inherits #fff from main */
+  color: var(--text-color);
+  font-family: var(--font-zonnic-header);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
+  padding: 0;
+  text-decoration: none;
+  transition: color 0.1s ease-in;
+}
+
+footer .footer.zonnic .bat-footer-zonnic-nav ul li a:focus,
+footer .footer.zonnic .bat-footer-zonnic-nav ul li a:focus-visible {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 4px #182465;
+  outline: 3px solid #182465;
+  outline-offset: 2px;
+}
+
+footer .footer.zonnic .bat-footer-zonnic-nav ul li a:hover {
+  color: var(--footer-link-color);
+  text-decoration-color: inherit;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+
+/* Crawl: .bat-footer-zonnic .bat-footer-social-nav */
+footer .footer.zonnic .bat-footer-zonnic .bat-footer-social-nav {
+  margin-top: 20px;
+}
+
+footer .footer.zonnic .bat-footer-zonnic .bat-footer-social-nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (width >= 992px) {
+  footer .footer.zonnic .bat-footer-zonnic .bat-footer-social-nav ul {
+    justify-content: unset;
+  }
+}
+
+footer .footer.zonnic .bat-footer-zonnic .bat-footer-social-nav ul li a:hover {
+  text-decoration: none;
+}
+
+/* brand.min: `.bat-footer-zonnic .bat-footer-social-nav ul li a i` — match sizing + SVG fill */
+footer .footer.zonnic .bat-footer-zonnic .bat-footer-social-nav ul li a i,
+footer .footer.zonnic .bat-footer-zonnic .bat-footer-social-nav ul li a .bat-icon {
+  align-items: center;
+  box-sizing: border-box;
+  color: #fff;
+  display: inline-flex;
+  height: 28px;
+  justify-content: center;
+  line-height: 0;
+  margin-right: 6px;
+  width: 24px;
+}
+
+footer .footer.zonnic .bat-footer-zonnic .bat-footer-social-nav ul li a i svg,
+footer .footer.zonnic .bat-footer-zonnic .bat-footer-social-nav ul li a .bat-icon svg {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+/* Live footer uses icomoon on `i:before`; we ship SVG — hide empty pseudo */
+footer .footer.zonnic .bat-footer-zonnic .bat-footer-social-nav ul li a i.bat-icon::before {
+  content: none;
+}
+
+footer .footer.zonnic .bat-footer-zonnic .bat-footer-social-nav ul li:first-child {
+  width: auto;
+}
+
+footer .footer.zonnic .bat-footer-zonnic .bat-footer-social-nav ul li:first-child i,
+footer .footer.zonnic .bat-footer-zonnic .bat-footer-social-nav ul li:first-child .bat-icon {
+  display: inline-flex;
+}
+
+footer .footer.zonnic .bat-footer-social-link {
+  color: #fff;
+  display: inline-flex;
+}
+
+footer .footer.zonnic .bat-footer-social-link:hover {
+  color: var(--footer-link-color);
+}
+
+footer .footer.zonnic .bat-footer-zonnic-submenu .submenu-content {
+  padding: 0;
+}
+
+footer .footer.zonnic .bat-footer-zonnic-disclaimer {
+  box-sizing: border-box;
+  font-family: var(--font-zonnic-header);
+  font-weight: 300;
+  margin: 0 auto;
+  max-width: 1500px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (width <= 767.98px) {
+  footer .footer.zonnic .bat-footer-zonnic-disclaimer {
+    margin-top: 5%;
+  }
+}
+
+@media (width >= 768px) {
+  footer .footer.zonnic .bat-footer-zonnic-disclaimer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+footer .footer.zonnic .bat-footer-zonnic-disclaimer p {
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 16px;
+  margin: 0 auto 15px;
+  max-width: 1500px;
+}
+
+footer .footer.zonnic .bat-footer-zonnic-disclaimer b,
+footer .footer.zonnic .bat-footer-zonnic-disclaimer strong {
+  font-weight: 700;
+}
+
+/* stylelint-disable no-descending-specificity -- disclaimer `a` must override global `a:any-link` after column link rules */
+footer .footer.zonnic .bat-footer-zonnic-disclaimer a:any-link {
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  text-decoration: underline;
+  text-decoration-color: currentcolor;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+  transition: color 0.1s ease-in;
+}
+
+footer .footer.zonnic .bat-footer-zonnic-disclaimer a:hover {
+  color: var(--footer-link-color);
+  text-decoration-color: inherit;
+}
+
+footer .footer.zonnic .bat-footer-zonnic-disclaimer a:focus,
+footer .footer.zonnic .bat-footer-zonnic-disclaimer a:focus-visible {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 4px #182465;
+  outline: 3px solid #182465;
+  outline-offset: 2px;
+}
+
+/* stylelint-enable no-descending-specificity */
+
+footer.footer--zonnic-variant {
+  background-color: var(--color-zonnic-footer-bg);
+}
+
+footer.footer--zonnic-variant .footer-wrapper {
+  max-width: none;
+}
+
+/* stylelint-enable selector-class-pattern */

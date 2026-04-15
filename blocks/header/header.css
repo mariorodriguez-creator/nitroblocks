@@ -278,7 +278,7 @@ header nav .nav-tools {
 
 /* Zonnic header — parity with crawled brand.min.css (bat-header-zonnicheadless). */
 
-/* Logos: blocks/header/zonnic-assets (sync only). Health strip: /content/dam/zonnic-content/... */
+/* Logos + health-warning WebPs: blocks/header/zonnic-assets */
 
 /* -------------------------------------------------------------------------- */
 
@@ -336,7 +336,7 @@ header .block.header.zonnic .bat-header-nav .bat-navigation-group {
   width: 100%;
 }
 
-/* Regulatory banner — same structure as crawl: `.bat-image` > `picture` > WebP (content/dam/zonnic-content/...). */
+/* Regulatory banner — same structure as crawl: `.bat-image` > `picture` > WebP (zonnic-assets). */
 header .block.header.zonnic .zonnic-health-warning {
   width: 100%;
   margin: 0;
@@ -849,7 +849,7 @@ header .block.header.zonnic .header-zonnic-nav-label {
 }
 
 @media (width >= 992px) {
-  header .block.header.zonnic .header-zonnic-menu-toggle {
+  header .block.header.zonnic .header-zonnic-menu-toggle.nav-hamburger {
     display: none;
   }
 

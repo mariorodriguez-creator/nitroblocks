@@ -8,10 +8,9 @@ import {
   resolveZonnicNavIconId,
   ZONNIC_HEALTHCARE_HREF,
   ZONNIC_HEALTH_WARNING_ALT,
-  ZONNIC_HW_DESKTOP_DAM_PATH,
-  ZONNIC_HW_MOBILE_DAM_PATH,
+  ZONNIC_HW_DESKTOP_FILE,
+  ZONNIC_HW_MOBILE_FILE,
   zonnicBlockAssetUrl,
-  zonnicDamAssetUrl,
   createZonnicHealthWarningPicture,
   createZonnicLogoPicture,
   ZONNIC_LOGO_MOBILE_FILE,
@@ -90,7 +89,7 @@ describe('buildZonnicNavList', () => {
 });
 
 describe('createZonnicHealthWarningPicture', () => {
-  it('matches crawl: .bat-image > picture > source (768+) + img with DAM WebP paths', () => {
+  it('matches crawl: .bat-image > picture > source (768+) + img with zonnic-assets WebP', () => {
     const doc = new DOMParser().parseFromString('<html><body></body></html>', 'text/html');
     const el = createZonnicHealthWarningPicture(doc, '');
     expect(el.classList.contains('bat-image')).toBe(true);
@@ -98,19 +97,19 @@ describe('createZonnicHealthWarningPicture', () => {
     expect(picture).toBeTruthy();
     const source = picture?.querySelector('source');
     expect(source?.getAttribute('media')).toBe('(min-width: 768px)');
-    expect(source?.getAttribute('srcset')).toBe(zonnicDamAssetUrl('', ZONNIC_HW_DESKTOP_DAM_PATH));
+    expect(source?.getAttribute('srcset')).toBe(zonnicBlockAssetUrl('', ZONNIC_HW_DESKTOP_FILE));
     const img = picture?.querySelector('img');
     expect(img?.getAttribute('alt')).toBe(ZONNIC_HEALTH_WARNING_ALT);
-    expect(img?.getAttribute('src')).toBe(zonnicDamAssetUrl('', ZONNIC_HW_MOBILE_DAM_PATH));
+    expect(img?.getAttribute('src')).toBe(zonnicBlockAssetUrl('', ZONNIC_HW_MOBILE_FILE));
   });
 
-  it('prefixes DAM paths with codeBasePath', () => {
+  it('prefixes asset paths with codeBasePath', () => {
     const doc = new DOMParser().parseFromString('<html><body></body></html>', 'text/html');
     const el = createZonnicHealthWarningPicture(doc, '/repo');
     const source = el.querySelector('source');
     const img = el.querySelector('img');
-    expect(source?.getAttribute('srcset')).toBe(zonnicDamAssetUrl('/repo', ZONNIC_HW_DESKTOP_DAM_PATH));
-    expect(img?.getAttribute('src')).toBe(zonnicDamAssetUrl('/repo', ZONNIC_HW_MOBILE_DAM_PATH));
+    expect(source?.getAttribute('srcset')).toBe(zonnicBlockAssetUrl('/repo', ZONNIC_HW_DESKTOP_FILE));
+    expect(img?.getAttribute('src')).toBe(zonnicBlockAssetUrl('/repo', ZONNIC_HW_MOBILE_FILE));
   });
 });
 

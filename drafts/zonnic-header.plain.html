@@ -1,0 +1,30 @@
+<div>
+  <h1>Zonnic chrome (header + footer)</h1>
+  <p>
+    Local draft for the full Zonnic shell: logo, healthcare link, main navigation, mobile menu with
+    overlay, and the Zonnic footer (columns, accordion on narrow viewports). Scoped
+    for migration POC (no QuitZone promo, locale, or account in this draft).
+  </p>
+  <p>
+    Preview with <code>aem up --html-folder drafts</code> at
+    <code>http://localhost:3000/drafts/zonnic-header</code>.
+    <code>scripts.js</code> injects <code>header-variant</code>, <code>footer-variant</code> (zonnic),
+    and <code>footer</code> → <code>/footer</code> when those metas are absent. Zonnic footer data is
+    plain sections in <code>footer.plain.html</code> at the site root (same EDS pattern as
+    <code>nav.plain.html</code> for the header); the footer block parses it and builds BAT markup.
+  </p>
+  <p>
+    Header baselines: <code>site-migration/www.zonnic.ca/visual-baselines/product-header/</code>
+    (see <code>scripts/zonnic-capture-header-poc.mjs</code>). Logos and health-warning art live under
+    <code>blocks/header/zonnic-assets/</code>; the footer white logo is under
+    <code>blocks/footer/zonnic-assets/</code>.
+  </p>
+</div>
+
+<div>
+  <h2>Placeholder main content</h2>
+  <p>
+    The header and footer are loaded by the page shell, not authored in this file. Scroll down to
+    check the footer breadcrumb and links.
+  </p>
+</div>

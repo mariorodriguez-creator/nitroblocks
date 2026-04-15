@@ -29,6 +29,14 @@
   --color-zonnic-icon-muted: #888;
   --color-zonnic-cta-text: #fff;
 
+  /* Zonnic footer (brand.min.css `bat-footer-zonnic` — same hex as live component vars) */
+  --color-zonnic-footer-bg: #182465;
+  --color-zonnic-footer-strip-bg: #141e53;
+  --color-zonnic-footer-border: #9a9ca8;
+  --color-zonnic-footer-link-muted: #9a9ca8;
+  --color-zonnic-footer-link-hover: #eef5ff;
+  --color-zonnic-footer-fg: #fff;
+
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
   --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
