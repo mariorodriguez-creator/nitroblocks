@@ -19,6 +19,7 @@ footer .footer p {
   }
 }
 
+/* stylelint-disable selector-class-pattern -- BAT BEM from crawl */
 footer .footer.zonnic .sr-only {
   border: 0;
   clip-path: inset(50%);
