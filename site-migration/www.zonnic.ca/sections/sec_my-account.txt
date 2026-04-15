@@ -1,0 +1,6 @@
+https://www.zonnic.ca/ca/en/my-account
+https://www.zonnic.ca/ca/en/my-account/marketing-preferences
+https://www.zonnic.ca/ca/en/my-account/request-password-reset
+https://www.zonnic.ca/ca/fr/my-account
+https://www.zonnic.ca/ca/fr/my-account/marketing-preferences
+https://www.zonnic.ca/ca/fr/my-account/request-password-reset

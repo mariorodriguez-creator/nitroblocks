@@ -1,5 +1,12 @@
 {
   "mcpServers": {
+    "Figma": {
+      "url": "https://mcp.figma.com/mcp",
+      "headers": {}
+    },
+    "Figma Desktop": {
+      "url": "http://127.0.0.1:3845/mcp"
+    },
     "da-mcp": {
       "url": "https://mcp.adobeaemcloud.com/adobe/mcp/da"
     },

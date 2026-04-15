@@ -12,7 +12,7 @@ Run after `/speckit-implement` when the user wants to enforce design compliance.
 
 ## Prerequisites
 
-- `FEATURE_DIR/design.md` must exist (created by `figma-screenshot` skill or figma-specify workflow)
+- `FEATURE_DIR/design.md` must exist (created by `speckit-figma-specify` or `speckit-page-specify` workflow)
 - Block CSS implemented at `blocks/{block-name}/{block-name}.css`
 
 ## Setup
@@ -29,7 +29,7 @@ Parse `FEATURE_DIR` from the JSON output.
 
 ### 1. Check design.md
 
-If `FEATURE_DIR/design.md` doesn't exist: "design-expectations can only be generated when design.md exists. Run figma-specify first." → Stop.
+If `FEATURE_DIR/design.md` doesn't exist: "design-expectations can only be generated when design.md exists. Run `/speckit-figma-specify` or `/speckit-page-specify` first." → Stop.
 
 ### 2. Resolve Block Name
 

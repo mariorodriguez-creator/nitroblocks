@@ -81,7 +81,7 @@ After user responds, update spec and re-validate.
 
 ### 7. Report
 
-Output: branch name, spec file path, checklist results, and readiness for next phase: `/speckit-plan` (default when spec is ready), or optionally `/speckit-figma-specify` (if Figma design exists), `/speckit-clarify` (if ambiguities remain), or `/speckit-testcases` (spec is ready).
+Output: branch name, spec file path, checklist results, and readiness for next phase: `/speckit-plan` (default when spec is ready), or optionally `/speckit-figma-specify` (if Figma design exists), `/speckit-page-specify` (if a live page URL is the design source), `/speckit-clarify` (if ambiguities remain), or `/speckit-testcases` (spec is ready).
 
 ## Guidelines
 

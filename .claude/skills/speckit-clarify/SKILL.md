@@ -6,11 +6,11 @@ disable-model-invocation: true
 
 # Speckit Clarify Workflow
 
-Detects and resolves ambiguities in the active feature spec through targeted sequential questions. When design.md exists (from `/speckit-figma-specify`), clarify reads it as read-only context to inform questions and spec refinements — design.md is never modified.
+Detects and resolves ambiguities in the active feature spec through targeted sequential questions. When design.md exists (from `/speckit-figma-specify` or `/speckit-page-specify`), clarify reads it as read-only context to inform questions and spec refinements — design.md is never modified.
 
 **Workflow position:** Run it:
-- **After `/speckit-figma-specify`** — when design.md exists (Figma path: specify → figma-specify → clarify → plan)
-- **Right after `/speckit-specify`** — when no Figma designs (specify → clarify → plan)
+- **After `/speckit-figma-specify` or `/speckit-page-specify`** — when design.md exists (design path: specify → figma-specify/page-specify → clarify → plan)
+- **Right after `/speckit-specify`** — when no design source (specify → clarify → plan)
 
 Warns if user skips clarification (increases downstream rework risk).
 
@@ -18,7 +18,7 @@ Warns if user skips clarification (increases downstream rework risk).
 
 Run: `.specify/scripts/bash/check-prerequisites.sh --json --paths-only` from repo root. Parse `FEATURE_DIR`, `FEATURE_SPEC`, and `FEATURE_DESIGN`.
 
-**When `design.md` exists** (FEATURE_DESIGN path points to existing file): Read it for context. Contains HTML structure, SCSS scaffold, breakpoints, design tokens, interactive states, and dynamic content elements (from `/speckit-figma-specify`).
+**When `design.md` exists** (FEATURE_DESIGN path points to existing file): Read it for context. Contains HTML structure, CSS scaffold, breakpoints, design tokens, interactive states, and dynamic content elements (from `/speckit-figma-specify` or `/speckit-page-specify`).
 
 ## Ambiguity Scan
 

@@ -1,0 +1,12 @@
+{
+  "name": "speckit-page-specify-scripts",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Style extraction scripts for speckit-page-specify skill",
+  "scripts": {
+    "extract": "node extract-page-styles.js"
+  },
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}

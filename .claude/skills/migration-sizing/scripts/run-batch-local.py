@@ -20,6 +20,7 @@ import os
 import re
 import sys
 from pathlib import Path
+from typing import Optional
 from urllib.parse import urlparse
 
 
@@ -29,7 +30,7 @@ VALID_CLASS_RE = re.compile(r'^[a-z][a-z0-9]*(-[a-z][a-z0-9]*)+$')
 SKIP_PREFIXES = ('is-', 'has-', 'js-', 'no-', 'visually-', 'sr-', 'flex-', 'grid-')
 
 
-def url_to_local_path(url: str, mirror_dir: Path) -> Path | None:
+def url_to_local_path(url: str, mirror_dir: Path) -> Optional[Path]:
     """Map a URL to its local HTML file in the mirror directory."""
     parsed = urlparse(url)
     path = parsed.path.rstrip('/')
@@ -49,7 +50,7 @@ def url_to_local_path(url: str, mirror_dir: Path) -> Path | None:
     return None
 
 
-def extract_classes(html: str) -> list[str]:
+def extract_classes(html: str) -> 'list[str]':
     """Extract component-like CSS class names from HTML."""
     found = set()
     for match in COMPONENT_RE.finditer(html):
@@ -77,7 +78,7 @@ def main():
 
     # Optionally load mirror-index.json to verify coverage
     index_path = mirror_dir / 'mirror-index.json'
-    indexed_urls: set[str] = set()
+    indexed_urls = set()
     if index_path.exists():
         with open(index_path) as f:
             data = json.load(f)
