@@ -416,20 +416,6 @@ body.presentation .section.slide-image img {
   object-fit: cover;
 }
 
-body.presentation .section.slide-image > .default-content-wrapper > p:last-child {
-  position: absolute;
-  bottom: 56px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  padding: 1.25rem;
-  background: rgb(0 0 0 / 55%);
-  color: #fff;
-  margin: 0;
-  font-size: 1rem;
-  letter-spacing: 0.02em;
-}
-
 /* === Slide type: Split === */
 
 body.presentation .section.slide-split {
@@ -607,6 +593,20 @@ body.presentation.dark .section.slide-split .split-content ul,
 body.presentation.dark .section.slide-split .split-content ol,
 body.presentation.dark .section.slide-split .split-content p {
   color: #ccc;
+}
+
+body.presentation .section.slide-image > .default-content-wrapper > p:last-child {
+  position: absolute;
+  bottom: 56px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 1.25rem;
+  background: rgb(0 0 0 / 55%);
+  color: #fff;
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
 }
 
 /* === Reduced motion === */
