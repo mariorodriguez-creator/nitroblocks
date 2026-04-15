@@ -6,6 +6,7 @@ import {
   decorateSections,
   decorateBlocks,
   decorateTemplateAndTheme,
+  getMetadata,
   waitForFirstImage,
   loadSection,
   loadSections,
@@ -155,6 +156,26 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
+  /* Draft: default header — explicit variant so this page never picks up Zonnic */
+  if (/^\/drafts\/default-header\/?$/.test(window.location.pathname)) {
+    let meta = document.querySelector('meta[name="header-variant"]');
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.setAttribute('name', 'header-variant');
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute('content', 'default');
+  } else if (
+    /* Draft zonnic-header: inject variant when head has no header-variant meta */
+    /^\/drafts\/zonnic-header\/?$/.test(window.location.pathname)
+    && !getMetadata('header-variant')
+  ) {
+    const meta = document.createElement('meta');
+    meta.setAttribute('name', 'header-variant');
+    meta.setAttribute('content', 'zonnic');
+    document.head.appendChild(meta);
+  }
+
   loadHeader(doc.querySelector('header'));
 
   const main = doc.querySelector('main');

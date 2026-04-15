@@ -270,3 +270,610 @@ header nav .nav-sections ul > li > ul > li {
 header nav .nav-tools {
   grid-area: tools;
 }
+
+
+/* -------------------------------------------------------------------------- */
+
+/* stylelint-disable selector-class-pattern, no-descending-specificity -- BAT BEM from crawl */
+
+/* Zonnic header — parity with crawled brand.min.css (bat-header-zonnicheadless). */
+
+/* Logos: blocks/header/zonnic-assets (sync only). Health strip: /content/dam/zonnic-content/... */
+
+/* -------------------------------------------------------------------------- */
+
+header:has(.block.header.zonnic),
+header.header--zonnic-variant {
+  height: auto;
+  min-height: 0;
+}
+
+header .header.zonnic {
+  padding: 0;
+}
+
+header .block.header.zonnic .header-zonnic {
+  /* JS: --header-zonnic-offset = chrome stack height; --header-zonnic-menu-top = fixed top/inset (viewport) */
+  --header-zonnic-offset: 88px;
+  --header-zonnic-menu-top: 0px;
+
+  font-family: var(--font-zonnic-header);
+  position: relative;
+}
+
+/* Boilerplate `header nav { font-family: var(--body-font-family) }` would override Santral for the whole menu. */
+header .block.header.zonnic nav {
+  font-family: var(--font-zonnic-header);
+}
+
+/*
+ * Default `header nav` is a 64px grid for the standard EDS nav — that also matches `nav.bat-navigation`.
+ * Reset so the Zonnic main nav can grow with its links and has no grid / fixed height / side padding.
+ */
+header .block.header.zonnic .bat-header-nav nav.bat-navigation {
+  display: block;
+  box-sizing: border-box;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  padding: 0;
+  margin: 0;
+  grid-template: none;
+  grid-template-columns: unset;
+  grid-template-rows: unset;
+  gap: 0;
+  align-items: stretch;
+  max-width: none;
+  font-family: inherit;
+}
+
+header .block.header.zonnic .bat-header-nav .bat-navigation-group {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Regulatory banner — same structure as crawl: `.bat-image` > `picture` > WebP (content/dam/zonnic-content/...). */
+header .block.header.zonnic .zonnic-health-warning {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  background-color: var(--color-zonnic-header-bg);
+}
+
+header .block.header.zonnic .zonnic-health-warning picture {
+  display: block;
+  width: 100%;
+}
+
+header .block.header.zonnic .zonnic-health-warning img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Root chrome (bat-header-zonnicheadless .bat-header) */
+header .block.header.zonnic .bat-header-zonnicheadless.bat-header {
+  background-color: #fff;
+  color: #182465;
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.02rem;
+  line-height: 0.879rem;
+}
+
+header .block.header.zonnic .header-zonnic-chrome.bat-header-wrapper {
+  position: relative;
+  z-index: 100;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+
+header .block.header.zonnic .bat-header-fixed-spacer {
+  display: none;
+}
+
+header .block.header.zonnic .bat-header-core {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top bar */
+header .block.header.zonnic .header-zonnic-top.bat-header-top {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding-top: 20px;
+  width: 100%;
+}
+
+@media (width <= 991.98px) {
+  header .block.header.zonnic .header-zonnic-top.bat-header-top {
+    padding: 12px 0 0;
+    position: relative;
+    z-index: 110;
+  }
+}
+
+header .block.header.zonnic .header-zonnic-logo.bat-header-logo {
+  flex: 0 0 auto;
+  margin-right: auto;
+}
+
+header .block.header.zonnic .bat-header-logo a {
+  display: inline-block;
+  z-index: 9;
+}
+
+header .block.header.zonnic .bat-header-logo a:focus,
+header .block.header.zonnic .bat-header-logo a:focus-visible {
+  outline: 3px solid #182465;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 1px #fff, 0 0 0 4px #182465;
+}
+
+header .block.header.zonnic .header-zonnic-logo picture,
+header .block.header.zonnic .header-zonnic-logo img {
+  display: block;
+  height: auto;
+  max-width: 160px;
+  width: auto;
+}
+
+@media (width >= 768px) {
+  header .block.header.zonnic .header-zonnic-logo img {
+    max-width: 220px;
+  }
+}
+
+header .block.header.zonnic .bat-header-utils {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+header .block.header.zonnic .header-zonnic-menu-toggle.nav-hamburger {
+  order: 4;
+  flex: 0 0 auto;
+  height: 22px;
+  display: flex;
+  align-items: center;
+}
+
+/* Same hamburger visuals as default `header nav .nav-hamburger` (pseudo-element icon). */
+header .block.header.zonnic .header-zonnic-top .nav-hamburger button {
+  height: 22px;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  color: inherit;
+  overflow: initial;
+  text-overflow: initial;
+  white-space: initial;
+  cursor: pointer;
+}
+
+header .block.header.zonnic .header-zonnic-top .nav-hamburger-icon,
+header .block.header.zonnic .header-zonnic-top .nav-hamburger-icon::before,
+header .block.header.zonnic .header-zonnic-top .nav-hamburger-icon::after {
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  width: 20px;
+}
+
+header .block.header.zonnic .header-zonnic-top .nav-hamburger-icon::before,
+header .block.header.zonnic .header-zonnic-top .nav-hamburger-icon::after {
+  content: '';
+  position: absolute;
+  background: currentcolor;
+}
+
+header .block.header.zonnic .header-zonnic:not(.is-menu-open) .header-zonnic-top .nav-hamburger-icon,
+header .block.header.zonnic .header-zonnic:not(.is-menu-open) .header-zonnic-top .nav-hamburger-icon::before,
+header .block.header.zonnic .header-zonnic:not(.is-menu-open) .header-zonnic-top .nav-hamburger-icon::after {
+  height: 2px;
+  border-radius: 2px;
+  background: currentcolor;
+}
+
+header .block.header.zonnic .header-zonnic:not(.is-menu-open) .header-zonnic-top .nav-hamburger-icon::before {
+  top: -6px;
+}
+
+header .block.header.zonnic .header-zonnic:not(.is-menu-open) .header-zonnic-top .nav-hamburger-icon::after {
+  top: 6px;
+}
+
+header .block.header.zonnic .header-zonnic.is-menu-open .header-zonnic-top .nav-hamburger-icon {
+  height: 22px;
+}
+
+header .block.header.zonnic .header-zonnic.is-menu-open .header-zonnic-top .nav-hamburger-icon::before,
+header .block.header.zonnic .header-zonnic.is-menu-open .header-zonnic-top .nav-hamburger-icon::after {
+  top: 3px;
+  left: 1px;
+  transform: rotate(45deg);
+  transform-origin: 2px 1px;
+  width: 24px;
+  height: 2px;
+  border-radius: 2px;
+}
+
+header .block.header.zonnic .header-zonnic.is-menu-open .header-zonnic-top .nav-hamburger-icon::after {
+  top: unset;
+  bottom: 3px;
+  transform: rotate(-45deg);
+}
+
+/* Healthcare (desktop) — bat-header-stores-link */
+header .block.header.zonnic .bat-header-stores {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+@media (width >= 576px) {
+  header .block.header.zonnic .bat-header-stores {
+    padding: 10px 8px;
+  }
+}
+
+header .block.header.zonnic .header-zonnic-desktop-only {
+  display: none;
+}
+
+header .block.header.zonnic .bat-header-stores .bat-header-stores-link > a {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+}
+
+header .block.header.zonnic .bat-header-stores .bat-header-stores-link > a span {
+  color: #182465;
+  font-size: 10px;
+  line-height: 10px;
+  margin-left: 0;
+  margin-top: 6px;
+  max-width: none;
+  text-transform: none;
+  font-weight: 500;
+}
+
+header .block.header.zonnic .bat-header-stores .bat-header-stores-link > a span.cta-label {
+  display: none;
+}
+
+header .block.header.zonnic .bat-header-stores .bat-header-stores-link > a:hover span:not(.cta-label) {
+  color: var(--color-zonnic-nav-hover);
+}
+
+header .block.header.zonnic .bat-header-stores .bat-header-stores-link > a .bat-icon svg {
+  display: block;
+}
+
+/* Healthcare: mask from `icons/zonnic-nav-health.svg` + solid fill so hover matches `--color-zonnic-nav-hover`. */
+header .block.header.zonnic .header-zonnic-nav-icon-health {
+  display: block;
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+  background-color: #182465;
+  -webkit-mask-image: var(--header-zonnic-nav-health-icon);
+  mask-image: var(--header-zonnic-nav-health-icon);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+header .block.header.zonnic .bat-header-stores .bat-header-stores-link > a:hover .header-zonnic-nav-icon-health,
+header .block.header.zonnic .bat-header-nav nav .bat-navigation-group-list-item > a:hover .bat-icon.health .header-zonnic-nav-icon-health {
+  background-color: var(--color-zonnic-nav-hover);
+}
+
+/* Slide-down menu + overlay (mobile): fills viewport below health + top bar; scroll if needed. */
+header .block.header.zonnic .header-zonnic-menu.bat-header-menu {
+  background-color: #fff;
+  color: #182465;
+  max-width: 1170px;
+  position: fixed;
+  left: 0;
+  top: var(--header-zonnic-menu-top);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+  max-height: 0;
+  padding: 0 8px;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+@media (width <= 991.98px) {
+  header .block.header.zonnic .header-zonnic-menu.bat-header-menu {
+    background-color: #f6f6f6;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 8px;
+    max-width: none;
+    right: 0;
+    margin: 0;
+    width: 100%;
+  }
+}
+
+header .block.header.zonnic .header-zonnic-menu.is-open {
+  max-height: calc(100dvh - var(--header-zonnic-menu-top));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+@media (width <= 991.98px) {
+  header .block.header.zonnic .header-zonnic-menu.is-open {
+    height: calc(100dvh - var(--header-zonnic-menu-top));
+    min-height: calc(100dvh - var(--header-zonnic-menu-top));
+    max-height: calc(100dvh - var(--header-zonnic-menu-top));
+  }
+}
+
+header .block.header.zonnic .bat-header-menu__overlay {
+  background: #182465;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  z-index: 40;
+  transition: opacity 0.25s ease;
+}
+
+@media (width <= 991.98px) {
+  header .block.header.zonnic .bat-header-menu__overlay {
+    inset: var(--header-zonnic-menu-top) 0 0;
+  }
+
+  header .block.header.zonnic .header-zonnic-menu.open + .bat-header-menu__overlay {
+    opacity: 0.33;
+    pointer-events: auto;
+  }
+}
+
+header .block.header.zonnic .header-zonnic-overlay.is-visible {
+  opacity: 0.33;
+  pointer-events: auto;
+}
+
+/* Nav shell */
+header .block.header.zonnic .bat-header-nav {
+  color: #182465;
+  justify-content: unset;
+}
+
+@media (width <= 991.98px) {
+  header .block.header.zonnic .bat-header-nav {
+    padding: 16px 0;
+  }
+}
+
+@media (width >= 992px) {
+  header .block.header.zonnic .bat-header-nav {
+    flex: 1 1 auto;
+    justify-content: center;
+    padding: 0;
+  }
+
+  header .block.header.zonnic .bat-header-nav .bat-navigation {
+    margin: 0;
+    max-width: unset;
+    width: 100%;
+    display: block;
+    padding: 0;
+  }
+
+  header .block.header.zonnic .bat-header-nav .bat-navigation-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+  }
+
+  header .block.header.zonnic .bat-header-nav .bat-navigation a {
+    color: #182465;
+    justify-content: unset;
+  }
+
+  header .block.header.zonnic .bat-header-nav .bat-navigation a:hover {
+    color: var(--color-zonnic-nav-hover);
+  }
+}
+
+header .block.header.zonnic .bat-header-nav nav .bat-navigation-group-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  max-width: none;
+  margin-inline: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: stretch;
+  text-align: center;
+  width: 100%;
+}
+
+@media (width >= 992px) {
+  header .block.header.zonnic .bat-header-nav nav .bat-navigation-group-list {
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    max-width: none;
+    margin: 0;
+    width: 100%;
+  }
+}
+
+header .block.header.zonnic .bat-header-nav nav .bat-navigation-group-list-item {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0 20px;
+  position: relative;
+  text-align: center;
+}
+
+@media (width >= 992px) {
+  header .block.header.zonnic .bat-header-nav nav .bat-navigation-group-list-item {
+    flex: 0 1 auto;
+    padding: 0 12px;
+  }
+}
+
+header .block.header.zonnic .bat-header-nav nav .bat-navigation-group-list-item > a {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  text-decoration: none;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+@media (width >= 992px) {
+  header .block.header.zonnic .bat-header-nav nav .bat-navigation-group-list-item > a {
+    padding: 20px 0;
+    flex-flow: row nowrap;
+    white-space: nowrap;
+    justify-content: center;
+  }
+
+  header .block.header.zonnic .bat-header-nav nav .bat-navigation-group-list-item:hover i {
+    transform: none;
+  }
+}
+
+@media (width <= 991.98px) {
+  header .block.header.zonnic .bat-header-nav nav .bat-navigation-group-list-item > a {
+    border-bottom: 1px solid #182465;
+    color: #182465;
+    justify-content: flex-start;
+  }
+
+  header .block.header.zonnic .bat-header-nav nav .bat-navigation-group-list-item > a:hover {
+    color: var(--color-zonnic-nav-hover);
+  }
+}
+
+header .block.header.zonnic .bat-header-nav nav .bat-navigation-group-list-item > a:focus,
+header .block.header.zonnic .bat-header-nav nav .bat-navigation-group-list-item > a:focus-visible {
+  outline: 3px solid #182465;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 1px #fff, 0 0 0 4px #182465;
+}
+
+header .block.header.zonnic .bat-header-nav nav .bat-navigation-group-list-item > a span {
+  color: #182465;
+  margin-left: 10px;
+}
+
+header .block.header.zonnic .bat-header-nav nav .bat-navigation-group-list-item > a:hover span {
+  color: inherit;
+}
+
+header .block.header.zonnic .bat-header-nav nav .bat-navigation-group-list-item > a i {
+  height: auto;
+  width: 25px;
+}
+
+header .block.header.zonnic .bat-header-nav nav .bat-navigation-group-list-item > a i svg {
+  display: block;
+  width: 25px;
+  height: auto;
+}
+
+@media (width >= 992px) {
+  header .block.header.zonnic .bat-header-nav .bat-navigation-group-list-item--zonnic-mobile {
+    display: none;
+  }
+}
+
+header .block.header.zonnic .bat-header-nav .bat-navigation-group-list-item--zonnic-mobile a {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+header .block.header.zonnic .bat-header-nav .bat-navigation-group-list-item--zonnic-mobile a i {
+  margin-left: 0;
+  margin-right: 0;
+  transform: unset;
+  transform-origin: center;
+}
+
+header .block.header.zonnic .bat-header-nav .bat-navigation-group-list-item--zonnic-mobile a .header-zonnic-nav-label {
+  margin-left: 0;
+  margin-top: 6px;
+}
+
+/* Crawled header nav labels: uppercase in HTML; type matches .bat-header-zonnicheadless (0.75rem / 0.02em / 0.879rem). */
+header .block.header.zonnic .header-zonnic-nav-label {
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  line-height: 0.879rem;
+  text-transform: none;
+}
+
+@media (width >= 992px) {
+  header .block.header.zonnic .header-zonnic-menu-toggle {
+    display: none;
+  }
+
+  header .block.header.zonnic .header-zonnic-desktop-only.bat-header-stores {
+    display: flex;
+  }
+
+  header .block.header.zonnic .header-zonnic-menu.bat-header-menu {
+    position: relative;
+    top: auto;
+    left: auto;
+    z-index: auto;
+    display: block;
+    max-height: none;
+    width: 100%;
+    padding: 0 0 16px;
+    overflow: visible;
+    background-color: #fff;
+    transition: none;
+  }
+
+  header .block.header.zonnic .bat-header-menu__overlay {
+    display: none;
+  }
+}
+
+/* stylelint-enable selector-class-pattern, no-descending-specificity */

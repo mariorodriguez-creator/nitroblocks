@@ -19,6 +19,16 @@
   --link-color: #3b63fb;
   --link-hover-color: #1d3ecf;
 
+  /* Zonnic header (reference: brand.min.css bat-header-zonnicheadless) */
+  /* stylelint-disable-next-line value-keyword-case -- matches brand.min.css font-family: Santral (case-insensitive) */
+  --font-zonnic-header: Santral, sans-serif;
+  --color-zonnic-navy: #182465;
+  --color-zonnic-nav-hover: #ad1f8c;
+  --color-zonnic-header-bg: #fff;
+  --color-zonnic-header-menu-mobile-bg: #f6f6f6;
+  --color-zonnic-icon-muted: #888;
+  --color-zonnic-cta-text: #fff;
+
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
   --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;

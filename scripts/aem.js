@@ -593,6 +593,9 @@ function decorateBlocks(main) {
  */
 async function loadHeader(header) {
   const headerBlock = buildBlock('header', '');
+  if (getMetadata('header-variant') === 'zonnic') {
+    headerBlock.classList.add('zonnic');
+  }
   header.append(headerBlock);
   decorateBlock(headerBlock);
   return loadBlock(headerBlock);
