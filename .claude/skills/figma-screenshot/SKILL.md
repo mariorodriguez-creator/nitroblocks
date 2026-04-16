@@ -26,7 +26,8 @@ Fetches a screenshot of a Figma node using the Figma MCP `get_screenshot` tool a
 | Figma URL | `https://figma.com/design/abc123/Component?node-id=1-2` | User, spec (e.g. `design.md`), or command args |
 | fileKey | `abc123` | Extracted from URL |
 | nodeId | `1:2` or `1-2` | Extracted from URL (`node-id=1-2` → `1:2` for MCP) |
-| Output path | `.specify/specs/001-my-component/design-screenshot.png` | User, command args, or inferred from spec folder |
+| Output path | `.specify/specs/001-my-component/design-screenshot.jpg` | User, command args, or inferred from spec folder |
+| imageFormat | `jpg` | Output image format: `jpg` (default), `png`, or `source` (preserve original — no conversion) |
 
 ## Workflow
 
@@ -34,14 +35,24 @@ Fetches a screenshot of a Figma node using the Figma MCP `get_screenshot` tool a
 
 - **Figma reference**: From user input, command args, open spec (e.g. `design.md` links), or ask the user.
 - **URL parsing**: `https://figma.com/design/:fileKey/:name?node-id=1-2` → `fileKey=:fileKey`, `nodeId=1:2` (use colon format for MCP).
-- **Output path**: From user/args, or `.specify/specs/{feature}/design-screenshot.png` when in a spec folder, else `figma-screenshot.png`.
+- **Output path**: From user/args, or `.specify/specs/{feature}/design-screenshot.jpg` when in a spec folder, else `figma-screenshot.jpg`. If `imageFormat` is `png`, use `.png` extension instead.
 - If Figma reference cannot be determined, ask the user.
 
 ### Step 2: Execute
 
 1. Call MCP tool `get_screenshot` (server: `plugin-figma-figma`) with `fileKey` and `nodeId`.
 2. Extract base64 image data from the response.
-3. Decode and save: `echo "<base64>" | base64 -d > <output-path>` (or equivalent).
+3. Decode and convert to the target format:
+   - Decode to a temp file, then convert with `sips`, then remove the temp file:
+     ```bash
+     echo "<base64>" | base64 -d > <output-path>.tmp
+     sips -s format <imageFormat> <output-path>.tmp --out <output-path>
+     rm <output-path>.tmp
+     ```
+   - When `imageFormat` is `source`, skip the `sips` step: `echo "<base64>" | base64 -d > <output-path>` (no conversion).
+   - Use `jpeg` as the `sips` format value when `imageFormat` is `jpg` (sips uses `jpeg`, not `jpg`).
+   - Ensure the output file extension matches `imageFormat`: `.jpg` for `jpg`, `.png` for `png`.
+   - **Default**: `imageFormat=jpg` — output is JPEG unless the caller specifies otherwise.
 
 ### Step 3: Report
 

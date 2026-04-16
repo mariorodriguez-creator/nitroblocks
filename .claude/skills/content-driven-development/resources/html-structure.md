@@ -18,6 +18,12 @@ When creating local `.plain.html` files for testing blocks in the `drafts/` fold
 - ❌ `<main>` wrapper
 - ❌ Head content (comes from project's head.html)
 
+## Pitfall: block not decorating (no `block` class, JS/CSS not applied)
+
+`decorateSections` (`scripts/aem.js`) runs on **each direct child `div` of `main`**. If `div.{blockName}` is **that** section element and its children are the block’s table rows (each a `<div>`), the section wrapper logic **splits the block apart**. `decorateBlocks` then never matches `div.section > div > div.{blockName}`.
+
+**Do:** Nest the block inside a section container — e.g. **one outer `<div>`** around the whole fragment, or one top-level `<div>` per section where the block is **not** the outermost `div` (see examples below). **Don’t:** emit several top-level `<div>` siblings where one of them **is** `div.{blockName}` with row children.
+
 ## Plain HTML Structure
 
 ```html

@@ -99,6 +99,7 @@ Once answers are received, branch **without asking further questions**:
 
 *Option 5b — Local HTML drafts (temporary):*
 - Create HTML file(s) in `drafts/` matching the content model structure
+- **DOM shape:** For `.plain.html` served into `<main>`, wrap the fragment in **one outer `<div>`** (or one wrapper per section) so each `div.{blockName}` is **`main > div.section > div > div.{blockName}`**, not a direct child of `main` next to other section divs — otherwise `decorateBlocks` in `scripts/aem.js` never runs on the block. See AGENTS.md (Use Drafts).
 - Reference the [HTML Structure Guide](resources/html-structure.md) for proper file format
 - When generating drafts with images: use `drafts/dev/media/*` if available, otherwise `https://picsum.photos/{width}/{height}`. Fallback: `https://placehold.co/{width}x{height}`
 - Remind user: restart dev server with `aem up --html-folder drafts`
