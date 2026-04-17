@@ -1,1 +1,266 @@
-/* add global styles that can be loaded post LCP here */
+/* Columns: instructional step headings (h3) and arrow CTAs */
+.columns h3 {
+  font-family: var(--heading-font-family);
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a4e;
+  text-transform: uppercase;
+  margin: 16px 0 4px;
+}
+
+.columns a:not(.button) {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a4e;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+/* Columns inside a video column */
+.columns .video {
+  margin: 0;
+  max-width: 100%;
+}
+
+/* Product label download default content */
+.section .default-content-wrapper .button.secondary {
+  border: 2px solid #1a1a4e;
+  border-radius: 24px;
+  padding: 10px 24px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #1a1a4e;
+  background: transparent;
+  text-decoration: none;
+}
+
+.section .default-content-wrapper .button.secondary:hover {
+  background-color: #f0f0f5;
+}
+
+/* Section style: product-range-intro */
+.section.product-range-intro .default-content-wrapper {
+  text-align: center;
+  padding: 32px 16px;
+}
+
+.section.product-range-intro h2 {
+  font-family: var(--heading-font-family);
+  font-size: 28px;
+  font-weight: 800;
+  color: #1a1a4e;
+  text-transform: uppercase;
+  line-height: 1.15;
+  margin: 0 0 12px;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.section.product-range-intro p {
+  font-size: 16px;
+  color: var(--dark-color);
+  line-height: 1.5;
+}
+
+@media (width >= 600px) {
+  .section.product-range-intro .default-content-wrapper {
+    padding: 48px 32px;
+  }
+}
+
+@media (width >= 900px) {
+  .section.product-range-intro h2 {
+    font-size: 36px;
+  }
+}
+
+/* Section style: faq-section */
+.section.faq-section .default-content-wrapper {
+  text-align: center;
+}
+
+.section.faq-section .default-content-wrapper h2 {
+  font-family: var(--heading-font-family);
+  font-size: 28px;
+  font-weight: 800;
+  color: #1a1a4e;
+  text-transform: uppercase;
+  line-height: 1.15;
+  margin: 0 0 24px;
+}
+
+@media (width >= 900px) {
+  .section.faq-section .default-content-wrapper h2 {
+    font-size: 32px;
+  }
+}
+
+/* Section style: testimonial-teaser */
+.section.testimonial-teaser {
+  background-color: #f5f5f5;
+  padding: 48px 0;
+  margin: 0;
+}
+
+.section.testimonial-teaser .columns > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section.testimonial-teaser .columns > div > div:first-child img {
+  border-radius: 0;
+  object-fit: cover;
+}
+
+.section.testimonial-teaser .columns h2 {
+  font-family: var(--heading-font-family);
+  font-size: 24px;
+  font-weight: 800;
+  color: #1a1a4e;
+  text-transform: uppercase;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.section.testimonial-teaser .columns h3 {
+  font-family: var(--heading-font-family);
+  font-size: 24px;
+  font-weight: 400;
+  color: #1a1a4e;
+  text-transform: uppercase;
+  line-height: 1.15;
+  margin: 0 0 16px;
+}
+
+.section.testimonial-teaser .columns p {
+  font-size: 15px;
+  color: var(--dark-color);
+  line-height: 1.5;
+}
+
+.section.testimonial-teaser .columns a:not(.button) {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a4e;
+  text-transform: uppercase;
+  text-decoration: underline;
+  letter-spacing: 0.5px;
+}
+
+.section.testimonial-teaser .columns a:not(.button):hover {
+  color: #131340;
+}
+
+@media (width >= 600px) {
+  .section.testimonial-teaser .columns > div {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .section.testimonial-teaser .columns > div > div:first-child {
+    flex: 0 0 40%;
+  }
+
+  .section.testimonial-teaser .columns > div > div:last-child {
+    flex: 1;
+  }
+}
+
+@media (width >= 900px) {
+  .section.testimonial-teaser .columns h2 {
+    font-size: 32px;
+  }
+
+  .section.testimonial-teaser .columns h3 {
+    font-size: 32px;
+  }
+}
+
+/* Section style: newsletter */
+.section.newsletter {
+  background-color: #1a1a4e;
+  padding: 40px 0;
+  margin: 0;
+}
+
+.section.newsletter .default-content-wrapper {
+  padding: 0 24px;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.section.newsletter h2 {
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.section.newsletter p {
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.section.newsletter a:not(.button) {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.section.newsletter a:not(.button):hover {
+  opacity: 1;
+}
+
+.section.newsletter .button.primary {
+  background-color: #fff;
+  border-color: #fff;
+  color: #1a1a4e;
+  border-radius: 24px;
+  padding: 12px 32px;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.section.newsletter .button.primary:hover {
+  background-color: #e8e8e8;
+}
+
+@media (width >= 600px) {
+  .section.newsletter .default-content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .section.newsletter h2 {
+    font-size: 22px;
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  .section.newsletter p {
+    flex: 1;
+    margin: 0;
+  }
+
+  .section.newsletter .button-wrapper {
+    flex-shrink: 0;
+    margin: 0;
+  }
+}
+
+@media (width >= 900px) {
+  .section.newsletter h2 {
+    font-size: 24px;
+  }
+}

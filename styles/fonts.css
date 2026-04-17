@@ -1,4 +1,39 @@
 /* stylelint-disable max-line-length */
+
+/* santral — primary brand font */
+@font-face {
+  font-family: santral;
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('../fonts/Santral-Book.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: santral;
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/Santral-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: santral;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/Santral-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: santral;
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('../fonts/Santral-Black.woff2') format('woff2');
+}
+
+/* Roboto — fallback fonts */
 @font-face {
   font-family: roboto-condensed;
   font-style: normal;

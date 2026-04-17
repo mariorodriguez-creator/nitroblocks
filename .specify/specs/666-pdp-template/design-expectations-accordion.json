@@ -1,0 +1,76 @@
+{
+  "component": "accordion-faq",
+  "cssPath": "blocks/accordion/accordion.css",
+  "expectations": [
+    {
+      "id": "af-root-mobile",
+      "selector": ".accordion.faq",
+      "media": null,
+      "properties": {
+        "max-width": { "value": "700px", "acceptVar": false },
+        "margin": { "value": "0 auto", "acceptVar": false },
+        "padding": { "value": "0 16px", "acceptVar": false }
+      }
+    },
+    {
+      "id": "af-item-border",
+      "selector": ".accordion.faq details",
+      "media": null,
+      "properties": {
+        "border": { "value": "none", "acceptVar": false },
+        "border-bottom": { "value": "1px solid #e0e0e0", "acceptVar": false }
+      }
+    },
+    {
+      "id": "af-summary-flex-mobile",
+      "selector": ".accordion.faq details summary",
+      "media": null,
+      "properties": {
+        "display": { "value": "flex", "acceptVar": false },
+        "justify-content": { "value": "space-between", "acceptVar": false },
+        "align-items": { "value": "center", "acceptVar": false },
+        "padding": { "value": "20px 0", "acceptVar": false },
+        "font-size": { "value": "14px", "acceptVar": true },
+        "font-weight": { "value": "700", "acceptVar": false },
+        "text-transform": { "value": "uppercase", "acceptVar": false },
+        "line-height": { "value": "1.4", "acceptVar": false }
+      }
+    },
+    {
+      "id": "af-toggle-icon",
+      "selector": ".accordion.faq details summary::after",
+      "media": null,
+      "properties": {
+        "content": { "value": "\"+\"", "acceptVar": false },
+        "font-size": { "value": "24px", "acceptVar": false },
+        "font-weight": { "value": "300", "acceptVar": false }
+      }
+    },
+    {
+      "id": "af-body-text",
+      "selector": ".accordion.faq details .accordion-item-body p",
+      "media": null,
+      "properties": {
+        "font-size": { "value": "15px", "acceptVar": true },
+        "line-height": { "value": "1.6", "acceptVar": false }
+      }
+    },
+    {
+      "id": "af-summary-tablet",
+      "selector": ".accordion.faq details summary",
+      "media": "600",
+      "properties": {
+        "font-size": { "value": "15px", "acceptVar": true }
+      }
+    },
+    {
+      "id": "af-summary-desktop",
+      "selector": ".accordion.faq details summary",
+      "media": "900",
+      "properties": {
+        "font-size": { "value": "16px", "acceptVar": true },
+        "padding": { "value": "24px 0", "acceptVar": false }
+      }
+    }
+  ]
+}

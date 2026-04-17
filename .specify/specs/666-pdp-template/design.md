@@ -15,6 +15,52 @@ All CSS values in this document are **actual computed styles** extracted from th
 
 ---
 
+## Breakpoint Conflict Detection
+
+Source page breakpoints were detected from CSS `@media` rules and DOM behavior analysis.
+
+| Breakpoint | EDS Default | Source Page | Match? |
+|------------|------------|-------------|--------|
+| Tablet | `600px` | `576px` | **MISMATCH** |
+| Desktop | `900px` | `992px` | **MISMATCH** |
+| Wide | `1200px` | `1200px` | OK |
+
+<!-- DECISION REQUIRED: Breakpoints -->
+<!-- Source page uses 576px (tablet) and 992px (desktop). -->
+<!-- EDS defaults are 600px and 900px. -->
+<!-- Resolve via speckit.clarify before implementation. -->
+<!-- If unresolved, EDS project defaults (600px / 900px) will be kept. -->
+
+**Decision**: Resolved — use source page breakpoints (`576px` tablet, `992px` desktop) to match the original page's responsive behavior. Recorded during post-implementation review.
+
+## Global Style Conflicts
+
+EDS global styles (`styles.css`) compared against source page computed styles.
+
+| EDS Global Rule | EDS Default Value | Source Page Value | Match? | Impact |
+|-----------------|------------------|-------------------|--------|--------|
+| `main .section > div { padding }` | `0 32px` | `0` | **MISMATCH** | Adds unwanted horizontal spacing to all blocks |
+| `main .section > div { max-width }` | `1200px` | `1500px` | **MISMATCH** | Content area narrower than source |
+| `--body-font-family` | `roboto, sans-serif` | `santral, sans-serif` | **MISMATCH** | All body text renders in wrong font |
+| `--heading-font-family` | `roboto, sans-serif` | `santral, sans-serif` | **MISMATCH** | All headings render in wrong font |
+| `body { font-weight }` | `400` | `300` | **MISMATCH** | Body text appears bolder than source |
+| `body { line-height }` | `1.6` | `1.5` | **MISMATCH** | Slightly different text spacing |
+| `--text-color` | `#202020` | `rgb(97, 96, 105)` | **MISMATCH** | Body text color is darker than source |
+| `--heading-color` | `#202020` | `rgb(20, 30, 83)` | **MISMATCH** | Heading color is black instead of navy |
+| `--link-color` | `#035fe6` | `rgb(24, 36, 101)` | **MISMATCH** | Link color is blue instead of navy |
+| `h1–h6 { font-weight }` | `600` | `800` | **MISMATCH** | Headings appear lighter than source |
+| `h1–h6 { text-transform }` | `none` | `uppercase` | **MISMATCH** | Headings not uppercased |
+| `a.button { border-radius }` | `0` | `100px` | **MISMATCH** | Buttons are rectangular instead of pill-shaped |
+
+<!-- DECISION REQUIRED: Global Style Conflicts -->
+<!-- Multiple EDS global styles conflict with the source page. -->
+<!-- Resolve via speckit.clarify before implementation. -->
+<!-- If unresolved, EDS project defaults will be kept. -->
+
+**Decision**: Resolved — modify global styles in `styles.css` (Option A) for all conflicts. This is a full-site migration so all pages should use the source site's design language. Applied: Santral font family, updated color variables, body weight 300, heading weight 800 + uppercase, pill-shaped buttons, section padding removed, max-width changed to 1500px. Recorded during post-implementation review.
+
+---
+
 ## Block: Product Detail (`.product-detail`)
 
 **Spec reference**: Content Model: Product Detail in spec.md
@@ -357,12 +403,33 @@ Decoration adds:
 
 ### Interactive States
 
+#### Rendering Methods
+
+| Element | Rendering Method | Key CSS | Details |
+|---|---|---|---|
+| Gallery prev arrow (`slick-prev`) | Icon font glyph | `font-family: slick; content: '←'; font-size: 20px; line-height: 1` | Slick icon font loaded via `slick.css`. Arrow rendered as `::before` pseudo-element |
+| Gallery next arrow (`slick-next`) | Icon font glyph | `font-family: slick; content: '→'; font-size: 20px; line-height: 1` | Same font, mirrored glyph |
+| Thumbnail active indicator | CSS border | `border: 2px solid rgb(20 30 83)` | Applied on `[aria-selected="true"]` or `.slick-current` |
+| Primary CTA | Filled button | `background-color: rgb(20 30 83); color: #fff; border-radius: 100px` | Pill shape, no icon |
+| Secondary CTA | Outline button | `border: 2px solid rgb(24 36 101); background: transparent; border-radius: 100px` | Pill shape, no icon |
+| Read more toggle | Underlined text link | `text-decoration: underline; font-weight: 700; color: rgb(24 36 101)` | No icon, pure text |
+| Accordion toggle (FAQ) | CSS plus/minus | `content: '+'; font-size: 24px; font-weight: 600; color: rgb(20 30 83)` | Switches to `'−'` when `[open]` |
+
+#### State Matrix
+
 | Element | State | CSS Changes |
 |---|---|---|
+| Gallery arrow | Normal | `opacity: 0.75; background: transparent; width: 40px; height: 40px` |
+| Gallery arrow | `:hover` | `opacity: 1` |
+| Gallery arrow | `:focus-visible` | `outline: 2px solid rgb(20 30 83); outline-offset: 2px` |
+| Gallery thumbnail | Normal | `border: 2px solid transparent; padding: 0; opacity: 0.7` |
+| Gallery thumbnail | `.slick-current` / `[aria-selected]` | `border-color: rgb(20 30 83); opacity: 1` |
+| Gallery thumbnail | `:hover` | `opacity: 1` |
+| Primary CTA | Normal | `background-color: rgb(20 30 83); color: #fff` |
 | Primary CTA | `:hover` | `background-color: #131340; border-color: #131340` |
-| Secondary CTA | `:hover` | `background-color: #f0f0f5; color: #1a1a4e` |
-| Gallery thumbnail | `[aria-selected="true"]` | `border-color: #1a1a4e` |
-| Gallery arrow | `:hover` | `background-color: #1a1a4e; color: #fff` |
+| Secondary CTA | Normal | `border: 2px solid rgb(24 36 101); color: rgb(24 36 101); background: transparent` |
+| Secondary CTA | `:hover` | `background-color: rgb(24 36 101); color: #fff` |
+| Read more toggle | Normal | `color: rgb(24 36 101); text-decoration: underline` |
 | Read more toggle | `:hover` | `color: #131340` |
 | Description | `[aria-expanded="true"]` | `max-height: none; overflow: visible` on `ul` |
 
@@ -1248,6 +1315,32 @@ At desktop, H2 font-size increases to `36px`.
 | Mobile (375px) | `flex` | `column` | 375px | 392px |
 | Tablet (768px) | `flex` | `column` | 768px | 542px |
 | Desktop (1200px) | `flex` | `row` | 624px | 817px |
+
+## Third-Party Dependencies
+
+Detected from the live source page via `<script>`/`<link>` tag scan and DOM marker inspection (`.slick-slider`, `.slick-initialized`).
+
+### Dependency Table
+
+| Library | Version | Used By Block | Purpose | Config / Options |
+|---------|---------|---------------|---------|------------------|
+| jQuery | 3.x | (dependency of Slick.js) | DOM manipulation, Slick prerequisite | N/A |
+| Slick.js | 1.8.x | Product gallery (`product-detail`) | Main image carousel with arrow navigation and thumbnail sync | `{ slidesToShow: 1, slidesToScroll: 1, arrows: true, dots: false, fade: false, asNavFor: '.thumbnails' }` |
+| Slick.js | 1.8.x | Product gallery thumbnails | Thumbnail strip synced to main image | `{ slidesToShow: 4, slidesToScroll: 1, arrows: false, dots: false, focusOnSelect: true, asNavFor: '.main-slider' }` |
+| Slick.js | 1.8.x | Product carousel (`carousel`) | Product range cards — 3-up on desktop, 1-up swipe on mobile | Desktop: static 3-card grid. Mobile: single-card swipe with dot indicators |
+
+### Loading Strategy
+
+| Library | Phase | Method | Notes |
+|---------|-------|--------|-------|
+| jQuery 3.x | Lazy | `loadScript()` inside block JS | Loaded only when product-detail block decorates |
+| Slick.js + slick.css | Lazy | `loadScript()` + `<link>` injection inside block JS | Loaded after jQuery; initialized on callback |
+
+### Implementation Mandate
+
+The source page uses Slick.js for both the product gallery and the product carousel. `speckit-implement` **MUST** use Slick.js with the extracted configuration above unless a documented alternative achieves identical UX (smooth transitions, thumbnail sync, touch swipe, arrow navigation, dot indicators on mobile).
+
+---
 
 ### Source Site DOM Classes (for reference during implementation)
 

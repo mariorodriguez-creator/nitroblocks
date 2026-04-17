@@ -15,6 +15,37 @@ Specification-Driven Development ensures features are thoroughly documented, pla
 
 When `design.md` exists (created by `/speckit.figma-specify`), it is the **source of truth for all HTML/CSS/design-specific content**. Plan, quickstart, and task summaries must not override or simplify design.md. For HTML structure, SCSS layout, variants, breakpoints, and visual design — implement exactly per design.md.
 
+# Third-Party Dependency Audit
+
+When migrating from an existing live page, `design.md` **MUST** include a `## Third-Party Dependencies` section (see `design-reference-template.md`). During source-page analysis, detect all third-party libraries via `<script>`/`<link>` tag scanning and DOM marker inspection. Document each library's version, which block uses it, its configuration/options, and the EDS loading strategy (eager/lazy/delayed). `speckit-implement` must use the same libraries and configuration unless an alternative is explicitly justified.
+
+# Visual Regression Testing
+
+Static CSS property compliance (`assert-design-compliance.js`) is necessary but **not sufficient**. It cannot detect rendering-method mismatches (e.g., CSS border arrows vs icon font glyphs), incorrect `object-fit`, or absolute-positioning drift. After `speckit-implement`, a **Playwright-based visual regression** step must compare rendered output:
+
+1. **Reference screenshots**: Captured during `speckit.figma-specify` from the source page at each breakpoint (375, 768, 1200). Saved in `page-styles/`.
+2. **Implementation screenshots**: Captured from `localhost:3000` after implement.
+3. **Comparison**: Side-by-side or diff overlay per block × breakpoint. Interactive elements (arrows, buttons, toggles) should also be compared per-state.
+4. **Integration**: `speckit.design-compliance` should run both the static CSS check AND the visual regression check.
+
+See the `## Visual Regression Testing` section in `design-reference-template.md` for the full procedure.
+
+# Breakpoint Conflict Resolution
+
+When migrating from an existing page, `speckit.figma-specify` must compare the source page's CSS `@media` breakpoints against the project's EDS defaults (600px / 900px). If any differ, a `## Breakpoint Conflict Detection` section is written to `design.md` with a `<!-- DECISION REQUIRED: Breakpoints -->` marker. `speckit.clarify` detects this marker and asks the developer which breakpoints to use. `speckit.analyze` warns if the marker is still unresolved. **If unresolved at implement time, project EDS defaults are kept.** See `design-reference-template.md` for the full procedure.
+
+# Global Style Conflicts
+
+When migrating from an existing page, `speckit.figma-specify` must compare the source page's container, typography, and component styles against the project's EDS global styles (`styles.css`). Conflicts (section padding, max-width, font families, colors, button shapes, etc.) are written to a `## Global Style Conflicts` table in `design.md` with a `<!-- DECISION REQUIRED: Global Style Conflicts -->` marker. `speckit.clarify` presents each conflict with resolution options: modify global style (Option A — appropriate for full-site migrations), override per-block (Option B — scoped fix), or keep EDS default (Option C). **If unresolved at implement time, EDS project defaults are kept.**
+
+# Design Expectations Completeness
+
+`design-expectations.json` must be **exhaustive** — every CSS rule in the `design.md` CSS skeleton must have corresponding expectations. Typography properties (`font-family`, `font-size`, `font-weight`, `line-height`, `color`, `letter-spacing`, `text-transform`) are **never optional** for text elements. When `speckit.design-compliance` generates expectations, it must cover all property categories: Layout, Sizing, Typography, and Visual. Uncovered rules should trigger a warning. See `## Design Expectations Completeness` in `design-reference-template.md`.
+
+# Interactive States — Rendering Methods
+
+`design.md` must document not just the CSS property changes per interactive state, but the **rendering technique** used to produce each visual element (icon font, SVG data URI, CSS border trick, etc.). This prevents the implement step from choosing a visually different rendering method even if the CSS dimensions match. See `## Interactive States > Rendering Methods` in `design-reference-template.md`.
+
 # How to use
 
 Open an Agent Chat:

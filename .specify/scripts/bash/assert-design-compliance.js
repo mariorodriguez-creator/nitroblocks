@@ -97,9 +97,22 @@ function normalizeSelector(sel) {
   return sel.replace(/\s+/g, ' ').trim();
 }
 
-function buildCascadeByBreakpoint(rules) {
+/**
+ * Discover all breakpoint values actually used in the parsed CSS rules,
+ * sorted numerically. Falls back to what the CSS itself declares rather
+ * than any hardcoded list.
+ */
+function discoverBreakpoints(rules) {
+  const bpSet = new Set();
+  for (const rule of rules) {
+    if (rule.media) bpSet.add(rule.media);
+  }
+  return [null, ...Array.from(bpSet).sort((a, b) => Number(a) - Number(b))];
+}
+
+function buildCascadeByBreakpoint(rules, customBreakpoints) {
   const bySelector = {};
-  const breakpoints = [null, '600', '768', '900', '1024', '1200', '1280', '1440'];
+  const breakpoints = customBreakpoints || discoverBreakpoints(rules);
   for (const rule of rules) {
     const sel = normalizeSelector(rule.selector);
     if (!bySelector[sel]) bySelector[sel] = {};
@@ -127,7 +140,7 @@ function buildCascadeByBreakpoint(rules) {
  * Variables defined in any rule (e.g. .countdown or .countdown-header)
  * are available when resolving values; later rules override.
  */
-function buildGlobalVarScope(rules) {
+function buildGlobalVarScope(rules, customBreakpoints) {
   const byMedia = {};
   for (const rule of rules) {
     const media = rule.media || '0';
@@ -136,7 +149,7 @@ function buildGlobalVarScope(rules) {
       if (k.startsWith('--') && v) byMedia[media][k] = v.trim();
     }
   }
-  const breakpoints = ['0', '600', '768', '900', '1024', '1200', '1280', '1440'];
+  const breakpoints = (customBreakpoints || discoverBreakpoints(rules)).map((b) => (b === null ? '0' : b));
   const merged = {};
   let acc = {};
   for (const bp of breakpoints) {
@@ -284,8 +297,11 @@ function runAssertions(expectationsPath, cssPathOverride) {
   }
   const css = fs.readFileSync(cssPath, 'utf-8');
   const rules = parseCSS(css);
-  const cascade = buildCascadeByBreakpoint(rules);
-  const globalVarScope = buildGlobalVarScope(rules);
+  const customBreakpoints = raw.breakpoints
+    ? [null, ...raw.breakpoints.map(String)]
+    : undefined;
+  const cascade = buildCascadeByBreakpoint(rules, customBreakpoints);
+  const globalVarScope = buildGlobalVarScope(rules, customBreakpoints);
   const failures = [];
   const cascadeKeys = Object.keys(cascade);
   function findDecls(selector) {

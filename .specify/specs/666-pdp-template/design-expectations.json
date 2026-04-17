@@ -1,0 +1,373 @@
+{
+  "component": "product-detail",
+  "cssPath": "blocks/product-detail/product-detail.css",
+  "breakpoints": ["576", "768", "992", "1024", "1200", "1280", "1440"],
+  "expectations": [
+    {
+      "id": "pd-root-padding",
+      "selector": ".product-detail",
+      "media": null,
+      "properties": {
+        "padding": { "value": "0", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-container-flex-mobile",
+      "selector": ".product-detail > div",
+      "media": null,
+      "properties": {
+        "display": { "value": "flex", "acceptVar": false },
+        "flex-direction": { "value": "column", "acceptVar": false },
+        "max-width": { "value": "1200px", "acceptVar": true }
+      }
+    },
+    {
+      "id": "pd-gallery-overflow",
+      "selector": ".product-detail-gallery",
+      "media": null,
+      "properties": {
+        "position": { "value": "relative", "acceptVar": false },
+        "overflow": { "value": "hidden", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-gallery-track",
+      "selector": ".product-detail-gallery-track",
+      "media": null,
+      "properties": {
+        "display": { "value": "flex", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-gallery-slide",
+      "selector": ".product-detail-gallery-slide",
+      "media": null,
+      "properties": {
+        "flex": { "value": "0 0 100%", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-gallery-slide-img",
+      "selector": ".product-detail-gallery-slide img",
+      "media": null,
+      "properties": {
+        "object-fit": { "value": "contain", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-gallery-arrows-shared",
+      "selector": ".product-detail-gallery-prev, .product-detail-gallery-next",
+      "media": null,
+      "properties": {
+        "position": { "value": "absolute", "acceptVar": false },
+        "border-radius": { "value": "30px", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-gallery-prev-left",
+      "selector": ".product-detail-gallery-prev",
+      "media": null,
+      "properties": {
+        "left": { "value": "8px", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-gallery-next-right",
+      "selector": ".product-detail-gallery-next",
+      "media": null,
+      "properties": {
+        "right": { "value": "8px", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-dots-mobile",
+      "selector": ".product-detail-gallery-dots",
+      "media": null,
+      "properties": {
+        "display": { "value": "flex", "acceptVar": false },
+        "justify-content": { "value": "center", "acceptVar": false },
+        "gap": { "value": "8px", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-thumbnails-hidden-mobile",
+      "selector": ".product-detail-gallery-thumbnails",
+      "media": null,
+      "properties": {
+        "display": { "value": "none", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-thumb-selected",
+      "selector": ".product-detail-gallery-thumbnails button[aria-selected=\"true\"]",
+      "media": null,
+      "properties": {
+        "border-color": { "value": "rgb(24 36 101)", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-info-padding-mobile",
+      "selector": ".product-detail-info",
+      "media": null,
+      "properties": {
+        "padding": { "value": "24px 16px", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-info-h2-mobile",
+      "selector": ".product-detail-info h2",
+      "media": null,
+      "properties": {
+        "font-size": { "value": "22px", "acceptVar": true },
+        "font-weight": { "value": "800", "acceptVar": false },
+        "line-height": { "value": "26px", "acceptVar": true },
+        "text-transform": { "value": "uppercase", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-info-h3-mobile",
+      "selector": ".product-detail-info h3",
+      "media": null,
+      "properties": {
+        "font-size": { "value": "18px", "acceptVar": true },
+        "font-weight": { "value": "700", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-description-li",
+      "selector": ".product-detail-description li",
+      "media": null,
+      "properties": {
+        "font-size": { "value": "14px", "acceptVar": true },
+        "font-weight": { "value": "300", "acceptVar": false },
+        "line-height": { "value": "22px", "acceptVar": true }
+      }
+    },
+    {
+      "id": "pd-description-toggle",
+      "selector": ".product-detail-description-toggle",
+      "media": null,
+      "properties": {
+        "font-size": { "value": "14px", "acceptVar": true },
+        "font-weight": { "value": "700", "acceptVar": false },
+        "text-transform": { "value": "uppercase", "acceptVar": false },
+        "text-decoration": { "value": "underline 2px", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-buy-panel-border",
+      "selector": ".product-detail-buy-panel",
+      "media": null,
+      "properties": {
+        "border": { "value": "1px solid #e0e0e0", "acceptVar": false },
+        "border-radius": { "value": "12px", "acceptVar": false },
+        "padding": { "value": "24px", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-buy-steps-counter",
+      "selector": ".product-detail-buy-panel-steps",
+      "media": null,
+      "properties": {
+        "list-style": { "value": "none", "acceptVar": false },
+        "counter-reset": { "value": "step", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-ctas-flex-mobile",
+      "selector": ".product-detail-ctas",
+      "media": null,
+      "properties": {
+        "display": { "value": "flex", "acceptVar": false },
+        "flex-direction": { "value": "column", "acceptVar": false },
+        "gap": { "value": "12px", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-ctas-button-pill",
+      "selector": ".product-detail-ctas .button",
+      "media": null,
+      "properties": {
+        "border-radius": { "value": "100px", "acceptVar": false },
+        "font-size": { "value": "12px", "acceptVar": true },
+        "font-weight": { "value": "700", "acceptVar": false },
+        "text-transform": { "value": "uppercase", "acceptVar": false },
+        "letter-spacing": { "value": "1.2px", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-dots-hidden-tablet",
+      "selector": ".product-detail-gallery-dots",
+      "media": "600",
+      "properties": {
+        "display": { "value": "none", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-ctas-row-tablet",
+      "selector": ".product-detail-ctas",
+      "media": "600",
+      "properties": {
+        "flex-direction": { "value": "row", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-container-flex-desktop",
+      "selector": ".product-detail > div",
+      "media": "900",
+      "properties": {
+        "flex-direction": { "value": "row", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-gallery-width-desktop",
+      "selector": ".product-detail-gallery",
+      "media": "900",
+      "properties": {
+        "width": { "value": "52%", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-thumbnails-desktop",
+      "selector": ".product-detail-gallery-thumbnails",
+      "media": "900",
+      "properties": {
+        "display": { "value": "flex", "acceptVar": false },
+        "justify-content": { "value": "center", "acceptVar": false },
+        "gap": { "value": "5px", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-info-desktop",
+      "selector": ".product-detail-info",
+      "media": "900",
+      "properties": {
+        "width": { "value": "48%", "acceptVar": false },
+        "padding": { "value": "40px 48px", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-info-h2-desktop",
+      "selector": ".product-detail-info h2",
+      "media": "900",
+      "properties": {
+        "font-size": { "value": "32px", "acceptVar": true },
+        "line-height": { "value": "40px", "acceptVar": true }
+      }
+    },
+    {
+      "id": "pd-info-h3-desktop",
+      "selector": ".product-detail-info h3",
+      "media": "900",
+      "properties": {
+        "font-size": { "value": "20px", "acceptVar": true },
+        "line-height": { "value": "28px", "acceptVar": true }
+      }
+    },
+    {
+      "id": "pd-thumb-desktop",
+      "selector": ".product-detail-gallery-thumbnails button",
+      "media": "900",
+      "properties": {
+        "width": { "value": "95px", "acceptVar": false },
+        "height": { "value": "95px", "acceptVar": false }
+      }
+    },
+    {
+      "_comment": "=== Typography completeness (Issue 4 remediation) ===",
+      "id": "pd-info-h2-typography",
+      "selector": ".product-detail-info h2",
+      "media": null,
+      "properties": {
+        "font-family": { "value": "santral, sans-serif", "acceptVar": true },
+        "color": { "value": "rgb(20, 30, 83)", "acceptVar": true, "tolerancePx": 0 },
+        "letter-spacing": { "value": "0.5px", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-info-h3-typography",
+      "selector": ".product-detail-info h3",
+      "media": null,
+      "properties": {
+        "font-family": { "value": "santral, sans-serif", "acceptVar": true },
+        "color": { "value": "rgb(20, 30, 83)", "acceptVar": true },
+        "text-transform": { "value": "uppercase", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-info-h4-typography",
+      "selector": ".product-detail-info h4",
+      "media": null,
+      "properties": {
+        "font-family": { "value": "santral, sans-serif", "acceptVar": true },
+        "font-size": { "value": "14px", "acceptVar": true },
+        "font-weight": { "value": "700", "acceptVar": false },
+        "color": { "value": "rgb(20, 30, 83)", "acceptVar": true },
+        "text-transform": { "value": "uppercase", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-description-typography",
+      "selector": ".product-detail-description",
+      "media": null,
+      "properties": {
+        "font-family": { "value": "santral, sans-serif", "acceptVar": true },
+        "font-size": { "value": "16px", "acceptVar": true },
+        "font-weight": { "value": "300", "acceptVar": false },
+        "line-height": { "value": "24px", "acceptVar": true },
+        "color": { "value": "rgb(97, 96, 105)", "acceptVar": true }
+      }
+    },
+    {
+      "id": "pd-description-toggle-color",
+      "selector": ".product-detail-description-toggle",
+      "media": null,
+      "properties": {
+        "color": { "value": "rgb(24, 36, 101)", "acceptVar": true }
+      }
+    },
+    {
+      "id": "pd-buy-panel-title",
+      "selector": ".product-detail-buy-panel h5",
+      "media": null,
+      "properties": {
+        "font-family": { "value": "santral, sans-serif", "acceptVar": true },
+        "font-size": { "value": "16px", "acceptVar": true },
+        "font-weight": { "value": "700", "acceptVar": false },
+        "color": { "value": "rgb(20, 30, 83)", "acceptVar": true },
+        "text-transform": { "value": "uppercase", "acceptVar": false }
+      }
+    },
+    {
+      "id": "pd-buy-panel-steps-li",
+      "selector": ".product-detail-buy-panel-steps li",
+      "media": null,
+      "properties": {
+        "font-family": { "value": "santral, sans-serif", "acceptVar": true },
+        "font-size": { "value": "14px", "acceptVar": true },
+        "font-weight": { "value": "300", "acceptVar": false },
+        "line-height": { "value": "22px", "acceptVar": true },
+        "color": { "value": "rgb(97, 96, 105)", "acceptVar": true }
+      }
+    },
+    {
+      "id": "pd-ctas-primary-colors",
+      "selector": ".product-detail-ctas .button.primary",
+      "media": null,
+      "properties": {
+        "background-color": { "value": "rgb(20, 30, 83)", "acceptVar": true },
+        "color": { "value": "rgb(255, 255, 255)", "acceptVar": true }
+      }
+    },
+    {
+      "id": "pd-ctas-secondary-colors",
+      "selector": ".product-detail-ctas .button.secondary",
+      "media": null,
+      "properties": {
+        "border": { "value": "2px solid rgb(24, 36, 101)", "acceptVar": false },
+        "color": { "value": "rgb(24, 36, 101)", "acceptVar": true },
+        "background-color": { "value": "transparent", "acceptVar": false }
+      }
+    }
+  ]
+}
