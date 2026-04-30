@@ -1,0 +1,166 @@
+{
+  "url": "https://www.zonnic.ca/ca/en",
+  "path": "/ca/en",
+  "added": {},
+  "changed": {
+    "primitive": {
+      "color": {
+        "brand": {
+          "secondary": {
+            "$value": "#a0ff9d"
+          }
+        },
+        "neutral": {
+          "n300": {
+            "$value": "#000000"
+          },
+          "n400": {
+            "$value": "#2f2f2f"
+          },
+          "n600": {
+            "$value": "#ebecf1"
+          },
+          "n700": {
+            "$value": "#3a3a3f"
+          },
+          "n800": {
+            "$value": "#808080"
+          },
+          "n900": {
+            "$value": "#9a9ca8"
+          },
+          "n1000": {
+            "$value": "#dedede"
+          },
+          "n1100": {
+            "$value": "#a6a6a6"
+          }
+        },
+        "background": {
+          "bg2": {
+            "$value": "#f4f5f7"
+          },
+          "bg3": {
+            "$value": "#ebecf1"
+          },
+          "bg4": {
+            "$value": "#141e53"
+          },
+          "bg5": {
+            "$value": "#ededed"
+          }
+        }
+      },
+      "spacing": {
+        "s0": {
+          "$value": "0px"
+        },
+        "s1": {
+          "$value": "4px"
+        },
+        "s2": {
+          "$value": "10px"
+        },
+        "s3": {
+          "$value": "18px"
+        },
+        "s4": {
+          "$value": "22px"
+        },
+        "s5": {
+          "$value": "30px"
+        },
+        "s6": {
+          "$value": "34px"
+        },
+        "s7": {
+          "$value": "38px"
+        },
+        "s8": {
+          "$value": "40px"
+        },
+        "s9": {
+          "$value": "42px"
+        },
+        "s10": {
+          "$value": "48px"
+        },
+        "s11": {
+          "$value": "55px"
+        },
+        "s12": {
+          "$value": "57px"
+        },
+        "s13": {
+          "$value": "60px"
+        },
+        "s14": {
+          "$value": "70px"
+        },
+        "s15": {
+          "$value": "95px"
+        },
+        "s16": {
+          "$value": "102px"
+        },
+        "s17": {
+          "$value": "120px"
+        },
+        "s18": {
+          "$value": "123px"
+        },
+        "s19": {
+          "$value": "140px"
+        },
+        "s20": {
+          "$value": "203px"
+        }
+      },
+      "radius": {
+        "r0": {
+          "$value": "2px"
+        },
+        "r3": {
+          "$value": "50px"
+        },
+        "r4": {
+          "$value": "100px"
+        }
+      },
+      "shadow": {
+        "sh1": {
+          "$value": "rgba(0, 0, 0, 0.3) 0px 0px 10px 0px"
+        },
+        "sh2": {
+          "$value": "rgb(97, 96, 105) 0px 5px 10px 0px"
+        },
+        "sh3": {
+          "$value": "rgba(0, 0, 0, 0.3) 3px 6px 10px 0px"
+        },
+        "sh4": {
+          "$value": "rgba(0, 0, 0, 0.2) 0px 6px 12px 0px"
+        }
+      },
+      "fontFamily": {
+        "f3": {
+          "$value": "Font Awesome 5 Free"
+        },
+        "f4": {
+          "$value": "sans-serif"
+        }
+      }
+    },
+    "semantic": {
+      "typography": {
+        "body": {
+          "$value": {
+            "fontFamily": "Santral",
+            "fontSize": "34px",
+            "fontWeight": "800",
+            "lineHeight": "40px"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "sampled": [
+    {
+      "slug": "homepage",
+      "url": "https://www.zonnic.ca/ca/en"
+    },
+    {
+      "slug": "pouches-zonnic-mint-24-nicotine-pouches",
+      "url": "https://www.zonnic.ca/ca/en/pouches/zonnic-mint-24-nicotine-pouches"
+    },
+    {
+      "slug": "blog-what-are-nicotine-pouches",
+      "url": "https://www.zonnic.ca/ca/en/blog/what-are-nicotine-pouches"
+    },
+    {
+      "slug": "faq-old-donotindex-faq-general-information",
+      "url": "https://www.zonnic.ca/ca/en/faq-old-donotindex/faq-general-information"
+    },
+    {
+      "slug": "contact-us-let-us-talk-testimonials",
+      "url": "https://www.zonnic.ca/ca/en/contact-us/let-us-talk/testimonials"
+    }
+  ],
+  "dimension_scores": {},
+  "dimension_spread": {},
+  "high_spread_dimensions": [],
+  "homepage_is_proxy": true
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "testingblogarticletemplate",
+  "url": "https://www.zonnic.ca/ca/en/testingblogarticletemplate",
+  "counts": {
+    "violations": 0,
+    "incomplete": 1,
+    "byImpact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0
+    },
+    "byRule": {}
+  },
+  "violations": [],
+  "incomplete": [
+    {
+      "id": "duplicate-id-aria",
+      "impact": "critical",
+      "tags": [
+        "cat.parsing",
+        "wcag2a",
+        "wcag412",
+        "EN-301-549",
+        "EN-9.4.1.2"
+      ],
+      "description": "Ensure every id attribute value used in ARIA and in labels is unique",
+      "help": "IDs used in ARIA and labels must be unique",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/duplicate-id-aria?application=axeAPI",
+      "nodes": [
+        {
+          "any": [
+            {
+              "id": "duplicate-id-aria",
+              "data": "user_has_zonnic_can-error",
+              "relatedNodes": [
+                {
+                  "html": "<div id=\"user_has_zonnic_can-error\" class=\"bat-message  bat-form-msg error-msg error\" role=\"alert\" aria-live=\"assertive\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"bat-message-text\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tThis is a required field.\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>",
+                  "target": [
+                    ".bat-form-block:nth-child(2) > .bat-form--newsletter-email-has-can.consent-block.bat-form-field > .select-wrapper > .bat-form-msg.error-msg.error"
+                  ]
+                }
+              ],
+              "impact": "critical",
+              "message": "Document has multiple elements referenced with ARIA with the same id attribute: user_has_zonnic_can-error"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "critical",
+          "html": "<div id=\"user_has_zonnic_can-error\" class=\"bat-message  bat-form-msg error-msg error\" role=\"alert\" aria-live=\"assertive\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"bat-message-text\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tThis is a required field.\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>",
+          "target": [
+            ".bat-form--login-has-can > .select-wrapper > .bat-form-msg.error-msg.error"
+          ],
+          "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: user_has_zonnic_can-error"
+        }
+      ]
+    }
+  ],
+  "testEngine": {
+    "name": "axe-core",
+    "version": "4.10.0"
+  }
+}

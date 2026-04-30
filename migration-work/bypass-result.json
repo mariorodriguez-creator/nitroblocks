@@ -1,0 +1,94 @@
+{
+  "overlays_detected": [
+    "age-gate",
+    "cookie-consent",
+    "salesforce-chat",
+    "location-selector"
+  ],
+  "bypass_cookies": [
+    "age_verify=confirmed",
+    "age_verified=true",
+    "ageVerified=true",
+    "age-gate=passed",
+    "over_age=true",
+    "is_adult=true",
+    "OptanonAlertBoxClosed=2026-04-29T19:40:53.883Z",
+    "CookieConsent=true"
+  ],
+  "bypass_cookies_full": [
+    {
+      "name": "age_verify",
+      "value": "confirmed"
+    },
+    {
+      "name": "age_verified",
+      "value": "true"
+    },
+    {
+      "name": "ageVerified",
+      "value": "true"
+    },
+    {
+      "name": "age-gate",
+      "value": "passed"
+    },
+    {
+      "name": "over_age",
+      "value": "true"
+    },
+    {
+      "name": "is_adult",
+      "value": "true"
+    },
+    {
+      "name": "OptanonAlertBoxClosed",
+      "value": "2026-04-29T19:40:53.883Z"
+    },
+    {
+      "name": "CookieConsent",
+      "value": "true"
+    }
+  ],
+  "ignore_selectors": [
+    "#onetrust-banner-sdk",
+    "#onetrust-consent-sdk",
+    "#onetrust-pc-sdk",
+    ".ot-sdk-container",
+    "#ot-sdk-btn-floating",
+    "[id^=\"QSI\"]",
+    "[class*=\"QSIFeedbackButton\"]",
+    "[id*=\"embeddedMessaging\"]",
+    "[class*=\"embeddedService\"]",
+    ".helpButton",
+    ".grecaptcha-badge",
+    "[class*=\"agegate\"]",
+    "[data-component-name=\"ageGate\"]",
+    "[data-component-id*=\"AgeGate\"]",
+    "bat-agegate-zonnic",
+    "[class*=\"locationselector\"]",
+    "bat-locationselector-zonnic",
+    "#ageGate"
+  ],
+  "hide_css_selectors": [
+    "#onetrust-banner-sdk",
+    "#onetrust-consent-sdk",
+    "#onetrust-pc-sdk",
+    ".ot-sdk-container",
+    "#ot-sdk-btn-floating",
+    "[id^=\"QSI\"]",
+    "[class*=\"QSIFeedbackButton\"]",
+    "[id*=\"embeddedMessaging\"]",
+    "[class*=\"embeddedService\"]",
+    ".helpButton",
+    ".grecaptcha-badge",
+    "[class*=\"agegate\"]",
+    "[data-component-name=\"ageGate\"]",
+    "[data-component-id*=\"AgeGate\"]",
+    "bat-agegate-zonnic",
+    "[class*=\"locationselector\"]",
+    "bat-locationselector-zonnic",
+    "#ageGate"
+  ],
+  "wait_ms": 3000,
+  "verified": false
+}

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Migration Proposal — {{SITE_NAME}}</title>
+<style>
+  :root {
+    --navy: #6b8aff;
+    --navy-dark: #0f1740;
+    --navy-light: #4a6ae0;
+    --green: #4caf50;
+    --green-light: rgba(76,175,80,0.15);
+    --red: #ff5252;
+    --red-light: rgba(255,82,82,0.15);
+    --amber: #ffb74d;
+    --amber-light: rgba(255,183,77,0.15);
+    --bg: #0e0e12;
+    --surface: #1a1a22;
+    --text: #e4e4ee;
+    --text-secondary: #8888a4;
+    --border: #2a2a38;
+    --radius: 8px;
+    --radius-lg: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 32px;
+  }
+
+  .container { max-width: 1280px; margin: 0 auto; }
+
+  header {
+    background: var(--navy);
+    color: white;
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    margin-bottom: 32px;
+  }
+  header h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+  header .subtitle { opacity: 0.8; font-size: 14px; }
+  header .meta { display: flex; gap: 24px; margin-top: 16px; font-size: 13px; opacity: 0.7; }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-card .value { font-size: 32px; font-weight: 700; color: var(--text); }
+  .stat-card .label { font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+  .stat-card.success .value { color: var(--green); }
+  .stat-card.warning .value { color: var(--amber); }
+  .stat-card.danger .value { color: var(--red); }
+
+  section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  section h2 {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  section .content { padding: 24px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; font-weight: 600; color: var(--text-secondary); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; border-bottom: 2px solid var(--border); }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  .pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .pill-reuse { background: var(--green-light); color: var(--green); }
+  .pill-adapt { background: var(--amber-light); color: var(--amber); }
+  .pill-new { background: var(--red-light); color: var(--red); }
+  .pill-preserve { background: rgba(107,138,255,0.15); color: var(--navy); }
+  .pill-solution { background: var(--red-light); color: var(--red); }
+  .pill-critical { background: var(--red-light); color: var(--red); }
+  .pill-high { background: rgba(255,152,0,0.15); color: #ffa726; }
+  .pill-medium { background: var(--amber-light); color: var(--amber); }
+  .pill-low { background: var(--green-light); color: var(--green); }
+  .pill-advisory { background: rgba(107,138,255,0.12); color: var(--navy); }
+  .pill-inactive { background: rgba(255,255,255,0.05); color: #666; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+
+  @media (max-width: 900px) {
+    .two-col, .three-col { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .bar-chart { margin: 8px 0; }
+  .bar-row { display: flex; align-items: center; margin-bottom: 8px; }
+  .bar-label { width: 140px; font-size: 12px; color: var(--text-secondary); flex-shrink: 0; }
+  .bar-track { flex: 1; height: 24px; background: #22222e; border-radius: 4px; overflow: hidden; position: relative; }
+  .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 600; color: white; min-width: 32px; }
+  .bar-fill.navy { background: var(--navy); }
+  .bar-fill.green { background: var(--green); }
+  .bar-fill.amber { background: var(--amber); }
+  .bar-fill.red { background: var(--red); }
+  .bar-secondary { position: absolute; top: 0; height: 100%; opacity: 0.25; border-radius: 4px; }
+
+  svg text { font-family: inherit; }
+
+  .gantt { font-size: 12px; overflow-x: auto; }
+  .gantt-row { display: flex; align-items: center; margin-bottom: 6px; }
+  .gantt-label { width: 120px; font-weight: 600; color: var(--text-secondary); flex-shrink: 0; font-size: 11px; }
+  .gantt-track { flex: 1; height: 28px; position: relative; }
+  .gantt-bar {
+    position: absolute;
+    height: 100%;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: white;
+    white-space: nowrap;
+  }
+
+  .gantt-weeks {
+    display: flex;
+    margin-left: 120px;
+    margin-bottom: 8px;
+  }
+  .gantt-week {
+    flex: 1;
+    text-align: center;
+    font-size: 10px;
+    color: var(--text-secondary);
+    border-left: 1px solid var(--border);
+    padding: 2px 0;
+  }
+
+  .template-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .template-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+  }
+  .template-card .thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: calc(var(--radius) - 2px);
+    margin: -14px -14px 10px -14px;
+    width: calc(100% + 28px);
+    background: #22222e;
+    border-bottom: 1px solid var(--border);
+  }
+  .template-card .thumb-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .template-card .name { font-weight: 600; font-size: 13px; margin-bottom: 4px; }
+  .template-card .page-count { font-size: 22px; font-weight: 700; color: var(--text); }
+  .template-card .page-label { font-size: 11px; color: var(--text-secondary); }
+  .template-card .complexity { margin-top: 6px; }
+  .template-card .live-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--navy);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--navy);
+    transition: opacity 0.15s;
+  }
+  .template-card .live-link:hover { opacity: 0.7; }
+
+  .block-flow { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .block-tag {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #22222e;
+    color: var(--text-secondary);
+  }
+
+  footer.page-footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--text-secondary);
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!--
+  DASHBOARD TEMPLATE — Migration Planner Skill
+  =============================================
+  This is a reference template. The agent generates the final HTML by
+  populating each section below with data from the proposal Markdown
+  files and discovery JSON artifacts.
+
+  Data sources:
+  - sitemap-result.json      → page counts, templates, representative URLs
+  - bypass-result.json        → overlay info (for methodology notes)
+  - *-grade.html / audit MD   → design grade scores
+  - 02-normalization-report   → normalization delta table
+  - 03-atomic-inventory       → atomic mapping table
+  - 04-block-mapping          → block inventory table + template composition
+  - 05-work-items             → work item counts, t-shirt sizes
+  - 06-phase-plan             → Gantt chart data
+  - 07-timeline-and-resources → resource allocation, effort totals
+  - 08-risk-register          → risk table
+  - 01-design-system-audit    → integrations table
+
+  Sections (in order):
+  1. Header       — site name, source stack → EDS, date, meta
+  2. KPI stats    — pages, templates, blocks, integrations, work items,
+                    effort range, weeks, grade
+  3. Design grade — horizontal bar chart per grade dimension
+  4. Normalization delta — table (aspect, source, normalized, reduction %)
+  5. Discovered templates — grid of cards with page count, complexity pill,
+                            block-tag flow, live-link to representative URL
+  6. Block inventory — reuse/adapt/new stat cards + full table
+  7. Atomic design mapping — table (level, count, EDS artifact, description)
+  8. Third-party integrations — table (service, category, strategy, loading, effort)
+  9. Work items by phase — bar chart
+  10. Effort by phase — bar chart with max-range overlay
+  11. T-shirt size distribution — table with inline proportion bars
+  12. Project timeline — Gantt chart with week columns
+  13. Resource allocation — table with phase involvement pills
+  14. Risk register — severity stat cards + full table
+  15. Methodology — 3-column summary
+  16. Footer — generation meta
+-->
+
+<!-- 1. HEADER -->
+<header>
+  <h1>Migration Proposal: {{SITE_NAME}}</h1>
+  <div class="subtitle">{{SOURCE_STACK}} → AEM Edge Delivery Services</div>
+  <div class="meta">
+    <span>Source: {{SOURCE_URL}}</span>
+    <span>Date: {{DATE}}</span>
+    <span>Prepared by: Migration Planner (automated discovery)</span>
+  </div>
+</header>
+
+<!-- 2. KPI STATS — one stat-card per metric -->
+<div class="stats-row">
+  <div class="stat-card"><div class="value">{{PAGES}}</div><div class="label">Pages</div></div>
+  <div class="stat-card"><div class="value">{{TEMPLATES}}</div><div class="label">Templates</div></div>
+  <div class="stat-card"><div class="value">{{BLOCKS}}</div><div class="label">Blocks</div></div>
+  <div class="stat-card"><div class="value">{{INTEGRATIONS}}</div><div class="label">Integrations</div></div>
+  <div class="stat-card"><div class="value">{{WORK_ITEMS}}</div><div class="label">Work Items</div></div>
+  <div class="stat-card"><div class="value">{{EFFORT_RANGE}}</div><div class="label">Total Effort</div></div>
+  <div class="stat-card"><div class="value">{{WEEKS_RANGE}}</div><div class="label">Weeks</div></div>
+  <div class="stat-card"><div class="value">{{GRADE_LETTER}}</div><div class="label">Grade ({{GRADE_SCORE}}/100)</div></div>
+</div>
+
+<!-- 3 + 4. GRADE + NORMALIZATION (two-column) -->
+<div class="two-col">
+  <section>
+    <h2>Design System Grade</h2>
+    <div class="content">
+      <div class="bar-chart">
+        <!-- One bar-row per grade dimension. Use .red for scores < 50, .navy otherwise.
+             Set width:XX% where XX is the score. -->
+        <div class="bar-row"><div class="bar-label">{{DIMENSION}}</div><div class="bar-track"><div class="bar-fill navy" style="width:{{SCORE}}%">{{SCORE}}</div></div></div>
+        <!-- repeat for each dimension, ordered high-to-low -->
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>Normalization Delta</h2>
+    <div class="content">
+      <table>
+        <thead><tr><th>Aspect</th><th class="num">Source</th><th class="num">Normalized</th><th class="num">Reduction</th></tr></thead>
+        <tbody>
+          <!-- One row per normalized aspect (colors, type sizes, weights, families, spacing, breakpoints, CSS size) -->
+          <tr><td>{{ASPECT}}</td><td class="num">{{SOURCE_VAL}}</td><td class="num">{{NORM_VAL}}</td><td class="num">{{REDUCTION_PCT}}</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+<!-- 5. DISCOVERED TEMPLATES — grid of cards -->
+<section>
+  <h2>Discovered Templates ({{TEMPLATE_COUNT}})</h2>
+  <div class="content">
+    <div class="template-grid">
+      <!-- One template-card per template, sorted by page count descending.
+           - .thumb: desktop screenshot from ../design-extract/screenshots/{slug}-desktop-1440.png
+             (fallback to {slug}-desktop.png for older runs without pixel-width
+             suffix). Omit .thumb or use .thumb-placeholder when no screenshot exists.
+           - .name: template name
+           - .page-count + .page-label: N pages
+           - .complexity: pill-reuse (Low), pill-adapt (Medium), pill-new (High)
+           - .block-flow: block-tag spans for each block used in this template
+           - .live-link: href to representative URL from sitemap-result.json -->
+      <div class="template-card">
+        <img class="thumb" src="../design-extract/screenshots/{{SLUG}}-desktop-1440.png" alt="{{TEMPLATE_NAME}} desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/{{SLUG}}-desktop.png';" />
+        <div class="name">{{TEMPLATE_NAME}}</div>
+        <div class="page-count">{{PAGE_COUNT}}</div><div class="page-label">pages</div>
+        <div class="complexity"><span class="pill pill-reuse">{{COMPLEXITY}}</span></div>
+        <div class="block-flow"><span class="block-tag">{{BLOCK}}</span></div>
+        <a class="live-link" href="{{REPRESENTATIVE_URL}}" target="_blank">View live page &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. BLOCK INVENTORY — stat cards + table -->
+<section>
+  <h2>Block Inventory ({{BLOCK_COUNT}} blocks)</h2>
+  <div class="content">
+    <div class="stats-row" style="margin-bottom:20px">
+      <div class="stat-card success"><div class="value">{{REUSE_COUNT}}</div><div class="label">Reuse As-Is</div></div>
+      <div class="stat-card warning"><div class="value">{{ADAPT_COUNT}}</div><div class="label">Adapt Existing</div></div>
+      <div class="stat-card danger"><div class="value">{{NEW_COUNT}}</div><div class="label">Develop New</div></div>
+    </div>
+    <table>
+      <thead><tr><th>Block</th><th>Source Component</th><th>Status</th><th>Complexity</th><th class="num">Effort</th></tr></thead>
+      <tbody>
+        <!-- One row per block. Status pill: pill-reuse / pill-adapt / pill-new -->
+        <tr><td>{{BLOCK_NAME}}</td><td>{{SOURCE}}</td><td><span class="pill pill-reuse">{{STATUS}}</span></td><td>{{COMPLEXITY}}</td><td class="num">{{SIZE}}</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 7. ATOMIC DESIGN MAPPING -->
+<section>
+  <h2>Atomic Design Mapping</h2>
+  <div class="content">
+    <table>
+      <thead><tr><th>Level</th><th class="num">Count</th><th>EDS Artifact</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Foundations</strong></td><td class="num">{{TOKEN_COUNT}} tokens</td><td>CSS custom properties in <code>styles.css</code></td><td>{{FOUNDATIONS_DESC}}</td></tr>
+        <tr><td><strong>Atoms</strong></td><td class="num">{{ATOM_COUNT}} patterns</td><td>Default content + <code>scripts.js</code> decoration</td><td>{{ATOMS_DESC}}</td></tr>
+        <tr><td><strong>Molecules</strong></td><td class="num">{{MOL_COUNT}} composites</td><td>Internal block row/column structure</td><td>{{MOLECULES_DESC}}</td></tr>
+        <tr><td><strong>Organisms</strong></td><td class="num">{{ORG_COUNT}} blocks</td><td><code>blocks/{name}/</code></td><td>{{ORGANISMS_DESC}}</td></tr>
+        <tr><td><strong>Templates</strong></td><td class="num">{{TMPL_COUNT}} types</td><td>Auto-blocking rules + authoring guides</td><td>{{TEMPLATES_DESC}}</td></tr>
+        <tr><td><strong>Pages</strong></td><td class="num">{{PAGE_TOTAL}} pages</td><td>Authored content (Google Docs/Word)</td><td>{{PAGES_DESC}}</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 8. THIRD-PARTY INTEGRATIONS -->
+<section>
+  <h2>Third-Party Integrations ({{INT_COUNT}})</h2>
+  <div class="content">
+    <table>
+      <thead><tr><th>Service</th><th>Category</th><th>Strategy</th><th>Loading</th><th class="num">Effort</th></tr></thead>
+      <tbody>
+        <!-- pill-preserve for preserve, pill-solution for requires-solution -->
+        <tr><td>{{SERVICE}}</td><td>{{CATEGORY}}</td><td><span class="pill pill-preserve">{{STRATEGY}}</span></td><td>{{LOADING}}</td><td class="num">{{SIZE}}</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 9 + 10. WORK ITEMS + EFFORT (two-column) -->
+<div class="two-col">
+  <section>
+    <h2>Work Items by Phase ({{TOTAL_ITEMS}} total)</h2>
+    <div class="content">
+      <div class="bar-chart">
+        <!-- width% = (phase_count / total) * 100. Label = count. -->
+        <div class="bar-row"><div class="bar-label">1. Discovery</div><div class="bar-track"><div class="bar-fill navy" style="width:{{PCT}}%">{{COUNT}}</div></div></div>
+        <div class="bar-row"><div class="bar-label">2. Design System</div><div class="bar-track"><div class="bar-fill navy" style="width:{{PCT}}%">{{COUNT}}</div></div></div>
+        <div class="bar-row"><div class="bar-label">3. Site Build</div><div class="bar-track"><div class="bar-fill navy" style="width:{{PCT}}%">{{COUNT}}</div></div></div>
+        <div class="bar-row"><div class="bar-label">4. Migration</div><div class="bar-track"><div class="bar-fill navy" style="width:{{PCT}}%">{{COUNT}}</div></div></div>
+        <div class="bar-row"><div class="bar-label">5. Testing &amp; UAT</div><div class="bar-track"><div class="bar-fill navy" style="width:{{PCT}}%">{{COUNT}}</div></div></div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>Effort by Phase (hours)</h2>
+    <div class="content">
+      <div class="bar-chart">
+        <!-- bar-fill width = midpoint/max_total * 100. bar-secondary width = max/max_total * 100. -->
+        <div class="bar-row"><div class="bar-label">{{PHASE}}</div><div class="bar-track"><div class="bar-fill navy" style="width:{{MID_PCT}}%">{{MID_HOURS}}</div><div class="bar-secondary navy" style="width:{{MAX_PCT}}%"></div></div></div>
+      </div>
+      <p style="font-size:11px;color:var(--text-secondary);margin-top:12px">Bars show midpoint estimates. Shaded region shows max range.</p>
+    </div>
+  </section>
+</div>
+
+<!-- 11. T-SHIRT SIZE DISTRIBUTION -->
+<section>
+  <h2>Effort Distribution by T-Shirt Size</h2>
+  <div class="content">
+    <table>
+      <thead><tr><th>Size</th><th>Hours Each</th><th class="num">Count</th><th class="num">Midpoint Total</th><th class="num">Max Total</th><th>Proportion</th></tr></thead>
+      <tbody>
+        <!-- Proportion bar: width% = (size_max_total / xl_max_total) * 100. Color: green(XS), navy(S/M), amber(L), red(XL). -->
+        <tr><td><strong>XS</strong> (1–2h)</td><td>1.5h</td><td class="num">{{COUNT}}</td><td class="num">{{MID}}h</td><td class="num">{{MAX}}h</td><td><div class="bar-track" style="width:200px;height:14px;display:inline-block"><div class="bar-fill green" style="width:{{PCT}}%;font-size:0"></div></div></td></tr>
+        <tr><td><strong>S</strong> (2–4h)</td><td>3h</td><td class="num">{{COUNT}}</td><td class="num">{{MID}}h</td><td class="num">{{MAX}}h</td><td><div class="bar-track" style="width:200px;height:14px;display:inline-block"><div class="bar-fill navy" style="width:{{PCT}}%;font-size:0"></div></div></td></tr>
+        <tr><td><strong>M</strong> (4–8h)</td><td>6h</td><td class="num">{{COUNT}}</td><td class="num">{{MID}}h</td><td class="num">{{MAX}}h</td><td><div class="bar-track" style="width:200px;height:14px;display:inline-block"><div class="bar-fill navy" style="width:{{PCT}}%;font-size:0"></div></div></td></tr>
+        <tr><td><strong>L</strong> (8–16h)</td><td>12h</td><td class="num">{{COUNT}}</td><td class="num">{{MID}}h</td><td class="num">{{MAX}}h</td><td><div class="bar-track" style="width:200px;height:14px;display:inline-block"><div class="bar-fill amber" style="width:{{PCT}}%;font-size:0"></div></div></td></tr>
+        <tr><td><strong>XL</strong> (16–40h)</td><td>28h</td><td class="num">{{COUNT}}</td><td class="num">{{MID}}h</td><td class="num">{{MAX}}h</td><td><div class="bar-track" style="width:200px;height:14px;display:inline-block"><div class="bar-fill red" style="width:{{PCT}}%;font-size:0"></div></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 12. PROJECT TIMELINE (Gantt) -->
+<section>
+  <h2>Project Timeline ({{WEEKS_RANGE}} weeks)</h2>
+  <div class="content">
+    <div class="gantt">
+      <div class="gantt-weeks">
+        <!-- One gantt-week div per week (W1..WN where N = max_weeks) -->
+        <div class="gantt-week" style="flex:1">W1</div>
+        <!-- ... repeat ... -->
+      </div>
+      <!-- One gantt-row per phase/track.
+           left% = (start_week - 1) / total_weeks * 100
+           width% = duration_weeks / total_weeks * 100
+           Colors: navy (Discovery, Testing), navy-light (Design System, Migration),
+                   green (Core Blocks), red (critical path e.g. E-Commerce),
+                   amber (Integrations), #555568 (Hypercare) -->
+      <div class="gantt-row"><div class="gantt-label">{{PHASE}}</div><div class="gantt-track"><div class="gantt-bar" style="left:{{LEFT}}%;width:{{WIDTH}}%;background:var(--navy)">{{DURATION}}</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 13. RESOURCE ALLOCATION -->
+<section>
+  <h2>Resource Allocation</h2>
+  <div class="content">
+    <table>
+      <thead><tr><th>Role</th><th class="num">Hours</th><th>P1 Discovery</th><th>P2 Design</th><th>P3 Build</th><th>P4 Migration</th><th>P5 Test</th></tr></thead>
+      <tbody>
+        <!-- Per-phase pills: pill-reuse (Full), pill-advisory (Advisory/Partial), pill-inactive (—) -->
+        <tr>
+          <td>{{ROLE}}</td><td class="num">{{HOURS}}</td>
+          <td><span class="pill pill-reuse">Full</span></td>
+          <td><span class="pill pill-advisory">Advisory</span></td>
+          <td><span class="pill pill-inactive">—</span></td>
+          <td><span class="pill pill-reuse">Full</span></td>
+          <td><span class="pill pill-reuse">Full</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:var(--text-secondary);margin-top:12px"><strong>Total team effort:</strong> {{EFFORT_RANGE}} across {{ROLE_COUNT}} roles. Peak staffing at weeks {{PEAK_WEEKS}} (all roles active).</p>
+  </div>
+</section>
+
+<!-- 14. RISK REGISTER -->
+<section>
+  <h2>Risk Register ({{RISK_COUNT}} risks)</h2>
+  <div class="content">
+    <div class="stats-row" style="margin-bottom:20px">
+      <div class="stat-card danger"><div class="value">{{CRITICAL}}</div><div class="label">Critical</div></div>
+      <div class="stat-card warning"><div class="value">{{HIGH}}</div><div class="label">High</div></div>
+      <div class="stat-card"><div class="value">{{MEDIUM}}</div><div class="label">Medium</div></div>
+      <div class="stat-card success"><div class="value">{{LOW}}</div><div class="label">Low</div></div>
+    </div>
+    <table>
+      <thead><tr><th>Risk</th><th>Category</th><th>Severity</th><th>Mitigation</th></tr></thead>
+      <tbody>
+        <!-- pill-critical, pill-high, pill-medium, pill-low -->
+        <tr><td>{{RISK}}</td><td>{{CATEGORY}}</td><td><span class="pill pill-critical">{{SEVERITY}}</span></td><td>{{MITIGATION}}</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 15. METHODOLOGY -->
+<section>
+  <h2>Methodology</h2>
+  <div class="content">
+    <div class="three-col">
+      <div>
+        <h3 style="font-size:14px;margin-bottom:8px;color:var(--text)">Design System</h3>
+        <p style="font-size:13px;color:var(--text-secondary)">Pencil (.pen files) with normalized tokens. Atomic design: foundations → atoms → molecules → organisms → templates. CSS custom properties exported for styles.css.</p>
+      </div>
+      <div>
+        <h3 style="font-size:14px;margin-bottom:8px;color:var(--text)">Block Development</h3>
+        <p style="font-size:13px;color:var(--text-secondary)">Spec-Driven Development (SDD) via speckit. Content-first: author-friendly content models before code. Block Collection consulted for reusable starting points.</p>
+      </div>
+      <div>
+        <h3 style="font-size:14px;margin-bottom:8px;color:var(--text)">Content Migration</h3>
+        <p style="font-size:13px;color:var(--text-secondary)">Agentic batch via page-import skill. Template-grouped batches with human review checkpoints. SEO redirect mapping. Visual regression at each gate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 16. FOOTER -->
+<footer class="page-footer">
+  Generated by migration-planner skill — v1 draft based on automated discovery of {{SOURCE_URL}}.<br>
+  Refine during Execution Phase 1 (Discovery). Data extracted {{DATE}} via designlang + Playwright.
+</footer>
+
+</div>
+</body>
+</html>

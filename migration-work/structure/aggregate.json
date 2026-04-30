@@ -1,0 +1,132 @@
+{
+  "pages_analyzed": 10,
+  "total_unique_organisms": 8,
+  "organisms": [
+    {
+      "fp": "div.QSIFeedbackButton",
+      "total": 20,
+      "pages": [
+        "blog-what-are-nicotine-pouches",
+        "contact-us-let-us-talk-testimonials",
+        "homepage",
+        "newsletter",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ]
+    },
+    {
+      "fp": "section.ot-sdk-row",
+      "total": 10,
+      "pages": [
+        "blog-what-are-nicotine-pouches",
+        "contact-us-let-us-talk-testimonials",
+        "homepage",
+        "newsletter",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ]
+    },
+    {
+      "fp": "section.ot-hide",
+      "total": 10,
+      "pages": [
+        "blog-what-are-nicotine-pouches",
+        "contact-us-let-us-talk-testimonials",
+        "homepage",
+        "newsletter",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ]
+    },
+    {
+      "fp": "section",
+      "total": 10,
+      "pages": [
+        "blog-what-are-nicotine-pouches",
+        "contact-us-let-us-talk-testimonials",
+        "homepage",
+        "newsletter",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ]
+    },
+    {
+      "fp": "section.ot-host-cnt",
+      "total": 10,
+      "pages": [
+        "blog-what-are-nicotine-pouches",
+        "contact-us-let-us-talk-testimonials",
+        "homepage",
+        "newsletter",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ]
+    },
+    {
+      "fp": "div.bat-wrapper",
+      "total": 10,
+      "pages": [
+        "blog-what-are-nicotine-pouches",
+        "contact-us-let-us-talk-testimonials",
+        "homepage",
+        "newsletter",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ]
+    },
+    {
+      "fp": "div",
+      "total": 10,
+      "pages": [
+        "blog-what-are-nicotine-pouches",
+        "contact-us-let-us-talk-testimonials",
+        "homepage",
+        "newsletter",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ]
+    },
+    {
+      "fp": "div.embedded-messaging",
+      "total": 8,
+      "pages": [
+        "contact-us-let-us-talk-testimonials",
+        "homepage",
+        "newsletter",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "what-is-zonnic",
+        "why-zonnic"
+      ]
+    }
+  ]
+}

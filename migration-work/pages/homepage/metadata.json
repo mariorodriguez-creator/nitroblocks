@@ -1,0 +1,134 @@
+{
+  "url": "https://www.zonnic.ca/ca/en",
+  "timestamp": "2026-04-29T19:59:17.246Z",
+  "paths": {
+    "documentPath": "/ca/en",
+    "htmlFilePath": "/ca/en.plain.html",
+    "mdFilePath": "/ca/en.md",
+    "dirPath": "/ca",
+    "filename": "en"
+  },
+  "screenshot": "migration-work/pages/homepage/screenshot.png",
+  "html": {
+    "filePath": "migration-work/pages/homepage/cleaned.html",
+    "size": 2887111
+  },
+  "metadata": {
+    "title": "Nicotine Pouches To Quit Smoking | ZONNIC Canada",
+    "og:url": "https://www.zonnic.ca/ca/en",
+    "content-path": "/content/zonnic/ca/en/ca/en",
+    "template": "generic-template",
+    "viewport": "width=device-width, initial-scale=1",
+    "description": "ZONNIC is a form of Nicotine Replacement Therapy. It can help you quit smoking by delivering nicotine to your body in the form of nicotine pouches.",
+    "google-site-verification": "6MBLmzP_N1Bi1bYlrxx9DkOEl-WlwsKXsoI0cgcS7C0",
+    "canonical": "https://www.zonnic.ca/ca/en",
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://www.zonnic.ca/ca/en",
+      "name": "ZONNIC Canada",
+      "description": "Zonnic offers nicotine pouches designed to help control cravings effectively. Discover a variety of flavors and find a new way to manage nicotine intake conveniently.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "ZONNIC Canada",
+        "url": "https://www.zonnic.ca/ca/en",
+        "logo": "https://www.zonnic.ca/content/dam/zonnic-content/ca/2023/homepage/Primary%20logo.svg",
+        "image": "https://www.zonnic.ca/content/dam/zonnic-content/ca/2023/none-lifestyle/what-is-zonnic/hero-banner-meet-zonnic-desktop.webp",
+        "description": "Zonnic.ca is dedicated to providing nicotine pouches aimed at helping individuals quit smoking. These pouches are designed to offer an alternative to traditional tobacco products, supporting individuals in their journey to quit smoking. The website focuses on providing resources and products specifically tailored to different needs and stages of the cessation process, emphasizing support and guidance throughout.",
+        "telephone": "+1-833-966-6421",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "3711 Saint-Antoine Street West",
+          "addressLocality": "Montreal",
+          "addressRegion": "QC",
+          "postalCode": "H4C 3P6",
+          "addressCountry": "CA"
+        },
+        "sameAs": [
+          "https://www.instagram.com/zonniccanada/"
+        ],
+        "parentOrganization": {
+          "@type": "Organization",
+          "name": "Imperial Tobacco Company Ltd",
+          "url": "https://www.imperialtobaccocanada.com/en/index.html",
+          "logo": "https://www.imperialtobaccocanada.com/en/imgs/logo_BAT_AXYKCM.png",
+          "description": "Imperial Tobacco Canada is Canada’s leading tobacco and nicotine company and is part of the world’s most international tobacco group: BAT, a global multi-category consumer goods business, operating in over 180 markets."
+        }
+      }
+    }
+  },
+  "images": {
+    "count": 28,
+    "mapping": {
+      "https://cdn.cookielaw.org/logos/static/ot_close.svg": "./images/cec4a77b663a079574d478e06d310304.png",
+      "https://cdn.cookielaw.org/logos/static/ot_company_logo.png": "./images/0a82704908bb1ee9f1f8e8a0196426e0.png",
+      "https://cdn.cookielaw.org/logos/static/powered_by_logo.svg": "./images/a9584a367ebcccfac48987ce1fec5eae.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/logo/ZONNIC%20Logo_Mint_Gradient%20(1)%201.svg": "./images/95bf1dd63cd05fe5c097f87ed88ab5e9.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/health-warning/hw/en/ZONNIC-HW_Desktop_En.webp": "./images/9267cdcb150922a9ca3c4265788be2ee.png",
+      "https://dpm.demdex.net/ibs:dpid=411&dpuuid=afJjCAAAABvPhgN-": "./images/6994c17af07e86d131ec7bd0682aa64e.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2023/homepage/SocialEN.svg": "./images/492c58f5264b51ef1d6954c971251875.png",
+      "https://batgsdzoonicprodcanada.112.2o7.net/b/ss/batgsdzoonicprodcanada/1/JS-2.25.0-LEWM/s23022441091732?AQB=1&ndh=1&pf=1&t=29%2F3%2F2026%2021%3A59%3A4%203%20-120&sdid=36434165D9AA5BF5-67909563EAA1ECD8&mid=90633200598220161290204082999785506543&aamlh=6&ce=UTF-8&pageName=nicotine-pouches-to-quit-smoking-zonnic-canada&g=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen&cc=CAD&ch=en&server=www.zonnic.ca&aamb=6G1ynYcLPuiQxYZrsz_pkqfLG9yMXBpb2zX5dvJdYQJzPXImdj0y&c1=nicotine-pouches-to-quit-smoking-zonnic-canada&v1=nicotine-pouches-to-quit-smoking-zonnic-canada&c2=en&v2=en&c3=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen&v3=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen&c4=%2Fca%2Fen&v4=%2Fca%2Fen&c6=www.zonnic.ca&v6=www.zonnic.ca&v7=en-us&c8=ca&v8=ca&v24=logged%20out&v27=en&v31=mozilla%2F5.0%20%28macintosh%3B%20intel%20mac%20os%20x%2010_15_7%29%20applewebkit%2F537.36%20%28khtml%2C%20like%20gecko%29%20headlesschrome%2F145.0.7632.6%20safari%2F537.36&v41=0.772239734479355_1777492744007&s=1280x720&c=24&j=1.6&v=N&k=Y&bw=1280&bh=720&mcorgid=360C70DD5CFA548D0A495FB0%40AdobeOrg&AQE=1": "./images/363812cfa573af9dfe098cb7d7c8ed18.png",
+      "https://match.adsrvr.org/track/cmf/generic?ttd_pid=aam&gdpr=0&gdpr_consent=&domain=www.zonnic.ca&ttd_tpi=1": "./images/7dd99802c664b018613dcceba7c9d84a.png",
+      "https://dpm.demdex.net/ibs:dpid=771&dpuuid=CAESEDsd7Q9ANCV49GZZK2cn9aU&google_cver=1?gdpr=0&gdpr_consent=": "./images/7a63541b538d4b7ba5b344f5fb53fa39.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/homepage/tall-tile/Tall%20Tile%20-%20Homepage%20-%20Tall%20Tile%201.webp": "./images/5364b181f4ec18b27f593196f85f3c0b.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/homepage/tall-tile/Tall%20Tile%20-%20Homepage%20-%20Tall%20Tile%202.webp": "./images/d72bfd75483cccc1d4f437b45fc52f8f.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/testimonials-campaign/wave-2/homepage/202509-ZONNIC-Testimonial-HOP-eCom-LP-W2-Homepage-SlimBanner-Josh-Desktop.webp": "./images/b0526a128b69bf0f652c97c5d07aead4.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/homepage/tall-tile/Tall%20Tile%20-%20Homepage%20-%20Tall%20Tile%203.webp": "./images/28ae076f6e61352e7aa233623cc54e97.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/zonnic-blog/your-guide-to-nrt/202511-ZONNIC-Blog-HOP-eCom-blog-cover-YourGuideToNicotineReplacementTherapy-mobile-670x360-EN.webp": "./images/7daf2bca34827f7a6ce350f751d70728.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/zonnic-blog/pouches-vs-snus/202511-ZONNIC-Blog-HOP-eCom-blog-cover-NicotinePouchesVsSnus-mobile-670x360-EN.webp": "./images/96b08d7a6ddccb59ee4d121800316035.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/zonnic-blog/pouches-vs-gum/202511-ZONNIC-Blog-HOP-eCom-blog-cover-NicotinePouchesVsNicotineGum-mobile-670x360-EN.webp": "./images/b33660cf14a62db11db4eeceb0471e76.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/homepage/social-banner/en/PLP%20Banner%20-%20Homepage%20-%20Social%20Banner%20-%20desktop.webp": "./images/b7745028b3359c531854016d55fc4b04.png",
+      "https://www.zonnic.ca/content/dam/zonnic/images/global/visa.svg": "./images/e089ac9ce83110dcbe408b5543f32e54.png",
+      "https://www.zonnic.ca/content/dam/zonnic/images/global/mastercard.svg": "./images/3d2d823d211a65d54c7186b31062c6ca.png",
+      "https://www.zonnic.ca/content/dam/zonnic/images/global/amex.svg": "./images/690e605bc4a6f618f5a630bb48eb2f40.png",
+      "https://siteintercept.qualtrics.com/static/q-siteintercept/.blob/903d4c43fed535fb4d325b1612c605e48417dc74_wr-dialog-close-btn-black.png": "./images/ebe7cb4c9978a0489104b88b681efe8f.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/pdp/Peppermin_can.webp": "./images/102219fb982edd347ed514c3b2445ca9.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/pdp/spearmint_can.webp": "./images/f61a5caff6e76c4a94dc1940082be3d8.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/pdp/Chillmint_can.webp": "./images/caa2d41d59c3db591c7a51a674ab3d4a.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/quitting-season/homepage/202511-ZONNIC-QuittingSeason-HOP-eCom-Homepage-HeroBanner-desktop-EN.webp": "./images/2f855c24f52c735f371d98d676665e1c.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/logo/Primary%20Logo%20White.svg": "./images/aec98ce528c69616437c9f326102c79d.png",
+      "https://www.zonnic.ca/content/dam/zonnic/images/zonnic-logo-primary.svg": "./images/e33c47925b7749262ad97ce4a7e74c0f.png"
+    },
+    "stats": {
+      "total": 38,
+      "converted": 26,
+      "skipped": 2,
+      "failed": 8,
+      "tooLarge": 0,
+      "limitReached": 0
+    }
+  },
+  "bypass": {
+    "cookies": [
+      "age_verify",
+      "age_verified",
+      "ageVerified",
+      "age-gate",
+      "over_age",
+      "is_adult",
+      "OptanonAlertBoxClosed",
+      "CookieConsent"
+    ],
+    "hide_selectors": [
+      "#onetrust-banner-sdk",
+      "#onetrust-consent-sdk",
+      "#onetrust-pc-sdk",
+      ".ot-sdk-container",
+      "#ot-sdk-btn-floating",
+      "[id^=\"QSI\"]",
+      "[class*=\"QSIFeedbackButton\"]",
+      "[id*=\"embeddedMessaging\"]",
+      "[class*=\"embeddedService\"]",
+      ".helpButton",
+      ".grecaptcha-badge",
+      "[class*=\"agegate\"]",
+      "[data-component-name=\"ageGate\"]",
+      "[data-component-id*=\"AgeGate\"]",
+      "bat-agegate-zonnic",
+      "[class*=\"locationselector\"]",
+      "bat-locationselector-zonnic",
+      "#ageGate"
+    ]
+  },
+  "har": "migration-work/pages/homepage/network.har"
+}

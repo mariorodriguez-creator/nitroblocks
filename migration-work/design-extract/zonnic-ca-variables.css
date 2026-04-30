@@ -1,0 +1,116 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #182465;
+  --color-secondary: #3860be;
+  --color-accent: #a0ff9d;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #616069;
+  --color-neutral-100: #ffffff;
+  --color-neutral-200: #000000;
+  --color-neutral-300: #2f2f2f;
+  --color-neutral-400: #f6f6f6;
+  --color-neutral-500: #555555;
+  --color-neutral-600: #3a3a3f;
+  --color-neutral-700: #ebecf1;
+  --color-neutral-800: #dedede;
+  --color-neutral-900: #808080;
+
+  /* Colors — Backgrounds */
+  --color-bg: #ffffff;
+  --color-bg-1: #182465;
+  --color-bg-2: #f4f5f7;
+  --color-bg-3: #ebecf1;
+  --color-bg-4: #141e53;
+  --color-bg-5: #ededed;
+  --color-bg-6: #000000;
+  --color-bg-7: #252c68;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #616069;
+  --color-text-2: #182465;
+  --color-text-3: #141e53;
+  --color-text-4: #2f2f2f;
+
+  /* Typography — Families */
+  --font-sans: 'Santral', sans-serif;
+  --font-body: 'Arial', sans-serif;
+  --font-body: 'Times', sans-serif;
+  --font-body: 'Font Awesome 5 Free', sans-serif;
+  --font-font-4: 'sans-serif', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-42: 42px;
+  --font-size-34: 34px;
+  --font-size-32: 32px;
+  --font-size-30: 30px;
+  --font-size-24: 24px;
+  --font-size-22: 22px;
+  --font-size-20: 20px;
+  --font-size-18: 18px;
+  --font-size-16: 16px;
+  --font-size-15: 15px;
+  --font-size-14.4: 14.4px;
+  --font-size-14: 14px;
+
+  /* Spacing */
+  --spacing-0: 0px;
+  --spacing-38: 38px;
+  --spacing-48: 48px;
+  --spacing-55: 55px;
+  --spacing-60: 60px;
+  --spacing-70: 70px;
+  --spacing-78: 78px;
+  --spacing-95: 95px;
+  --spacing-102: 102px;
+  --spacing-120: 120px;
+  --spacing-123: 123px;
+  --spacing-140: 140px;
+  --spacing-203: 203px;
+  --spacing-207: 207px;
+  --spacing-213: 213px;
+  --spacing-236: 236px;
+  --spacing-256: 256px;
+  --spacing-320: 320px;
+
+  /* Border Radius */
+  --radius-xs: 1px;
+  --radius-md: 6px;
+  --radius-lg: 14px;
+  --radius-xl: 17px;
+  --radius-xl: 20px;
+  --radius-full: 50px;
+  --radius-full: 100px;
+
+  /* Box Shadows */
+  --shadow-sm: rgba(47, 47, 47, 0.3) 0px 2px 5px 0px;
+  --shadow-md: rgb(199, 197, 199) -3px -3px 5px -2px;
+  --shadow-md: rgba(0, 0, 0, 0.3) 0px 0px 10px 0px;
+  --shadow-md: rgb(153, 153, 153) 0px 2px 10px -3px;
+  --shadow-md: rgb(199, 197, 199) 0px 0px 12px 2px;
+  --shadow-md: rgba(0, 0, 0, 0.2) 0px 4px 8px 0px;
+  --shadow-md: rgb(97, 96, 105) 0px 5px 10px 0px;
+  --shadow-lg: rgba(0, 0, 0, 0.3) 3px 6px 10px 0px;
+  --shadow-lg: rgba(0, 0, 0, 0.2) 0px 6px 12px 0px;
+  --shadow-lg: rgba(0, 0, 0, 0.2) 0px 0px 18px 0px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --bg-color: #fff;
+  --border-color: #dedede;
+  --text-color: #182465;
+  --mapbbox-search-color: #182465;
+  --eswIconFillColor: #FFF;
+  /* — spacing — */
+  --eswIconFontSize: 16px;
+  /* — other — */
+  --eswButtonBottom: 25px;
+  --eswButtonRight: 30px;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

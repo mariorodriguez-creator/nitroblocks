@@ -1,0 +1,25 @@
+[grade-sample] Grading 5 template(s):
+  - homepage -> https://www.zonnic.ca/ca/en
+  - pouches-zonnic-mint-24-nicotine-pouches -> https://www.zonnic.ca/ca/en/pouches/zonnic-mint-24-nicotine-pouches
+  - blog-what-are-nicotine-pouches -> https://www.zonnic.ca/ca/en/blog/what-are-nicotine-pouches
+  - faq-old-donotindex-faq-general-information -> https://www.zonnic.ca/ca/en/faq-old-donotindex/faq-general-information
+  - contact-us-let-us-talk-testimonials -> https://www.zonnic.ca/ca/en/contact-us/let-us-talk/testimonials
+
+[grade-sample] homepage
+  npx --yes designlang grade https://www.zonnic.ca/ca/en --wait 3000 -o /var/folders/yj/583mqbx13dn48b73_220hybh0000gp/T/designlang-grade-homepage-1777492919667 --cookie age_verify=confirmed --cookie age_verified=true --cookie ageVerified=true --cookie age-gate=passed --cookie over_age=true --cookie is_adult=true --cookie OptanonAlertBoxClosed=2026-04-29T19:40:53.883Z --cookie CookieConsent=true
+
+[grade-sample] pouches-zonnic-mint-24-nicotine-pouches
+  npx --yes designlang grade https://www.zonnic.ca/ca/en/pouches/zonnic-mint-24-nicotine-pouches --wait 3000 -o /var/folders/yj/583mqbx13dn48b73_220hybh0000gp/T/designlang-grade-pouches-zonnic-mint-24-nicotine-pouches-1777492953776 --cookie age_verify=confirmed --cookie age_verified=true --cookie ageVerified=true --cookie age-gate=passed --cookie over_age=true --cookie is_adult=true --cookie OptanonAlertBoxClosed=2026-04-29T19:40:53.883Z --cookie CookieConsent=true
+
+[grade-sample] blog-what-are-nicotine-pouches
+  npx --yes designlang grade https://www.zonnic.ca/ca/en/blog/what-are-nicotine-pouches --wait 3000 -o /var/folders/yj/583mqbx13dn48b73_220hybh0000gp/T/designlang-grade-blog-what-are-nicotine-pouches-1777492987970 --cookie age_verify=confirmed --cookie age_verified=true --cookie ageVerified=true --cookie age-gate=passed --cookie over_age=true --cookie is_adult=true --cookie OptanonAlertBoxClosed=2026-04-29T19:40:53.883Z --cookie CookieConsent=true
+
+[grade-sample] faq-old-donotindex-faq-general-information
+  npx --yes designlang grade https://www.zonnic.ca/ca/en/faq-old-donotindex/faq-general-information --wait 3000 -o /var/folders/yj/583mqbx13dn48b73_220hybh0000gp/T/designlang-grade-faq-old-donotindex-faq-general-information-1777493021493 --cookie age_verify=confirmed --cookie age_verified=true --cookie ageVerified=true --cookie age-gate=passed --cookie over_age=true --cookie is_adult=true --cookie OptanonAlertBoxClosed=2026-04-29T19:40:53.883Z --cookie CookieConsent=true
+
+[grade-sample] contact-us-let-us-talk-testimonials
+  npx --yes designlang grade https://www.zonnic.ca/ca/en/contact-us/let-us-talk/testimonials --wait 3000 -o /var/folders/yj/583mqbx13dn48b73_220hybh0000gp/T/designlang-grade-contact-us-let-us-talk-testimonials-1777493055690 --cookie age_verify=confirmed --cookie age_verified=true --cookie ageVerified=true --cookie age-gate=passed --cookie over_age=true --cookie is_adult=true --cookie OptanonAlertBoxClosed=2026-04-29T19:40:53.883Z --cookie CookieConsent=true
+
+[grade-sample] Done. 0 high-spread dimension(s)
+[grade-sample] Wrote /Users/2245328/Repos/nitroblocks/migration-work/verification/grade-delta.json
+[grade-sample] Wrote /Users/2245328/Repos/nitroblocks/migration-work/verification/grade-delta.md

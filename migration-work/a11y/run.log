@@ -1,0 +1,12 @@
+[a11y] Scanning 10 page(s)
+  [homepage] violations=0 critical=0 serious=0
+  [testingblogarticletemplate] violations=0 critical=0 serious=0
+  [pouches-zonnic-mint-24-nicotine-pouches] violations=0 critical=0 serious=0
+  [why-zonnic] violations=2 critical=0 serious=4
+  [what-is-zonnic] violations=0 critical=0 serious=0
+  [store-locator] violations=1 critical=0 serious=1
+  [sign-up] violations=2 critical=1 serious=1
+  [contact-us-let-us-talk-testimonials] violations=1 critical=1 serious=0
+  [newsletter] violations=3 critical=1 serious=5
+  [blog-what-are-nicotine-pouches] violations=0 critical=0 serious=0
+[a11y] Done. 9 total violations (3 critical, 11 serious)

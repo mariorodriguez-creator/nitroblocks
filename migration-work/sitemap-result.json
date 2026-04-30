@@ -1,0 +1,404 @@
+{
+  "total_pages": 142,
+  "total_pages_filtered": 106,
+  "max_depth": 3,
+  "recommended_depth": 3,
+  "base_path": "/ca/en",
+  "template_groups": {
+    "homepage": {
+      "count": 1,
+      "representative": "https://www.zonnic.ca/ca/en",
+      "variants": []
+    },
+    "testingblogarticletemplate": {
+      "count": 1,
+      "representative": "https://www.zonnic.ca/ca/en/testingblogarticletemplate",
+      "variants": []
+    },
+    "pouches": {
+      "count": 7,
+      "representative": "https://www.zonnic.ca/ca/en/pouches/zonnic-mint-24-nicotine-pouches",
+      "variants": [
+        "https://www.zonnic.ca/ca/en/pouches",
+        "https://www.zonnic.ca/ca/en/pouches/zonnic-mint-120-nicotine-pouches",
+        "https://www.zonnic.ca/ca/en/pouches/zonnic-spearmint-24-nicotine-pouches",
+        "https://www.zonnic.ca/ca/en/pouches/zonnic-peppermint-24-nicotine-pouches",
+        "https://www.zonnic.ca/ca/en/pouches/zonnic-spearmint-120-nicotine-pouches",
+        "https://www.zonnic.ca/ca/en/pouches/zonnic-peppermint-120-nicotine-pouches"
+      ]
+    },
+    "why-zonnic": {
+      "count": 1,
+      "representative": "https://www.zonnic.ca/ca/en/why-zonnic",
+      "variants": []
+    },
+    "what-is-zonnic": {
+      "count": 1,
+      "representative": "https://www.zonnic.ca/ca/en/what-is-zonnic",
+      "variants": []
+    },
+    "store-locator": {
+      "count": 2,
+      "representative": "https://www.zonnic.ca/ca/en/store-locator",
+      "variants": [
+        "https://www.zonnic.ca/ca/en/store-locator1"
+      ]
+    },
+    "sign-up": {
+      "count": 1,
+      "representative": "https://www.zonnic.ca/ca/en/sign-up",
+      "variants": []
+    },
+    "contact-us": {
+      "count": 9,
+      "representative": "https://www.zonnic.ca/ca/en/contact-us/let-us-talk/testimonials",
+      "variants": [
+        "https://www.zonnic.ca/ca/en/contact-us",
+        "https://www.zonnic.ca/ca/en/contact-us/let-us-talk/consumer",
+        "https://www.zonnic.ca/ca/en/contact-us/let-us-talk/pharmacy",
+        "https://www.zonnic.ca/ca/en/contact-us/let-us-talk/success",
+        "https://www.zonnic.ca/ca/en/contact-us/testimonials",
+        "https://www.zonnic.ca/ca/en/contact-us/consumer",
+        "https://www.zonnic.ca/ca/en/contact-us/pharmacy",
+        "https://www.zonnic.ca/ca/en/contact-us/success"
+      ]
+    },
+    "newsletter": {
+      "count": 2,
+      "representative": "https://www.zonnic.ca/ca/en/newsletter",
+      "variants": [
+        "https://www.zonnic.ca/ca/en/newsletter1"
+      ]
+    },
+    "blog": {
+      "count": 39,
+      "representative": "https://www.zonnic.ca/ca/en/blog/what-are-nicotine-pouches",
+      "variants": [
+        "https://www.zonnic.ca/ca/en/blog",
+        "https://www.zonnic.ca/ca/en/blog/benefits-of-nicotine-pouches",
+        "https://www.zonnic.ca/ca/en/blog/where-to-buy-nicotine-pouches",
+        "https://www.zonnic.ca/ca/en/blog/how-to-use-nicotine-pouches",
+        "https://www.zonnic.ca/ca/en/blog/side-effects-quitting-smoking",
+        "https://www.zonnic.ca/ca/en/blog/benefits-quitting-smoking",
+        "https://www.zonnic.ca/ca/en/blog/world-no-tobacco-day",
+        "https://www.zonnic.ca/ca/en/blog/first-step-towards-a-healthier-life",
+        "https://www.zonnic.ca/ca/en/blog/power-to-hold-back",
+        "https://www.zonnic.ca/ca/en/blog/tips-for-cutting-back",
+        "https://www.zonnic.ca/ca/en/blog/cutting-out-smoking-completely",
+        "https://www.zonnic.ca/ca/en/blog/complete-guide-to-nicotine-pouches",
+        "https://www.zonnic.ca/ca/en/blog/nicotine-strength-guide",
+        "https://www.zonnic.ca/ca/en/blog/where-can-i-get-zonnic",
+        "https://www.zonnic.ca/ca/en/blog/healthy-habits-after-cutting-back-smoking",
+        "https://www.zonnic.ca/ca/en/blog/fostering-smoke-free-environment",
+        "https://www.zonnic.ca/ca/en/blog/resources-tips-cut-back",
+        "https://www.zonnic.ca/ca/en/blog/maintain-your-nicotine-pouches",
+        "https://www.zonnic.ca/ca/en/blog/before-buying-nicotine-pouches",
+        "https://www.zonnic.ca/ca/en/blog/start-your-journey",
+        "https://www.zonnic.ca/ca/en/blog/quit-with-the-help-of-ZONNIC",
+        "https://www.zonnic.ca/ca/en/blog/start-fresh-with-ZONNIC",
+        "https://www.zonnic.ca/ca/en/blog/new-ZONNIC-mint-flavours",
+        "https://www.zonnic.ca/ca/en/blog/world-no-tobacco-day-quit-with-zonnic",
+        "https://www.zonnic.ca/ca/en/blog/global-wellness-day",
+        "https://www.zonnic.ca/ca/en/blog/canada-day-2025",
+        "https://www.zonnic.ca/ca/en/blog/international-self-care-day",
+        "https://www.zonnic.ca/ca/en/blog/reset-your-routine-this-fall",
+        "https://www.zonnic.ca/ca/en/blog/world-mental-health-day-2025",
+        "https://www.zonnic.ca/ca/en/blog/world-kindness-day-2025",
+        "https://www.zonnic.ca/ca/en/blog/can-you-drink-with-nicotine-pouches",
+        "https://www.zonnic.ca/ca/en/blog/nicotine-pouches-faqs-myths",
+        "https://www.zonnic.ca/ca/en/blog/difference-between-nicotine-pouches-and-gum",
+        "https://www.zonnic.ca/ca/en/blog/difference-between-nicotine-pouches-and-snus",
+        "https://www.zonnic.ca/ca/en/blog/nicotine-terms-glossary",
+        "https://www.zonnic.ca/ca/en/blog/nicotine-replacement-therapy-guide",
+        "https://www.zonnic.ca/ca/en/blog/real-stories-cut-back-smoking",
+        "https://www.zonnic.ca/ca/en/blog/real-stories-quit-smoking"
+      ]
+    },
+    "healthcare-professionals": {
+      "count": 9,
+      "representative": "https://www.zonnic.ca/ca/en/healthcare-professionals/side-effects-quitting-smoking-patient-concerns",
+      "variants": [
+        "https://www.zonnic.ca/ca/en/healthcare-professionals",
+        "https://www.zonnic.ca/ca/en/healthcare-professionals/smoking-cessation-whats-new",
+        "https://www.zonnic.ca/ca/en/healthcare-professionals/benefits-quitting-smoking-patients",
+        "https://www.zonnic.ca/ca/en/healthcare-professionals/nicotine-replacement-products-compared",
+        "https://www.zonnic.ca/ca/en/healthcare-professionals/nicotine-cravings-management",
+        "https://www.zonnic.ca/ca/en/healthcare-professionals/nicotine-withdrawal",
+        "https://www.zonnic.ca/ca/en/healthcare-professionals/zonnic-nicotine-pouches-canada",
+        "https://www.zonnic.ca/ca/en/healthcare-professionals/smoking-cessation-strategies-patients"
+      ]
+    },
+    "zonnic-nicotine-pouches": {
+      "count": 2,
+      "representative": "https://www.zonnic.ca/ca/en/zonnic-nicotine-pouches11",
+      "variants": [
+        "https://www.zonnic.ca/ca/en/zonnic-nicotine-pouches111"
+      ]
+    },
+    "zonnic-helped-me-quit": {
+      "count": 1,
+      "representative": "https://www.zonnic.ca/ca/en/zonnic-helped-me-quit",
+      "variants": []
+    },
+    "world-no-tobacco-day": {
+      "count": 1,
+      "representative": "https://www.zonnic.ca/ca/en/world-no-tobacco-day",
+      "variants": []
+    },
+    "quit-zone": {
+      "count": 1,
+      "representative": "https://www.zonnic.ca/ca/en/quit-zone",
+      "variants": []
+    },
+    "keep-zonnic-accessible": {
+      "count": 1,
+      "representative": "https://www.zonnic.ca/ca/en/keep-zonnic-accessible",
+      "variants": []
+    },
+    "truth-about-zonnic": {
+      "count": 1,
+      "representative": "https://www.zonnic.ca/ca/en/truth-about-zonnic",
+      "variants": []
+    },
+    "quit-on-your-terms": {
+      "count": 1,
+      "representative": "https://www.zonnic.ca/ca/en/quit-on-your-terms",
+      "variants": []
+    },
+    "faq-old-donotindex": {
+      "count": 6,
+      "representative": "https://www.zonnic.ca/ca/en/faq-old-donotindex/faq-general-information",
+      "variants": [
+        "https://www.zonnic.ca/ca/en/faq-old-donotindex",
+        "https://www.zonnic.ca/ca/en/faq-old-donotindex/faq-order-and-delivery",
+        "https://www.zonnic.ca/ca/en/faq-old-donotindex/faq-account-and-benefits",
+        "https://www.zonnic.ca/ca/en/faq-old-donotindex/faq-zonnic-usage",
+        "https://www.zonnic.ca/ca/en/faq-old-donotindex/faq-quit-zone-program"
+      ]
+    },
+    "ask-your-pharmacist": {
+      "count": 1,
+      "representative": "https://www.zonnic.ca/ca/en/ask-your-pharmacist",
+      "variants": []
+    },
+    "zonnic-insurance-reimbursement": {
+      "count": 1,
+      "representative": "https://www.zonnic.ca/ca/en/zonnic-insurance-reimbursement",
+      "variants": []
+    },
+    "real-people-real-success": {
+      "count": 9,
+      "representative": "https://www.zonnic.ca/ca/en/real-people-real-success/marks-quit-smoking-testimonial",
+      "variants": [
+        "https://www.zonnic.ca/ca/en/real-people-real-success",
+        "https://www.zonnic.ca/ca/en/real-people-real-success/samaras-quit-journey-testimonial",
+        "https://www.zonnic.ca/ca/en/real-people-real-success/gabriels-quit-smoking-testimonial",
+        "https://www.zonnic.ca/ca/en/real-people-real-success/joshs-quit-journey-testimonial",
+        "https://www.zonnic.ca/ca/en/real-people-real-success/sarahs-quit-journey-testimonial",
+        "https://www.zonnic.ca/ca/en/real-people-real-success/samuels-quit-smoking-testimonial",
+        "https://www.zonnic.ca/ca/en/real-people-real-success/colins-quit-smoking-testimonial",
+        "https://www.zonnic.ca/ca/en/real-people-real-success/marc-anthonys-quit-smoking-testimonial"
+      ]
+    },
+    "faq": {
+      "count": 6,
+      "representative": "https://www.zonnic.ca/ca/en/faq/about-zonnic",
+      "variants": [
+        "https://www.zonnic.ca/ca/en/faq",
+        "https://www.zonnic.ca/ca/en/faq/how-to-use-zonnic",
+        "https://www.zonnic.ca/ca/en/faq/benefits-using-zonnic",
+        "https://www.zonnic.ca/ca/en/faq/how-zonnic-compare",
+        "https://www.zonnic.ca/ca/en/faq/quit-zone"
+      ]
+    },
+    "quit-zone-archived-page": {
+      "count": 1,
+      "representative": "https://www.zonnic.ca/ca/en/quit-zone-archived-page",
+      "variants": []
+    },
+    "email-verification": {
+      "count": 1,
+      "representative": "https://www.zonnic.ca/ca/en/email-verification",
+      "variants": []
+    }
+  },
+  "representative_urls": [
+    "https://www.zonnic.ca/ca/en",
+    "https://www.zonnic.ca/ca/en/testingblogarticletemplate",
+    "https://www.zonnic.ca/ca/en/pouches/zonnic-mint-24-nicotine-pouches",
+    "https://www.zonnic.ca/ca/en/why-zonnic",
+    "https://www.zonnic.ca/ca/en/what-is-zonnic",
+    "https://www.zonnic.ca/ca/en/store-locator",
+    "https://www.zonnic.ca/ca/en/sign-up",
+    "https://www.zonnic.ca/ca/en/contact-us/let-us-talk/testimonials",
+    "https://www.zonnic.ca/ca/en/newsletter",
+    "https://www.zonnic.ca/ca/en/blog/what-are-nicotine-pouches",
+    "https://www.zonnic.ca/ca/en/healthcare-professionals/side-effects-quitting-smoking-patient-concerns",
+    "https://www.zonnic.ca/ca/en/zonnic-nicotine-pouches11",
+    "https://www.zonnic.ca/ca/en/zonnic-helped-me-quit",
+    "https://www.zonnic.ca/ca/en/world-no-tobacco-day",
+    "https://www.zonnic.ca/ca/en/quit-zone",
+    "https://www.zonnic.ca/ca/en/keep-zonnic-accessible",
+    "https://www.zonnic.ca/ca/en/truth-about-zonnic",
+    "https://www.zonnic.ca/ca/en/quit-on-your-terms",
+    "https://www.zonnic.ca/ca/en/faq-old-donotindex/faq-general-information",
+    "https://www.zonnic.ca/ca/en/ask-your-pharmacist",
+    "https://www.zonnic.ca/ca/en/zonnic-insurance-reimbursement",
+    "https://www.zonnic.ca/ca/en/real-people-real-success/marks-quit-smoking-testimonial",
+    "https://www.zonnic.ca/ca/en/faq/about-zonnic",
+    "https://www.zonnic.ca/ca/en/quit-zone-archived-page",
+    "https://www.zonnic.ca/ca/en/email-verification"
+  ],
+  "all_urls": [
+    "https://www.zonnic.ca/ca/en",
+    "https://www.zonnic.ca/ca/en/testingblogarticletemplate",
+    "https://www.zonnic.ca/ca/en/pouches",
+    "https://www.zonnic.ca/ca/en/pouches/zonnic-mint-24-nicotine-pouches",
+    "https://www.zonnic.ca/ca/en/pouches/zonnic-mint-120-nicotine-pouches",
+    "https://www.zonnic.ca/ca/en/pouches/zonnic-spearmint-24-nicotine-pouches",
+    "https://www.zonnic.ca/ca/en/pouches/zonnic-peppermint-24-nicotine-pouches",
+    "https://www.zonnic.ca/ca/en/pouches/zonnic-spearmint-120-nicotine-pouches",
+    "https://www.zonnic.ca/ca/en/pouches/zonnic-peppermint-120-nicotine-pouches",
+    "https://www.zonnic.ca/ca/en/why-zonnic",
+    "https://www.zonnic.ca/ca/en/what-is-zonnic",
+    "https://www.zonnic.ca/ca/en/store-locator",
+    "https://www.zonnic.ca/ca/en/sign-up",
+    "https://www.zonnic.ca/ca/en/contact-us",
+    "https://www.zonnic.ca/ca/en/contact-us/let-us-talk/testimonials",
+    "https://www.zonnic.ca/ca/en/contact-us/let-us-talk/consumer",
+    "https://www.zonnic.ca/ca/en/contact-us/let-us-talk/pharmacy",
+    "https://www.zonnic.ca/ca/en/contact-us/let-us-talk/success",
+    "https://www.zonnic.ca/ca/en/contact-us/testimonials",
+    "https://www.zonnic.ca/ca/en/contact-us/consumer",
+    "https://www.zonnic.ca/ca/en/contact-us/pharmacy",
+    "https://www.zonnic.ca/ca/en/contact-us/success",
+    "https://www.zonnic.ca/ca/en/newsletter",
+    "https://www.zonnic.ca/ca/en/blog",
+    "https://www.zonnic.ca/ca/en/blog/what-are-nicotine-pouches",
+    "https://www.zonnic.ca/ca/en/blog/benefits-of-nicotine-pouches",
+    "https://www.zonnic.ca/ca/en/blog/where-to-buy-nicotine-pouches",
+    "https://www.zonnic.ca/ca/en/blog/how-to-use-nicotine-pouches",
+    "https://www.zonnic.ca/ca/en/blog/side-effects-quitting-smoking",
+    "https://www.zonnic.ca/ca/en/blog/benefits-quitting-smoking",
+    "https://www.zonnic.ca/ca/en/blog/world-no-tobacco-day",
+    "https://www.zonnic.ca/ca/en/blog/first-step-towards-a-healthier-life",
+    "https://www.zonnic.ca/ca/en/blog/power-to-hold-back",
+    "https://www.zonnic.ca/ca/en/blog/tips-for-cutting-back",
+    "https://www.zonnic.ca/ca/en/blog/cutting-out-smoking-completely",
+    "https://www.zonnic.ca/ca/en/blog/complete-guide-to-nicotine-pouches",
+    "https://www.zonnic.ca/ca/en/blog/nicotine-strength-guide",
+    "https://www.zonnic.ca/ca/en/blog/where-can-i-get-zonnic",
+    "https://www.zonnic.ca/ca/en/blog/healthy-habits-after-cutting-back-smoking",
+    "https://www.zonnic.ca/ca/en/blog/fostering-smoke-free-environment",
+    "https://www.zonnic.ca/ca/en/blog/resources-tips-cut-back",
+    "https://www.zonnic.ca/ca/en/blog/maintain-your-nicotine-pouches",
+    "https://www.zonnic.ca/ca/en/blog/before-buying-nicotine-pouches",
+    "https://www.zonnic.ca/ca/en/blog/start-your-journey",
+    "https://www.zonnic.ca/ca/en/blog/quit-with-the-help-of-ZONNIC",
+    "https://www.zonnic.ca/ca/en/blog/start-fresh-with-ZONNIC",
+    "https://www.zonnic.ca/ca/en/blog/new-ZONNIC-mint-flavours",
+    "https://www.zonnic.ca/ca/en/blog/world-no-tobacco-day-quit-with-zonnic",
+    "https://www.zonnic.ca/ca/en/blog/global-wellness-day",
+    "https://www.zonnic.ca/ca/en/blog/canada-day-2025",
+    "https://www.zonnic.ca/ca/en/blog/international-self-care-day",
+    "https://www.zonnic.ca/ca/en/blog/reset-your-routine-this-fall",
+    "https://www.zonnic.ca/ca/en/blog/world-mental-health-day-2025",
+    "https://www.zonnic.ca/ca/en/blog/world-kindness-day-2025",
+    "https://www.zonnic.ca/ca/en/blog/can-you-drink-with-nicotine-pouches",
+    "https://www.zonnic.ca/ca/en/blog/nicotine-pouches-faqs-myths",
+    "https://www.zonnic.ca/ca/en/blog/difference-between-nicotine-pouches-and-gum",
+    "https://www.zonnic.ca/ca/en/blog/difference-between-nicotine-pouches-and-snus",
+    "https://www.zonnic.ca/ca/en/blog/nicotine-terms-glossary",
+    "https://www.zonnic.ca/ca/en/blog/nicotine-replacement-therapy-guide",
+    "https://www.zonnic.ca/ca/en/blog/real-stories-cut-back-smoking",
+    "https://www.zonnic.ca/ca/en/blog/real-stories-quit-smoking",
+    "https://www.zonnic.ca/ca/en/healthcare-professionals",
+    "https://www.zonnic.ca/ca/en/healthcare-professionals/side-effects-quitting-smoking-patient-concerns",
+    "https://www.zonnic.ca/ca/en/healthcare-professionals/smoking-cessation-whats-new",
+    "https://www.zonnic.ca/ca/en/healthcare-professionals/benefits-quitting-smoking-patients",
+    "https://www.zonnic.ca/ca/en/healthcare-professionals/nicotine-replacement-products-compared",
+    "https://www.zonnic.ca/ca/en/healthcare-professionals/nicotine-cravings-management",
+    "https://www.zonnic.ca/ca/en/healthcare-professionals/nicotine-withdrawal",
+    "https://www.zonnic.ca/ca/en/healthcare-professionals/zonnic-nicotine-pouches-canada",
+    "https://www.zonnic.ca/ca/en/healthcare-professionals/smoking-cessation-strategies-patients",
+    "https://www.zonnic.ca/ca/en/newsletter1",
+    "https://www.zonnic.ca/ca/en/zonnic-nicotine-pouches11",
+    "https://www.zonnic.ca/ca/en/store-locator1",
+    "https://www.zonnic.ca/ca/en/zonnic-helped-me-quit",
+    "https://www.zonnic.ca/ca/en/world-no-tobacco-day",
+    "https://www.zonnic.ca/ca/en/quit-zone",
+    "https://www.zonnic.ca/ca/en/keep-zonnic-accessible",
+    "https://www.zonnic.ca/ca/en/truth-about-zonnic",
+    "https://www.zonnic.ca/ca/en/quit-on-your-terms",
+    "https://www.zonnic.ca/ca/en/faq-old-donotindex",
+    "https://www.zonnic.ca/ca/en/faq-old-donotindex/faq-general-information",
+    "https://www.zonnic.ca/ca/en/faq-old-donotindex/faq-order-and-delivery",
+    "https://www.zonnic.ca/ca/en/faq-old-donotindex/faq-account-and-benefits",
+    "https://www.zonnic.ca/ca/en/faq-old-donotindex/faq-zonnic-usage",
+    "https://www.zonnic.ca/ca/en/faq-old-donotindex/faq-quit-zone-program",
+    "https://www.zonnic.ca/ca/en/ask-your-pharmacist",
+    "https://www.zonnic.ca/ca/en/zonnic-insurance-reimbursement",
+    "https://www.zonnic.ca/ca/en/real-people-real-success",
+    "https://www.zonnic.ca/ca/en/real-people-real-success/marks-quit-smoking-testimonial",
+    "https://www.zonnic.ca/ca/en/real-people-real-success/samaras-quit-journey-testimonial",
+    "https://www.zonnic.ca/ca/en/real-people-real-success/gabriels-quit-smoking-testimonial",
+    "https://www.zonnic.ca/ca/en/real-people-real-success/joshs-quit-journey-testimonial",
+    "https://www.zonnic.ca/ca/en/real-people-real-success/sarahs-quit-journey-testimonial",
+    "https://www.zonnic.ca/ca/en/real-people-real-success/samuels-quit-smoking-testimonial",
+    "https://www.zonnic.ca/ca/en/real-people-real-success/colins-quit-smoking-testimonial",
+    "https://www.zonnic.ca/ca/en/real-people-real-success/marc-anthonys-quit-smoking-testimonial",
+    "https://www.zonnic.ca/ca/en/zonnic-nicotine-pouches111",
+    "https://www.zonnic.ca/ca/en/faq",
+    "https://www.zonnic.ca/ca/en/faq/about-zonnic",
+    "https://www.zonnic.ca/ca/en/faq/how-to-use-zonnic",
+    "https://www.zonnic.ca/ca/en/faq/benefits-using-zonnic",
+    "https://www.zonnic.ca/ca/en/faq/how-zonnic-compare",
+    "https://www.zonnic.ca/ca/en/faq/quit-zone",
+    "https://www.zonnic.ca/ca/en/quit-zone-archived-page",
+    "https://www.zonnic.ca/ca/en/email-verification"
+  ],
+  "exclusion_summary": {
+    "test-page": 6,
+    "test-bucket": 1,
+    "test-ip": 1,
+    "locale-mismatch": 28
+  },
+  "exclusion_reasons": {
+    "https://www.zonnic.ca/ca/en/test0": "test-page",
+    "https://www.zonnic.ca/ca/en/test-for-health-page": "test-page",
+    "https://www.zonnic.ca/ca/en/test_prashant": "test-page",
+    "https://www.zonnic.ca/ca/en/prod-bucket-test": "test-bucket",
+    "https://www.zonnic.ca/ca/en/test": "test-page",
+    "https://www.zonnic.ca/ca/en/ip-test-2023": "test-ip",
+    "https://www.zonnic.ca/ca/en/test-cprt058": "test-page",
+    "https://www.zonnic.ca/ca/en/test-superscript": "test-page",
+    "https://www.zonnic.ca/ca/en1": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/error-404": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/privacy-policy": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/terms-and-conditions": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/error-500": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/pouches": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/pouches/zonnic-chill-mint-24-nicotine-pouches": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/pouches/zonnic-berry-frost-24-nicotine-pouches": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/pouches/zonnic-tropic-breeze-24-nicotine-pouches": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/pouches/zonnic-chill-mint-10-nicotine-pouches": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/pouches/zonnic-tropic-breeze-10-nicotine-pouches": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/pouches/zonnic-berry-frost-10-nicotine-pouches": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/why-zonnic": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/what-is-zonnic": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/store-locator": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/sitemap": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/contact-us": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/healthcare-professionals-old": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/newsletter": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/blog": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/blog/what-are-nicotine-pouches": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/blog/benefits-of-nicotine-pouches": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/blog/where-to-buy-nicotine-pouches": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/blog/how-to-use-nicotine-pouches": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/pdp": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/healthcare-professionals": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/healthcare-professionals/side-effects-quitting-smoking-patient-concerns": "locale-mismatch",
+    "https://www.zonnic.ca/ca/en1/healthcare-professionals/smoking-cessation-whats-new": "locale-mismatch"
+  }
+}

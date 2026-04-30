@@ -1,0 +1,462 @@
+{
+  "slug": "homepage",
+  "url": "https://www.zonnic.ca/ca/en",
+  "counts": {
+    "violations": 0,
+    "incomplete": 3,
+    "byImpact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0
+    },
+    "byRule": {}
+  },
+  "violations": [],
+  "incomplete": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT"
+      ],
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=axeAPI",
+      "nodes": [
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "16.5pt (22px)",
+                "fontWeight": "bold",
+                "messageKey": "imgNode",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<img loading=\"lazy\" src=\"/content/dam/zonnic-content/ca/2025/homepage/tall-tile/Tall Tile - Homepage - Tall Tile 1.webp\" alt=\"\" \"=\"\">",
+                  "target": [
+                    ".aem-GridColumn--tablet--12.aem-GridColumn--default--4.aem-GridColumn--offset--tablet--0:nth-child(1) > .margin-xsmall > .bat-card > .bat-card--blurb > .bat-card--blurb-img > picture > img[alt=\"\"][\\\"=\"\"][loading=\"lazy\"]"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because element contains an image node"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<h3>WHAT IS ZONNIC?</h3>",
+          "target": [
+            ".aem-GridColumn--tablet--12.aem-GridColumn--default--4.aem-GridColumn--offset--tablet--0:nth-child(1) > .margin-xsmall > .bat-card > .bat-card--blurb > .bat-card--blurb-main > .bat-card--blurb-text > h3"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "11.3pt (15px)",
+                "fontWeight": "normal",
+                "messageKey": "imgNode",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<img loading=\"lazy\" src=\"/content/dam/zonnic-content/ca/2025/homepage/tall-tile/Tall Tile - Homepage - Tall Tile 1.webp\" alt=\"\" \"=\"\">",
+                  "target": [
+                    ".aem-GridColumn--tablet--12.aem-GridColumn--default--4.aem-GridColumn--offset--tablet--0:nth-child(1) > .margin-xsmall > .bat-card > .bat-card--blurb > .bat-card--blurb-img > picture > img[alt=\"\"][\\\"=\"\"][loading=\"lazy\"]"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because element contains an image node"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"dark\">A Nicotine Replacement Therapy to help you quit smoking successfully.</span>",
+          "target": [
+            ".aem-GridColumn--tablet--12.aem-GridColumn--default--4.aem-GridColumn--offset--tablet--0:nth-child(1) > .margin-xsmall > .bat-card > .bat-card--blurb > .bat-card--blurb-main > .bat-card--blurb-text > p:nth-child(3) > .dark"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "9.0pt (12px)",
+                "fontWeight": "bold",
+                "messageKey": "imgNode",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<img loading=\"lazy\" src=\"/content/dam/zonnic-content/ca/2025/homepage/tall-tile/Tall Tile - Homepage - Tall Tile 1.webp\" alt=\"\" \"=\"\">",
+                  "target": [
+                    ".aem-GridColumn--tablet--12.aem-GridColumn--default--4.aem-GridColumn--offset--tablet--0:nth-child(1) > .margin-xsmall > .bat-card > .bat-card--blurb > .bat-card--blurb-img > picture > img[alt=\"\"][\\\"=\"\"][loading=\"lazy\"]"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because element contains an image node"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span>LEARN MORE</span>",
+          "target": [
+            ".aem-GridColumn--tablet--12.aem-GridColumn--default--4.aem-GridColumn--offset--tablet--0:nth-child(1) > .margin-xsmall > .bat-card > .bat-card--blurb > .bat-card--blurb-main > .bat-card--blurb-ctalist > .center.button-secondary-dark[title=\"LEARN MORE\"] > span"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "16.5pt (22px)",
+                "fontWeight": "bold",
+                "messageKey": "imgNode",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<img loading=\"lazy\" src=\"/content/dam/zonnic-content/ca/2025/homepage/tall-tile/Tall Tile - Homepage - Tall Tile 2.webp\" alt=\"\" \"=\"\">",
+                  "target": [
+                    ".aem-GridColumn--tablet--12.aem-GridColumn--default--4.aem-GridColumn--offset--tablet--0:nth-child(2) > .margin-xsmall > .bat-card > .bat-card--blurb > .bat-card--blurb-img > picture > img[alt=\"\"][\\\"=\"\"][loading=\"lazy\"]"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because element contains an image node"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<h3>WHY ZONNIC?</h3>",
+          "target": [
+            ".aem-GridColumn--tablet--12.aem-GridColumn--default--4.aem-GridColumn--offset--tablet--0:nth-child(2) > .margin-xsmall > .bat-card > .bat-card--blurb > .bat-card--blurb-main > .bat-card--blurb-text > h3"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "11.3pt (15px)",
+                "fontWeight": "normal",
+                "messageKey": "imgNode",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<img loading=\"lazy\" src=\"/content/dam/zonnic-content/ca/2025/homepage/tall-tile/Tall Tile - Homepage - Tall Tile 2.webp\" alt=\"\" \"=\"\">",
+                  "target": [
+                    ".aem-GridColumn--tablet--12.aem-GridColumn--default--4.aem-GridColumn--offset--tablet--0:nth-child(2) > .margin-xsmall > .bat-card > .bat-card--blurb > .bat-card--blurb-img > picture > img[alt=\"\"][\\\"=\"\"][loading=\"lazy\"]"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because element contains an image node"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"dark\">Tobacco-free, discreet and a can designed for<br>\n on-the-go use.</span>",
+          "target": [
+            ".aem-GridColumn--tablet--12.aem-GridColumn--default--4.aem-GridColumn--offset--tablet--0:nth-child(2) > .margin-xsmall > .bat-card > .bat-card--blurb > .bat-card--blurb-main > .bat-card--blurb-text > p:nth-child(3) > .dark"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "9.0pt (12px)",
+                "fontWeight": "bold",
+                "messageKey": "imgNode",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<img loading=\"lazy\" src=\"/content/dam/zonnic-content/ca/2025/homepage/tall-tile/Tall Tile - Homepage - Tall Tile 2.webp\" alt=\"\" \"=\"\">",
+                  "target": [
+                    ".aem-GridColumn--tablet--12.aem-GridColumn--default--4.aem-GridColumn--offset--tablet--0:nth-child(2) > .margin-xsmall > .bat-card > .bat-card--blurb > .bat-card--blurb-img > picture > img[alt=\"\"][\\\"=\"\"][loading=\"lazy\"]"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because element contains an image node"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span>LEARN MORE</span>",
+          "target": [
+            ".aem-GridColumn--tablet--12.aem-GridColumn--default--4.aem-GridColumn--offset--tablet--0:nth-child(2) > .margin-xsmall > .bat-card > .bat-card--blurb > .bat-card--blurb-main > .bat-card--blurb-ctalist > .left.button-secondary-dark[title=\"LEARN MORE\"] > span"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "16.5pt (22px)",
+                "fontWeight": "bold",
+                "messageKey": "imgNode",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<img loading=\"lazy\" src=\"/content/dam/zonnic-content/ca/2025/homepage/tall-tile/Tall Tile - Homepage - Tall Tile 3.webp\" alt=\"\" \"=\"\">",
+                  "target": [
+                    ".aem-GridColumn--tablet--12.aem-GridColumn--default--4.aem-GridColumn--offset--tablet--0:nth-child(3) > bat-card-blurb > .bat-card > .bat-card--blurb > .bat-card--blurb-img > picture > img[alt=\"\"][\\\"=\"\"][loading=\"lazy\"]"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because element contains an image node"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<h3>HOW TO USE ZONNIC.</h3>",
+          "target": [
+            ".aem-GridColumn--tablet--12.aem-GridColumn--default--4.aem-GridColumn--offset--tablet--0:nth-child(3) > bat-card-blurb > .bat-card > .bat-card--blurb > .bat-card--blurb-main > .bat-card--blurb-text > h3"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "11.3pt (15px)",
+                "fontWeight": "normal",
+                "messageKey": "imgNode",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<img loading=\"lazy\" src=\"/content/dam/zonnic-content/ca/2025/homepage/tall-tile/Tall Tile - Homepage - Tall Tile 3.webp\" alt=\"\" \"=\"\">",
+                  "target": [
+                    ".aem-GridColumn--tablet--12.aem-GridColumn--default--4.aem-GridColumn--offset--tablet--0:nth-child(3) > bat-card-blurb > .bat-card > .bat-card--blurb > .bat-card--blurb-img > picture > img[alt=\"\"][\\\"=\"\"][loading=\"lazy\"]"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because element contains an image node"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span class=\"dark\">Easy as 1, 2, 3...<br>\nPlace it, leave it and repeat dosage!</span>",
+          "target": [
+            ".aem-GridColumn--tablet--12.aem-GridColumn--default--4.aem-GridColumn--offset--tablet--0:nth-child(3) > bat-card-blurb > .bat-card > .bat-card--blurb > .bat-card--blurb-main > .bat-card--blurb-text > p:nth-child(3) > .dark"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "9.0pt (12px)",
+                "fontWeight": "bold",
+                "messageKey": "imgNode",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [
+                {
+                  "html": "<img loading=\"lazy\" src=\"/content/dam/zonnic-content/ca/2025/homepage/tall-tile/Tall Tile - Homepage - Tall Tile 3.webp\" alt=\"\" \"=\"\">",
+                  "target": [
+                    ".aem-GridColumn--tablet--12.aem-GridColumn--default--4.aem-GridColumn--offset--tablet--0:nth-child(3) > bat-card-blurb > .bat-card > .bat-card--blurb > .bat-card--blurb-img > picture > img[alt=\"\"][\\\"=\"\"][loading=\"lazy\"]"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because element contains an image node"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<span>LEARN MORE</span>",
+          "target": [
+            ".aem-GridColumn--tablet--12.aem-GridColumn--default--4.aem-GridColumn--offset--tablet--0:nth-child(3) > bat-card-blurb > .bat-card > .bat-card--blurb > .bat-card--blurb-main > .bat-card--blurb-ctalist > .left[data-parameters=\"#ritual\"][title=\"LEARN MORE\"] > span"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
+        }
+      ]
+    },
+    {
+      "id": "duplicate-id-aria",
+      "impact": "critical",
+      "tags": [
+        "cat.parsing",
+        "wcag2a",
+        "wcag412",
+        "EN-301-549",
+        "EN-9.4.1.2"
+      ],
+      "description": "Ensure every id attribute value used in ARIA and in labels is unique",
+      "help": "IDs used in ARIA and labels must be unique",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/duplicate-id-aria?application=axeAPI",
+      "nodes": [
+        {
+          "any": [
+            {
+              "id": "duplicate-id-aria",
+              "data": "email-error",
+              "relatedNodes": [
+                {
+                  "html": "<div id=\"email-error\" class=\"bat-message  bat-form-msg error-msg error\" role=\"alert\" aria-live=\"assertive\">\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"bat-message-text\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<p class=\"sm\">Please enter a valid email address.</p>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t</div>",
+                  "target": [
+                    ".bat-form--signup-email > .bat-form-msg.error-msg.error"
+                  ]
+                }
+              ],
+              "impact": "critical",
+              "message": "Document has multiple elements referenced with ARIA with the same id attribute: email-error"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "critical",
+          "html": "<div id=\"email-error\" class=\"bat-message  bat-form-msg error-msg error\" role=\"alert\" aria-live=\"assertive\">\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"bat-message-text\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<p class=\"sm\">Please enter a valid email address.</p>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t</div>",
+          "target": [
+            ".bat-form--login-zonnic-email > .bat-form-msg.error-msg.error"
+          ],
+          "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: email-error"
+        },
+        {
+          "any": [
+            {
+              "id": "duplicate-id-aria",
+              "data": "password-error",
+              "relatedNodes": [
+                {
+                  "html": "<div id=\"password-error\" class=\"bat-message  bat-form-msg error-msg error\" role=\"alert\" aria-live=\"assertive\">",
+                  "target": [
+                    ".bat-form--signup-password.bat-form-field:nth-child(2) > .bat-form-msg.error-msg.error"
+                  ]
+                }
+              ],
+              "impact": "critical",
+              "message": "Document has multiple elements referenced with ARIA with the same id attribute: password-error"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "critical",
+          "html": "<div id=\"password-error\" class=\"bat-message  bat-form-msg error-msg error\" role=\"alert\" aria-live=\"assertive\">\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"bat-message-text\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<p class=\"sm\">This is a required field.</p>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t</div>",
+          "target": [
+            ".bat-form--login-zonnic-password > .bat-form-msg.error-msg.error"
+          ],
+          "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: password-error"
+        },
+        {
+          "any": [
+            {
+              "id": "duplicate-id-aria",
+              "data": "user_has_zonnic_can-error",
+              "relatedNodes": [
+                {
+                  "html": "<div id=\"user_has_zonnic_can-error\" class=\"bat-message  bat-form-msg error-msg error\" role=\"alert\" aria-live=\"assertive\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"bat-message-text\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tThis is a required field.\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>",
+                  "target": [
+                    ".bat-form--signup-has-can > .select-wrapper > .bat-form-msg.error-msg.error"
+                  ]
+                }
+              ],
+              "impact": "critical",
+              "message": "Document has multiple elements referenced with ARIA with the same id attribute: user_has_zonnic_can-error"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "critical",
+          "html": "<div id=\"user_has_zonnic_can-error\" class=\"bat-message  bat-form-msg error-msg error\" role=\"alert\" aria-live=\"assertive\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"bat-message-text\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tThis is a required field.\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>",
+          "target": [
+            ".bat-form--login-has-can > .select-wrapper > .bat-form-msg.error-msg.error"
+          ],
+          "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: user_has_zonnic_can-error"
+        }
+      ]
+    },
+    {
+      "id": "video-caption",
+      "impact": "critical",
+      "tags": [
+        "cat.text-alternatives",
+        "wcag2a",
+        "wcag122",
+        "section508",
+        "section508.22.a",
+        "TTv5",
+        "TT17.a",
+        "EN-301-549",
+        "EN-9.1.2.2"
+      ],
+      "description": "Ensure <video> elements have captions",
+      "help": "<video> elements must have captions",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/video-caption?application=axeAPI",
+      "nodes": [
+        {
+          "any": [],
+          "all": [],
+          "none": [
+            {
+              "id": "caption",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "critical",
+              "message": "Check that captions is available for the element"
+            }
+          ],
+          "impact": "critical",
+          "html": "<video autoplay=\"\" controls=\"\" playsinline=\"\" muted=\"\" loop=\"\" class=\"bat-hero-zonnic--video-player\">\n\t\t\t\t\t\t<source src=\"/content/dam/zonnic-content/ca/2025/testimonials-campaign/wave-2/campaign-landing-page/ZONNIC_PANEL02_3MIN_16x9_CROPWEB_STFR.mp4\" type=\"video/mp4\">\n\t\t\t\t\t\t\n\t\t\t\t\t</video>",
+          "target": [
+            ".hero.aem-GridColumn--default--12.aem-GridColumn:nth-child(4) > bat-hero-zonnic > .bat-hero-zonnic.no-padding > .bat-hero-zonnic--video > .bat-hero-zonnic--video > video"
+          ],
+          "failureSummary": "Fix all of the following:\n  Check that captions is available for the element"
+        }
+      ]
+    }
+  ],
+  "testEngine": {
+    "name": "axe-core",
+    "version": "4.10.0"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "available": true,
+  "roles": {
+    "primary": {
+      "light": "#182465",
+      "dark": "#182465"
+    },
+    "secondary": {
+      "light": "#3860be",
+      "dark": "#3860be"
+    },
+    "accent": {
+      "light": "#a0ff9d",
+      "dark": "#a0ff9d"
+    }
+  },
+  "variables": {
+    "colors": {
+      "light": {
+        "--bg-color": "#fff",
+        "--border-color": "#dedede",
+        "--text-color": "#182465",
+        "--mapbbox-search-color": "#182465",
+        "--eswIconFillColor": "#FFF"
+      },
+      "dark": {
+        "--bg-color": "#fff",
+        "--border-color": "#dedede",
+        "--text-color": "#182465",
+        "--mapbbox-search-color": "#182465",
+        "--eswIconFillColor": "#FFF"
+      }
+    },
+    "spacing": {
+      "light": {
+        "--eswIconFontSize": "16px"
+      },
+      "dark": {
+        "--eswIconFontSize": "16px"
+      }
+    },
+    "typography": {
+      "light": {},
+      "dark": {}
+    },
+    "shadows": {
+      "light": {},
+      "dark": {}
+    },
+    "radii": {
+      "light": {},
+      "dark": {}
+    },
+    "other": {
+      "light": {
+        "--eswButtonBottom": "25px",
+        "--eswButtonRight": "30px"
+      },
+      "dark": {
+        "--eswButtonBottom": "25px",
+        "--eswButtonRight": "30px"
+      }
+    },
+    "dependencies": {
+      "light": {},
+      "dark": {}
+    },
+    "semantic": {
+      "light": {
+        "success": {},
+        "warning": {},
+        "error": {},
+        "info": {}
+      },
+      "dark": {
+        "success": {},
+        "warning": {},
+        "error": {},
+        "info": {}
+      }
+    }
+  },
+  "pairedVarCount": 8,
+  "audit": {
+    "missingInDark": [],
+    "missingInLight": [],
+    "coverage": "paired"
+  },
+  "tailwind": {
+    "darkMode": "class",
+    "theme": {
+      "extend": {
+        "colors": {
+          "primary": {
+            "DEFAULT": "#182465",
+            "dark": "#182465"
+          },
+          "secondary": {
+            "DEFAULT": "#3860be",
+            "dark": "#3860be"
+          },
+          "accent": {
+            "DEFAULT": "#a0ff9d",
+            "dark": "#a0ff9d"
+          }
+        }
+      }
+    }
+  }
+}

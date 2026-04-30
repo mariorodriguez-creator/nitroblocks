@@ -1,0 +1,385 @@
+{
+  "slug": "store-locator",
+  "url": "https://www.zonnic.ca/ca/en/store-locator",
+  "counts": {
+    "violations": 1,
+    "incomplete": 3,
+    "byImpact": {
+      "critical": 0,
+      "serious": 1,
+      "moderate": 0,
+      "minor": 0
+    },
+    "byRule": {
+      "aria-hidden-focus": 1
+    }
+  },
+  "violations": [
+    {
+      "id": "aria-hidden-focus",
+      "impact": "serious",
+      "tags": [
+        "cat.name-role-value",
+        "wcag2a",
+        "wcag412",
+        "TTv5",
+        "TT6.a",
+        "EN-301-549",
+        "EN-9.4.1.2"
+      ],
+      "description": "Ensure aria-hidden elements are not focusable nor contain focusable elements",
+      "help": "ARIA hidden element must not be focusable or contain focusable elements",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-hidden-focus?application=axeAPI",
+      "nodes": [
+        {
+          "any": [],
+          "all": [
+            {
+              "id": "focusable-not-tabbable",
+              "data": null,
+              "relatedNodes": [
+                {
+                  "html": "<canvas class=\"mapboxgl-canvas\" tabindex=\"0\" aria-label=\"Map\" role=\"region\" width=\"400\" height=\"300\" style=\"width: 400px; height: 300px;\"></canvas>",
+                  "target": [
+                    "canvas"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+            }
+          ],
+          "none": [],
+          "impact": "serious",
+          "html": "<svg viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" style=\"position: absolute; width: 0px; height: 0px; overflow: hidden;\">",
+          "target": [
+            "svg[viewBox=\"0 0 24 24\"][aria-hidden=\"true\"]:nth-child(4)"
+          ],
+          "failureSummary": "Fix all of the following:\n  Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+        }
+      ]
+    }
+  ],
+  "incomplete": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT"
+      ],
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=axeAPI",
+      "nodes": [
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "25.5pt (34px)",
+                "fontWeight": "bold",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "3:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<h2 class=\"bat-headline-style headline1\">\n\t\t<br><font style=\"font-weight: 100; font-style: normal;\">YOU'RE READY TO QUIT.</font><br>ZONNIC IS READY TO HELP.\n\t</h2>",
+          "target": [
+            ".headline1"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        }
+      ]
+    },
+    {
+      "id": "duplicate-id-aria",
+      "impact": "critical",
+      "tags": [
+        "cat.parsing",
+        "wcag2a",
+        "wcag412",
+        "EN-301-549",
+        "EN-9.4.1.2"
+      ],
+      "description": "Ensure every id attribute value used in ARIA and in labels is unique",
+      "help": "IDs used in ARIA and labels must be unique",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/duplicate-id-aria?application=axeAPI",
+      "nodes": [
+        {
+          "any": [
+            {
+              "id": "duplicate-id-aria",
+              "data": "email-error",
+              "relatedNodes": [
+                {
+                  "html": "<div id=\"email-error\" class=\"bat-message  bat-form-msg error-msg error\" role=\"alert\" aria-live=\"assertive\">\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"bat-message-text\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<p class=\"sm\">Please enter a valid email address.</p>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t</div>",
+                  "target": [
+                    ".bat-form--signup-email > .bat-form-msg.error-msg.error"
+                  ]
+                }
+              ],
+              "impact": "critical",
+              "message": "Document has multiple elements referenced with ARIA with the same id attribute: email-error"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "critical",
+          "html": "<div id=\"email-error\" class=\"bat-message  bat-form-msg error-msg error\" role=\"alert\" aria-live=\"assertive\">\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"bat-message-text\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<p class=\"sm\">Please enter a valid email address.</p>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t</div>",
+          "target": [
+            ".bat-form--login-zonnic-email > .bat-form-msg.error-msg.error"
+          ],
+          "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: email-error"
+        },
+        {
+          "any": [
+            {
+              "id": "duplicate-id-aria",
+              "data": "password-error",
+              "relatedNodes": [
+                {
+                  "html": "<div id=\"password-error\" class=\"bat-message  bat-form-msg error-msg error\" role=\"alert\" aria-live=\"assertive\">",
+                  "target": [
+                    ".bat-form--signup-password.bat-form-field:nth-child(2) > .bat-form-msg.error-msg.error"
+                  ]
+                }
+              ],
+              "impact": "critical",
+              "message": "Document has multiple elements referenced with ARIA with the same id attribute: password-error"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "critical",
+          "html": "<div id=\"password-error\" class=\"bat-message  bat-form-msg error-msg error\" role=\"alert\" aria-live=\"assertive\">\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"bat-message-text\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<p class=\"sm\">This is a required field.</p>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t</div>",
+          "target": [
+            ".bat-form--login-zonnic-password > .bat-form-msg.error-msg.error"
+          ],
+          "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: password-error"
+        },
+        {
+          "any": [
+            {
+              "id": "duplicate-id-aria",
+              "data": "user_has_zonnic_can-error",
+              "relatedNodes": [
+                {
+                  "html": "<div id=\"user_has_zonnic_can-error\" class=\"bat-message  bat-form-msg error-msg error\" role=\"alert\" aria-live=\"assertive\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"bat-message-text\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tThis is a required field.\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>",
+                  "target": [
+                    ".bat-form--signup-has-can > .select-wrapper > .bat-form-msg.error-msg.error"
+                  ]
+                }
+              ],
+              "impact": "critical",
+              "message": "Document has multiple elements referenced with ARIA with the same id attribute: user_has_zonnic_can-error"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "critical",
+          "html": "<div id=\"user_has_zonnic_can-error\" class=\"bat-message  bat-form-msg error-msg error\" role=\"alert\" aria-live=\"assertive\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"bat-message-text\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tThis is a required field.\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>",
+          "target": [
+            ".bat-form--login-has-can > .select-wrapper > .bat-form-msg.error-msg.error"
+          ],
+          "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: user_has_zonnic_can-error"
+        }
+      ]
+    },
+    {
+      "id": "target-size",
+      "impact": "serious",
+      "tags": [
+        "cat.sensory-and-visual-cues",
+        "wcag22aa",
+        "wcag258"
+      ],
+      "description": "Ensure touch targets have sufficient size and space",
+      "help": "All touch targets must be 24px large, or leave sufficient space",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/target-size?application=axeAPI",
+      "nodes": [
+        {
+          "any": [
+            {
+              "id": "target-offset",
+              "data": {
+                "messageKey": "nonTabbableNeighbor",
+                "closestOffset": 16,
+                "minOffset": 24
+              },
+              "relatedNodes": [
+                {
+                  "html": "<button type=\"button\" role=\"tab\" id=\"slick-slide-control01\" aria-controls=\"slick-slide01\" aria-label=\"2 of 4\" tabindex=\"-1\">2</button>",
+                  "target": [
+                    "#slick-slide-control01"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 16px instead of at least 24px. Is the neighbor a target?"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<button type=\"button\" role=\"tab\" id=\"slick-slide-control00\" aria-controls=\"slick-slide00\" aria-label=\"1 of 4\" tabindex=\"0\" aria-selected=\"true\">1</button>",
+          "target": [
+            "#slick-slide-control00"
+          ],
+          "failureSummary": "Fix any of the following:\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 16px instead of at least 24px. Is the neighbor a target?"
+        },
+        {
+          "any": [
+            {
+              "id": "target-size",
+              "data": {
+                "minSize": 24,
+                "width": 10,
+                "height": 10
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element with negative tabindex has insufficient size (10px by 10px, should be at least 24px by 24px). Is this a target?"
+            },
+            {
+              "id": "target-offset",
+              "data": {
+                "closestOffset": 16,
+                "minOffset": 24
+              },
+              "relatedNodes": [
+                {
+                  "html": "<button type=\"button\" role=\"tab\" id=\"slick-slide-control00\" aria-controls=\"slick-slide00\" aria-label=\"1 of 4\" tabindex=\"0\" aria-selected=\"true\">1</button>",
+                  "target": [
+                    "#slick-slide-control00"
+                  ]
+                },
+                {
+                  "html": "<button type=\"button\" role=\"tab\" id=\"slick-slide-control02\" aria-controls=\"slick-slide02\" aria-label=\"3 of 4\" tabindex=\"-1\">3</button>",
+                  "target": [
+                    "#slick-slide-control02"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Element with negative tabindex has insufficient space to its closest neighbors. Safe clickable space has a diameter of 16px instead of at least 24px. Is this a target?"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<button type=\"button\" role=\"tab\" id=\"slick-slide-control01\" aria-controls=\"slick-slide01\" aria-label=\"2 of 4\" tabindex=\"-1\">2</button>",
+          "target": [
+            "#slick-slide-control01"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element with negative tabindex has insufficient size (10px by 10px, should be at least 24px by 24px). Is this a target?\n  Element with negative tabindex has insufficient space to its closest neighbors. Safe clickable space has a diameter of 16px instead of at least 24px. Is this a target?"
+        },
+        {
+          "any": [
+            {
+              "id": "target-size",
+              "data": {
+                "minSize": 24,
+                "width": 10,
+                "height": 10
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element with negative tabindex has insufficient size (10px by 10px, should be at least 24px by 24px). Is this a target?"
+            },
+            {
+              "id": "target-offset",
+              "data": {
+                "messageKey": "nonTabbableNeighbor",
+                "closestOffset": 16,
+                "minOffset": 24
+              },
+              "relatedNodes": [
+                {
+                  "html": "<button type=\"button\" role=\"tab\" id=\"slick-slide-control01\" aria-controls=\"slick-slide01\" aria-label=\"2 of 4\" tabindex=\"-1\">2</button>",
+                  "target": [
+                    "#slick-slide-control01"
+                  ]
+                },
+                {
+                  "html": "<button type=\"button\" role=\"tab\" id=\"slick-slide-control03\" aria-controls=\"slick-slide03\" aria-label=\"4 of 4\" tabindex=\"-1\">4</button>",
+                  "target": [
+                    "#slick-slide-control03"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 16px instead of at least 24px. Is the neighbor a target?"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<button type=\"button\" role=\"tab\" id=\"slick-slide-control02\" aria-controls=\"slick-slide02\" aria-label=\"3 of 4\" tabindex=\"-1\">3</button>",
+          "target": [
+            "#slick-slide-control02"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element with negative tabindex has insufficient size (10px by 10px, should be at least 24px by 24px). Is this a target?\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 16px instead of at least 24px. Is the neighbor a target?"
+        },
+        {
+          "any": [
+            {
+              "id": "target-size",
+              "data": {
+                "minSize": 24,
+                "width": 10,
+                "height": 10
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element with negative tabindex has insufficient size (10px by 10px, should be at least 24px by 24px). Is this a target?"
+            },
+            {
+              "id": "target-offset",
+              "data": {
+                "messageKey": "nonTabbableNeighbor",
+                "closestOffset": 16,
+                "minOffset": 24
+              },
+              "relatedNodes": [
+                {
+                  "html": "<button type=\"button\" role=\"tab\" id=\"slick-slide-control02\" aria-controls=\"slick-slide02\" aria-label=\"3 of 4\" tabindex=\"-1\">3</button>",
+                  "target": [
+                    "#slick-slide-control02"
+                  ]
+                }
+              ],
+              "impact": "serious",
+              "message": "Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 16px instead of at least 24px. Is the neighbor a target?"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<button type=\"button\" role=\"tab\" id=\"slick-slide-control03\" aria-controls=\"slick-slide03\" aria-label=\"4 of 4\" tabindex=\"-1\">4</button>",
+          "target": [
+            "#slick-slide-control03"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element with negative tabindex has insufficient size (10px by 10px, should be at least 24px by 24px). Is this a target?\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 16px instead of at least 24px. Is the neighbor a target?"
+        }
+      ]
+    }
+  ],
+  "testEngine": {
+    "name": "axe-core",
+    "version": "4.10.0"
+  }
+}

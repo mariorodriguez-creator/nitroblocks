@@ -1,0 +1,31 @@
+{
+  "url": "https://www.zonnic.ca/ca/en/contact-us/let-us-talk/testimonials",
+  "title": "Testimonials",
+  "timestamp": "2026-04-29T20:04:49.129Z",
+  "grade": "C",
+  "overall": 79,
+  "scores": {
+    "colorDiscipline": 92,
+    "typographyConsistency": 50,
+    "spacingSystem": 85,
+    "shadowConsistency": 90,
+    "radiusConsistency": 90,
+    "accessibility": 100,
+    "cssHealth": 35,
+    "tokenization": 75
+  },
+  "strengths": [
+    "Tight, disciplined color palette",
+    "Well-defined spacing scale",
+    "Clean elevation system",
+    "Consistent border radii",
+    "Strong accessibility compliance",
+    "Good CSS variable tokenization"
+  ],
+  "issues": [
+    "4 font families — consider limiting to 2 (heading + body)",
+    "181 !important rules — prefer specificity over overrides",
+    "93% of CSS is unused — consider purging",
+    "11613 duplicate CSS declarations"
+  ]
+}

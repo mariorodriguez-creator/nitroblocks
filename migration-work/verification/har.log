@@ -1,0 +1,5 @@
+[har] Analyzing 10 HAR file(s)
+[har] Fatal: Invalid URL
+TypeError: Invalid URL
+    at new URL (node:internal/url:828:25)
+    at main (file:///Users/2245328/Repos/nitroblocks/.claude/skills/migration-planner/scripts/analyze-har.mjs:235:56)

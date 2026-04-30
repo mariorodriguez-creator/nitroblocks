@@ -1,0 +1,133 @@
+{
+  "url": "https://www.zonnic.ca/ca/en/why-zonnic",
+  "timestamp": "2026-04-29T19:59:58.891Z",
+  "paths": {
+    "documentPath": "/ca/en/why-zonnic",
+    "htmlFilePath": "/ca/en/why-zonnic.plain.html",
+    "mdFilePath": "/ca/en/why-zonnic.md",
+    "dirPath": "/ca/en",
+    "filename": "why-zonnic"
+  },
+  "screenshot": "migration-work/pages/why-zonnic/screenshot.png",
+  "html": {
+    "filePath": "migration-work/pages/why-zonnic/cleaned.html",
+    "size": 2704210
+  },
+  "metadata": {
+    "title": "Why Choose ZONNIC? Your Path to Quit Smoking | ZONNIC CA",
+    "og:url": "https://www.zonnic.ca/ca/en/why-zonnic",
+    "content-path": "/content/zonnic/ca/en/ca/en/why-zonnic",
+    "template": "generic-template",
+    "viewport": "width=device-width, initial-scale=1",
+    "description": "Learn why ZONNIC is the right choice for reducing smoking, with expert-backed solutions and effective resources to support your journey toward quitting for good.",
+    "google-site-verification": "6MBLmzP_N1Bi1bYlrxx9DkOEl-WlwsKXsoI0cgcS7C0",
+    "canonical": "https://www.zonnic.ca/ca/en/why-zonnic",
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://www.zonnic.ca/ca/en",
+      "name": "ZONNIC Canada",
+      "description": "Zonnic offers nicotine pouches designed to help control cravings effectively. Discover a variety of flavors and find a new way to manage nicotine intake conveniently.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "ZONNIC Canada",
+        "url": "https://www.zonnic.ca/ca/en",
+        "logo": "https://www.zonnic.ca/content/dam/zonnic-content/ca/2023/homepage/Primary%20logo.svg",
+        "image": "https://www.zonnic.ca/content/dam/zonnic-content/ca/2023/none-lifestyle/what-is-zonnic/hero-banner-meet-zonnic-desktop.webp",
+        "description": "Zonnic.ca is dedicated to providing nicotine pouches aimed at helping individuals quit smoking. These pouches are designed to offer an alternative to traditional tobacco products, supporting individuals in their journey to quit smoking. The website focuses on providing resources and products specifically tailored to different needs and stages of the cessation process, emphasizing support and guidance throughout.",
+        "telephone": "+1-833-966-6421",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "3711 Saint-Antoine Street West",
+          "addressLocality": "Montreal",
+          "addressRegion": "QC",
+          "postalCode": "H4C 3P6",
+          "addressCountry": "CA"
+        },
+        "sameAs": [
+          "https://www.instagram.com/zonniccanada/"
+        ],
+        "parentOrganization": {
+          "@type": "Organization",
+          "name": "Imperial Tobacco Company Ltd",
+          "url": "https://www.imperialtobaccocanada.com/en/index.html",
+          "logo": "https://www.imperialtobaccocanada.com/en/imgs/logo_BAT_AXYKCM.png",
+          "description": "Imperial Tobacco Canada is Canada’s leading tobacco and nicotine company and is part of the world’s most international tobacco group: BAT, a global multi-category consumer goods business, operating in over 180 markets."
+        }
+      }
+    }
+  },
+  "images": {
+    "count": 27,
+    "mapping": {
+      "https://cdn.cookielaw.org/logos/static/ot_close.svg": "./images/cec4a77b663a079574d478e06d310304.png",
+      "https://cdn.cookielaw.org/logos/static/ot_company_logo.png": "./images/0a82704908bb1ee9f1f8e8a0196426e0.png",
+      "https://cdn.cookielaw.org/logos/static/powered_by_logo.svg": "./images/a9584a367ebcccfac48987ce1fec5eae.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/logo/ZONNIC%20Logo_Mint_Gradient%20(1)%201.svg": "./images/95bf1dd63cd05fe5c097f87ed88ab5e9.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/health-warning/hw/en/ZONNIC-HW_Desktop_En.webp": "./images/9267cdcb150922a9ca3c4265788be2ee.png",
+      "https://dpm.demdex.net/ibs:dpid=411&dpuuid=afJjMgAAABxj8SHs": "./images/b43631a81acaea5f19366be96f157be4.png",
+      "https://dpm.demdex.net/ibs:dpid=771&dpuuid=CAESEDcSBfP8pXiLm3Zi1V1J_wE&google_cver=1?gdpr=0&gdpr_consent=": "./images/849dad6f22065439d45483fadff83af9.png",
+      "https://match.adsrvr.org/track/cmf/generic?ttd_pid=aam&gdpr=0&gdpr_consent=&domain=www.zonnic.ca&ttd_tpi=1": "./images/7dd99802c664b018613dcceba7c9d84a.png",
+      "https://batgsdzoonicprodcanada.112.2o7.net/b/ss/batgsdzoonicprodcanada/1/JS-2.25.0-LEWM/s25871097882987?AQB=1&ndh=1&pf=1&t=29%2F3%2F2026%2021%3A59%3A46%203%20-120&sdid=33165ECF43AFB22B-7666B19B3894298F&mid=53117122710160048243769587630970233542&aamlh=6&ce=UTF-8&pageName=why-zonnic&g=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fwhy-zonnic&cc=CAD&ch=why-zonnic&server=www.zonnic.ca&aamb=6G1ynYcLPuiQxYZrsz_pkqfLG9yMXBpb2zX5dvJdYQJzPXImdj0y&c1=why-choose-zonnic-your-path-to-quit-smoking-zonnic-ca&v1=why-choose-zonnic-your-path-to-quit-smoking-zonnic-ca&c2=why-zonnic&v2=why-zonnic&c3=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fwhy-zonnic&v3=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fwhy-zonnic&c4=%2Fca%2Fen%2Fwhy-zonnic&v4=%2Fca%2Fen%2Fwhy-zonnic&c6=www.zonnic.ca&v6=www.zonnic.ca&v7=en-us&c8=ca&v8=ca&v24=logged%20out&v27=why-zonnic&v28=why-zonnic&v31=mozilla%2F5.0%20%28macintosh%3B%20intel%20mac%20os%20x%2010_15_7%29%20applewebkit%2F537.36%20%28khtml%2C%20like%20gecko%29%20headlesschrome%2F145.0.7632.6%20safari%2F537.36&v41=0.0550731122182756_1777492786671&s=1280x720&c=24&j=1.6&v=N&k=Y&bw=1280&bh=720&mcorgid=360C70DD5CFA548D0A495FB0%40AdobeOrg&AQE=1": "./images/0e2ae278504117c471b6d59dbdad6104.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/why-zonnic/a-can-of-can-do/article%20-%20PLP%20Banner%20-%20Why%20Zonnic%20Page%20-%20A%20Can%20of%20Can%20do%20-%20desktop.webp": "./images/f3149ad9c994f14165af23c20433b60c.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/why-zonnic/h2-banner/PLP-banner-New-Flavours-Why-Zonnic-Page-desktop_EN.webp": "./images/c2d096059ee2bfdf06dd39de25859a4c.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/testimonials-campaign/wave-2/why-zonnic/202509-ZONNIC-Testimonial-HOP-eCom-LP-W2-WhyZONNIC-Josh-Desktop-EN.webp": "./images/a4d9b11a90c0e991c659c3292d0ab6fa.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/testimonials-campaign/wave-2/why-zonnic/202509-ZONNIC-Testimonial-HOP-eCom-LP-W2-WhyZONNIC-Sarah-Desktop-EN.webp": "./images/dcfa71a54f695ef3dbc8aad208bc8875.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/testimonials-campaign/why-zonnic-/202506-ZONNIC-TESTIMONIALS-HOP-Testimonials-EComm-Article-Why_Zonnic_Page-Mark-Desktop-EN.webp": "./images/a1258415747b8859eab23460939cdcb8.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/testimonials-campaign/wave-2/why-zonnic/202509-ZONNIC-Testimonial-HOP-eCom-LP-W2-WhyZONNIC-Samuelel-Desktop-EN.webp": "./images/7be436929285f7716ed70b6747caef67.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/why-zonnic/hero-banner/hero-banner-New-Flavours-Why-Zonnic-Page-desktop.webp": "./images/5bc2f5a31facb41942ab0483c302021d.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/testimonials-campaign/why-zonnic-/202506-ZONNIC-TESTIMONIALS-HOP-Testimonials-EComm-Article-Why_Zonnic_Page-Samara-Desktop-EN.webp": "./images/9630c290968540c21a2c2c6d436f7c1e.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/testimonials-campaign/why-zonnic-/202506-ZONNIC-TESTIMONIALS-HOP-Testimonials-EComm-Article-Why_Zonnic_Page-Gabriel-Desktop-EN.webp": "./images/00a6b56bd1a91a037a8338fe4d0eff31.png",
+      "https://www.zonnic.ca/content/dam/zonnic/images/global/visa.svg": "./images/e089ac9ce83110dcbe408b5543f32e54.png",
+      "https://www.zonnic.ca/content/dam/zonnic/images/global/mastercard.svg": "./images/3d2d823d211a65d54c7186b31062c6ca.png",
+      "https://www.zonnic.ca/content/dam/zonnic/images/global/amex.svg": "./images/690e605bc4a6f618f5a630bb48eb2f40.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/testimonials-campaign/why-zonnic-/202506-ZONNIC-TESTIMONIALS-HOP-Testimonials-EComm-Tall_Tile_1-Why_Zonnic_Page-EN.webp": "./images/147d8b3225b4df421beaca9af34c5ac1.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/testimonials-campaign/why-zonnic-/202506-ZONNIC-TESTIMONIALS-HOP-Testimonials-EComm-Tall_Tile_2-Why_Zonnic_Page-EN.webp": "./images/99c0fd71c794affd7e0b80d78f0cfabe.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/testimonials-campaign/why-zonnic-/202506-ZONNIC-TESTIMONIALS-HOP-Testimonials-EComm-Tall_Tile_3-Why_Zonnic_Page-EN.webp": "./images/d1e020e378dfba5748c6017cc50c40a8.png",
+      "https://www.zonnic.ca/content/dam/zonnic/images/zonnic-logo-primary.svg": "./images/e33c47925b7749262ad97ce4a7e74c0f.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/logo/Primary%20Logo%20White.svg": "./images/aec98ce528c69616437c9f326102c79d.png",
+      "https://siteintercept.qualtrics.com/static/q-siteintercept/.blob/903d4c43fed535fb4d325b1612c605e48417dc74_wr-dialog-close-btn-black.png": "./images/ebe7cb4c9978a0489104b88b681efe8f.png"
+    },
+    "stats": {
+      "total": 37,
+      "converted": 25,
+      "skipped": 2,
+      "failed": 8,
+      "tooLarge": 0,
+      "limitReached": 0
+    }
+  },
+  "bypass": {
+    "cookies": [
+      "age_verify",
+      "age_verified",
+      "ageVerified",
+      "age-gate",
+      "over_age",
+      "is_adult",
+      "OptanonAlertBoxClosed",
+      "CookieConsent"
+    ],
+    "hide_selectors": [
+      "#onetrust-banner-sdk",
+      "#onetrust-consent-sdk",
+      "#onetrust-pc-sdk",
+      ".ot-sdk-container",
+      "#ot-sdk-btn-floating",
+      "[id^=\"QSI\"]",
+      "[class*=\"QSIFeedbackButton\"]",
+      "[id*=\"embeddedMessaging\"]",
+      "[class*=\"embeddedService\"]",
+      ".helpButton",
+      ".grecaptcha-badge",
+      "[class*=\"agegate\"]",
+      "[data-component-name=\"ageGate\"]",
+      "[data-component-id*=\"AgeGate\"]",
+      "bat-agegate-zonnic",
+      "[class*=\"locationselector\"]",
+      "bat-locationselector-zonnic",
+      "#ageGate"
+    ]
+  },
+  "har": "migration-work/pages/why-zonnic/network.har"
+}

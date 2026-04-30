@@ -39,18 +39,59 @@ Before using this skill, ensure:
 node .claude/skills/scrape-webpage/scripts/analyze-webpage.js "https://example.com/page" --output ./import-work
 ```
 
+**All flags:**
+
+| Flag | Repeatable | Description |
+|---|---|---|
+| `--output <dir>` | no | Output directory for artifacts (default `./page-analysis`) |
+| `--cookie "name=value"` | yes | Inject a cookie before navigation. Use for gated sites where a probe has identified a bypass cookie (e.g., `age_verify=confirmed`) |
+| `--bypass-file <path>` | no | Load both bypass cookies and overlay-hide CSS selectors from a `bypass-result.json` file (produced by `bypass-overlays.mjs` in migration-planner). Eliminates the need to pass `--cookie` and `--hide-css` individually |
+| `--hide-css <selector>` | yes | Inject `display: none !important` CSS for the selector before navigation. Useful for chat widgets, sticky CTAs, live-chat launchers that designlang cannot bypass with cookies |
+| `--capture-har [path]` | no | Record a HAR (HTTP Archive) of all network requests. When the path is omitted, writes `<outputDir>/network.har`. Use for third-party integration analysis (see migration-planner's `analyze-har.mjs`) |
+
 **What the script does:**
 1. Sets up network interception to capture all images
 2. Loads page in headless Chromium
-3. Scrolls through entire page to trigger lazy-loaded images
-4. Downloads all images locally (converts WebP/AVIF/SVG to PNG)
-5. Captures full-page screenshot for visual reference
-6. Extracts metadata (title, description, Open Graph, JSON-LD, canonical)
-7. **Fixes images in DOM** (background-image→img, picture elements, srcset→src, relative→absolute, inline SVG→img)
-8. Extracts cleaned HTML (removes scripts/styles)
-9. Replaces image URLs in HTML with local paths (./images/...)
-10. Generates document paths (sanitized, lowercase, no .html extension)
-11. Saves complete analysis with image mapping to metadata.json
+3. Injects any cookies and hide-CSS from `--cookie`, `--hide-css`, or `--bypass-file` so overlays never flash on screen
+4. Optionally records a HAR if `--capture-har` was set
+5. Scrolls through entire page to trigger lazy-loaded images
+6. Downloads all images locally (converts WebP/AVIF/SVG to PNG)
+7. Captures full-page screenshot for visual reference
+8. Extracts metadata (title, description, Open Graph, JSON-LD, canonical)
+9. **Fixes images in DOM** (background-image→img, picture elements, srcset→src, relative→absolute, inline SVG→img)
+10. Extracts cleaned HTML (removes scripts/styles)
+11. Replaces image URLs in HTML with local paths (./images/...)
+12. Generates document paths (sanitized, lowercase, no .html extension)
+13. Saves complete analysis with image mapping to metadata.json
+
+**Examples:**
+
+Basic scrape:
+```bash
+node .claude/skills/scrape-webpage/scripts/analyze-webpage.js \
+  "https://example.com/page" \
+  --output ./import-work
+```
+
+Scrape a gated site using a bypass file produced by `migration-planner/scripts/bypass-overlays.mjs`:
+```bash
+node .claude/skills/scrape-webpage/scripts/analyze-webpage.js \
+  "https://zonnic.ca/ca/en/pouches" \
+  --output ./migration-work/pages/pouches \
+  --bypass-file ./migration-work/bypass-result.json \
+  --capture-har
+```
+
+Scrape with explicit cookies + widget suppression:
+```bash
+node .claude/skills/scrape-webpage/scripts/analyze-webpage.js \
+  "https://site.com/page" \
+  --cookie "age_verified=1" \
+  --cookie "locale=en-CA" \
+  --hide-css ".intercom-launcher" \
+  --hide-css "#qsi-survey" \
+  --capture-har ./my-analysis/trace.har
+```
 
 **For detailed explanation:** See `resources/web-page-analysis.md`
 
@@ -63,6 +104,7 @@ node .claude/skills/scrape-webpage/scripts/analyze-webpage.js "https://example.c
 - `./import-work/screenshot.png` - Visual reference for layout comparison
 - `./import-work/cleaned.html` - Main content HTML with local image paths
 - `./import-work/images/` - All downloaded images (WebP/AVIF/SVG converted to PNG)
+- `./import-work/network.har` - HAR file of all network requests (only when `--capture-har` used)
 
 **Verify files exist:**
 ```bash
@@ -109,7 +151,12 @@ ls -lh ./import-work/images/ | head -5
       "skipped": 12,
       "failed": 0
     }
-  }
+  },
+  "bypass": {
+    "cookies": ["age_verified"],
+    "hide_selectors": [".intercom-launcher"]
+  },
+  "har": "./import-work/network.har"
 }
 ```
 
@@ -118,16 +165,19 @@ ls -lh ./import-work/images/ | head -5
 - `paths.htmlFilePath` - Where to save final HTML file
 - `images.mapping` - Original URLs → local paths
 - `metadata` - Extracted page metadata
+- `bypass.cookies` / `bypass.hide_selectors` - Reflects what was injected pre-navigation (for audit)
+- `har` - Path to the recorded HAR, or `null` if `--capture-har` was not used
 
 ---
 
 ## Output
 
 This skill provides:
-- ✅ metadata.json with paths, metadata, image mapping
+- ✅ metadata.json with paths, metadata, image mapping, bypass trace, HAR path
 - ✅ screenshot.png for visual reference
 - ✅ cleaned.html with local image references
 - ✅ images/ folder with all downloaded images
+- ✅ network.har when `--capture-har` was used (consumed by migration-planner's `analyze-har.mjs` for third-party inventory)
 
 **Next step:** Pass these outputs to identify-page-structure skill
 

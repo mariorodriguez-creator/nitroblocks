@@ -27,6 +27,15 @@
  * Usage:
  *   node analyze-webpage.js "https://example.com/page" --output ./analysis
  *
+ * Advanced flags (for gated sites and network analysis):
+ *   --cookie "name=value"     Inject a cookie before navigation (repeatable)
+ *   --bypass-file <path>      Load bypass_cookies + hide_css_selectors from a
+ *                             bypass-result.json produced by bypass-overlays.mjs
+ *   --hide-css <selector>     Hide an element with CSS injection (repeatable)
+ *   --capture-har <path>      Write a HAR of all network requests to this path
+ *                             (defaults to <outputDir>/network.har when flag is
+ *                             present with no value)
+ *
  * Requirements:
  *   npm install playwright
  *   npx playwright install chromium
@@ -323,10 +332,58 @@ async function extractMetadata(page) {
 }
 
 /**
- * Main analysis function
+ * Parse a "name=value" cookie string into a Playwright cookie object.
+ * The domain is inferred from the URL being navigated.
  */
-async function analyzeWebpage(url, outputDir) {
-  // Ensure output directory exists
+function buildCookie(cookieStr, hostname) {
+  const idx = cookieStr.indexOf('=');
+  if (idx === -1) return null;
+  const name = cookieStr.slice(0, idx).trim();
+  const value = cookieStr.slice(idx + 1).trim();
+  if (!name) return null;
+  return {
+    name,
+    value,
+    domain: hostname.startsWith('.') ? hostname : `.${hostname}`,
+    path: '/',
+  };
+}
+
+/**
+ * Load bypass cookies + hide selectors from a bypass-result.json file
+ * produced by bypass-overlays.mjs. Both fields are optional.
+ */
+function loadBypassFile(filePath, hostname) {
+  if (!filePath) return { cookies: [], hideSelectors: [] };
+  try {
+    const raw = fs.readFileSync(filePath, 'utf-8');
+    const data = JSON.parse(raw);
+    const cookies = (data.bypass_cookies_full || []).map((c) => ({
+      name: c.name,
+      value: c.value,
+      domain: hostname.startsWith('.') ? hostname : `.${hostname}`,
+      path: '/',
+    }));
+    const hideSelectors = data.hide_css_selectors || [];
+    return { cookies, hideSelectors };
+  } catch (err) {
+    console.error(`⚠️  Failed to read bypass file ${filePath}: ${err.message}`);
+    return { cookies: [], hideSelectors: [] };
+  }
+}
+
+/**
+ * Main analysis function
+ *
+ * @param {string} url - URL to analyze
+ * @param {string} outputDir - directory for artifacts
+ * @param {Object} [options]
+ * @param {string[]} [options.cookies]        - ["name=value", ...] to inject
+ * @param {string}   [options.bypassFile]     - path to bypass-result.json
+ * @param {string[]} [options.hideSelectors]  - CSS selectors to hide pre-render
+ * @param {string}   [options.harPath]        - if set, record HAR to this path
+ */
+async function analyzeWebpage(url, outputDir, options = {}) {
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
   }
@@ -334,69 +391,95 @@ async function analyzeWebpage(url, outputDir) {
   console.error(`Analyzing: ${url}`);
   console.error(`Output directory: ${outputDir}`);
 
-  // Launch browser
+  const hostname = new URL(url).hostname;
+
+  // Resolve cookies from CLI flags + bypass file
+  const bypassData = loadBypassFile(options.bypassFile, hostname);
+  const explicitCookies = (options.cookies || [])
+    .map((c) => buildCookie(c, hostname))
+    .filter(Boolean);
+  const allCookies = [...bypassData.cookies, ...explicitCookies];
+
+  const hideSelectors = [
+    ...bypassData.hideSelectors,
+    ...(options.hideSelectors || []),
+  ];
+
+  const harPath = options.harPath || null;
+
   const browser = await chromium.launch();
-  const page = await browser.newPage();
+  const contextOptions = {};
+  if (harPath) {
+    // Playwright writes the HAR on context.close(), so we need a context
+    // (newPage() alone would auto-create a context without HAR recording).
+    contextOptions.recordHar = { path: harPath, content: 'omit' };
+    console.error(`Recording HAR to: ${harPath}`);
+  }
+  const context = await browser.newContext(contextOptions);
+
+  if (allCookies.length > 0) {
+    await context.addCookies(allCookies);
+    console.error(`Injected ${allCookies.length} cookie(s): ${allCookies.map((c) => c.name).join(', ')}`);
+  }
+
+  // Inject hide CSS before navigation so overlays never flash on-screen
+  if (hideSelectors.length > 0) {
+    const hideCSS = `${hideSelectors.join(', ')} { display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; }`;
+    await context.addInitScript((css) => {
+      const style = document.createElement('style');
+      style.textContent = css;
+      document.documentElement.appendChild(style);
+    }, hideCSS);
+    console.error(`Hiding ${hideSelectors.length} overlay selector(s)`);
+  }
+
+  const page = await context.newPage();
 
   try {
-    // Set up image capture BEFORE navigation
     console.error('Setting up image capture...');
     const captureState = setupImageCapture(page, outputDir);
 
-    // Navigate to page
     console.error('Navigating to page...');
     try {
-      // Try networkidle first (most reliable when it works)
       await page.goto(url);
     } catch (error) {
-      // Fall back to domcontentloaded if networkidle times out
       console.error('⚠️  networkidle timeout, falling back to domcontentloaded...');
       await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-      await page.waitForTimeout(3000); // Give page extra time to settle
+      await page.waitForTimeout(3000);
     }
 
-    // Scroll to trigger lazy loading
     console.error('Scrolling to trigger lazy-loaded content...');
     await scrollToTriggerLazyLoad(page);
-    await page.waitForTimeout(1000); // Give lazy-loaded images time to populate
+    await page.waitForTimeout(1000);
 
-    // Wait for all pending images to complete
     console.error(`Waiting for ${captureState.pendingImages.size} pending images...`);
     await waitForPendingImages(captureState, 5000);
     console.error(`✅ Image capture complete: ${captureState.stats.total} total, ${captureState.stats.converted} converted, ${captureState.stats.failed} failed`);
 
-    // Take screenshot
     console.error('Capturing screenshot...');
     const screenshot = path.join(outputDir, 'screenshot.png');
     await page.screenshot({ path: screenshot, fullPage: true });
 
-    // Extract metadata
     console.error('Extracting metadata...');
     const metadata = await extractMetadata(page);
 
-    // Disable image capture (images already captured)
     captureState.disable();
 
-    // Fix images in DOM (background images, picture elements, relative URLs, inline SVGs)
     console.error('Fixing images in DOM...');
     await fixImagesInDom(page, url);
 
-    // Extract cleaned HTML
     console.error('Extracting cleaned HTML...');
     let html = await extractCleanedHTML(page);
 
-    // Replace image URLs with local paths
     console.error('Replacing image URLs with local paths...');
     html = replaceImageUrls(html, captureState.imageMap);
 
     const htmlPath = path.join(outputDir, 'cleaned.html');
     fs.writeFileSync(htmlPath, html, 'utf-8');
 
-    // Generate document paths
     console.error('Generating document paths...');
     const paths = generateDocumentPathInfo(url);
 
-    // Build result object
     const result = {
       url,
       timestamp: new Date().toISOString(),
@@ -405,22 +488,26 @@ async function analyzeWebpage(url, outputDir) {
         htmlFilePath: paths.htmlFilePath,
         mdFilePath: paths.mdFilePath,
         dirPath: paths.dirPath,
-        filename: paths.filename
+        filename: paths.filename,
       },
       screenshot,
       html: {
         filePath: htmlPath,
-        size: html.length
+        size: html.length,
       },
       metadata,
       images: {
         count: captureState.imageMap.size,
         mapping: Object.fromEntries(captureState.imageMap),
-        stats: captureState.stats
-      }
+        stats: captureState.stats,
+      },
+      bypass: {
+        cookies: allCookies.map((c) => c.name),
+        hide_selectors: hideSelectors,
+      },
+      har: harPath || null,
     };
 
-    // Save metadata.json file
     const metadataPath = path.join(outputDir, 'metadata.json');
     fs.writeFileSync(metadataPath, JSON.stringify(result, null, 2), 'utf-8');
     console.error(`Saved metadata to: ${metadataPath}`);
@@ -429,6 +516,8 @@ async function analyzeWebpage(url, outputDir) {
 
     return result;
   } finally {
+    // Closing the context flushes the HAR to disk. Browser close after.
+    await context.close();
     await browser.close();
   }
 }
@@ -441,23 +530,35 @@ async function main() {
 
   if (args.length === 0 || args[0] === '--help' || args[0] === '-h') {
     console.error(`
-Usage: node analyze-webpage.js <url> [--output <dir>]
+Usage: node analyze-webpage.js <url> [options]
 
 Analyze a webpage and prepare it for content migration.
 
 Arguments:
-  <url>              URL of the webpage to analyze (required)
-  --output <dir>     Output directory for artifacts (default: ./page-analysis)
+  <url>                      URL of the webpage to analyze (required)
+
+Options:
+  --output <dir>             Output directory for artifacts (default: ./page-analysis)
+  --cookie "name=value"      Inject a cookie before navigation (repeatable)
+  --bypass-file <path>       Read bypass_cookies + hide_css_selectors from
+                             a bypass-result.json (output of bypass-overlays.mjs)
+  --hide-css <selector>      Hide an element with CSS injection (repeatable)
+  --capture-har [path]       Record a HAR of all network requests. If path is
+                             omitted, writes <outputDir>/network.har.
 
 Examples:
   node analyze-webpage.js "https://example.com/page"
   node analyze-webpage.js "https://example.com/page" --output ./my-analysis
+  node analyze-webpage.js "https://gated.example.com" \\
+    --bypass-file ./migration-work/bypass-result.json \\
+    --capture-har
 
 Output:
   - screenshot.png            Screenshot of the page
   - cleaned.html              Extracted HTML with preserved attributes
-  - metadata.json             Complete analysis results
+  - metadata.json             Complete analysis results (+ bypass + har fields)
   - images/                   Downloaded images
+  - network.har               HAR of network requests (when --capture-har used)
 
 Requirements:
   npm install playwright
@@ -468,17 +569,64 @@ Requirements:
 
   const url = args[0];
   let outputDir = './page-analysis';
+  const cookies = [];
+  const hideSelectors = [];
+  let bypassFile = null;
+  let harPath = null;
+  let harRequested = false;
 
-  // Parse --output flag
-  const outputIndex = args.indexOf('--output');
-  if (outputIndex !== -1 && args[outputIndex + 1]) {
-    outputDir = args[outputIndex + 1];
+  for (let i = 1; i < args.length; i++) {
+    const arg = args[i];
+    const next = args[i + 1];
+    switch (arg) {
+      case '--output':
+        if (next) {
+          outputDir = next;
+          i += 1;
+        }
+        break;
+      case '--cookie':
+        if (next) {
+          cookies.push(next);
+          i += 1;
+        }
+        break;
+      case '--bypass-file':
+        if (next) {
+          bypassFile = next;
+          i += 1;
+        }
+        break;
+      case '--hide-css':
+        if (next) {
+          hideSelectors.push(next);
+          i += 1;
+        }
+        break;
+      case '--capture-har':
+        harRequested = true;
+        if (next && !next.startsWith('--')) {
+          harPath = next;
+          i += 1;
+        }
+        break;
+      default:
+        break;
+    }
+  }
+
+  if (harRequested && !harPath) {
+    harPath = path.join(outputDir, 'network.har');
   }
 
   try {
-    const result = await analyzeWebpage(url, outputDir);
+    const result = await analyzeWebpage(url, outputDir, {
+      cookies,
+      bypassFile,
+      hideSelectors,
+      harPath,
+    });
 
-    // Output JSON to stdout (stderr used for progress messages above)
     console.log(JSON.stringify(result, null, 2));
   } catch (error) {
     console.error(`Error analyzing webpage: ${error.message}`);

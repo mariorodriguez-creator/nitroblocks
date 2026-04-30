@@ -1,0 +1,137 @@
+{
+  "pageIntent": {
+    "type": "legal",
+    "confidence": 0.4,
+    "path": "/ca/en",
+    "title": "Nicotine Pouches To Quit Smoking | ZONNIC Canada",
+    "description": "ZONNIC is a form of Nicotine Replacement Therapy. It can help you quit smoking by delivering nicotine to your body in the form of nicotine pouches.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      }
+    ],
+    "alternates": [],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Sign In To Your Account",
+        "bounds": {
+          "x": 0,
+          "y": 171.515625,
+          "w": 1280,
+          "h": 149
+        },
+        "buttonCount": 7,
+        "cardCount": 18,
+        "slots": {
+          "heading": "Sign In To Your Account",
+          "ctaCount": 7,
+          "lede": "QuitZone\nNULL | EN\nLog in\nHealthcare Practitioners\nNICOTINE POUCHES\nWHAT IS ZONNIC\nWHY ZONNIC\nQUIT ZONE\nBLOG\nHELP\nSTORE LOCATOR"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 55,
+          "y": 255.515625,
+          "w": 1170,
+          "h": 65
+        },
+        "buttonCount": 0,
+        "cardCount": 16,
+        "slots": {
+          "lede": "NICOTINE POUCHES\nWHAT IS ZONNIC\nWHY ZONNIC\nQUIT ZONE\nBLOG\nHELP\nSTORE LOCATOR"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4639.65625,
+          "w": 1280,
+          "h": 55
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "© Zonnic 2026"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4694.65625,
+          "w": 1280,
+          "h": 658
+        },
+        "buttonCount": 3,
+        "cardCount": 15,
+        "slots": {
+          "ctaCount": 3,
+          "lede": "HELP\nContact Us\nFAQ\nStore Locator\nZONNIC helped me quit.\nWorld No Tobacco Day\nThe truth about ZONNIC\nLEGAL\nTerms of Use\nPrivacy Policy\nUser-Generated Content Terms of Use\nGET IN TOUCH\n1-833-ZONNIC-1 (1-833-966-6421)\nSubmit a ticket\nOpening Hours\nMON-FRI 8AM TO 7PM EST\nFOLLOW US ON INSTAGRAM"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 20,
+          "y": 5091.65625,
+          "w": 1240,
+          "h": 219
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "ZONNIC is a form of Nicotine Replacement Therapy."
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "feature-grid": 1,
+      "nav": 1,
+      "footer": 3
+    },
+    "readingOrder": [
+      "feature-grid",
+      "nav",
+      "footer",
+      "footer",
+      "footer"
+    ]
+  }
+}

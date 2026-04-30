@@ -1,0 +1,86 @@
+{
+  "url": "https://www.zonnic.ca/ca/en/testingblogarticletemplate",
+  "timestamp": "2026-04-29T19:59:29.274Z",
+  "paths": {
+    "documentPath": "/ca/en/testingblogarticletemplate",
+    "htmlFilePath": "/ca/en/testingblogarticletemplate.plain.html",
+    "mdFilePath": "/ca/en/testingblogarticletemplate.md",
+    "dirPath": "/ca/en",
+    "filename": "testingblogarticletemplate"
+  },
+  "screenshot": "migration-work/pages/testingblogarticletemplate/screenshot.png",
+  "html": {
+    "filePath": "migration-work/pages/testingblogarticletemplate/cleaned.html",
+    "size": 630247
+  },
+  "metadata": {
+    "title": "TestingBlogArticleTemplate",
+    "content-path": "/content/zonnic/ca/en/ca/en/testingblogarticletemplate",
+    "template": "blog-article-template",
+    "viewport": "width=device-width, initial-scale=1",
+    "google-site-verification": "6MBLmzP_N1Bi1bYlrxx9DkOEl-WlwsKXsoI0cgcS7C0"
+  },
+  "images": {
+    "count": 17,
+    "mapping": {
+      "https://www.zonnic.ca/content/dam/zonnic/images/blogs/hero_global.png": "./images/a8aea9e428395fe78ae2048e2ee47190.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/health-warning/hw/en/ZONNIC-HW_Desktop_En.webp": "./images/9267cdcb150922a9ca3c4265788be2ee.png",
+      "https://cdn.cookielaw.org/logos/static/ot_close.svg": "./images/cec4a77b663a079574d478e06d310304.png",
+      "https://cdn.cookielaw.org/logos/static/ot_company_logo.png": "./images/0a82704908bb1ee9f1f8e8a0196426e0.png",
+      "https://cdn.cookielaw.org/logos/static/powered_by_logo.svg": "./images/a9584a367ebcccfac48987ce1fec5eae.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/logo/ZONNIC%20Logo_Mint_Gradient%20(1)%201.svg": "./images/95bf1dd63cd05fe5c097f87ed88ab5e9.png",
+      "https://dpm.demdex.net/ibs:dpid=411&dpuuid=afJjGAAAAI51ewOJ": "./images/861f865d2185e54c717f45f7b615a61f.png",
+      "https://batgsdzoonicprodcanada.112.2o7.net/b/ss/batgsdzoonicprodcanada/1/JS-2.25.0-LEWM/s25047275632429?AQB=1&ndh=1&pf=1&t=29%2F3%2F2026%2021%3A59%3A20%203%20-120&sdid=3469C9DA4D16DE8E-2B03E1F6605FD687&mid=86707658669010480100953926339104330760&aamlh=6&ce=UTF-8&pageName=testingblogarticletemplate&g=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Ftestingblogarticletemplate&cc=CAD&ch=testingblogarticletemplate&server=www.zonnic.ca&aamb=6G1ynYcLPuiQxYZrsz_pkqfLG9yMXBpb2zX5dvJdYQJzPXImdj0y&c1=testingblogarticletemplate&v1=testingblogarticletemplate&c2=testingblogarticletemplate&v2=testingblogarticletemplate&c3=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Ftestingblogarticletemplate&v3=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Ftestingblogarticletemplate&c4=%2Fca%2Fen%2Ftestingblogarticletemplate&v4=%2Fca%2Fen%2Ftestingblogarticletemplate&c6=www.zonnic.ca&v6=www.zonnic.ca&v7=en-us&c8=ca&v8=ca&v24=logged%20out&v27=testingblogarticletemplate&v28=testingblogarticletemplate&v31=mozilla%2F5.0%20%28macintosh%3B%20intel%20mac%20os%20x%2010_15_7%29%20applewebkit%2F537.36%20%28khtml%2C%20like%20gecko%29%20headlesschrome%2F145.0.7632.6%20safari%2F537.36&v41=0.9076612214464114_1777492760081&s=1280x720&c=24&j=1.6&v=N&k=Y&bw=1280&bh=720&mcorgid=360C70DD5CFA548D0A495FB0%40AdobeOrg&AQE=1": "./images/53b11c54e92a23e8d077f6dd3037d21d.png",
+      "https://dpm.demdex.net/ibs:dpid=771&dpuuid=CAESEAZKBNW1_QTAa7_WfvMVfiQ&google_cver=1?gdpr=0&gdpr_consent=": "./images/03e576d2aacaf0f99d8ba8d9953c9de4.png",
+      "https://match.adsrvr.org/track/cmf/generic?ttd_pid=aam&gdpr=0&gdpr_consent=&domain=www.zonnic.ca&ttd_tpi=1": "./images/7dd99802c664b018613dcceba7c9d84a.png",
+      "https://www.zonnic.ca/content/dam/zonnic/images/blogs/inline_image_global.png": "./images/830a8a734cffd4029619d13f1c517d13.png",
+      "https://www.zonnic.ca/content/dam/zonnic/images/global/mastercard.svg": "./images/3d2d823d211a65d54c7186b31062c6ca.png",
+      "https://www.zonnic.ca/content/dam/zonnic/images/global/visa.svg": "./images/e089ac9ce83110dcbe408b5543f32e54.png",
+      "https://www.zonnic.ca/content/dam/zonnic/images/global/amex.svg": "./images/690e605bc4a6f618f5a630bb48eb2f40.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/logo/Primary%20Logo%20White.svg": "./images/aec98ce528c69616437c9f326102c79d.png",
+      "https://www.zonnic.ca/content/dam/zonnic/images/zonnic-logo-primary.svg": "./images/e33c47925b7749262ad97ce4a7e74c0f.png",
+      "https://siteintercept.qualtrics.com/static/q-siteintercept/.blob/903d4c43fed535fb4d325b1612c605e48417dc74_wr-dialog-close-btn-black.png": "./images/ebe7cb4c9978a0489104b88b681efe8f.png"
+    },
+    "stats": {
+      "total": 28,
+      "converted": 13,
+      "skipped": 4,
+      "failed": 9,
+      "tooLarge": 0,
+      "limitReached": 0
+    }
+  },
+  "bypass": {
+    "cookies": [
+      "age_verify",
+      "age_verified",
+      "ageVerified",
+      "age-gate",
+      "over_age",
+      "is_adult",
+      "OptanonAlertBoxClosed",
+      "CookieConsent"
+    ],
+    "hide_selectors": [
+      "#onetrust-banner-sdk",
+      "#onetrust-consent-sdk",
+      "#onetrust-pc-sdk",
+      ".ot-sdk-container",
+      "#ot-sdk-btn-floating",
+      "[id^=\"QSI\"]",
+      "[class*=\"QSIFeedbackButton\"]",
+      "[id*=\"embeddedMessaging\"]",
+      "[class*=\"embeddedService\"]",
+      ".helpButton",
+      ".grecaptcha-badge",
+      "[class*=\"agegate\"]",
+      "[data-component-name=\"ageGate\"]",
+      "[data-component-id*=\"AgeGate\"]",
+      "bat-agegate-zonnic",
+      "[class*=\"locationselector\"]",
+      "bat-locationselector-zonnic",
+      "#ageGate"
+    ]
+  },
+  "har": "migration-work/pages/testingblogarticletemplate/network.har"
+}

@@ -1,0 +1,73 @@
+{
+  "tone": "friendly",
+  "pronoun": "you-only",
+  "headingStyle": "Title Case",
+  "headingLengthClass": "balanced",
+  "ctaVerbs": [
+    {
+      "value": "learn",
+      "count": 6
+    },
+    {
+      "value": "quitzone",
+      "count": 1
+    },
+    {
+      "value": "log",
+      "count": 1
+    },
+    {
+      "value": "watch",
+      "count": 1
+    },
+    {
+      "value": "find",
+      "count": 1
+    },
+    {
+      "value": "sign",
+      "count": 1
+    },
+    {
+      "value": "give",
+      "count": 1
+    }
+  ],
+  "buttonPatterns": [
+    {
+      "value": "learn more",
+      "count": 6
+    },
+    {
+      "value": "quitzone",
+      "count": 1
+    },
+    {
+      "value": "log in",
+      "count": 1
+    },
+    {
+      "value": "watch their stories",
+      "count": 1
+    },
+    {
+      "value": "find a pharmacy",
+      "count": 1
+    },
+    {
+      "value": "sign up now",
+      "count": 1
+    },
+    {
+      "value": "give feedback",
+      "count": 1
+    }
+  ],
+  "sampleHeadings": [
+    "Sign In To Your Account"
+  ],
+  "stats": {
+    "buttons": 12,
+    "headings": 1
+  }
+}

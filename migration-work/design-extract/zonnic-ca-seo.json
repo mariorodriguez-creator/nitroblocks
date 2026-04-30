@@ -1,0 +1,35 @@
+{
+  "openGraph": {
+    "url": "https://www.zonnic.ca/ca/en"
+  },
+  "twitter": {},
+  "description": "ZONNIC is a form of Nicotine Replacement Therapy. It can help you quit smoking by delivering nicotine to your body in the form of nicotine pouches.",
+  "canonical": null,
+  "themeColor": null,
+  "viewport": "width=device-width, initial-scale=1",
+  "favicons": [
+    {
+      "rel": "icon",
+      "href": "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/logo/ZONNIC-Favicon-32x32-mint.png",
+      "sizes": "",
+      "type": "image/png"
+    }
+  ],
+  "manifest": null,
+  "structuredData": [
+    {
+      "type": "WebSite",
+      "name": "ZONNIC Canada",
+      "sample": "{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"url\":\"https://www.zonnic.ca/ca/en\",\"name\":\"ZONNIC Canada\",\"description\":\"Zonnic offers nicotine pouches designed to help control cravings effectively. Discover a variety of flavors and find a new way to manage nicotine intake conveniently.\",\"publisher\":{\"@type\":\"Organization\",\"name\":\"ZONNIC Canada\",\"url\":\"https://www.zonnic.ca/ca/en\",\"logo\":\"http"
+    }
+  ],
+  "score": {
+    "hasOg": true,
+    "hasTwitter": false,
+    "hasDescription": true,
+    "hasCanonical": false,
+    "hasStructuredData": true,
+    "hasFavicon": true,
+    "hasThemeColor": false
+  }
+}

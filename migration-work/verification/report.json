@@ -1,0 +1,238 @@
+{
+  "work_dir": "./migration-work",
+  "overall_confidence": "LOW",
+  "dimensions": {
+    "page_inventory": {
+      "level": "HIGH",
+      "reason": "corroborated"
+    },
+    "bypass_integrity": {
+      "level": "LOW",
+      "reason": "overlay fingerprints leaked into extraction; bypass probe did not verify"
+    },
+    "design_tokens": {
+      "level": "HIGH",
+      "reason": "corroborated"
+    },
+    "component_anatomy": {
+      "level": "LOW",
+      "reason": "anatomy does not reflect DOM evidence"
+    },
+    "template_coverage": {
+      "level": "MEDIUM",
+      "reason": "partial evidence"
+    },
+    "third_party_integrations": {
+      "level": "LOW",
+      "reason": "no direct evidence"
+    },
+    "accessibility": {
+      "level": "LOW",
+      "reason": "3 critical WCAG violation(s) at runtime"
+    },
+    "visual_reference": {
+      "level": "HIGH",
+      "reason": "corroborated"
+    }
+  },
+  "inputs": {
+    "sitemap": {
+      "total_pages": 142,
+      "total_pages_filtered": 106,
+      "template_groups": 25,
+      "representative_urls": 25,
+      "exclusion_summary": {
+        "test-page": 6,
+        "test-bucket": 1,
+        "test-ip": 1,
+        "locale-mismatch": 28
+      }
+    },
+    "bypass": {
+      "overlays_detected": [
+        "age-gate",
+        "cookie-consent",
+        "salesforce-chat",
+        "location-selector"
+      ],
+      "verified": false
+    },
+    "bypass_leak": {
+      "pass": false,
+      "total_hits": 2,
+      "critical_categories": [
+        "consent-banner",
+        "chat-widget"
+      ]
+    },
+    "grade_delta": {
+      "sampled": 5,
+      "high_spread_dimensions": [],
+      "homepage_is_proxy": true
+    },
+    "anatomy_diff": {
+      "signal": "LOW",
+      "overlap_ratio": 0,
+      "structure_covered_by_anatomy": 0,
+      "anatomy_only_count": 2,
+      "structure_only_count": 8
+    },
+    "third_party": null,
+    "a11y": {
+      "pages_scanned": 10,
+      "violations": 9,
+      "critical": 3,
+      "serious": 11
+    },
+    "structure": {
+      "pages_analyzed": 10,
+      "total_unique_organisms": 8
+    },
+    "scrape": {
+      "representative_urls": 25,
+      "scraped_pages": 10,
+      "coverage": 0.4
+    },
+    "screenshots": {
+      "total_files": 75,
+      "by_viewport": {
+        "mobile": 25,
+        "tablet": 25,
+        "desktop": 25
+      },
+      "expected_templates": 25,
+      "fully_covered": 25,
+      "partially_covered": 0,
+      "missing": 0,
+      "coverage": 1,
+      "orphan_count": 0,
+      "per_template": {
+        "homepage": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "testingblogarticletemplate": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "pouches-zonnic-mint-24-nicotine-pouches": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "why-zonnic": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "what-is-zonnic": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "store-locator": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "sign-up": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "contact-us-let-us-talk-testimonials": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "newsletter": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "blog-what-are-nicotine-pouches": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "healthcare-professionals-side-effects-quitting-smoking-patient-concerns": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "zonnic-nicotine-pouches11": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "zonnic-helped-me-quit": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "world-no-tobacco-day": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "quit-zone": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "keep-zonnic-accessible": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "truth-about-zonnic": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "quit-on-your-terms": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "faq-old-donotindex-faq-general-information": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "ask-your-pharmacist": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "zonnic-insurance-reimbursement": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "real-people-real-success-marks-quit-smoking-testimonial": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "faq-about-zonnic": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "quit-zone-archived-page": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        },
+        "email-verification": {
+          "mobile": true,
+          "tablet": true,
+          "desktop": true
+        }
+      }
+    }
+  }
+}

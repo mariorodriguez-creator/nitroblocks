@@ -1,0 +1,118 @@
+{
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#182465"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#616069"
+        },
+        "n200": {
+          "$value": "#ffffff"
+        },
+        "n500": {
+          "$value": "#f6f6f6"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#ffffff"
+        },
+        "bg1": {
+          "$value": "#182465"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000"
+        },
+        "text1": {
+          "$value": "#616069"
+        },
+        "text2": {
+          "$value": "#182465"
+        },
+        "text3": {
+          "$value": "#141e53"
+        },
+        "text4": {
+          "$value": "#2f2f2f"
+        },
+        "text5": {
+          "$value": "#ffffff"
+        },
+        "text6": {
+          "$value": "#e00830"
+        },
+        "text7": {
+          "$value": "#3a3a3f"
+        },
+        "text8": {
+          "$value": "#808080"
+        },
+        "text9": {
+          "$value": "#666666"
+        }
+      }
+    },
+    "radius": {
+      "r1": {
+        "$value": "6px"
+      },
+      "r2": {
+        "$value": "14px"
+      }
+    },
+    "shadow": {
+      "sh0": {
+        "$value": "rgba(47, 47, 47, 0.3) 0px 2px 5px 0px"
+      }
+    },
+    "fontFamily": {
+      "f0": {
+        "$value": "Santral"
+      },
+      "f1": {
+        "$value": "Arial"
+      },
+      "f2": {
+        "$value": "Times"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}"
+        },
+        "secondary": {
+          "$value": "{primitive.color.brand.secondary}"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}"
+        }
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}"
+      }
+    }
+  }
+}

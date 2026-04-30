@@ -1,0 +1,6 @@
+[verify] Scanning ./migration-work/design-extract for overlay leakage
+[verify] Bypass detected overlays: age-gate, cookie-consent, salesforce-chat, location-selector
+[verify] 42 file(s) to scan
+[verify] FAIL (2 hits, 2 critical)
+[verify] Wrote /Users/2245328/Repos/nitroblocks/migration-work/verification/bypass-leak.json
+[verify] Wrote /Users/2245328/Repos/nitroblocks/migration-work/verification/bypass-leak.md

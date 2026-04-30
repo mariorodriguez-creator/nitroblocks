@@ -1,0 +1,161 @@
+{
+  "signal": "LOW",
+  "overlap_ratio": 0,
+  "structure_covered_by_anatomy": 0,
+  "anatomy_only_count": 2,
+  "structure_only_count": 8,
+  "intersection_count": 0,
+  "anatomy_names": [
+    "Card",
+    "Button"
+  ],
+  "anatomy_canonical_count": 2,
+  "structure_canonical_count": 8,
+  "only_in_anatomy": [
+    {
+      "canonical": "card",
+      "name": "Card"
+    },
+    {
+      "canonical": "button",
+      "name": "Button"
+    }
+  ],
+  "only_in_structure": [
+    {
+      "canonical": "qsifeedback-button",
+      "fingerprint": "div.QSIFeedbackButton",
+      "pages": [
+        "blog-what-are-nicotine-pouches",
+        "contact-us-let-us-talk-testimonials",
+        "homepage",
+        "newsletter",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "total": 20
+    },
+    {
+      "canonical": "ot-sdk-row",
+      "fingerprint": "section.ot-sdk-row",
+      "pages": [
+        "blog-what-are-nicotine-pouches",
+        "contact-us-let-us-talk-testimonials",
+        "homepage",
+        "newsletter",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "total": 10
+    },
+    {
+      "canonical": "ot-hide",
+      "fingerprint": "section.ot-hide",
+      "pages": [
+        "blog-what-are-nicotine-pouches",
+        "contact-us-let-us-talk-testimonials",
+        "homepage",
+        "newsletter",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "total": 10
+    },
+    {
+      "canonical": "section",
+      "fingerprint": "section",
+      "pages": [
+        "blog-what-are-nicotine-pouches",
+        "contact-us-let-us-talk-testimonials",
+        "homepage",
+        "newsletter",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "total": 10
+    },
+    {
+      "canonical": "ot-host-cnt",
+      "fingerprint": "section.ot-host-cnt",
+      "pages": [
+        "blog-what-are-nicotine-pouches",
+        "contact-us-let-us-talk-testimonials",
+        "homepage",
+        "newsletter",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "total": 10
+    },
+    {
+      "canonical": "bat-wrapper",
+      "fingerprint": "div.bat-wrapper",
+      "pages": [
+        "blog-what-are-nicotine-pouches",
+        "contact-us-let-us-talk-testimonials",
+        "homepage",
+        "newsletter",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "total": 10
+    },
+    {
+      "canonical": "div",
+      "fingerprint": "div",
+      "pages": [
+        "blog-what-are-nicotine-pouches",
+        "contact-us-let-us-talk-testimonials",
+        "homepage",
+        "newsletter",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "total": 10
+    },
+    {
+      "canonical": "embedded-messaging",
+      "fingerprint": "div.embedded-messaging",
+      "pages": [
+        "contact-us-let-us-talk-testimonials",
+        "homepage",
+        "newsletter",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "total": 8
+    }
+  ],
+  "intersection": []
+}

@@ -1,0 +1,449 @@
+{
+  "slug": "pouches-zonnic-mint-24-nicotine-pouches",
+  "url": "https://www.zonnic.ca/ca/en/pouches/zonnic-mint-24-nicotine-pouches",
+  "counts": {
+    "violations": 0,
+    "incomplete": 3,
+    "byImpact": {
+      "critical": 0,
+      "serious": 0,
+      "moderate": 0,
+      "minor": 0
+    },
+    "byRule": {}
+  },
+  "violations": [],
+  "incomplete": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "tags": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT"
+      ],
+      "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=axeAPI",
+      "nodes": [
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "0.0pt (0px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<button class=\"slick-prev slick-arrow\" aria-label=\"Previous\" type=\"button\" style=\"\">Previous</button>",
+          "target": [
+            ".producthero-gallery-images > .slick-prev.slick-arrow[aria-label=\"Previous\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "0.0pt (0px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<button class=\"slick-next slick-arrow\" aria-label=\"Next\" type=\"button\" style=\"\">Next</button>",
+          "target": [
+            ".producthero-gallery-images > .slick-next.slick-arrow[aria-label=\"Next\"]"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "10.5pt (14px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<li>A classic taste formulated with <b>balanced minty notes</b> and subtle sweetness.</li>",
+          "target": [
+            "span > ul > li:nth-child(1)"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "10.5pt (14px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<li><b>ZONNIC</b> is a form of Nicotine Replacement Therapy. It can help you quit smoking by delivering nicotine to your body, temporarily relieving cravings and nicotine withdrawal symptoms.</li>",
+          "target": [
+            "span > ul > li:nth-child(3)"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "10.5pt (14px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<li><b>Non-medicinal ingredients</b>: <b>Mint flavour</b>, microcrystalline cellulose, propylene glycol, sodium alginate, sodium bicarbonate, sodium chloride, sucralose, water and xylitol.</li>",
+          "target": [
+            "span > ul > li:nth-child(4)"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "10.5pt (14px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<li>Contains spearmint oil. May produce an allergic skin reaction.</li>",
+          "target": [
+            "span > ul > li:nth-child(5)"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "10.5pt (14px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<li>No sucrose added.</li>",
+          "target": [
+            "span > ul > li:nth-child(6)"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "15.0pt (20px)",
+                "fontWeight": "normal",
+                "messageKey": "shortTextContent",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element content is too short to determine if it is actual text content"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<text x=\"50%\" y=\"50%\" dominant-baseline=\"central\" text-anchor=\"middle\" font-size=\"20\" class=\"zonnic-svg-text\">1</text>",
+          "target": [
+            ".zonnic-step:nth-child(1) > .zonnic-number-icon > svg[width=\"48\"][height=\"48\"][viewBox=\"0 0 48 48\"] > text"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "12.0pt (16px)",
+                "fontWeight": "normal",
+                "messageKey": "bgOverlap",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element's background color could not be determined because it is overlapped by another element"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<div class=\"zonnic-step-text\">Choose your product.</div>",
+          "target": [
+            ".zonnic-step:nth-child(1) > .zonnic-step-text"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "15.0pt (20px)",
+                "fontWeight": "normal",
+                "messageKey": "shortTextContent",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element content is too short to determine if it is actual text content"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<text x=\"50%\" y=\"50%\" dominant-baseline=\"central\" text-anchor=\"middle\" font-size=\"20\" class=\"zonnic-svg-text\">2</text>",
+          "target": [
+            ".zonnic-step:nth-child(2) > .zonnic-number-icon > svg[width=\"48\"][height=\"48\"][viewBox=\"0 0 48 48\"] > text"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+        },
+        {
+          "any": [
+            {
+              "id": "color-contrast",
+              "data": {
+                "contrastRatio": 0,
+                "fontSize": "15.0pt (20px)",
+                "fontWeight": "normal",
+                "messageKey": "shortTextContent",
+                "expectedContrastRatio": "4.5:1"
+              },
+              "relatedNodes": [],
+              "impact": "serious",
+              "message": "Element content is too short to determine if it is actual text content"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "serious",
+          "html": "<text x=\"50%\" y=\"50%\" dominant-baseline=\"central\" text-anchor=\"middle\" font-size=\"20\" class=\"zonnic-svg-text\">3</text>",
+          "target": [
+            ".zonnic-step:nth-child(3) > .zonnic-number-icon > svg[width=\"48\"][height=\"48\"][viewBox=\"0 0 48 48\"] > text"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element content is too short to determine if it is actual text content"
+        }
+      ]
+    },
+    {
+      "id": "duplicate-id-aria",
+      "impact": "critical",
+      "tags": [
+        "cat.parsing",
+        "wcag2a",
+        "wcag412",
+        "EN-301-549",
+        "EN-9.4.1.2"
+      ],
+      "description": "Ensure every id attribute value used in ARIA and in labels is unique",
+      "help": "IDs used in ARIA and labels must be unique",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/duplicate-id-aria?application=axeAPI",
+      "nodes": [
+        {
+          "any": [
+            {
+              "id": "duplicate-id-aria",
+              "data": "email-error",
+              "relatedNodes": [
+                {
+                  "html": "<div id=\"email-error\" class=\"bat-message  bat-form-msg error-msg error\" role=\"alert\" aria-live=\"assertive\">\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"bat-message-text\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<p class=\"sm\">Please enter a valid email address.</p>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t</div>",
+                  "target": [
+                    ".bat-form--signup-email > .bat-form-msg.error-msg.error"
+                  ]
+                }
+              ],
+              "impact": "critical",
+              "message": "Document has multiple elements referenced with ARIA with the same id attribute: email-error"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "critical",
+          "html": "<div id=\"email-error\" class=\"bat-message  bat-form-msg error-msg error\" role=\"alert\" aria-live=\"assertive\">\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"bat-message-text\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<p class=\"sm\">Please enter a valid email address.</p>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t</div>",
+          "target": [
+            ".bat-form--login-zonnic-email > .bat-form-msg.error-msg.error"
+          ],
+          "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: email-error"
+        },
+        {
+          "any": [
+            {
+              "id": "duplicate-id-aria",
+              "data": "password-error",
+              "relatedNodes": [
+                {
+                  "html": "<div id=\"password-error\" class=\"bat-message  bat-form-msg error-msg error\" role=\"alert\" aria-live=\"assertive\">",
+                  "target": [
+                    ".bat-form--signup-password.bat-form-field:nth-child(2) > .bat-form-msg.error-msg.error"
+                  ]
+                }
+              ],
+              "impact": "critical",
+              "message": "Document has multiple elements referenced with ARIA with the same id attribute: password-error"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "critical",
+          "html": "<div id=\"password-error\" class=\"bat-message  bat-form-msg error-msg error\" role=\"alert\" aria-live=\"assertive\">\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"bat-message-text\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<p class=\"sm\">This is a required field.</p>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t</div>",
+          "target": [
+            ".bat-form--login-zonnic-password > .bat-form-msg.error-msg.error"
+          ],
+          "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: password-error"
+        },
+        {
+          "any": [
+            {
+              "id": "duplicate-id-aria",
+              "data": "user_has_zonnic_can-error",
+              "relatedNodes": [
+                {
+                  "html": "<div id=\"user_has_zonnic_can-error\" class=\"bat-message  bat-form-msg error-msg error\" role=\"alert\" aria-live=\"assertive\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"bat-message-text\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tThis is a required field.\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>",
+                  "target": [
+                    ".bat-form--signup-has-can > .select-wrapper > .bat-form-msg.error-msg.error"
+                  ]
+                }
+              ],
+              "impact": "critical",
+              "message": "Document has multiple elements referenced with ARIA with the same id attribute: user_has_zonnic_can-error"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "critical",
+          "html": "<div id=\"user_has_zonnic_can-error\" class=\"bat-message  bat-form-msg error-msg error\" role=\"alert\" aria-live=\"assertive\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"bat-message-text\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tThis is a required field.\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>",
+          "target": [
+            ".bat-form--login-has-can > .select-wrapper > .bat-form-msg.error-msg.error"
+          ],
+          "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: user_has_zonnic_can-error"
+        }
+      ]
+    },
+    {
+      "id": "video-caption",
+      "impact": "critical",
+      "tags": [
+        "cat.text-alternatives",
+        "wcag2a",
+        "wcag122",
+        "section508",
+        "section508.22.a",
+        "TTv5",
+        "TT17.a",
+        "EN-301-549",
+        "EN-9.1.2.2"
+      ],
+      "description": "Ensure <video> elements have captions",
+      "help": "<video> elements must have captions",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/video-caption?application=axeAPI",
+      "nodes": [
+        {
+          "any": [],
+          "all": [],
+          "none": [
+            {
+              "id": "caption",
+              "data": null,
+              "relatedNodes": [],
+              "impact": "critical",
+              "message": "Check that captions is available for the element"
+            }
+          ],
+          "impact": "critical",
+          "html": "<video autoplay=\"\" controls=\"\" playsinline=\"\" muted=\"\" loop=\"\" class=\"bat-hero-zonnic--video-player\">\n\t\t\t\t\t\t<source src=\"/content/dam/zonnic-content/ca/2025/what-is-zonnic/video/3731-Sting01-V04 (1).mp4\" type=\"video/mp4\">\n\t\t\t\t\t\t\n\t\t\t\t\t</video>",
+          "target": [
+            "video"
+          ],
+          "failureSummary": "Fix all of the following:\n  Check that captions is available for the element"
+        }
+      ]
+    }
+  ],
+  "testEngine": {
+    "name": "axe-core",
+    "version": "4.10.0"
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "url": "https://www.zonnic.ca/ca/en/pouches",
+  "path": "/ca/en/pouches",
+  "added": {
+    "primitive": {
+      "radius": {
+        "r7": {
+          "$value": "100px"
+        }
+      },
+      "shadow": {
+        "sh10": {
+          "$value": "rgba(0, 0, 0, 0.2) 0px 0px 18px 0px"
+        }
+      }
+    }
+  },
+  "changed": {
+    "primitive": {
+      "color": {
+        "brand": {
+          "secondary": {
+            "$value": "#3860be"
+          }
+        },
+        "neutral": {
+          "n300": {
+            "$value": "#000000"
+          },
+          "n400": {
+            "$value": "#2f2f2f"
+          },
+          "n600": {
+            "$value": "#555555"
+          },
+          "n700": {
+            "$value": "#3a3a3f"
+          },
+          "n800": {
+            "$value": "#dedede"
+          },
+          "n900": {
+            "$value": "#808080"
+          },
+          "n1000": {
+            "$value": "#ebecf1"
+          },
+          "n1100": {
+            "$value": "#767676"
+          },
+          "n1200": {
+            "$value": "#9a9ca8"
+          },
+          "n1300": {
+            "$value": "#bbbbbb"
+          },
+          "n1400": {
+            "$value": "#a6a6a6"
+          }
+        },
+        "background": {
+          "bg2": {
+            "$value": "#f4f5f7"
+          },
+          "bg3": {
+            "$value": "#ebecf1"
+          },
+          "bg4": {
+            "$value": "#141e53"
+          },
+          "bg5": {
+            "$value": "#000000"
+          },
+          "bg6": {
+            "$value": "#ededed"
+          }
+        }
+      },
+      "spacing": {
+        "s0": {
+          "$value": "1px"
+        },
+        "s1": {
+          "$value": "10px"
+        },
+        "s2": {
+          "$value": "15px"
+        },
+        "s3": {
+          "$value": "18px"
+        },
+        "s4": {
+          "$value": "22px"
+        },
+        "s5": {
+          "$value": "30px"
+        },
+        "s6": {
+          "$value": "32px"
+        },
+        "s7": {
+          "$value": "34px"
+        },
+        "s8": {
+          "$value": "38px"
+        },
+        "s9": {
+          "$value": "40px"
+        },
+        "s10": {
+          "$value": "42px"
+        },
+        "s11": {
+          "$value": "48px"
+        },
+        "s12": {
+          "$value": "55px"
+        },
+        "s13": {
+          "$value": "57px"
+        },
+        "s14": {
+          "$value": "60px"
+        },
+        "s15": {
+          "$value": "70px"
+        },
+        "s16": {
+          "$value": "95px"
+        },
+        "s17": {
+          "$value": "102px"
+        },
+        "s18": {
+          "$value": "120px"
+        },
+        "s19": {
+          "$value": "123px"
+        },
+        "s20": {
+          "$value": "140px"
+        },
+        "s21": {
+          "$value": "203px"
+        }
+      },
+      "radius": {
+        "r0": {
+          "$value": "1px"
+        },
+        "r3": {
+          "$value": "17px"
+        },
+        "r4": {
+          "$value": "20px"
+        },
+        "r5": {
+          "$value": "36px"
+        },
+        "r6": {
+          "$value": "50px"
+        }
+      },
+      "shadow": {
+        "sh1": {
+          "$value": "rgb(199, 197, 199) -3px -3px 5px -2px"
+        },
+        "sh2": {
+          "$value": "rgba(0, 0, 0, 0.3) 0px 0px 10px 0px"
+        },
+        "sh3": {
+          "$value": "rgb(153, 153, 153) 0px 2px 10px -3px"
+        },
+        "sh4": {
+          "$value": "rgb(199, 197, 199) 0px 0px 12px 2px"
+        },
+        "sh5": {
+          "$value": "rgba(0, 0, 0, 0.2) 0px 4px 8px 0px"
+        },
+        "sh6": {
+          "$value": "rgba(0, 0, 0, 0.2) 0px 4px 10px 0px"
+        },
+        "sh7": {
+          "$value": "rgb(97, 96, 105) 0px 5px 10px 0px"
+        },
+        "sh8": {
+          "$value": "rgba(0, 0, 0, 0.3) 3px 6px 10px 0px"
+        },
+        "sh9": {
+          "$value": "rgba(0, 0, 0, 0.2) 0px 6px 12px 0px"
+        }
+      },
+      "fontFamily": {
+        "f3": {
+          "$value": "sans-serif"
+        }
+      }
+    },
+    "semantic": {
+      "typography": {
+        "body": {
+          "$value": {
+            "fontFamily": "Santral",
+            "fontSize": "42px",
+            "fontWeight": "800",
+            "lineHeight": "46px"
+          }
+        }
+      }
+    }
+  }
+}
