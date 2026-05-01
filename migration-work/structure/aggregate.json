@@ -1,15 +1,13 @@
 {
-  "pages_analyzed": 10,
+  "pages_analyzed": 8,
   "total_unique_organisms": 8,
   "organisms": [
     {
       "fp": "div.QSIFeedbackButton",
-      "total": 20,
+      "total": 16,
       "pages": [
-        "blog-what-are-nicotine-pouches",
-        "contact-us-let-us-talk-testimonials",
+        "contact-us-testimonials",
         "homepage",
-        "newsletter",
         "pouches-zonnic-mint-24-nicotine-pouches",
         "sign-up",
         "store-locator",
@@ -20,12 +18,10 @@
     },
     {
       "fp": "section.ot-sdk-row",
-      "total": 10,
+      "total": 8,
       "pages": [
-        "blog-what-are-nicotine-pouches",
-        "contact-us-let-us-talk-testimonials",
+        "contact-us-testimonials",
         "homepage",
-        "newsletter",
         "pouches-zonnic-mint-24-nicotine-pouches",
         "sign-up",
         "store-locator",
@@ -36,12 +32,10 @@
     },
     {
       "fp": "section.ot-hide",
-      "total": 10,
+      "total": 8,
       "pages": [
-        "blog-what-are-nicotine-pouches",
-        "contact-us-let-us-talk-testimonials",
+        "contact-us-testimonials",
         "homepage",
-        "newsletter",
         "pouches-zonnic-mint-24-nicotine-pouches",
         "sign-up",
         "store-locator",
@@ -52,12 +46,10 @@
     },
     {
       "fp": "section",
-      "total": 10,
+      "total": 8,
       "pages": [
-        "blog-what-are-nicotine-pouches",
-        "contact-us-let-us-talk-testimonials",
+        "contact-us-testimonials",
         "homepage",
-        "newsletter",
         "pouches-zonnic-mint-24-nicotine-pouches",
         "sign-up",
         "store-locator",
@@ -68,12 +60,10 @@
     },
     {
       "fp": "section.ot-host-cnt",
-      "total": 10,
+      "total": 8,
       "pages": [
-        "blog-what-are-nicotine-pouches",
-        "contact-us-let-us-talk-testimonials",
+        "contact-us-testimonials",
         "homepage",
-        "newsletter",
         "pouches-zonnic-mint-24-nicotine-pouches",
         "sign-up",
         "store-locator",
@@ -84,12 +74,10 @@
     },
     {
       "fp": "div.bat-wrapper",
-      "total": 10,
+      "total": 8,
       "pages": [
-        "blog-what-are-nicotine-pouches",
-        "contact-us-let-us-talk-testimonials",
+        "contact-us-testimonials",
         "homepage",
-        "newsletter",
         "pouches-zonnic-mint-24-nicotine-pouches",
         "sign-up",
         "store-locator",
@@ -100,12 +88,10 @@
     },
     {
       "fp": "div",
-      "total": 10,
+      "total": 8,
       "pages": [
-        "blog-what-are-nicotine-pouches",
-        "contact-us-let-us-talk-testimonials",
+        "contact-us-testimonials",
         "homepage",
-        "newsletter",
         "pouches-zonnic-mint-24-nicotine-pouches",
         "sign-up",
         "store-locator",
@@ -116,11 +102,10 @@
     },
     {
       "fp": "div.embedded-messaging",
-      "total": 8,
+      "total": 7,
       "pages": [
-        "contact-us-let-us-talk-testimonials",
+        "contact-us-testimonials",
         "homepage",
-        "newsletter",
         "pouches-zonnic-mint-24-nicotine-pouches",
         "sign-up",
         "store-locator",

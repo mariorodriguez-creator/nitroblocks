@@ -1,0 +1,19 @@
+{
+  "component": "blurb-card",
+  "stats": {
+    "total": 204,
+    "perPage": {
+      "homepage": 114,
+      "why-zonnic": 90
+    },
+    "pages": 2
+  },
+  "variants": [
+    {
+      "name": "default",
+      "ok": true,
+      "hiddenFallback": false,
+      "selector": "bat-card-blurb"
+    }
+  ]
+}

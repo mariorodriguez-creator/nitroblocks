@@ -1,11 +1,11 @@
 [report] Overall confidence: LOW
   page_inventory: HIGH — corroborated
-  bypass_integrity: LOW — overlay fingerprints leaked into extraction; bypass probe did not verify
+  bypass_integrity: LOW — overlay fingerprints leaked into extraction
   design_tokens: HIGH — corroborated
-  component_anatomy: LOW — anatomy does not reflect DOM evidence
-  template_coverage: MEDIUM — partial evidence
+  component_anatomy: MEDIUM — anatomy.tsx undersupplied; rely on *-screenshots.json and DOM structure
+  template_coverage: LOW — weak evidence
   third_party_integrations: LOW — no direct evidence
-  accessibility: LOW — 3 critical WCAG violation(s) at runtime
+  accessibility: LOW — 2 critical WCAG violation(s) at runtime
   visual_reference: HIGH — corroborated
 [report] Wrote /Users/2245328/Repos/nitroblocks/migration-work/verification/report.json
 [report] Wrote /Users/2245328/Repos/nitroblocks/migration-work/verification/report.md

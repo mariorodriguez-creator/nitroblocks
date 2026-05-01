@@ -24,11 +24,11 @@
       "count": 1
     },
     {
-      "fp": "div.embedded-messaging",
+      "fp": "div",
       "count": 1
     },
     {
-      "fp": "div",
+      "fp": "div.embedded-messaging",
       "count": 1
     },
     {
@@ -135,21 +135,6 @@
     },
     {
       "index": 5,
-      "selector": "#embedded-messaging",
-      "tag": "div",
-      "class": "embedded-messaging",
-      "id": "embedded-messaging",
-      "role": null,
-      "aria_label": null,
-      "headings": [],
-      "child_fingerprints": [
-        "div.embeddedMessagingConversationButtonWrapper",
-        "div.embeddedMessagingLiveRegion"
-      ],
-      "fingerprint": "div.embedded-messaging"
-    },
-    {
-      "index": 6,
       "selector": "#onetrust-consent-sdk",
       "tag": "div",
       "class": "",
@@ -177,6 +162,21 @@
         "div.ot-floating-button"
       ],
       "fingerprint": "div"
+    },
+    {
+      "index": 6,
+      "selector": "#embedded-messaging",
+      "tag": "div",
+      "class": "embedded-messaging",
+      "id": "embedded-messaging",
+      "role": null,
+      "aria_label": null,
+      "headings": [],
+      "child_fingerprints": [
+        "div.embeddedMessagingConversationButtonWrapper",
+        "div.embeddedMessagingLiveRegion"
+      ],
+      "fingerprint": "div.embedded-messaging"
     },
     {
       "index": 7,

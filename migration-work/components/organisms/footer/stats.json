@@ -1,0 +1,25 @@
+{
+  "component": "footer",
+  "stats": {
+    "total": 208,
+    "perPage": {
+      "contact-us-testimonials": 26,
+      "homepage": 26,
+      "pouches-zonnic-mint-24-nicotine-pouches": 26,
+      "sign-up": 26,
+      "store-locator": 26,
+      "testingblogarticletemplate": 26,
+      "what-is-zonnic": 26,
+      "why-zonnic": 26
+    },
+    "pages": 8
+  },
+  "variants": [
+    {
+      "name": "default",
+      "ok": true,
+      "hiddenFallback": false,
+      "selector": "bat-footer-zonnic"
+    }
+  ]
+}

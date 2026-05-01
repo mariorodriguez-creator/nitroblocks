@@ -8,19 +8,19 @@
     },
     "bypass_integrity": {
       "level": "LOW",
-      "reason": "overlay fingerprints leaked into extraction; bypass probe did not verify"
+      "reason": "overlay fingerprints leaked into extraction"
     },
     "design_tokens": {
       "level": "HIGH",
       "reason": "corroborated"
     },
     "component_anatomy": {
-      "level": "LOW",
-      "reason": "anatomy does not reflect DOM evidence"
+      "level": "MEDIUM",
+      "reason": "anatomy.tsx undersupplied; rely on *-screenshots.json and DOM structure"
     },
     "template_coverage": {
-      "level": "MEDIUM",
-      "reason": "partial evidence"
+      "level": "LOW",
+      "reason": "weak evidence"
     },
     "third_party_integrations": {
       "level": "LOW",
@@ -28,7 +28,7 @@
     },
     "accessibility": {
       "level": "LOW",
-      "reason": "3 critical WCAG violation(s) at runtime"
+      "reason": "2 critical WCAG violation(s) at runtime"
     },
     "visual_reference": {
       "level": "HIGH",
@@ -37,15 +37,12 @@
   },
   "inputs": {
     "sitemap": {
-      "total_pages": 142,
-      "total_pages_filtered": 106,
-      "template_groups": 25,
-      "representative_urls": 25,
+      "total_pages": 94,
+      "total_pages_filtered": 92,
+      "template_groups": 23,
+      "representative_urls": 23,
       "exclusion_summary": {
-        "test-page": 6,
-        "test-bucket": 1,
-        "test-ip": 1,
-        "locale-mismatch": 28
+        "test-page": 2
       }
     },
     "bypass": {
@@ -55,14 +52,13 @@
         "salesforce-chat",
         "location-selector"
       ],
-      "verified": false
+      "verified": true
     },
     "bypass_leak": {
       "pass": false,
-      "total_hits": 2,
+      "total_hits": 1,
       "critical_categories": [
-        "consent-banner",
-        "chat-widget"
+        "consent-banner"
       ]
     },
     "grade_delta": {
@@ -71,7 +67,10 @@
       "homepage_is_proxy": true
     },
     "anatomy_diff": {
-      "signal": "LOW",
+      "signal": "UNDERSUPPLIED",
+      "undersupplied": true,
+      "anatomy_canonical_count": 2,
+      "structure_canonical_count": 8,
       "overlap_ratio": 0,
       "structure_covered_by_anatomy": 0,
       "anatomy_only_count": 2,
@@ -79,29 +78,29 @@
     },
     "third_party": null,
     "a11y": {
-      "pages_scanned": 10,
-      "violations": 9,
-      "critical": 3,
-      "serious": 11
+      "pages_scanned": 8,
+      "violations": 5,
+      "critical": 2,
+      "serious": 5
     },
     "structure": {
-      "pages_analyzed": 10,
+      "pages_analyzed": 8,
       "total_unique_organisms": 8
     },
     "scrape": {
-      "representative_urls": 25,
-      "scraped_pages": 10,
-      "coverage": 0.4
+      "representative_urls": 23,
+      "scraped_pages": 8,
+      "coverage": 0.348
     },
     "screenshots": {
-      "total_files": 75,
+      "total_files": 69,
       "by_viewport": {
-        "mobile": 25,
-        "tablet": 25,
-        "desktop": 25
+        "mobile": 23,
+        "tablet": 23,
+        "desktop": 23
       },
-      "expected_templates": 25,
-      "fully_covered": 25,
+      "expected_templates": 23,
+      "fully_covered": 23,
       "partially_covered": 0,
       "missing": 0,
       "coverage": 1,
@@ -142,7 +141,7 @@
           "tablet": true,
           "desktop": true
         },
-        "contact-us-let-us-talk-testimonials": {
+        "contact-us-testimonials": {
           "mobile": true,
           "tablet": true,
           "desktop": true
@@ -158,11 +157,6 @@
           "desktop": true
         },
         "healthcare-professionals-side-effects-quitting-smoking-patient-concerns": {
-          "mobile": true,
-          "tablet": true,
-          "desktop": true
-        },
-        "zonnic-nicotine-pouches11": {
           "mobile": true,
           "tablet": true,
           "desktop": true
@@ -193,11 +187,6 @@
           "desktop": true
         },
         "quit-on-your-terms": {
-          "mobile": true,
-          "tablet": true,
-          "desktop": true
-        },
-        "faq-old-donotindex-faq-general-information": {
           "mobile": true,
           "tablet": true,
           "desktop": true

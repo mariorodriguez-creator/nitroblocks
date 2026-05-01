@@ -1,0 +1,4054 @@
+{
+  "generatedAt": "2026-04-30T16:50:24.141Z",
+  "site": "zonnic.ca",
+  "pages": [
+    {
+      "slug": "contact-us-testimonials",
+      "url": "https://www.zonnic.ca/ca/en/contact-us/testimonials",
+      "template": "generic-template",
+      "title": "Testimonials"
+    },
+    {
+      "slug": "homepage",
+      "url": "https://www.zonnic.ca/ca/en",
+      "template": "generic-template",
+      "title": "Nicotine Pouches To Quit Smoking | ZONNIC Canada"
+    },
+    {
+      "slug": "pouches-zonnic-mint-24-nicotine-pouches",
+      "url": "https://www.zonnic.ca/ca/en/pouches/zonnic-mint-24-nicotine-pouches",
+      "template": "generic-template",
+      "title": "Zonnic Nicotine Pouches Mint – Smoke-Free | ZONNIC CA"
+    },
+    {
+      "slug": "sign-up",
+      "url": "https://www.zonnic.ca/ca/en/sign-up",
+      "template": "generic-template",
+      "title": "Sign Up for Exclusive Offers | ZONNIC CA"
+    },
+    {
+      "slug": "store-locator",
+      "url": "https://www.zonnic.ca/ca/en/store-locator",
+      "template": "generic-template",
+      "title": "Find Nicotine Pouches Near Me | ZONNIC CA"
+    },
+    {
+      "slug": "testingblogarticletemplate",
+      "url": "https://www.zonnic.ca/ca/en/testingblogarticletemplate",
+      "template": "blog-article-template",
+      "title": "TestingBlogArticleTemplate"
+    },
+    {
+      "slug": "what-is-zonnic",
+      "url": "https://www.zonnic.ca/ca/en/what-is-zonnic",
+      "template": "generic-template",
+      "title": "Nicotine Pouches: What Are They? | ZONNIC CA"
+    },
+    {
+      "slug": "why-zonnic",
+      "url": "https://www.zonnic.ca/ca/en/why-zonnic",
+      "template": "generic-template",
+      "title": "Why Choose ZONNIC? Your Path to Quit Smoking | ZONNIC CA"
+    }
+  ],
+  "manifestPageMap": {
+    "homepage": "homepage",
+    "why-zonnic": "why-zonnic",
+    "product-detail": "pouches-zonnic-mint-24-nicotine-pouches",
+    "sign-up": "sign-up",
+    "store-locator": "store-locator",
+    "contact-us": "contact-us-testimonials",
+    "blog-article": "testingblogarticletemplate",
+    "what-is-zonnic": "what-is-zonnic"
+  },
+  "summary": {
+    "pageCount": 8,
+    "componentCount": 31,
+    "cellCount": 248,
+    "matchedCells": 190,
+    "observedMismatches": 0,
+    "observedRows": [],
+    "deadComponents": [],
+    "totalGaps": 0
+  },
+  "coverage": {
+    "contact-us-testimonials": [
+      {
+        "level": "atoms",
+        "component": "button",
+        "used": true,
+        "fingerprintHits": 32,
+        "variantHits": 13,
+        "variants": [
+          {
+            "name": "primary",
+            "selector": ".bat-cta-style.button-dark:not(.button-secondary-dark)",
+            "hits": 7
+          },
+          {
+            "name": "secondary",
+            "selector": ".bat-cta-style.button-secondary-dark",
+            "hits": 4
+          },
+          {
+            "name": "arrow-link",
+            "selector": "a.arrow-link-dark, .bat-cta-style.button-dark.arrow-link-dark",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "link",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "utility",
+            "selector": "a.privacy-notice-link, a.more-link, a.less-link",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "icon",
+        "used": true,
+        "fingerprintHits": 20,
+        "variantHits": 20,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-icon",
+            "hits": 20
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "image",
+        "used": true,
+        "fingerprintHits": 7,
+        "variantHits": 3,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-image-default:not([hidden])",
+            "hits": 3
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "headline",
+        "used": true,
+        "fingerprintHits": 14,
+        "variantHits": 4,
+        "variants": [
+          {
+            "name": "h1-display",
+            "selector": "h1.bat-headline-style.headline1",
+            "hits": 0
+          },
+          {
+            "name": "h2-section",
+            "selector": "bat-headline-default h2, h2.bat-headline-style",
+            "hits": 0
+          },
+          {
+            "name": "h3-card",
+            "selector": "bat-headline-default h3, h3.bat-headline-style",
+            "hits": 4
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "text",
+        "used": true,
+        "fingerprintHits": 14,
+        "variantHits": 7,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-text-default:not(:empty)",
+            "hits": 6
+          },
+          {
+            "name": "boxed",
+            "selector": "bat-text-box",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "input",
+        "used": true,
+        "fingerprintHits": 75,
+        "variantHits": 3,
+        "variants": [
+          {
+            "name": "text",
+            "selector": ".bat-form-field input[type='text'], .bat-form-field input[type='email']",
+            "hits": 0
+          },
+          {
+            "name": "select",
+            "selector": ".bat-form-field select",
+            "hits": 3
+          },
+          {
+            "name": "password",
+            "selector": ".bat-form-field input[type='password']",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "form-field",
+        "used": true,
+        "fingerprintHits": 64,
+        "variantHits": 54,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-form-field:not(.bat-form-field--hidden)",
+            "hits": 33
+          },
+          {
+            "name": "error",
+            "selector": ".bat-form-field .bat-form-msg:not(:empty)",
+            "hits": 21
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "cta-list",
+        "used": true,
+        "fingerprintHits": 8,
+        "variantHits": 8,
+        "variants": [
+          {
+            "name": "horizontal",
+            "selector": "bat-cta-default .bat-cta-list--horizontal, .bat-cta-list--horizontal",
+            "hits": 4
+          },
+          {
+            "name": "logged-in",
+            "selector": "bat-cta-loggedin",
+            "hits": 4
+          },
+          {
+            "name": "account",
+            "selector": "bat-cta-account",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "nav-item",
+        "used": true,
+        "fingerprintHits": 16,
+        "variantHits": 9,
+        "variants": [
+          {
+            "name": "desktop",
+            "selector": ".bat-navigation-group-list-item:not(.bat-navigation-group-list-item--zonnic-mobile)",
+            "hits": 7
+          },
+          {
+            "name": "mobile",
+            "selector": ".bat-navigation-group-list-item--zonnic-mobile",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "modal-shell",
+        "used": true,
+        "fingerprintHits": 14,
+        "variantHits": 5,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-modal",
+            "hits": 5
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "form-message",
+        "used": true,
+        "fingerprintHits": 23,
+        "variantHits": 22,
+        "variants": [
+          {
+            "name": "error",
+            "selector": ".bat-form-field .bat-form-msg",
+            "hits": 21
+          },
+          {
+            "name": "tip",
+            "selector": ".bat-form-field .bat-form-field-tip",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "age-gate",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-agegate-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "header",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-header-zonnicheadless",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "footer",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-footer-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "message-bar",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-messagebar-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "hero",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-hero-zonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "masthead-card",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-mastheadzonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "blurb-card",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-blurb",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "blog-card",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-blog",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "tab-sync-carousel",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-carousel-zonnictabsync",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "product-carousel",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-carousel-product",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "faq",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-faq-default",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "signup-form",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-signup",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "login-form",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-loginzonnic",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "newsletter-form",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-newsletterzonnic, .bat-form--newsletter",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "contact-form",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-signup[data-template-url*='contactUs'], bat-form-signup:has(.bat-form--contact-us-email-first-name), form#step1Form",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "product-hero",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-producthero-zonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "store-locator",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-mapboxstorelocator-zonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "location-selector",
+        "used": true,
+        "fingerprintHits": 3,
+        "variantHits": 3,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-locationselector-zonnic",
+            "hits": 3
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "mini-cart",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-minicart-zonnic",
+            "hits": 2
+          }
+        ]
+      }
+    ],
+    "homepage": [
+      {
+        "level": "atoms",
+        "component": "button",
+        "used": true,
+        "fingerprintHits": 88,
+        "variantHits": 70,
+        "variants": [
+          {
+            "name": "primary",
+            "selector": ".bat-cta-style.button-dark:not(.button-secondary-dark)",
+            "hits": 11
+          },
+          {
+            "name": "secondary",
+            "selector": ".bat-cta-style.button-secondary-dark",
+            "hits": 38
+          },
+          {
+            "name": "arrow-link",
+            "selector": "a.arrow-link-dark, .bat-cta-style.button-dark.arrow-link-dark",
+            "hits": 21
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "link",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "utility",
+            "selector": "a.privacy-notice-link, a.more-link, a.less-link",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "icon",
+        "used": true,
+        "fingerprintHits": 32,
+        "variantHits": 32,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-icon",
+            "hits": 32
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "image",
+        "used": true,
+        "fingerprintHits": 41,
+        "variantHits": 17,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-image-default:not([hidden])",
+            "hits": 17
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "headline",
+        "used": true,
+        "fingerprintHits": 83,
+        "variantHits": 37,
+        "variants": [
+          {
+            "name": "h1-display",
+            "selector": "h1.bat-headline-style.headline1",
+            "hits": 2
+          },
+          {
+            "name": "h2-section",
+            "selector": "bat-headline-default h2, h2.bat-headline-style",
+            "hits": 24
+          },
+          {
+            "name": "h3-card",
+            "selector": "bat-headline-default h3, h3.bat-headline-style",
+            "hits": 11
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "text",
+        "used": true,
+        "fingerprintHits": 28,
+        "variantHits": 14,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-text-default:not(:empty)",
+            "hits": 14
+          },
+          {
+            "name": "boxed",
+            "selector": "bat-text-box",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "input",
+        "used": true,
+        "fingerprintHits": 47,
+        "variantHits": 3,
+        "variants": [
+          {
+            "name": "text",
+            "selector": ".bat-form-field input[type='text'], .bat-form-field input[type='email']",
+            "hits": 0
+          },
+          {
+            "name": "select",
+            "selector": ".bat-form-field select",
+            "hits": 3
+          },
+          {
+            "name": "password",
+            "selector": ".bat-form-field input[type='password']",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "form-field",
+        "used": true,
+        "fingerprintHits": 44,
+        "variantHits": 42,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-form-field:not(.bat-form-field--hidden)",
+            "hits": 26
+          },
+          {
+            "name": "error",
+            "selector": ".bat-form-field .bat-form-msg:not(:empty)",
+            "hits": 16
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "cta-list",
+        "used": true,
+        "fingerprintHits": 12,
+        "variantHits": 8,
+        "variants": [
+          {
+            "name": "horizontal",
+            "selector": "bat-cta-default .bat-cta-list--horizontal, .bat-cta-list--horizontal",
+            "hits": 4
+          },
+          {
+            "name": "logged-in",
+            "selector": "bat-cta-loggedin",
+            "hits": 4
+          },
+          {
+            "name": "account",
+            "selector": "bat-cta-account",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "nav-item",
+        "used": true,
+        "fingerprintHits": 16,
+        "variantHits": 9,
+        "variants": [
+          {
+            "name": "desktop",
+            "selector": ".bat-navigation-group-list-item:not(.bat-navigation-group-list-item--zonnic-mobile)",
+            "hits": 7
+          },
+          {
+            "name": "mobile",
+            "selector": ".bat-navigation-group-list-item--zonnic-mobile",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "modal-shell",
+        "used": true,
+        "fingerprintHits": 14,
+        "variantHits": 5,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-modal",
+            "hits": 5
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "form-message",
+        "used": true,
+        "fingerprintHits": 18,
+        "variantHits": 17,
+        "variants": [
+          {
+            "name": "error",
+            "selector": ".bat-form-field .bat-form-msg",
+            "hits": 16
+          },
+          {
+            "name": "tip",
+            "selector": ".bat-form-field .bat-form-field-tip",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "age-gate",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-agegate-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "header",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-header-zonnicheadless",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "footer",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-footer-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "message-bar",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-messagebar-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "hero",
+        "used": true,
+        "fingerprintHits": 12,
+        "variantHits": 6,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-hero-zonnic",
+            "hits": 6
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "masthead-card",
+        "used": true,
+        "fingerprintHits": 30,
+        "variantHits": 15,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-mastheadzonnic",
+            "hits": 15
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "blurb-card",
+        "used": true,
+        "fingerprintHits": 38,
+        "variantHits": 19,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-blurb",
+            "hits": 19
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "blog-card",
+        "used": true,
+        "fingerprintHits": 30,
+        "variantHits": 15,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-blog",
+            "hits": 15
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "tab-sync-carousel",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 4,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-carousel-zonnictabsync",
+            "hits": 4
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "product-carousel",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-carousel-product",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "faq",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-faq-default",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "signup-form",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-signup",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "login-form",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-loginzonnic",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "newsletter-form",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-newsletterzonnic, .bat-form--newsletter",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "contact-form",
+        "used": true,
+        "fingerprintHits": 0,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-signup[data-template-url*='contactUs'], bat-form-signup:has(.bat-form--contact-us-email-first-name), form#step1Form",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "product-hero",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-producthero-zonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "store-locator",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-mapboxstorelocator-zonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "location-selector",
+        "used": true,
+        "fingerprintHits": 3,
+        "variantHits": 3,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-locationselector-zonnic",
+            "hits": 3
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "mini-cart",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-minicart-zonnic",
+            "hits": 2
+          }
+        ]
+      }
+    ],
+    "pouches-zonnic-mint-24-nicotine-pouches": [
+      {
+        "level": "atoms",
+        "component": "button",
+        "used": true,
+        "fingerprintHits": 61,
+        "variantHits": 40,
+        "variants": [
+          {
+            "name": "primary",
+            "selector": ".bat-cta-style.button-dark:not(.button-secondary-dark)",
+            "hits": 11
+          },
+          {
+            "name": "secondary",
+            "selector": ".bat-cta-style.button-secondary-dark",
+            "hits": 21
+          },
+          {
+            "name": "arrow-link",
+            "selector": "a.arrow-link-dark, .bat-cta-style.button-dark.arrow-link-dark",
+            "hits": 8
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "link",
+        "used": true,
+        "fingerprintHits": 3,
+        "variantHits": 3,
+        "variants": [
+          {
+            "name": "utility",
+            "selector": "a.privacy-notice-link, a.more-link, a.less-link",
+            "hits": 3
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "icon",
+        "used": true,
+        "fingerprintHits": 27,
+        "variantHits": 27,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-icon",
+            "hits": 27
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "image",
+        "used": true,
+        "fingerprintHits": 42,
+        "variantHits": 17,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-image-default:not([hidden])",
+            "hits": 17
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "headline",
+        "used": true,
+        "fingerprintHits": 92,
+        "variantHits": 32,
+        "variants": [
+          {
+            "name": "h1-display",
+            "selector": "h1.bat-headline-style.headline1",
+            "hits": 0
+          },
+          {
+            "name": "h2-section",
+            "selector": "bat-headline-default h2, h2.bat-headline-style",
+            "hits": 26
+          },
+          {
+            "name": "h3-card",
+            "selector": "bat-headline-default h3, h3.bat-headline-style",
+            "hits": 6
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "text",
+        "used": true,
+        "fingerprintHits": 64,
+        "variantHits": 32,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-text-default:not(:empty)",
+            "hits": 32
+          },
+          {
+            "name": "boxed",
+            "selector": "bat-text-box",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "input",
+        "used": true,
+        "fingerprintHits": 47,
+        "variantHits": 3,
+        "variants": [
+          {
+            "name": "text",
+            "selector": ".bat-form-field input[type='text'], .bat-form-field input[type='email']",
+            "hits": 0
+          },
+          {
+            "name": "select",
+            "selector": ".bat-form-field select",
+            "hits": 3
+          },
+          {
+            "name": "password",
+            "selector": ".bat-form-field input[type='password']",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "form-field",
+        "used": true,
+        "fingerprintHits": 44,
+        "variantHits": 42,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-form-field:not(.bat-form-field--hidden)",
+            "hits": 26
+          },
+          {
+            "name": "error",
+            "selector": ".bat-form-field .bat-form-msg:not(:empty)",
+            "hits": 16
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "cta-list",
+        "used": true,
+        "fingerprintHits": 16,
+        "variantHits": 8,
+        "variants": [
+          {
+            "name": "horizontal",
+            "selector": "bat-cta-default .bat-cta-list--horizontal, .bat-cta-list--horizontal",
+            "hits": 4
+          },
+          {
+            "name": "logged-in",
+            "selector": "bat-cta-loggedin",
+            "hits": 4
+          },
+          {
+            "name": "account",
+            "selector": "bat-cta-account",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "nav-item",
+        "used": true,
+        "fingerprintHits": 16,
+        "variantHits": 9,
+        "variants": [
+          {
+            "name": "desktop",
+            "selector": ".bat-navigation-group-list-item:not(.bat-navigation-group-list-item--zonnic-mobile)",
+            "hits": 7
+          },
+          {
+            "name": "mobile",
+            "selector": ".bat-navigation-group-list-item--zonnic-mobile",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "modal-shell",
+        "used": true,
+        "fingerprintHits": 14,
+        "variantHits": 5,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-modal",
+            "hits": 5
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "form-message",
+        "used": true,
+        "fingerprintHits": 18,
+        "variantHits": 17,
+        "variants": [
+          {
+            "name": "error",
+            "selector": ".bat-form-field .bat-form-msg",
+            "hits": 16
+          },
+          {
+            "name": "tip",
+            "selector": ".bat-form-field .bat-form-field-tip",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "age-gate",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-agegate-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "header",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-header-zonnicheadless",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "footer",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-footer-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "message-bar",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-messagebar-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "hero",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-hero-zonnic",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "masthead-card",
+        "used": true,
+        "fingerprintHits": 30,
+        "variantHits": 15,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-mastheadzonnic",
+            "hits": 15
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "blurb-card",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-blurb",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "blog-card",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-blog",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "tab-sync-carousel",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-carousel-zonnictabsync",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "product-carousel",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-carousel-product",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "faq",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-faq-default",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "signup-form",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-signup",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "login-form",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-loginzonnic",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "newsletter-form",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-newsletterzonnic, .bat-form--newsletter",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "contact-form",
+        "used": true,
+        "fingerprintHits": 0,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-signup[data-template-url*='contactUs'], bat-form-signup:has(.bat-form--contact-us-email-first-name), form#step1Form",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "product-hero",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-producthero-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "store-locator",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-mapboxstorelocator-zonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "location-selector",
+        "used": true,
+        "fingerprintHits": 3,
+        "variantHits": 3,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-locationselector-zonnic",
+            "hits": 3
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "mini-cart",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-minicart-zonnic",
+            "hits": 2
+          }
+        ]
+      }
+    ],
+    "sign-up": [
+      {
+        "level": "atoms",
+        "component": "button",
+        "used": true,
+        "fingerprintHits": 35,
+        "variantHits": 14,
+        "variants": [
+          {
+            "name": "primary",
+            "selector": ".bat-cta-style.button-dark:not(.button-secondary-dark)",
+            "hits": 7
+          },
+          {
+            "name": "secondary",
+            "selector": ".bat-cta-style.button-secondary-dark",
+            "hits": 4
+          },
+          {
+            "name": "arrow-link",
+            "selector": "a.arrow-link-dark, .bat-cta-style.button-dark.arrow-link-dark",
+            "hits": 3
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "link",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "utility",
+            "selector": "a.privacy-notice-link, a.more-link, a.less-link",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "icon",
+        "used": true,
+        "fingerprintHits": 21,
+        "variantHits": 21,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-icon",
+            "hits": 21
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "image",
+        "used": true,
+        "fingerprintHits": 7,
+        "variantHits": 3,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-image-default:not([hidden])",
+            "hits": 3
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "headline",
+        "used": true,
+        "fingerprintHits": 18,
+        "variantHits": 4,
+        "variants": [
+          {
+            "name": "h1-display",
+            "selector": "h1.bat-headline-style.headline1",
+            "hits": 0
+          },
+          {
+            "name": "h2-section",
+            "selector": "bat-headline-default h2, h2.bat-headline-style",
+            "hits": 2
+          },
+          {
+            "name": "h3-card",
+            "selector": "bat-headline-default h3, h3.bat-headline-style",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "text",
+        "used": true,
+        "fingerprintHits": 16,
+        "variantHits": 8,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-text-default:not(:empty)",
+            "hits": 8
+          },
+          {
+            "name": "boxed",
+            "selector": "bat-text-box",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "input",
+        "used": true,
+        "fingerprintHits": 80,
+        "variantHits": 5,
+        "variants": [
+          {
+            "name": "text",
+            "selector": ".bat-form-field input[type='text'], .bat-form-field input[type='email']",
+            "hits": 0
+          },
+          {
+            "name": "select",
+            "selector": ".bat-form-field select",
+            "hits": 5
+          },
+          {
+            "name": "password",
+            "selector": ".bat-form-field input[type='password']",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "form-field",
+        "used": true,
+        "fingerprintHits": 76,
+        "variantHits": 72,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-form-field:not(.bat-form-field--hidden)",
+            "hits": 43
+          },
+          {
+            "name": "error",
+            "selector": ".bat-form-field .bat-form-msg:not(:empty)",
+            "hits": 29
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "cta-list",
+        "used": true,
+        "fingerprintHits": 8,
+        "variantHits": 8,
+        "variants": [
+          {
+            "name": "horizontal",
+            "selector": "bat-cta-default .bat-cta-list--horizontal, .bat-cta-list--horizontal",
+            "hits": 4
+          },
+          {
+            "name": "logged-in",
+            "selector": "bat-cta-loggedin",
+            "hits": 4
+          },
+          {
+            "name": "account",
+            "selector": "bat-cta-account",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "nav-item",
+        "used": true,
+        "fingerprintHits": 16,
+        "variantHits": 9,
+        "variants": [
+          {
+            "name": "desktop",
+            "selector": ".bat-navigation-group-list-item:not(.bat-navigation-group-list-item--zonnic-mobile)",
+            "hits": 7
+          },
+          {
+            "name": "mobile",
+            "selector": ".bat-navigation-group-list-item--zonnic-mobile",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "modal-shell",
+        "used": true,
+        "fingerprintHits": 17,
+        "variantHits": 6,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-modal",
+            "hits": 6
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "form-message",
+        "used": true,
+        "fingerprintHits": 33,
+        "variantHits": 31,
+        "variants": [
+          {
+            "name": "error",
+            "selector": ".bat-form-field .bat-form-msg",
+            "hits": 29
+          },
+          {
+            "name": "tip",
+            "selector": ".bat-form-field .bat-form-field-tip",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "age-gate",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-agegate-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "header",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-header-zonnicheadless",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "footer",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-footer-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "message-bar",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-messagebar-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "hero",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-hero-zonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "masthead-card",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-mastheadzonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "blurb-card",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-blurb",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "blog-card",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-blog",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "tab-sync-carousel",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-carousel-zonnictabsync",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "product-carousel",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-carousel-product",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "faq",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-faq-default",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "signup-form",
+        "used": true,
+        "fingerprintHits": 8,
+        "variantHits": 4,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-signup",
+            "hits": 4
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "login-form",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-loginzonnic",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "newsletter-form",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-newsletterzonnic, .bat-form--newsletter",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "contact-form",
+        "used": true,
+        "fingerprintHits": 0,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-signup[data-template-url*='contactUs'], bat-form-signup:has(.bat-form--contact-us-email-first-name), form#step1Form",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "product-hero",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-producthero-zonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "store-locator",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-mapboxstorelocator-zonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "location-selector",
+        "used": true,
+        "fingerprintHits": 3,
+        "variantHits": 3,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-locationselector-zonnic",
+            "hits": 3
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "mini-cart",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-minicart-zonnic",
+            "hits": 2
+          }
+        ]
+      }
+    ],
+    "store-locator": [
+      {
+        "level": "atoms",
+        "component": "button",
+        "used": true,
+        "fingerprintHits": 41,
+        "variantHits": 23,
+        "variants": [
+          {
+            "name": "primary",
+            "selector": ".bat-cta-style.button-dark:not(.button-secondary-dark)",
+            "hits": 11
+          },
+          {
+            "name": "secondary",
+            "selector": ".bat-cta-style.button-secondary-dark",
+            "hits": 6
+          },
+          {
+            "name": "arrow-link",
+            "selector": "a.arrow-link-dark, .bat-cta-style.button-dark.arrow-link-dark",
+            "hits": 6
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "link",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "utility",
+            "selector": "a.privacy-notice-link, a.more-link, a.less-link",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "icon",
+        "used": true,
+        "fingerprintHits": 29,
+        "variantHits": 29,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-icon",
+            "hits": 29
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "image",
+        "used": true,
+        "fingerprintHits": 84,
+        "variantHits": 41,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-image-default:not([hidden])",
+            "hits": 41
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "headline",
+        "used": true,
+        "fingerprintHits": 44,
+        "variantHits": 13,
+        "variants": [
+          {
+            "name": "h1-display",
+            "selector": "h1.bat-headline-style.headline1",
+            "hits": 0
+          },
+          {
+            "name": "h2-section",
+            "selector": "bat-headline-default h2, h2.bat-headline-style",
+            "hits": 4
+          },
+          {
+            "name": "h3-card",
+            "selector": "bat-headline-default h3, h3.bat-headline-style",
+            "hits": 9
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "text",
+        "used": true,
+        "fingerprintHits": 40,
+        "variantHits": 20,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-text-default:not(:empty)",
+            "hits": 20
+          },
+          {
+            "name": "boxed",
+            "selector": "bat-text-box",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "input",
+        "used": true,
+        "fingerprintHits": 47,
+        "variantHits": 3,
+        "variants": [
+          {
+            "name": "text",
+            "selector": ".bat-form-field input[type='text'], .bat-form-field input[type='email']",
+            "hits": 0
+          },
+          {
+            "name": "select",
+            "selector": ".bat-form-field select",
+            "hits": 3
+          },
+          {
+            "name": "password",
+            "selector": ".bat-form-field input[type='password']",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "form-field",
+        "used": true,
+        "fingerprintHits": 44,
+        "variantHits": 42,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-form-field:not(.bat-form-field--hidden)",
+            "hits": 26
+          },
+          {
+            "name": "error",
+            "selector": ".bat-form-field .bat-form-msg:not(:empty)",
+            "hits": 16
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "cta-list",
+        "used": true,
+        "fingerprintHits": 18,
+        "variantHits": 10,
+        "variants": [
+          {
+            "name": "horizontal",
+            "selector": "bat-cta-default .bat-cta-list--horizontal, .bat-cta-list--horizontal",
+            "hits": 6
+          },
+          {
+            "name": "logged-in",
+            "selector": "bat-cta-loggedin",
+            "hits": 4
+          },
+          {
+            "name": "account",
+            "selector": "bat-cta-account",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "nav-item",
+        "used": true,
+        "fingerprintHits": 16,
+        "variantHits": 9,
+        "variants": [
+          {
+            "name": "desktop",
+            "selector": ".bat-navigation-group-list-item:not(.bat-navigation-group-list-item--zonnic-mobile)",
+            "hits": 7
+          },
+          {
+            "name": "mobile",
+            "selector": ".bat-navigation-group-list-item--zonnic-mobile",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "modal-shell",
+        "used": true,
+        "fingerprintHits": 14,
+        "variantHits": 5,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-modal",
+            "hits": 5
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "form-message",
+        "used": true,
+        "fingerprintHits": 18,
+        "variantHits": 17,
+        "variants": [
+          {
+            "name": "error",
+            "selector": ".bat-form-field .bat-form-msg",
+            "hits": 16
+          },
+          {
+            "name": "tip",
+            "selector": ".bat-form-field .bat-form-field-tip",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "age-gate",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-agegate-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "header",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-header-zonnicheadless",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "footer",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-footer-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "message-bar",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-messagebar-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "hero",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-hero-zonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "masthead-card",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-mastheadzonnic",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "blurb-card",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-blurb",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "blog-card",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-blog",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "tab-sync-carousel",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 4,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-carousel-zonnictabsync",
+            "hits": 4
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "product-carousel",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-carousel-product",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "faq",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-faq-default",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "signup-form",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-signup",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "login-form",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-loginzonnic",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "newsletter-form",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-newsletterzonnic, .bat-form--newsletter",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "contact-form",
+        "used": true,
+        "fingerprintHits": 0,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-signup[data-template-url*='contactUs'], bat-form-signup:has(.bat-form--contact-us-email-first-name), form#step1Form",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "product-hero",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-producthero-zonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "store-locator",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-mapboxstorelocator-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "location-selector",
+        "used": true,
+        "fingerprintHits": 3,
+        "variantHits": 3,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-locationselector-zonnic",
+            "hits": 3
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "mini-cart",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-minicart-zonnic",
+            "hits": 2
+          }
+        ]
+      }
+    ],
+    "testingblogarticletemplate": [
+      {
+        "level": "atoms",
+        "component": "button",
+        "used": true,
+        "fingerprintHits": 34,
+        "variantHits": 15,
+        "variants": [
+          {
+            "name": "primary",
+            "selector": ".bat-cta-style.button-dark:not(.button-secondary-dark)",
+            "hits": 7
+          },
+          {
+            "name": "secondary",
+            "selector": ".bat-cta-style.button-secondary-dark",
+            "hits": 4
+          },
+          {
+            "name": "arrow-link",
+            "selector": "a.arrow-link-dark, .bat-cta-style.button-dark.arrow-link-dark",
+            "hits": 4
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "link",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "utility",
+            "selector": "a.privacy-notice-link, a.more-link, a.less-link",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "icon",
+        "used": true,
+        "fingerprintHits": 19,
+        "variantHits": 19,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-icon",
+            "hits": 19
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "image",
+        "used": true,
+        "fingerprintHits": 14,
+        "variantHits": 6,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-image-default:not([hidden])",
+            "hits": 6
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "headline",
+        "used": true,
+        "fingerprintHits": 36,
+        "variantHits": 7,
+        "variants": [
+          {
+            "name": "h1-display",
+            "selector": "h1.bat-headline-style.headline1",
+            "hits": 0
+          },
+          {
+            "name": "h2-section",
+            "selector": "bat-headline-default h2, h2.bat-headline-style",
+            "hits": 3
+          },
+          {
+            "name": "h3-card",
+            "selector": "bat-headline-default h3, h3.bat-headline-style",
+            "hits": 4
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "text",
+        "used": true,
+        "fingerprintHits": 30,
+        "variantHits": 15,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-text-default:not(:empty)",
+            "hits": 15
+          },
+          {
+            "name": "boxed",
+            "selector": "bat-text-box",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "input",
+        "used": true,
+        "fingerprintHits": 52,
+        "variantHits": 5,
+        "variants": [
+          {
+            "name": "text",
+            "selector": ".bat-form-field input[type='text'], .bat-form-field input[type='email']",
+            "hits": 0
+          },
+          {
+            "name": "select",
+            "selector": ".bat-form-field select",
+            "hits": 5
+          },
+          {
+            "name": "password",
+            "selector": ".bat-form-field input[type='password']",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "form-field",
+        "used": true,
+        "fingerprintHits": 43,
+        "variantHits": 34,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-form-field:not(.bat-form-field--hidden)",
+            "hits": 21
+          },
+          {
+            "name": "error",
+            "selector": ".bat-form-field .bat-form-msg:not(:empty)",
+            "hits": 13
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "cta-list",
+        "used": true,
+        "fingerprintHits": 9,
+        "variantHits": 8,
+        "variants": [
+          {
+            "name": "horizontal",
+            "selector": "bat-cta-default .bat-cta-list--horizontal, .bat-cta-list--horizontal",
+            "hits": 4
+          },
+          {
+            "name": "logged-in",
+            "selector": "bat-cta-loggedin",
+            "hits": 4
+          },
+          {
+            "name": "account",
+            "selector": "bat-cta-account",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "nav-item",
+        "used": true,
+        "fingerprintHits": 16,
+        "variantHits": 9,
+        "variants": [
+          {
+            "name": "desktop",
+            "selector": ".bat-navigation-group-list-item:not(.bat-navigation-group-list-item--zonnic-mobile)",
+            "hits": 7
+          },
+          {
+            "name": "mobile",
+            "selector": ".bat-navigation-group-list-item--zonnic-mobile",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "modal-shell",
+        "used": true,
+        "fingerprintHits": 14,
+        "variantHits": 5,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-modal",
+            "hits": 5
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "form-message",
+        "used": true,
+        "fingerprintHits": 14,
+        "variantHits": 14,
+        "variants": [
+          {
+            "name": "error",
+            "selector": ".bat-form-field .bat-form-msg",
+            "hits": 13
+          },
+          {
+            "name": "tip",
+            "selector": ".bat-form-field .bat-form-field-tip",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "age-gate",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-agegate-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "header",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-header-zonnicheadless",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "footer",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-footer-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "message-bar",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-messagebar-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "hero",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-hero-zonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "masthead-card",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-mastheadzonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "blurb-card",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-blurb",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "blog-card",
+        "used": true,
+        "fingerprintHits": 6,
+        "variantHits": 3,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-blog",
+            "hits": 3
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "tab-sync-carousel",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-carousel-zonnictabsync",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "product-carousel",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-carousel-product",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "faq",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-faq-default",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "signup-form",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-signup",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "login-form",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-loginzonnic",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "newsletter-form",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-newsletterzonnic, .bat-form--newsletter",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "contact-form",
+        "used": true,
+        "fingerprintHits": 0,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-signup[data-template-url*='contactUs'], bat-form-signup:has(.bat-form--contact-us-email-first-name), form#step1Form",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "product-hero",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-producthero-zonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "store-locator",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-mapboxstorelocator-zonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "location-selector",
+        "used": true,
+        "fingerprintHits": 3,
+        "variantHits": 3,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-locationselector-zonnic",
+            "hits": 3
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "mini-cart",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-minicart-zonnic",
+            "hits": 2
+          }
+        ]
+      }
+    ],
+    "what-is-zonnic": [
+      {
+        "level": "atoms",
+        "component": "button",
+        "used": true,
+        "fingerprintHits": 44,
+        "variantHits": 23,
+        "variants": [
+          {
+            "name": "primary",
+            "selector": ".bat-cta-style.button-dark:not(.button-secondary-dark)",
+            "hits": 7
+          },
+          {
+            "name": "secondary",
+            "selector": ".bat-cta-style.button-secondary-dark",
+            "hits": 4
+          },
+          {
+            "name": "arrow-link",
+            "selector": "a.arrow-link-dark, .bat-cta-style.button-dark.arrow-link-dark",
+            "hits": 12
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "link",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "utility",
+            "selector": "a.privacy-notice-link, a.more-link, a.less-link",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "icon",
+        "used": true,
+        "fingerprintHits": 23,
+        "variantHits": 23,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-icon",
+            "hits": 23
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "image",
+        "used": true,
+        "fingerprintHits": 107,
+        "variantHits": 43,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-image-default:not([hidden])",
+            "hits": 43
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "headline",
+        "used": true,
+        "fingerprintHits": 123,
+        "variantHits": 42,
+        "variants": [
+          {
+            "name": "h1-display",
+            "selector": "h1.bat-headline-style.headline1",
+            "hits": 2
+          },
+          {
+            "name": "h2-section",
+            "selector": "bat-headline-default h2, h2.bat-headline-style",
+            "hits": 22
+          },
+          {
+            "name": "h3-card",
+            "selector": "bat-headline-default h3, h3.bat-headline-style",
+            "hits": 18
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "text",
+        "used": true,
+        "fingerprintHits": 104,
+        "variantHits": 52,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-text-default:not(:empty)",
+            "hits": 52
+          },
+          {
+            "name": "boxed",
+            "selector": "bat-text-box",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "input",
+        "used": true,
+        "fingerprintHits": 47,
+        "variantHits": 3,
+        "variants": [
+          {
+            "name": "text",
+            "selector": ".bat-form-field input[type='text'], .bat-form-field input[type='email']",
+            "hits": 0
+          },
+          {
+            "name": "select",
+            "selector": ".bat-form-field select",
+            "hits": 3
+          },
+          {
+            "name": "password",
+            "selector": ".bat-form-field input[type='password']",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "form-field",
+        "used": true,
+        "fingerprintHits": 44,
+        "variantHits": 42,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-form-field:not(.bat-form-field--hidden)",
+            "hits": 26
+          },
+          {
+            "name": "error",
+            "selector": ".bat-form-field .bat-form-msg:not(:empty)",
+            "hits": 16
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "cta-list",
+        "used": true,
+        "fingerprintHits": 18,
+        "variantHits": 10,
+        "variants": [
+          {
+            "name": "horizontal",
+            "selector": "bat-cta-default .bat-cta-list--horizontal, .bat-cta-list--horizontal",
+            "hits": 4
+          },
+          {
+            "name": "logged-in",
+            "selector": "bat-cta-loggedin",
+            "hits": 4
+          },
+          {
+            "name": "account",
+            "selector": "bat-cta-account",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "nav-item",
+        "used": true,
+        "fingerprintHits": 16,
+        "variantHits": 9,
+        "variants": [
+          {
+            "name": "desktop",
+            "selector": ".bat-navigation-group-list-item:not(.bat-navigation-group-list-item--zonnic-mobile)",
+            "hits": 7
+          },
+          {
+            "name": "mobile",
+            "selector": ".bat-navigation-group-list-item--zonnic-mobile",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "modal-shell",
+        "used": true,
+        "fingerprintHits": 14,
+        "variantHits": 5,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-modal",
+            "hits": 5
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "form-message",
+        "used": true,
+        "fingerprintHits": 18,
+        "variantHits": 17,
+        "variants": [
+          {
+            "name": "error",
+            "selector": ".bat-form-field .bat-form-msg",
+            "hits": 16
+          },
+          {
+            "name": "tip",
+            "selector": ".bat-form-field .bat-form-field-tip",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "age-gate",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-agegate-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "header",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-header-zonnicheadless",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "footer",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-footer-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "message-bar",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-messagebar-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "hero",
+        "used": true,
+        "fingerprintHits": 8,
+        "variantHits": 4,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-hero-zonnic",
+            "hits": 4
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "masthead-card",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-mastheadzonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "blurb-card",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-blurb",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "blog-card",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-blog",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "tab-sync-carousel",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-carousel-zonnictabsync",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "product-carousel",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-carousel-product",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "faq",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-faq-default",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "signup-form",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-signup",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "login-form",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-loginzonnic",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "newsletter-form",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-newsletterzonnic, .bat-form--newsletter",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "contact-form",
+        "used": true,
+        "fingerprintHits": 0,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-signup[data-template-url*='contactUs'], bat-form-signup:has(.bat-form--contact-us-email-first-name), form#step1Form",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "product-hero",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-producthero-zonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "store-locator",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-mapboxstorelocator-zonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "location-selector",
+        "used": true,
+        "fingerprintHits": 3,
+        "variantHits": 3,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-locationselector-zonnic",
+            "hits": 3
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "mini-cart",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-minicart-zonnic",
+            "hits": 2
+          }
+        ]
+      }
+    ],
+    "why-zonnic": [
+      {
+        "level": "atoms",
+        "component": "button",
+        "used": true,
+        "fingerprintHits": 42,
+        "variantHits": 21,
+        "variants": [
+          {
+            "name": "primary",
+            "selector": ".bat-cta-style.button-dark:not(.button-secondary-dark)",
+            "hits": 11
+          },
+          {
+            "name": "secondary",
+            "selector": ".bat-cta-style.button-secondary-dark",
+            "hits": 4
+          },
+          {
+            "name": "arrow-link",
+            "selector": "a.arrow-link-dark, .bat-cta-style.button-dark.arrow-link-dark",
+            "hits": 6
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "link",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "utility",
+            "selector": "a.privacy-notice-link, a.more-link, a.less-link",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "icon",
+        "used": true,
+        "fingerprintHits": 35,
+        "variantHits": 35,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-icon",
+            "hits": 35
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "image",
+        "used": true,
+        "fingerprintHits": 127,
+        "variantHits": 61,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-image-default:not([hidden])",
+            "hits": 61
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "headline",
+        "used": true,
+        "fingerprintHits": 93,
+        "variantHits": 39,
+        "variants": [
+          {
+            "name": "h1-display",
+            "selector": "h1.bat-headline-style.headline1",
+            "hits": 0
+          },
+          {
+            "name": "h2-section",
+            "selector": "bat-headline-default h2, h2.bat-headline-style",
+            "hits": 33
+          },
+          {
+            "name": "h3-card",
+            "selector": "bat-headline-default h3, h3.bat-headline-style",
+            "hits": 6
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "text",
+        "used": true,
+        "fingerprintHits": 56,
+        "variantHits": 28,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-text-default:not(:empty)",
+            "hits": 28
+          },
+          {
+            "name": "boxed",
+            "selector": "bat-text-box",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "atoms",
+        "component": "input",
+        "used": true,
+        "fingerprintHits": 47,
+        "variantHits": 3,
+        "variants": [
+          {
+            "name": "text",
+            "selector": ".bat-form-field input[type='text'], .bat-form-field input[type='email']",
+            "hits": 0
+          },
+          {
+            "name": "select",
+            "selector": ".bat-form-field select",
+            "hits": 3
+          },
+          {
+            "name": "password",
+            "selector": ".bat-form-field input[type='password']",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "form-field",
+        "used": true,
+        "fingerprintHits": 44,
+        "variantHits": 42,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-form-field:not(.bat-form-field--hidden)",
+            "hits": 26
+          },
+          {
+            "name": "error",
+            "selector": ".bat-form-field .bat-form-msg:not(:empty)",
+            "hits": 16
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "cta-list",
+        "used": true,
+        "fingerprintHits": 22,
+        "variantHits": 14,
+        "variants": [
+          {
+            "name": "horizontal",
+            "selector": "bat-cta-default .bat-cta-list--horizontal, .bat-cta-list--horizontal",
+            "hits": 10
+          },
+          {
+            "name": "logged-in",
+            "selector": "bat-cta-loggedin",
+            "hits": 4
+          },
+          {
+            "name": "account",
+            "selector": "bat-cta-account",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "nav-item",
+        "used": true,
+        "fingerprintHits": 16,
+        "variantHits": 9,
+        "variants": [
+          {
+            "name": "desktop",
+            "selector": ".bat-navigation-group-list-item:not(.bat-navigation-group-list-item--zonnic-mobile)",
+            "hits": 7
+          },
+          {
+            "name": "mobile",
+            "selector": ".bat-navigation-group-list-item--zonnic-mobile",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "modal-shell",
+        "used": true,
+        "fingerprintHits": 14,
+        "variantHits": 5,
+        "variants": [
+          {
+            "name": "default",
+            "selector": ".bat-modal",
+            "hits": 5
+          }
+        ]
+      },
+      {
+        "level": "molecules",
+        "component": "form-message",
+        "used": true,
+        "fingerprintHits": 18,
+        "variantHits": 17,
+        "variants": [
+          {
+            "name": "error",
+            "selector": ".bat-form-field .bat-form-msg",
+            "hits": 16
+          },
+          {
+            "name": "tip",
+            "selector": ".bat-form-field .bat-form-field-tip",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "age-gate",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-agegate-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "header",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-header-zonnicheadless",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "footer",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-footer-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "message-bar",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-messagebar-zonnic",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "hero",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-hero-zonnic",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "masthead-card",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-mastheadzonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "blurb-card",
+        "used": true,
+        "fingerprintHits": 30,
+        "variantHits": 15,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-blurb",
+            "hits": 15
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "blog-card",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-card-blog",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "tab-sync-carousel",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 4,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-carousel-zonnictabsync",
+            "hits": 4
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "product-carousel",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-carousel-product",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "faq",
+        "used": true,
+        "fingerprintHits": 1,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-faq-default",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "signup-form",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-signup",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "login-form",
+        "used": true,
+        "fingerprintHits": 4,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-loginzonnic",
+            "hits": 2
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "newsletter-form",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-newsletterzonnic, .bat-form--newsletter",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "contact-form",
+        "used": true,
+        "fingerprintHits": 0,
+        "variantHits": 1,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-form-signup[data-template-url*='contactUs'], bat-form-signup:has(.bat-form--contact-us-email-first-name), form#step1Form",
+            "hits": 1
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "product-hero",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-producthero-zonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "store-locator",
+        "used": false,
+        "fingerprintHits": 0,
+        "variantHits": 0,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-mapboxstorelocator-zonnic",
+            "hits": 0
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "location-selector",
+        "used": true,
+        "fingerprintHits": 3,
+        "variantHits": 3,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-locationselector-zonnic",
+            "hits": 3
+          }
+        ]
+      },
+      {
+        "level": "organisms",
+        "component": "mini-cart",
+        "used": true,
+        "fingerprintHits": 2,
+        "variantHits": 2,
+        "variants": [
+          {
+            "name": "default",
+            "selector": "bat-minicart-zonnic",
+            "hits": 2
+          }
+        ]
+      }
+    ]
+  },
+  "gapsByPage": {
+    "contact-us-testimonials": [],
+    "homepage": [],
+    "pouches-zonnic-mint-24-nicotine-pouches": [],
+    "sign-up": [],
+    "store-locator": [],
+    "testingblogarticletemplate": [],
+    "what-is-zonnic": [],
+    "why-zonnic": []
+  }
+}

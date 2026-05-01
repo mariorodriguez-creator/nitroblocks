@@ -1,0 +1,65 @@
+{
+  "cookies": [
+    {
+      "name": "age_verify",
+      "value": "confirmed",
+      "domain": "www.zonnic.ca",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "setStore",
+      "value": "zonnic_ca_bc_en_ca",
+      "domain": "www.zonnic.ca",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "regionLocation",
+      "value": "British Columbia",
+      "domain": "www.zonnic.ca",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "regionCode",
+      "value": "bc",
+      "domain": "www.zonnic.ca",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "webSite",
+      "value": "zonnic_ca_bc",
+      "domain": "www.zonnic.ca",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "OptanonConsent",
+      "value": "isGpcEnabled=0&datestamp=Thu+Apr+30+2026+15%3A29%3A12+GMT%2B0200+(Central+European+Summer+Time)&version=202512.1.0&browserGpcFlag=0&isIABGlobal=false&hosts=&landingPath=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen&groups=C0001%3A1%2CC0003%3A0%2CC0002%3A0%2CC0004%3A0",
+      "domain": ".www.zonnic.ca",
+      "path": "/",
+      "expires": 1809091752,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": []
+}

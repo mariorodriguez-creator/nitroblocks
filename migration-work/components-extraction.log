@@ -1,0 +1,87 @@
+[components] Loaded manifest: 7 atoms, 5 molecules, 19 organisms
+[components] Extracting atom "button" (3 variants)
+[components]   variant primary → https://www.zonnic.ca/ca/en
+[components]   variant secondary → https://www.zonnic.ca/ca/en
+[components]   variant arrow-link → https://www.zonnic.ca/ca/en
+[components] Extracting atom "link" (1 variants)
+[components]   variant utility → https://www.zonnic.ca/ca/en
+[components]     skipping screenshot: element not visible (likely inside collapsed modal)
+[components] Extracting atom "icon" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en
+[components] Extracting atom "image" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en
+[components] Extracting atom "headline" (3 variants)
+[components]   variant h1-display → https://www.zonnic.ca/ca/en
+[components]   variant h2-section → https://www.zonnic.ca/ca/en
+[components]   variant h3-card → https://www.zonnic.ca/ca/en
+[components]     skipping screenshot: element not visible (likely inside collapsed modal)
+[components] Extracting atom "text" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en
+[components] Extracting atom "input" (3 variants)
+[components]   variant text → https://www.zonnic.ca/ca/en/sign-up
+[components]   variant select → https://www.zonnic.ca/ca/en/sign-up
+[components]   variant password → https://www.zonnic.ca/ca/en/sign-up
+[components] Extracting molecule "form-field" (2 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en/sign-up
+[components]   variant error → https://www.zonnic.ca/ca/en/sign-up
+[components]     skipping screenshot: element not visible (likely inside collapsed modal)
+[components] Extracting molecule "cta-list" (1 variants)
+[components]   variant horizontal → https://www.zonnic.ca/ca/en
+[components] Extracting molecule "nav-item" (2 variants)
+[components]   variant desktop → https://www.zonnic.ca/ca/en
+[components]   variant mobile → https://www.zonnic.ca/ca/en
+[components]     skipping screenshot: element not visible (likely inside collapsed modal)
+[components] Extracting molecule "modal-shell" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en
+[components]     skipping screenshot: element not visible (likely inside collapsed modal)
+[components] Extracting molecule "form-message" (2 variants)
+[components]   variant error → https://www.zonnic.ca/ca/en/sign-up
+[components]     skipping screenshot: element not visible (likely inside collapsed modal)
+[components]   variant tip → https://www.zonnic.ca/ca/en/sign-up
+[components] Extracting organism "age-gate" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en
+[components]     skipping screenshot: element not visible (likely inside collapsed modal)
+[components] Extracting organism "header" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en
+[components] Extracting organism "footer" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en
+[components] Extracting organism "message-bar" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en
+[components]     skipping screenshot: element not visible (likely inside collapsed modal)
+[components] Extracting organism "hero" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en/why-zonnic
+[components] Extracting organism "masthead-card" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en
+[components] Extracting organism "blurb-card" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en
+[components] Extracting organism "blog-card" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en
+[components] Extracting organism "tab-sync-carousel" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en
+[components]     skipping screenshot: element not visible (likely inside collapsed modal)
+[components] Extracting organism "product-carousel" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en
+[components]     skipping screenshot: element not visible (likely inside collapsed modal)
+[components] Extracting organism "faq" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en/why-zonnic
+[components] Extracting organism "signup-form" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en/sign-up
+[components] Extracting organism "login-form" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en
+[components]     skipping screenshot: element not visible (likely inside collapsed modal)
+[components] Extracting organism "newsletter-form" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en/blog/testingblogarticletemplate
+[components] Extracting organism "contact-form" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en/contact-us-testimonials
+[components]     skipping screenshot: element not visible (likely inside collapsed modal)
+[components] Extracting organism "product-hero" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en/pouches/zonnic-mint-24-nicotine-pouches
+[components] Extracting organism "store-locator" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en/store-locator
+[components] Extracting organism "location-selector" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en
+[components]     skipping screenshot: element not visible (likely inside collapsed modal)
+[components] Extracting organism "mini-cart" (1 variants)
+[components]   variant default → https://www.zonnic.ca/ca/en
+[components]     skipping screenshot: element not visible (likely inside collapsed modal)
+[components] Done. Components: 31, variants: 39/40 extracted successfully.

@@ -1,149 +1,131 @@
-# Validation Strategy
+# Validation Strategy — Zonnic Canada Migration
 
-How we verify fidelity at every phase gate. Every claim below is measurable.
+Each phase has explicit validation gates that must pass before the next phase can begin.
 
-## Principles
+## Per-Phase Validation
 
-1. **Every phase has a gate** — no work in the next phase until the previous gate passes.
-2. **Automated tests run on every PR** — humans never block on regression they could have caught automatically.
-3. **Three fidelity axes**: visual, behavioral, content. All three must pass.
-4. **Baselines are locked after discovery** — deviation from baseline requires an explicit decision, not a silent accept.
+### Phase 1 Gate: Discovery → Design System
 
-## Phase 1 → 2 Gate: Discovery Sign-off
+Required artifacts:
+- Atomic inventory v2 confirmed against `identify-page-structure` per representative URL
+- Approved normalisation deltas (signed)
+- Vendor confirmations: Santral license, Mapbox key, Salesforce API contract
+- A11y audit baseline (axe + manual) on representative pages
+- PSI baseline on existing site
 
-### Artifacts produced
-- Locked scope document (in/out/deferred)
-- Architectural decisions (DISC-02 Salesforce, DISC-05 minicart, DISC-08 PriceSpider, DISC-11 Santral licensing)
-- Refined work plan with per-item confidence ratings
-- Content freeze schedule + author training schedule
-- Design baseline: `migration-work/design-extract/` fully validated + second bypass-leak scan clean
+Pass criteria:
+- Stakeholders + brand team + legal sign-off on the proposal
+- Atomic inventory delta vs. proposal ≤ 10%
+- All HIGH-severity risks (R1, R2, R4, R9, R18) have a named owner
 
-### Validation checks
-| Check | Method | Pass criteria |
+### Phase 2 Gate: Design System
+
+Required artifacts:
+- Pencil design system (`migration-work/zonnic-design-system.pen`)
+- `styles/styles.css`, `styles/lazy-styles.css`, `styles/fonts.css` populated
+- `/icons/*.svg` library
+- Section style guide
+
+Pass criteria:
+- All extracted primitives (per `01-design-system-audit.md`) mapped to normalised tokens
+- All organisms identified in `03-atomic-inventory.md` have visual specs in Pencil
+- `designlang drift` clean (target tokens vs. source within negotiated delta)
+- Brand team sign-off on Pencil walkthrough
+
+### Phase 3 Gate: Site Build
+
+Required artifacts:
+- Every block in `04-block-mapping.md` rendering with test content
+- Every template in `03-atomic-inventory.md` rendering at feature-preview URL
+- Every integration in `01-design-system-audit.md` ("Third-Party Integrations Detected") configured
+
+Pass criteria (run on every block PR via `testing-blocks` skill):
+- **Lighthouse ≥ 100** on the test page (PSI bot enforces in CI)
+- **Linting passes:** `npm run lint`
+- **WCAG 2.2 AA** on the block (eds-wcag skill: keyboard nav, screen-reader, focus, aria, contrast)
+- **Visual diff** against the corresponding clean template screenshot ≤ 5%
+- **Token drift** clean (`designlang drift` against the published design system)
+- Block has an authoring guide (per `eds-documentation` skill)
+- Block exports a default decorate function and uses block-isolated CSS (no `!important`)
+
+### Phase 4 Gate: Content Migration
+
+Required artifacts:
+- 92 pages live in feature-preview
+- `redirects.json` published
+- `bulk-metadata.json` published
+- Media assets in published source
+
+Pass criteria (per batch):
+- Sample review: random 10% of pages in the batch reviewed by content lead + designer
+- URL redirect mapping verified (every old URL → new URL, no 404s)
+- Media assets accessible (no broken image errors)
+- No content truncation (compare word count with source)
+- A11y blocks introduced by migration: zero (a11y must remain at the block-level pass from Phase 3)
+
+### Phase 5 Gate: Go-Live
+
+Required artifacts:
+- Visual regression report (designlang `visual-diff` per template)
+- Lighthouse 100 sustained over 24h on RUM
+- WCAG 2.2 AA full audit (axe + manual + screen-reader on every template)
+- Cross-browser smoke test (Chrome / Safari / Firefox / Edge)
+- Form submission tests (sign-up + newsletter + contact, happy + error paths)
+- Age-gate / region-routing manual flow tests
+- Content author UAT sign-off
+- SEO checklist (redirects, canonical, sitemap, robots)
+- Go-live checklist (DNS, CDN, monitoring, runbook)
+
+Pass criteria:
+- Visual diff ≤ 2% per template (or signed-off as intentional delta in 02-normalization-report)
+- Lighthouse 100 sustained on every template via RUM
+- Zero new WCAG violations beyond the 5 already remediated
+- Forms post + receive expected responses
+- Age-gate flow end-to-end works (cookie set → page renders → cookie cleared → gate re-appears)
+- Stakeholder sign-off (Zonnic brand + content + legal)
+
+## Tools
+
+| Concern | Tool | When |
 |---|---|---|
-| Page inventory complete | All 106 URLs in sitemap-result.json scraped; 25/25 representatives have `cleaned.html` + `network.har` | Scrape coverage = 100% |
-| Bypass integrity re-verified | Re-run `verify-extraction.mjs` after `designlang` rerun | 0 consent-banner / 0 chat-widget / 0 age-gate keyword hits |
-| Vendor snippet manifest complete | Every integration listed in `01-design-system-audit.md` has a named snippet owner + expected placement | All 14 snippets documented with owners |
-| Architectural decisions documented | Written in scope doc + signed off by stakeholder | 4/4 decisions signed |
-| Accessibility baseline | Axe-core violations catalogued, each assigned to a block | 100% of violations have owner block |
+| Visual regression | `designlang visual-diff` | Phase 5 (TEST-01) |
+| Token consistency | `designlang drift` | Phase 2 gate, Phase 3 ongoing |
+| Performance | Lighthouse CI + PSI bot | every PR + Phase 5 (TEST-02) |
+| Performance (live) | EDS RUM (`rum.hlx.page`) | Phase 5 ongoing + hypercare |
+| Accessibility | axe-core (CI), screen-reader manual | every block PR + Phase 5 (TEST-03) |
+| EDS-specific validation | `testing-blocks` skill | every block PR |
+| Linting | `npm run lint` (eslint + stylelint) | every PR (must pass to merge) |
+| Browser smoke | Playwright cross-browser | Phase 5 (TEST-05) |
+| Code review | `code-review` skill | every PR |
 
-### Sign-off owner
-Stakeholder (product owner) + tech lead.
+## Continuous Validation (Phase 3 onward)
 
-## Phase 2 → 3 Gate: Design System Sign-off
+Per AEM Edge Delivery best practices, every PR is verified by the AEM Code Sync bot via PageSpeed Insights. Any PR with a Lighthouse score < 100 is rejected.
 
-### Artifacts produced
-- `styles/styles.css` with `:root` tokens (colors, type, spacing, radii, shadows, motion)
-- `styles/fonts.css` with Santral + fallback metrics
-- Pencil canvas with atoms, molecules, and organism frames for top 10 blocks
-- Audit docs in `migration-work/design-system/` (color audit, type audit, spacing audit, etc.)
+PR description must contain a preview link of the form:
 
-### Validation checks
-| Check | Method | Pass criteria |
-|---|---|---|
-| Token consistency | All values in `styles.css` come from audited token set; no hardcoded hex/px values in block CSS | 0 hardcoded values |
-| Contrast (WCAG AA) | Run axe-core on Pencil pages + sample block grid | 0 contrast violations |
-| Font weight coverage | All text styles use Santral weights that exist in the font file | 0 missing weights |
-| Visual parity on sample | Render a demo page with 3 blocks in new system; visually compare to live site | ≥ 90% pixel-level match |
-| Lighthouse sample | Demo page scored on PSI | Performance + Accessibility ≥ 100 |
+```
+https://{branch}--{repo}--{owner}.aem.page/{path}
+```
 
-### Sign-off owner
-Designer + tech lead + brand steward (if applicable).
+without which the PSI check fails and the PR is automatically rejected. This is enforced on every block, integration, and template PR.
 
-## Phase 3 → 4 Gate: Site Build Complete
+## Hypercare Validation
 
-### Artifacts produced
-- All 23 EDS blocks under `blocks/` with `.js` + `.css`
-- Authoring guide per template in `migration-work/templates/`
-- `scripts/delayed.js` + `scripts/scripts.js` wired with auto-blocking rules
-- Feature-preview URL live on `{branch}--nitroblocks--{owner}.aem.page`
+For 2 weeks after cut-over (OPS-02):
 
-### Validation checks
-| Check | Method | Pass criteria |
-|---|---|---|
-| Linting | `npm run lint` | 0 errors |
-| Lighthouse per template | Run PSI on one representative of each template using test content | Performance ≥ 95, a11y ≥ 100, Best Practices ≥ 95, SEO ≥ 100 |
-| Block rendering | Each block has a test page; visual diff vs baseline | ≥ 95% match |
-| Integration smoke | Login, signup, chat, newsletter, store-locator search work end-to-end | 100% pass |
-| Cross-browser smoke | Latest Chrome, Firefox, Safari, Edge — desktop + iOS + Android | No render breaks |
-| Unit tests | Logic utilities (forms, Mapbox adapter, carousel math) | All pass |
+- Daily RUM dashboard review (LCP / CLS / INP / TBT)
+- Daily error-log review (Sentry or equivalent)
+- Weekly stakeholder check-in
+- Track-and-fix any regressions
+- Capture and apply fixes to a hypercare runbook for post-hypercare reference
 
-### Sign-off owner
-Tech lead + QA.
+## Rollback Strategy
 
-## Phase 4 → 5 Gate: Content Migrated
+If a major regression is found post-cutover:
 
-### Artifacts produced
-- 106 pages authored under the new EDS content root (Docs/Drive/SharePoint)
-- `.helix/redirects.xlsx` with legacy → new URL map
-- `bulk-metadata.xlsx` with template values
-- Per-batch review notes in `migration-work/migration-log/`
+1. **Within 4h:** revert DNS to legacy AEM origin (TTL was lowered to 5min during cutover)
+2. **Within 24h:** identify the regression, fix in feature-preview, validate via Phase 5 gate, re-cutover
+3. **If unfixable:** escalate to brand team; may require regulator notification depending on impact
 
-### Validation checks
-| Check | Method | Pass criteria |
-|---|---|---|
-| Content completeness | Diff source page text vs migrated page text for each batch | ≥ 99% text match (allow whitespace/quotes) |
-| Redirect coverage | Every legacy URL in the old sitemap has a mapping | 100% of URLs mapped |
-| Image asset presence | Every image referenced in migrated pages resolves (HTTP 200) | 0 broken images |
-| Metadata parity | OG, canonical, hreflang, title, description match source | 0 missing tags |
-| Author spot check | Human review of 100% batch 1, 10% batches 2–5 | 0 content truncation |
-
-### Sign-off owner
-Content author lead + SEO + tech lead.
-
-## Phase 5 → Go-live Gate: UAT Complete
-
-### Validation checks
-| Check | Method | Pass criteria |
-|---|---|---|
-| Visual regression | `designlang visual-diff` against live baseline for 25 representatives × 3 viewports | ≤ 3% delta per template |
-| Lighthouse | PSI for every template on preview URL | **Performance = 100, a11y = 100, BP = 100, SEO = 100** on every template |
-| WCAG 2.2 AA | Axe-core + manual VoiceOver/NVDA pass | 0 critical + 0 serious violations |
-| Cross-browser | Safari 15+, Chrome latest, Firefox latest, Edge latest, iOS Safari, Chrome Android | All pass |
-| Integration E2E | Playwright suite covering login, signup, password reset, chat open/close, newsletter submit, store-locator search, age-gate flow | All pass |
-| Analytics parity | dataLayer events captured in Chrome DevTools match a pre-migration recording | 100% of expected events fire |
-| SEO parity | Screaming Frog crawl on preview URL | 0 broken links, 100% canonical/title/description present |
-| Author UAT | Author can create a new page and publish | Successful publish on feature preview |
-| Rollback drill | DNS rollback rehearsed with ops | Rollback completes in < 15 minutes |
-| Legal sign-off | Age gate, privacy, consent reviewed | Signed by legal |
-
-### Sign-off owner
-Tech lead + product owner + legal.
-
-## Post go-live: Hypercare
-
-2-week monitoring window (TEST-12).
-
-### Checks
-| Check | Tool | Frequency |
-|---|---|---|
-| Core Web Vitals field | CrUX / RUM | Daily |
-| 404 spikes | CDN logs | Daily |
-| Error rates | Sentry or equivalent | Continuous |
-| Author issues | Triage queue | As reported |
-| P1 incidents | On-call | Instant |
-
-### Exit criteria
-- Zero P1/P2 incidents open for 5 consecutive days
-- Core Web Vitals green on mobile + desktop
-- Author training feedback addressed
-
-## Continuous validation (after go-live)
-
-- PR template requires preview URL `https://{branch}--nitroblocks--{owner}.aem.page/{path}` — failure to provide blocks PSI bot check
-- Lighthouse CI: every PR tests the touched pages; score < 100 fails the PR
-- Axe-core runs in CI on every PR for 5 sampled pages
-- Monthly visual-diff snapshot + comparison
-
-## Traceability matrix
-
-Each validation check maps back to a work item so it can be executed, not hand-waved.
-
-| Gate | Key work items | Checks tracked above |
-|---|---|---|
-| Discovery sign-off | DISC-01..15 | All DISC checks |
-| DS sign-off | DS-14 (a11y review) + DS-15 (sign-off) | DS checks |
-| Site build | TEST-01..04 | Lighthouse, a11y, visual |
-| Content migrated | MIGRATE-02..09 reviews | Content completeness checks |
-| Go-live | TEST-05..11 | UAT checks |
-| Hypercare end | TEST-12 | Post-go-live checks |
+The legacy AEM origin remains live (read-only) for 30 days post-cutover to support rollback.

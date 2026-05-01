@@ -1,147 +1,198 @@
-# Phase Plan
+# Phase Plan — Zonnic Canada Migration
 
-Gate-driven delivery plan. Each phase has an entry condition, an exit gate, and can only proceed once the gate is green.
+## Phase 1: Discovery (2 weeks)
 
-## Phase 1: Discovery (1 week)
+**Entry criteria:** signed engagement, kick-off scheduled
+**Exit criteria:** approved work plan + commercial proposal sign-off
 
-**Entry:** Signed engagement with stakeholder availability committed for kickoff + client ready to produce the vendor snippet manifest.
+### Tracks (run in parallel)
 
-**Exit gate:** Approved work plan; LOW-confidence dimensions (bypass-integrity, component-anatomy, accessibility) converted to MEDIUM or HIGH through re-sampling + decisions; vendor snippet manifest received.
+- **Stakeholder track** (DISC-01, 03, 04, 05, 06, 12, 13, 14, 15) — interviews, contract confirmations, sign-offs
+- **Technical validation track** (DISC-08, 09, 10, 11) — atomic structuring, a11y audit, performance baseline
+- **Vendor track** (DISC-02, 07) — typeface license, Mapbox key
 
-**Work items:** DISC-01 through DISC-13 (see [05-work-items.md](05-work-items.md)).
+### Deliverables
 
-**Deliverables:**
-- Locked scope document (what is in / out / deferred)
-- Vendor snippet manifest (owner + expected placement for each of ~14 snippets)
-- Minicart scope decision (keep / defer / drop)
-- Refined t-shirt estimates with per-item confidence
-- Content freeze + authoring training schedule
+- Atomic inventory v2 (validated against `identify-page-structure` per representative URL)
+- Approved normalisation deltas (signed)
+- Final SOW + commercial proposal
+- Go-ahead for Phase 2
 
-**Key risk addressed:** LOW overall confidence → HIGH/MEDIUM; vendor snippets have named owners.
+---
 
 ## Phase 2: Design System Build (2–3 weeks)
 
-**Entry:** Approved work plan from Phase 1 + Santral licensing confirmed.
+**Entry:** approved work plan
+**Exit:** signed-off design system in **Pencil** (`.pen`)
+**Tool:** Pencil MCP (token + atom + molecule + organism frames)
 
-**Exit gate:** Signed-off design system in Pencil; token set committed to `styles/styles.css`; normalized type scale documented; WCAG contrast failures resolved.
+### Sequence
 
-**Tool:** Pencil MCP (`.pen` canvas committed next to code).
+1. FOUND-01..05 (foundation tokens) — foundation engineer, ~2 days
+2. ATOM-01..07 (atom-level CSS, decorators, icon system, banner section style) — runs in parallel — designer + developer, ~3 days
+3. FOUND-06 (Pencil design system) — designer, ~3–4 days
+4. FOUND-07 (sign-off) — gates Phase 3
 
-**Work items:** DS-01 through DS-15.
+### Deliverables
 
-**Deliverables:**
-- `styles/styles.css` with full `:root` token set (colors, typography, spacing, shadows, radii, motion)
-- `styles/fonts.css` with Santral + fallback metrics
-- `migration-work/design-system/` with audit documentation
-- Pencil canvas with atoms + molecules + organism frames for top 10 blocks
-- Design review sign-off artifacts
+- `styles/styles.css` with all tokens published as CSS variables
+- `styles/lazy-styles.css` containing default-content rules
+- `styles/fonts.css` with Santral self-host + fallback technique
+- `/icons/*.svg` icon library (replaces Font Awesome)
+- Pencil file: `migration-work/zonnic-design-system.pen` (committed to repo)
+- One-page design-system reference guide for content authors
 
-**Key risk addressed:** Typography 35/100 score → normalized 4-weight / 7-size scale.
+---
 
-**Parallelization:** DS-06 (spacing) + DS-07 (shadows) + DS-08 (radii) can run in parallel with DS-02–05 (color + typography). DS-11–13 (Pencil frames) can start once DS-09 is partial.
+## Phase 3: Site Build (6–8 weeks)
 
-## Phase 3: Site Build (5–8 weeks)
+**Entry:** signed-off design system
+**Exit:** all blocks render with test content, all templates published, all integrations live in feature-preview environment, Lighthouse 100 on every template, WCAG 2.2 AA passes, linting passes
+**Methodology:** SDD via `speckit` per block; orchestrated by the `building-blocks` skill (which itself drives `content-driven-development` and `eds-styles` / `eds-wcag` / `eds-analytics` / `eds-documentation` per block)
 
-**Entry:** Signed-off design system from Phase 2. Vendor snippet manifest delivered by client (DISC-02).
+### Sequence
 
-**Exit gate:** All blocks and templates implemented, Lighthouse ≥ 100 on every template using test content, all vendor snippets placed and verified on feature-preview URL.
+#### Wave A (week 1) — header / footer / chrome / health-warning
 
-**Methodology:** SDD via speckit, invoking content-driven-development per block.
+- BLOCK-ADAPT-01, BLOCK-ADAPT-02, ATOM-06 (already built in Phase 2)
+- TMPL-01 (homepage scaffolding)
+- BUILD-INT-01, BUILD-INT-02 (age-gate edge worker + static gate page)
 
-**Work items:** All BUILD-CHROME-*, BUILD-CONTENT-*, BUILD-SPECIAL-*, BUILD-TMPL-*, BUILD-INT-*.
+Goal at end of Wave A: a homepage shell renders with header, footer, warning banner, age-gate flow.
 
-**Build order (recommended):**
+#### Wave B (weeks 2–3) — marketing / content blocks
 
-1. **Week 1 — Scaffolding**: BUILD-CHROME-01…05 (core files, delayed.js, fonts), BUILD-INT-01…05 (drop DTM/GTM/OneTrust/ContentSquare/Qualtrics snippets into delayed.js), BUILD-INT-11/13 (RUM confirm + unpkg self-host).
-2. **Week 2 — Global chrome**: BUILD-CHROME-06 (header), BUILD-CHROME-07 (footer), BUILD-CHROME-08 (age-gate), BUILD-CHROME-09 (announcement-bar), BUILD-CHROME-10 (location-selector + modal).
-3. **Week 3–4 — Content blocks (wave 1)**: BUILD-CONTENT-01 (hero), BUILD-CONTENT-02 (masthead-card), BUILD-CONTENT-03 (blurb-card), BUILD-CONTENT-04 (blog cards), BUILD-CONTENT-07 (cta), BUILD-CONTENT-08 (text-box), BUILD-CONTENT-06 (faq).
-4. **Week 5 — Content blocks (wave 2)**: BUILD-CONTENT-09 (signup-form), BUILD-CONTENT-10 (login-form), BUILD-CONTENT-11 (password-reset), BUILD-CONTENT-05 (contact-card). Once forms land, BUILD-INT-06 (Salesforce auth snippets into forms) + BUILD-INT-07 (chat snippet) run in parallel.
-5. **Week 6 — Specialized**: BUILD-SPECIAL-01 (product-carousel), BUILD-SPECIAL-05 (store-locator) + BUILD-INT-09 (Mapbox snippet), BUILD-SPECIAL-02 (tabbed-carousel — **critical path XL**).
-6. **Week 7 — Commerce (conditional, per DISC-03)**: BUILD-SPECIAL-03 (product-hero), BUILD-SPECIAL-04 (product-card), BUILD-SPECIAL-06 (minicart), BUILD-INT-10 (PriceSpider snippet if retained), BUILD-INT-08 (ssapi snippet if retained).
-7. **Week 8 — Snippet verification**: BUILD-INT-12 (Target snippet), BUILD-INT-14 (perf verification per snippet).
-8. **Week 8 — Templates + auto-blocking**: BUILD-TMPL-01…04 (authoring guides).
+- BLOCK-NEW-01 (marketing-banner)
+- BLOCK-NEW-02 (text-image)
+- BLOCK-ADAPT-03 (hero modifiers)
+- BLOCK-ADAPT-04 (cards variants)
+- BLOCK-ADAPT-05 (testimonial carousel)
+- BUILD-INT-07 (OneTrust)
+- BUILD-INT-09 (analytics in `delayed.js`)
+- TMPL-04 (campaign template)
+- TMPL-08 (FAQ template)
 
-**Deliverables:**
-- All 23 EDS blocks in `blocks/` with `.js` + `.css`
-- Updated `scripts/scripts.js` with any new auto-blocking rules
-- `scripts/delayed.js` with all vendor snippets wired (consent-gated where applicable)
-- Feature-preview URL on `{branch}--nitroblocks--{owner}.aem.page` with test content
-- Lighthouse ≥ 100 on homepage + article + store-locator templates
+Goal: campaign template fully renders with all marketing organisms; analytics + consent live but deferred.
 
-**Parallelization:** 2 devs can split: 1 chrome + forms + integration snippets, 1 content + specialized carousels.
+#### Wave C (weeks 3–5) — forms + commerce
 
-**Key risks addressed:** Vendor snippet wiring (BUILD-INT-* + BUILD-INT-14); carousel complexity (BUILD-SPECIAL-02).
+- BLOCK-NEW-03 (newsletter-strip)
+- BUILD-INT-04 (Salesforce client)
+- BLOCK-NEW-04 (sign-up multi-section form) — biggest single block
+- BLOCK-NEW-05 (contact form)
+- BLOCK-NEW-06 (commerce / PriceSpider)
+- BLOCK-NEW-07 (product-header) + TMPL-02 (product-detail template)
+- BLOCK-ADAPT-04 already includes article cards → TMPL-03 (blog article template)
+- TMPL-07 (form-page template)
+- BUILD-INT-05 (PriceSpider)
+- BUILD-INT-08 (chat in `delayed.js`)
 
-## Phase 4: Content Migration (2–3 weeks)
+Goal: end of Wave C every template except store-locator is live.
 
-**Entry:** All blocks from Phase 3 implemented; content freeze in effect on source site; redirect map approved.
+#### Wave D (weeks 6–7) — store locator + adobe stack
 
-**Exit gate:** All 106 pages migrated and reviewed; no content truncation; redirects verified; media assets accessible.
+- BLOCK-NEW-08 (store-locator) — single largest work item, runs in parallel with Wave C late half
+- TMPL-06 (store-locator template)
+- BUILD-INT-06 (Mapbox)
+- BUILD-INT-03 (Adobe Experience Cloud full stack — DTM/Launch + Analytics + AAM + Target + Adcoud)
+- TMPL-05 (quit-zone template — uses many existing blocks)
 
-**Approach:** Agentic batch via `page-import` skill with mandatory review checkpoint after every template batch.
+Goal: every template, every block, every integration live in feature-preview.
 
-**Work items:** MIGRATE-01 through MIGRATE-14.
+#### Wave E (week 7–8) — hardening
 
-**Batch order:**
+- Lighthouse 100 verification per template (TEST-02 starts early here as a fitness function)
+- a11y verification per block (TEST-03 starts early here)
+- bug-bash + iteration
 
-1. **Batch 1 (generic-template, ~30 pages)** — homepage + core value-prop pages (why-zonnic, what-is-zonnic, quit-zone, truth-about-zonnic, etc.)
-2. **Review checkpoint 1** — human review of 100% of batch, codify fixes into orchestrator for later batches
-3. **Batch 2 (generic-template, ~30 pages)** — healthcare-professionals, real-people-real-success, testimonials, insurance
-4. **Review checkpoint 2**
-5. **Batch 3 (blog-article-template, ~40 pages)** — complete blog migration
-6. **Review checkpoint 3**
-7. **Batch 4 (FAQ, ~12 pages)** — mixed faq + faq-old-donotindex
-8. **Review checkpoint 4**
-9. **Batch 5 (specialized, ~5 pages)** — store-locator, newsletter, sign-up, contact-us, email-verification
-10. **Review checkpoint 5**
+### Deliverables
 
-**Deliverables:**
-- 106 pages authored to the new EDS content root
-- Redirect sheet published via EDS `.helix/redirects.xlsx`
-- Images accessible under AEM DAM / equivalent
-- `bulk-metadata.xlsx` applied with correct template values
+- All blocks, templates, integrations live in feature-preview environment
+- Authoring guides per block (`eds-documentation` skill output)
+- Self-test report: Lighthouse 100 ✓, WCAG 2.2 AA ✓, lint clean ✓, visual-diff baselines captured
 
-**Parallelization:** Review checkpoints are sequential; agentic scraping can run in parallel across batches.
+---
 
-## Phase 5: Testing and UAT (2–3 weeks)
+## Phase 4: Content Migration (3–4 weeks)
 
-**Entry:** Content migrated; all preview URLs accessible.
+**Entry:** all blocks implemented + content freeze on source site
+**Exit:** all 92 pages migrated, reviewed, and approved
+**Approach:** agentic batch via `migration-content` skill, which wraps `page-import` per page and adds review checkpoints
 
-**Exit gate:** Go-live approval.
+### Batches
 
-**Work items:** TEST-01 through TEST-12.
+| Batch | Templates | Pages | Effort |
+|---|---|---|---|
+| 1 | homepage + transactional | ~5 | S |
+| 2 | campaign group A | ~15 | M |
+| 3 | campaign group B | ~15 | M |
+| 4 | blog articles | ~8 | S |
+| 5 | product detail | ~12 | M |
+| 6 | healthcare-pro / FAQ / testimonials | ~25 | M |
 
-**Test types:**
-- **Visual regression** — designlang `visual-diff` on 25 representative templates
-- **Performance** — Lighthouse 100 on every template + mobile LCP budget
-- **Accessibility** — axe-core full scan + manual VoiceOver / NVDA pass
-- **Cross-browser** — Safari iOS, Chrome Android, desktop Chrome/Firefox/Edge/Safari
-- **Integration E2E** — login, signup, password reset, chat, newsletter, store-locator search
-- **Content UAT** — author training session + feedback collection → iteration
-- **SEO** — redirects, canonical URLs, sitemap.xml, JSON-LD, hreflang
-- **Analytics** — Adobe DTM dataLayer events fire correctly + Adobe Target surface visible
-- **Go-live checklist** — DNS swap plan, CDN warm, monitoring on, rollback drill
-- **Hypercare** — 1–2 weeks of triage queue monitoring
+After every batch: human review checkpoint (designer + content lead). Iteration permitted; lessons feed forward.
 
-**Parallelization:** Automated tests (visual, Lighthouse, axe, cross-browser) run in parallel. Author UAT, SEO review, analytics verification are sequential human work.
+### Parallel work
+
+- MIGRATE-12 (media bulk download) runs in week 1 alongside Batch 1
+- MIGRATE-13 (redirect mapping) runs in week 1
+- MIGRATE-14 (bulk metadata sheet) populated as batches complete
+
+### Deliverables
+
+- 92 pages live in feature-preview
+- `redirects.json` published to `/redirects.json`
+- `bulk-metadata.json` published
+- Content authoring guide signed off by Zonnic content team
+
+---
+
+## Phase 5: Testing and UAT (3 weeks)
+
+**Entry:** content migrated
+**Exit:** go-live approval
+
+### Tracks
+
+- **Automated track** (week 1): TEST-01 (visual regression), TEST-02 (Lighthouse), TEST-03 (WCAG), TEST-04 (token drift), TEST-05 (cross-browser)
+- **Manual / UAT track** (weeks 1–2): TEST-06 (gate / region flows), TEST-07 (forms), TEST-08 (content author UAT)
+- **Sign-off + go-live** (week 3): TEST-09, OPS-01, OPS-02 hypercare begins
+
+### Deliverables
+
+- Test report bundle (visual diff, Lighthouse scores, WCAG report, drift report)
+- Go-live checklist completed
+- Production traffic cut over
+- 2-week hypercare with daily RUM review
+
+---
 
 ## Critical Path
 
-These items gate the entire timeline. Any delay shifts the go-live date 1:1.
+The following items gate the entire timeline:
 
-1. **DISC-02** (vendor snippet manifest delivered by client) — blocks every BUILD-INT-* item
-2. **DS-15** (design system sign-off) — blocks all Phase 3
-3. **BUILD-SPECIAL-02** (tabbed-carousel, XL) — highest-complexity block
-4. **MIGRATE-06** (blog batch, 40 pages, L) — largest content batch
-5. **TEST-02 → TEST-11** (visual regression → go-live) — sequential testing chain
+1. **DISC-02 (Santral license)** — without confirmation we cannot host the brand font; affects Phase 2 start
+2. **DISC-05 (Salesforce API contract)** — gates BUILD-INT-04 which gates 3 form blocks and BUILD-INT-08 chat
+3. **BUILD-INT-01 (Edge-worker age-gate middleware)** — every published page is private until this works; affects Phase 4 content review (cannot reasonably review pages locked behind a broken gate)
+4. **BLOCK-NEW-08 (Store locator)** — single largest work item; if it slips, store-locator template ships in Wave E rather than Wave D
+5. **MIGRATE-01 → checkpoint cadence** — slippage in batch reviews compresses Phase 5
 
 ## Phase Gate Criteria
 
-| Gate | Criteria |
+| Gate | What must be true |
 |---|---|
-| Phase 1 → 2 | Work plan approved; vendor snippet manifest delivered; minicart decision signed off; Santral licensing resolved |
-| Phase 2 → 3 | Design system approved in Pencil review; tokens committed; no open WCAG contrast failures |
-| Phase 3 → 4 | All blocks implemented; Lighthouse ≥ 100 on test content; all vendor snippets placed and verified; content freeze in place |
-| Phase 4 → 5 | 106 pages authored; redirects in place; author UAT training scheduled |
-| Phase 5 → Go-live | Visual diff delta < 3% per template; Lighthouse = 100 on 100% templates; no WCAG 2.2 AA blocker; stakeholder sign-off |
-| Go-live → Complete | 2-week hypercare with zero P1 / P2 bugs outstanding |
+| 1 → 2 | Approved work plan; signed normalisation deltas; vendor licenses confirmed; Salesforce API contract written |
+| 2 → 3 | Pencil design system signed off; foundations + atoms in `styles.css`; tokens validated by `designlang drift` against the source |
+| 3 → 4 | Every block has a published authoring guide; Lighthouse 100 holds on test pages; lint clean; a11y holds on every block |
+| 4 → 5 | Every page in `sitemap-result.json` has a corresponding feature-preview URL; review-checkpoint sign-off complete; redirect map verified |
+| 5 → live | Visual diff < 2% per template; Lighthouse 100 sustained over 24h on RUM; WCAG audit clean; SEO checklist signed; go-live checklist green |
+
+## Parallelisation summary
+
+| Phase | Roles concurrently working | Notes |
+|---|---|---|
+| 1 | platform engineer + designer + analyst + project mgr | most discovery items run independently |
+| 2 | foundation engineer + designer | Pencil work happens alongside CSS scaffolding |
+| 3 | 2× EDS developers + 1× designer | Waves A→D have built-in parallelism (chrome and edge-worker run alongside marketing blocks) |
+| 4 | 1× developer + 1× content reviewer + content authors | batches sequential, reviews short |
+| 5 | 1× QA + 1× developer + content authors | automated + manual tracks parallel |

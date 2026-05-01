@@ -1,62 +1,48 @@
-# Risk Register
+# Risk Register — Zonnic Canada Migration
 
-Categorized risks with severity (`critical` / `high` / `medium` / `low`) and mitigation.
-Every LOW-confidence dimension in [verification/report.md](../verification/report.md) carries a dedicated risk entry.
+| ID | Category | Risk | Severity | Likelihood | Impact | Mitigation |
+|----|----------|------|----------|------------|--------|------------|
+| R1 | Backend | Age-gate + region-cookie mechanics must be replicated as edge middleware. EDS does not natively support gates. | High | High | Site cannot ship without this; it locks every page. | Build a lightweight edge function (Cloudflare Worker / hlx Function) early in Phase 3 (BUILD-INT-01). Static `/age-gate` page sets the cookies. Test in Phase 5. |
+| R2 | Performance | Adobe Experience Cloud stack (DTM/Launch + AAM + Target + Analytics + Adcoud + ContentSquare + Qualtrics) is heavy and traditionally render-blocking; loading without breaking Lighthouse-100 is not trivial. | High | High | Lighthouse 100 cannot be held → PSI bot rejects PRs → cannot merge to main | Move ALL of it to `delayed.js`, ≥ 3s after LCP. Use web-worker pattern where vendor allows. Run continuous Lighthouse on every block PR via PSI bot. |
+| R3 | Design | Santral typeface — proprietary BAT corporate font. License may not extend to public CDN hosting. | Medium | Medium | Brand team rejects fallback fonts | Confirm license in DISC-02. Self-host with the [font-fallback technique](https://www.aem.live/developer/font-fallback) so fallback fonts visually match before swap. |
+| R4 | Integration | PriceSpider commerce widget + Felix online-purchase iframe are vendor-controlled — they may not behave well after LCP and can blow CWV scores. | High | Medium | Lighthouse 100 lost; commerce CTAs lose revenue | Lazy-load via IntersectionObserver per block. Negotiate vendor lazy-load contract. Fall back to a static "Buy at Felix" button if widget cannot meet performance budget. |
+| R5 | Integration | Salesforce Embedded Messaging chat introduces a second-origin TLS handshake that can compete with critical-path budget. | Medium | High | TBT spikes, CWV regression | Move to `delayed.js` ≥ 3s after LCP. Negotiate widget owner to allow lazy init. |
+| R6 | Design | Site-wide health-warning banner is regulator-mandated and must always render above the fold; locks the LCP candidate. | Medium | High | LCP optimisation flexibility reduced | Keep banner content lightweight (text only); pre-render in HTML; ensure regulator copy is correct. |
+| R7 | Accessibility | Source has 4 WCAG AA contrast failures and 1 critical missing-label violation. | Medium | High | Like-for-like migration carries the debt | Normalise text colours in design system (R7 is mitigated by R8 below). Audit forms in TEST-03. |
+| R8 | Process | Brand team may resist normalisation deltas (color collapse, font-weight reduction). | Low | Medium | Phase 2 sign-off slips | DISC-14 secures sign-off before Phase 2 starts; Pencil renders the deltas visually for stakeholder review. |
+| R9 | Integration | Two Salesforce-backed origins (`bat-sea.my.site.com`, `bat-sea.my.salesforce-scrt.com`) supply account flows the migration team does not own. | High | Medium | Sign-up / contact / chat flows non-functional at cut-over | DISC-05 negotiates contract with BAT platform team early. Build SF API client (BUILD-INT-04) on top of a documented API spec. |
+| R10 | Integration | Adobe Target experiments inventory unknown — some may be live and break if not migrated. | Medium | Medium | Personalisation regressions or experiment data loss | DISC-03 audits experiment inventory. Decide migrate / retire per experiment with marketing team. |
+| R11 | Integration | ContentSquare RUM + Qualtrics SiteIntercept use heavy synchronous JS. | Medium | Medium | TBT regressions | Same `delayed.js` strategy as R2; TEST-02 enforces budget. |
+| R12 | Content | Zonnic site uses 6 font families and 8 weights; normalising to 1 family + 3 weights changes visual feel slightly. | Low | High | Minor visual delta on legacy pages | Stakeholder review in DISC-14 + Pencil walkthrough; document the delta in 02-normalization-report. |
+| R13 | Content | Approximately 92 pages to migrate; some pages contain rich custom layouts (campaign archives, Quit Zone) that may not map cleanly to existing organisms. | Medium | Medium | Some pages need bespoke handling | Phase 4 has a review checkpoint per batch; bespoke pages flagged for designer pass; absorb into estimate via 20% contingency. |
+| R14 | SEO | URL paths `/ca/en/{slug}` are well-structured; risk is in updating canonical tags + redirects on cut-over. | Medium | Low | SEO traffic dip | MIGRATE-13 produces a redirect spreadsheet validated by SEO lead before cut-over. |
+| R15 | Backend | Mapbox API key may be tied to legacy domain. | Low | Low | Store-locator broken on launch | DISC-07 confirms key transferability or provisions a new key. |
+| R16 | Process | Bot-detection on the source site (Imperva) limits depth of the planner's automated probe; some integrations may be missed. | Low | Medium | Phase 3 surprises | Verification report calls out LOW-confidence dimensions; Discovery phase walks through remaining gaps with platform team. |
+| R17 | Backend | RUM endpoint `rum.hlx.page` already present — suggests parallel EDS work elsewhere in BAT; possibility of duplicated effort or contradictory standards. | Low | Medium | Conflict with parallel BAT EDS efforts | DISC-01 surfaces this with stakeholder; align with BAT global EDS programme if any. |
+| R18 | Process | The migration touches a regulated product (nicotine replacement therapy); legal sign-off may be required on any copy or layout change. | High | Medium | Legal review delays Phase 5 | Loop legal early in Discovery (DISC-13); track regulator-mandated content as a separate, unmigratable copy block. |
+| R19 | Design | Magenta `#ad1f8c` campaign palette appears on 1 archived page — sunset vs. preserve unclear. | Low | Low | Stakeholder dispute | DISC-14 resolves; default plan = retire (page is archived). |
+| R20 | Operations | Hypercare period is only 2 weeks; longer regulated-product sites typically benefit from 4 weeks. | Low | Medium | Tail-risk regressions surface after hypercare | OPS-02 includes a runbook for post-hypercare incidents; option to extend hypercare by negotiation. |
 
-**Scope note:** third-party integrations are drop-in only (client provides vendor snippets). Risks that were about engineering a custom Salesforce/Mapbox/OneTrust integration have been removed or demoted accordingly. The remaining integration risks concern delivery-time issues (snippet availability, Lighthouse impact, consent gating).
+## Categories Summary
 
-## Summary
+- **Design** (R3, R6, R8, R12, R19): font, banner, normalisation deltas, magenta palette
+- **Content** (R13, R14, R18): pages, redirects, regulated copy
+- **Performance** (R2): Adobe stack, Lighthouse 100
+- **Integration** (R4, R5, R9, R10, R11, R15, R17): commerce, chat, Salesforce, Adobe Target, ContentSquare, Qualtrics, Mapbox, RUM
+- **Backend** (R1): age-gate edge worker
+- **Process** (R7, R16, R20): a11y debt, bot-detection limits, hypercare length
 
-| Severity | Count |
-|---|---:|
-| Critical | 1 |
-| High | 6 |
-| Medium | 6 |
-| Low | 2 |
-| **Total** | **15** |
+## Severity Scale
 
-## Discovery confidence risks (from verification/report.md)
+- **Critical:** blocks migration or requires architectural change — none currently
+- **High:** significant effort increase or timeline risk — R1, R2, R4, R9, R18 (5)
+- **Medium:** manageable with planning, adds some effort — R3, R5, R6, R7, R10, R11, R13, R14, R16, R17, R20 (11)
+- **Low:** minor inconvenience, easily mitigated — R8, R12, R15, R19 (4)
 
-| ID | Category | Severity | Risk | Evidence | Mitigation |
-|----|----------|----------|------|----------|------------|
-| R-01 | Discovery | high | **Bypass integrity LOW** — overlay fingerprints (consent-banner, chat-widget) leaked into the `designlang` output, meaning some extracted styles may belong to OneTrust or Salesforce Chat, not Zonnic. Token counts could be inflated and anatomy contaminated. | `verification/bypass-leak.md` FAIL; 2 keyword hits | In Phase 1 discovery, re-run `designlang` with a strengthened `--ignore` list and verify a second bypass-leak pass is clean before locking the token set. |
-| R-02 | Discovery | critical | **Component anatomy LOW** — anatomy covers 0% of DOM patterns. `anatomy.tsx` only produced `Card` and `Button`; real DOM has 28 unique `bat-*` Handlebars components. Block inventory is biased toward what `designlang` happened to sample. | `verification/anatomy-diff.md`; 8 DOM-only organisms | Treat the 20 "develop new" blocks as an estimate. During DISC-04, re-scrape all 25 templates and run the organism catalog refresh; expect ±3 blocks. Budget 10–20% headroom on BUILD phase. |
-| R-03 | Discovery | medium | **Template coverage MEDIUM** — only homepage + 9 representatives scraped (40%). 15 templates inferred from sitemap pattern alone. | `verification/report.md` | Complete the scrape (DISC-04). Acceptable to proceed if the remaining templates are variations of already-captured ones. |
-| R-04 | Accessibility | high | **Accessibility LOW** — 3 critical + 11 serious WCAG 2.2 AA violations at runtime across 10 sampled pages. Site fails WCAG 2.2 AA today; the migration must not inherit these issues. | `a11y/summary.json` | Catalog every violation during DISC-08. Assign fix ownership to the block that produces the markup (e.g., `link-name` → hero/cta/footer blocks). Gate Phase 5 on zero-critical a11y. |
+## Top-5 to brief stakeholders
 
-## Design system risks
-
-| ID | Category | Severity | Risk | Evidence | Mitigation |
-|----|----------|----------|------|----------|------------|
-| R-05 | Design system | high | **Typography score 35/100** — 5 font families and 8 weights detected. Santral only ships 6 weights; migrating content using unsupported weights will fall back to browser defaults and shift visually. | `zonnic-ca.grade.md`; `zonnic-ca-design-tokens.json` | Normalize in DS-02 → DS-05. Lock a 4-weight / 7-size scale; audit every observed weight/size for closest supported value; document the normalization decisions. |
-| R-06 | Design system | medium | **CSS Health score — 179 `!important` rules, 92% unused CSS** — indicates accumulated authoring via Handlebars component overrides. Risk of visual regressions during token refactor. | `zonnic-ca.grade.md`; `01-design-system-audit.md` | Use forensic audit process (migration-design-system skill). Validate each normalization visually with `designlang visual-diff`. |
-| R-07 | Design system | medium | **WCAG contrast failures (2)** — low-contrast text/color pair exists in current site. Normalization must fix these. | `zonnic-ca.grade.md` | DS-02 maps out the 27 extracted colors and picks a normalized palette where every text/bg pair meets WCAG AA. Expect 1–2 colors to shift. |
-| R-08 | Design system | low | **Santral licensing** — web-font is currently loaded from the BAT infrastructure (`assets.vuse.com`/similar). Ability to redistribute under EDS is unknown. | visual extraction | DISC-07 resolves: either confirm licensing or pick a fallback. If fallback is needed, add DS-16 to swap and re-tune all type sizes. |
-
-## Integration risks (post scope-clarification)
-
-| ID | Category | Severity | Risk | Evidence | Mitigation |
-|----|----------|----------|------|----------|------------|
-| R-09 | Integration | high | **Vendor snippet availability & change control** — build depends on the client delivering every vendor snippet (OneTrust, Salesforce login/chat, Qualtrics, Mapbox, DTM, GTM, ContentSquare, Target, ad pixels, PriceSpider, ssapi). Late arrival blocks BUILD-INT-*; mid-project changes force re-wiring. | scope handoff from client | DISC-02 produces a snippet manifest with owners + delivery dates. Establish a single "snippets" folder in the repo with a README per snippet and a change log. Weekly check-in with client through Phase 3. |
-| R-10 | Delivery | high | **Lighthouse 100 with vendor snippets** — ~14 vendor snippets (25 unique origins) must all load without tanking Core Web Vitals. OneTrust in particular often demands eager placement which blocks LCP. | `verification/third-party-inventory.md` | Default every snippet into `delayed.js`. If OneTrust (or any vendor) demands eager placement, escalate to a performance trade-off decision (DISC-11) before accepting. Gate each BUILD-INT-* item on Lighthouse before/after. |
-| R-11 | Integration | medium | **OneTrust consent gating** — downstream tags (GA, Adobe, Qualtrics, PriceSpider) rely on OneTrust having written the consent cookie before they load. If the snippet placement order is wrong in `delayed.js`, analytics may fire with no consent or never fire at all. | vendor behaviour | BUILD-INT-03 explicitly orders: OneTrust first, then consent-gated tags. Verify in BUILD-INT-14 (perf budget) by inspecting network waterfall. |
-
-## Content migration risks
-
-| ID | Category | Severity | Risk | Evidence | Mitigation |
-|----|----------|----------|------|----------|------------|
-| R-12 | Content | high | **Content freeze feasibility** — marketing team may push campaign content during the migration window. Any mid-flight updates force re-migration of affected pages. | project assumption | DISC-10 coordinates a 3-week freeze window. MIGRATE-01 sets up a change log to capture any emergency updates. |
-| R-13 | Content | medium | **Authoring model unfamiliar** — marketing authors have not used EDS before. Risk of content regressions during author UAT. | BAT historically on AEM Sites Classic + CSR | Include 2× author-training sessions in Phase 4. Provide cheat sheet per template. |
-| R-14 | Content | medium | **Image re-hosting** — product/hero images currently live on BAT CDN (`assets.vuse.com`). Post-migration must live on AEM DAM or equivalent. | HAR + `cleaned.html` image maps | MIGRATE-11 (media assets) ingests images into the DAM. Budget S–M depending on asset count. |
-
-## Performance and delivery risks
-
-| ID | Category | Severity | Risk | Evidence | Mitigation |
-|----|----------|----------|------|----------|------------|
-| R-15 | Delivery | low | **Age-gate is required for publication** — Health Canada regulation requires the age gate to remain functional. Cannot be removed, only replaced with an EDS-native version. | regulatory | BUILD-CHROME-08 reproduces the gate with a cookie-based memory (same pattern as today). Legal sign-off required in Phase 5. |
-
-## Risk Monitoring
-
-- Review the register weekly during the migration.
-- Convert any LOW-confidence dimension to HIGH or MEDIUM by the end of Phase 1 — otherwise it blocks entry to Phase 2.
-- Raise new risks the moment they are detected (do not defer to the next review).
+1. **R1 (age-gate edge worker)** — non-negotiable; needs CDN-level access agreement on day one
+2. **R2 (Adobe stack performance)** — Lighthouse 100 is the merge gate; brief marketing/analytics teams that critical-path JS is impossible
+3. **R9 (Salesforce ownership)** — secure API documentation + a named platform-team contact in Discovery
+4. **R4 (PriceSpider/Felix)** — negotiate vendor lazy-load contract before Phase 3
+5. **R18 (legal review)** — loop in regulator-affairs counsel from day one

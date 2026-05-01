@@ -4,9 +4,10 @@
 #
 # Phase A: Sitemap analysis (compute depth, classify pages)
 # Phase B: Overlay probe (discover bypass cookies + selectors)
-# Phase C: designlang extraction (with bypass cookies, no --deep-interact/--screenshots)
+# Phase C: designlang extraction (with bypass cookies, including --screenshots
+#          for component crops; --deep-interact intentionally excluded)
 # Phase D: Grade + verify outputs
-# Phase E: Clean screenshots via Playwright (with cookie bypass + widget hiding)
+# Phase E: Per-template full-page Playwright captures (screenshots/templates/)
 # Phase F: Per-template scrape (cleaned HTML + HAR + screenshot)
 # Phase G: Runtime accessibility scan (axe-core per representative)
 # Phase H: Bypass-leak verification on designlang output
@@ -135,22 +136,38 @@ echo "--- Phase B: Overlay probe ---"
 
 BYPASS_RESULT="$WORK_DIR/bypass-result.json"
 BYPASS_COOKIES=""
+COOKIE_FILE_PATH=""
 IGNORE_ARGS=""
 
 if node "$SCRIPTS_DIR/bypass-overlays.mjs" "$URL" --output-dir "$WORK_DIR" > "$BYPASS_RESULT"; then
   # Read detected overlays
   OVERLAYS=$(node -e "const d=JSON.parse(require('fs').readFileSync('$BYPASS_RESULT','utf-8')); console.log((d.overlays_detected || []).join(', ') || 'none')")
   VERIFIED=$(node -e "const d=JSON.parse(require('fs').readFileSync('$BYPASS_RESULT','utf-8')); console.log(d.verified ? 'yes' : 'no')")
+  CLICKED=$(node -e "const d=JSON.parse(require('fs').readFileSync('$BYPASS_RESULT','utf-8')); console.log(d.interaction_clicked || '-')")
 
   echo "  Overlays detected: $OVERLAYS"
-  echo "  Bypass verified: $VERIFIED"
+  echo "  Interaction click: $CLICKED"
+  echo "  Bypass verified:   $VERIFIED"
 
-  # Build --cookie flags (only safe cookies without / in value)
+  # For designlang: use --cookie name=value flags (the --cookie-file flag in
+  # designlang v12 has a parsing bug where storageState JSON cookies aren't
+  # reliably applied before navigation). The bypass_cookies list has already
+  # been filtered to values without '/' (avoids the other designlang parser
+  # bug where '/' in value silently cancels all cookies).
   BYPASS_COOKIES=$(node -e "
     const d=JSON.parse(require('fs').readFileSync('$BYPASS_RESULT','utf-8'));
-    const cookies = d.bypass_cookies || [];
+    const UNSAFE = /\/|%2[fF]/;
+    const cookies = (d.bypass_cookies || []).filter(c => !UNSAFE.test(c.split('=').slice(1).join('=')));
     console.log(cookies.map(c => '--cookie ' + JSON.stringify(c)).join(' '));
   ")
+  echo "  Cookie flags:       $(echo "$BYPASS_COOKIES" | tr ' ' '\n' | grep -c '^--cookie$') cookie(s)"
+
+  # The storageState JSON is still useful for Playwright-based phases
+  # (E/F/G) which consume it directly via Playwright's context.storageState.
+  COOKIE_FILE_PATH=$(node -e "const d=JSON.parse(require('fs').readFileSync('$BYPASS_RESULT','utf-8')); console.log(d.cookie_file || '')")
+  if [ -n "$COOKIE_FILE_PATH" ] && [ -s "$COOKIE_FILE_PATH" ]; then
+    echo "  Cookie file:        $COOKIE_FILE_PATH (for Playwright phases E/F/G)"
+  fi
 
   # Build --ignore flags
   IGNORE_ARGS=$(node -e "
@@ -159,8 +176,7 @@ if node "$SCRIPTS_DIR/bypass-overlays.mjs" "$URL" --output-dir "$WORK_DIR" > "$B
     if (sels.length > 0) console.log('--ignore ' + sels.map(s => JSON.stringify(s)).join(' '));
   ")
 
-  echo "  Cookie flags: ${BYPASS_COOKIES:-none}"
-  echo "  Ignore selectors: $(node -e "const d=JSON.parse(require('fs').readFileSync('$BYPASS_RESULT','utf-8')); console.log((d.ignore_selectors || []).length)") total"
+  echo "  Ignore selectors:   $(node -e "const d=JSON.parse(require('fs').readFileSync('$BYPASS_RESULT','utf-8')); console.log((d.ignore_selectors || []).length)") total"
 else
   echo "  WARNING: Overlay probe failed. Proceeding without bypass."
 fi
@@ -172,24 +188,36 @@ echo ""
 # ───────────────────────────────────────────────────────────────────────────
 
 echo "--- Phase C: designlang extraction ---"
-echo "  Flags: --responsive --interactions --dark --perf --emit-agent-rules"
+echo "  Flags: --responsive --interactions --dark --perf --emit-agent-rules --screenshots"
 echo "  Wait: 3000ms (component hydration)"
-echo "  NOTE: --deep-interact and --screenshots intentionally excluded"
+echo "  NOTE: --deep-interact intentionally excluded (hangs on gated sites)"
+echo "  NOTE: --screenshots writes component crops to $OUT_DIR/screenshots/"
+echo "        Phase H (bypass-leak) scans filenames for overlay leakage."
 echo ""
 
 # Build the full designlang command
 # NOTE: --deep-interact is intentionally excluded — it interacts with
 # overlay CTAs and hangs on gated sites.
-# NOTE: --screenshots is intentionally excluded — designlang's heuristic
-# component detection misfires on overlay fragments. Phase E uses a
-# dedicated Playwright script instead.
+# --screenshots produces component-level crops (buttons, cards, nav) plus
+# a *-screenshots.json manifest with variant × bounds metadata. It lands
+# in $OUT_DIR/screenshots/ alongside Phase E's per-template captures.
+# Overlay misfire risk is mitigated by the bypass pipeline:
+#   1. --cookie injects bypass cookies BEFORE navigation
+#   2. --ignore-widgets strips curated third-party selectors
+#   3. $IGNORE_ARGS adds selectors discovered in Phase B
+# Any residual overlay leakage into component filenames (e.g.
+# "age-gate-modal-0.png") is caught by Phase H's verify-extraction scan.
+# NOTE: --json is deliberately NOT passed. When --json is set, designlang
+# v12 streams the extraction to stdout and suppresses the on-disk emission
+# of *-design-language.md, *-design-tokens.json, *-variables.css, etc. —
+# the very files downstream skills consume.
 DESIGNLANG_CMD="npx --yes designlang \"$URL\" \
   --responsive \
   --interactions \
+  --screenshots \
   --dark \
   --perf \
   --emit-agent-rules \
-  --json \
   --verbose \
   --wait 3000 \
   --depth $DEPTH \
@@ -213,10 +241,11 @@ echo ""
 
 echo "--- Phase D: Grade + verify ---"
 
-# Run grade command with same bypass cookies
+# NOTE: `designlang grade` in v12 does not accept --cookie / --cookie-file.
+# On gated sites the grade report will reflect the public/age-gate surface,
+# not the post-bypass DOM. Treat the grade as a coarse signal; use the main
+# extraction (Phase C) as the authoritative quality source.
 GRADE_CMD="npx --yes designlang grade \"$URL\" \
-  $BYPASS_COOKIES \
-  --wait 3000 \
   -o \"$OUT_DIR\""
 
 echo "  Running: designlang grade"
@@ -231,8 +260,11 @@ echo "  Files generated: $FILE_COUNT"
 MISSING=0
 OPTIONAL_MISSING=0
 
-# Critical outputs (extraction fails without these)
-for pattern in "*-design-language.md" "*-design-tokens.json" "*-anatomy.tsx" "*-grade.html"; do
+# Critical outputs (extraction fails without these).
+# NOTE: *-anatomy.tsx is intentionally NOT in this list — it is a
+# supplementary React scaffold and is often thin or absent. The primary
+# component inventory comes from *-screenshots.json (checked below).
+for pattern in "*-design-language.md" "*-design-tokens.json" "*-grade.html"; do
   MATCH=$(find "$OUT_DIR" -name "$pattern" -print -quit 2>/dev/null)
   if [ -n "$MATCH" ]; then
     SIZE=$(wc -c < "$MATCH" | tr -d ' ')
@@ -249,7 +281,7 @@ for pattern in "*-design-language.md" "*-design-tokens.json" "*-anatomy.tsx" "*-
 done
 
 # High-value outputs for downstream skills
-for pattern in "*-figma-variables.json" "*-variables.css" "*-motion-tokens.json" "*-agent-rules.md"; do
+for pattern in "*-figma-variables.json" "*-variables.css" "*-motion-tokens.json" "*-agent-rules.md" "*-screenshots.json" "*-anatomy.tsx"; do
   MATCH=$(find "$OUT_DIR" -name "$pattern" -print -quit 2>/dev/null)
   if [ -n "$MATCH" ]; then
     SIZE=$(wc -c < "$MATCH" | tr -d ' ')
@@ -280,14 +312,26 @@ fi
 echo ""
 
 # ───────────────────────────────────────────────────────────────────────────
-# Phase E: Clean Screenshots
+# Phase E: Per-template full-page screenshots
 # ───────────────────────────────────────────────────────────────────────────
+#
+# designlang's --screenshots (Phase C) gives us component crops + one
+# homepage full-page capture. Phase E adds per-template × per-viewport
+# full-page captures used by:
+#   - the dashboard template cards (thumbnails)
+#   - migration-design-system's preview/reference/ visual baselines
+#   - the Phase K verification report's template coverage audit
+#
+# Outputs land in screenshots/templates/ so designlang's manifest paths
+# in $OUT_DIR/*-screenshots.json remain valid and filename collisions
+# between component crops and template captures are impossible.
 
-echo "--- Phase E: Clean screenshots ---"
+echo "--- Phase E: Per-template full-page screenshots ---"
 
-SCREENSHOT_DIR="$OUT_DIR/screenshots"
+SCREENSHOT_ROOT="$OUT_DIR/screenshots"
+TEMPLATE_SHOT_DIR="$SCREENSHOT_ROOT/templates"
 SCREENSHOT_CMD="node \"$SCRIPTS_DIR/capture-clean-screenshots.mjs\" \"$URL\" \
-  --output-dir \"$SCREENSHOT_DIR\""
+  --output-dir \"$TEMPLATE_SHOT_DIR\""
 
 # Pass bypass file if it exists
 if [ -f "$BYPASS_RESULT" ]; then
@@ -299,12 +343,14 @@ if [ -f "$SITEMAP_RESULT" ]; then
   SCREENSHOT_CMD="$SCREENSHOT_CMD --pages-file \"$SITEMAP_RESULT\""
 fi
 
-echo "  Running: capture-clean-screenshots"
-eval $SCREENSHOT_CMD 2>&1 || echo "  WARNING: Screenshot capture returned non-zero exit code."
+echo "  Running: capture-clean-screenshots -> $TEMPLATE_SHOT_DIR"
+eval $SCREENSHOT_CMD 2>&1 || echo "  WARNING: Template screenshot capture returned non-zero exit code."
 
-SCREENSHOT_COUNT=$(find "$SCREENSHOT_DIR" -name "*.png" -type f 2>/dev/null | wc -l | tr -d ' ')
+COMPONENT_SHOT_COUNT=$(find "$SCREENSHOT_ROOT" -maxdepth 1 -name "*.png" -type f 2>/dev/null | wc -l | tr -d ' ')
+TEMPLATE_SHOT_COUNT=$(find "$TEMPLATE_SHOT_DIR" -name "*.png" -type f 2>/dev/null | wc -l | tr -d ' ')
 echo ""
-echo "  Screenshots captured: $SCREENSHOT_COUNT"
+echo "  Component crops (designlang): $COMPONENT_SHOT_COUNT"
+echo "  Template captures (Playwright): $TEMPLATE_SHOT_COUNT"
 
 echo ""
 
@@ -549,12 +595,14 @@ fi # SKIP_HARDENING
 echo "=== Discovery complete ==="
 echo ""
 echo "Output directory: $OUT_DIR"
-echo "  Sitemap analysis:  $SITEMAP_RESULT"
-echo "  Bypass probe:      $BYPASS_RESULT"
-echo "  Design tokens:     $OUT_DIR/*-design-tokens.json"
-echo "  Design narrative:  $OUT_DIR/*-design-language.md"
-echo "  Grade report:      $OUT_DIR/*-grade.html"
-echo "  Screenshots:       $SCREENSHOT_DIR/"
+echo "  Sitemap analysis:     $SITEMAP_RESULT"
+echo "  Bypass probe:         $BYPASS_RESULT"
+echo "  Design tokens:        $OUT_DIR/*-design-tokens.json"
+echo "  Design narrative:     $OUT_DIR/*-design-language.md"
+echo "  Grade report:         $OUT_DIR/*-grade.html"
+echo "  Component manifest:   $OUT_DIR/*-screenshots.json"
+echo "  Component crops:      $SCREENSHOT_ROOT/*.png"
+echo "  Template captures:    $TEMPLATE_SHOT_DIR/"
 if [ "$SKIP_HARDENING" -eq 0 ]; then
   echo ""
   echo "Hardening outputs:"

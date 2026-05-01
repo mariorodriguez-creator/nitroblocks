@@ -1,0 +1,21 @@
+{
+  "component": "hero",
+  "stats": {
+    "total": 82,
+    "perPage": {
+      "homepage": 38,
+      "pouches-zonnic-mint-24-nicotine-pouches": 10,
+      "what-is-zonnic": 22,
+      "why-zonnic": 12
+    },
+    "pages": 4
+  },
+  "variants": [
+    {
+      "name": "default",
+      "ok": true,
+      "hiddenFallback": false,
+      "selector": "bat-hero-zonnic"
+    }
+  ]
+}

@@ -3,22 +3,19 @@
 **Status:** FAIL
 
 - Overlays detected in Phase B: age-gate, cookie-consent, salesforce-chat, location-selector
-- Files scanned: 42
-- Total leak-keyword hits: 2
+- Files scanned: 38
+- Total leak-keyword hits: 1
 
 ## Hits by category
 
 | Category | Hits | Critical? |
 |---|---|---|
 | consent-banner | 1 | YES |
-| chat-widget | 1 | YES |
 
 ## Sample evidence (up to 10 per category)
 
-- **consent-banner** in `zonnic-ca-design-language.md` @24665: `onetrust`
-  > slide-y | opacity, transform | 33 | | `onetrust-fade-in` | fade | opacity | 14 | | `otF
-- **chat-widget** in `zonnic-ca-icon-system.json` @1424: `embeddedMessaging`
-  > e": "fill" }, { "class": "embeddedMessagingIconChat", "grid": null, "st
+- **consent-banner** in `zonnic-ca-design-language.md` @23956: `onetrust`
+  > slide-y | opacity, transform | 28 | | `onetrust-fade-in` | fade | opacity | 12 | | `sli
 
 ## Interpretation
 

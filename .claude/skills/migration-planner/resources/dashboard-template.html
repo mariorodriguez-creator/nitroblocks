@@ -108,6 +108,18 @@
   .pill-advisory { background: rgba(107,138,255,0.12); color: var(--navy); }
   .pill-inactive { background: rgba(255,255,255,0.05); color: #666; }
 
+  .subsection-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-secondary); margin: 24px 0 8px; }
+  .subsection-title:first-child { margin-top: 0; }
+  .component-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-bottom: 8px; }
+  .component-card { background: #1c1c28; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; text-decoration: none; color: inherit; display: block; transition: border-color 120ms ease; }
+  .component-card:hover { border-color: var(--navy); }
+  .component-thumb-wrap { background: #fff; height: 120px; display: flex; align-items: center; justify-content: center; padding: 8px; overflow: hidden; }
+  .component-thumb { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .component-thumb-placeholder { width: 100%; height: 100%; background: #22222e; color: #666; display: flex; align-items: center; justify-content: center; font-size: 11px; text-align: center; padding: 12px; }
+  .component-body { padding: 8px 10px; }
+  .component-name { font-size: 12px; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .component-meta { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
 
@@ -254,6 +266,8 @@
                             block-tag flow, live-link to representative URL
   6. Block inventory — reuse/adapt/new stat cards + full table
   7. Atomic design mapping — table (level, count, EDS artifact, description)
+  7b. Forensic component inventory — grid of atom/molecule/organism cards with
+      live-DOM evidence thumbnails (from migration-work/components/)
   8. Third-party integrations — table (service, category, strategy, loading, effort)
   9. Work items by phase — bar chart
   10. Effort by phase — bar chart with max-range overlay
@@ -321,16 +335,20 @@
   <div class="content">
     <div class="template-grid">
       <!-- One template-card per template, sorted by page count descending.
-           - .thumb: desktop screenshot from ../design-extract/screenshots/{slug}-desktop-1440.png
-             (fallback to {slug}-desktop.png for older runs without pixel-width
-             suffix). Omit .thumb or use .thumb-placeholder when no screenshot exists.
+           - .thumb: desktop screenshot from
+             ../design-extract/screenshots/templates/{slug}-desktop-1440.png
+             (primary path since screenshots/templates/ was introduced).
+             Two onerror fallbacks handle pre-split runs:
+               1. ../design-extract/screenshots/{slug}-desktop-1440.png
+               2. ../design-extract/screenshots/{slug}-desktop.png
+             Omit .thumb or use .thumb-placeholder when no screenshot exists.
            - .name: template name
            - .page-count + .page-label: N pages
            - .complexity: pill-reuse (Low), pill-adapt (Medium), pill-new (High)
            - .block-flow: block-tag spans for each block used in this template
            - .live-link: href to representative URL from sitemap-result.json -->
       <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/{{SLUG}}-desktop-1440.png" alt="{{TEMPLATE_NAME}} desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/{{SLUG}}-desktop.png';" />
+        <img class="thumb" src="../design-extract/screenshots/templates/{{SLUG}}-desktop-1440.png" alt="{{TEMPLATE_NAME}} desktop preview" loading="lazy" onerror="if(!this.dataset.f1){this.dataset.f1=1;this.src='../design-extract/screenshots/{{SLUG}}-desktop-1440.png';}else if(!this.dataset.f2){this.dataset.f2=1;this.src='../design-extract/screenshots/{{SLUG}}-desktop.png';}else{this.onerror=null;}" />
         <div class="name">{{TEMPLATE_NAME}}</div>
         <div class="page-count">{{PAGE_COUNT}}</div><div class="page-label">pages</div>
         <div class="complexity"><span class="pill pill-reuse">{{COMPLEXITY}}</span></div>
@@ -375,6 +393,60 @@
         <tr><td><strong>Pages</strong></td><td class="num">{{PAGE_TOTAL}} pages</td><td>Authored content (Google Docs/Word)</td><td>{{PAGES_DESC}}</td></tr>
       </tbody>
     </table>
+  </div>
+</section>
+
+<!-- 7b. FORENSIC COMPONENT INVENTORY (evidence-backed) -->
+<section>
+  <h2>Forensic Component Inventory</h2>
+  <div class="content">
+    <p style="color:var(--text-secondary);margin-bottom:16px">
+      Every atom, molecule and organism below is backed by live-DOM evidence at
+      <code>migration-work/components/</code>: outer HTML captured from the page
+      (<code>anatomy.html</code>), per-variant <code>getComputedStyle()</code> snapshot
+      (<code>computed.css</code>), occurrence + page spread (<code>stats.json</code>),
+      and cropped screenshot per variant. Totals:
+      <strong>{{COMPONENT_TOTAL}}</strong> components
+      (<strong>{{ATOM_COUNT}}</strong> atoms,
+      <strong>{{MOL_COUNT}}</strong> molecules,
+      <strong>{{ORG_COUNT}}</strong> organisms) —
+      <strong>{{EXTRACTED_VARIANTS}}/{{DECLARED_VARIANTS}}</strong> variants extracted with
+      screenshot evidence.
+    </p>
+
+    <h3 class="subsection-title">Atoms</h3>
+    <div class="component-grid">
+      <!-- Repeat per atom. href = ../components/atoms/{name}/ (relative to proposal/ dir) -->
+      <a class="component-card" href="../components/atoms/{{NAME}}/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/atoms/{{NAME}}/evidence/{{VARIANT}}.png" alt="{{NAME}} {{VARIANT}}" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">{{NAME}}</div>
+          <div class="component-meta">{{VARIANT_COUNT}} variant(s) · {{INSTANCE_COUNT}} uses</div>
+        </div>
+      </a>
+    </div>
+
+    <h3 class="subsection-title">Molecules</h3>
+    <div class="component-grid">
+      <a class="component-card" href="../components/molecules/{{NAME}}/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/molecules/{{NAME}}/evidence/{{VARIANT}}.png" alt="{{NAME}}" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">{{NAME}}</div>
+          <div class="component-meta">{{VARIANT_COUNT}} variant(s) · {{INSTANCE_COUNT}} uses</div>
+        </div>
+      </a>
+    </div>
+
+    <h3 class="subsection-title">Organisms</h3>
+    <div class="component-grid">
+      <a class="component-card" href="../components/organisms/{{NAME}}/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/organisms/{{NAME}}/evidence/{{VARIANT}}.png" alt="{{NAME}}" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">{{NAME}}<span class="pill pill-{{MATCH}}">{{MATCH}}</span>{{#REGULATORY}}<span class="pill pill-critical">reg</span>{{/REGULATORY}}</div>
+          <div class="component-meta">{{VARIANT_COUNT}} variant · {{INSTANCE_COUNT}} uses · {{PAGES}} pages</div>
+        </div>
+      </a>
+    </div>
   </div>
 </section>
 

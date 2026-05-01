@@ -1,0 +1,693 @@
+{
+  "site": "zonnic.ca",
+  "source": "https://www.zonnic.ca/ca/en",
+  "pages": {
+    "homepage": "https://www.zonnic.ca/ca/en",
+    "why-zonnic": "https://www.zonnic.ca/ca/en/why-zonnic",
+    "product-detail": "https://www.zonnic.ca/ca/en/pouches/zonnic-mint-24-nicotine-pouches",
+    "sign-up": "https://www.zonnic.ca/ca/en/sign-up",
+    "store-locator": "https://www.zonnic.ca/ca/en/store-locator",
+    "contact-us": "https://www.zonnic.ca/ca/en/contact-us/testimonials",
+    "blog-article": "https://www.zonnic.ca/ca/en/testingblogarticletemplate",
+    "what-is-zonnic": "https://www.zonnic.ca/ca/en/what-is-zonnic"
+  },
+  "coverage": {
+    "chromeTags": [
+      "bat-section-default",
+      "bat-section-modal",
+      "cs-native-frame-holder",
+      "bat-form-autofilllogindetails"
+    ],
+    "notes": "chromeTags are DOM tags that appear as custom elements but are NOT discrete components (section wrappers, third-party chat widgets, internal form sub-pieces). The coverage verifier dismisses them from the gap list."
+  },
+  "atoms": [
+    {
+      "name": "button",
+      "description": "Primary interaction atom. ALL CAPS pill button. 349 uses across 8 pages.",
+      "regulatory": false,
+      "observedPages": ["homepage", "why-zonnic", "product-detail", "sign-up", "store-locator", "contact-us", "blog-article", "what-is-zonnic"],
+      "domFingerprint": [".bat-cta-style", ".bat-button"],
+      "variants": [
+        {
+          "name": "primary",
+          "hint": "Filled navy pill, white text, ALL CAPS.",
+          "selector": ".bat-cta-style.button-dark:not(.button-secondary-dark)",
+          "samplePage": "homepage"
+        },
+        {
+          "name": "secondary",
+          "hint": "Outlined navy pill, navy text, ALL CAPS.",
+          "selector": ".bat-cta-style.button-secondary-dark",
+          "samplePage": "homepage"
+        },
+        {
+          "name": "arrow-link",
+          "hint": "Inline right-arrow link (no pill) used for 'Learn more' / 'Read article'.",
+          "selector": "a.arrow-link-dark, .bat-cta-style.button-dark.arrow-link-dark",
+          "samplePage": "homepage"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "default-content + scripts.js decoration",
+        "notes": "Authors write a link; scripts.js promotes to .button.primary / .button.secondary. Arrow-link variant = inline 'learn more' affordance. `on-dark` is the same pill swapped by parent theme class (no discrete variant in the live DOM today)."
+      }
+    },
+    {
+      "name": "link",
+      "description": "Inline anchor inside body text or utilities. Two observed patterns: inline body link (more/less toggles, privacy-notice) and branded utility link.",
+      "regulatory": false,
+      "observedPages": ["homepage", "blog-article", "product-detail"],
+      "domFingerprint": ["a.more-link", "a.less-link", "a.privacy-notice-link", "a.bat-storelocator--getloc"],
+      "variants": [
+        {
+          "name": "utility",
+          "hint": "Inline utility link (e.g. 'privacy-notice', 'more-link').",
+          "selector": "a.privacy-notice-link, a.more-link, a.less-link",
+          "samplePage": "homepage"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "default-content",
+        "notes": "Handled at global CSS level — no JS decoration."
+      }
+    },
+    {
+      "name": "icon",
+      "description": "Inline SVG icon. 206 uses across 8 pages. Used for chevrons, bullets, and interactive affordances.",
+      "regulatory": false,
+      "observedPages": ["homepage", "why-zonnic", "product-detail", "sign-up", "store-locator", "contact-us", "blog-article", "what-is-zonnic"],
+      "domFingerprint": [".bat-icon"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Inline SVG (navy).",
+          "selector": ".bat-icon",
+          "samplePage": "homepage"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "default-content",
+        "notes": "EDS inline-SVG sprite via :icon-name: authoring notation."
+      }
+    },
+    {
+      "name": "image",
+      "description": "Responsive picture wrapper. 191 bat-image-default + 238 .bat-image instances.",
+      "regulatory": false,
+      "observedPages": ["homepage", "why-zonnic", "product-detail", "sign-up", "store-locator", "contact-us", "blog-article", "what-is-zonnic"],
+      "domFingerprint": ["bat-image-default", ".bat-image"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Responsive <picture> with eager fallback.",
+          "selector": "bat-image-default:not([hidden])",
+          "samplePage": "homepage"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "default-content",
+        "notes": "EDS aem.live optimises images automatically — becomes auto-blocked <picture>."
+      }
+    },
+    {
+      "name": "headline",
+      "description": "All heading levels (h1–h6). 145 bat-headline-default instances. Display font + ALL CAPS convention.",
+      "regulatory": false,
+      "observedPages": ["homepage", "why-zonnic", "product-detail", "sign-up", "store-locator", "contact-us", "blog-article", "what-is-zonnic"],
+      "domFingerprint": ["bat-headline-default", ".bat-headline-style", ".bat-headline"],
+      "variants": [
+        {
+          "name": "h1-display",
+          "hint": "Hero / masthead ALL CAPS display.",
+          "selector": "h1.bat-headline-style.headline1",
+          "samplePage": "homepage"
+        },
+        {
+          "name": "h2-section",
+          "hint": "Section title ALL CAPS.",
+          "selector": "bat-headline-default h2, h2.bat-headline-style",
+          "samplePage": "homepage"
+        },
+        {
+          "name": "h3-card",
+          "hint": "Card heading, often sentence case.",
+          "selector": "bat-headline-default h3, h3.bat-headline-style",
+          "samplePage": "homepage"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "default-content",
+        "notes": "Default content headings with :root type tokens."
+      }
+    },
+    {
+      "name": "text",
+      "description": "Body text container (paragraphs, lists, rich text). 175 bat-text-default + bat-text-box instances.",
+      "regulatory": false,
+      "observedPages": ["homepage", "why-zonnic", "product-detail", "sign-up", "store-locator", "contact-us", "blog-article", "what-is-zonnic"],
+      "domFingerprint": ["bat-text-default", "bat-text-box", ".bat-text"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Body paragraph.",
+          "selector": "bat-text-default:not(:empty)",
+          "samplePage": "homepage"
+        },
+        {
+          "name": "boxed",
+          "hint": "Rich-text box (bordered container for contact details, notes).",
+          "selector": "bat-text-box",
+          "samplePage": "contact-us"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "default-content",
+        "notes": "Default content paragraphs."
+      }
+    },
+    {
+      "name": "input",
+      "description": "Form input control (text, email, password, select, checkbox). 243 bat-form-field uses.",
+      "regulatory": false,
+      "observedPages": ["sign-up", "contact-us", "homepage", "blog-article"],
+      "domFingerprint": [".bat-form-field", ".bat-form-field input", ".bat-form-field select"],
+      "variants": [
+        {
+          "name": "text",
+          "hint": "Single-line text input with floating label.",
+          "selector": ".bat-form-field input[type='text'], .bat-form-field input[type='email']",
+          "samplePage": "sign-up"
+        },
+        {
+          "name": "select",
+          "hint": "Native select with custom chevron.",
+          "selector": ".bat-form-field select",
+          "samplePage": "sign-up"
+        },
+        {
+          "name": "password",
+          "hint": "Password input with reveal toggle.",
+          "selector": ".bat-form-field input[type='password']",
+          "samplePage": "sign-up"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "default-content",
+        "notes": "Form-block convention from Block Collection; custom styling via global CSS."
+      }
+    }
+  ],
+  "molecules": [
+    {
+      "name": "form-field",
+      "description": "Label + control + hint/error. 243 uses on 8 pages. Core composition unit of every form.",
+      "regulatory": false,
+      "observedPages": ["sign-up", "contact-us", "homepage", "blog-article"],
+      "domFingerprint": [".bat-form-field", ".bat-form-field-tip", ".bat-form-msg"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Label + input + hint.",
+          "selector": ".bat-form-field:not(.bat-form-field--hidden)",
+          "samplePage": "sign-up"
+        },
+        {
+          "name": "error",
+          "hint": "Label + input + inline error message.",
+          "selector": ".bat-form-field .bat-form-msg:not(:empty)",
+          "samplePage": "sign-up"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "default-content",
+        "notes": "Inside the `form` block, rows map to fields — migration-work generates content-model per field."
+      }
+    },
+    {
+      "name": "cta-list",
+      "description": "Authored CTA group (primary + secondary button pair). Wrapped by bat-cta-default / bat-cta-loggedin / bat-cta-account depending on auth context. 40 uses across 8 pages.",
+      "regulatory": false,
+      "observedPages": ["homepage", "why-zonnic", "product-detail", "sign-up", "store-locator", "contact-us", "blog-article", "what-is-zonnic"],
+      "domFingerprint": ["bat-cta-default", "bat-cta-loggedin", "bat-cta-account", ".bat-cta-list", ".bat-cta-list--horizontal"],
+      "variants": [
+        {
+          "name": "horizontal",
+          "hint": "Two buttons side-by-side, default (logged-out) audience.",
+          "selector": "bat-cta-default .bat-cta-list--horizontal, .bat-cta-list--horizontal",
+          "samplePage": "homepage"
+        },
+        {
+          "name": "logged-in",
+          "hint": "CTA wrapper shown only to logged-in users (personalized audience).",
+          "selector": "bat-cta-loggedin",
+          "samplePage": "homepage"
+        },
+        {
+          "name": "account",
+          "hint": "Account-gated CTA (appears only for account-area pages, e.g. what-is-zonnic).",
+          "selector": "bat-cta-account",
+          "samplePage": "what-is-zonnic"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "default-content + audience metadata",
+        "notes": "Consecutive links inside the same paragraph → auto-wrapped as button pair. Audience variants (logged-in / account) map to EDS section metadata `Audience` or experimentation fragments."
+      }
+    },
+    {
+      "name": "nav-item",
+      "description": "Single navigation menu entry. Icon + label (+ optional badge). 72 uses site-wide.",
+      "regulatory": false,
+      "observedPages": ["homepage", "why-zonnic", "product-detail", "sign-up", "store-locator", "contact-us", "blog-article", "what-is-zonnic"],
+      "domFingerprint": [".bat-navigation-group-list-item", ".bat-navigation-group-list-item-link"],
+      "variants": [
+        {
+          "name": "desktop",
+          "hint": "Horizontal primary nav item.",
+          "selector": ".bat-navigation-group-list-item:not(.bat-navigation-group-list-item--zonnic-mobile)",
+          "samplePage": "homepage"
+        },
+        {
+          "name": "mobile",
+          "hint": "Stacked mobile-menu nav item.",
+          "selector": ".bat-navigation-group-list-item--zonnic-mobile",
+          "samplePage": "homepage"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "default-content",
+        "notes": "Inside `header` block; built by nav.plain.html fragment."
+      }
+    },
+    {
+      "name": "modal-shell",
+      "description": "Modal container with close affordance. 41 uses (login, mini-cart, location selector, age gate all reuse the shell).",
+      "regulatory": false,
+      "observedPages": ["homepage", "why-zonnic", "product-detail", "sign-up", "store-locator", "contact-us", "blog-article", "what-is-zonnic"],
+      "domFingerprint": [".bat-modal", ".bat-modal-content", ".bat-modal-close"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Overlay + centred panel + close button.",
+          "selector": ".bat-modal",
+          "samplePage": "homepage"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "scripts.js decoration",
+        "notes": "EDS global modal helper, reused by auth, cart, location selector, age gate."
+      }
+    },
+    {
+      "name": "form-message",
+      "description": "Inline validation / status text block. 143 .bat-form-msg instances.",
+      "regulatory": false,
+      "observedPages": ["sign-up", "contact-us", "homepage", "blog-article"],
+      "domFingerprint": [".bat-form-msg", ".bat-form-field-tip"],
+      "variants": [
+        {
+          "name": "error",
+          "hint": "Red inline error text below field.",
+          "selector": ".bat-form-field .bat-form-msg",
+          "samplePage": "sign-up"
+        },
+        {
+          "name": "tip",
+          "hint": "Muted helper text below field.",
+          "selector": ".bat-form-field .bat-form-field-tip",
+          "samplePage": "sign-up"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "default-content",
+        "notes": "Inside the `form` block rows."
+      }
+    }
+  ],
+  "organisms": [
+    {
+      "name": "age-gate",
+      "description": "Health Canada regulatory first-visit gate. Logo + welcome + province select + 18+ confirm. 8/8 pages carry the instance (hidden after cookie).",
+      "regulatory": true,
+      "observedPages": ["homepage", "why-zonnic", "product-detail", "sign-up", "store-locator", "contact-us", "blog-article", "what-is-zonnic"],
+      "domFingerprint": ["bat-agegate-zonnic", ".bat-agegate--zonnic"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Modal with province select + YES/NO CTAs.",
+          "selector": "bat-agegate-zonnic",
+          "samplePage": "homepage",
+          "forceVisible": true,
+          "clearBypass": true
+        }
+      ],
+      "edsMapping": {
+        "strategy": "new-block:age-gate",
+        "notes": "REGULATORY — must preserve behaviour. Best delivered as Cloudflare Worker / hlx Function at edge, not client block (sets cookie before first render)."
+      }
+    },
+    {
+      "name": "header",
+      "description": "Two-row global header: utility strip + primary navigation + hamburger on mobile. 8/8 pages.",
+      "regulatory": false,
+      "observedPages": ["homepage", "why-zonnic", "product-detail", "sign-up", "store-locator", "contact-us", "blog-article", "what-is-zonnic"],
+      "domFingerprint": ["bat-header-zonnicheadless", ".bat-header-zonnic"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Desktop + mobile responsive header.",
+          "selector": "bat-header-zonnicheadless",
+          "samplePage": "homepage"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "adapt-block:header",
+        "notes": "Reuse Block Collection header; add utility strip slot + location selector trigger + mini-cart."
+      }
+    },
+    {
+      "name": "footer",
+      "description": "Meta strip + 4-column link groups + regulatory health-warning band. 8/8 pages.",
+      "regulatory": true,
+      "observedPages": ["homepage", "why-zonnic", "product-detail", "sign-up", "store-locator", "contact-us", "blog-article", "what-is-zonnic"],
+      "domFingerprint": ["bat-footer-zonnic", ".bat-footer-zonnic"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Standard footer with health-warning band at bottom.",
+          "selector": "bat-footer-zonnic",
+          "samplePage": "homepage"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "adapt-block:footer",
+        "notes": "Reuse Block Collection footer; add newsletter signup row + regulatory band."
+      }
+    },
+    {
+      "name": "message-bar",
+      "description": "Persistent top notification (promo / regulatory message). 8 instances site-wide.",
+      "regulatory": false,
+      "observedPages": ["homepage", "why-zonnic", "product-detail", "sign-up", "store-locator", "contact-us", "blog-article", "what-is-zonnic"],
+      "domFingerprint": ["bat-messagebar-zonnic", ".bat-messagebar-zonnic"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Slim bar above header, dismissible.",
+          "selector": "bat-messagebar-zonnic",
+          "samplePage": "homepage"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "new-block:message-bar",
+        "notes": "Section style + small new block; drives scrolling promo / regulatory text."
+      }
+    },
+    {
+      "name": "hero",
+      "description": "Full-bleed masthead: headline + sub-copy + CTA list + background image. 14 instances on 4 pages.",
+      "regulatory": false,
+      "observedPages": ["homepage", "why-zonnic", "product-detail", "what-is-zonnic"],
+      "domFingerprint": ["bat-hero-zonnic", ".bat-hero-zonnic"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Full-bleed hero with image + overlay text.",
+          "selector": "bat-hero-zonnic",
+          "samplePage": "why-zonnic"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "adapt-block:hero",
+        "notes": "Block Collection hero adapted with responsive variant + on-dark CTA pattern."
+      }
+    },
+    {
+      "name": "masthead-card",
+      "description": "Card with full-bleed background image + heading + body + CTA list. 32 instances on 3 pages. Primary marketing-banner pattern.",
+      "regulatory": false,
+      "observedPages": ["homepage", "product-detail", "store-locator"],
+      "domFingerprint": ["bat-card-mastheadzonnic", ".bat-card--masthead-zonnic"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Full-bleed card with image + heading + CTA.",
+          "selector": "bat-card-mastheadzonnic",
+          "samplePage": "homepage"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "new-block:marketing-banner",
+        "notes": "New block, content-model: heading + optional sub + 1–2 CTAs; section metadata picks bg image + theme."
+      }
+    },
+    {
+      "name": "blurb-card",
+      "description": "Icon-led feature/benefit card: image + heading + body + optional CTA. 34 uses on 2 pages.",
+      "regulatory": false,
+      "observedPages": ["homepage", "why-zonnic"],
+      "domFingerprint": ["bat-card-blurb", ".bat-card--blurb"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Stacked blurb tile (3-up layout).",
+          "selector": "bat-card-blurb",
+          "samplePage": "homepage"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "existing-block:cards",
+        "notes": "Block Collection `cards` block with blurb variant (icon + heading + body)."
+      }
+    },
+    {
+      "name": "blog-card",
+      "description": "Blog teaser card: thumbnail + heading + excerpt + read-more CTA. 18 uses on 2 pages.",
+      "regulatory": false,
+      "observedPages": ["homepage", "blog-article"],
+      "domFingerprint": ["bat-card-blog", ".bat-card--blog"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Horizontal blog card in a 3-up row.",
+          "selector": "bat-card-blog",
+          "samplePage": "homepage"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "adapt-block:cards",
+        "notes": "Block Collection `cards` block with `article` variant."
+      }
+    },
+    {
+      "name": "tab-sync-carousel",
+      "description": "Testimonial/tabbed carousel: tabs drive a paired carousel slide. 12 uses on 3 pages.",
+      "regulatory": false,
+      "observedPages": ["homepage", "why-zonnic", "store-locator"],
+      "domFingerprint": ["bat-carousel-zonnictabsync", ".bat-carousel-zonnictabsync"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Tab group at top + slide row below.",
+          "selector": "bat-carousel-zonnictabsync",
+          "samplePage": "homepage"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "new-block:tab-carousel",
+        "notes": "Composes Block Collection tabs + carousel into a paired widget. Could also be two separate blocks synced via section metadata."
+      }
+    },
+    {
+      "name": "product-carousel",
+      "description": "Horizontal product carousel. 6 uses on 3 pages.",
+      "regulatory": false,
+      "observedPages": ["homepage", "why-zonnic", "product-detail"],
+      "domFingerprint": ["bat-carousel-product"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Horizontal product card row with arrow controls.",
+          "selector": "bat-carousel-product",
+          "samplePage": "homepage"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "adapt-block:carousel",
+        "notes": "Block Collection carousel with product-card content model."
+      }
+    },
+    {
+      "name": "faq",
+      "description": "Accordion with schema.org JSON-LD. 3 uses on 3 pages.",
+      "regulatory": false,
+      "observedPages": ["why-zonnic", "product-detail", "what-is-zonnic"],
+      "domFingerprint": ["bat-faq-default", ".bat-faq"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Stacked Q/A rows with +/− markers.",
+          "selector": "bat-faq-default",
+          "samplePage": "why-zonnic"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "existing-block:accordion",
+        "notes": "Block Collection accordion with `faq` variant — emit JSON-LD from first accordion in a section with faq style."
+      }
+    },
+    {
+      "name": "signup-form",
+      "description": "Multi-step sign-up form: account + personal + subscription. 16 uses on 7 pages (embedded everywhere).",
+      "regulatory": false,
+      "observedPages": ["sign-up", "homepage", "why-zonnic", "product-detail"],
+      "domFingerprint": ["bat-form-signup", ".bat-form--signup"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Multi-step signup with address validation (Loqate).",
+          "selector": "bat-form-signup",
+          "samplePage": "sign-up"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "new-block:signup-form",
+        "notes": "Large new block with multi-step logic; integrates Loqate for address validation + Salesforce write-back."
+      }
+    },
+    {
+      "name": "login-form",
+      "description": "Login form (email + password). Rendered inside global modal shell on all 8 pages.",
+      "regulatory": false,
+      "observedPages": ["homepage", "why-zonnic", "product-detail", "sign-up", "store-locator", "contact-us", "blog-article", "what-is-zonnic"],
+      "domFingerprint": ["bat-form-loginzonnic", ".bat-form--login-zonnic"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Email + password + forgot-password + create-account link.",
+          "selector": "bat-form-loginzonnic",
+          "samplePage": "homepage"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "new-block:login-form",
+        "notes": "Inside modal-shell molecule. Delivered via `/login.plain.html` fragment loaded on demand."
+      }
+    },
+    {
+      "name": "newsletter-form",
+      "description": "Newsletter-only signup (email + consent). 2 uses (blog article).",
+      "regulatory": false,
+      "observedPages": ["blog-article"],
+      "domFingerprint": ["bat-form-newsletterzonnic", ".bat-form--newsletter"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Heading + email + consent + submit.",
+          "selector": "bat-form-newsletterzonnic, .bat-form--newsletter",
+          "samplePage": "blog-article",
+          "extraWaitMs": 5000
+        }
+      ],
+      "edsMapping": {
+        "strategy": "new-block:newsletter-signup",
+        "notes": "Simple form block; reuses the Salesforce/MC integration of signup form."
+      }
+    },
+    {
+      "name": "contact-form",
+      "description": "Contact-us / testimonials form. Delivered via the shared bat-form-signup web component with a contactUs field template (file upload + subject + description).",
+      "regulatory": false,
+      "observedPages": ["contact-us"],
+      "domFingerprint": [".bat-form--contact-us-email", ".bat-form--contact-us-email-first-name"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "bat-form-signup wrapper scoped to contact-us fields.",
+          "selector": "bat-form-signup[data-template-url*='contactUs'], bat-form-signup:has(.bat-form--contact-us-email-first-name), form#step1Form",
+          "samplePage": "contact-us"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "adapt-block:form",
+        "notes": "Block Collection `form` block; needs file-upload extension. Shares underlying component with signup-form."
+      }
+    },
+    {
+      "name": "product-hero",
+      "description": "PDP hero: image gallery + buy-now panel + product metadata.",
+      "regulatory": false,
+      "observedPages": ["product-detail"],
+      "domFingerprint": ["bat-producthero-zonnic", ".bat-producthero-zonnic"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Gallery on left, buy panel on right.",
+          "selector": "bat-producthero-zonnic",
+          "samplePage": "product-detail"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "new-block:product-hero",
+        "notes": "Integrates PriceSpider buy-now widget; auto-blocked from PDP metadata + featured-image."
+      }
+    },
+    {
+      "name": "store-locator",
+      "description": "Mapbox-powered store locator: map + list + filters + search.",
+      "regulatory": false,
+      "observedPages": ["store-locator"],
+      "domFingerprint": ["bat-mapboxstorelocator-zonnic", ".bat-mapboxstorelocator-zonnic"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Map + result list + geolocation prompt.",
+          "selector": "bat-mapboxstorelocator-zonnic",
+          "samplePage": "store-locator"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "new-block:store-locator",
+        "notes": "XL complexity. Mapbox GL JS in delayed.js; data source = retailer JSON feed."
+      }
+    },
+    {
+      "name": "location-selector",
+      "description": "Province/region selector modal. Controls pricing + retailer availability. 24 instances site-wide (modal singleton).",
+      "regulatory": true,
+      "observedPages": ["homepage", "why-zonnic", "product-detail", "sign-up", "store-locator", "contact-us", "blog-article", "what-is-zonnic"],
+      "domFingerprint": ["bat-locationselector-zonnic", ".bat-locationselector-zonnic"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Modal with province list + confirm CTA.",
+          "selector": "bat-locationselector-zonnic",
+          "samplePage": "homepage"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "new-block:location-selector",
+        "notes": "REGULATORY — required to render province-appropriate content/pricing. Inside modal-shell molecule. Persist via signed cookie."
+      }
+    },
+    {
+      "name": "mini-cart",
+      "description": "Flyout mini-cart. 16 instances site-wide (singleton).",
+      "regulatory": false,
+      "observedPages": ["homepage", "why-zonnic", "product-detail", "sign-up", "store-locator", "contact-us", "blog-article", "what-is-zonnic"],
+      "domFingerprint": ["bat-minicart-zonnic", ".bat-minicart-zonnic"],
+      "variants": [
+        {
+          "name": "default",
+          "hint": "Right-hand flyout with cart line items + checkout CTA.",
+          "selector": "bat-minicart-zonnic",
+          "samplePage": "homepage"
+        }
+      ],
+      "edsMapping": {
+        "strategy": "new-block:mini-cart",
+        "notes": "Depends on PriceSpider / backend cart API; check whether EDS needs client cart state at all or deep-links to retailer."
+      }
+    }
+  ]
+}

@@ -27,10 +27,6 @@
     {
       "value": "sign",
       "count": 1
-    },
-    {
-      "value": "give",
-      "count": 1
     }
   ],
   "buttonPatterns": [
@@ -57,17 +53,13 @@
     {
       "value": "sign up now",
       "count": 1
-    },
-    {
-      "value": "give feedback",
-      "count": 1
     }
   ],
   "sampleHeadings": [
     "Sign In To Your Account"
   ],
   "stats": {
-    "buttons": 12,
+    "buttons": 11,
     "headings": 1
   }
 }

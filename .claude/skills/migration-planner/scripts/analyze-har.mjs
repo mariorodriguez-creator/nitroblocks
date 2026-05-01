@@ -231,8 +231,34 @@ async function main() {
       process.stderr.write(`  [${slug}] HAR read failed: ${err.message}\n`);
       continue;
     }
-    const host = PRIMARY_HOST || harJson?.log?.pages?.[0]?.title || null;
-    const originsForPage = analyzeHar(harJson, host && new URL(host).hostname ? new URL(host).hostname : host);
+    // Determine the primary (first-party) host for this HAR so we can
+    // exclude same-origin requests from the third-party inventory.
+    // Sources, in priority order:
+    //   1. --primary-host CLI flag
+    //   2. HAR pageref URL (entry's pageref → page.title often holds the
+    //      document URL, but when it holds the <title> text like
+    //      "Nicotine Pouches..." we must skip it — the title isn't a URL)
+    //   3. First navigation-type entry's URL host
+    let primaryHostForPage = PRIMARY_HOST || null;
+    if (!primaryHostForPage) {
+      const pageTitle = harJson?.log?.pages?.[0]?.title;
+      if (pageTitle && /^https?:\/\//i.test(pageTitle)) {
+        try {
+          primaryHostForPage = new URL(pageTitle).hostname;
+        } catch { /* ignore */ }
+      }
+      if (!primaryHostForPage) {
+        const firstDocEntry = (harJson?.log?.entries || []).find((e) =>
+          e?._resourceType === 'document' || e?.request?.url?.match?.(/^https?:/i),
+        );
+        if (firstDocEntry?.request?.url) {
+          try {
+            primaryHostForPage = new URL(firstDocEntry.request.url).hostname;
+          } catch { /* ignore */ }
+        }
+      }
+    }
+    const originsForPage = analyzeHar(harJson, primaryHostForPage);
     perPage.push({ slug, origin_count: originsForPage.length });
     process.stderr.write(`  [${slug}] ${originsForPage.length} third-party origins\n`);
 

@@ -1,7 +1,7 @@
 # Design Language: Nicotine Pouches To Quit Smoking | ZONNIC Canada
 
-> Extracted from `https://www.zonnic.ca/ca/en` on April 29, 2026
-> 10986 elements analyzed across 10 pages
+> Extracted from `https://www.zonnic.ca/ca/en` on April 30, 2026
+> 9083 elements analyzed across 7 pages
 
 This document describes the complete design language of the website. It is structured for AI/LLM consumption — use it to faithfully recreate the visual design in any framework.
 
@@ -11,34 +11,34 @@ This document describes the complete design language of the website. It is struc
 
 | Role | Hex | RGB | HSL | Usage Count |
 |------|-----|-----|-----|-------------|
-| Primary | `#182465` | rgb(24, 36, 101) | hsl(231, 62%, 25%) | 4535 |
-| Secondary | `#3860be` | rgb(56, 96, 190) | hsl(222, 54%, 48%) | 28 |
-| Accent | `#a0ff9d` | rgb(160, 255, 157) | hsl(118, 100%, 81%) | 8 |
+| Primary | `#182465` | rgb(24, 36, 101) | hsl(231, 62%, 25%) | 3776 |
+| Secondary | `#3860be` | rgb(56, 96, 190) | hsl(222, 54%, 48%) | 24 |
+| Accent | `#e3ffe2` | rgb(227, 255, 226) | hsl(118, 100%, 94%) | 7 |
 
 ### Neutral Colors
 
 | Hex | HSL | Usage Count |
 |-----|-----|-------------|
-| `#616069` | hsl(247, 4%, 39%) | 9804 |
-| `#ffffff` | hsl(0, 0%, 100%) | 2307 |
-| `#000000` | hsl(0, 0%, 0%) | 1508 |
-| `#2f2f2f` | hsl(0, 0%, 18%) | 1202 |
-| `#f6f6f6` | hsl(0, 0%, 96%) | 312 |
-| `#555555` | hsl(0, 0%, 33%) | 217 |
-| `#3a3a3f` | hsl(240, 4%, 24%) | 152 |
-| `#ebecf1` | hsl(230, 18%, 93%) | 104 |
-| `#dedede` | hsl(0, 0%, 87%) | 85 |
-| `#808080` | hsl(0, 0%, 50%) | 72 |
-| `#9a9ca8` | hsl(231, 7%, 63%) | 37 |
-| `#767676` | hsl(0, 0%, 46%) | 28 |
+| `#616069` | hsl(247, 4%, 39%) | 7844 |
+| `#ffffff` | hsl(0, 0%, 100%) | 1995 |
+| `#000000` | hsl(0, 0%, 0%) | 1275 |
+| `#2f2f2f` | hsl(0, 0%, 18%) | 1018 |
+| `#f6f6f6` | hsl(0, 0%, 96%) | 265 |
+| `#555555` | hsl(0, 0%, 33%) | 186 |
+| `#3a3a3f` | hsl(240, 4%, 24%) | 134 |
+| `#ebecf1` | hsl(230, 18%, 93%) | 77 |
+| `#dedede` | hsl(0, 0%, 87%) | 74 |
+| `#808080` | hsl(0, 0%, 50%) | 63 |
+| `#9a9ca8` | hsl(231, 7%, 63%) | 30 |
+| `#767676` | hsl(0, 0%, 46%) | 24 |
 
 ### Background Colors
 
-Used on large-area elements: `#ffffff`, `#182465`, `#f4f5f7`, `#ebecf1`, `#141e53`, `#ededed`, `#000000`, `#252c68`
+Used on large-area elements: `#ffffff`, `#182465`, `#f4f5f7`, `#ebecf1`, `#141e53`, `#000000`, `#ededed`, `#252c68`
 
 ### Text Colors
 
-Text color palette: `#000000`, `#616069`, `#182465`, `#141e53`, `#2f2f2f`, `#ffffff`, `#e00830`, `#3a3a3f`, `#808080`, `#666666`
+Text color palette: `#000000`, `#616069`, `#182465`, `#ffffff`, `#141e53`, `#2f2f2f`, `#e00830`, `#3a3a3f`, `#808080`, `#666666`
 
 ### Gradients
 
@@ -50,43 +50,44 @@ background-image: linear-gradient(rgb(157, 159, 161) 50%, rgb(137, 208, 200));
 
 | Hex | Contexts | Count |
 |-----|----------|-------|
-| `#616069` | text, border | 9804 |
-| `#182465` | background, text, border | 4535 |
-| `#ffffff` | background, text, border | 2307 |
-| `#000000` | text, border, background | 1508 |
-| `#2f2f2f` | text, border, background | 1202 |
-| `#141e53` | text, border, background | 962 |
-| `#e00830` | text, border | 880 |
-| `#252d65` | text, border, background | 505 |
-| `#f6f6f6` | background, border, text | 312 |
-| `#555555` | text, border | 217 |
-| `#3a3a3f` | text, border | 152 |
-| `#ebecf1` | background | 104 |
-| `#dedede` | border, text | 85 |
-| `#808080` | text, border | 72 |
-| `#27455c` | background | 56 |
-| `#ad1f8c` | text, border | 52 |
-| `#9a9ca8` | background, border | 37 |
-| `#3860be` | text, border, background | 28 |
-| `#767676` | background, border | 28 |
-| `#a0ff9d` | background | 8 |
-| `#4cae04` | background | 8 |
-| `#e3ffe2` | background | 8 |
-| `#a6a6a6` | border | 8 |
-| `#32ae88` | border | 7 |
-| `#bbbbbb` | border | 7 |
-| `#6aaae4` | background | 7 |
-| `#88cfc7` | background | 4 |
+| `#616069` | text, border | 7844 |
+| `#182465` | text, border, background | 3776 |
+| `#ffffff` | background, text, border | 1995 |
+| `#000000` | text, border, background | 1275 |
+| `#2f2f2f` | text, border, background | 1018 |
+| `#141e53` | text, border, background | 803 |
+| `#e00830` | text, border | 786 |
+| `#252d65` | text, border, background | 433 |
+| `#f6f6f6` | background, border, text | 265 |
+| `#555555` | text, border | 186 |
+| `#3a3a3f` | text, border | 134 |
+| `#ebecf1` | background | 77 |
+| `#dedede` | border, text | 74 |
+| `#808080` | text, border | 63 |
+| `#27455c` | background | 48 |
+| `#ad1f8c` | text, border | 40 |
+| `#9a9ca8` | background, border | 30 |
+| `#3860be` | text, border, background | 24 |
+| `#767676` | background, border | 24 |
+| `#4cae04` | background | 7 |
+| `#e3ffe2` | background | 7 |
+| `#a0ff9d` | background | 6 |
+| `#32ae88` | border | 6 |
+| `#bbbbbb` | border | 6 |
+| `#6aaae4` | background | 6 |
+| `#a6a6a6` | border | 6 |
+| `#88cfc7` | background | 3 |
 
 ## Typography
 
 ### Font Families
 
-- **Santral** — used for all (10218 elements)
-- **Arial** — used for body (440 elements)
-- **Times** — used for body (298 elements)
-- **Font Awesome 5 Free** — used for body (22 elements)
-- **sans-serif** — used for all (8 elements)
+- **Santral** — used for all (8442 elements)
+- **Arial** — used for body (363 elements)
+- **Times New Roman** — used for body (220 elements)
+- **Times** — used for body (40 elements)
+- **Font Awesome 5 Free** — used for body (12 elements)
+- **sans-serif** — used for all (6 elements)
 
 ### Type Scale
 
@@ -99,14 +100,14 @@ background-image: linear-gradient(rgb(157, 159, 161) 50%, rgb(137, 208, 200));
 | 24px | 1.5rem | 400 | normal | normal | div, span |
 | 22px | 1.375rem | 800 | 26px | 0.5px | h2, div, span, h3 |
 | 20px | 1.25rem | 700 | 28px | normal | h4, bat-headline-default, div |
-| 18px | 1.125rem | 600 | 25px | normal | p, span |
 | 16px | 1rem | 400 | normal | normal | html, head, meta, script |
 | 15px | 0.9375rem | 400 | 15px | normal | span, a, p, br |
 | 14.4px | 0.9rem | 400 | 38px | 0.144px | button, svg, title, g |
-| 14px | 0.875rem | 300 | 20px | normal | p, span, b, br |
+| 14px | 0.875rem | 400 | 20px | normal | input, p, select, option |
 | 13.6px | 0.85rem | 400 | 27.2px | normal | div, svg, path, span |
 | 13.3333px | 0.8333rem | 400 | normal | normal | button, i, svg, use |
 | 13.008px | 0.813rem | 400 | 19.512px | normal | div, a, button |
+| 12.992px | 0.812rem | 400 | 19.488px | normal | div, br, a, p |
 
 ### Heading Scale
 
@@ -117,7 +118,7 @@ h2 { font-size: 32px; font-weight: 800; line-height: 40px; }
 h2 { font-size: 22px; font-weight: 800; line-height: 26px; }
 h4 { font-size: 20px; font-weight: 700; line-height: 28px; }
 h2 { font-size: 16px; font-weight: 400; line-height: normal; }
-h4 { font-size: 14px; font-weight: 300; line-height: 20px; }
+h4 { font-size: 14px; font-weight: 400; line-height: 20px; }
 ```
 
 ### Body Text
@@ -128,7 +129,7 @@ body { font-size: 16px; font-weight: 400; line-height: normal; }
 
 ### Font Weights in Use
 
-`300` (6733x), `400` (2221x), `700` (1463x), `800` (384x), `600` (133x), `500` (38x), `900` (8x), `100` (6x)
+`300` (5497x), `400` (1889x), `700` (1235x), `800` (305x), `600` (114x), `500` (32x), `900` (7x), `100` (4x)
 
 ## Spacing
 
@@ -142,7 +143,7 @@ body { font-size: 16px; font-weight: 400; line-height: normal; }
 | spacing-55 | 55px | 3.4375rem |
 | spacing-60 | 60px | 3.75rem |
 | spacing-70 | 70px | 4.375rem |
-| spacing-78 | 78px | 4.875rem |
+| spacing-80 | 80px | 5rem |
 | spacing-95 | 95px | 5.9375rem |
 | spacing-102 | 102px | 6.375rem |
 | spacing-120 | 120px | 7.5rem |
@@ -150,7 +151,6 @@ body { font-size: 16px; font-weight: 400; line-height: normal; }
 | spacing-140 | 140px | 8.75rem |
 | spacing-203 | 203px | 12.6875rem |
 | spacing-207 | 207px | 12.9375rem |
-| spacing-213 | 213px | 13.3125rem |
 | spacing-236 | 236px | 14.75rem |
 | spacing-256 | 256px | 16rem |
 | spacing-320 | 320px | 20rem |
@@ -159,13 +159,13 @@ body { font-size: 16px; font-weight: 400; line-height: normal; }
 
 | Label | Value | Count |
 |-------|-------|-------|
-| xs | 1px | 56 |
-| md | 6px | 8 |
-| lg | 14px | 26 |
-| xl | 17px | 7 |
-| xl | 20px | 21 |
-| full | 50px | 15 |
-| full | 100px | 163 |
+| xs | 1px | 48 |
+| md | 6px | 6 |
+| lg | 14px | 18 |
+| xl | 17px | 6 |
+| xl | 20px | 18 |
+| full | 50px | 12 |
+| full | 100px | 127 |
 
 ## Box Shadows
 
@@ -268,7 +268,7 @@ info: [object Object];
 | sm | 576px | min-width |
 | sm | 577px | min-width |
 | sm | 600px | max-width |
-| md | 768px | max-width |
+| md | 768px | min-width |
 | md | 769px | min-width |
 | 890px | 890px | min-width |
 | 896px | 896px | max-width |
@@ -296,13 +296,13 @@ info: [object Object];
 transition: all;
 transition: color 0.5s;
 transition: background-color 0.5s;
-transition: border 0.5s, color 0.5s;
 transition: 0.1s ease-in;
+transition: border 0.5s, color 0.5s;
 transition: background-color 0.1s ease-in;
 transition: color 0.1s ease-in;
 transition: max-height 0.3s ease-in;
 transition: opacity 0.2s ease-in;
-transition: 0.5s;
+transition: 0.25s ease-out;
 ```
 
 ### Keyframe Animations
@@ -392,13 +392,13 @@ transition: 0.5s;
 
 Detected UI component patterns and their most common styles:
 
-### Buttons (499 instances)
+### Buttons (403 instances)
 
 ```css
 .button {
   background-color: rgb(24, 36, 101);
   color: rgb(0, 0, 0);
-  font-size: 12px;
+  font-size: 13.3333px;
   font-weight: 700;
   padding-top: 0px;
   padding-right: 0px;
@@ -406,7 +406,7 @@ Detected UI component patterns and their most common styles:
 }
 ```
 
-### Cards (685 instances)
+### Cards (496 instances)
 
 ```css
 .card {
@@ -418,7 +418,7 @@ Detected UI component patterns and their most common styles:
 }
 ```
 
-### Inputs (265 instances)
+### Inputs (230 instances)
 
 ```css
 .input {
@@ -432,7 +432,7 @@ Detected UI component patterns and their most common styles:
 }
 ```
 
-### Links (544 instances)
+### Links (451 instances)
 
 ```css
 .link {
@@ -442,7 +442,7 @@ Detected UI component patterns and their most common styles:
 }
 ```
 
-### Navigation (459 instances)
+### Navigation (401 instances)
 
 ```css
 .navigatio {
@@ -457,7 +457,7 @@ Detected UI component patterns and their most common styles:
 }
 ```
 
-### Footer (270 instances)
+### Footer (236 instances)
 
 ```css
 .foote {
@@ -469,7 +469,7 @@ Detected UI component patterns and their most common styles:
 }
 ```
 
-### Modals (163 instances)
+### Modals (140 instances)
 
 ```css
 .modal {
@@ -481,7 +481,7 @@ Detected UI component patterns and their most common styles:
 }
 ```
 
-### Dropdowns (216 instances)
+### Dropdowns (189 instances)
 
 ```css
 .dropdown {
@@ -493,7 +493,7 @@ Detected UI component patterns and their most common styles:
 }
 ```
 
-### Badges (19 instances)
+### Badges (16 instances)
 
 ```css
 .badge {
@@ -506,7 +506,7 @@ Detected UI component patterns and their most common styles:
 }
 ```
 
-### Tabs (18 instances)
+### Tabs (12 instances)
 
 ```css
 .tab {
@@ -521,7 +521,7 @@ Detected UI component patterns and their most common styles:
 }
 ```
 
-### Accordions (28 instances)
+### Accordions (24 instances)
 
 ```css
 .accordion {
@@ -533,7 +533,7 @@ Detected UI component patterns and their most common styles:
 }
 ```
 
-### Switches (89 instances)
+### Switches (77 instances)
 
 ```css
 .switche {
@@ -807,49 +807,9 @@ Reusable component instances grouped by DOM structure and style similarity:
   font-weight: 700;
 ```
 
-### Button — 2 instances, 2 variants
-
-**Variant 1** (1 instance)
-
-```css
-  background: rgb(46, 46, 46);
-  color: rgb(0, 0, 0);
-  padding: 0px 0px 0px 0px;
-  border-radius: 50%;
-  border: 0px none rgb(0, 0, 0);
-  font-size: 16px;
-  font-weight: 400;
-```
-
-**Variant 2** (1 instance)
-
-```css
-  background: rgba(0, 0, 0, 0);
-  color: rgb(0, 0, 0);
-  padding: 0px 0px 0px 0px;
-  border-radius: 0px;
-  border: 0px none rgb(0, 0, 0);
-  font-size: 13.3333px;
-  font-weight: 400;
-```
-
-### Button — 1 instance, 1 variant
-
-**Variant 1** (1 instance)
-
-```css
-  background: rgba(0, 0, 0, 0);
-  color: rgb(0, 0, 0);
-  padding: 0px 0px 0px 0px;
-  border-radius: 0px;
-  border: 0px none rgb(0, 0, 0);
-  font-size: 13.3333px;
-  font-weight: 400;
-```
-
 ## Layout System
 
-**20 grid containers** and **1574 flex containers** detected.
+**12 grid containers** and **1317 flex containers** detected.
 
 ### Container Widths
 
@@ -857,20 +817,20 @@ Reusable component instances grouped by DOM structure and style similarity:
 |-----------|---------|
 | 1500px | 20px |
 | 1260px | 0px |
-| 400px | 0px |
 | 100% | 0px |
+| 400px | 0px |
 | 768px | 20px |
 
 ### Grid Column Patterns
 
 | Columns | Usage Count |
 |---------|-------------|
-| 1-column | 10x |
+| 1-column | 6x |
 
 ### Grid Templates
 
 ```css
-grid-template-columns: 847px;
+grid-template-columns: 417.328px;
 grid-template-columns: 417.328px;
 grid-template-columns: 417.328px;
 grid-template-columns: 417.328px;
@@ -881,10 +841,10 @@ grid-template-columns: 417.328px;
 
 | Direction/Wrap | Count |
 |----------------|-------|
-| row/wrap | 299x |
-| row/nowrap | 1074x |
-| column/nowrap | 193x |
-| column/wrap | 8x |
+| row/wrap | 247x |
+| column/nowrap | 168x |
+| row/nowrap | 895x |
+| column/wrap | 7x |
 
 ## Responsive Design
 
@@ -930,13 +890,13 @@ outline: rgb(255, 255, 255) none 3px → rgb(24, 36, 101) solid 3px;
 **"NO, I'M NOT 18+"**
 ```css
 /* Hover */
-color: rgb(24, 36, 101) → rgb(46, 54, 102);
-border-color: rgb(24, 36, 101) → rgb(23, 34, 96);
-outline: rgb(24, 36, 101) none 3px → rgb(46, 54, 102) none 3px;
+color: rgb(24, 36, 101) → rgb(48, 56, 102);
+border-color: rgb(24, 36, 101) → rgb(23, 34, 95);
+outline: rgb(24, 36, 101) none 3px → rgb(48, 56, 102) none 3px;
 ```
 ```css
 /* Focus */
-color: rgb(24, 36, 101) → rgb(75, 78, 104);
+color: rgb(24, 36, 101) → rgb(77, 80, 104);
 border-color: rgb(24, 36, 101) → rgb(21, 32, 88);
 box-shadow: none → rgb(255, 255, 255) 0px 0px 0px 1px, rgb(24, 36, 101) 0px 0px 0px 4px;
 outline: rgb(24, 36, 101) none 3px → rgb(24, 36, 101) solid 3px;
@@ -950,13 +910,13 @@ border-color: rgb(24, 36, 101) rgb(24, 36, 101) rgba(0, 0, 0, 0) → rgb(24, 36,
 
 ## Accessibility (WCAG 2.1)
 
-**Overall Score: 94%** — 94 passing, 6 failing color pairs
+**Overall Score: 95%** — 79 passing, 4 failing color pairs
 
 ### Failing Color Pairs
 
 | Foreground | Background | Ratio | Level | Used On |
 |------------|------------|-------|-------|---------|
-| `#000000` | `#182465` | 1.48:1 | FAIL | button (6x) |
+| `#000000` | `#182465` | 1.48:1 | FAIL | button (4x) |
 
 ### Passing Color Pairs
 
@@ -1005,15 +965,15 @@ info: [object Object];
 | Spacing System | 85/100 |
 | Shadow Consistency | 90/100 |
 | Border Radius Consistency | 90/100 |
-| Accessibility | 94/100 |
+| Accessibility | 95/100 |
 | CSS Tokenization | 75/100 |
 
 **Strengths:** Well-defined spacing scale, Clean elevation system, Consistent border radii, Strong accessibility compliance, Good CSS variable tokenization
 
 **Issues:**
-- 5 font families — consider limiting to 2 (heading + body)
+- 6 font families — consider limiting to 2 (heading + body)
 - 8 font weights in use — consider standardizing to 3 (regular, medium, bold)
-- 6 WCAG contrast failures
+- 4 WCAG contrast failures
 - 179 !important rules — prefer specificity over overrides
 - 93% of CSS is unused — consider purging
 - 11611 duplicate CSS declarations
@@ -1039,22 +999,22 @@ background: linear-gradient(rgb(157, 159, 161) 50%, rgb(137, 208, 200));
 | modal | 1000,2147483647 | div.b.a.t.-.h.e.a.d.e.r.-.a.c.c.o.u.n.t.-.m.e.n.u, div.b.a.t.-.h.e.a.d.e.r.-.a.c.c.o.u.n.t.-.m.e.n.u, div.b.a.t.-.h.e.a.d.e.r.-.a.c.c.o.u.n.t.-.m.e.n.u |
 | dropdown | 898,999 | header, header, header |
 | sticky | 10,99 | div.b.a.t.-.f.o.o.t.e.r.-.z.o.n.n.i.c.-.-.r.o.w, div.b.a.t.-.f.o.r.m.-.f.i.e.l.d.-.t.i.p, div.b.a.t.-.f.o.r.m.-.f.i.e.l.d.-.t.i.p |
-| base | -1,9 | div.b.a.t.-.h.e.a.d.e.r.-.m.e.n.u._._.o.v.e.r.l.a.y, div, div.b.a.t.-.h.e.a.d.e.r.-.m.e.n.u._._.o.v.e.r.l.a.y |
+| base | -1,9 | div.b.a.t.-.h.e.a.d.e.r.-.m.e.n.u._._.o.v.e.r.l.a.y, div.b.a.t.-.h.e.a.d.e.r.-.m.e.n.u._._.o.v.e.r.l.a.y, div |
 
 **Issues:**
 - [object Object]
 
 ## SVG Icons
 
-**12 unique SVG icons** detected. Dominant style: **filled**.
+**11 unique SVG icons** detected. Dominant style: **filled**.
 
 | Size Class | Count |
 |------------|-------|
 | sm | 2 |
 | md | 8 |
-| lg | 2 |
+| lg | 1 |
 
-**Icon colors:** `rgb(224, 8, 48)`, `rgb(58, 58, 63)`, `rgb(136, 136, 136)`, `rgb(24, 36, 101)`, `rgb(255, 255, 255)`
+**Icon colors:** `rgb(224, 8, 48)`, `rgb(58, 58, 63)`, `rgb(136, 136, 136)`, `rgb(24, 36, 101)`
 
 ## Font Files
 
@@ -1070,7 +1030,7 @@ background: linear-gradient(rgb(157, 159, 161) 50%, rgb(137, 208, 200));
 | Pattern | Count | Key Styles |
 |---------|-------|------------|
 | general | 6 | objectFit: fill, borderRadius: 0px, shape: square |
-| thumbnail | 6 | objectFit: fill, borderRadius: 0px, shape: square |
+| thumbnail | 5 | objectFit: fill, borderRadius: 0px, shape: square |
 | gallery | 4 | objectFit: cover, borderRadius: 0px, shape: square |
 
 **Aspect ratios:** 4:3 (4x), 3:4 (3x), 16:9 (3x), 7.46:1 (1x), 2:1 (1x), 1.97:1 (1x), 4.33:1 (1x), 3:1 (1x)
@@ -1090,15 +1050,16 @@ background: linear-gradient(rgb(157, 159, 161) 50%, rgb(137, 208, 200));
 
 ### Easing Families
 
-- **ease-in-out** (573 uses) — `ease`
+- **ease-in-out** (499 uses) — `ease`
 
 ### Keyframes In Use
 
 | name | kind | properties | uses |
 |---|---|---|---|
-| `slide-down` | slide-y | opacity, transform | 33 |
-| `onetrust-fade-in` | fade | opacity | 14 |
-| `otFloatingBtnIntro` | fade | opacity, left | 7 |
+| `slide-down` | slide-y | opacity, transform | 28 |
+| `onetrust-fade-in` | fade | opacity | 12 |
+| `slide-down-custom` | custom | bottom | 2 |
+| `otFloatingBtnIntro` | fade | opacity, left | 6 |
 
 ## Component Anatomy
 
@@ -1107,15 +1068,15 @@ background: linear-gradient(rgb(157, 159, 161) 50%, rgb(137, 208, 200));
 **Slots:** media
 **Sizes:** sm
 
-### button — 14 instances
+### button — 11 instances
 
 **Slots:** label
 **Variants:** secondary
 
 | variant | count | sample label |
 |---|---|---|
-| default | 8 | QuitZone |
 | secondary | 6 | LEARN MORE |
+| default | 5 | QuitZone |
 
 ## Brand Voice
 
@@ -1129,7 +1090,6 @@ background: linear-gradient(rgb(157, 159, 161) 50%, rgb(137, 208, 200));
 - **watch** (1)
 - **find** (1)
 - **sign** (1)
-- **give** (1)
 
 ### Button Copy Patterns
 
@@ -1139,7 +1099,6 @@ background: linear-gradient(rgb(157, 159, 161) 50%, rgb(137, 208, 200));
 - "watch their stories" (1×)
 - "find a pharmacy" (1×)
 - "sign up now" (1×)
-- "give feedback" (1×)
 
 ### Sample Headings
 
@@ -1177,10 +1136,31 @@ Reading order (top→bottom): feature-grid → nav → footer → footer → foo
 
 ## Imagery Style
 
-**Label:** `photography` (confidence 0.375)
-**Counts:** total 16, svg 2, icon 2, screenshot-like 0, photo-like 10
+**Label:** `photography` (confidence 0.4)
+**Counts:** total 15, svg 2, icon 1, screenshot-like 0, photo-like 10
 **Dominant aspect:** landscape
 **Radius profile on images:** square
+
+## Component Screenshots
+
+12 retina crops written to `screenshots/`. Index: `*-screenshots.json`.
+
+| Cluster | Variant | Size (px) | File |
+|---------|---------|-----------|------|
+| button--default | 0 | 42 × 19 | `screenshots/button-default-0.png` |
+| button--default | 1 | 50 × 19 | `screenshots/button-default-1.png` |
+| button--default | 2 | 170 × 44 | `screenshots/button-default-2.png` |
+| button--secondary | 0 | 187 × 44 | `screenshots/button-secondary-0.png` |
+| button--secondary | 1 | 161 × 40 | `screenshots/button-secondary-1.png` |
+| button--secondary | 2 | 161 × 40 | `screenshots/button-secondary-2.png` |
+| card--default | 0 | 1280 × 250 | `screenshots/card-default-0.png` |
+| card--default | 1 | 424 × 210 | `screenshots/card-default-1.png` |
+| card--default | 2 | 417 × 190 | `screenshots/card-default-2.png` |
+| card--default--sm | 0 | 1273 × 250 | `screenshots/card-default-sm-0.png` |
+| card--default--sm | 1 | 417 × 210 | `screenshots/card-default-sm-1.png` |
+| card--default--sm | 2 | 417 × 210 | `screenshots/card-default-sm-2.png` |
+
+Full-page: `screenshots/full-page.png`
 
 ## Quick Start
 

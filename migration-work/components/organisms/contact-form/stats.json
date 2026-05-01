@@ -1,0 +1,18 @@
+{
+  "component": "contact-form",
+  "stats": {
+    "total": 16,
+    "perPage": {
+      "contact-us-testimonials": 16
+    },
+    "pages": 1
+  },
+  "variants": [
+    {
+      "name": "default",
+      "ok": true,
+      "hiddenFallback": false,
+      "selector": "bat-form-signup[data-template-url*='contactUs'], bat-form-signup:has(.bat-form--contact-us-email-first-name), form#step1Form"
+    }
+  ]
+}

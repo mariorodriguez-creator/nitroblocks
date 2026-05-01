@@ -1,455 +1,689 @@
-[
-  {
-    "origin": "https://www.zonnic.ca",
-    "requests": 1054,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
+{
+  "pages_analyzed": 8,
+  "unique_origins": 28,
+  "origins": [
+    {
+      "host": "siteintercept.qualtrics.com",
+      "registrable_domain": "qualtrics.com",
+      "category": "survey",
+      "vendor": "Qualtrics",
+      "total_requests": 136,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://siteintercept.qualtrics.com/dxjsmodule/37.71bfffaee7e2796d824d.chunk.js?Q_CLIENTVERSION=2.47.0&Q_CLIENTTYPE=web&Q_BRANDID=www.zonnic.ca",
+        "https://siteintercept.qualtrics.com/dxjsmodule/12.983a0ab7709ff967fde9.chunk.js?Q_CLIENTVERSION=2.47.0&Q_CLIENTTYPE=web&Q_BRANDID=www.zonnic.ca",
+        "https://siteintercept.qualtrics.com/WRSiteInterceptEngine/Targeting.php?Q_ZoneID=ZN_1IeXr9FdL3IVWvk&Q_CLIENTVERSION=2.47.0&Q_CLIENTTYPE=web"
+      ]
+    },
+    {
+      "host": "bat-sea.my.site.com",
+      "registrable_domain": "site.com",
+      "category": "unknown",
+      "vendor": null,
+      "total_requests": 119,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://bat-sea.my.site.com/ESWLiveChatZonnicCA1769012882406/assets/js/bootstrap.min.js",
+        "https://bat-sea.my.site.com/ESWLiveChatZonnicCA1769012882406/assets/styles/bootstrap.min.css",
+        "https://bat-sea.my.site.com/ESWLiveChatZonnicCA1769012882406/assets/htdocs/sitecontext.min.html?parent_domain=https%3A%2F%2Fwww.zonnic.ca"
+      ]
+    },
+    {
+      "host": "cdn.cookielaw.org",
+      "registrable_domain": "cookielaw.org",
+      "category": "consent",
+      "vendor": "OneTrust",
+      "total_requests": 104,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js",
+        "https://cdn.cookielaw.org/consent/ce8265cf-0d0e-4a11-a5ad-674c0e04625f/ce8265cf-0d0e-4a11-a5ad-674c0e04625f.json",
+        "https://cdn.cookielaw.org/scripttemplates/202512.1.0/otBannerSdk.js"
+      ]
+    },
+    {
+      "host": "ssapi.vuse.com",
+      "registrable_domain": "vuse.com",
+      "category": "unknown",
+      "vendor": null,
+      "total_requests": 26,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://ssapi.vuse.com/g/collect?v=2&tid=G-LP9LP5DQR7&gtm=45je64s1v876439418z8864081390za20gzb864081390zd864081390&_p=1777556965557&gcd=13l3l3l2l1l1&npa=1&dma_cps=a&dma=1&ecid=1766564135&_fplc=0&are=1&cid=315657444.1777556966&frm=0&pscdl=noapi&rcb=8&sr=1280x720&uaa=arm&uab=64&uafvl=Not%253AA-Brand%3B99.0.0.0%7CHeadlessChrome%3B145.0.7632.6%7CChromium%3B145.0.7632.6&uam=&uamb=0&uap=macOS&uapv=15.7.2&uaw=0&ul=en-us&ur=DE-BW&sst.etld=google.de&sst.gcsub=region1&sst.tft=1777556965557&sst.lpc=214774044&sst.navt=n&sst.ude=0&sst.sw_exp=1&_s=1&tag_exp=0~115938465~115938469~116363097~117266401~117512543~118463262&sid=1777556966&sct=1&seg=0&dl=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fcontact-us%2Ftestimonials&dt=Testimonials&_tu=BA&en=page_view&_fv=1&_nsi=1&_ss=1&tfd=1604&richsstsse",
+        "https://ssapi.vuse.com/_/service_worker/63b0/sw_iframe.html?origin=https%3A%2F%2Fwww.zonnic.ca&1p=1",
+        "https://ssapi.vuse.com/_/service_worker/63b0/sw.js?origin=https%3A%2F%2Fwww.zonnic.ca",
+        "https://ssapi.vuse.com/g/collect?v=2&tid=G-LP9LP5DQR7&gtm=45je64s1v876439418z8864081390za20gzb864081390zd864081390&_p=1777556863651&gcd=13l3l3l2l1l1&npa=1&dma_cps=a&dma=1&ecid=274123045&_fplc=0&are=1&cid=937185360.1777556864&frm=0&pscdl=noapi&rcb=2&sr=1280x720&uaa=arm&uab=64&uafvl=Not%253AA-Brand%3B99.0.0.0%7CHeadlessChrome%3B145.0.7632.6%7CChromium%3B145.0.7632.6&uam=&uamb=0&uap=macOS&uapv=15.7.2&uaw=0&ul=en-us&ur=DE-BW&sst.etld=google.de&sst.gcsub=region1&sst.tft=1777556863651&sst.lpc=264068231&sst.navt=n&sst.ude=0&sst.sw_exp=1&_s=1&tag_exp=0~115616985~115938466~115938469~116363097~117266400~117384406~117512543~118463261&sid=1777556864&sct=1&seg=0&dl=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen&dt=Nicotine%20Pouches%20To%20Quit%20Smoking%20%7C%20ZONNIC%20Canada&_tu=BA&en=page_view&_fv=1&_nsi=1&_ss=1&ep.Site%20Section=en&ep.User%20ID=&ep.Logged%20In%20Status=Logged%20Out&ep.Page%20Type=en&ep.Country=CA&up.user_ID=&up.country=CA&up.Logged%20in%20Status=Logged%20Out&up.siteSection=en&tfd=1247&richsstsse",
+        "https://ssapi.vuse.com/g/collect?v=2&tid=G-LP9LP5DQR7&gtm=45je64s1v876439418z8864081390za20gzb864081390zd864081390&_p=1777556892376&gcd=13l3l3l2l1l1&npa=1&dma_cps=a&dma=1&ecid=275226841&_fplc=0&are=1&cid=1240666271.1777556893&frm=0&pscdl=noapi&rcb=7&sr=1280x720&uaa=arm&uab=64&uafvl=Not%253AA-Brand%3B99.0.0.0%7CHeadlessChrome%3B145.0.7632.6%7CChromium%3B145.0.7632.6&uam=&uamb=0&uap=macOS&uapv=15.7.2&uaw=0&ul=en-us&ur=DE-BW&sst.etld=google.de&sst.gcsub=region1&sst.tft=1777556892376&sst.lpc=223032336&sst.navt=n&sst.ude=0&sst.sw_exp=1&_s=1&tag_exp=0~115616985~115938465~115938468~117266401~117512542~118128923~118289195~118463261&sid=1777556892&sct=1&seg=0&dl=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fpouches%2Fzonnic-mint-24-nicotine-pouches&dt=Zonnic%20Nicotine%20Pouches%20Mint%20%E2%80%93%20Smoke-Free%20%7C%20ZONNIC%20CA&_tu=BA&en=page_view&_fv=1&_nsi=1&_ss=1&ep.Site%20Section=zonnic-mint-24-nicotine-pouches&ep.User%20ID=&ep.Logged%20In%20Status=Logged%20Out&ep.Page%20Type=zonnic-mint-24-nicotine-pouches&ep.Country=CA&up.user_ID=&up.country=CA&up.Logged%20in%20Status=Logged%20Out&up.siteSection=zonnic-mint-24-nicotine-pouches&tfd=1181&richsstsse"
+      ]
+    },
+    {
+      "host": "c.az.contentsquare.net",
+      "registrable_domain": "contentsquare.net",
+      "category": "analytics",
+      "vendor": "ContentSquare",
+      "total_requests": 25,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://c.az.contentsquare.net/pageview?cw=1&happid=2408314273&t=Testimonials&ex=&dt=333&pvt=n&cvars=%7B%221%22%3A%5B%22Logged%20In%20Status%22%2C%22logged%20out%22%5D%2C%222%22%3A%5B%22Page%20Type%22%2C%22testimonials%22%5D%2C%223%22%3A%5B%22Page%20Template%22%2C%22testimonials%22%5D%7D&cvarp=%7B%221%22%3A%5B%22Logged%20In%20Status%22%2C%22logged%20out%22%5D%2C%222%22%3A%5B%22Page%20Type%22%2C%22testimonials%22%5D%2C%223%22%3A%5B%22Page%20Template%22%2C%22testimonials%22%5D%7D&la=en-US&uc=1&url=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fcontact-us%2Ftestimonials&dr=&dw=1280&dh=1563&ww=1280&wh=720&sw=1280&sh=720&uu=8bd30c23-249f-a189-a232-5b4aed24b31e&sn=1&hd=1777556967&v=15.224.0&pid=60160&pn=1&fvt=1777556967234&fvurl=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fcontact-us%2Ftestimonials&cvt=1777556967235&ct=0",
+        "https://c.az.contentsquare.net/dvar?v=15.224.0&pid=60160&pn=1&sn=1&uu=8bd30c23-249f-a189-a232-5b4aed24b31e&dv=H4sIAAAAAAAAA6tWSi72TSxJzsjMS%2FdOrVSyUjLQM7IwNTQzNjcyNDY2sjAyMI43NDc3NzU1szQzszA1V6oFACweKgk0AAAA&ct=2&r=510906",
+        "https://c.az.contentsquare.net/errors?v=15.224.0&pid=60160&pn=1&sn=1&uu=8bd30c23-249f-a189-a232-5b4aed24b31e&happid=2408314273&t=Testimonials&fvt=1777556967234&fvurl=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fcontact-us%2Ftestimonials&url=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fcontact-us%2Ftestimonials&sw=1280&sh=720&cvt=1777556967236&cvarp=%7B%221%22%3A%5B%22Logged%20In%20Status%22%2C%22logged%20out%22%5D%2C%222%22%3A%5B%22Page%20Type%22%2C%22testimonials%22%5D%2C%223%22%3A%5B%22Page%20Template%22%2C%22testimonials%22%5D%7D&ct=0",
+        "https://c.az.contentsquare.net/pageview?cw=1&happid=2408314273&t=Nicotine%20Pouches%20To%20Quit%20Smoking%20%7C%20ZONNIC%20Canada&ex=&dt=321&pvt=n&cvars=%7B%221%22%3A%5B%22Logged%20In%20Status%22%2C%22logged%20out%22%5D%2C%222%22%3A%5B%22Page%20Type%22%2C%22en%22%5D%2C%223%22%3A%5B%22Page%20Template%22%2C%22en%22%5D%7D&cvarp=%7B%221%22%3A%5B%22Logged%20In%20Status%22%2C%22logged%20out%22%5D%2C%222%22%3A%5B%22Page%20Type%22%2C%22en%22%5D%2C%223%22%3A%5B%22Page%20Template%22%2C%22en%22%5D%7D&la=en-US&uc=1&url=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen&dr=&dw=1280&dh=2878&ww=1280&wh=720&sw=1280&sh=720&uu=e9a61a32-249f-a8a9-8ba2-73d745627d5d&sn=1&hd=1777556864&v=15.224.0&pid=60160&pn=1&fvt=1777556864897&fvurl=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen&cvt=1777556864898&ct=0",
+        "https://c.az.contentsquare.net/dvar?v=15.224.0&pid=60160&pn=1&sn=1&uu=e9a61a32-249f-a8a9-8ba2-73d745627d5d&dv=H4sIAAAAAAAAA6tWSi72TSxJzsjMS%2FdOrVSyUjLQszAzsABiUxMTQ0MjCzPTeENzc3NTUzMLMxNTEwOlWgA3%2FXweNAAAAA%3D%3D&ct=2&r=464059"
+      ]
+    },
+    {
+      "host": "assets.adobedtm.com",
+      "registrable_domain": "adobedtm.com",
+      "category": "analytics",
+      "vendor": "Adobe DTM/Launch",
+      "total_requests": 24,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://assets.adobedtm.com/1536df921ec2/f8de06da706c/launch-9ffb8240dfc1.min.js",
+        "https://assets.adobedtm.com/extensions/EPef068a8d6dd34a43866d9a80cc98baab/AppMeasurement.min.js",
+        "https://assets.adobedtm.com/extensions/EPef068a8d6dd34a43866d9a80cc98baab/AppMeasurement_Module_ActivityMap.min.js"
+      ]
+    },
+    {
+      "host": "dpm.demdex.net",
+      "registrable_domain": "demdex.net",
+      "category": "analytics",
+      "vendor": "Adobe Audience Manager",
+      "total_requests": 24,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://dpm.demdex.net/id?d_visid_ver=5.5.0&d_fieldgroup=MC&d_rtbd=json&d_ver=2&d_orgid=360C70DD5CFA548D0A495FB0%40AdobeOrg&d_nsid=0&ts=1777556966206",
+        "https://dpm.demdex.net/ibs:dpid=411&dpuuid=afNd5gAAAHCtjgN-",
+        "https://dpm.demdex.net/ibs:dpid=771&dpuuid=CAESENIoDgtNwvvWQx3kWEI1QSg&google_cver=1?gdpr=0&gdpr_consent=",
+        "https://dpm.demdex.net/id?d_visid_ver=5.5.0&d_fieldgroup=MC&d_rtbd=json&d_ver=2&d_orgid=360C70DD5CFA548D0A495FB0%40AdobeOrg&d_nsid=0&ts=1777556864017",
+        "https://dpm.demdex.net/ibs:dpid=411&dpuuid=afNdgAAAAK_AgQO-"
+      ]
+    },
+    {
+      "host": "www.googletagmanager.com",
+      "registrable_domain": "googletagmanager.com",
+      "category": "analytics",
+      "vendor": "Google Tag Manager",
+      "total_requests": 16,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://www.googletagmanager.com/gtm.js?id=GTM-52RCBD7&gtm_auth=UOfKHH7ElYzDfHbJXoZVDg&gtm_preview=env-3&gtm_cookies_win=x",
+        "https://www.googletagmanager.com/gtag/js?id=G-LP9LP5DQR7&cx=c&gtm=4e64s1"
+      ]
+    },
+    {
+      "host": "connect.facebook.net",
+      "registrable_domain": "facebook.net",
+      "category": "analytics",
+      "vendor": "Meta Pixel",
+      "total_requests": 16,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://connect.facebook.net/en_US/fbevents.js",
+        "https://connect.facebook.net/signals/config/352330590559311?v=2.9.310&r=stable&domain=www.zonnic.ca&hme=97937018cefade17726f0472876fc101316b2ce9008a35a6a5a7977d7436151a&ex_m=104%2C205%2C154%2C22%2C72%2C73%2C145%2C68%2C67%2C11%2C162%2C90%2C16%2C138%2C127%2C39%2C75%2C78%2C134%2C159%2C164%2C8%2C4%2C5%2C7%2C6%2C3%2C91%2C101%2C165%2C170%2C219%2C62%2C186%2C187%2C55%2C276%2C30%2C74%2C231%2C230%2C229%2C23%2C33%2C103%2C61%2C10%2C63%2C97%2C98%2C99%2C105%2C130%2C31%2C29%2C132%2C133%2C129%2C128%2C155%2C76%2C158%2C156%2C157%2C50%2C60%2C123%2C15%2C161%2C45%2C263%2C264%2C262%2C26%2C27%2C28%2C48%2C146%2C77%2C112%2C18%2C20%2C44%2C40%2C42%2C41%2C83%2C92%2C96%2C110%2C144%2C147%2C46%2C111%2C24%2C21%2C119%2C69%2C36%2C149%2C148%2C150%2C141%2C139%2C25%2C35%2C59%2C109%2C160%2C70%2C17%2C152%2C114%2C81%2C66%2C19%2C85%2C86%2C116%2C84%2C136%2C135%2C34%2C278%2C293%2C212%2C201%2C202%2C200%2C296%2C288%2C52%2C213%2C107%2C131%2C80%2C121%2C54%2C47%2C49%2C113%2C120%2C126%2C58%2C64%2C151%2C115%2C37%2C32%2C53%2C56%2C100%2C163%2C1%2C124%2C14%2C122%2C12%2C2%2C57%2C93%2C65%2C118%2C89%2C88%2C166%2C167%2C94%2C95%2C9%2C125%2C102%2C51%2C142%2C87%2C79%2C71%2C117%2C106%2C43%2C143%2C0%2C82%2C137%2C140%2C153%2C38%2C108%2C13%2C168"
+      ]
+    },
+    {
+      "host": "cm.g.doubleclick.net",
+      "registrable_domain": "doubleclick.net",
+      "category": "analytics",
+      "vendor": "Google DoubleClick",
+      "total_requests": 16,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://cm.g.doubleclick.net/pixel?google_nid=adobe_dmp&google_cm&gdpr=0&gdpr_consent=&google_hm=MzQzNzE5OTUzMDc3NDk3MjYzMTMzMTU3NzE1MTA3MzAzNTc1OTQ=",
+        "https://cm.g.doubleclick.net/pixel?google_nid=adobe_dmp&google_cm=&gdpr=0&gdpr_consent=&google_hm=MzQzNzE5OTUzMDc3NDk3MjYzMTMzMTU3NzE1MTA3MzAzNTc1OTQ=&google_tc=",
+        "https://cm.g.doubleclick.net/pixel?google_nid=adobe_dmp&google_cm&gdpr=0&gdpr_consent=&google_hm=MTQ1Njg3MjQzOTI5MTUzMDI1MDA5MjE3NTM4MjQ5MDgyMDc5ODg=",
+        "https://cm.g.doubleclick.net/pixel?google_nid=adobe_dmp&google_cm=&gdpr=0&gdpr_consent=&google_hm=MTQ1Njg3MjQzOTI5MTUzMDI1MDA5MjE3NTM4MjQ5MDgyMDc5ODg=&google_tc=",
+        "https://cm.g.doubleclick.net/pixel?google_nid=adobe_dmp&google_cm&gdpr=0&gdpr_consent=&google_hm=ODYxMjkwNjU3OTMzMzIzNzQ1MTA2MTA2NDQ4NDI2MjcxODA4Mzc="
+      ]
+    },
+    {
+      "host": "bat-sea.my.salesforce-scrt.com",
+      "registrable_domain": "salesforce-scrt.com",
+      "category": "unknown",
+      "vendor": null,
+      "total_requests": 14,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://bat-sea.my.salesforce-scrt.com/embeddedservice/v1/embedded-service-config?orgId=00D0N000001MRTs&esConfigName=Live_Chat_Zonnic_CA&language=en_US",
+        "https://bat-sea.my.salesforce-scrt.com/embeddedservice/v1/businesshours?orgId=00D0N000001MRTs&esConfigName=Live_Chat_Zonnic_CA"
+      ]
+    },
+    {
+      "host": "batgsdzoonicprodcanada.112.2o7.net",
+      "registrable_domain": "2o7.net",
+      "category": "unknown",
+      "vendor": null,
+      "total_requests": 10,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://batgsdzoonicprodcanada.112.2o7.net/b/ss/batgsdzoonicprodcanada/1/JS-2.25.0-LEWM/s83562535979552?AQB=1&ndh=1&pf=1&t=30%2F3%2F2026%2015%3A49%3A26%204%20-120&sdid=012651FF082644AC-3DF6258E6375F47E&mid=28234622639515269712782782171692613558&aamlh=6&ce=UTF-8&pageName=testimonials&g=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fcontact-us%2Ftestimonials&cc=CAD&ch=testimonials&server=www.zonnic.ca&aamb=6G1ynYcLPuiQxYZrsz_pkqfLG9yMXBpb2zX5dvJdYQJzPXImdj0y&c1=testimonials&v1=testimonials&c2=testimonials&v2=testimonials&c3=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fcontact-us%2Ftestimonials&v3=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fcontact-us%2Ftestimonials&c4=%2Fca%2Fen%2Fcontact-us%2Ftestimonials&v4=%2Fca%2Fen%2Fcontact-us%2Ftestimonials&c6=www.zonnic.ca&v6=www.zonnic.ca&v7=en-us&c8=ca&v8=ca&v24=logged%20out&v27=testimonials&v28=contact-us&v29=testimonials&v31=mozilla%2F5.0%20%28macintosh%3B%20intel%20mac%20os%20x%2010_15_7%29%20applewebkit%2F537.36%20%28khtml%2C%20like%20gecko%29%20headlesschrome%2F145.0.7632.6%20safari%2F537.36&v41=0.2851637213328203_1777556966857&s=1280x720&c=24&j=1.6&v=N&k=Y&bw=1280&bh=720&mcorgid=360C70DD5CFA548D0A495FB0%40AdobeOrg&AQE=1",
+        "https://batgsdzoonicprodcanada.112.2o7.net/b/ss/batgsdzoonicprodcanada/1/JS-2.25.0-LEWM/s88546051043022?AQB=1&ndh=1&pf=1&t=30%2F3%2F2026%2015%3A47%3A44%204%20-120&sdid=1204F6F93167F08E-4536F924C11077E5&mid=20655436128741644540312765993064899480&aamlh=6&ce=UTF-8&pageName=nicotine-pouches-to-quit-smoking-zonnic-canada&g=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen&cc=CAD&ch=en&server=www.zonnic.ca&aamb=6G1ynYcLPuiQxYZrsz_pkqfLG9yMXBpb2zX5dvJdYQJzPXImdj0y&c1=nicotine-pouches-to-quit-smoking-zonnic-canada&v1=nicotine-pouches-to-quit-smoking-zonnic-canada&c2=en&v2=en&c3=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen&v3=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen&c4=%2Fca%2Fen&v4=%2Fca%2Fen&c6=www.zonnic.ca&v6=www.zonnic.ca&v7=en-us&c8=ca&v8=ca&v24=logged%20out&v27=en&v31=mozilla%2F5.0%20%28macintosh%3B%20intel%20mac%20os%20x%2010_15_7%29%20applewebkit%2F537.36%20%28khtml%2C%20like%20gecko%29%20headlesschrome%2F145.0.7632.6%20safari%2F537.36&v41=0.8608860544112865_1777556864540&s=1280x720&c=24&j=1.6&v=N&k=Y&bw=1280&bh=720&mcorgid=360C70DD5CFA548D0A495FB0%40AdobeOrg&AQE=1",
+        "https://batgsdzoonicprodcanada.112.2o7.net/b/ss/batgsdzoonicprodcanada/1/JS-2.25.0-LEWM/s85061972245389?AQB=1&ndh=1&pf=1&t=30%2F3%2F2026%2015%3A48%3A13%204%20-120&sdid=7862F15283AEB312-4FD4303F8C8A6BB0&mid=91588107659041869190064425904813764041&aamlh=6&ce=UTF-8&pageName=zonnic-mint-24-nicotine-pouches&g=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fpouches%2Fzonnic-mint-24-nicotine-pouches&cc=CAD&ch=zonnic-mint-24-nicotine-pouches&server=www.zonnic.ca&aamb=6G1ynYcLPuiQxYZrsz_pkqfLG9yMXBpb2zX5dvJdYQJzPXImdj0y&c1=zonnic-nicotine-pouches-mint-smoke-free-zonnic-ca&v1=zonnic-nicotine-pouches-mint-smoke-free-zonnic-ca&c2=zonnic-mint-24-nicotine-pouches&v2=zonnic-mint-24-nicotine-pouches&c3=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fpouches%2Fzonnic-mint-24-nicotine-pouches&v3=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fpouches%2Fzonnic-mint-24-nicotine-pouches&c4=%2Fca%2Fen%2Fpouches%2Fzonnic-mint-24-nicotine-pouches&v4=%2Fca%2Fen%2Fpouches%2Fzonnic-mint-24-nicotine-pouches&c6=www.zonnic.ca&v6=www.zonnic.ca&v7=en-us&c8=ca&v8=ca&v24=logged%20out&v25=nicotine%20pouches&v27=zonnic-mint-24-nicotine-pouches&v28=pouches&v29=zonnic-mint-24-nicotine-pouches&v31=mozilla%2F5.0%20%28macintosh%3B%20intel%20mac%20os%20x%2010_15_7%29%20applewebkit%2F537.36%20%28khtml%2C%20like%20gecko%29%20headlesschrome%2F145.0.7632.6%20safari%2F537.36&v41=0.441290879455543_1777556893145&s=1280x720&c=24&j=1.6&v=N&k=Y&bw=1280&bh=720&mcorgid=360C70DD5CFA548D0A495FB0%40AdobeOrg&AQE=1",
+        "https://batgsdzoonicprodcanada.112.2o7.net/b/ss/batgsdzoonicprodcanada/1/JS-2.25.0-LEWM/s81192727718052?AQB=1&ndh=1&pf=1&t=30%2F3%2F2026%2015%3A48%3A13%204%20-120&mid=91588107659041869190064425904813764041&aamlh=6&ce=UTF-8&pageName=zonnic-nicotine-pouches-mint-smoke-free-zonnic-ca&g=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fpouches%2Fzonnic-mint-24-nicotine-pouches&cc=CAD&ch=zonnic-mint-24-nicotine-pouches&server=www.zonnic.ca&events=prodView&products=undefined%3Bundefined%3B1%3Bundefi.ned%20NaN%3B%3BeVar32%3Dundefined&c1=zonnic-nicotine-pouches-mint-smoke-free-zonnic-ca&v1=zonnic-nicotine-pouches-mint-smoke-free-zonnic-ca&c2=zonnic-mint-24-nicotine-pouches&v2=zonnic-mint-24-nicotine-pouches&c3=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fpouches%2Fzonnic-mint-24-nicotine-pouches&v3=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fpouches%2Fzonnic-mint-24-nicotine-pouches&c4=%2Fca%2Fen%2Fpouches%2Fzonnic-mint-24-nicotine-pouches&v4=%2Fca%2Fen%2Fpouches%2Fzonnic-mint-24-nicotine-pouches&c6=www.zonnic.ca&v6=www.zonnic.ca&v7=en-us&c8=ca&v8=ca&v24=logged%20out&v25=nicotine%20pouches&v27=zonnic-mint-24-nicotine-pouches&v28=pouches&v29=zonnic-mint-24-nicotine-pouches&v31=mozilla%2F5.0%20%28macintosh%3B%20intel%20mac%20os%20x%2010_15_7%29%20applewebkit%2F537.36%20%28khtml%2C%20like%20gecko%29%20headlesschrome%2F145.0.7632.6%20safari%2F537.36&pe=lnk_o&pev2=Link%20Tracking&s=1280x720&c=24&j=1.6&v=N&k=Y&bw=1280&bh=720&mcorgid=360C70DD5CFA548D0A495FB0%40AdobeOrg&AQE=1",
+        "https://batgsdzoonicprodcanada.112.2o7.net/b/ss/batgsdzoonicprodcanada/1/JS-2.25.0-LEWM/s85982565540534?AQB=1&ndh=1&pf=1&t=30%2F3%2F2026%2015%3A48%3A13%204%20-120&mid=91588107659041869190064425904813764041&aamlh=6&ce=UTF-8&pageName=zonnic-nicotine-pouches-mint-smoke-free-zonnic-ca&g=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fpouches%2Fzonnic-mint-24-nicotine-pouches&cc=CAD&ch=zonnic-mint-24-nicotine-pouches&server=www.zonnic.ca&events=prodView&products=undefined%3Bundefined%3B1%3Bundefi.ned%20NaN%3B%3BeVar32%3Dundefined&c1=zonnic-nicotine-pouches-mint-smoke-free-zonnic-ca&v1=zonnic-nicotine-pouches-mint-smoke-free-zonnic-ca&c2=zonnic-mint-24-nicotine-pouches&v2=zonnic-mint-24-nicotine-pouches&c3=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fpouches%2Fzonnic-mint-24-nicotine-pouches&v3=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fpouches%2Fzonnic-mint-24-nicotine-pouches&c4=%2Fca%2Fen%2Fpouches%2Fzonnic-mint-24-nicotine-pouches&v4=%2Fca%2Fen%2Fpouches%2Fzonnic-mint-24-nicotine-pouches&c6=www.zonnic.ca&v6=www.zonnic.ca&v7=en-us&c8=ca&v8=ca&v24=logged%20out&v25=nicotine%20pouches&v27=zonnic-mint-24-nicotine-pouches&v28=pouches&v29=zonnic-mint-24-nicotine-pouches&v31=mozilla%2F5.0%20%28macintosh%3B%20intel%20mac%20os%20x%2010_15_7%29%20applewebkit%2F537.36%20%28khtml%2C%20like%20gecko%29%20headlesschrome%2F145.0.7632.6%20safari%2F537.36&pe=lnk_o&pev2=Link%20Tracking&s=1280x720&c=24&j=1.6&v=N&k=Y&bw=1280&bh=720&mcorgid=360C70DD5CFA548D0A495FB0%40AdobeOrg&AQE=1"
+      ]
+    },
+    {
+      "host": "rum.hlx.page",
+      "registrable_domain": "hlx.page",
+      "category": "unknown",
+      "vendor": null,
+      "total_requests": 8,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://rum.hlx.page/.rum/@adobe/helix-rum-js@%5E2/dist/rum-standalone.js"
+      ]
+    },
+    {
+      "host": "geolocation.onetrust.com",
+      "registrable_domain": "onetrust.com",
+      "category": "consent",
+      "vendor": "OneTrust",
+      "total_requests": 8,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://geolocation.onetrust.com/cookieconsentpub/v1/geo/location"
+      ]
+    },
+    {
+      "host": "batgsd.demdex.net",
+      "registrable_domain": "demdex.net",
+      "category": "analytics",
+      "vendor": "Adobe Audience Manager",
+      "total_requests": 8,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://batgsd.demdex.net/dest5.html?d_nsid=0"
+      ]
+    },
+    {
+      "host": "cm.everesttech.net",
+      "registrable_domain": "everesttech.net",
+      "category": "analytics",
+      "vendor": "Adobe Advertising Cloud",
+      "total_requests": 8,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://cm.everesttech.net/cm/dd?d_uuid=34371995307749726313315771510730357594",
+        "https://cm.everesttech.net/cm/dd?d_uuid=14568724392915302500921753824908207988",
+        "https://cm.everesttech.net/cm/dd?d_uuid=86129065793332374510610644842627180837",
+        "https://cm.everesttech.net/cm/dd?d_uuid=17644218601308340514557926357466118723",
+        "https://cm.everesttech.net/cm/dd?d_uuid=46147873593048602890932121796582874420"
+      ]
+    },
+    {
+      "host": "britishamericanshare.tt.omtrdc.net",
+      "registrable_domain": "omtrdc.net",
+      "category": "analytics",
+      "vendor": "Adobe Analytics",
+      "total_requests": 8,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://britishamericanshare.tt.omtrdc.net/rest/v1/delivery?client=britishamericanshare&sessionId=acfbde4f8b4e4e869a7bc41619a1b185&version=2.11.0",
+        "https://britishamericanshare.tt.omtrdc.net/rest/v1/delivery?client=britishamericanshare&sessionId=ed6de634cd27442ea66b06c7a88f1dc1&version=2.11.0",
+        "https://britishamericanshare.tt.omtrdc.net/rest/v1/delivery?client=britishamericanshare&sessionId=0eaa8df96be94ef19ac4707f5567f5b5&version=2.11.0",
+        "https://britishamericanshare.tt.omtrdc.net/rest/v1/delivery?client=britishamericanshare&sessionId=f9ab9199909b4f3bb74438cd8ac7e56c&version=2.11.0",
+        "https://britishamericanshare.tt.omtrdc.net/rest/v1/delivery?client=britishamericanshare&sessionId=3654346d59084196834be66547e911da&version=2.11.0"
+      ]
+    },
+    {
+      "host": "ib.adnxs.com",
+      "registrable_domain": "adnxs.com",
+      "category": "unknown",
+      "vendor": null,
+      "total_requests": 8,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://ib.adnxs.com/getuid?https%3A%2F%2Fdpm.demdex.net%2Fibs%3Adpid%3D358%26dpuuid%3D%24UID"
+      ]
+    },
+    {
+      "host": "t.contentsquare.net",
+      "registrable_domain": "contentsquare.net",
+      "category": "analytics",
+      "vendor": "ContentSquare",
+      "total_requests": 8,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://t.contentsquare.net/uxa/cf23775325a8c.js"
+      ]
+    },
+    {
+      "host": "match.adsrvr.org",
+      "registrable_domain": "adsrvr.org",
+      "category": "unknown",
+      "vendor": null,
+      "total_requests": 8,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://match.adsrvr.org/track/cmf/generic?ttd_pid=aam&gdpr=0&gdpr_consent=&domain=www.zonnic.ca&ttd_tpi=1"
+      ]
+    },
+    {
+      "host": "ads.avocet.io",
+      "registrable_domain": "avocet.io",
+      "category": "unknown",
+      "vendor": null,
+      "total_requests": 8,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://ads.avocet.io/getuid?url=https%3A%2F%2Fdpm.demdex.net%2Fibs%3Adpid%3D183896%26dpuuid%3D%7B%7BUUID%7D%7D"
+      ]
+    },
+    {
+      "host": "zn1iexr9fdl3ivwvk-batdigitalcx.siteintercept.qualtrics.com",
+      "registrable_domain": "qualtrics.com",
+      "category": "survey",
+      "vendor": "Qualtrics",
+      "total_requests": 8,
+      "pages": [
+        "contact-us-testimonials",
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "sign-up",
+        "store-locator",
+        "testingblogarticletemplate",
+        "what-is-zonnic",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://zn1iexr9fdl3ivwvk-batdigitalcx.siteintercept.qualtrics.com/SIE/?Q_ZID=ZN_1IeXr9FdL3IVWvk"
+      ]
+    },
+    {
+      "host": "k-us1.az.contentsquare.net",
+      "registrable_domain": "contentsquare.net",
+      "category": "analytics",
+      "vendor": "ContentSquare",
+      "total_requests": 5,
+      "pages": [
+        "homepage",
+        "pouches-zonnic-mint-24-nicotine-pouches",
+        "why-zonnic"
+      ],
+      "samples": [
+        "https://k-us1.az.contentsquare.net/v2/recording?rt=5&rst=1777556864903&let=1777556864914&v=15.224.0&pid=60160&pn=1&sn=1&uu=e9a61a32-249f-a8a9-8ba2-73d745627d5d&ri=1&ct=2",
+        "https://k-us1.az.contentsquare.net/v2/recording?rt=5&rst=1777556864903&let=1777556868346&v=15.224.0&pid=60160&pn=1&sn=1&uu=e9a61a32-249f-a8a9-8ba2-73d745627d5d&ri=2&ct=2",
+        "https://k-us1.az.contentsquare.net/v2/recording?rt=5&rst=1777556893484&let=1777556893497&v=15.224.0&pid=60160&pn=1&sn=1&uu=9644ec2d-249f-ad5a-bc4e-71ec713fea21&ri=1&ct=2",
+        "https://k-us1.az.contentsquare.net/v2/recording?rt=5&rst=1777556908488&let=1777556908491&v=15.224.0&pid=60160&pn=1&sn=1&uu=c71b0250-249f-aee6-8402-a439fb835562&ri=1&ct=2",
+        "https://k-us1.az.contentsquare.net/v2/recording?rt=5&rst=1777556908488&let=1777556910788&v=15.224.0&pid=60160&pn=1&sn=1&uu=c71b0250-249f-aee6-8402-a439fb835562&ri=2&ct=2"
+      ]
+    },
+    {
+      "host": "api.mapbox.com",
+      "registrable_domain": "mapbox.com",
+      "category": "maps",
+      "vendor": "Mapbox",
+      "total_requests": 4,
+      "pages": [
+        "store-locator"
+      ],
+      "samples": [
+        "https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css",
+        "https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css",
+        "https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"
+      ]
+    },
+    {
+      "host": "cdn.pricespider.com",
+      "registrable_domain": "pricespider.com",
+      "category": "unknown",
+      "vendor": null,
+      "total_requests": 3,
+      "pages": [
+        "pouches-zonnic-mint-24-nicotine-pouches"
+      ],
+      "samples": [
+        "https://cdn.pricespider.com/1/lib/ps-widget.js",
+        "https://cdn.pricespider.com/1/8529/config.js",
+        "https://cdn.pricespider.com/1/lib/2.23.0/ps-widget.js"
+      ]
+    },
+    {
+      "host": "unpkg.com",
+      "registrable_domain": "unpkg.com",
+      "category": "cdn",
+      "vendor": "unpkg",
+      "total_requests": 2,
+      "pages": [
+        "store-locator"
+      ],
+      "samples": [
+        "https://unpkg.com/@turf/turf/turf.min.js",
+        "https://unpkg.com/@turf/turf@7.3.5/turf.min.js"
+      ]
+    },
+    {
+      "host": "wtbevents.pricespider.com",
+      "registrable_domain": "pricespider.com",
+      "category": "unknown",
+      "vendor": null,
+      "total_requests": 1,
+      "pages": [
+        "pouches-zonnic-mint-24-nicotine-pouches"
+      ],
+      "samples": [
+        "https://wtbevents.pricespider.com/?key=pageImpression&iid=4fc23b7b-6bfc-4c40-957a-fdef0afe4011&uid=undefined&v=2.23.0&countryCode=CA&languageCode=en&cid=66aa64d821c54411c47cf025&url=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fpouches%2Fzonnic-mint-24-nicotine-pouches&_=1777556893915"
+      ]
+    },
+    {
+      "host": "npmcdn.com",
+      "registrable_domain": "npmcdn.com",
+      "category": "unknown",
+      "vendor": null,
+      "total_requests": 1,
+      "pages": [
+        "store-locator"
+      ],
+      "samples": [
+        "https://npmcdn.com/@turf/turf/turf.min.js"
+      ]
+    }
+  ],
+  "categories": {
+    "survey": {
+      "count": 2,
+      "vendors": [
+        "Qualtrics"
+      ],
+      "origins": [
+        "siteintercept.qualtrics.com",
+        "zn1iexr9fdl3ivwvk-batdigitalcx.siteintercept.qualtrics.com"
+      ]
+    },
+    "unknown": {
+      "count": 11,
+      "vendors": [],
+      "origins": [
+        "bat-sea.my.site.com",
+        "ssapi.vuse.com",
+        "bat-sea.my.salesforce-scrt.com",
+        "batgsdzoonicprodcanada.112.2o7.net",
+        "rum.hlx.page",
+        "ib.adnxs.com",
+        "match.adsrvr.org",
+        "ads.avocet.io",
+        "cdn.pricespider.com",
+        "wtbevents.pricespider.com",
+        "npmcdn.com"
+      ]
+    },
+    "consent": {
+      "count": 2,
+      "vendors": [
+        "OneTrust"
+      ],
+      "origins": [
+        "cdn.cookielaw.org",
+        "geolocation.onetrust.com"
+      ]
+    },
+    "analytics": {
+      "count": 11,
+      "vendors": [
+        "ContentSquare",
+        "Adobe DTM/Launch",
+        "Adobe Audience Manager",
+        "Google Tag Manager",
+        "Meta Pixel",
+        "Google DoubleClick",
+        "Adobe Advertising Cloud",
+        "Adobe Analytics"
+      ],
+      "origins": [
+        "c.az.contentsquare.net",
+        "assets.adobedtm.com",
+        "dpm.demdex.net",
+        "www.googletagmanager.com",
+        "connect.facebook.net",
+        "cm.g.doubleclick.net",
+        "batgsd.demdex.net",
+        "cm.everesttech.net",
+        "britishamericanshare.tt.omtrdc.net",
+        "t.contentsquare.net",
+        "k-us1.az.contentsquare.net"
+      ]
+    },
+    "maps": {
+      "count": 1,
+      "vendors": [
+        "Mapbox"
+      ],
+      "origins": [
+        "api.mapbox.com"
+      ]
+    },
+    "cdn": {
+      "count": 1,
+      "vendors": [
+        "unpkg"
+      ],
+      "origins": [
+        "unpkg.com"
+      ]
+    }
   },
-  {
-    "origin": "https://siteintercept.qualtrics.com",
-    "requests": 170,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://cdn.cookielaw.org",
-    "requests": 130,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://bat-sea.my.site.com",
-    "requests": 119,
-    "page_count": 7,
-    "pages": [
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://rum.hlx.page",
-    "requests": 62,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://ssapi.vuse.com",
-    "requests": 32,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://c.az.contentsquare.net",
-    "requests": 31,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://assets.adobedtm.com",
-    "requests": 30,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://dpm.demdex.net",
-    "requests": 30,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://www.googletagmanager.com",
-    "requests": 20,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://connect.facebook.net",
-    "requests": 20,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://cm.g.doubleclick.net",
-    "requests": 20,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://bat-sea--batuat.sandbox.my.site.com",
-    "requests": 17,
-    "page_count": 1,
-    "pages": [
-      "contact-us-let-us-talk-testimonials"
-    ]
-  },
-  {
-    "origin": "https://bat-sea.my.salesforce-scrt.com",
-    "requests": 14,
-    "page_count": 7,
-    "pages": [
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://batgsdzoonicprodcanada.112.2o7.net",
-    "requests": 12,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://geolocation.onetrust.com",
-    "requests": 10,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://batgsd.demdex.net",
-    "requests": 10,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://cm.everesttech.net",
-    "requests": 10,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://britishamericanshare.tt.omtrdc.net",
-    "requests": 10,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://ib.adnxs.com",
-    "requests": 10,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://t.contentsquare.net",
-    "requests": 10,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://match.adsrvr.org",
-    "requests": 10,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://ads.avocet.io",
-    "requests": 10,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://zn1iexr9fdl3ivwvk-batdigitalcx.siteintercept.qualtrics.com",
-    "requests": 10,
-    "page_count": 10,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "contact-us-let-us-talk-testimonials",
-      "homepage",
-      "newsletter",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "sign-up",
-      "store-locator",
-      "testingblogarticletemplate",
-      "what-is-zonnic",
-      "why-zonnic"
-    ]
-  },
-  {
-    "origin": "https://k-us1.az.contentsquare.net",
-    "requests": 6,
-    "page_count": 5,
-    "pages": [
-      "blog-what-are-nicotine-pouches",
-      "homepage",
-      "pouches-zonnic-mint-24-nicotine-pouches",
-      "store-locator",
-      "what-is-zonnic"
-    ]
-  },
-  {
-    "origin": "https://api.mapbox.com",
-    "requests": 4,
-    "page_count": 1,
-    "pages": [
-      "store-locator"
-    ]
-  },
-  {
-    "origin": "https://cdn.pricespider.com",
-    "requests": 3,
-    "page_count": 1,
-    "pages": [
-      "pouches-zonnic-mint-24-nicotine-pouches"
-    ]
-  },
-  {
-    "origin": "https://bat-sea--batuat.sandbox.my.salesforce-scrt.com",
-    "requests": 2,
-    "page_count": 1,
-    "pages": [
-      "contact-us-let-us-talk-testimonials"
-    ]
-  },
-  {
-    "origin": "https://unpkg.com",
-    "requests": 2,
-    "page_count": 1,
-    "pages": [
-      "store-locator"
-    ]
-  },
-  {
-    "origin": "https://wtbevents.pricespider.com",
-    "requests": 1,
-    "page_count": 1,
-    "pages": [
-      "pouches-zonnic-mint-24-nicotine-pouches"
-    ]
-  },
-  {
-    "origin": "https://npmcdn.com",
-    "requests": 1,
-    "page_count": 1,
-    "pages": [
-      "store-locator"
-    ]
-  }
-]
+  "per_page": [
+    {
+      "slug": "contact-us-testimonials",
+      "origin_count": 22
+    },
+    {
+      "slug": "homepage",
+      "origin_count": 23
+    },
+    {
+      "slug": "pouches-zonnic-mint-24-nicotine-pouches",
+      "origin_count": 25
+    },
+    {
+      "slug": "sign-up",
+      "origin_count": 22
+    },
+    {
+      "slug": "store-locator",
+      "origin_count": 25
+    },
+    {
+      "slug": "testingblogarticletemplate",
+      "origin_count": 20
+    },
+    {
+      "slug": "what-is-zonnic",
+      "origin_count": 22
+    },
+    {
+      "slug": "why-zonnic",
+      "origin_count": 23
+    }
+  ]
+}

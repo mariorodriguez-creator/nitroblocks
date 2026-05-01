@@ -10,7 +10,7 @@
       "dark": "#3860be"
     },
     "accent": {
-      "light": "#a0ff9d",
+      "light": "#e3ffe2",
       "dark": "#a0ff9d"
     }
   },
@@ -100,7 +100,7 @@
             "dark": "#3860be"
           },
           "accent": {
-            "DEFAULT": "#a0ff9d",
+            "DEFAULT": "#e3ffe2",
             "dark": "#a0ff9d"
           }
         }

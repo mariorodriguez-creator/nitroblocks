@@ -1,7 +1,15 @@
 {
   "url": "https://www.zonnic.ca/ca/en/my-account",
   "path": "/ca/en/my-account",
-  "added": {},
+  "added": {
+    "primitive": {
+      "fontFamily": {
+        "f4": {
+          "$value": "sans-serif"
+        }
+      }
+    }
+  },
   "changed": {
     "primitive": {
       "color": {
@@ -60,6 +68,17 @@
           },
           "bg6": {
             "$value": "#ededed"
+          }
+        },
+        "text": {
+          "text3": {
+            "$value": "#141e53"
+          },
+          "text4": {
+            "$value": "#2f2f2f"
+          },
+          "text5": {
+            "$value": "#ffffff"
           }
         }
       },
@@ -132,6 +151,12 @@
         "r0": {
           "$value": "1px"
         },
+        "r1": {
+          "$value": "6px"
+        },
+        "r2": {
+          "$value": "14px"
+        },
         "r3": {
           "$value": "17px"
         },
@@ -175,11 +200,11 @@
         }
       },
       "fontFamily": {
+        "f2": {
+          "$value": "Times New Roman"
+        },
         "f3": {
           "$value": "Font Awesome 5 Free"
-        },
-        "f4": {
-          "$value": "sans-serif"
         }
       }
     },

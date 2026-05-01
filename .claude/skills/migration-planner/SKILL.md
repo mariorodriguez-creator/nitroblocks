@@ -43,17 +43,27 @@ proposal: what needs to be built, how long it will take, and what could go wrong
 
 ## Output
 
-Structured files in `./migration-work/proposal/` + visual HTML dashboard.
-See [output-template.md](resources/output-template.md) for the Markdown file
-template and [dashboard-template.html](resources/dashboard-template.html) for
-the HTML dashboard template.
+Structured outputs in `./migration-work/`:
+
+| Path | Purpose |
+|------|---------|
+| `proposal/` | 10 Markdown deliverables + `migration-proposal.html` dashboard. See [output-template.md](resources/output-template.md) for the Markdown template and [dashboard-template.html](resources/dashboard-template.html) for the HTML. |
+| `components/` | **Forensic component inventory.** One folder per atom / molecule / organism with `anatomy.html`, `computed.css`, `stats.json`, `evidence/*.png`, `README.md`, and `preview.html` (a self-contained shell that renders `anatomy.html` with the live site's `<head>` inlined so the fragment styles correctly when opened from disk). Built from `component-manifest.json` by `extract-components.mjs` + `build-preview.mjs`. Top-level `preview.html` is the single-page living styleguide; `.live-head.html` caches the captured live `<head>`; `coverage-matrix.json` + `coverage-report.md` come from Phase 3g. See [component-manifest-template.md](resources/component-manifest-template.md) for authoring the manifest. |
+| `component-manifest.json` | Manifest feeding the extraction. Top-level `coverage.chromeTags` lists DOM tags to dismiss as non-component chrome. |
+| `design-extract/` | Raw designlang outputs (preserved as evidence base for downstream skills). |
+| `pages/` | Per-template scraped HTML + HAR + screenshot. |
+| `verification/` | Phase H-K verification reports (bypass leak, anatomy diff, third-party inventory, aggregated confidence). |
+| `a11y/` | Runtime WCAG 2.2 AA scan per representative page. |
+| `structure/` | Agent-driven section + sequence analysis per representative page. |
 
 ## Workflow
 
 Create a TodoList tracking these phases before starting:
 1. Site Discovery
 2. Structure Cross-Check (per-representative agent analysis)
-3. Atomic Structuring (cataloguing, no normalization)
+3. Atomic Structuring (cataloguing, no normalization) — **includes 3f forensic
+   component extraction into `migration-work/components/` AND 3g page-level
+   coverage verification; both non-optional**
 4. EDS Mapping
 5. Work Item Enumeration
 6. Proposal Assembly
@@ -109,9 +119,9 @@ This orchestrates 11 phases automatically:
 |---|---|---|
 | A | Sitemap analysis (compute depth, classify + filter pages) | `migration-work/sitemap-result.json` |
 | B | Overlay probe (discover bypass cookies + selectors) | `migration-work/bypass-result.json` |
-| C | designlang extraction with `--cookie`, `--ignore-widgets`, `--ignore`, `--wait 3000` | `migration-work/design-extract/*` |
+| C | designlang extraction with `--cookie`, `--ignore-widgets`, `--ignore`, `--wait 3000`, `--screenshots` (component crops + manifest) | `migration-work/design-extract/*`, `migration-work/design-extract/screenshots/*.png` |
 | D | designlang grade + critical-output verification | `migration-work/design-extract/*-grade.*` |
-| E | Clean Playwright screenshots at 3 viewports | `migration-work/design-extract/screenshots/` |
+| E | Per-template full-page Playwright captures at 3 viewports | `migration-work/design-extract/screenshots/templates/` |
 | F | Per-template scrape with bypass cookies + HAR capture | `migration-work/pages/{slug}/{cleaned.html, screenshot.png, network.har, metadata.json}` |
 | G | Runtime accessibility scan (axe-core) per representative | `migration-work/a11y/{slug}.json` + `summary.json` |
 | H | Bypass-leak verification on designlang output | `migration-work/verification/bypass-leak.{json,md}` |
@@ -137,11 +147,13 @@ warning and continues).
 | `*-design-tokens.json` | W3C DTCG tokens — primitive + semantic + composite layers | Planner: cataloguing; Design System: audit input + normalization |
 | `*-figma-variables.json` | Figma-compatible variable definitions (color, number, string modes) | Design System: direct import into Pencil via `set_variables` |
 | `*-variables.css` | CSS custom properties ready for EDS `styles.css` | Design System: audit input; Site Build: starting point after normalization |
-| `*-anatomy.tsx` | Component anatomy with variant × size × state matrices | Planner: organism/molecule identification; Design System: component structure |
+| `*-screenshots.json` | **Primary component inventory**: cluster, variant, sizeHint, bounds, and path for every component crop captured by designlang. Pairs 1:1 with `screenshots/*.png`. | Planner: atom/molecule identification; Design System: component audit evidence |
+| `*-anatomy.tsx` | **Supplementary**. React-shaped component scaffolds. Often thin or empty on real sites (designlang's anatomy is token-derived and undersupplied in practice). Treat as a hint, not a source of truth. | Design System: cross-check only |
 | `*-grade.html` | Design quality report card (consistency, accessibility, complexity scores) | Planner: executive summary, risk assessment |
 | `*-motion-tokens.json` | Motion language (duration, easing, choreography rules) | Design System: animation tokens; Site Build: transition CSS |
 | `*-agent-rules.md` | Design rules inferred from the system (spacing conventions, color usage, layout patterns) | All downstream skills: consistent implementation decisions |
-| `screenshots/` | Clean Playwright captures at mobile (375px), tablet (768px), desktop (1280px) | Planner: visual reference; Validate: regression baseline |
+| `screenshots/*.png` | **Component crops** from designlang `--screenshots`: buttons, cards, nav, etc., per cluster × variant. `full-page.png` is the homepage at 1280px. | Planner: visual component inventory; Design System: component audit reference |
+| `screenshots/templates/*.png` | **Per-template full-page captures** from Phase E at mobile (375px), tablet (768px), desktop (1440px). | Planner: dashboard thumbnails; Design System: `preview/reference/` baselines; Validate: regression baseline |
 | `routes/` | Per-page analysis when depth > 0 (structure, tokens per page) | Discovery: per-template validation evidence |
 
 These files are **gold for downstream skills**. They persist in `./migration-work/design-extract/`
@@ -267,6 +279,20 @@ and structure it into atomic design levels. **Do NOT normalize token values.**
 Token normalization (color clustering, spacing grid snapping, weight correction,
 contrast fixes) is the responsibility of the **migration-design-system** skill.
 
+**Required deliverable:** in addition to the `03-atomic-inventory.md` markdown,
+this phase must produce a `migration-work/components/` tree with one folder per
+atom / molecule / organism, each containing:
+
+- `anatomy.html` — outer HTML captured from the live DOM
+- `computed.css` — per-variant `getComputedStyle` snapshot
+- `stats.json` — occurrence count + page spread
+- `evidence/*.png` — per-variant element screenshot
+- `README.md` — API description, observed variants, EDS mapping, regulatory flag
+
+This forensic inventory is the foundation of the HIGH-confidence atomic
+catalogue. Without it, the planner's organism list drops back to MEDIUM and
+downstream skills must re-discover the components.
+
 #### 3a. Foundation cataloguing
 
 From `*-design-tokens.json` and `*-variables.css`:
@@ -281,9 +307,23 @@ From `*-design-tokens.json` and `*-variables.css`:
 
 #### 3b. Atom identification
 
-From foundations + `*-anatomy.tsx`:
+Primary sources (in order of reliability):
+1. `*-screenshots.json` + `screenshots/*.png` -- component crops clustered by
+   kind (button, card, nav) with variant × sizeHint × bounds metadata. This
+   is the strongest evidence of which atoms actually exist in the live DOM.
+2. `*-design-language.md` typography and color sections -- text style and
+   interactive atom inventories
+3. `*-icon-system.json` + `*-form-states.json` -- icon and input patterns
+4. Foundations (tokens, variables.css) -- the atom token vocabulary
+
+`*-anatomy.tsx` is a supplementary cross-check only. It is frequently thin
+(e.g. only `Button` + `Card` with one variant each) and should not drive
+atom identification when richer sources are available.
+
+Catalogue:
 - Text styles: heading levels, body, captions -> EDS default content styling
-- Button patterns -> EDS auto-decoration (primary/secondary/outline via link classes)
+- Button patterns (from screenshots.json clusters): primary/secondary/outline
+  -> EDS auto-decoration via link classes
 - Input patterns, icon usage, image treatment
 - **EDS mapping:** atoms = default content styles + `scripts.js` decoration + `:root` CSS vars
 
@@ -310,7 +350,220 @@ From multi-page route reports:
 - Define canonical template structures per page type
 - **EDS mapping:** templates = auto-blocking rules + section metadata + authoring guides
 
-#### 3f. Design system assessment
+#### 3f. Evidence-backed component extraction (REQUIRED)
+
+Designlang's `*-screenshots.json` + `*-anatomy.tsx` is frequently under-supplied
+(small clusters like `button--default`, `card--default` and nothing else) for
+sites built on bespoke web-component frameworks (BAT, Lit, Angular-wrapped WCs).
+Do not ship the planner without augmenting with a forensic DOM extraction.
+
+**Step 1 — Survey DOM class patterns.** For every `migration-work/pages/*/cleaned.html`
+captured in Phase 1d, catalogue the class / tag patterns. Rank by occurrence
+and page spread:
+
+```bash
+python3 <<'PY'
+import re, glob, collections
+custom, classes = collections.Counter(), collections.Counter()
+for p in glob.glob('migration-work/pages/*/cleaned.html'):
+    html = open(p).read()
+    for m in re.findall(r'<([a-z][a-z0-9-]*-[a-z0-9-]+)', html):
+        custom[m] += 1
+    for cls in re.findall(r'class="([^"]+)"', html):
+        for c in cls.split():
+            classes[c] += 1
+print("Custom elements:", *sorted(custom.items(), key=lambda x:-x[1])[:40], sep='\n  ')
+print("\nTop classes:", *sorted(classes.items(), key=lambda x:-x[1])[:60], sep='\n  ')
+PY
+```
+
+Heavy + site-wide spread = an atom or a global organism (button, header,
+footer). Heavy + page-local spread = a molecule (nav-item repeated inside a
+single nav). Singletons or low-spread = organism (hero, faq, store-locator).
+Cross-reference with `design-extract/*-screenshots.json` for component
+clusters designlang already identified.
+
+**Step 2 — Author `migration-work/component-manifest.json`.** Follow the schema
+in [`resources/component-manifest-template.md`](resources/component-manifest-template.md).
+One entry per atom / molecule / organism, with `name`, `description`,
+`regulatory`, `observedPages`, `domFingerprint`, `variants[]` (each with a
+unique selector + `samplePage`), and `edsMapping`.
+
+Placement rules:
+
+- **Atom** — single-purpose element, no further decomposition (button, input, icon, headline).
+- **Molecule** — composition of atoms with a single intent (form-field, cta-list, nav-item, modal-shell).
+- **Organism** — standalone interface section, maps 1:1 to an EDS block (hero, header, footer, card family, forms).
+
+**Step 3 — Run the extractor.**
+
+```bash
+node .claude/skills/migration-planner/scripts/extract-components.mjs --verbose
+```
+
+This loads the bypass `storageState`, navigates to each sample page, locates
+the first truly-visible DOM match for each variant, and captures outer HTML,
+`getComputedStyle` snapshot, and a cropped screenshot. Results land in
+`migration-work/components/{atoms,molecules,organisms}/<name>/` with an
+`extraction-report.json` summary at the root.
+
+The script handles:
+
+- **Bypass cookie state** — re-applies `bypass-cookies.json` to the context
+  per variant; clears cookies when a variant sets `"clearBypass": true` (for
+  regulatory organisms like the age gate that are hidden once bypassed).
+- **CLS resilience** — tags the picked element with a unique data-attribute,
+  then uses Playwright's locator API to screenshot it. The locator re-reads
+  the bounding box at capture time so layout shift between `evaluate()` and
+  `screenshot()` doesn't mis-clip the image.
+- **Third-party overlay hiding** — injects a stylesheet that hides OneTrust,
+  Qualtrics and similar marketing widgets before measurements.
+- **Hidden-element fallback** — if no truly-visible instance is found (e.g.
+  a login form that only renders inside an opened modal), the script still
+  captures `anatomy.html` + `computed.css` from the first DOM match and
+  flags the variant as `hiddenFallback: true` in the stats.
+
+**Step 4 — Review the extraction report.** Check
+`migration-work/components/extraction-report.json` for failed variants.
+Common fixes:
+
+- `selector-not-matched` — the variant's class doesn't exist on that
+  `samplePage`. Survey the cleaned HTML again and pick a selector that
+  actually appears.
+- `no-visible-instance` — element exists but is hidden. Either add
+  `"clearBypass": true` (regulatory flow) or accept the `hiddenFallback`
+  capture and document why in the component's README.
+- `navigation-failed` — bot detection throttled the run. Re-run later.
+
+Acceptable failure rate: **≤ 1 variant per 30**. If more than that fails,
+iterate on selectors.
+
+**Step 5 — Build the living styleguide.**
+
+```bash
+node .claude/skills/migration-planner/scripts/build-preview.mjs
+```
+
+This generates **two** layers of preview, modelled on the flowing
+styleguide shape (see e.g. `zonnic-ds/preview/index.html` for the
+reference look):
+
+1. **Main gallery — `migration-work/components/preview.html`** — a
+   single-page styleguide with a sticky sidebar (alphabetical component
+   list per atomic level) and four content sections:
+
+   - **Foundations** — tokens parsed from `design-extract/<site>-variables.css`
+     (colours, typography, spacing, radii, shadows, motion), rendered as
+     swatches, type specimens and proportional spacing bars using
+     `var(--token)` references.
+   - **Atoms / Molecules / Organisms** — one **block** per component
+     (not a card grid). Each block has:
+     - `<h3>` with the component name and the comma-separated list of
+       variants captured (e.g. `button — primary, secondary, arrow-link`).
+     - Description, live-DOM stats (uses / pages / variant count) and a
+       regulatory badge where applicable.
+     - A `.atom-demo` container with a labelled cell per variant, each
+       cell showing the **pixel-perfect screenshot from `evidence/*.png`**
+       captured by `extract-components.mjs` (single source of truth for
+       what the variant looks like on the live site).
+     - Organisms render full-bleed (one variant per row, up to 720 px
+       tall, top-anchored) so wide compositions read at the page width.
+     - `edsMapping.strategy` summary, plus collapsible `anatomy.html` and
+       `computed.css` blocks for inspection.
+     - A prominent **"live preview →"** CTA opening the per-component
+       shell described below, plus a secondary "folder" link.
+
+2. **Per-component shells — `components/<level>/<name>/preview.html`** —
+   one self-contained HTML file per component. Each shell inlines the
+   live site's `<head>` (scripts stripped, JS-injected `<style>` blocks
+   captured, cross-origin stylesheet links localised) and renders
+   `anatomy.html` inside a `.cmp-sandbox` div. A fixed HUD bar at the
+   top carries the component name, level, uses/pages/variant counts and
+   links back to the styleguide and to the raw `anatomy.html` /
+   `computed.css` / `README.md` files.
+
+   - The live `<head>` is captured once per run via Playwright (using
+     `bypass-cookies.json` for regulatory sites). The script also
+     downloads every linked stylesheet via the same browser session (so
+     bot-protected origins like Imperva-fronted DAMs work), saves them
+     under `components/.live-assets/css/`, and rewrites the link hrefs
+     to absolute `file://` URLs so the shell renders fully offline.
+   - JS-injected inline `<style>` blocks (e.g. AEM EDS critical CSS
+     hydrated post-load) are inlined into the captured head.
+   - The captured head is cached at `components/.live-head.html`. Use
+     `--no-live` to skip the capture and reuse the cache on subsequent
+     rebuilds.
+
+   Note: when the live origin's primary stylesheet is permanently
+   bot-blocked (e.g. zonnic.ca's `brand.min.css` 403's even with full
+   storageState + UA spoof), the per-component shell will still render
+   anything covered by the captured inline styles, but pages may appear
+   partially unstyled. The main gallery sidesteps this by using the
+   pixel-perfect evidence screenshots.
+
+`preview.html` (the main gallery) is the single artifact to hand to a
+reviewer after the planner runs — it's the whole design system on one
+page, with every statement backed by evidence **and every component
+independently inspectable in its own live preview**. Re-run the script
+any time the manifest or extracted evidence changes.
+
+#### 3g. Coverage verification (REQUIRED)
+
+After extraction, **prove the inventory covers every representative page**.
+Run-discovery has already scraped one `cleaned.html` per template group
+into `migration-work/pages/<slug>/`; the coverage verifier cross-references
+those against every selector in `component-manifest.json`.
+
+```bash
+node .claude/skills/migration-planner/scripts/verify-component-coverage.mjs
+```
+
+The script:
+1. Reads every page dir under `migration-work/pages/`, parses `cleaned.html`
+   with jsdom, resolves manifest page aliases → on-disk slugs via the page
+   URL in each `metadata.json`.
+2. For each component × page, counts DOM matches (both fingerprints and
+   per-variant selectors).
+3. Flags three classes of problem:
+   - **`observedPages` mismatches** — the manifest claims a component is
+     used on page X, but zero selectors match on that page. The selector
+     is wrong or the `observedPages` list needs trimming.
+   - **Dead components** — a component matches zero pages anywhere.
+   - **Un-catalogued custom-element tags** — any `*-*` tag on a page that
+     is not referenced by any manifest selector. These are candidate
+     components that were missed during the DOM survey in step 1.
+
+Outputs:
+
+- `migration-work/components/coverage-matrix.json` — full matrix + gaps.
+- `migration-work/components/coverage-report.md` — human-readable summary:
+  top-level stats, per-level coverage tables, per-page breakdown, and a
+  gap list for review.
+
+**Required acceptance criteria before moving to Phase 4:**
+
+| Check | Must be |
+|---|---|
+| `observedPages` mismatches | 0 |
+| Dead components | 0 |
+| Un-catalogued custom-element tags | 0 (after triaging — see below) |
+
+**Triaging un-catalogued tags.** Each custom-element tag the verifier
+surfaces is one of:
+
+1. **A missed component** — add it to `component-manifest.json` (as a new
+   entry OR as an additional variant / fingerprint of an existing one),
+   then re-run `extract-components.mjs` and this verifier.
+2. **A layout / chrome element** — section wrappers, iframes from chat
+   widgets, internal form sub-pieces that aren't independently reusable.
+   Add its tag to `component-manifest.json > coverage.chromeTags`; the
+   verifier will dismiss it on subsequent runs.
+
+Only move to the next phase when the matrix shows zero hard gaps. The
+sparse cells (a site-wide atom appears on every column, a template-scoped
+organism only on its own template) are expected and not gaps.
+
+#### 3h. Design system assessment
 
 Document:
 - Raw designlang quality grade and per-dimension scores
@@ -429,7 +682,7 @@ Follow [output-template.md](resources/output-template.md) for structure.
 | `00-executive-summary.md` | Site overview, scope, key metrics, total estimate, overall confidence (from `verification/report.md`) |
 | `01-design-system-audit.md` | Raw designlang findings, grade, accessibility, **runtime a11y summary from `migration-work/a11y/summary.json`** |
 | `02-design-system-assessment.md` | Quality scores per dimension, issues flagged for DS phase, normalization scope estimate. **Calibrate every claim by its confidence level from `verification/report.md` (HIGH → state plainly; MEDIUM → qualify; LOW → flag as open question).** |
-| `03-atomic-inventory.md` | Foundations, atoms, molecules, organisms, templates. **Cross-reference against `verification/anatomy-diff.md` — list DOM-only organisms as discovered-but-uncatalogued additions.** |
+| `03-atomic-inventory.md` | Foundations, atoms, molecules, organisms, templates. **Every atom / molecule / organism row must link to its folder under `migration-work/components/` (Phase 3f output). Include a "Coverage verification" section summarising the Phase 3g coverage matrix (cells matched, observedPages mismatches=0, dead components=0, un-catalogued tags=0). With evidence present, confidence on all four levels should be HIGH.** Cross-reference against `verification/anatomy-diff.md` — list DOM-only organisms as discovered-but-uncatalogued additions. |
 | `04-block-mapping.md` | Organism -> block: reuse / adapt / develop |
 | `05-work-items.md` | Full list organized by execution phase |
 | `06-phase-plan.md` | 5-phase roadmap with gates and dependencies |
@@ -475,11 +728,13 @@ discovery JSON artifacts.
 - Template cards must include `<a class="live-link">` pointing to the
   representative URL from `sitemap-result.json` (`target="_blank"`)
 - Template cards should include an `<img class="thumb">` pointing to the
-  desktop screenshot at `../design-extract/screenshots/{slug}-desktop-1440.png`.
+  desktop screenshot at `../design-extract/screenshots/templates/{slug}-desktop-1440.png`.
   The slug is the template key from `sitemap-result.json` (e.g. `homepage`,
-  `pouches`). The template already has a `onerror` fallback to the legacy
-  `-desktop.png` filename. If a screenshot does not exist for this slug,
-  replace the `<img class="thumb">` with `<div class="thumb thumb-placeholder">no preview</div>`
+  `pouches`). The template already has `onerror` fallbacks to the legacy
+  paths (`screenshots/{slug}-desktop-1440.png`, then `screenshots/{slug}-desktop.png`)
+  for runs that pre-date the `templates/` subdirectory split. If no screenshot
+  exists for this slug at any path, replace the `<img class="thumb">` with
+  `<div class="thumb thumb-placeholder">no preview</div>`
 - Grade bar chart: use `.bar-fill.red` for scores < 50, `.bar-fill.navy` otherwise
 - Gantt critical path bar uses `background:var(--red)`
 - Hypercare bar uses `background:#555568`
@@ -494,6 +749,13 @@ discovery JSON artifacts.
   than clicking through overlays (age gates, consent banners, location selectors)
 - Use `--wait 3000` for sites with custom Web Component hydration (BAT, Lit, etc.)
 - Run designlang extraction before any analysis
+- Use designlang's `--screenshots` together with the bypass pipeline (`--cookie`,
+  `--ignore-widgets`, `--ignore`). With overlays stripped from the DOM before
+  component detection runs, the heuristic produces reliable component crops.
+- Treat `*-screenshots.json` as the primary component inventory -- it pairs
+  bounds and variant metadata with every crop
+- Keep per-template captures in `screenshots/templates/` so they don't collide
+  with designlang's native `screenshots/{component}.png` naming
 - Pass through designlang token values exactly as extracted -- no normalization
 - Flag quality issues from designlang's grade for the design-system phase to address
 - Identify new blocks explicitly (don't just map to existing)
@@ -503,12 +765,18 @@ discovery JSON artifacts.
 
 **DON'T:**
 - Don't use `--deep-interact` on sites with age gates or modal overlays (it will hang)
-- Don't use designlang's `--screenshots` on gated sites (use the dedicated Playwright
-  capture script instead -- designlang's heuristic misfires on overlay fragments)
+- Don't use `--screenshots` WITHOUT the bypass pipeline on gated sites (overlay
+  fragments will leak into component crops as `age-gate-*.png` etc.). Phase H's
+  `verify-extraction.mjs` scans filenames for leak keywords -- treat any hit as
+  a bypass failure, not a designlang bug.
 - Don't pass cookies with `/` in the value to designlang's `--cookie` flag (parser bug
   silently cancels all cookies -- use only simple `name=value` pairs)
 - Don't use `networkidle` wait strategy (long-poll trackers like Salesforce/ContentSquare
   prevent it from ever firing -- use `domcontentloaded` + explicit waits instead)
+- Don't rely on `*-anatomy.tsx` as a primary component inventory. It is a
+  supplementary React scaffold that designlang often emits thinly populated
+  (e.g. just `Button` + `Card` with one variant each for a 25-template site).
+  Use `*-screenshots.json` + DOM structure + `identify-page-structure` instead.
 - Don't normalize token values (no color clustering, no grid snapping, no weight fixing)
 - Don't propose a "target" palette or "ideal" token set -- that is the DS skill's job
 - Don't skip organisms that lack a Block Collection match (spec them as new)
@@ -531,8 +799,11 @@ The `scripts/` directory contains the automated discovery pipeline:
 | `grade-sample.mjs` | **(Phase I)** Run `designlang grade` on 3-5 representative templates and emit a per-dimension delta report |
 | `analyze-dom-structure.mjs` | **(Phase J1)** Deterministic section + repeating-pattern extraction from scraped HTML |
 | `analyze-har.mjs` | **(Phase J)** Third-party origin inventory from HAR files captured in Phase F |
-| `compare-anatomy.mjs` | **(Phase J)** Diff designlang's anatomy.tsx against DOM evidence — surfaces over- and under-extraction |
+| `compare-anatomy.mjs` | **(Phase J)** Diff designlang's anatomy.tsx against DOM evidence. Reports `UNDERSUPPLIED` when anatomy has <5 components (common) so the verification report doesn't penalize the extraction — anatomy.tsx is a supplementary signal, not primary evidence |
 | `build-verification-report.mjs` | **(Phase K)** Aggregate every hardening signal into `verification/report.md` with per-dimension confidence (HIGH / MEDIUM / LOW) |
+| `extract-components.mjs` | **(Phase 3f)** Forensic component extractor. Reads `component-manifest.json`, navigates to each sample page with bypass cookies, captures `anatomy.html` + `computed.css` + per-variant screenshots into `migration-work/components/{atoms,molecules,organisms}/<name>/`. Locator-based screenshot capture is CLS-resilient |
+| `build-preview.mjs` | **(Phase 3f, step 5)** Living-styleguide generator. Parses `design-extract/<site>-variables.css` for foundations and walks every component folder for variants, emitting (1) a single-page `components/preview.html` with tokens + atom/molecule/organism cards with prominent variant screenshots and a "live preview →" CTA, and (2) a self-contained `components/<level>/<name>/preview.html` per component — each one inlines the live site's `<head>` (scripts stripped) so the raw `anatomy.html` fragment renders with real CSS when opened from disk. Flags: `--no-live` reuses the `.live-head.html` cache instead of re-running Playwright |
+| `verify-component-coverage.mjs` | **(Phase 3g)** Coverage verifier. Parses every `migration-work/pages/*/cleaned.html` with jsdom and evaluates every manifest selector; emits `coverage-matrix.json` + `coverage-report.md`. Fails CI (exit 2) when `observedPages` mismatches or dead components are detected |
 
 ## Related Skills
 

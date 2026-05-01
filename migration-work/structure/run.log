@@ -1,12 +1,10 @@
-[structure] Analyzing 10 page(s)
-  [blog-what-are-nicotine-pouches] sections=8 unique=7 patterns=23
-  [contact-us-let-us-talk-testimonials] sections=9 unique=8 patterns=19
+[structure] Analyzing 8 page(s)
+  [contact-us-testimonials] sections=9 unique=8 patterns=20
   [homepage] sections=9 unique=8 patterns=29
-  [newsletter] sections=9 unique=8 patterns=19
   [pouches-zonnic-mint-24-nicotine-pouches] sections=9 unique=8 patterns=31
   [sign-up] sections=9 unique=8 patterns=19
   [store-locator] sections=9 unique=8 patterns=25
   [testingblogarticletemplate] sections=8 unique=7 patterns=23
   [what-is-zonnic] sections=9 unique=8 patterns=29
   [why-zonnic] sections=9 unique=8 patterns=31
-[structure] Done. 8 unique organism fingerprints across 10 page(s)
+[structure] Done. 8 unique organism fingerprints across 8 page(s)

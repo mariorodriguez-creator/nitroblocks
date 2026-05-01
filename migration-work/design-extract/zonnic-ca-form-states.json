@@ -7,8 +7,8 @@
     "families": {}
   },
   "inputTypesSeen": {
-    "select": 34,
-    "input": 231
+    "input": 201,
+    "select": 29
   },
   "modals": [],
   "toastLibraries": [],
@@ -20,6 +20,6 @@
     "count": 0
   },
   "error": {
-    "count": 2
+    "count": 1
   }
 }

@@ -1,6 +1,6 @@
 {
   "url": "https://www.zonnic.ca/ca/en/store-locator",
-  "timestamp": "2026-04-29T20:00:26.772Z",
+  "timestamp": "2026-04-30T13:49:09.836Z",
   "paths": {
     "documentPath": "/ca/en/store-locator",
     "htmlFilePath": "/ca/en/store-locator.plain.html",
@@ -11,7 +11,7 @@
   "screenshot": "migration-work/pages/store-locator/screenshot.png",
   "html": {
     "filePath": "migration-work/pages/store-locator/cleaned.html",
-    "size": 1377950
+    "size": 1371569
   },
   "metadata": {
     "title": "Find Nicotine Pouches Near Me | ZONNIC CA",
@@ -60,32 +60,32 @@
   "images": {
     "count": 20,
     "mapping": {
-      "https://cdn.cookielaw.org/logos/static/ot_close.svg": "./images/cec4a77b663a079574d478e06d310304.png",
       "https://cdn.cookielaw.org/logos/static/ot_company_logo.png": "./images/0a82704908bb1ee9f1f8e8a0196426e0.png",
       "https://cdn.cookielaw.org/logos/static/powered_by_logo.svg": "./images/a9584a367ebcccfac48987ce1fec5eae.png",
-      "https://dpm.demdex.net/ibs:dpid=411&dpuuid=afJjUAAAAIrFbgOJ": "./images/97a03f7d60cb12a9bdb841c05aa5fba8.png",
-      "https://batgsdzoonicprodcanada.112.2o7.net/b/ss/batgsdzoonicprodcanada/1/JS-2.25.0-LEWM/s24095086969995?AQB=1&ndh=1&pf=1&t=29%2F3%2F2026%2022%3A0%3A16%203%20-120&sdid=604659E1618AEE69-1D9F8F6295C7E7F7&mid=86103103830948617641591825121958851815&aamlh=6&ce=UTF-8&g=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fstore-locator&cc=CAD&server=www.zonnic.ca&aamb=6G1ynYcLPuiQxYZrsz_pkqfLG9yMXBpb2zX5dvJdYQJzPXImdj0y&c1=find-nicotine-pouches-near-me-zonnic-ca&v1=find-nicotine-pouches-near-me-zonnic-ca&c3=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fstore-locator&v3=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fstore-locator&c4=%2Fca%2Fen%2Fstore-locator&v4=%2Fca%2Fen%2Fstore-locator&c6=www.zonnic.ca&v6=www.zonnic.ca&v7=en-us&v28=store-locator&v31=mozilla%2F5.0%20%28macintosh%3B%20intel%20mac%20os%20x%2010_15_7%29%20applewebkit%2F537.36%20%28khtml%2C%20like%20gecko%29%20headlesschrome%2F145.0.7632.6%20safari%2F537.36&v41=0.7729973551093492_1777492816852&s=1280x720&c=24&j=1.6&v=N&k=Y&bw=1280&bh=720&mcorgid=360C70DD5CFA548D0A495FB0%40AdobeOrg&AQE=1": "./images/4d7684dd159a3fed1954f95effc5c855.png",
-      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/logo/ZONNIC%20Logo_Mint_Gradient%20(1)%201.svg": "./images/95bf1dd63cd05fe5c097f87ed88ab5e9.png",
-      "https://dpm.demdex.net/ibs:dpid=771&dpuuid=CAESEPn1m1hRMaq5KLXHY9AqdGU&google_cver=1?gdpr=0&gdpr_consent=": "./images/5dff208bfb7b74a3a9ac78efb491f64c.png",
+      "https://cdn.cookielaw.org/logos/static/ot_close.svg": "./images/cec4a77b663a079574d478e06d310304.png",
+      "https://dpm.demdex.net/ibs:dpid=411&dpuuid=afNdywAAABnmiiHs": "./images/011e2c0296898e4d32014f2d43ef3ba8.png",
       "https://match.adsrvr.org/track/cmf/generic?ttd_pid=aam&gdpr=0&gdpr_consent=&domain=www.zonnic.ca&ttd_tpi=1": "./images/7dd99802c664b018613dcceba7c9d84a.png",
+      "https://batgsdzoonicprodcanada.112.2o7.net/b/ss/batgsdzoonicprodcanada/1/JS-2.25.0-LEWM/s81560520202174?AQB=1&ndh=1&pf=1&t=30%2F3%2F2026%2015%3A48%3A59%204%20-120&sdid=147853086E3C7F76-6068DA7933BC392F&mid=52305325148058435650320352535322745304&aamlh=6&ce=UTF-8&g=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fstore-locator&cc=CAD&server=www.zonnic.ca&aamb=6G1ynYcLPuiQxYZrsz_pkqfLG9yMXBpb2zX5dvJdYQJzPXImdj0y&c1=find-nicotine-pouches-near-me-zonnic-ca&v1=find-nicotine-pouches-near-me-zonnic-ca&c3=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fstore-locator&v3=https%3A%2F%2Fwww.zonnic.ca%2Fca%2Fen%2Fstore-locator&c4=%2Fca%2Fen%2Fstore-locator&v4=%2Fca%2Fen%2Fstore-locator&c6=www.zonnic.ca&v6=www.zonnic.ca&v7=en-us&v28=store-locator&v31=mozilla%2F5.0%20%28macintosh%3B%20intel%20mac%20os%20x%2010_15_7%29%20applewebkit%2F537.36%20%28khtml%2C%20like%20gecko%29%20headlesschrome%2F145.0.7632.6%20safari%2F537.36&v41=0.8712732526952491_1777556939337&s=1280x720&c=24&j=1.6&v=N&k=Y&bw=1280&bh=720&mcorgid=360C70DD5CFA548D0A495FB0%40AdobeOrg&AQE=1": "./images/b2b18b869bf9d78c3686ff44db8b1361.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/logo/ZONNIC%20Logo_Mint_Gradient%20(1)%201.svg": "./images/95bf1dd63cd05fe5c097f87ed88ab5e9.png",
       "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/health-warning/hw/en/ZONNIC-HW_Desktop_En.webp": "./images/9267cdcb150922a9ca3c4265788be2ee.png",
+      "https://dpm.demdex.net/ibs:dpid=771&dpuuid=CAESEIzQfrG4tU5S0ucuKocV884&google_cver=1?gdpr=0&gdpr_consent=": "./images/1f8817c5df6e77873d6048dc2fea3dbf.png",
       "https://www.zonnic.ca/content/dam/zonnic-content/ca/2023/none-lifestyle/felix/plp_banner_felix_zonnic_ca_store_locator_buy_now_at_felix_copy_awar_image_frame_large_desktop_v2_w.webp": "./images/e9742ae927bee342f6d423b2e1720728.png",
-      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/quitting-season/store-locator/202511-ZONNIC-QuittingSeason-HOP-eCom-StoreLocatorPage-Carousel-Mark-desktop-EN.webp": "./images/ca7c932657dc61c253cc796c7ee72305.png",
-      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/quitting-season/store-locator/202511-ZONNIC-QuittingSeason-HOP-eCom-StoreLocatorPage-Carousel-Colin-desktop-EN.webp": "./images/634fdcb7a77f654c6ea472830665aaf3.png",
-      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/quitting-season/store-locator/202511-ZONNIC-QuittingSeason-HOP-eCom-StoreLocatorPage-Carousel-Gabriel-desktop-EN.webp": "./images/c916c49c1e1d21a757fef5c013c639ee.png",
-      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/quitting-season/store-locator/202511-ZONNIC-QuittingSeason-HOP-eCom-StoreLocatorPage-Carousel-Samara-desktop-EN.webp": "./images/3db2e559fab69c9501f4cbe556b5c4f2.png",
       "https://www.zonnic.ca/content/dam/zonnic/images/global/visa.svg": "./images/e089ac9ce83110dcbe408b5543f32e54.png",
       "https://www.zonnic.ca/content/dam/zonnic/images/global/mastercard.svg": "./images/3d2d823d211a65d54c7186b31062c6ca.png",
       "https://www.zonnic.ca/content/dam/zonnic/images/global/amex.svg": "./images/690e605bc4a6f618f5a630bb48eb2f40.png",
       "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/logo/Primary%20Logo%20White.svg": "./images/aec98ce528c69616437c9f326102c79d.png",
-      "https://siteintercept.qualtrics.com/static/q-siteintercept/.blob/903d4c43fed535fb4d325b1612c605e48417dc74_wr-dialog-close-btn-black.png": "./images/ebe7cb4c9978a0489104b88b681efe8f.png",
-      "https://www.zonnic.ca/content/dam/zonnic/images/zonnic-logo-primary.svg": "./images/e33c47925b7749262ad97ce4a7e74c0f.png"
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/quitting-season/store-locator/202511-ZONNIC-QuittingSeason-HOP-eCom-StoreLocatorPage-Carousel-Mark-desktop-EN.webp": "./images/ca7c932657dc61c253cc796c7ee72305.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/quitting-season/store-locator/202511-ZONNIC-QuittingSeason-HOP-eCom-StoreLocatorPage-Carousel-Gabriel-desktop-EN.webp": "./images/c916c49c1e1d21a757fef5c013c639ee.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/quitting-season/store-locator/202511-ZONNIC-QuittingSeason-HOP-eCom-StoreLocatorPage-Carousel-Samara-desktop-EN.webp": "./images/3db2e559fab69c9501f4cbe556b5c4f2.png",
+      "https://www.zonnic.ca/content/dam/zonnic-content/ca/2025/quitting-season/store-locator/202511-ZONNIC-QuittingSeason-HOP-eCom-StoreLocatorPage-Carousel-Colin-desktop-EN.webp": "./images/634fdcb7a77f654c6ea472830665aaf3.png",
+      "https://www.zonnic.ca/content/dam/zonnic/images/zonnic-logo-primary.svg": "./images/e33c47925b7749262ad97ce4a7e74c0f.png",
+      "https://siteintercept.qualtrics.com/static/q-siteintercept/.blob/903d4c43fed535fb4d325b1612c605e48417dc74_wr-dialog-close-btn-black.png": "./images/ebe7cb4c9978a0489104b88b681efe8f.png"
     },
     "stats": {
-      "total": 30,
+      "total": 29,
       "converted": 18,
       "skipped": 2,
-      "failed": 8,
+      "failed": 7,
       "tooLarge": 0,
       "limitReached": 0
     }
@@ -93,13 +93,11 @@
   "bypass": {
     "cookies": [
       "age_verify",
-      "age_verified",
-      "ageVerified",
-      "age-gate",
-      "over_age",
-      "is_adult",
-      "OptanonAlertBoxClosed",
-      "CookieConsent"
+      "setStore",
+      "regionLocation",
+      "regionCode",
+      "webSite",
+      "OptanonConsent"
     ],
     "hide_selectors": [
       "#onetrust-banner-sdk",

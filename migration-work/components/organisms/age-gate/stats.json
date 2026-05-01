@@ -1,0 +1,25 @@
+{
+  "component": "age-gate",
+  "stats": {
+    "total": 104,
+    "perPage": {
+      "contact-us-testimonials": 13,
+      "homepage": 13,
+      "pouches-zonnic-mint-24-nicotine-pouches": 13,
+      "sign-up": 13,
+      "store-locator": 13,
+      "testingblogarticletemplate": 13,
+      "what-is-zonnic": 13,
+      "why-zonnic": 13
+    },
+    "pages": 8
+  },
+  "variants": [
+    {
+      "name": "default",
+      "ok": true,
+      "hiddenFallback": true,
+      "selector": "bat-agegate-zonnic"
+    }
+  ]
+}

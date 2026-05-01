@@ -35,7 +35,14 @@ Raw designlang extraction in `./migration-work/design-extract/`:
 - `*-variables.css` -- CSS custom properties as extracted
 - `*-figma-variables.json` -- variable definitions for Pencil import
 - `*-design-language.md` -- 19-section design narrative
-- `*-anatomy.tsx` -- component anatomy with variant × state matrices
+- `*-screenshots.json` -- **primary component inventory**: cluster, variant,
+  sizeHint, bounds, and path for every component crop designlang produced
+  (pairs 1:1 with `screenshots/*.png`)
+- `screenshots/*.png` -- component crops (buttons, cards, nav, etc.)
+- `screenshots/templates/*.png` -- per-template full-page captures at 3 viewports
+- `*-anatomy.tsx` -- **supplementary only**. React-shaped component scaffolds;
+  often thinly populated on real sites. Use for cross-check, not as primary
+  evidence.
 - `*-motion-tokens.json` -- motion language
 - `*-agent-rules.md` -- inferred design rules
 - `*-grade.html` -- quality grade per dimension
@@ -89,31 +96,56 @@ visual validation of components built on the Pencil canvas, and in the
 normalization audits to compare against source proportions.
 
 ```bash
-mkdir -p ./migration-work/design-system/{tokens,docs,preview/reference}
+mkdir -p ./migration-work/design-system/{tokens,docs,preview/reference,preview/components}
 
 # Copy desktop reference screenshots (prefer pixel-width suffix if present).
 # Non-desktop viewports are excluded on purpose: the audit baselines are
 # desktop-first. Failing silently is OK — some pipelines skip Phase E.
-if ls ./migration-work/design-extract/screenshots/*-desktop-1440.png >/dev/null 2>&1; then
-  cp ./migration-work/design-extract/screenshots/*-desktop-1440.png \
-     ./migration-work/design-system/preview/reference/ 2>/dev/null || true
+#
+# Primary path is screenshots/templates/ (introduced when Phase E was split
+# from designlang's native screenshots/ directory). Two legacy fallbacks
+# preserve compatibility with pre-split pipeline runs.
+SRC=""
+if ls ./migration-work/design-extract/screenshots/templates/*-desktop-1440.png >/dev/null 2>&1; then
+  SRC="./migration-work/design-extract/screenshots/templates"
+elif ls ./migration-work/design-extract/screenshots/*-desktop-1440.png >/dev/null 2>&1; then
+  SRC="./migration-work/design-extract/screenshots"
 elif ls ./migration-work/design-extract/screenshots/*-desktop.png >/dev/null 2>&1; then
-  cp ./migration-work/design-extract/screenshots/*-desktop.png \
-     ./migration-work/design-system/preview/reference/ 2>/dev/null || true
+  SRC="./migration-work/design-extract/screenshots"
+fi
+
+if [ -n "$SRC" ]; then
+  cp "$SRC"/*-desktop-1440.png \
+     ./migration-work/design-system/preview/reference/ 2>/dev/null \
+    || cp "$SRC"/*-desktop.png \
+       ./migration-work/design-system/preview/reference/ 2>/dev/null || true
+fi
+
+# Mirror component-level crops (from designlang --screenshots) so the
+# component audit can reference them without reaching back across workspaces.
+# These are paired 1:1 with entries in design-extract/*-screenshots.json.
+if ls ./migration-work/design-extract/screenshots/*.png >/dev/null 2>&1; then
+  # Only copy top-level PNGs (component crops), not the templates/ subdir.
+  find ./migration-work/design-extract/screenshots -maxdepth 1 -name '*.png' \
+    -exec cp {} ./migration-work/design-system/preview/components/ \; 2>/dev/null || true
 fi
 
 REF_COUNT=$(ls ./migration-work/design-system/preview/reference/ 2>/dev/null | wc -l | tr -d ' ')
-echo "[design-system] Copied ${REF_COUNT} reference screenshot(s) from migration-planner output"
+COMP_COUNT=$(ls ./migration-work/design-system/preview/components/ 2>/dev/null | wc -l | tr -d ' ')
+echo "[design-system] Copied ${REF_COUNT} template screenshot(s) and ${COMP_COUNT} component crop(s) from migration-planner output"
 ```
 
 Announce which source is being used:
 - "Building from discovery outputs" (discovery phase completed)
 - "Building from planner outputs (discovery was skipped)"
 
-If `REF_COUNT` is 0, announce: "No planner screenshots found. Phase E of
-`run-discovery.sh` may not have run — visual validation steps will be
-limited to the Pencil canvas only." Do not proceed to block steps that
-require reference screenshots without acknowledging this.
+If `REF_COUNT` is 0, announce: "No planner template screenshots found.
+Phase E of `run-discovery.sh` may not have run — visual validation steps
+will be limited to the Pencil canvas only." If `COMP_COUNT` is 0, announce:
+"No planner component crops found. Phase C did not run with `--screenshots`
+— the component audit will rely on DOM structure and design-language.md
+narrative only." Do not proceed to steps that require reference
+screenshots without acknowledging these conditions.
 
 ---
 
@@ -279,24 +311,53 @@ Also generate `tokens/tokens.json` in W3C DTCG format mirroring the CSS.
 
 ### Step 6: Component Audit (`docs/component-audit.md`)
 
+**Primary sources (in order of evidential strength):**
+1. `*-screenshots.json` -- the component inventory with cluster, variant,
+   sizeHint, bounds, and kind for every crop designlang captured. This is
+   grounded in the live DOM, not synthesized from tokens.
+2. `preview/components/*.png` -- visual reference for each entry in the manifest
+3. `./migration-work/structure/aggregate.json` -- DOM-level organism fingerprints
+   (kept / class / tag) per representative template
+4. `./migration-work/structure/{slug}.md` -- agent-generated structure reports
+   from `identify-page-structure`
+5. Planner's `03-atomic-inventory.md` -- the normalized atomic catalogue
+
+**Cross-check source (supplementary):**
+- `*-anatomy.tsx` -- React-shaped scaffolds. Often thin; use only to confirm
+  or contradict the primary sources, never as the source of truth.
+
 **Method:**
-1. Read `*-anatomy.tsx` for the full component inventory with variant × state matrices.
-2. Cross-reference with the planner's atomic inventory.
-3. For each component, decide: **keep / consolidate / drop / gap**.
-   - **Keep**: clearly distinct, multiple uses.
-   - **Consolidate**: near-duplicates that can be one component with variants.
-   - **Drop**: single-use, non-systemic, or third-party widget artifacts.
-   - **Gap**: needed for the system but not present in the extraction.
-4. For kept/consolidated components, define:
+1. Build the component table from `*-screenshots.json`, grouping by
+   `cluster` (e.g. `button--primary`, `card--default--md`). Each row captures:
+   cluster, kind, variants seen, size hints, bounding-box range, number of
+   instances, and a preview thumbnail path.
+2. Correlate each cluster with DOM organisms from `structure/aggregate.json`
+   and the agent structure reports (molecule ↔ organism placement).
+3. Cross-reference with the planner's atomic inventory for naming consistency.
+4. For each component, decide: **keep / consolidate / drop / gap**.
+   - **Keep**: clearly distinct, multiple uses, grounded in DOM evidence.
+   - **Consolidate**: near-duplicate clusters that can be one component
+     with variants (e.g. `button--default` + `button--secondary` → one
+     Button atom with emphasis variants).
+   - **Drop**: single-use, non-systemic, clusters dominated by `kind: "other"`
+     fallback, or third-party widget artifacts.
+   - **Gap**: needed for the system but not present in the extraction
+     (identified from agent structure reports or block mapping).
+5. For kept/consolidated components, define:
    - Public CSS API (which tokens it references, which classes it exposes)
-   - Variant axes (size, emphasis, state)
+   - Variant axes (size, emphasis, state) grounded in observed clusters
    - Reference implementation outline
+6. If `*-anatomy.tsx` disagrees with the primary sources (e.g. names a
+   component that screenshots.json never clustered), note the disagreement
+   but **prefer screenshots.json**. Anatomy is a token-derived React
+   scaffold; screenshots are live DOM evidence.
 
 **Document:**
-- Full matrix of detected components
-- Decision per component with rationale
+- Full matrix of detected clusters from `*-screenshots.json`
+- Decision per component with rationale (link to preview thumbnail)
 - Atomic placement (atom / molecule / organism) with reasoning
 - Cross-reference to planner's block mapping
+- Any anatomy.tsx disagreements, with the chosen resolution
 
 ---
 

@@ -40,7 +40,10 @@ const VERIFICATION_DIR = resolve(WORK_DIR, 'verification');
 const PAGES_DIR = resolve(WORK_DIR, 'pages');
 const A11Y_DIR = resolve(WORK_DIR, 'a11y');
 const STRUCTURE_DIR = resolve(WORK_DIR, 'structure');
-const SCREENSHOTS_DIR = resolve(WORK_DIR, 'design-extract', 'screenshots');
+// Per-template full-page captures live in screenshots/templates/ (Phase E).
+// Component crops from designlang's --screenshots live in screenshots/ root
+// and are inventoried via the *-screenshots.json manifest, not here.
+const SCREENSHOTS_DIR = resolve(WORK_DIR, 'design-extract', 'screenshots', 'templates');
 
 // Viewport labels we expect from capture-clean-screenshots.mjs.
 // Filenames are <slug>-<label>[-<width>].png (the pixel-width suffix is new).
@@ -249,13 +252,25 @@ async function main() {
   });
 
   // Component anatomy
-  const anatomyBlockers = [];
-  if (anatomyDiff?.signal === 'LOW') anatomyBlockers.push('anatomy does not reflect DOM evidence');
-  confidences['component_anatomy'] = assessDimension({
-    hasEvidence: !!anatomyDiff,
-    evidenceStrength: anatomyDiff?.structure_covered_by_anatomy ?? 0,
-    blockers: anatomyBlockers,
-  });
+  // anatomy.tsx is a supplementary source; the primary component inventory
+  // comes from the *-screenshots.json manifest, DOM structure aggregate,
+  // and identify-page-structure output. An UNDERSUPPLIED anatomy (< 5
+  // components) is common and NOT an extraction failure — we treat it as
+  // a soft MEDIUM signal and explicitly note the primary sources.
+  if (anatomyDiff?.signal === 'UNDERSUPPLIED') {
+    confidences['component_anatomy'] = {
+      level: 'MEDIUM',
+      reason: 'anatomy.tsx undersupplied; rely on *-screenshots.json and DOM structure',
+    };
+  } else {
+    const anatomyBlockers = [];
+    if (anatomyDiff?.signal === 'LOW') anatomyBlockers.push('anatomy does not reflect DOM evidence');
+    confidences['component_anatomy'] = assessDimension({
+      hasEvidence: !!anatomyDiff,
+      evidenceStrength: anatomyDiff?.structure_covered_by_anatomy ?? 0,
+      blockers: anatomyBlockers,
+    });
+  }
 
   // Template coverage
   confidences['template_coverage'] = assessDimension({
@@ -341,6 +356,9 @@ async function main() {
       anatomy_diff: anatomyDiff
         ? {
             signal: anatomyDiff.signal,
+            undersupplied: anatomyDiff.undersupplied,
+            anatomy_canonical_count: anatomyDiff.anatomy_canonical_count,
+            structure_canonical_count: anatomyDiff.structure_canonical_count,
             overlap_ratio: anatomyDiff.overlap_ratio,
             structure_covered_by_anatomy: anatomyDiff.structure_covered_by_anatomy,
             anatomy_only_count: anatomyDiff.anatomy_only_count,
@@ -458,9 +476,15 @@ async function main() {
     md.push('### Component anatomy vs DOM evidence');
     md.push('');
     md.push(`- Signal: ${anatomyDiff.signal}`);
+    md.push(`- Anatomy components: ${anatomyDiff.anatomy_canonical_count ?? 0}`);
+    md.push(`- DOM organisms: ${anatomyDiff.structure_canonical_count ?? 0}`);
     md.push(`- DOM patterns covered by anatomy: ${fmtPct(anatomyDiff.structure_covered_by_anatomy)}`);
     md.push(`- Anatomy-only organisms: ${anatomyDiff.anatomy_only_count}`);
     md.push(`- DOM-only organisms: ${anatomyDiff.structure_only_count}`);
+    if (anatomyDiff.signal === 'UNDERSUPPLIED') {
+      md.push('');
+      md.push('> `anatomy.tsx` is a supplementary source and is thinly populated here. Use `*-screenshots.json` + DOM structure aggregate + `identify-page-structure` output as the primary component inventory.');
+    }
     md.push('');
   }
 

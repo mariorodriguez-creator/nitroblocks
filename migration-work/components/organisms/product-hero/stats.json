@@ -1,0 +1,18 @@
+{
+  "component": "product-hero",
+  "stats": {
+    "total": 1,
+    "perPage": {
+      "pouches-zonnic-mint-24-nicotine-pouches": 1
+    },
+    "pages": 1
+  },
+  "variants": [
+    {
+      "name": "default",
+      "ok": true,
+      "hiddenFallback": false,
+      "selector": "bat-producthero-zonnic"
+    }
+  ]
+}

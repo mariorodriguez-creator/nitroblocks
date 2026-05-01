@@ -1,0 +1,18 @@
+{
+  "component": "newsletter-form",
+  "stats": {
+    "total": 24,
+    "perPage": {
+      "testingblogarticletemplate": 24
+    },
+    "pages": 1
+  },
+  "variants": [
+    {
+      "name": "default",
+      "ok": true,
+      "hiddenFallback": true,
+      "selector": "bat-form-newsletterzonnic, .bat-form--newsletter"
+    }
+  ]
+}

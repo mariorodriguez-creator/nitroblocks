@@ -1,0 +1,20 @@
+{
+  "component": "faq",
+  "stats": {
+    "total": 6,
+    "perPage": {
+      "pouches-zonnic-mint-24-nicotine-pouches": 2,
+      "what-is-zonnic": 2,
+      "why-zonnic": 2
+    },
+    "pages": 3
+  },
+  "variants": [
+    {
+      "name": "default",
+      "ok": true,
+      "hiddenFallback": false,
+      "selector": "bat-faq-default"
+    }
+  ]
+}

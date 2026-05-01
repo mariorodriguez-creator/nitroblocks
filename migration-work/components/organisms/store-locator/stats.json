@@ -1,0 +1,18 @@
+{
+  "component": "store-locator",
+  "stats": {
+    "total": 1,
+    "perPage": {
+      "store-locator": 1
+    },
+    "pages": 1
+  },
+  "variants": [
+    {
+      "name": "default",
+      "ok": true,
+      "hiddenFallback": false,
+      "selector": "bat-mapboxstorelocator-zonnic"
+    }
+  ]
+}

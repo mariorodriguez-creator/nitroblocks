@@ -1,0 +1,16 @@
+{
+  "component": "link",
+  "stats": {
+    "total": 0,
+    "perPage": {},
+    "pages": 0
+  },
+  "variants": [
+    {
+      "name": "utility",
+      "ok": true,
+      "hiddenFallback": true,
+      "selector": "a.privacy-notice-link, a.more-link, a.less-link"
+    }
+  ]
+}

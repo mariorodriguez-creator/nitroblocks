@@ -1,8 +1,7 @@
 {
   "pass": false,
   "critical_categories": [
-    "consent-banner",
-    "chat-widget"
+    "consent-banner"
   ],
   "overlays_detected_in_bypass": [
     "age-gate",
@@ -11,15 +10,13 @@
     "location-selector"
   ],
   "ignore_selectors_count": 18,
-  "files_scanned": 42,
-  "total_hits": 2,
+  "files_scanned": 38,
+  "total_hits": 1,
   "hits_by_category": {
-    "consent-banner": 1,
-    "chat-widget": 1
+    "consent-banner": 1
   },
   "hits_by_file": {
-    "zonnic-ca-design-language.md": 1,
-    "zonnic-ca-icon-system.json": 1
+    "zonnic-ca-design-language.md": 1
   },
   "sample_hits": [
     {
@@ -27,16 +24,8 @@
       "pattern": "/onetrust/i",
       "match": "onetrust",
       "file": "/Users/2245328/Repos/nitroblocks/migration-work/design-extract/zonnic-ca-design-language.md",
-      "offset": 24665,
-      "context": "slide-y | opacity, transform | 33 | | `onetrust-fade-in` | fade | opacity | 14 | | `otF"
-    },
-    {
-      "category": "chat-widget",
-      "pattern": "/embeddedMessaging/i",
-      "match": "embeddedMessaging",
-      "file": "/Users/2245328/Repos/nitroblocks/migration-work/design-extract/zonnic-ca-icon-system.json",
-      "offset": 1424,
-      "context": "e\": \"fill\" }, { \"class\": \"embeddedMessagingIconChat\", \"grid\": null, \"st"
+      "offset": 23956,
+      "context": "slide-y | opacity, transform | 28 | | `onetrust-fade-in` | fade | opacity | 12 | | `sli"
     }
   ]
 }

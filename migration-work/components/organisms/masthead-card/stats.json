@@ -1,0 +1,20 @@
+{
+  "component": "masthead-card",
+  "stats": {
+    "total": 224,
+    "perPage": {
+      "homepage": 105,
+      "pouches-zonnic-mint-24-nicotine-pouches": 105,
+      "store-locator": 14
+    },
+    "pages": 3
+  },
+  "variants": [
+    {
+      "name": "default",
+      "ok": true,
+      "hiddenFallback": false,
+      "selector": "bat-card-mastheadzonnic"
+    }
+  ]
+}

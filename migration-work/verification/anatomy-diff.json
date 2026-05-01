@@ -1,5 +1,7 @@
 {
-  "signal": "LOW",
+  "signal": "UNDERSUPPLIED",
+  "undersupplied": true,
+  "undersupplied_threshold": 5,
   "overlap_ratio": 0,
   "structure_covered_by_anatomy": 0,
   "anatomy_only_count": 2,
@@ -26,10 +28,8 @@
       "canonical": "qsifeedback-button",
       "fingerprint": "div.QSIFeedbackButton",
       "pages": [
-        "blog-what-are-nicotine-pouches",
-        "contact-us-let-us-talk-testimonials",
+        "contact-us-testimonials",
         "homepage",
-        "newsletter",
         "pouches-zonnic-mint-24-nicotine-pouches",
         "sign-up",
         "store-locator",
@@ -37,16 +37,14 @@
         "what-is-zonnic",
         "why-zonnic"
       ],
-      "total": 20
+      "total": 16
     },
     {
       "canonical": "ot-sdk-row",
       "fingerprint": "section.ot-sdk-row",
       "pages": [
-        "blog-what-are-nicotine-pouches",
-        "contact-us-let-us-talk-testimonials",
+        "contact-us-testimonials",
         "homepage",
-        "newsletter",
         "pouches-zonnic-mint-24-nicotine-pouches",
         "sign-up",
         "store-locator",
@@ -54,16 +52,14 @@
         "what-is-zonnic",
         "why-zonnic"
       ],
-      "total": 10
+      "total": 8
     },
     {
       "canonical": "ot-hide",
       "fingerprint": "section.ot-hide",
       "pages": [
-        "blog-what-are-nicotine-pouches",
-        "contact-us-let-us-talk-testimonials",
+        "contact-us-testimonials",
         "homepage",
-        "newsletter",
         "pouches-zonnic-mint-24-nicotine-pouches",
         "sign-up",
         "store-locator",
@@ -71,16 +67,14 @@
         "what-is-zonnic",
         "why-zonnic"
       ],
-      "total": 10
+      "total": 8
     },
     {
       "canonical": "section",
       "fingerprint": "section",
       "pages": [
-        "blog-what-are-nicotine-pouches",
-        "contact-us-let-us-talk-testimonials",
+        "contact-us-testimonials",
         "homepage",
-        "newsletter",
         "pouches-zonnic-mint-24-nicotine-pouches",
         "sign-up",
         "store-locator",
@@ -88,16 +82,14 @@
         "what-is-zonnic",
         "why-zonnic"
       ],
-      "total": 10
+      "total": 8
     },
     {
       "canonical": "ot-host-cnt",
       "fingerprint": "section.ot-host-cnt",
       "pages": [
-        "blog-what-are-nicotine-pouches",
-        "contact-us-let-us-talk-testimonials",
+        "contact-us-testimonials",
         "homepage",
-        "newsletter",
         "pouches-zonnic-mint-24-nicotine-pouches",
         "sign-up",
         "store-locator",
@@ -105,16 +97,14 @@
         "what-is-zonnic",
         "why-zonnic"
       ],
-      "total": 10
+      "total": 8
     },
     {
       "canonical": "bat-wrapper",
       "fingerprint": "div.bat-wrapper",
       "pages": [
-        "blog-what-are-nicotine-pouches",
-        "contact-us-let-us-talk-testimonials",
+        "contact-us-testimonials",
         "homepage",
-        "newsletter",
         "pouches-zonnic-mint-24-nicotine-pouches",
         "sign-up",
         "store-locator",
@@ -122,16 +112,14 @@
         "what-is-zonnic",
         "why-zonnic"
       ],
-      "total": 10
+      "total": 8
     },
     {
       "canonical": "div",
       "fingerprint": "div",
       "pages": [
-        "blog-what-are-nicotine-pouches",
-        "contact-us-let-us-talk-testimonials",
+        "contact-us-testimonials",
         "homepage",
-        "newsletter",
         "pouches-zonnic-mint-24-nicotine-pouches",
         "sign-up",
         "store-locator",
@@ -139,22 +127,21 @@
         "what-is-zonnic",
         "why-zonnic"
       ],
-      "total": 10
+      "total": 8
     },
     {
       "canonical": "embedded-messaging",
       "fingerprint": "div.embedded-messaging",
       "pages": [
-        "contact-us-let-us-talk-testimonials",
+        "contact-us-testimonials",
         "homepage",
-        "newsletter",
         "pouches-zonnic-mint-24-nicotine-pouches",
         "sign-up",
         "store-locator",
         "what-is-zonnic",
         "why-zonnic"
       ],
-      "total": 8
+      "total": 7
     }
   ],
   "intersection": []

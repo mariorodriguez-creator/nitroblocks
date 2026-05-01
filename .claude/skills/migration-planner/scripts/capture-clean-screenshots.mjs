@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Clean visual reference screenshots with cookie bypass + widget hiding.
+ * Clean per-template full-page screenshots with cookie bypass + widget hiding.
  *
  * Based on the proven approach from zonnic-ds/scripts/capture-screenshots.mjs:
  *   - Inject bypass cookies so age gates / consent modals never render
@@ -10,21 +10,25 @@
  *   - Scroll to trigger lazy loaders, then scroll back to top
  *   - Capture at 3 viewports with retina scale
  *
- * This replaces designlang's --screenshots flag which misfires on sites
- * with overlays (labels grey backdrops as "card", age-gate modal as
- * "card-default", etc.).
+ * This complements designlang's `--screenshots` flag:
+ *   - designlang writes component-level crops + one homepage `full-page.png`
+ *     to `design-extract/screenshots/` (its native location)
+ *   - this script writes per-template × per-viewport full-page captures
+ *     to `design-extract/screenshots/templates/` (kept separate so
+ *     designlang's internal manifest paths in `*-screenshots.json` remain
+ *     valid and the two sources never collide on filenames)
  *
  * Usage:
  *   node capture-clean-screenshots.mjs <url> \
  *     --bypass-file ./migration-work/bypass-result.json \
  *     --pages-file ./migration-work/sitemap-result.json \
- *     --output-dir ./migration-work/design-extract/screenshots
+ *     --output-dir ./migration-work/design-extract/screenshots/templates
  *
  * Or with explicit cookies/selectors:
  *   node capture-clean-screenshots.mjs <url> \
  *     --cookie "age_verify=confirmed" \
  *     --hide "#onetrust-banner-sdk" \
- *     --output-dir ./migration-work/design-extract/screenshots
+ *     --output-dir ./migration-work/design-extract/screenshots/templates
  */
 
 import { chromium } from 'playwright';
@@ -61,7 +65,7 @@ if (!BASE_URL_ARG) {
 const BYPASS_FILE = getFlag('--bypass-file');
 const PAGES_FILE = getFlag('--pages-file');
 const OUTPUT_DIR =
-  getFlag('--output-dir') || './migration-work/design-extract/screenshots';
+  getFlag('--output-dir') || './migration-work/design-extract/screenshots/templates';
 const EXPLICIT_COOKIES = getAllFlags('--cookie');
 const EXPLICIT_HIDE = getAllFlags('--hide');
 
@@ -93,12 +97,21 @@ async function loadBypassConfig() {
     try {
       const raw = await readFile(BYPASS_FILE, 'utf-8');
       const data = JSON.parse(raw);
+
+      // Prefer the storageState JSON (bypass_cookies_full has the correct
+      // domain per cookie — host-only vs subdomain-wildcard — which matters
+      // for sites like zonnic.ca that set age_verify on www.zonnic.ca
+      // (host-only) rather than .zonnic.ca.
       for (const c of data.bypass_cookies_full || []) {
         cookies.push({
           name: c.name,
           value: c.value,
-          domain: `.${new URL(BASE_URL_ARG).hostname}`,
-          path: '/',
+          domain: c.domain || new URL(BASE_URL_ARG).hostname,
+          path: c.path || '/',
+          expires: c.expires ?? -1,
+          httpOnly: c.httpOnly ?? false,
+          secure: c.secure ?? false,
+          sameSite: c.sameSite || 'Lax',
         });
       }
       hideSelectors.push(...(data.hide_css_selectors || []));
@@ -114,7 +127,7 @@ async function loadBypassConfig() {
     cookies.push({
       name,
       value: rest.join('='),
-      domain: `.${new URL(BASE_URL_ARG).hostname}`,
+      domain: new URL(BASE_URL_ARG).hostname,
       path: '/',
     });
   }

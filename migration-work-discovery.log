@@ -1,0 +1,329 @@
+=== Migration Planner: Site Discovery ===
+URL:   https://www.zonnic.ca/ca/en
+Output: ./migration-work/design-extract
+
+--- Phase A: Sitemap analysis ---
+[sitemap] Analyzing https://www.zonnic.ca/ca/en
+[sitemap] Found 94 total URLs
+[sitemap] After filtering: 92 URLs (2 excluded)
+[sitemap] 23 template groups, recommended depth: 2
+[sitemap] Excluded by reason: test-page=2
+  Pages found: 92
+  Max depth: 2
+  Template groups: 23
+  Using depth: 2
+
+--- Phase B: Overlay probe ---
+[bypass] Probing https://www.zonnic.ca/ca/en for blocking overlays
+[bypass] Detected overlays: age-gate, cookie-consent, salesforce-chat, location-selector
+[bypass] Guessed cookies: age_verify=confirmed, age_verified=true, ageVerified=true, age-gate=passed, over_age=true, is_adult=true, OptanonAlertBoxClosed=2026-04-30T13:29:01.310Z, CookieConsent=true
+[bypass] Clicked overlay button: "YES, I AM 18+"
+[bypass] Interaction bypass: 6 new/changed cookie(s), overlay gone: true
+[bypass]   age_verify=confirmed (domain=www.zonnic.ca)
+[bypass]   setStore=zonnic_ca_bc_en_ca (domain=www.zonnic.ca)
+[bypass]   regionLocation=British Columbia (domain=www.zonnic.ca)
+[bypass]   regionCode=bc (domain=www.zonnic.ca)
+[bypass]   webSite=zonnic_ca_bc (domain=www.zonnic.ca)
+[bypass]   OptanonConsent=isGpcEnabled=0&datestamp=Thu+Apr+30+2026 (domain=.www.zonnic.ca)
+[bypass] Validation: PASS (content height: 5353px, agegateVisible: false)
+[bypass] storageState -> migration-work/bypass-cookies.json
+[bypass] 1 cookie(s) contain '/' or '%2F' in value, skipped for legacy --cookie flag (still present in storageState JSON):
+[bypass]   OptanonConsent
+  Overlays detected: age-gate, cookie-consent, salesforce-chat, location-selector
+  Interaction click: YES, I AM 18+
+  Bypass verified:   yes
+  Cookie flags:       5 cookie(s)
+  Cookie file:        migration-work/bypass-cookies.json (for Playwright phases E/F/G)
+  Ignore selectors:   18 total
+
+--- Phase C: designlang extraction ---
+  Flags: --responsive --interactions --dark --perf --emit-agent-rules --screenshots
+  Wait: 3000ms (component hydration)
+  NOTE: --deep-interact intentionally excluded (hangs on gated sites)
+  NOTE: --screenshots writes component crops to ./migration-work/design-extract/screenshots/
+        Phase H (bypass-leak) scans filenames for overlay leakage.
+
+  Running: designlang (depth=2)
+
+  designlang
+  https://www.zonnic.ca/ca/en (+ 2 pages)
+
+- Launching browser...
+ℹ Snapshot #16 saved for zonnic.ca
+✔ Extraction complete!
+
+  Output files:
+  ✓ zonnic-ca-design-language.md (26.7KB) — Markdown (AI-optimized)
+  ✓ zonnic-ca-design-tokens.json (7.8KB) — Design Tokens (DTCG v1)
+  ✓ zonnic-ca-tailwind.config.js (5.4KB) — Tailwind Config
+  ✓ zonnic-ca-variables.css (3.0KB) — CSS Variables
+  ✓ zonnic-ca-preview.html (27.7KB) — Visual Preview
+  ✓ zonnic-ca-figma-variables.json (19.9KB) — Figma Variables
+  ✓ zonnic-ca-theme.js (4.1KB) — React Theme
+  ✓ zonnic-ca-shadcn-theme.css (586B) — shadcn/ui Theme
+  ✓ zonnic-ca-wordpress-theme.json (4.3KB) — WordPress Theme
+  ✓ zonnic-ca-mcp.json (20.2KB) — MCP companion
+  ✓ zonnic-ca-motion-tokens.json (640B) — Motion Tokens
+  ✓ zonnic-ca-anatomy.tsx (726B) — Component Anatomy (stubs)
+  ✓ zonnic-ca-voice.json (961B) — Brand Voice
+  ✓ zonnic-ca-DESIGN.md (4.3KB) — DESIGN.md (agent-native)
+  ✓ zonnic-ca-intent.json (3.4KB) — Page Intent + Section Roles
+  ✓ zonnic-ca-visual-dna.json (1.3KB) — Visual DNA
+  ✓ zonnic-ca-library.json (204B) — Component Library Detection
+  ✓ zonnic-ca-logo.json (389B) — Logo Metadata
+  ✓ zonnic-ca-screenshots.json (3.4KB) — Component Screenshots index
+  ✓ zonnic-ca-dark-mode.json (2.1KB) — Dark Mode Pairing
+  ✓ zonnic-ca-seo.json (1.3KB) — SEO + Structured Data
+  ✓ zonnic-ca-icon-system.json (1.4KB) — Icon System
+  ✓ zonnic-ca-stack-intel.json (147B) — Stack Intel (CMS/analytics/experimentation)
+  ✓ zonnic-ca-form-states.json (315B) — Forms + States
+  ✓ /Users/2245328/Repos/nitroblocks/migration-work/design-extract/zonnic-ca-tokens-shared.json — Shared tokens (multi-route)
+  ✓ /Users/2245328/Repos/nitroblocks/migration-work/design-extract/zonnic-ca-tokens-routes/ca-en.json — Route tokens (ca-en)
+  ✓ /Users/2245328/Repos/nitroblocks/migration-work/design-extract/zonnic-ca-tokens-routes/ca-en-my-account.json — Route tokens (ca-en-my-account)
+  ✓ /Users/2245328/Repos/nitroblocks/migration-work/design-extract/zonnic-ca-tokens-routes/ca-en-privacy-policy.json — Route tokens (ca-en-privacy-policy)
+  ✓ /Users/2245328/Repos/nitroblocks/migration-work/design-extract/zonnic-ca-tokens-routes/ca-en-contact-us.json — Route tokens (ca-en-contact-us)
+  ✓ /Users/2245328/Repos/nitroblocks/migration-work/design-extract/zonnic-ca-tokens-routes/ca-en-my-account-request-password-reset.json — Route tokens (ca-en-my-account-request-password-reset)
+  ✓ /Users/2245328/Repos/nitroblocks/migration-work/design-extract/zonnic-ca-tokens-routes/ca-en-sign-up.json — Route tokens (ca-en-sign-up)
+  ✓ /Users/2245328/Repos/nitroblocks/migration-work/design-extract/zonnic-ca-tokens-routes/ca-en-healthcare-professionals.json — Route tokens (ca-en-healthcare-professionals)
+  ✓ /Users/2245328/Repos/nitroblocks/migration-work/design-extract/zonnic-ca-routes-report.md — Routes report (markdown)
+  ✓ /Users/2245328/Repos/nitroblocks/migration-work/design-extract/.cursor/rules/designlang.mdc — Agent rules (.cursor/rules/designlang.mdc)
+  ✓ /Users/2245328/Repos/nitroblocks/migration-work/design-extract/.claude/skills/designlang/SKILL.md — Agent rules (.claude/skills/designlang/SKILL.md)
+  ✓ /Users/2245328/Repos/nitroblocks/migration-work/design-extract/CLAUDE.md.fragment — Agent rules (CLAUDE.md.fragment)
+  ✓ /Users/2245328/Repos/nitroblocks/migration-work/design-extract/agents.md — Agent rules (agents.md)
+  ✓ undefined — undefined screenshot
+  ✓ screenshots/full-page.png — undefined screenshot
+  ✓ undefined — undefined screenshot
+
+  Saved to /Users/2245328/Repos/nitroblocks/migration-work/design-extract
+
+  Summary:
+  Pages: 7 pages analyzed
+  Colors: 27 unique colors
+  Fonts: Santral, Arial, Times New Roman, Times, Font Awesome 5 Free, sans-serif
+  Spacing: 17 values (base: 2px)
+  Shadows: 10 unique shadows
+  Radii: 7 unique values
+  Breakpoints: 26 breakpoints
+  Components: 12 patterns detected
+  CSS Vars: 12 custom properties
+  Layout: 12 grids, 1317 flex containers
+  Responsive: 4 viewports, 3 breakpoint changes
+  Interactions: 3 state changes captured
+  Design Score: 73/100 (C) — 6 issues
+  Gradients: 1 unique gradients
+  Z-Index: 22 layers (1 issues)
+  Icons: 11 SVG icons (filled)
+  Font Files: 4 fonts (self-hosted)
+  Images: 15 images, 3 style patterns
+  A11y: 95% WCAG score (4 failing pairs)
+  Completed in 514.8s
+
+
+--- Phase D: Grade + verify ---
+  Running: designlang grade
+- Auditing design system...
+
+  Grade C · 71/100 · https://www.zonnic.ca/ca/en
+
+  ✓ /Users/2245328/Repos/nitroblocks/design-extract-output/zonnic-ca.grade.html
+  ✓ /Users/2245328/Repos/nitroblocks/design-extract-output/zonnic-ca.grade.md
+  ✓ /Users/2245328/Repos/nitroblocks/design-extract-output/zonnic-ca.grade.json
+
+  Share: open the .grade.html in a browser, post the URL.
+
+
+  Verifying outputs...
+  Files generated: 60
+  OK: *-design-language.md -> zonnic-ca-design-language.md (27384 bytes)
+  OK: *-design-tokens.json -> zonnic-ca-design-tokens.json (7979 bytes)
+  MISSING: *-grade.html
+  OK: *-figma-variables.json -> zonnic-ca-figma-variables.json (20385 bytes)
+  OK: *-variables.css -> zonnic-ca-variables.css (3038 bytes)
+  OK: *-motion-tokens.json -> zonnic-ca-motion-tokens.json (640 bytes)
+  OPTIONAL MISSING: *-agent-rules.md
+  OK: *-screenshots.json -> zonnic-ca-screenshots.json (3483 bytes)
+  OK: *-anatomy.tsx -> zonnic-ca-anatomy.tsx (726 bytes)
+
+  ⚠ 1 critical output(s) missing or empty.
+  Possible causes:
+    - Age gate or overlay was not fully bypassed
+    - Site requires additional cookies (check bypass-result.json)
+    - Network/timeout issues during extraction
+  Check ./migration-work/bypass-result.json for detected overlays and cookies.
+
+  ℹ 1 optional output(s) not generated.
+  These are high-value for downstream skills (design-system, site-build).
+  May require newer designlang version or specific flags.
+
+--- Phase E: Per-template full-page screenshots ---
+  Running: capture-clean-screenshots -> ./migration-work/design-extract/screenshots/templates
+[capture] Cookies applied: age_verify, setStore, regionLocation, regionCode, webSite, OptanonConsent
+[capture] Output: ./migration-work/design-extract/screenshots/templates
+[capture] 23 pages x 3 viewports
+
+[homepage] https://www.zonnic.ca/ca/en
+  homepage @ mobile  (375x812) ... homepage-mobile-375.png
+  homepage @ tablet  (768x1024) ... homepage-tablet-768.png
+  homepage @ desktop (1440x900) ... homepage-desktop-1440.png
+
+[testingblogarticletemplate] https://www.zonnic.ca/ca/en/testingblogarticletemplate
+  testingblogarticletemplate @ mobile  (375x812) ... testingblogarticletemplate-mobile-375.png
+  testingblogarticletemplate @ tablet  (768x1024) ... testingblogarticletemplate-tablet-768.png
+  testingblogarticletemplate @ desktop (1440x900) ... testingblogarticletemplate-desktop-1440.png
+
+[pouches-zonnic-mint-24-nicotine-pouches] https://www.zonnic.ca/ca/en/pouches/zonnic-mint-24-nicotine-pouches
+  pouches-zonnic-mint-24-nicotine-pouches @ mobile  (375x812) ... pouches-zonnic-mint-24-nicotine-pouches-mobile-375.png
+  pouches-zonnic-mint-24-nicotine-pouches @ tablet  (768x1024) ... pouches-zonnic-mint-24-nicotine-pouches-tablet-768.png
+  pouches-zonnic-mint-24-nicotine-pouches @ desktop (1440x900) ... pouches-zonnic-mint-24-nicotine-pouches-desktop-1440.png
+
+[why-zonnic] https://www.zonnic.ca/ca/en/why-zonnic
+  why-zonnic @ mobile  (375x812) ... why-zonnic-mobile-375.png
+  why-zonnic @ tablet  (768x1024) ... why-zonnic-tablet-768.png
+  why-zonnic @ desktop (1440x900) ... why-zonnic-desktop-1440.png
+
+[what-is-zonnic] https://www.zonnic.ca/ca/en/what-is-zonnic
+  what-is-zonnic @ mobile  (375x812) ... what-is-zonnic-mobile-375.png
+  what-is-zonnic @ tablet  (768x1024) ... what-is-zonnic-tablet-768.png
+  what-is-zonnic @ desktop (1440x900) ... what-is-zonnic-desktop-1440.png
+
+[store-locator] https://www.zonnic.ca/ca/en/store-locator
+  store-locator @ mobile  (375x812) ... store-locator-mobile-375.png
+  store-locator @ tablet  (768x1024) ... store-locator-tablet-768.png
+  store-locator @ desktop (1440x900) ... store-locator-desktop-1440.png
+
+[sign-up] https://www.zonnic.ca/ca/en/sign-up
+  sign-up @ mobile  (375x812) ... sign-up-mobile-375.png
+  sign-up @ tablet  (768x1024) ... sign-up-tablet-768.png
+  sign-up @ desktop (1440x900) ... sign-up-desktop-1440.png
+
+[contact-us-testimonials] https://www.zonnic.ca/ca/en/contact-us/testimonials
+  contact-us-testimonials @ mobile  (375x812) ... contact-us-testimonials-mobile-375.png
+  contact-us-testimonials @ tablet  (768x1024) ... contact-us-testimonials-tablet-768.png
+  contact-us-testimonials @ desktop (1440x900) ... contact-us-testimonials-desktop-1440.png
+
+[newsletter] https://www.zonnic.ca/ca/en/newsletter
+  newsletter @ mobile  (375x812) ... newsletter-mobile-375.png
+  newsletter @ tablet  (768x1024) ... newsletter-tablet-768.png
+  newsletter @ desktop (1440x900) ... newsletter-desktop-1440.png
+
+[blog-what-are-nicotine-pouches] https://www.zonnic.ca/ca/en/blog/what-are-nicotine-pouches
+  blog-what-are-nicotine-pouches @ mobile  (375x812) ... blog-what-are-nicotine-pouches-mobile-375.png
+  blog-what-are-nicotine-pouches @ tablet  (768x1024) ... blog-what-are-nicotine-pouches-tablet-768.png
+  blog-what-are-nicotine-pouches @ desktop (1440x900) ... blog-what-are-nicotine-pouches-desktop-1440.png
+
+[healthcare-professionals-side-effects-quitting-smoking-patient-concerns] https://www.zonnic.ca/ca/en/healthcare-professionals/side-effects-quitting-smoking-patient-concerns
+  healthcare-professionals-side-effects-quitting-smoking-patient-concerns @ mobile  (375x812) ... healthcare-professionals-side-effects-quitting-smoking-patient-concerns-mobile-375.png
+  healthcare-professionals-side-effects-quitting-smoking-patient-concerns @ tablet  (768x1024) ... healthcare-professionals-side-effects-quitting-smoking-patient-concerns-tablet-768.png
+  healthcare-professionals-side-effects-quitting-smoking-patient-concerns @ desktop (1440x900) ... healthcare-professionals-side-effects-quitting-smoking-patient-concerns-desktop-1440.png
+
+[zonnic-helped-me-quit] https://www.zonnic.ca/ca/en/zonnic-helped-me-quit
+  zonnic-helped-me-quit @ mobile  (375x812) ... zonnic-helped-me-quit-mobile-375.png
+  zonnic-helped-me-quit @ tablet  (768x1024) ... zonnic-helped-me-quit-tablet-768.png
+  zonnic-helped-me-quit @ desktop (1440x900) ... zonnic-helped-me-quit-desktop-1440.png
+
+[world-no-tobacco-day] https://www.zonnic.ca/ca/en/world-no-tobacco-day
+  world-no-tobacco-day @ mobile  (375x812) ... world-no-tobacco-day-mobile-375.png
+  world-no-tobacco-day @ tablet  (768x1024) ... world-no-tobacco-day-tablet-768.png
+  world-no-tobacco-day @ desktop (1440x900) ... world-no-tobacco-day-desktop-1440.png
+
+[quit-zone] https://www.zonnic.ca/ca/en/quit-zone
+  quit-zone @ mobile  (375x812) ... quit-zone-mobile-375.png
+  quit-zone @ tablet  (768x1024) ... quit-zone-tablet-768.png
+  quit-zone @ desktop (1440x900) ... quit-zone-desktop-1440.png
+
+[keep-zonnic-accessible] https://www.zonnic.ca/ca/en/keep-zonnic-accessible
+  keep-zonnic-accessible @ mobile  (375x812) ... keep-zonnic-accessible-mobile-375.png
+  keep-zonnic-accessible @ tablet  (768x1024) ... keep-zonnic-accessible-tablet-768.png
+  keep-zonnic-accessible @ desktop (1440x900) ... keep-zonnic-accessible-desktop-1440.png
+
+[truth-about-zonnic] https://www.zonnic.ca/ca/en/truth-about-zonnic
+  truth-about-zonnic @ mobile  (375x812) ... truth-about-zonnic-mobile-375.png
+  truth-about-zonnic @ tablet  (768x1024) ... truth-about-zonnic-tablet-768.png
+  truth-about-zonnic @ desktop (1440x900) ... truth-about-zonnic-desktop-1440.png
+
+[quit-on-your-terms] https://www.zonnic.ca/ca/en/quit-on-your-terms
+  quit-on-your-terms @ mobile  (375x812) ... quit-on-your-terms-mobile-375.png
+  quit-on-your-terms @ tablet  (768x1024) ... quit-on-your-terms-tablet-768.png
+  quit-on-your-terms @ desktop (1440x900) ... quit-on-your-terms-desktop-1440.png
+
+[ask-your-pharmacist] https://www.zonnic.ca/ca/en/ask-your-pharmacist
+  ask-your-pharmacist @ mobile  (375x812) ... ask-your-pharmacist-mobile-375.png
+  ask-your-pharmacist @ tablet  (768x1024) ... ask-your-pharmacist-tablet-768.png
+  ask-your-pharmacist @ desktop (1440x900) ... ask-your-pharmacist-desktop-1440.png
+
+[zonnic-insurance-reimbursement] https://www.zonnic.ca/ca/en/zonnic-insurance-reimbursement
+  zonnic-insurance-reimbursement @ mobile  (375x812) ... zonnic-insurance-reimbursement-mobile-375.png
+  zonnic-insurance-reimbursement @ tablet  (768x1024) ... zonnic-insurance-reimbursement-tablet-768.png
+  zonnic-insurance-reimbursement @ desktop (1440x900) ... zonnic-insurance-reimbursement-desktop-1440.png
+
+[real-people-real-success-marks-quit-smoking-testimonial] https://www.zonnic.ca/ca/en/real-people-real-success/marks-quit-smoking-testimonial
+  real-people-real-success-marks-quit-smoking-testimonial @ mobile  (375x812) ... real-people-real-success-marks-quit-smoking-testimonial-mobile-375.png
+  real-people-real-success-marks-quit-smoking-testimonial @ tablet  (768x1024) ... real-people-real-success-marks-quit-smoking-testimonial-tablet-768.png
+  real-people-real-success-marks-quit-smoking-testimonial @ desktop (1440x900) ... real-people-real-success-marks-quit-smoking-testimonial-desktop-1440.png
+
+[faq-about-zonnic] https://www.zonnic.ca/ca/en/faq/about-zonnic
+  faq-about-zonnic @ mobile  (375x812) ... faq-about-zonnic-mobile-375.png
+  faq-about-zonnic @ tablet  (768x1024) ... faq-about-zonnic-tablet-768.png
+  faq-about-zonnic @ desktop (1440x900) ... faq-about-zonnic-desktop-1440.png
+
+[quit-zone-archived-page] https://www.zonnic.ca/ca/en/quit-zone-archived-page
+  quit-zone-archived-page @ mobile  (375x812) ... quit-zone-archived-page-mobile-375.png
+  quit-zone-archived-page @ tablet  (768x1024) ... quit-zone-archived-page-tablet-768.png
+  quit-zone-archived-page @ desktop (1440x900) ... quit-zone-archived-page-desktop-1440.png
+
+[email-verification] https://www.zonnic.ca/ca/en/email-verification
+  email-verification @ mobile  (375x812) ... email-verification-mobile-375.png
+  email-verification @ tablet  (768x1024) ... email-verification-tablet-768.png
+  email-verification @ desktop (1440x900) ... email-verification-desktop-1440.png
+
+[capture] Done. 23 pages x 3 viewports.
+
+  Component crops (designlang): 16
+  Template captures (Playwright): 69
+
+--- Phase F: Per-template scrape (--max-templates 8) ---
+  [homepage] https://www.zonnic.ca/ca/en -> ./migration-work/pages/homepage
+  [testingblogarticletemplate] https://www.zonnic.ca/ca/en/testingblogarticletemplate -> ./migration-work/pages/testingblogarticletemplate
+  [pouches-zonnic-mint-24-nicotine-pouches] https://www.zonnic.ca/ca/en/pouches/zonnic-mint-24-nicotine-pouches -> ./migration-work/pages/pouches-zonnic-mint-24-nicotine-pouches
+  [why-zonnic] https://www.zonnic.ca/ca/en/why-zonnic -> ./migration-work/pages/why-zonnic
+  [what-is-zonnic] https://www.zonnic.ca/ca/en/what-is-zonnic -> ./migration-work/pages/what-is-zonnic
+  [store-locator] https://www.zonnic.ca/ca/en/store-locator -> ./migration-work/pages/store-locator
+  [sign-up] https://www.zonnic.ca/ca/en/sign-up -> ./migration-work/pages/sign-up
+  [contact-us-testimonials] https://www.zonnic.ca/ca/en/contact-us/testimonials -> ./migration-work/pages/contact-us-testimonials
+  Scraped: 8 success, 0 failed
+
+--- Phase G: Accessibility scan ---
+  Violations: 5 (2 critical)
+
+--- Phase H: Bypass-leak verification ---
+  Result: FAIL (1 keyword hits)
+
+--- Phase I: Multi-template grade sampling ---
+  High-spread dimensions (>20 pts): 0
+
+--- Phase J: Structure cross-check ---
+  DOM organisms (unique fingerprints): 8
+  Anatomy-vs-DOM signal: UNDERSUPPLIED
+
+--- Phase K: Verification report ---
+  Overall confidence: LOW
+
+=== Discovery complete ===
+
+Output directory: ./migration-work/design-extract
+  Sitemap analysis:     ./migration-work/sitemap-result.json
+  Bypass probe:         ./migration-work/bypass-result.json
+  Design tokens:        ./migration-work/design-extract/*-design-tokens.json
+  Design narrative:     ./migration-work/design-extract/*-design-language.md
+  Grade report:         ./migration-work/design-extract/*-grade.html
+  Component manifest:   ./migration-work/design-extract/*-screenshots.json
+  Component crops:      ./migration-work/design-extract/screenshots/*.png
+  Template captures:    ./migration-work/design-extract/screenshots/templates/
+
+Hardening outputs:
+  Per-template scrapes: ./migration-work/pages/
+  Accessibility:        ./migration-work/a11y/
+  DOM structure:        ./migration-work/structure/
+  Verification report:  ./migration-work/verification/report.md
+
+Next: read outputs in ./migration-work/design-extract and run scrape-webpage on representative pages.

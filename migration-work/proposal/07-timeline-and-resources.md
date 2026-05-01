@@ -1,94 +1,86 @@
-# Timeline and Resources
+# Timeline and Resources — Zonnic Canada Migration
 
 ## Effort Summary
 
-Aggregated from [05-work-items.md](05-work-items.md) using midpoint and max-hours per t-shirt.
+Hours derived from t-shirt midpoint aggregation per `tshirt-estimation-guide.md`. Min uses XS=1, S=2, M=4, L=8, XL=16. Max uses XS=2, S=4, M=8, L=16, XL=40. Then add a 20% contingency buffer.
 
-| Phase | Items | Min Hours | Max Hours | Min Weeks | Max Weeks |
-|-------|------:|---------:|---------:|---------:|---------:|
-| 1. Discovery | 13 | 28 | 44 | 1 | 1 |
-| 2. Design System Build | 15 | 65 | 116 | 2 | 3 |
-| 3. Site Build | 45 | 210 | 400 | 5 | 8 |
-| 4. Content Migration | 14 | 55 | 100 | 2 | 3 |
-| 5. Testing & UAT | 12 | 55 | 96 | 2 | 3 |
-| **Subtotal** | **99** | **413h** | **756h** | **12w** | **18w** |
-| +15% contingency | | **475h** | **870h** | **14w** | **21w** |
+| Phase | Min hours | Max hours | Min weeks (1 FTE) | Max weeks (1 FTE) | Calendar (typical 3-FTE team) |
+|-------|----------|----------|----|---|---|
+| 1. Discovery | 80 | 110 | 2.0 | 2.8 | 2 weeks |
+| 2. Design System Build | 90 | 130 | 2.3 | 3.3 | 2–3 weeks |
+| 3. Site Build | 240 | 340 | 6.0 | 8.5 | 6–8 weeks |
+| 4. Content Migration | 80 | 120 | 2.0 | 3.0 | 3–4 weeks (gated by reviews) |
+| 5. Testing & UAT + Hypercare | 90 | 130 | 2.3 | 3.3 | 3 weeks |
+| **Total** | **580** | **840** | **15** | **21** | **16–20 weeks** |
 
-Single-threaded estimate: **3–4.5 months** calendar time for one dev + supporting designer + content author.
+A 1-FTE timeline would take ≈ 5 calendar months at the lower bound (assuming 35 effective hours per week) and ≈ 7 months at the upper bound. The recommended team is **3 FTE plus 1 designer plus 1 content lead plus 1 QA**, which compresses the total to **16–20 calendar weeks** as shown.
 
-## Resource Allocation (parallel team model)
-
-Assume team of: 2 EDS Developers · 1 Designer · 1 Content Author · 0.5 QA · 0.25 SEO.
+## Resource Allocation
 
 | Role | Phase 1 | Phase 2 | Phase 3 | Phase 4 | Phase 5 |
 |------|---------|---------|---------|---------|---------|
-| EDS Developer (Dev A) | Advisory | Partial | **Full** | Partial | **Full** |
-| EDS Developer (Dev B) | — | Partial | **Full** | — | Partial |
-| Designer | Advisory | **Full** | Partial | — | Advisory |
-| Content Author | Advisory | — | Advisory | **Full** | Partial |
-| QA | — | — | Partial | Partial | **Full** |
-| SEO | Advisory | — | — | Partial | Partial |
-| Stakeholder / Architect | **Full** | Advisory | Advisory | Advisory | Advisory |
+| Project Manager | 0.5 FTE | 0.25 FTE | 0.25 FTE | 0.25 FTE | 0.25 FTE |
+| EDS Developer A | 0.5 FTE | 1.0 FTE | 1.0 FTE | 0.25 FTE | 0.5 FTE |
+| EDS Developer B | 0.25 FTE | 0.5 FTE | 1.0 FTE | 0.25 FTE | 0.5 FTE |
+| Designer | 0.5 FTE | 1.0 FTE | 0.5 FTE | 0.25 FTE | 0.25 FTE |
+| Content Lead | 0.25 FTE | 0.25 FTE | 0.25 FTE | 1.0 FTE | 0.5 FTE |
+| QA | — | — | 0.25 FTE | 0.25 FTE | 1.0 FTE |
+| Platform / SRE | 0.25 FTE | — | 0.25 FTE | — | 0.5 FTE |
 
-Parallel calendar target: **~8–11 weeks** from kickoff to go-live.
+(0.25 FTE ≈ 10 hours per week; 1.0 FTE = full-time on this project)
 
 ## Milestones
 
-| Milestone | Target week | Gate criteria |
-|---|---:|---|
-| M1 — Discovery sign-off | Week 1 | Work plan approved; vendor snippet manifest delivered; minicart decision signed; Santral licensing confirmed |
-| M2 — Design system sign-off | Week 4 | Pencil review approved; tokens committed to `styles.css`; Lighthouse budget validated on demo |
-| M3 — Alpha build (chrome + hero + 3 content blocks) | Week 6 | Homepage renders end-to-end with sample content; Lighthouse 100 |
-| M4 — Beta build (all blocks + snippets) | Week 9 | All 23 blocks demo-ready; all 14 vendor snippets placed and verified |
-| M5 — Content migrated | Week 10 | 106 pages authored; redirects in place |
-| M6 — UAT complete | Week 11 | Visual diff, WCAG 2.2 AA, Lighthouse 100, author sign-off |
-| M7 — Go-live | Week 11–12 | DNS cutover; 24-hour hypercare start |
-| M8 — Hypercare end | Week 13–14 | No P1/P2 open; monitoring green |
+| # | Milestone | Target week | Gate criteria |
+|---|---|---|---|
+| M1 | Kick-off complete | week 0 | Project plan circulated, environments provisioned |
+| M2 | Discovery sign-off | week 2 | All Phase 1 exit criteria met |
+| M3 | Design system signed off | week 5 | Pencil file approved by Zonnic brand team |
+| M4 | Homepage live in feature-preview | week 7 | Wave A complete |
+| M5 | Campaign template live | week 9 | Wave B complete; analytics on `delayed.js` |
+| M6 | Forms live | week 11 | Wave C complete; sign-up form happy-path tested |
+| M7 | All blocks live | week 13 | Wave D complete; store-locator working |
+| M8 | Content fully migrated | week 17 | Phase 4 sign-off |
+| M9 | UAT signed off | week 19 | Phase 5 exit criteria met |
+| M10 | Production cut-over | week 20 | DNS / CDN / monitoring live; redirects active |
+| M11 | Hypercare ends | week 22 | RUM stable, no regression burn-down active |
 
-## Parallelization Opportunities
+## Parallelisation Opportunities
 
-Concurrent work streams that reduce calendar without increasing effort:
+The proposal explicitly relies on these concurrent threads to hit the calendar timeline:
 
-| Stream | Can run in parallel with |
+- **Phase 1**: stakeholder track (interviews + sign-offs) runs alongside technical track (atomic structuring + a11y audit).
+- **Phase 2**: Pencil design system (designer) runs alongside foundation CSS (developer).
+- **Phase 3 Waves A↔D**: edge-worker age-gate (BUILD-INT-01) runs alongside marketing-block development. Store-locator (BLOCK-NEW-08) runs alongside Wave C late half.
+- **Phase 4**: media migration (MIGRATE-12), redirect map (MIGRATE-13), bulk metadata (MIGRATE-14) run alongside the page batches.
+- **Phase 5**: automated test track and manual/UAT track run in parallel.
+
+## Calendar View (3-FTE typical team)
+
+```
+Week:        1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20 21 22
+─────────────────────────────────────────────────────────────────────────────
+Discovery    ██ ██
+Design Sys      ▓▓ ██ ██
+Site Build              ▓▓ ██ ██ ██ ██ ██ ██ ██
+  Wave A               ██ ██
+  Wave B                  ██ ██ ██
+  Wave C                        ██ ██ ██
+  Wave D                              ██ ██
+  Wave E                                    ██ ██
+Content Mig                                        ██ ██ ██ ██
+Testing/UAT                                                 ██ ██ ██
+Cutover                                                              ▓▓
+Hypercare                                                               ██ ██
+```
+
+## Risks to the timeline
+
+| Risk | Worst-case slip |
 |---|---|
-| DS-06/07/08 (spacing, shadows, radii normalization) | DS-02/04/05 (color, type) |
-| BUILD-CHROME + BUILD-INT-01..05 snippet drops | BUILD-CONTENT-01..08 (single dev each) |
-| BUILD-SPECIAL-01 (product-carousel) | BUILD-CONTENT-09/10/11 (forms) |
-| MIGRATE content batches 1–5 | Later BUILD-SPECIAL / BUILD-INT-14 perf verification |
-| TEST-01/02 (visual) + TEST-03 (Lighthouse) + TEST-04 (a11y) + TEST-06 (cross-browser) | All four fully parallel |
-
-Sequential bottlenecks (cannot parallelize):
-
-- DISC-02 (snippet manifest) → all BUILD-INT-*
-- DS-15 (design sign-off) → all Phase 3
-- MIGRATE review checkpoints (each blocks the next batch)
-- TEST-11 (go-live) follows every other test
-
-## Calendar View (team-of-4, parallel)
-
-```
-W1  ████████  DISC kickoff + snippet manifest collection + initial scrape + decisions
-W2  ████████  DS-01..05 (token audit + color + type) + DS-06..08 (spacing/shadow/radii) in parallel
-W3  ████████  DS-09..13 (tokens to styles.css + Pencil atoms + molecules + organisms)
-W4  ████████  DS-14..15 sign-off · BUILD-CHROME-01..05 scaffolding start · BUILD-INT-01..05 snippet drops
-W5  ████████  BUILD-CHROME-06..10 + BUILD-INT-11/13 · BUILD-CONTENT-01..04 wave 1 start
-W6  ████████  BUILD-CONTENT-05..08 + BUILD-CONTENT-06 (faq) + BUILD-SPECIAL-01 (product-carousel)
-W7  ████████  BUILD-CONTENT-09..11 (forms) + BUILD-INT-06/07 (Salesforce snippets) · BUILD-SPECIAL-05 (store-locator) + BUILD-INT-09 (Mapbox)
-W8  ████████  BUILD-SPECIAL-02 (tabbed-carousel — critical) · BUILD-TMPL-01..04 · BUILD-INT-12/14 · MIGRATE-01 orchestrator
-W9  ████████  MIGRATE-02/03 batch 1 + checkpoint · TEST-01 visual setup · TEST-03 Lighthouse start
-W10 ████████  MIGRATE-04..09 batches 2/blog/FAQ + checkpoints · TEST-04 a11y · TEST-06 cross-browser
-W11 ████████  MIGRATE-10..14 specialized + SEO + metadata · TEST-02/07/08/09/10 (visual regression + UAT + integrations)
-W12 ████░░░░  TEST-11 go-live checklist + DNS cutover (M7)
-W13 ████████  Hypercare 1 (TEST-12)
-W14 ████░░░░  Hypercare 2 (TEST-12 wrap) → M8
-```
-
-If the minicart scope is dropped (DISC-03), Phase 3 compresses by ~1 week → overall go-live shifts left to **W10–W11**.
-
-## Budget Summary
-
-| Model | Hours | Calendar |
-|---|---:|---:|
-| Single dev, single-threaded | 475–870h | 12–21 weeks (3–5 months) |
-| Team-of-4, parallelized | 475–870h (same effort) | 8–11 weeks + 2 weeks hypercare |
-| Team-of-4, minicart deferred | ~410–750h | 7–10 weeks + 2 weeks hypercare |
+| Santral license unavailable | +1 week (Phase 2 start delayed) |
+| Salesforce API contract not written | +2 weeks (Wave C pushes to Wave D) |
+| Edge-worker age-gate harder than scoped | +1 week |
+| Adobe Target migration scope unclear | +1 week (Wave D) |
+| Content freeze slips | +1–2 weeks in Phase 4 |
+| Lighthouse-100 not held with all third-parties | +1 week of perf hardening |

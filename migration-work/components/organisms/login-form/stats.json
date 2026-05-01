@@ -1,0 +1,25 @@
+{
+  "component": "login-form",
+  "stats": {
+    "total": 48,
+    "perPage": {
+      "contact-us-testimonials": 6,
+      "homepage": 6,
+      "pouches-zonnic-mint-24-nicotine-pouches": 6,
+      "sign-up": 6,
+      "store-locator": 6,
+      "testingblogarticletemplate": 6,
+      "what-is-zonnic": 6,
+      "why-zonnic": 6
+    },
+    "pages": 8
+  },
+  "variants": [
+    {
+      "name": "default",
+      "ok": true,
+      "hiddenFallback": true,
+      "selector": "bat-form-loginzonnic"
+    }
+  ]
+}

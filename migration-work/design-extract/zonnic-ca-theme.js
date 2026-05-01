@@ -29,7 +29,6 @@
     '14': string;
     '15': string;
     '16': string;
-    '18': string;
     '20': string;
     '22': string;
     '24': string;
@@ -38,6 +37,7 @@
     '34': string;
     '42': string;
     '14.4': string;
+    '13.6': string;
  *   };
  *   space: {
     '0': string;
@@ -46,7 +46,7 @@
     '55': string;
     '60': string;
     '70': string;
-    '78': string;
+    '80': string;
     '95': string;
     '102': string;
     '120': string;
@@ -54,8 +54,8 @@
     '140': string;
     '203': string;
     '207': string;
-    '213': string;
     '236': string;
+    '256': string;
  *   };
  *   radii: {
     xs: string;
@@ -82,7 +82,7 @@ export const theme = {
   "colors": {
     "primary": "#182465",
     "secondary": "#3860be",
-    "accent": "#a0ff9d",
+    "accent": "#e3ffe2",
     "background": "#ffffff",
     "foreground": "#000000",
     "neutral50": "#616069",
@@ -103,7 +103,6 @@ export const theme = {
     "14": "14px",
     "15": "15px",
     "16": "16px",
-    "18": "18px",
     "20": "20px",
     "22": "22px",
     "24": "24px",
@@ -111,7 +110,8 @@ export const theme = {
     "32": "32px",
     "34": "34px",
     "42": "42px",
-    "14.4": "14.4px"
+    "14.4": "14.4px",
+    "13.6": "13.6px"
   },
   "space": {
     "0": "0px",
@@ -120,7 +120,7 @@ export const theme = {
     "55": "55px",
     "60": "60px",
     "70": "70px",
-    "78": "78px",
+    "80": "80px",
     "95": "95px",
     "102": "102px",
     "120": "120px",
@@ -128,8 +128,8 @@ export const theme = {
     "140": "140px",
     "203": "203px",
     "207": "207px",
-    "213": "213px",
-    "236": "236px"
+    "236": "236px",
+    "256": "256px"
   },
   "radii": {
     "xs": "1px",

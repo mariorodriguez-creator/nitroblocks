@@ -1,0 +1,700 @@
+{
+  "site": "zonnic.ca",
+  "source": "https://www.zonnic.ca/ca/en",
+  "generatedAt": "2026-04-30T16:46:11.438Z",
+  "results": {
+    "atoms": [
+      {
+        "name": "button",
+        "stats": {
+          "total": 377,
+          "perPage": {
+            "contact-us-testimonials": 32,
+            "homepage": 88,
+            "pouches-zonnic-mint-24-nicotine-pouches": 61,
+            "sign-up": 35,
+            "store-locator": 41,
+            "testingblogarticletemplate": 34,
+            "what-is-zonnic": 44,
+            "why-zonnic": 42
+          },
+          "pages": 8
+        },
+        "variants": [
+          {
+            "name": "primary",
+            "ok": true
+          },
+          {
+            "name": "secondary",
+            "ok": true
+          },
+          {
+            "name": "arrow-link",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "link",
+        "stats": {
+          "total": 0,
+          "perPage": {},
+          "pages": 0
+        },
+        "variants": [
+          {
+            "name": "utility",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "icon",
+        "stats": {
+          "total": 206,
+          "perPage": {
+            "contact-us-testimonials": 20,
+            "homepage": 32,
+            "pouches-zonnic-mint-24-nicotine-pouches": 27,
+            "sign-up": 21,
+            "store-locator": 29,
+            "testingblogarticletemplate": 19,
+            "what-is-zonnic": 23,
+            "why-zonnic": 35
+          },
+          "pages": 8
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "image",
+        "stats": {
+          "total": 429,
+          "perPage": {
+            "contact-us-testimonials": 7,
+            "homepage": 41,
+            "pouches-zonnic-mint-24-nicotine-pouches": 42,
+            "sign-up": 7,
+            "store-locator": 84,
+            "testingblogarticletemplate": 14,
+            "what-is-zonnic": 107,
+            "why-zonnic": 127
+          },
+          "pages": 8
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "headline",
+        "stats": {
+          "total": 710,
+          "perPage": {
+            "contact-us-testimonials": 20,
+            "homepage": 122,
+            "pouches-zonnic-mint-24-nicotine-pouches": 134,
+            "sign-up": 24,
+            "store-locator": 60,
+            "testingblogarticletemplate": 50,
+            "what-is-zonnic": 166,
+            "why-zonnic": 134
+          },
+          "pages": 8
+        },
+        "variants": [
+          {
+            "name": "h1-display",
+            "ok": true
+          },
+          {
+            "name": "h2-section",
+            "ok": true
+          },
+          {
+            "name": "h3-card",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "text",
+        "stats": {
+          "total": 352,
+          "perPage": {
+            "contact-us-testimonials": 14,
+            "homepage": 28,
+            "pouches-zonnic-mint-24-nicotine-pouches": 64,
+            "sign-up": 16,
+            "store-locator": 40,
+            "testingblogarticletemplate": 30,
+            "what-is-zonnic": 104,
+            "why-zonnic": 56
+          },
+          "pages": 8
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          },
+          {
+            "name": "boxed",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "input",
+        "stats": {
+          "total": 284,
+          "perPage": {
+            "contact-us-testimonials": 46,
+            "homepage": 31,
+            "pouches-zonnic-mint-24-nicotine-pouches": 31,
+            "sign-up": 51,
+            "store-locator": 31,
+            "testingblogarticletemplate": 32,
+            "what-is-zonnic": 31,
+            "why-zonnic": 31
+          },
+          "pages": 8
+        },
+        "variants": [
+          {
+            "name": "text",
+            "ok": true
+          },
+          {
+            "name": "select",
+            "ok": true
+          },
+          {
+            "name": "password",
+            "ok": true
+          }
+        ]
+      }
+    ],
+    "molecules": [
+      {
+        "name": "form-field",
+        "stats": {
+          "total": 444,
+          "perPage": {
+            "contact-us-testimonials": 69,
+            "homepage": 49,
+            "pouches-zonnic-mint-24-nicotine-pouches": 49,
+            "sign-up": 84,
+            "store-locator": 49,
+            "testingblogarticletemplate": 46,
+            "what-is-zonnic": 49,
+            "why-zonnic": 49
+          },
+          "pages": 8
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          },
+          {
+            "name": "error",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "cta-list",
+        "stats": {
+          "total": 151,
+          "perPage": {
+            "contact-us-testimonials": 12,
+            "homepage": 16,
+            "pouches-zonnic-mint-24-nicotine-pouches": 20,
+            "sign-up": 12,
+            "store-locator": 24,
+            "testingblogarticletemplate": 13,
+            "what-is-zonnic": 22,
+            "why-zonnic": 32
+          },
+          "pages": 8
+        },
+        "variants": [
+          {
+            "name": "horizontal",
+            "ok": true
+          },
+          {
+            "name": "logged-in",
+            "ok": true
+          },
+          {
+            "name": "account",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "nav-item",
+        "stats": {
+          "total": 184,
+          "perPage": {
+            "contact-us-testimonials": 23,
+            "homepage": 23,
+            "pouches-zonnic-mint-24-nicotine-pouches": 23,
+            "sign-up": 23,
+            "store-locator": 23,
+            "testingblogarticletemplate": 23,
+            "what-is-zonnic": 23,
+            "why-zonnic": 23
+          },
+          "pages": 8
+        },
+        "variants": [
+          {
+            "name": "desktop",
+            "ok": true
+          },
+          {
+            "name": "mobile",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "modal-shell",
+        "stats": {
+          "total": 189,
+          "perPage": {
+            "contact-us-testimonials": 23,
+            "homepage": 23,
+            "pouches-zonnic-mint-24-nicotine-pouches": 23,
+            "sign-up": 28,
+            "store-locator": 23,
+            "testingblogarticletemplate": 23,
+            "what-is-zonnic": 23,
+            "why-zonnic": 23
+          },
+          "pages": 8
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "form-message",
+        "stats": {
+          "total": 160,
+          "perPage": {
+            "contact-us-testimonials": 23,
+            "homepage": 18,
+            "pouches-zonnic-mint-24-nicotine-pouches": 18,
+            "sign-up": 33,
+            "store-locator": 18,
+            "testingblogarticletemplate": 14,
+            "what-is-zonnic": 18,
+            "why-zonnic": 18
+          },
+          "pages": 8
+        },
+        "variants": [
+          {
+            "name": "error",
+            "ok": true
+          },
+          {
+            "name": "tip",
+            "ok": true
+          }
+        ]
+      }
+    ],
+    "organisms": [
+      {
+        "name": "age-gate",
+        "stats": {
+          "total": 104,
+          "perPage": {
+            "contact-us-testimonials": 13,
+            "homepage": 13,
+            "pouches-zonnic-mint-24-nicotine-pouches": 13,
+            "sign-up": 13,
+            "store-locator": 13,
+            "testingblogarticletemplate": 13,
+            "what-is-zonnic": 13,
+            "why-zonnic": 13
+          },
+          "pages": 8
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "header",
+        "stats": {
+          "total": 8,
+          "perPage": {
+            "contact-us-testimonials": 1,
+            "homepage": 1,
+            "pouches-zonnic-mint-24-nicotine-pouches": 1,
+            "sign-up": 1,
+            "store-locator": 1,
+            "testingblogarticletemplate": 1,
+            "what-is-zonnic": 1,
+            "why-zonnic": 1
+          },
+          "pages": 8
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "footer",
+        "stats": {
+          "total": 208,
+          "perPage": {
+            "contact-us-testimonials": 26,
+            "homepage": 26,
+            "pouches-zonnic-mint-24-nicotine-pouches": 26,
+            "sign-up": 26,
+            "store-locator": 26,
+            "testingblogarticletemplate": 26,
+            "what-is-zonnic": 26,
+            "why-zonnic": 26
+          },
+          "pages": 8
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "message-bar",
+        "stats": {
+          "total": 8,
+          "perPage": {
+            "contact-us-testimonials": 1,
+            "homepage": 1,
+            "pouches-zonnic-mint-24-nicotine-pouches": 1,
+            "sign-up": 1,
+            "store-locator": 1,
+            "testingblogarticletemplate": 1,
+            "what-is-zonnic": 1,
+            "why-zonnic": 1
+          },
+          "pages": 8
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "hero",
+        "stats": {
+          "total": 82,
+          "perPage": {
+            "homepage": 38,
+            "pouches-zonnic-mint-24-nicotine-pouches": 10,
+            "what-is-zonnic": 22,
+            "why-zonnic": 12
+          },
+          "pages": 4
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "masthead-card",
+        "stats": {
+          "total": 224,
+          "perPage": {
+            "homepage": 105,
+            "pouches-zonnic-mint-24-nicotine-pouches": 105,
+            "store-locator": 14
+          },
+          "pages": 3
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "blurb-card",
+        "stats": {
+          "total": 204,
+          "perPage": {
+            "homepage": 114,
+            "why-zonnic": 90
+          },
+          "pages": 2
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "blog-card",
+        "stats": {
+          "total": 108,
+          "perPage": {
+            "homepage": 90,
+            "testingblogarticletemplate": 18
+          },
+          "pages": 2
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "tab-sync-carousel",
+        "stats": {
+          "total": 12,
+          "perPage": {
+            "homepage": 4,
+            "store-locator": 4,
+            "why-zonnic": 4
+          },
+          "pages": 3
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "product-carousel",
+        "stats": {
+          "total": 6,
+          "perPage": {
+            "homepage": 2,
+            "pouches-zonnic-mint-24-nicotine-pouches": 2,
+            "why-zonnic": 2
+          },
+          "pages": 3
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "faq",
+        "stats": {
+          "total": 6,
+          "perPage": {
+            "pouches-zonnic-mint-24-nicotine-pouches": 2,
+            "what-is-zonnic": 2,
+            "why-zonnic": 2
+          },
+          "pages": 3
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "signup-form",
+        "stats": {
+          "total": 184,
+          "perPage": {
+            "contact-us-testimonials": 23,
+            "homepage": 23,
+            "pouches-zonnic-mint-24-nicotine-pouches": 23,
+            "sign-up": 46,
+            "store-locator": 23,
+            "what-is-zonnic": 23,
+            "why-zonnic": 23
+          },
+          "pages": 7
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "login-form",
+        "stats": {
+          "total": 48,
+          "perPage": {
+            "contact-us-testimonials": 6,
+            "homepage": 6,
+            "pouches-zonnic-mint-24-nicotine-pouches": 6,
+            "sign-up": 6,
+            "store-locator": 6,
+            "testingblogarticletemplate": 6,
+            "what-is-zonnic": 6,
+            "why-zonnic": 6
+          },
+          "pages": 8
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "newsletter-form",
+        "stats": {
+          "total": 24,
+          "perPage": {
+            "testingblogarticletemplate": 24
+          },
+          "pages": 1
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "contact-form",
+        "stats": {
+          "total": 16,
+          "perPage": {
+            "contact-us-testimonials": 16
+          },
+          "pages": 1
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "product-hero",
+        "stats": {
+          "total": 1,
+          "perPage": {
+            "pouches-zonnic-mint-24-nicotine-pouches": 1
+          },
+          "pages": 1
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "store-locator",
+        "stats": {
+          "total": 1,
+          "perPage": {
+            "store-locator": 1
+          },
+          "pages": 1
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "location-selector",
+        "stats": {
+          "total": 24,
+          "perPage": {
+            "contact-us-testimonials": 3,
+            "homepage": 3,
+            "pouches-zonnic-mint-24-nicotine-pouches": 3,
+            "sign-up": 3,
+            "store-locator": 3,
+            "testingblogarticletemplate": 3,
+            "what-is-zonnic": 3,
+            "why-zonnic": 3
+          },
+          "pages": 8
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "mini-cart",
+        "stats": {
+          "total": 16,
+          "perPage": {
+            "contact-us-testimonials": 2,
+            "homepage": 2,
+            "pouches-zonnic-mint-24-nicotine-pouches": 2,
+            "sign-up": 2,
+            "store-locator": 2,
+            "testingblogarticletemplate": 2,
+            "what-is-zonnic": 2,
+            "why-zonnic": 2
+          },
+          "pages": 8
+        },
+        "variants": [
+          {
+            "name": "default",
+            "ok": true
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,161 +1,181 @@
-# Design System Audit — zonnic.ca/ca/en
+# Design System Audit — Zonnic Canada
 
-Raw designlang extraction (v12.1.0) without normalization. Issues are flagged for the `migration-design-system` phase to fix.
+Source extracted via `designlang@12.1.0` against `https://www.zonnic.ca/ca/en` and 2 internal pages, after age-gate bypass via cookie injection.
 
 ## Source Site Health
 
-**Grade:** C (71/100) — April 29, 2026
+**Internal grade:** C (qualitative — designlang's `grade` subcommand cannot pass cookies in v12 and so could not produce an authoritative report-card on this gated site; the figures below come from the main extraction's quality scores).
 
-| Dimension | Score | Verdict |
-|---|---:|---|
-| Color Discipline | 80/100 | Strong |
-| Typography Consistency | 35/100 | **Needs work** |
-| Spacing System | 85/100 | Strong |
-| Elevation (Shadows) | 78/100 | Adequate |
-| Border Radii | 90/100 | **Exemplary** |
-| Accessibility (token coverage) | 88/100 | Strong |
-| Tokenization | 75/100 | Adequate |
-| CSS Health | 35/100 | **Needs work** |
-
-## Strengths (designlang verdict)
-
-- Well-defined spacing scale (base unit 2 px detected)
-- Consistent border radii (7 distinct values, top two are `100 px` and `50 px` for pill buttons)
-- Good CSS variable tokenization (5 primitive vars in source)
-
-## Issues Flagged (by designlang)
-
-- 5 concurrent font families — recommend limiting to 2 (heading + body)
-- 8 font weights in use — recommend standardizing to 3 (regular, medium, bold)
-- 2 WCAG contrast failures (black text on `#182465` navy at ratio 1.48, 4 button instances)
-- 179 `!important` rules — specificity debt, must be cleaned in EDS migration
-- 92% of delivered CSS is unused (typical for legacy CSR component systems where each Handlebars component ships its own style bundle)
-- 11,611 duplicate CSS declarations — most likely per-component Shadow DOM leakage
+| Dimension | Score | Notes |
+|---|---|---|
+| Color discipline | Mixed | 27 unique colors; 5 primary roles | 
+| Type discipline | Weak | 6 families × 8 weights × 15 sizes |
+| Spacing discipline | Weak | 17-step scale, base 2px (effectively no scale) |
+| Shadow discipline | Mixed | 6 shadows, 3 distinct strengths |
+| Radius discipline | Weak | 7 distinct radii (1, 6, 14, 17, 20, 50, 100px) |
+| Z-index | Mixed | 22 layers, 1 stacking-order anomaly |
+| Accessibility | Weak | 4 contrast failures, 5 axe violations on sample |
+| Performance | Unknown | gated site blocks public PSI; needs a CrUX-based audit during Discovery |
 
 ## Foundations Extracted
 
-### Colors — 27 unique
+### Colors
 
-| Role | Hex | Usage Count |
-|---|---|---:|
-| Primary | `#182465` navy | 4,535 |
-| Secondary | `#3860be` mid-blue | 28 |
-| Accent | `#a0ff9d` mint green | 8 |
-| Error / promo red | `#e00830` | 880 |
-| Dark backgrounds | `#141e53`, `#252c68`, `#27455c` | 962 + 505 + 56 |
-| Grey text | `#616069` | 9,804 (most-used color on the page) |
-| Neutrals (n100–n1400) | 12 greyscale values | — |
+**Primitives:** 27 unique values
+**Semantic role assignments (designlang heuristic):**
 
-Full inventory in `migration-work/design-extract/zonnic-ca-design-language.md`.
+| Role | Hex | Usage count | Notes |
+|---|---|---|---|
+| primary | `#182465` | 3,776 | brand navy — dominant text, headings, footer bg |
+| primary-deep | `#141e53` | 803 | hover/active variant |
+| primary-darker | `#252d65` | 433 | secondary surface |
+| secondary | `#3860be` | 24 | mid-blue — used sparingly |
+| accent / mint | `#e3ffe2` | 7 | gradient end, badges |
+| accent-strong | `#a0ff9d` | 6 | callout strip |
+| success | `#4cae04` | 7 | confirmation states |
+| destructive | `#e00830` | 786 | error / warnings (incl. health-warning banner) |
+| brand-magenta | `#ad1f8c` | 40 | one-off accent (campaign page) |
+| neutral-90 | `#000000` | 1,275 | body text |
+| neutral-80 | `#2f2f2f` | 1,018 | secondary text |
+| neutral-60 | `#3a3a3f` | 134 | borders |
+| neutral-50 | `#616069` | 7,844 | placeholder text, muted body |
+| neutral-40 | `#555555` | 186 | --- |
+| neutral-30 | `#808080` | 63 | --- |
+| neutral-20 | `#9a9ca8` | 30 | dividers |
+| neutral-15 | `#dedede` | 74 | --- |
+| neutral-10 | `#ebecf1` | 77 | card surface |
+| neutral-05 | `#f6f6f6` | 265 | section banding |
+| neutral-00 | `#ffffff` | 1,995 | page background |
 
-### Typography — 15 sizes, 8 weights, 5 families
+**Issues:**
+- 4 contrast failures flagged on the source itself
+- Multiple near-duplicate navies (`#182465`, `#141e53`, `#252d65`, `#252c68`) — three are within 5 ΔE of each other
+- Multiple near-duplicate greys (`#555555`/`#616069`/`#666666`)
+- Magenta (`#ad1f8c`) appears on a single archived campaign page
 
-| Family | Usage | Role |
+### Typography
+
+**Font families** (in order of use):
+
+| Family | Uses | Notes |
 |---|---|---|
-| `Santral` | 10,218 elements | primary brand font (custom) |
-| `Arial` | 440 elements | legacy fallback, non-hosted |
-| `Times` | 298 elements | legacy (likely default-browser leak in OneTrust panel) |
-| `Font Awesome 5 Free` | 22 elements | icon font |
-| `sans-serif` | 8 elements | raw system fallback |
+| **Santral** | 8,442 | Brand custom; needs license confirmation + self-host pipeline |
+| Arial | 363 | Fallback inheritance |
+| Times New Roman / Times | 260 | One-off (likely the regulator boilerplate at the page foot) |
+| Font Awesome 5 Free | 12 | Icon font — replaceable with inline SVG |
+| sans-serif | 6 | Fallback |
 
-Heading scale (heavy one-offs): 42 / 34 / 32 / 30 / 24 / 22 / 20 / 18 / 16 / 15 / 14.4 / 14 / 13.6 / 13.008 / 12.992 / 12 / 10.
+**Heading scale:**
 
-Weights in use: 100, 300, 400, 500, 600, 700, 800, 900 (all eight).
+| Level | Size | Weight | Line-height | Letter-spacing |
+|---|---|---|---|---|
+| h1 | 42px | 800 | 46px | normal |
+| h1 (alt) | 34px | 800 | 40px | normal |
+| h2 | 32px | 800 | 40px | normal |
+| h2 (alt) | 22px | 800 | 26px | 0.5px |
+| h4 | 20px | 700 | 28px | normal |
 
-### Spacing — 18 distinct values
+**Body:** 16px / 400 / normal line-height
 
-`0, 38, 48, 55, 60, 70, 78, 95, 102, 120, 123, 140, 203, 207, 213, 236, 256, 320` (px). designlang infers a 2 px base unit. Multiples of 8 px would tidy this (48, 56, 72, 80, 96, 104, 120, 128, 208, 256, 320).
+**Issues:**
+- 6 families in use → normalize to **1 (Santral)** + system fallback stack
+- 8 distinct font weights in use → normalize to **3 (400 / 700 / 800)**
+- 15 type sizes → normalize to a **6-step modular scale** (12, 14, 16, 20, 24, 32, 42)
+- No fluid type — every size is a literal pixel value
 
-### Shadows — 10 distinct
+### Spacing
 
-Span from `sm` (2 px blur) to `lg` (18 px blur). Multiple `md` definitions differ only by color alpha; candidates for consolidation.
+**Base unit:** 2px (effectively no enforced scale)
+**Scale found:** 0, 38, 48, 55, 60, 70, 80, 95, 102, 120, 123, 140, 203, 207, 236, 256, 320 px
 
-### Border Radii — 7 distinct
+**Issues:**
+- 17 spacing values, several within 5px of each other (38/48, 55/60, 95/102)
+- No 4-step or 8-step grid evident; spacing is ad hoc
+- Normalize target: **8-step (4, 8, 16, 24, 32, 48, 64, 96)** + a 2-step macro scale (160, 240) for hero gutters
 
-`1 px, 6 px, 14 px, 17 px, 20 px, 50 px, 100 px`. The two "full" values (`50/100 px`) and the two "xl" values (`17/20 px`) overlap; easy to consolidate.
+### Shadows
+
+6 distinct shadows across 3 strength tiers. Examples:
+- `sm` — `rgba(47,47,47,0.3) 0 2px 5px 0`
+- `md` — `rgb(153,153,153) 0 2px 10px -3px`
+- Several variants of `md` differ only by a few percentage points — consolidate to **2 shadows (sm, md)**.
+
+### Radii
+
+`1`, `6`, `14`, `17`, `20`, `50`, `100` px — 7 distinct values. Normalize to `xs/sm/md/lg/full = 2/6/14/24/9999`.
 
 ### Motion
 
-Durations: `0.1s / 0.2s / 0.25s / 0.3s / 0.5s / 0.6s`. Easings mostly `ease` + `ease-in` + `ease-in-out`. 13 keyframe animations defined; most are unused (`bounce-arrow`, `showHours`, `rotateGeoloc`, OneTrust floating button intros, etc.).
+Token JSON detected (`zonnic-ca-motion-tokens.json`) but motion patterns are sparse — fades + scroll-driven reveal carousel. Standard `ease-out 200/300/450ms` token set will cover migration needs.
 
-## Accessibility (designlang token contrast check)
+## Accessibility
 
-- **Score:** 88/100 — 4 / 5 distinct token pairs pass WCAG AA at normal text.
-- **Failing pair:** `#000000` on `#182465` (ratio 1.48, 4 button instances) — suggested remediation: swap foreground to `#ffffff` (ratio 14.2).
+**Source axe-core violations (8 sample pages):**
 
-## Runtime Accessibility (axe-core, 10 templates scanned)
+| Rule | Impact | Pages |
+|---|---|---|
+| `link-name` | serious | why-zonnic |
+| `definition-list` | serious | why-zonnic |
+| `autocomplete-valid` | serious | sign-up |
+| `button-name` | critical | sign-up |
+| `label` | critical | contact-us-testimonials |
 
-- **Pages scanned:** 10
-- **Total violations:** 9
-- **By severity:** 3 critical, 11 serious (some pages contribute multiple rule hits), 0 moderate, 0 minor
-- **Incomplete checks (need manual review):** 20
+**Plus** 4 contrast failures and 18 axe "incomplete" findings (need manual review).
 
-**By rule (aggregated count):**
+**WCAG pass rate (designlang DESIGN.md heuristic):** 78%
 
-| Rule | Hits |
-|---|---:|
-| `link-name` | 7 |
-| `autocomplete-valid` | 2 |
-| `button-name` | 2 |
-| `definition-list` | 1 |
-| `aria-hidden-focus` | 1 |
-| `label` | 1 |
-
-See `./migration-work/a11y/summary.json` for per-page breakdown. None of these are blocking for EDS — all can be fixed during block development with standard semantic HTML + ARIA attributes.
+The migration normalisation removes the 4 contrast failures by tightening neutral text to ≥ AA against backgrounds, and the new EDS forms (sign-up, contact, newsletter) will be accessibility-tested in Phase 5.
 
 ## Tech Stack Fingerprint
 
-- **CMS / delivery (source):** Adobe Experience Manager (AEM) author + publish, confirmed by the `content-path: /content/zonnic/ca/en/ca/en` meta tag and the `/content/zonnic/...` asset paths in the DOM.
-- **Client-side layer (source):** A custom CSR (client-side-rendering) layer built on **Handlebars templates**, with components named `bat-*` (British American Tobacco design system). These are plain DOM elements produced by Handlebars in the browser, **not** Lit/Stencil custom Web Components. The client-side script fetches JSON from AEM and renders the `bat-*` templates into the DOM.
-- **Target:** AEM Edge Delivery Services — replacing the CSR layer with server-rendered EDS blocks, with authoring continuing from AEM (or moved to Docs/Drive/SharePoint at client's discretion).
-- **Analytics (client-handled):** Google Analytics (GTM), Adobe Analytics (Omniture + Target + Audience Manager via DTM), ContentSquare, Meta Pixel — vendor snippets handled outside this migration.
-- **CDN:** Whatever AEM publish runs on today (typically Fastly/Akamai via Dispatcher).
-
-## Third-Party Integrations — NOT IN MIGRATION SCOPE
-
-> **Scope clarification (from client):** the integrations listed below are out of scope for this migration. The client will provide the vendor HTML/JS snippet for each one. The migration team's responsibility is a **drop-in** only: paste the snippet into the correct location and ensure it loads without breaking Lighthouse 100.
-
-**14 primary vendor snippets** expected across 25 unique origins observed in HAR (chained calls count as one snippet). Full origin list in `migration-work/verification/third-party-inventory.md`.
-
-| Vendor / snippet | Purpose | Expected placement | Notes |
-|---|---|---|---|
-| OneTrust | consent | `delayed.js` OR eager if vendor demands it | Downstream tags gate on the consent cookie it sets |
-| Salesforce (login / chat) | auth + messaging | Dropped into `signup-form`, `login-form`, `password-reset-form` blocks + `delayed.js` for chat widget | Form POST endpoints preserved as-is |
-| Qualtrics Site Intercept | survey | `delayed.js` (after consent) | — |
-| AEM.live RUM | performance telemetry | eager — already in `aem.js` | No client snippet needed |
-| ContentSquare | UX analytics | `delayed.js` | — |
-| Adobe DTM | tag manager | `delayed.js` (chains Target, AAM, Analytics, ads) | — |
-| Google Tag Manager | tag manager | `delayed.js` | — |
-| Adobe Target | experimentation | `delayed.js` (accept flicker) | If eager placement is required, budget performance trade-off |
-| Adobe Audience Manager | DMP | chains from DTM | No direct snippet |
-| Meta Pixel / DoubleClick / other ad pixels | advertising | chain from GTM/DTM | No direct snippets |
-| `ssapi.vuse.com` | subscription API | wired into forms where needed | Client confirms whether still required post-migration |
-| Mapbox | maps | dropped into `store-locator` block | Client provides token; block lazy-loads via `IntersectionObserver` |
-| PriceSpider | where-to-buy widget | dropped into product pages if retained | Client-decides retention |
-| `unpkg.com` / `npmcdn.com` | JS CDN | self-hosted copy | Migration team removes second-origin dependency |
-
-**Per-snippet effort:** XS (0.5–2h) to place and verify each one. No architectural work, no vendor negotiation. See [05-work-items.md](05-work-items.md) `BUILD-INT-*`.
-
-## Backend Dependencies
-
-Features that are currently client-side rendered (Handlebars) against AEM content — EDS alternatives below.
-
-| Feature | Current approach | EDS alternative |
+| Layer | Detected | Migration target |
 |---|---|---|
-| Age gate | Handlebars component + cookie memory | Eager-loaded EDS block reading a cookie (same contract) |
-| Login / signup / password reset | Salesforce-hosted flows triggered by forms | Client-provided Salesforce snippet dropped into EDS form blocks |
-| Newsletter signup | Form POST to Salesforce endpoint | Same endpoint, called from EDS `signup-form` block |
-| Store locator | Static JSON + Mapbox | EDS block reading JSON + client-provided Mapbox snippet |
-| Live chat | Salesforce embedded messaging snippet | Same snippet via `delayed.js` |
-| Personalization / A/B | Adobe Target | Client-provided Target snippet via `delayed.js` |
+| CMS | AEM as a Cloud Service (BAT global platform) | AEM Edge Delivery (this project) |
+| Component library | Custom `bat-*` web components (HBS templates rendered server-side) | EDS blocks (vanilla JS + scoped CSS) |
+| CSS approach | Inline + linked stylesheets, 179 `!important` rules | Buildless, block-isolated CSS, no `!important` |
+| JS framework | Custom BAT framework | Vanilla ES6+, no transpiling |
+| Personalisation | Adobe Target + Audience Manager | EDS A/B + audiences (or maintain Adobe Target via `delayed.js`) |
+| Analytics | Adobe Analytics + GA4 + Meta Pixel + ContentSquent | Same vendors via `delayed.js` |
+| Consent | OneTrust | OneTrust (loaded ≥ 3s after LCP) |
+| CDN | (incapsula edge) + Adobe CDN | hlx/aem.live CDN |
 
-> Confidence on backend inferences: **MEDIUM** — confirmed that integrations are drop-in snippets, not custom-engineered systems. Per-vendor snippet contents should be collected during Discovery (DISC-08).
+## Third-Party Integrations Detected (28 origins)
 
-## Files referenced
+| Service | Category | Pages | Current loading | Migration strategy |
+|---|---|---|---|---|
+| Adobe DTM/Launch (`assets.adobedtm.com`) | analytics | 8/8 | render-blocking | move to `delayed.js`, web-worker if possible |
+| Adobe Audience Manager (`dpm.demdex.net`, `batgsd.demdex.net`) | analytics | 8/8 | render-blocking | `delayed.js` |
+| Adobe Analytics (`britishamericanshare.tt.omtrdc.net`) | analytics | 8/8 | render-blocking | `delayed.js` |
+| Adobe Advertising Cloud (`cm.everesttech.net`) | analytics | 8/8 | render-blocking | `delayed.js` |
+| Adobe Adcoud / Audience (`batgsdzoonicprodcanada.112.2o7.net`) | analytics | 8/8 | render-blocking | `delayed.js` |
+| Google Tag Manager (`www.googletagmanager.com`) | analytics | 8/8 | render-blocking | `delayed.js` |
+| Google DoubleClick (`cm.g.doubleclick.net`) | analytics | 8/8 | render-blocking | `delayed.js` |
+| Meta Pixel (`connect.facebook.net`) | analytics | 8/8 | render-blocking | `delayed.js` |
+| ContentSquare (`*.contentsquare.net`) | analytics / RUM | 8/8 | render-blocking | `delayed.js` |
+| OneTrust (`cdn.cookielaw.org`, `geolocation.onetrust.com`) | consent | 8/8 | render-blocking | per-block lazy + `delayed.js` |
+| Qualtrics SiteIntercept (`*.qualtrics.com`) | survey | 8/8 | render-blocking | `delayed.js`, behind feature flag |
+| Salesforce Site (`bat-sea.my.site.com`) | account / forms | 7/8 | embedded | API integration via EDS form block |
+| Salesforce Embedded Messaging (`bat-sea.my.salesforce-scrt.com`) | chat | 7/8 | render-blocking | `delayed.js` ≥ 3s after LCP |
+| BAT internal (`ssapi.vuse.com`) | unknown / shared backend | 8/8 | XHR | confirm with platform team |
+| Mapbox (`api.mapbox.com`) | maps | 1/8 (store-locator) | block-scoped | EDS map block, lazy-loaded via IntersectionObserver |
+| PriceSpider (`cdn.pricespider.com`, `wtbevents.pricespider.com`) | commerce widget | 1/8 (product-detail) | block-scoped | EDS commerce block, lazy-loaded |
+| AdSrvr / AppNexus / Avocet (`adsrvr.org`, `adnxs.com`, `avocet.io`) | ad tech / programmatic | 8/8 | render-blocking | review with marketing — likely retire |
+| unpkg / npmcdn | cdn | 1/8 | render-blocking | inline or self-host |
+| **Adobe EDS RUM** (`rum.hlx.page`) | RUM | 8/8 | edge-pixel | inherit on EDS migration ✓ |
 
-- `migration-work/design-extract/zonnic-ca-design-language.md` (full narrative)
-- `migration-work/design-extract/zonnic-ca-design-tokens.json` (W3C DTCG tokens)
-- `migration-work/design-extract/zonnic-ca-anatomy.tsx` (thin — only Card + Button)
-- `migration-work/design-extract/zonnic-ca-grade.html` (shareable grade card)
-- `migration-work/verification/third-party-inventory.md` (full per-origin table)
-- `migration-work/a11y/summary.json` (runtime axe-core results)
+The presence of `rum.hlx.page` is interesting — the BAT platform appears to already be experimenting with EDS instrumentation; the migration may have a friendlier hand-off than expected.
+
+## Backend Dependencies (server-side features that need alternatives)
+
+| Feature | Today | EDS approach |
+|---|---|---|
+| Age gate (province + DOB selection) | Server-side BAT component sets `age_verify`, `regionCode`, `setStore`, `webSite` cookies and gates content | **Edge worker / middleware**: a lightweight CDN function intercepts requests; if `age_verify` cookie is missing redirects to a static `/age-gate` page that, on accept, sets the cookies and redirects back. EDS routes themselves stay static. |
+| Province / region routing | Cookie + URL prefix (`/ca/en`) drives store-list, retailer integrations | EDS `/ca/en` routes; province held in a single signed cookie; per-province content selected via section metadata or a `region` block-variant |
+| Sign-up (account creation) | Posts to Salesforce Site API (`bat-sea.my.site.com`) | EDS form block + Salesforce REST API call from a serverless function (Cloudflare Worker / hlx function) |
+| Newsletter signup | Salesforce Site form post | Same form-block pattern |
+| Store locator | Custom widget calling Mapbox + a BAT store-list API | EDS `store-locator` block: Mapbox GL + JSON store data published to `/stores.json` |
+| Online purchase ("Buy now") | PriceSpider widget bridging to Felix retailer | EDS `commerce` block: lazy-loaded PriceSpider iframe + analytics events |
+| Embedded chat | Salesforce Embedded Messaging | `delayed.js` injection |
+| Personalisation / experiments | Adobe Target | Either keep Adobe Target loaded via `delayed.js`, or move to EDS A/B testing — Discovery decision |
+| Search (HELP / FAQ) | Native AEM search | EDS site search via published JSON index + client-side filtering |
+| Privacy / cookie preferences | OneTrust SDK | OneTrust SDK loaded by `delayed.js` |

@@ -7,7 +7,7 @@
       "color": {
         "brand": {
           "secondary": {
-            "$value": "#a0ff9d"
+            "$value": "#e3ffe2"
           }
         },
         "neutral": {
@@ -31,9 +31,6 @@
           },
           "n1000": {
             "$value": "#dedede"
-          },
-          "n1100": {
-            "$value": "#a6a6a6"
           }
         },
         "background": {
@@ -45,9 +42,17 @@
           },
           "bg4": {
             "$value": "#141e53"
+          }
+        },
+        "text": {
+          "text3": {
+            "$value": "#ffffff"
           },
-          "bg5": {
-            "$value": "#ededed"
+          "text4": {
+            "$value": "#141e53"
+          },
+          "text5": {
+            "$value": "#2f2f2f"
           }
         }
       },
@@ -56,74 +61,47 @@
           "$value": "0px"
         },
         "s1": {
-          "$value": "4px"
+          "$value": "28px"
         },
         "s2": {
-          "$value": "10px"
-        },
-        "s3": {
-          "$value": "18px"
-        },
-        "s4": {
-          "$value": "22px"
-        },
-        "s5": {
-          "$value": "30px"
-        },
-        "s6": {
-          "$value": "34px"
-        },
-        "s7": {
-          "$value": "38px"
-        },
-        "s8": {
           "$value": "40px"
         },
-        "s9": {
-          "$value": "42px"
-        },
-        "s10": {
+        "s3": {
           "$value": "48px"
         },
-        "s11": {
+        "s4": {
           "$value": "55px"
         },
-        "s12": {
-          "$value": "57px"
-        },
-        "s13": {
+        "s5": {
           "$value": "60px"
         },
-        "s14": {
+        "s6": {
           "$value": "70px"
         },
-        "s15": {
+        "s7": {
           "$value": "95px"
         },
-        "s16": {
+        "s8": {
           "$value": "102px"
         },
-        "s17": {
+        "s9": {
           "$value": "120px"
         },
-        "s18": {
-          "$value": "123px"
-        },
-        "s19": {
+        "s10": {
           "$value": "140px"
         },
-        "s20": {
+        "s11": {
           "$value": "203px"
         }
       },
       "radius": {
         "r0": {
-          "$value": "2px"
+          "$value": "3px"
         },
-        "r3": {
-          "$value": "50px"
+        "r1": {
+          "$value": "14px"
         },
-        "r4": {
+        "r2": {
           "$value": "100px"
         }
       },
@@ -142,11 +120,11 @@
         }
       },
       "fontFamily": {
+        "f2": {
+          "$value": "Times"
+        },
         "f3": {
           "$value": "Font Awesome 5 Free"
-        },
-        "f4": {
-          "$value": "sans-serif"
         }
       }
     },

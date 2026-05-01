@@ -1,0 +1,26 @@
+<!-- store-locator — variant: default -->
+<!-- sample page: store-locator -->
+<!-- selector: bat-mapboxstorelocator-zonnic -->
+<bat-mapboxstorelocator-zonnic class="bat d-block d-sm-block d-md-block d-lg-block d-xl-block margin-xsmall ready loaded" data-template-url="/content/dam/zonnic/components/content/mapboxstorelocator/zonnic/template.hbs" data-component-name="mapBoxStorelocator" data-logic-url="/content/dam/zonnic/components/content/mapboxstorelocator/zonnic/logic.js" data-model="{&quot;subtitle&quot;:&quot;Simply enter an address and check out the listings on the map. To purchase ZONNIC at a pharmacy, please ask your pharmacist. New locations added weekly. ⭐ In stock and ready for you — shop with confidence.&quot;,&quot;jsonpath&quot;:&quot;/content/dam/zonnic-content/ca/2026/store-locator/Zonnic pharma only - Store locator - 2026-4-21.json&quot;,&quot;ctaGetDirections&quot;:&quot;Get directions&quot;,&quot;textColor&quot;:&quot;rgb(24,36,101)&quot;,&quot;accesstoken&quot;:&quot;REDACTED_MAPBOX_TOKEN&quot;,&quot;xcoordinate&quot;:&quot;-106.346771&quot;,&quot;currentLocation&quot;:&quot;Use current location&quot;,&quot;zoom&quot;:&quot;5&quot;,&quot;style&quot;:&quot;mapbox://styles/bat-canada/clpjy073g00ec01p8991u5rf9&quot;,&quot;title&quot;:&quot;FIND A STORE NEAR YOU&quot;,&quot;placeholder&quot;:&quot;Enter address&quot;,&quot;waypoint&quot;:&quot;false&quot;,&quot;viewportBehaviour&quot;:&quot;same&quot;,&quot;ycoordinate&quot;:&quot;56.130367&quot;,&quot;sameSpacing&quot;:{&quot;spacing&quot;:&quot;margin-xsmall&quot;},&quot;differentSpacing&quot;:{&quot;xSmallSpacing&quot;:&quot;xs-margin-small&quot;,&quot;smallSpacing&quot;:&quot;sm-margin-none&quot;,&quot;xLargeSpacing&quot;:&quot;xl-margin-none&quot;,&quot;mediumSpacing&quot;:&quot;md-margin-none&quot;,&quot;largeSpacing&quot;:&quot;lg-margin-none&quot;},&quot;hideShow&quot;:{&quot;smallVisibility&quot;:&quot;d-sm-block&quot;,&quot;xLargeVisibility&quot;:&quot;d-xl-block&quot;,&quot;mediumVisibility&quot;:&quot;d-md-block&quot;,&quot;xSmallVisibility&quot;:&quot;d-block&quot;,&quot;largeVisibility&quot;:&quot;d-lg-block&quot;},&quot;analytics&quot;:{}}" data-design-package="/content/dam/zonnic/components/content/mapboxstorelocator/zonnic" data-server-hbs-enabled="false"><style>
+	.bat-storelocator {
+        --mapbbox-search-color: rgb(24,36,101);
+	}
+</style>
+
+<div class="bat-storelocator">
+    <div class="bat-storelocator--container">
+        <div class="bat-storelocator--search">
+			<h1 class="bat-storelocator--title">FIND A STORE NEAR YOU</h1>
+			<p class="bat-storelocator--subtitle">Simply enter an address and check out the listings on the map. To purchase ZONNIC at a pharmacy, please ask your pharmacist. New locations added weekly. ⭐ In stock and ready for you — shop with confidence.</p>
+			<div class="bat-storelocator--geocoder"></div>
+			<a href="javascript:;" class="bat-storelocator--getloc">
+				<span class="bat-icon icon-stores"></span>
+				<span class="bat-storelocator--getloc-label">Use current location</span>
+			</a>
+        </div>
+        <div id="map" class="bat-storelocator--map mapboxgl-map"><div class="mapboxgl-canary" style="visibility: hidden;"></div><div class="mapboxgl-canvas-container mapboxgl-interactive"><canvas class="mapboxgl-canvas" tabindex="0" aria-label="Map" role="region" width="1810" height="1200" style="width: 905px; height: 600px;"></canvas></div><div class="mapboxgl-control-container"><div class="mapboxgl-ctrl-top-left"></div><div class="mapboxgl-ctrl-top-right"></div><div class="mapboxgl-ctrl-bottom-left"></div><div class="mapboxgl-ctrl-bottom-right"></div></div></div>
+		<div class="bat-storelocator--viewbox">
+			<ul class="bat-storelocator--listing"></ul>
+		</div>
+    </div>
+</div></bat-mapboxstorelocator-zonnic>

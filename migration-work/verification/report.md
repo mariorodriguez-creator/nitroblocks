@@ -7,34 +7,31 @@
 | Dimension | Confidence | Reason |
 |---|---|---|
 | page_inventory | **HIGH** | corroborated |
-| bypass_integrity | **LOW** | overlay fingerprints leaked into extraction; bypass probe did not verify |
+| bypass_integrity | **LOW** | overlay fingerprints leaked into extraction |
 | design_tokens | **HIGH** | corroborated |
-| component_anatomy | **LOW** | anatomy does not reflect DOM evidence |
-| template_coverage | **MEDIUM** | partial evidence |
+| component_anatomy | **MEDIUM** | anatomy.tsx undersupplied; rely on *-screenshots.json and DOM structure |
+| template_coverage | **LOW** | weak evidence |
 | third_party_integrations | **LOW** | no direct evidence |
-| accessibility | **LOW** | 3 critical WCAG violation(s) at runtime |
+| accessibility | **LOW** | 2 critical WCAG violation(s) at runtime |
 | visual_reference | **HIGH** | corroborated |
 
 ## Evidence summary
 
 ### Page inventory (sitemap)
 
-- Total URLs discovered: 142
-- After filtering: 106
-- Template groups: 25
-- Representative URLs: 25
+- Total URLs discovered: 94
+- After filtering: 92
+- Template groups: 23
+- Representative URLs: 23
 - Exclusions by reason:
-  - test-page: 6
-  - test-bucket: 1
-  - test-ip: 1
-  - locale-mismatch: 28
+  - test-page: 2
 
 ### Bypass
 
 - Overlays detected: age-gate, cookie-consent, salesforce-chat, location-selector
-- Probe verified: no
-- Post-extraction leak check: **FAIL** (2 keyword hits)
-  - Critical categories: consent-banner, chat-widget
+- Probe verified: yes
+- Post-extraction leak check: **FAIL** (1 keyword hits)
+  - Critical categories: consent-banner
 
 ### Design token consistency across templates
 
@@ -43,28 +40,32 @@
 
 ### Component anatomy vs DOM evidence
 
-- Signal: LOW
+- Signal: UNDERSUPPLIED
+- Anatomy components: 2
+- DOM organisms: 8
 - DOM patterns covered by anatomy: 0%
 - Anatomy-only organisms: 2
 - DOM-only organisms: 8
 
+> `anatomy.tsx` is a supplementary source and is thinly populated here. Use `*-screenshots.json` + DOM structure aggregate + `identify-page-structure` output as the primary component inventory.
+
 ### Runtime accessibility
 
-- Pages scanned: 10
-- Total violations: 9
-- Critical: 3 · Serious: 11 · Moderate: 0 · Minor: 0
+- Pages scanned: 8
+- Total violations: 5
+- Critical: 2 · Serious: 5 · Moderate: 0 · Minor: 0
 
 ### Scrape coverage
 
-- Representative URLs: 25
-- Pages successfully scraped: 10
-- Coverage: 40%
+- Representative URLs: 23
+- Pages successfully scraped: 8
+- Coverage: 35%
 
 ### Visual reference (screenshots)
 
-- Total screenshot files: 75
-- By viewport: mobile 25, tablet 25, desktop 25
-- Templates fully covered (mobile + tablet + desktop): 25 / 25
+- Total screenshot files: 69
+- By viewport: mobile 23, tablet 23, desktop 23
+- Templates fully covered (mobile + tablet + desktop): 23 / 23
 - Partially covered: 0
 - Missing entirely: 0
 - Coverage (all-3-viewports / expected): 100%

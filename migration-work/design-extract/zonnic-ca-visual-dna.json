@@ -19,11 +19,11 @@
   },
   "imageryStyle": {
     "label": "photography",
-    "confidence": 0.375,
+    "confidence": 0.4,
     "counts": {
-      "total": 16,
+      "total": 15,
       "svg": 2,
-      "icon": 2,
+      "icon": 1,
       "hero": 4,
       "screenshot": 0,
       "photoLike": 10
@@ -62,7 +62,7 @@
     },
     "gradientTotals": {
       "radial": 0,
-      "linear": 16
+      "linear": 12
     },
     "samples": []
   }

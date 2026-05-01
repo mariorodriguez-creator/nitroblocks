@@ -43,7 +43,7 @@ export default {
             '800': 'hsl(118, 100%, 24%)',
             '900': 'hsl(118, 100%, 16%)',
             '950': 'hsl(118, 100%, 10%)',
-            DEFAULT: '#a0ff9d'
+            DEFAULT: '#e3ffe2'
         },
         'neutral-50': '#616069',
         'neutral-100': '#ffffff',
@@ -67,7 +67,7 @@ export default {
             'Font Awesome 5 Free',
             'sans-serif'
         ],
-        font4: [
+        font5: [
             'sans-serif',
             'sans-serif'
         ]
@@ -89,12 +89,6 @@ export default {
             '16px',
             {
                 lineHeight: 'normal'
-            }
-        ],
-        '18': [
-            '18px',
-            {
-                lineHeight: '25px'
             }
         ],
         '20': [
@@ -164,6 +158,12 @@ export default {
             {
                 lineHeight: '19.512px'
             }
+        ],
+        '12.992': [
+            '12.992px',
+            {
+                lineHeight: '19.488px'
+            }
         ]
     },
     spacing: {
@@ -172,7 +172,7 @@ export default {
         '24': '48px',
         '30': '60px',
         '35': '70px',
-        '39': '78px',
+        '40': '80px',
         '51': '102px',
         '60': '120px',
         '70': '140px',
@@ -183,8 +183,7 @@ export default {
         '95px': '95px',
         '123px': '123px',
         '203px': '203px',
-        '207px': '207px',
-        '213px': '213px'
+        '207px': '207px'
     },
     borderRadius: {
         xs: '1px',

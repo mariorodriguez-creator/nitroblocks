@@ -26,6 +26,8 @@
  */
 
 import { chromium } from 'playwright';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { join } from 'node:path';
 
 const URL_ARG = process.argv[2];
 if (!URL_ARG) {
@@ -307,84 +309,202 @@ async function discoverBypassCookies(page) {
 }
 
 // ---------------------------------------------------------------------------
-// Stage 2: Validate
+// Stage 1b: Interaction bypass — click through age gate / location selector
+// to capture the real cookies the site sets. This is the most reliable way
+// to find the bypass mechanism because guessed cookie names often don't match.
+//
+// Strategy:
+//   - Navigate fresh, wait for hydration
+//   - If a location <select> is present inside the agegate/location element,
+//     pick the first non-placeholder option and dispatch change
+//   - Find a button whose text looks like "confirm / yes / enter / submit"
+//     and click it
+//   - Wait for the overlay to disappear, then diff cookies before/after
+//
+// Returns the NEW cookies observed after interaction and a full Playwright
+// storageState that can be fed to designlang via --cookie-file.
 // ---------------------------------------------------------------------------
 
-async function validateBypass(browser, url, probeResult) {
-  const { bypassCookies, hideCssSelectors } = probeResult;
-  if (bypassCookies.length === 0 && probeResult.detected.length === 0) {
-    return { verified: true, contentHeight: 0 };
-  }
-
-  const domain = new URL(url).hostname;
-  const dotDomain = domain.startsWith('.') ? domain : `.${domain}`;
-
+async function interactionBypass(browser, url) {
   const context = await browser.newContext({
     userAgent:
       'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 ' +
       '(KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36',
   });
-
-  // Inject bypass cookies
-  const playwrightCookies = bypassCookies.map((c) => ({
-    name: c.name,
-    value: c.value,
-    domain: dotDomain,
-    path: '/',
-  }));
-  if (playwrightCookies.length > 0) {
-    await context.addCookies(playwrightCookies);
-  }
-
   const page = await context.newPage();
-
-  // Inject hide CSS before navigation
-  const hideCSS = `${hideCssSelectors.join(', ')} { display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; }`;
-  await page.addInitScript((css) => {
-    const style = document.createElement('style');
-    style.textContent = css;
-    document.documentElement.appendChild(style);
-  }, hideCSS);
 
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
     await page.waitForTimeout(3000);
+  } catch (err) {
+    process.stderr.write(`[bypass] Interaction navigation failed: ${err.message}\n`);
+    await context.close();
+    return { newCookies: [], storageState: null };
+  }
 
-    // Check if main content is visible (scroll height > viewport)
-    const metrics = await page.evaluate(() => ({
-      scrollHeight: document.body.scrollHeight,
-      viewportHeight: window.innerHeight,
-      hasMainContent:
-        document.body.scrollHeight > window.innerHeight * 1.5,
-    }));
+  const before = await context.cookies();
+  const beforeNames = new Set(before.map((c) => c.name));
 
-    // Check that no detected overlay selectors are still visible
-    let overlaysGone = true;
-    for (const type of probeResult.detected) {
-      const config = OVERLAY_DETECTORS[type];
-      if (!config) continue;
-      for (const sel of config.selectors) {
-        const visible = await page
-          .locator(sel)
-          .first()
-          .isVisible()
-          .catch(() => false);
-        if (visible) {
-          overlaysGone = false;
-          break;
+  // 1. Select first non-placeholder option in any dropdown inside known
+  //    overlay containers (age gate / location selector).
+  try {
+    await page.evaluate(() => {
+      const OVERLAY_CONTAINERS = [
+        'bat-agegate-zonnic',
+        '[class*="agegate"]',
+        '[data-component-name="ageGate"]',
+        '[class*="locationselector"]',
+        'bat-locationselector-zonnic',
+      ];
+      for (const sel of OVERLAY_CONTAINERS) {
+        const container = document.querySelector(sel);
+        if (!container) continue;
+        const select = container.querySelector('select');
+        if (select && select.options.length > 0) {
+          const idx = select.options.length > 1 ? 1 : 0;
+          select.value = select.options[idx].value;
+          select.dispatchEvent(new Event('change', { bubbles: true }));
         }
       }
+    });
+    await page.waitForTimeout(400);
+  } catch { /* tolerate */ }
+
+  // 2. Click the confirm/yes/enter button inside the overlay.
+  let clickedText = null;
+  try {
+    clickedText = await page.evaluate(() => {
+      const OVERLAY_CONTAINERS = [
+        'bat-agegate-zonnic',
+        '[class*="agegate"]',
+        '[data-component-name="ageGate"]',
+        '[class*="locationselector"]',
+        'bat-locationselector-zonnic',
+      ];
+      const POSITIVE = /\b(confirm|submit|continue|enter|yes|i am|over|agree|accept|ok)\b/i;
+      const NEGATIVE = /\b(no|cancel|back|leave|exit|under)\b/i;
+
+      for (const sel of OVERLAY_CONTAINERS) {
+        const container = document.querySelector(sel);
+        if (!container) continue;
+        const candidates = Array.from(
+          container.querySelectorAll('button, [role="button"], a.button, a.cta, a[class*="cta"]'),
+        );
+        const confirm = candidates.find((b) => {
+          const t = (b.textContent || '').trim();
+          return POSITIVE.test(t) && !NEGATIVE.test(t);
+        });
+        if (confirm) {
+          confirm.click();
+          return (confirm.textContent || '').trim().slice(0, 60);
+        }
+      }
+      return null;
+    });
+    if (clickedText) {
+      process.stderr.write(`[bypass] Clicked overlay button: "${clickedText}"\n`);
+      await page.waitForTimeout(3500);
     }
+  } catch (err) {
+    process.stderr.write(`[bypass] Interaction click error: ${err.message}\n`);
+  }
+
+  const after = await context.cookies();
+  const newCookies = after.filter((c) => !beforeNames.has(c.name));
+
+  // Also accept cookies where value changed significantly (e.g. placeholder → real value).
+  const changedCookies = after.filter((c) => {
+    const prev = before.find((p) => p.name === c.name);
+    return prev && prev.value !== c.value && /age|region|store|site|locat|consent/i.test(c.name);
+  });
+  for (const c of changedCookies) {
+    if (!newCookies.some((n) => n.name === c.name)) newCookies.push(c);
+  }
+
+  // Confirm the overlay is actually gone now.
+  const overlayGone = await page.evaluate(() => {
+    const sels = [
+      'bat-agegate-zonnic',
+      '[class*="agegate"]',
+      '[data-component-name="ageGate"]',
+    ];
+    for (const sel of sels) {
+      const el = document.querySelector(sel);
+      if (!el) continue;
+      const style = window.getComputedStyle(el);
+      const visible =
+        style.display !== 'none' &&
+        style.visibility !== 'hidden' &&
+        el.offsetHeight > 50;
+      if (visible) return false;
+    }
+    return true;
+  });
+
+  const storageState = await context.storageState();
+  await context.close();
+
+  process.stderr.write(
+    `[bypass] Interaction bypass: ${newCookies.length} new/changed cookie(s), overlay gone: ${overlayGone}\n`,
+  );
+  for (const c of newCookies) {
+    process.stderr.write(`[bypass]   ${c.name}=${String(c.value).slice(0, 40)} (domain=${c.domain})\n`);
+  }
+
+  return { newCookies, storageState, overlayGone, clickedText };
+}
+
+// ---------------------------------------------------------------------------
+// Stage 2: Validate — re-navigate with discovered cookies, confirm overlay
+// is gone. Uses the same storageState path the downstream pipeline will use.
+// ---------------------------------------------------------------------------
+
+async function validateBypass(browser, url, storageState) {
+  const context = await browser.newContext({
+    userAgent:
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 ' +
+      '(KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36',
+    storageState: storageState || undefined,
+  });
+
+  const page = await context.newPage();
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
+    await page.waitForTimeout(3000);
+
+    const result = await page.evaluate(() => {
+      const agegate = document.querySelector(
+        'bat-agegate-zonnic, [class*="agegate"], [data-component-name="ageGate"]',
+      );
+      const agegateVisible = agegate
+        ? (() => {
+            const s = window.getComputedStyle(agegate);
+            return (
+              s.display !== 'none' &&
+              s.visibility !== 'hidden' &&
+              agegate.offsetHeight > 50
+            );
+          })()
+        : false;
+      return {
+        scrollHeight: document.body.scrollHeight,
+        viewportHeight: window.innerHeight,
+        hasMainContent: document.body.scrollHeight > window.innerHeight * 2,
+        agegateInDOM: !!agegate,
+        agegateVisible,
+      };
+    });
 
     await context.close();
     return {
-      verified: metrics.hasMainContent && overlaysGone,
-      contentHeight: metrics.scrollHeight,
+      verified: result.hasMainContent && !result.agegateVisible,
+      contentHeight: result.scrollHeight,
+      agegateVisible: result.agegateVisible,
     };
   } catch (err) {
     process.stderr.write(`[bypass] Validation error: ${err.message}\n`);
     await context.close();
-    return { verified: false, contentHeight: 0 };
+    return { verified: false, contentHeight: 0, agegateVisible: true };
   }
 }
 
@@ -397,7 +517,7 @@ async function main() {
 
   const browser = await chromium.launch();
 
-  // Stage 1: Probe
+  // Stage 1a: Static probe — detect overlay type and guess cookie candidates
   const context = await browser.newContext({
     userAgent:
       'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 ' +
@@ -414,9 +534,7 @@ async function main() {
     return;
   }
 
-  // Wait for JS hydration (BAT components need ~3s)
   await page.waitForTimeout(3000);
-
   const probeResult = await probeOverlays(page);
   await context.close();
 
@@ -424,43 +542,119 @@ async function main() {
     `[bypass] Detected overlays: ${probeResult.detected.join(', ') || 'none'}\n`,
   );
   process.stderr.write(
-    `[bypass] Bypass cookies: ${probeResult.bypassCookies.map((c) => `${c.name}=${c.value}`).join(', ') || 'none'}\n`,
+    `[bypass] Guessed cookies: ${probeResult.bypassCookies.map((c) => `${c.name}=${c.value}`).join(', ') || 'none'}\n`,
   );
 
-  // Stage 2: Validate
-  const validation = await validateBypass(browser, URL_ARG, probeResult);
+  // Stage 1b: Interaction bypass — click through the overlay to capture
+  // the REAL cookies the site sets. This is authoritative; if it succeeds,
+  // we prefer it over the guessed candidates.
+  let interaction = { newCookies: [], storageState: null, overlayGone: false };
+  const needsInteraction =
+    probeResult.detected.includes('age-gate') ||
+    probeResult.detected.includes('location-selector');
+
+  if (needsInteraction) {
+    interaction = await interactionBypass(browser, URL_ARG);
+  }
+
+  // Build the authoritative cookie set.
+  //
+  // When the interaction bypass clicked through the overlay, the "new
+  // cookies" delta is already minimal — these are the cookies the site
+  // itself set in response to the confirm action. Trust them verbatim.
+  //
+  // Fallback path (no interaction): apply a pattern filter on guessed
+  // candidates so we don't pollute the cookie list with guesses that don't
+  // match the site's naming convention.
+  const FALLBACK_NAME_PATTERN =
+    /^(age|region|set[_\-]?store|web[_\-]?site|verify|gate|adult|consent|over|optanon|cookie|loc)/i;
+
+  let rawCookies;
+  if (interaction.newCookies.length > 0) {
+    rawCookies = interaction.newCookies;
+  } else {
+    rawCookies = probeResult.bypassCookies
+      .filter((c) => FALLBACK_NAME_PATTERN.test(c.name))
+      .map((c) => ({
+        name: c.name,
+        value: c.value,
+        domain: new URL(URL_ARG).hostname,
+        path: '/',
+      }));
+  }
+
+  // Strip cookies whose value is huge (> 300 chars). These are almost
+  // always encrypted analytics tokens (Optanon consent, session IDs) that
+  // don't help bypass and can break downstream tools that pass them as CLI
+  // flags (e.g. designlang's --cookie parser).
+  const authoritativeCookies = rawCookies
+    .filter((c) => String(c.value).length <= 300)
+    .map((c) => ({
+      name: c.name,
+      value: c.value,
+      domain: c.domain || new URL(URL_ARG).hostname,
+      path: c.path || '/',
+      expires: c.expires ?? -1,
+      httpOnly: c.httpOnly ?? false,
+      secure: c.secure ?? false,
+      sameSite: c.sameSite || 'Lax',
+    }));
+
+  // Storage state JSON — the curated bypass cookie set so downstream
+  // consumers (Phase F scrape, Phase G a11y, Phase E screenshots) can load
+  // via Playwright `storageState` without inheriting analytics junk.
+  const storageState = { cookies: authoritativeCookies, origins: [] };
+
+  // Stage 2: Validate by re-navigating with the full storageState.
+  const validation = await validateBypass(browser, URL_ARG, storageState);
   await browser.close();
 
   process.stderr.write(
-    `[bypass] Validation: ${validation.verified ? 'PASS' : 'FAIL'} (content height: ${validation.contentHeight}px)\n`,
+    `[bypass] Validation: ${validation.verified ? 'PASS' : 'FAIL'} ` +
+      `(content height: ${validation.contentHeight}px, ` +
+      `agegateVisible: ${validation.agegateVisible})\n`,
   );
 
-  // Filter bypass cookies to only those with simple values (no / in value)
-  // to avoid designlang --cookie parser bugs
-  const safeCookies = probeResult.bypassCookies.filter(
-    (c) => !c.value.includes('/'),
-  );
-  const unsafeCookies = probeResult.bypassCookies.filter((c) =>
-    c.value.includes('/'),
-  );
+  // Write the storageState file for --cookie-file consumption.
+  await mkdir(OUTPUT_DIR, { recursive: true });
+  const storageStatePath = join(OUTPUT_DIR, 'bypass-cookies.json');
+  await writeFile(storageStatePath, JSON.stringify(storageState, null, 2));
+  process.stderr.write(`[bypass] storageState -> ${storageStatePath}\n`);
 
+  // Build the legacy name=value cookie list (for tools that consume
+  // `--cookie name=value` flags, e.g. designlang v12 extraction). We must
+  // filter cookies whose value contains a literal '/' OR the URL-encoded
+  // form '%2F' (case-insensitive). designlang's cookie parser splits on
+  // '/' AFTER url-decoding, so either form silently cancels ALL cookies
+  // that follow.
+  const UNSAFE_SLASH_RE = /\/|%2[fF]/;
+  const safeCookies = authoritativeCookies.filter(
+    (c) => !UNSAFE_SLASH_RE.test(String(c.value)),
+  );
+  const unsafeCookies = authoritativeCookies.filter((c) =>
+    UNSAFE_SLASH_RE.test(String(c.value)),
+  );
   if (unsafeCookies.length > 0) {
     process.stderr.write(
-      `[bypass] WARNING: ${unsafeCookies.length} cookie(s) contain '/' in value and will be skipped for --cookie flag (designlang parser bug):\n`,
+      `[bypass] ${unsafeCookies.length} cookie(s) contain '/' or '%2F' in value, ` +
+        `skipped for legacy --cookie flag (still present in storageState JSON):\n`,
     );
     for (const c of unsafeCookies) {
-      process.stderr.write(`[bypass]   ${c.name}=${c.value}\n`);
+      process.stderr.write(`[bypass]   ${c.name}\n`);
     }
   }
 
   const result = {
     overlays_detected: probeResult.detected,
+    interaction_clicked: interaction.clickedText || null,
     bypass_cookies: safeCookies.map((c) => `${c.name}=${c.value}`),
-    bypass_cookies_full: probeResult.bypassCookies,
+    bypass_cookies_full: authoritativeCookies,
+    cookie_file: storageStatePath,
     ignore_selectors: probeResult.ignoreSelectors,
     hide_css_selectors: probeResult.hideCssSelectors,
     wait_ms: 3000,
     verified: validation.verified,
+    validation_content_height: validation.contentHeight,
   };
 
   process.stdout.write(JSON.stringify(result, null, 2) + '\n');

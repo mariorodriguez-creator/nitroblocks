@@ -1,0 +1,258 @@
+<!-- login-form — variant: default -->
+<!-- sample page: homepage -->
+<!-- selector: bat-form-loginzonnic -->
+<bat-form-loginzonnic class="bat d-block d-sm-block d-md-block d-lg-block d-xl-block margin-small ready loaded" data-template-url="/content/dam/zonnic/components/content/form/loginZonnic/template.hbs" data-component-name="form" data-logic-url="/content/dam/zonnic/components/content/form/loginZonnic/logic.js" data-model="{&quot;formJson&quot;:&quot;/content/dam/zonnic/json/forms/login-zonnic.json&quot;,&quot;waypoint&quot;:&quot;false&quot;,&quot;viewportBehaviour&quot;:&quot;same&quot;,&quot;sameSpacing&quot;:{&quot;spacing&quot;:&quot;margin-small&quot;},&quot;differentSpacing&quot;:{&quot;xSmallSpacing&quot;:&quot;xs-margin-small&quot;,&quot;smallSpacing&quot;:&quot;sm-margin-none&quot;,&quot;xLargeSpacing&quot;:&quot;xl-margin-none&quot;,&quot;mediumSpacing&quot;:&quot;md-margin-none&quot;,&quot;largeSpacing&quot;:&quot;lg-margin-none&quot;},&quot;hideShow&quot;:{&quot;smallVisibility&quot;:&quot;d-sm-block&quot;,&quot;xLargeVisibility&quot;:&quot;d-xl-block&quot;,&quot;mediumVisibility&quot;:&quot;d-md-block&quot;,&quot;xSmallVisibility&quot;:&quot;d-block&quot;,&quot;largeVisibility&quot;:&quot;d-lg-block&quot;},&quot;analytics&quot;:{},&quot;slotHTML&quot;:&quot;&lt;div class=\&quot;bat-slot-placeholder\&quot;&gt;&lt;/div&gt;&quot;,&quot;slotHTMLItems&quot;:false,&quot;form&quot;:{&quot;steps&quot;:[{&quot;action&quot;:&quot;&quot;,&quot;method&quot;:&quot;post&quot;,&quot;formType&quot;:&quot;login&quot;,&quot;redirect&quot;:&quot;/ca/en/my-account&quot;,&quot;formBlocks&quot;:[{&quot;heading&quot;:&quot;&lt;h2 class=\&quot;headline3\&quot;&gt;Sign In To Your Account&lt;/h2&gt;&quot;,&quot;text&quot;:&quot;&quot;},{&quot;heading&quot;:&quot;&quot;,&quot;text&quot;:&quot;&quot;,&quot;fields&quot;:[{&quot;field&quot;:&quot;input&quot;,&quot;type&quot;:&quot;text&quot;,&quot;name&quot;:&quot;email&quot;,&quot;className&quot;:&quot;zonnic-email&quot;,&quot;minLength&quot;:&quot;1&quot;,&quot;maxLength&quot;:&quot;75&quot;,&quot;required&quot;:&quot;true&quot;,&quot;inputmode&quot;:&quot;email&quot;,&quot;label&quot;:&quot;Email Address&quot;,&quot;placeHolder&quot;:&quot;&quot;,&quot;pattern&quot;:&quot;[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$&quot;,&quot;errorMessage&quot;:&quot;&lt;p class=\&quot;sm\&quot;&gt;Please enter a valid email address.&lt;/p&gt;&quot;},{&quot;field&quot;:&quot;input&quot;,&quot;type&quot;:&quot;password&quot;,&quot;name&quot;:&quot;password&quot;,&quot;className&quot;:&quot;zonnic-password&quot;,&quot;minLength&quot;:&quot;1&quot;,&quot;maxLength&quot;:&quot;75&quot;,&quot;required&quot;:&quot;true&quot;,&quot;inputmode&quot;:&quot;text&quot;,&quot;label&quot;:&quot;Password&quot;,&quot;placeHolder&quot;:&quot;&quot;,&quot;pattern&quot;:&quot;&quot;,&quot;errorMessage&quot;:&quot;&lt;p class=\&quot;sm\&quot;&gt;This is a required field.&lt;/p&gt;&quot;}]},{&quot;heading&quot;:&quot;&quot;,&quot;text&quot;:&quot;&quot;,&quot;fields&quot;:[{&quot;field&quot;:&quot;messages&quot;,&quot;className&quot;:&quot;messages&quot;,&quot;formMessaging&quot;:[{&quot;class&quot;:&quot;login-error-message&quot;,&quot;type&quot;:&quot;error&quot;,&quot;text&quot;:&quot;&lt;p class=\&quot;sm\&quot;&gt;The username and/or password is incorrect.&lt;/p&gt;&quot;},{&quot;class&quot;:&quot;login-success-message&quot;,&quot;type&quot;:&quot;confirmation&quot;,&quot;text&quot;:&quot;&lt;p class=\&quot;sm\&quot;&gt;You are now logged in.&lt;/p&gt;&quot;}]}]},{&quot;heading&quot;:&quot;&quot;,&quot;text&quot;:&quot;&quot;,&quot;fields&quot;:[{&quot;field&quot;:&quot;fieldset&quot;,&quot;type&quot;:&quot;checkbox&quot;,&quot;name&quot;:&quot;loginConsent&quot;,&quot;required&quot;:&quot;true&quot;,&quot;className&quot;:&quot;terms-conditions consent-block&quot;,&quot;options&quot;:[{&quot;label&quot;:&quot;&lt;p class=\&quot;field-note\&quot;&gt;Your personal information will be used in accordance of our &lt;a href=\&quot;/ca/en/privacy-policy\&quot; target=\&quot;_blank\&quot;&gt;Privacy Policy&lt;/a&gt;. By accepting, I acknowledge that I have read, understood and agree to the Terms &amp;amp; Conditions.&lt;/p&gt;&quot;}]}]},{&quot;heading&quot;:&quot;&quot;,&quot;text&quot;:&quot;&quot;,&quot;fields&quot;:[{&quot;field&quot;:&quot;fieldset&quot;,&quot;type&quot;:&quot;checkbox&quot;,&quot;name&quot;:&quot;subscriptionConsent&quot;,&quot;className&quot;:&quot;subscription-consent consent-block&quot;,&quot;options&quot;:[{&quot;label&quot;:&quot;&lt;p&gt;Yes, I want ZONNIC to send me information on products, services and research opportunities relating to ZONNIC and other current and future brands distributed by Imperial Tobacco Company Ltd. that may be tailored to my preferences, purchases and app usage, including cart reminders.&lt;/p&gt;&lt;p&gt;You can unsubscribe at any time. Please see our &lt;a href=\&quot;/ca/en/contact-us\&quot; target=\&quot;_blank\&quot;&gt;Contact Us&lt;/a&gt; page for our contact information.&lt;/p&gt;&lt;p&gt;Click the checkbox to consent.&lt;/p&gt;&quot;}]}]},{&quot;heading&quot;:&quot;&quot;,&quot;text&quot;:&quot;&quot;,&quot;fields&quot;:[{&quot;field&quot;:&quot;select&quot;,&quot;name&quot;:&quot;user_has_zonnic_can&quot;,&quot;className&quot;:&quot;has-can consent-block&quot;,&quot;required&quot;:&quot;true&quot;,&quot;label&quot;:&quot;Which Applies to You&quot;,&quot;errorMessage&quot;:&quot;This is a required field.&quot;,&quot;options&quot;:[{&quot;label&quot;:&quot;Please select&quot;,&quot;value&quot;:&quot;&quot;},{&quot;label&quot;:&quot;I already have a Zonnic can&quot;,&quot;value&quot;:&quot;YES&quot;},{&quot;label&quot;:&quot;I have not tried Zonnic&quot;,&quot;value&quot;:&quot;NO&quot;},{&quot;label&quot;:&quot;I don't want to say&quot;,&quot;value&quot;:&quot;UNSPECIFIED&quot;}]}]},{&quot;heading&quot;:&quot;&quot;,&quot;text&quot;:&quot;&quot;,&quot;fields&quot;:[{&quot;className&quot;:&quot;forgot-password&quot;,&quot;ctaItems&quot;:[{&quot;ctaAlignment&quot;:&quot;&quot;,&quot;ctaType&quot;:&quot;internal&quot;,&quot;alignIcon&quot;:&quot;&quot;,&quot;iconId&quot;:&quot;&quot;,&quot;iconFile&quot;:&quot;&quot;,&quot;ctaLabel&quot;:&quot;Forgot Password&quot;,&quot;ctaStyle&quot;:&quot;arrow-link-dark&quot;,&quot;cta&quot;:{&quot;target&quot;:&quot;_self&quot;,&quot;url&quot;:&quot;/ca/en/my-account/request-password-reset&quot;}}]}]},{&quot;heading&quot;:&quot;&quot;,&quot;text&quot;:&quot;&quot;,&quot;fields&quot;:[{&quot;field&quot;:&quot;button&quot;,&quot;type&quot;:&quot;submit&quot;,&quot;label&quot;:&quot;SIGN IN&quot;,&quot;className&quot;:&quot;submit&quot;}]},{&quot;heading&quot;:&quot;&quot;,&quot;text&quot;:&quot;&quot;,&quot;fields&quot;:[{&quot;className&quot;:&quot;create-account&quot;,&quot;ctaItems&quot;:[{&quot;ctaAlignment&quot;:&quot;&quot;,&quot;ctaLabel&quot;:&quot;Create An Account&quot;,&quot;ctaStyle&quot;:&quot;button-secondary-dark&quot;,&quot;ctaType&quot;:&quot;internal&quot;,&quot;cta&quot;:{&quot;target&quot;:&quot;_self&quot;,&quot;url&quot;:&quot;/ca/en/sign-up&quot;}}]}]}]}],&quot;locationItems&quot;:{&quot;ab&quot;:&quot;Alberta&quot;,&quot;bc&quot;:&quot;British Columbia&quot;,&quot;mb&quot;:&quot;Manitoba&quot;,&quot;nb&quot;:&quot;New Brunswick&quot;,&quot;nl&quot;:&quot;Newfoundland and Labrador&quot;,&quot;ns&quot;:&quot;Nova Scotia&quot;,&quot;on&quot;:&quot;Ontario&quot;,&quot;qc&quot;:&quot;Quebec&quot;,&quot;pe&quot;:&quot;Prince Edward Island&quot;,&quot;sk&quot;:&quot;Saskatchewan&quot;}}}" data-design-package="/content/dam/zonnic/components/content/form/loginZonnic"><div class="bat-form bat-form--login-zonnic">
+		<div id="step1" class="bat-form-step active">
+		
+		
+		
+				<form id="step1Form" method="post">
+		
+		
+						<div class="bat-form-block">
+		
+								<div class="bat-form-block-text">
+									<h2 class="headline3">Sign In To Your Account</h2>
+									
+								</div>
+		
+						</div>
+		
+						<div class="bat-form-block">
+		
+		
+								<div class="bat-form-field bat-form--login-zonnic-email">
+		
+											<label for="id_1777567526203_165">
+												Email Address
+											</label>
+										<input placeholder="" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" id="id_1777567526203_165" name="email" type="text" minlength="1" maxlength="75" required="" value="" inputmode="email" aria-describedby="email-error">
+											<div id="email-error" class="bat-message  bat-form-msg error-msg error" role="alert" aria-live="assertive">
+												<div class="bat-message-text">
+													<p class="sm">Please enter a valid email address.</p>
+												</div>
+											</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+								</div>
+								<div class="bat-form-field bat-form--login-zonnic-password">
+		
+											<label for="id_1777567526203_96">
+												Password
+											</label>
+										<input placeholder="" id="id_1777567526203_96" name="password" type="password" minlength="1" maxlength="75" required="" value="" inputmode="text" aria-describedby="password-error">
+											<div id="password-error" class="bat-message  bat-form-msg error-msg error" role="alert" aria-live="assertive">
+												<div class="bat-message-text">
+													<p class="sm">This is a required field.</p>
+												</div>
+											</div>									<button type="button" class="toggle-visibility" aria-label="Show password"></button>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+								</div>
+						</div>
+		
+						<div class="bat-form-block">
+		
+		
+								<div class="bat-form-field bat-form--login-messages">
+		
+		
+		
+		
+		
+		
+		
+										<div class="bat-form-messages">
+												<div id="" class="bat-message  login-error-message error" role="alert" aria-live="assertive">
+													<div class="bat-message-text">
+														<p class="sm">The username and/or password is incorrect.</p>
+													</div>
+												</div>										<div id="" class="bat-message  login-success-message confirmation" role="alert" aria-live="assertive">
+													<div class="bat-message-text">
+														<p class="sm">You are now logged in.</p>
+													</div>
+												</div>								</div>
+		
+		
+		
+		
+								</div>
+						</div>
+		
+						<div class="bat-form-block">
+		
+		
+								<div class="bat-form-field bat-form--login-terms-conditions consent-block">
+		
+		
+		
+		
+		
+										<fieldset class="bat-form-field-set required">
+												<label>
+													<input type="checkbox" id="loginConsent" name="loginConsent" value="">
+													<span><p class="field-note">Your personal information will be used in accordance of our <a href="/ca/en/privacy-policy" target="_blank">Privacy Policy</a>. By accepting, I acknowledge that I have read, understood and agree to the Terms &amp; Conditions.</p></span>
+												</label>
+										</fieldset>
+		
+		
+		
+		
+		
+		
+								</div>
+						</div>
+		
+						<div class="bat-form-block">
+		
+		
+								<div class="bat-form-field bat-form--login-subscription-consent consent-block">
+		
+		
+		
+		
+		
+										<fieldset class="bat-form-field-set ">
+												<label>
+													<input type="checkbox" id="subscriptionConsent" name="subscriptionConsent" value="">
+													<span><p>Yes, I want ZONNIC to send me information on products, services and research opportunities relating to ZONNIC and other current and future brands distributed by Imperial Tobacco Company Ltd. that may be tailored to my preferences, purchases and app usage, including cart reminders.</p><p>You can unsubscribe at any time. Please see our <a href="/ca/en/contact-us" target="_blank">Contact Us</a> page for our contact information.</p><p>Click the checkbox to consent.</p></span>
+												</label>
+										</fieldset>
+		
+		
+		
+		
+		
+		
+								</div>
+						</div>
+		
+						<div class="bat-form-block">
+		
+		
+								<div class="bat-form-field bat-form--login-has-can consent-block">
+		
+		
+		
+		
+												<label for="id_1777567526203_146">
+													Which Applies to You
+												</label>
+											<div class="select-wrapper ">
+												<select name="user_has_zonnic_can" id="id_1777567526203_146" required="" aria-describedby="user_has_zonnic_can-error" disabled="">
+														<option value="">Please select</option>
+														<option value="YES">I already have a Zonnic can</option>
+														<option value="NO">I have not tried Zonnic</option>
+														<option value="UNSPECIFIED">I don't want to say</option>
+												</select>
+													<div id="user_has_zonnic_can-error" class="bat-message  bat-form-msg error-msg error" role="alert" aria-live="assertive">
+														<div class="bat-message-text">
+															This is a required field.
+														</div>
+													</div>									</div>
+		
+		
+		
+		
+		
+		
+		
+								</div>
+						</div>
+		
+						<div class="bat-form-block">
+		
+		
+								<div class="bat-form-field bat-form--login-forgot-password">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+										<a data-cta-type="internal" class="bat-cta-style arrow-link-dark
+											   
+											   
+											   
+											   
+											   
+											   " href="
+											   
+											   /ca/en/my-account/request-password-reset" target="_self">
+															<span>Forgot Password</span>
+										</a>
+		
+								</div>
+						</div>
+		
+						<div class="bat-form-block">
+		
+		
+								<div class="bat-form-field bat-form--login-submit">
+		
+		
+		
+		
+		
+		
+		
+		
+										<button type="submit" class="bat-button bat-button--dark bat-button--secondary" disabled="">
+											<span>SIGN IN </span>
+										</button>
+		
+		
+		
+								</div>
+						</div>
+		
+						<div class="bat-form-block">
+		
+		
+								<div class="bat-form-field bat-form--login-create-account">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+										<a data-cta-type="internal" class="bat-cta-style button-secondary-dark
+											   
+											   
+											   
+											   
+											   
+											   " href="
+											   
+											   /ca/en/sign-up" target="_self">
+															<span>Create An Account</span>
+										</a>
+		
+								</div>
+						</div>
+				</form>
+		</div>
+</div></bat-form-loginzonnic>

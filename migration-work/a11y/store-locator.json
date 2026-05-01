@@ -2,64 +2,17 @@
   "slug": "store-locator",
   "url": "https://www.zonnic.ca/ca/en/store-locator",
   "counts": {
-    "violations": 1,
+    "violations": 0,
     "incomplete": 3,
     "byImpact": {
       "critical": 0,
-      "serious": 1,
+      "serious": 0,
       "moderate": 0,
       "minor": 0
     },
-    "byRule": {
-      "aria-hidden-focus": 1
-    }
+    "byRule": {}
   },
-  "violations": [
-    {
-      "id": "aria-hidden-focus",
-      "impact": "serious",
-      "tags": [
-        "cat.name-role-value",
-        "wcag2a",
-        "wcag412",
-        "TTv5",
-        "TT6.a",
-        "EN-301-549",
-        "EN-9.4.1.2"
-      ],
-      "description": "Ensure aria-hidden elements are not focusable nor contain focusable elements",
-      "help": "ARIA hidden element must not be focusable or contain focusable elements",
-      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/aria-hidden-focus?application=axeAPI",
-      "nodes": [
-        {
-          "any": [],
-          "all": [
-            {
-              "id": "focusable-not-tabbable",
-              "data": null,
-              "relatedNodes": [
-                {
-                  "html": "<canvas class=\"mapboxgl-canvas\" tabindex=\"0\" aria-label=\"Map\" role=\"region\" width=\"400\" height=\"300\" style=\"width: 400px; height: 300px;\"></canvas>",
-                  "target": [
-                    "canvas"
-                  ]
-                }
-              ],
-              "impact": "serious",
-              "message": "Focusable content should have tabindex=\"-1\" or be removed from the DOM"
-            }
-          ],
-          "none": [],
-          "impact": "serious",
-          "html": "<svg viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" style=\"position: absolute; width: 0px; height: 0px; overflow: hidden;\">",
-          "target": [
-            "svg[viewBox=\"0 0 24 24\"][aria-hidden=\"true\"]:nth-child(4)"
-          ],
-          "failureSummary": "Fix all of the following:\n  Focusable content should have tabindex=\"-1\" or be removed from the DOM"
-        }
-      ]
-    }
-  ],
+  "violations": [],
   "incomplete": [
     {
       "id": "color-contrast",

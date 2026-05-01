@@ -44,9 +44,9 @@
           ],
           "none": [],
           "impact": "serious",
-          "html": "<input placeholder=\"Start typing your address\" id=\"id_1777492906141_845\" name=\"addressLookUp\" type=\"text\" minlength=\"1\" maxlength=\"75\" required=\"\" autocomplete=\"randomReynolds\" value=\"\" inputmode=\"text\" aria-describedby=\"addressLookUp-error\">",
+          "html": "<input placeholder=\"Start typing your address\" id=\"id_1777557007312_251\" name=\"addressLookUp\" type=\"text\" minlength=\"1\" maxlength=\"75\" required=\"\" autocomplete=\"randomReynolds\" value=\"\" inputmode=\"text\" aria-describedby=\"addressLookUp-error\">",
           "target": [
-            "#id_1777492906141_845"
+            "#id_1777557007312_251"
           ],
           "failureSummary": "Fix all of the following:\n  the autocomplete attribute is incorrectly formatted"
         }
@@ -293,7 +293,7 @@
               "data": "db",
               "relatedNodes": [
                 {
-                  "html": "<input type=\"date\" id=\"db\" name=\"db\" class=\"bat--zonnic-content-dob-input\" data-dob-input=\"true\" data-role=\"datepicker\" required=\"\" aria-describedby=\"db-error\" min=\"1924-01-01\" max=\"2026-04-29\">",
+                  "html": "<input type=\"date\" id=\"db\" name=\"db\" class=\"bat--zonnic-content-dob-input\" data-dob-input=\"true\" data-role=\"datepicker\" required=\"\" aria-describedby=\"db-error\" min=\"1924-01-01\" max=\"2026-04-30\">",
                   "target": [
                     ".padding-right-small.padding-left-small.padding-top-medium > .form > bat-form-signup > .bat-form--signup.bat-form > .bat-form-step.active > form[method=\"post\"] > .your-details.bat-form-block > .bat-form--signup-dob.bat-form-field > .bat--zonnic-content-dob-input-container > .bat--zonnic-content-dob-input[type=\"date\"][name=\"db\"]"
                   ]
@@ -306,7 +306,7 @@
           "all": [],
           "none": [],
           "impact": "critical",
-          "html": "<input type=\"date\" id=\"db\" name=\"db\" class=\"bat--zonnic-content-dob-input\" data-dob-input=\"true\" data-role=\"datepicker\" required=\"\" aria-describedby=\"db-error\" min=\"1924-01-01\" max=\"2026-04-29\">",
+          "html": "<input type=\"date\" id=\"db\" name=\"db\" class=\"bat--zonnic-content-dob-input\" data-dob-input=\"true\" data-role=\"datepicker\" required=\"\" aria-describedby=\"db-error\" min=\"1924-01-01\" max=\"2026-04-30\">",
           "target": [
             ".padding-top-small > .form > bat-form-signup > .bat-form--signup.bat-form > .bat-form-step.active > form[method=\"post\"] > .your-details.bat-form-block > .bat-form--signup-dob.bat-form-field > .bat--zonnic-content-dob-input-container > .bat--zonnic-content-dob-input[type=\"date\"][name=\"db\"]"
           ],
@@ -519,32 +519,6 @@
             ".padding-top-small > .form > bat-form-signup > .bat-form--signup.bat-form > .bat-form-step.active > form[method=\"post\"] > .bat-form-block:nth-child(4) > .bat-form--signup-password.bat-form-field:nth-child(3) > .bat-form-msg.error-msg.error"
           ],
           "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: passwordConfirm-error"
-        },
-        {
-          "any": [
-            {
-              "id": "duplicate-id-aria",
-              "data": "id_1777492906157_124",
-              "relatedNodes": [
-                {
-                  "html": "<input placeholder=\"\" id=\"id_1777492906157_124\" name=\"country\" type=\"text\" minlength=\"1\" maxlength=\"75\" value=\"\" tabindex=\"-1\" inputmode=\"text\" aria-describedby=\"country-error\" disabled=\"\">",
-                  "target": [
-                    ".padding-right-small.padding-left-small.padding-top-medium > .form > bat-form-signup > .bat-form--signup.bat-form > .bat-form-step.active > form[method=\"post\"] > .your-address.bat-form-block > .bat-form--signup-address-country.address-lookup-field.bat-form-field > input[name=\"country\"][aria-describedby=\"country-error\"][inputmode=\"text\"]"
-                  ]
-                }
-              ],
-              "impact": "critical",
-              "message": "Document has multiple elements referenced with ARIA with the same id attribute: id_1777492906157_124"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": "critical",
-          "html": "<input placeholder=\"\" id=\"id_1777492906157_124\" name=\"lastName\" type=\"text\" minlength=\"1\" maxlength=\"75\" required=\"\" autocomplete=\"off\" value=\"\" inputmode=\"text\" aria-describedby=\"lastName-error\">",
-          "target": [
-            ".padding-right-small.padding-left-small.padding-top-medium > .form > bat-form-signup > .bat-form--signup.bat-form > .bat-form-step.active > form[method=\"post\"] > .your-details.bat-form-block > .bat-form--signup-last-name.bat-form-field > input[name=\"lastName\"][aria-describedby=\"lastName-error\"][autocomplete=\"off\"]"
-          ],
-          "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: id_1777492906157_124"
         }
       ]
     }

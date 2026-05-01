@@ -1,4 +1,4 @@
-[har] Analyzing 10 HAR file(s)
+[har] Analyzing 8 HAR file(s)
 [har] Fatal: Invalid URL
 TypeError: Invalid URL
     at new URL (node:internal/url:828:25)

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Migration Proposal — ZONNIC Canada</title>
+<title>Migration Proposal — Zonnic Canada</title>
 <style>
   :root {
     --navy: #6b8aff;
@@ -23,79 +23,29 @@
     --radius: 8px;
     --radius-lg: 12px;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.5;
-    padding: 32px;
-  }
-
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; padding: 32px; }
   .container { max-width: 1280px; margin: 0 auto; }
-
-  header {
-    background: var(--navy);
-    color: white;
-    padding: 40px;
-    border-radius: var(--radius-lg);
-    margin-bottom: 32px;
-  }
+  header { background: var(--navy); color: white; padding: 40px; border-radius: var(--radius-lg); margin-bottom: 32px; }
   header h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
   header .subtitle { opacity: 0.8; font-size: 14px; }
-  header .meta { display: flex; gap: 24px; margin-top: 16px; font-size: 13px; opacity: 0.7; }
-
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 16px;
-    margin-bottom: 32px;
-  }
-  .stat-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px;
-    text-align: center;
-  }
+  header .meta { display: flex; gap: 24px; margin-top: 16px; font-size: 13px; opacity: 0.7; flex-wrap: wrap; }
+  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; text-align: center; }
   .stat-card .value { font-size: 32px; font-weight: 700; color: var(--text); }
   .stat-card .label { font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
   .stat-card.success .value { color: var(--green); }
   .stat-card.warning .value { color: var(--amber); }
   .stat-card.danger .value { color: var(--red); }
-
-  section {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    margin-bottom: 24px;
-    overflow: hidden;
-  }
-  section h2 {
-    font-size: 16px;
-    font-weight: 600;
-    padding: 20px 24px;
-    border-bottom: 1px solid var(--border);
-    color: var(--text);
-  }
+  section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 24px; overflow: hidden; }
+  section h2 { font-size: 16px; font-weight: 600; padding: 20px 24px; border-bottom: 1px solid var(--border); color: var(--text); }
   section .content { padding: 24px; }
-
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
   th { text-align: left; font-weight: 600; color: var(--text-secondary); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; border-bottom: 2px solid var(--border); }
   td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
   tr:last-child td { border-bottom: none; }
   .num { text-align: right; font-variant-numeric: tabular-nums; }
-
-  .pill {
-    display: inline-block;
-    padding: 2px 10px;
-    border-radius: 99px;
-    font-size: 11px;
-    font-weight: 600;
-    white-space: nowrap;
-  }
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 99px; font-size: 11px; font-weight: 600; white-space: nowrap; }
   .pill-reuse { background: var(--green-light); color: var(--green); }
   .pill-adapt { background: var(--amber-light); color: var(--amber); }
   .pill-new { background: var(--red-light); color: var(--red); }
@@ -108,533 +58,637 @@
   .pill-advisory { background: rgba(107,138,255,0.12); color: var(--navy); }
   .pill-inactive { background: rgba(255,255,255,0.05); color: #666; }
 
+  .subsection-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-secondary); margin: 24px 0 8px; }
+  .subsection-title:first-child { margin-top: 0; }
+  .component-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-bottom: 8px; }
+  .component-card { background: #1c1c28; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; text-decoration: none; color: inherit; display: block; transition: border-color 120ms ease; }
+  .component-card:hover { border-color: var(--navy); }
+  .component-thumb-wrap { background: #fff; height: 120px; display: flex; align-items: center; justify-content: center; padding: 8px; overflow: hidden; }
+  .component-thumb { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .component-thumb-placeholder { width: 100%; height: 100%; background: #22222e; color: #666; display: flex; align-items: center; justify-content: center; font-size: 11px; text-align: center; padding: 12px; }
+  .component-body { padding: 8px 10px; }
+  .component-name { font-size: 12px; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .component-meta { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
-
-  @media (max-width: 900px) {
-    .two-col, .three-col { grid-template-columns: 1fr; }
-    .stats-row { grid-template-columns: repeat(2, 1fr); }
-  }
-
+  @media (max-width: 900px) { .two-col, .three-col { grid-template-columns: 1fr; } .stats-row { grid-template-columns: repeat(2, 1fr); } }
   .bar-chart { margin: 8px 0; }
   .bar-row { display: flex; align-items: center; margin-bottom: 8px; }
-  .bar-label { width: 140px; font-size: 12px; color: var(--text-secondary); flex-shrink: 0; }
+  .bar-label { width: 200px; font-size: 12px; color: var(--text-secondary); flex-shrink: 0; }
   .bar-track { flex: 1; height: 24px; background: #22222e; border-radius: 4px; overflow: hidden; position: relative; }
   .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 600; color: white; min-width: 32px; }
   .bar-fill.navy { background: var(--navy); }
   .bar-fill.green { background: var(--green); }
   .bar-fill.amber { background: var(--amber); }
   .bar-fill.red { background: var(--red); }
-  .bar-secondary { position: absolute; top: 0; height: 100%; opacity: 0.25; border-radius: 4px; }
-
+  .bar-secondary { position: absolute; top: 0; height: 100%; opacity: 0.25; border-radius: 4px; background: var(--navy); }
   svg text { font-family: inherit; }
-
   .gantt { font-size: 12px; overflow-x: auto; }
   .gantt-row { display: flex; align-items: center; margin-bottom: 6px; }
-  .gantt-label { width: 120px; font-weight: 600; color: var(--text-secondary); flex-shrink: 0; font-size: 11px; }
-  .gantt-track { flex: 1; height: 28px; position: relative; }
-  .gantt-bar {
-    position: absolute;
-    height: 100%;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    padding: 0 8px;
-    font-size: 10px;
-    font-weight: 600;
-    color: white;
-    white-space: nowrap;
-  }
-
-  .gantt-weeks {
-    display: flex;
-    margin-left: 120px;
-    margin-bottom: 8px;
-  }
-  .gantt-week {
-    flex: 1;
-    text-align: center;
-    font-size: 10px;
-    color: var(--text-secondary);
-    border-left: 1px solid var(--border);
-    padding: 2px 0;
-  }
-
-  .template-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
-  .template-card {
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 14px;
-    display: flex;
-    flex-direction: column;
-  }
-  .template-card .thumb {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
-    object-position: top center;
-    border-radius: calc(var(--radius) - 2px);
-    margin: -14px -14px 10px -14px;
-    width: calc(100% + 28px);
-    background: #22222e;
-    border-bottom: 1px solid var(--border);
-  }
-  .template-card .thumb-placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-secondary);
-    font-size: 10px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
-  .template-card .name { font-weight: 600; font-size: 13px; margin-bottom: 4px; }
-  .template-card .page-count { font-size: 22px; font-weight: 700; color: var(--text); }
-  .template-card .page-label { font-size: 11px; color: var(--text-secondary); }
-  .template-card .complexity { margin-top: 6px; }
-  .template-card .live-link {
-    display: inline-block;
-    margin-top: 8px;
-    font-size: 11px;
-    color: var(--navy);
-    text-decoration: none;
-    border-bottom: 1px dashed var(--navy);
-    transition: opacity 0.15s;
-  }
+  .gantt-label { width: 140px; font-weight: 600; color: var(--text-secondary); flex-shrink: 0; font-size: 11px; }
+  .gantt-track { flex: 1; height: 28px; position: relative; background: #1a1a22; border-radius: 4px; }
+  .gantt-bar { position: absolute; height: 100%; border-radius: 4px; display: flex; align-items: center; padding: 0 8px; font-size: 10px; font-weight: 600; color: white; white-space: nowrap; }
+  .gantt-weeks { display: flex; margin-bottom: 8px; padding-left: 144px; gap: 0; }
+  .gantt-week { flex: 1; text-align: center; font-size: 9px; color: var(--text-secondary); border-left: 1px dashed var(--border); padding: 2px 0; }
+  .template-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .template-card { background: #22222e; border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; display: flex; flex-direction: column; gap: 6px; min-height: 240px; }
+  .template-card .thumb { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: top center; background: #2a2a38; border-radius: 4px; border: 1px solid var(--border); }
+  .template-card .name { font-size: 13px; font-weight: 600; color: var(--text); margin-top: 4px; }
+  .template-card .page-count { font-size: 18px; font-weight: 700; display: inline; color: var(--text); }
+  .template-card .page-label { font-size: 11px; color: var(--text-secondary); display: inline; margin-left: 4px; }
+  .template-card .complexity { margin-top: 2px; }
+  .template-card .live-link { font-size: 11px; margin-top: 6px; color: var(--navy); text-decoration: none; border-bottom: 1px dashed var(--navy); transition: opacity 0.15s; }
   .template-card .live-link:hover { opacity: 0.7; }
-
   .block-flow { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-  .block-tag {
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 4px;
-    background: #22222e;
-    color: var(--text-secondary);
-  }
-
-  footer.page-footer {
-    text-align: center;
-    padding: 24px;
-    color: var(--text-secondary);
-    font-size: 12px;
-  }
+  .block-tag { font-size: 10px; padding: 2px 8px; border-radius: 4px; background: #22222e; color: var(--text-secondary); }
+  footer.page-footer { text-align: center; padding: 24px; color: var(--text-secondary); font-size: 12px; }
 </style>
 </head>
 <body>
 <div class="container">
 
-<!--
-  DASHBOARD TEMPLATE — Migration Planner Skill
-  =============================================
-  This is a reference template. The agent generates the final HTML by
-  populating each section below with data from the proposal Markdown
-  files and discovery JSON artifacts.
-
-  Data sources:
-  - sitemap-result.json      → page counts, templates, representative URLs
-  - bypass-result.json        → overlay info (for methodology notes)
-  - *-grade.html / audit MD   → design grade scores
-  - 02-normalization-report   → normalization delta table
-  - 03-atomic-inventory       → atomic mapping table
-  - 04-block-mapping          → block inventory table + template composition
-  - 05-work-items             → work item counts, t-shirt sizes
-  - 06-phase-plan             → Gantt chart data
-  - 07-timeline-and-resources → resource allocation, effort totals
-  - 08-risk-register          → risk table
-  - 01-design-system-audit    → integrations table
-
-  Sections (in order):
-  1. Header       — site name, source stack → EDS, date, meta
-  2. KPI stats    — pages, templates, blocks, integrations, work items,
-                    effort range, weeks, grade
-  3. Design grade — horizontal bar chart per grade dimension
-  4. Normalization delta — table (aspect, source, normalized, reduction %)
-  5. Discovered templates — grid of cards with page count, complexity pill,
-                            block-tag flow, live-link to representative URL
-  6. Block inventory — reuse/adapt/new stat cards + full table
-  7. Atomic design mapping — table (level, count, EDS artifact, description)
-  8. Third-party integrations — table (service, category, strategy, loading, effort)
-  9. Work items by phase — bar chart
-  10. Effort by phase — bar chart with max-range overlay
-  11. T-shirt size distribution — table with inline proportion bars
-  12. Project timeline — Gantt chart with week columns
-  13. Resource allocation — table with phase involvement pills
-  14. Risk register — severity stat cards + full table
-  15. Methodology — 3-column summary
-  16. Footer — generation meta
--->
-
-<!-- 1. HEADER -->
 <header>
-  <h1>Migration Proposal: ZONNIC Canada</h1>
-  <div class="subtitle">AEM + Handlebars CSR (bat-* components) → AEM Edge Delivery Services</div>
+  <h1>Migration Proposal: Zonnic Canada</h1>
+  <div class="subtitle">AEM as a Cloud Service (BAT global platform) → AEM Edge Delivery Services</div>
   <div class="meta">
     <span>Source: https://www.zonnic.ca/ca/en</span>
-    <span>Date: 2026-04-29</span>
+    <span>Date: 2026-04-30</span>
     <span>Prepared by: Migration Planner (automated discovery)</span>
   </div>
 </header>
 
-<!-- 2. KPI STATS -->
 <div class="stats-row">
-  <div class="stat-card"><div class="value">106</div><div class="label">Pages</div></div>
-  <div class="stat-card"><div class="value">25</div><div class="label">Templates</div></div>
-  <div class="stat-card"><div class="value">27</div><div class="label">Blocks</div></div>
-  <div class="stat-card"><div class="value">14</div><div class="label">Integrations</div></div>
-  <div class="stat-card"><div class="value">99</div><div class="label">Work Items</div></div>
-  <div class="stat-card"><div class="value">475–870h</div><div class="label">Total Effort</div></div>
-  <div class="stat-card"><div class="value">8–11</div><div class="label">Weeks</div></div>
-  <div class="stat-card warning"><div class="value">C</div><div class="label">Grade (71/100)</div></div>
+  <div class="stat-card"><div class="value">92</div><div class="label">Pages</div></div>
+  <div class="stat-card"><div class="value">8</div><div class="label">Templates</div></div>
+  <div class="stat-card"><div class="value">19</div><div class="label">Blocks</div></div>
+  <div class="stat-card"><div class="value">9</div><div class="label">Integrations</div></div>
+  <div class="stat-card"><div class="value">84</div><div class="label">Work Items</div></div>
+  <div class="stat-card"><div class="value">580–840h</div><div class="label">Total Effort</div></div>
+  <div class="stat-card"><div class="value">16–20</div><div class="label">Weeks</div></div>
+  <div class="stat-card"><div class="value">C</div><div class="label">Source Grade</div></div>
 </div>
 
-<!-- 3 + 4. GRADE + NORMALIZATION (two-column) -->
 <div class="two-col">
   <section>
-    <h2>Design System Grade</h2>
+    <h2>Design System Discipline (post-normalisation deltas)</h2>
     <div class="content">
       <div class="bar-chart">
-                <div class="bar-row"><div class="bar-label">Border Radii</div><div class="bar-track"><div class="bar-fill navy" style="width:90%">90</div></div></div>
-        <div class="bar-row"><div class="bar-label">Accessibility</div><div class="bar-track"><div class="bar-fill navy" style="width:88%">88</div></div></div>
-        <div class="bar-row"><div class="bar-label">Spacing System</div><div class="bar-track"><div class="bar-fill navy" style="width:85%">85</div></div></div>
-        <div class="bar-row"><div class="bar-label">Color Discipline</div><div class="bar-track"><div class="bar-fill navy" style="width:80%">80</div></div></div>
-        <div class="bar-row"><div class="bar-label">Shadow Consistency</div><div class="bar-track"><div class="bar-fill navy" style="width:78%">78</div></div></div>
-        <div class="bar-row"><div class="bar-label">Tokenization</div><div class="bar-track"><div class="bar-fill navy" style="width:75%">75</div></div></div>
-        <div class="bar-row"><div class="bar-label">Typography Consistency</div><div class="bar-track"><div class="bar-fill red" style="width:35%">35</div></div></div>
-        <div class="bar-row"><div class="bar-label">CSS Health</div><div class="bar-track"><div class="bar-fill red" style="width:35%">35</div></div></div>
+        <div class="bar-row"><div class="bar-label">Color tokens (was 27)</div><div class="bar-track"><div class="bar-fill navy" style="width:48%">13</div></div></div>
+        <div class="bar-row"><div class="bar-label">Type sizes (was 15)</div><div class="bar-track"><div class="bar-fill navy" style="width:47%">7</div></div></div>
+        <div class="bar-row"><div class="bar-label">Type weights (was 8)</div><div class="bar-track"><div class="bar-fill navy" style="width:38%">3</div></div></div>
+        <div class="bar-row"><div class="bar-label">Spacing values (was 17)</div><div class="bar-track"><div class="bar-fill navy" style="width:59%">10</div></div></div>
+        <div class="bar-row"><div class="bar-label">Shadow recipes (was 6)</div><div class="bar-track"><div class="bar-fill navy" style="width:33%">2</div></div></div>
+        <div class="bar-row"><div class="bar-label">Radius values (was 7)</div><div class="bar-track"><div class="bar-fill navy" style="width:71%">5</div></div></div>
+        <div class="bar-row"><div class="bar-label">Font families (was 6)</div><div class="bar-track"><div class="bar-fill navy" style="width:17%">1</div></div></div>
+        <div class="bar-row"><div class="bar-label">!important rules (was 179)</div><div class="bar-track"><div class="bar-fill green" style="width:1%">0</div></div></div>
+        <div class="bar-row"><div class="bar-label">WCAG contrast fails (was 4)</div><div class="bar-track"><div class="bar-fill green" style="width:1%">0</div></div></div>
       </div>
+      <p style="font-size:11px;color:var(--text-secondary);margin-top:12px">Bars show normalised target values relative to the source. Green = remediated; navy = simplified.</p>
     </div>
   </section>
   <section>
-    <h2>Normalization Delta</h2>
+    <h2>Normalisation Delta</h2>
     <div class="content">
       <table>
-        <thead><tr><th>Aspect</th><th class="num">Source</th><th class="num">Normalized</th><th class="num">Reduction</th></tr></thead>
+        <thead><tr><th>Aspect</th><th class="num">Source</th><th class="num">Normalised</th><th class="num">Reduction</th></tr></thead>
         <tbody>
-                    <tr><td>Colors (unique)</td><td class="num">27</td><td class="num">20</td><td class="num">26%</td></tr>
-          <tr><td>Type sizes</td><td class="num">15</td><td class="num">7</td><td class="num">53%</td></tr>
-          <tr><td>Font weights</td><td class="num">8</td><td class="num">4</td><td class="num">50%</td></tr>
-          <tr><td>Font families</td><td class="num">5</td><td class="num">2</td><td class="num">60%</td></tr>
-          <tr><td>Spacing values</td><td class="num">18</td><td class="num">14</td><td class="num">22%</td></tr>
-          <tr><td>Shadows</td><td class="num">10</td><td class="num">3</td><td class="num">70%</td></tr>
-          <tr><td>Border radii</td><td class="num">7</td><td class="num">4</td><td class="num">43%</td></tr>
-          <tr><td>!important rules</td><td class="num">179</td><td class="num">0</td><td class="num">100%</td></tr>
-          <tr><td>Unused CSS %</td><td class="num">92%</td><td class="num">< 5%</td><td class="num">—</td></tr>
+          <tr><td>Color tokens</td><td class="num">27</td><td class="num">13</td><td class="num">−52%</td></tr>
+          <tr><td>Type sizes</td><td class="num">15</td><td class="num">7</td><td class="num">−53%</td></tr>
+          <tr><td>Type weights</td><td class="num">8</td><td class="num">3</td><td class="num">−63%</td></tr>
+          <tr><td>Spacing values</td><td class="num">17</td><td class="num">10</td><td class="num">−41%</td></tr>
+          <tr><td>Shadow recipes</td><td class="num">6</td><td class="num">2</td><td class="num">−67%</td></tr>
+          <tr><td>Font families</td><td class="num">6</td><td class="num">1</td><td class="num">−83%</td></tr>
+          <tr><td><code>!important</code> rules</td><td class="num">179</td><td class="num">0</td><td class="num">−100%</td></tr>
+          <tr><td>WCAG AA contrast fails</td><td class="num">4</td><td class="num">0</td><td class="num">−100%</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 </div>
 
-<!-- 5. DISCOVERED TEMPLATES — grid of cards -->
 <section>
-  <h2>Discovered Templates (25)</h2>
+  <h2>Discovered Templates (8 normalised, mapped from 23 path families)</h2>
   <div class="content">
     <div class="template-grid">
-            <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/blog-what-are-nicotine-pouches-desktop-1440.png" alt="blog desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/blog-what-are-nicotine-pouches-desktop.png';" />
-        <div class="name">blog</div>
-        <div class="page-count">39</div><div class="page-label">pages</div>
-        <div class="complexity"><span class="pill pill-reuse">Low</span></div>
-        <div class="block-flow"><span class="block-tag">text</span><span class="block-tag">cards (blog)</span><span class="block-tag">cta</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/blog/what-are-nicotine-pouches" target="_blank">View live page &rarr;</a>
-      </div>
       <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/contact-us-let-us-talk-testimonials-desktop-1440.png" alt="contact-us desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/contact-us-let-us-talk-testimonials-desktop.png';" />
-        <div class="name">contact-us</div>
-        <div class="page-count">9</div><div class="page-label">pages</div>
+        <img class="thumb" src="../design-extract/screenshots/templates/homepage-desktop-1440.png" alt="homepage desktop preview" loading="lazy" onerror="this.onerror=null;this.style.display='none'" />
+        <div class="name">Homepage</div>
+        <div><span class="page-count">1</span><span class="page-label">page</span></div>
         <div class="complexity"><span class="pill pill-adapt">Medium</span></div>
-        <div class="block-flow"><span class="block-tag">contact-card</span><span class="block-tag">blog-card</span><span class="block-tag">cta</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/contact-us/let-us-talk/testimonials" target="_blank">View live page &rarr;</a>
+        <div class="block-flow">
+          <span class="block-tag">hero</span><span class="block-tag">marketing-banner</span><span class="block-tag">cards</span><span class="block-tag">carousel</span><span class="block-tag">text-image</span><span class="block-tag">accordion</span>
+        </div>
+        <a class="live-link" href="https://www.zonnic.ca/ca/en" target="_blank">View live page →</a>
       </div>
       <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/healthcare-professionals-side-effects-quitting-smoking-patient-concerns-desktop-1440.png" alt="healthcare-professionals desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/healthcare-professionals-side-effects-quitting-smoking-patient-concerns-desktop.png';" />
-        <div class="name">healthcare-professionals</div>
-        <div class="page-count">9</div><div class="page-label">pages</div>
-        <div class="complexity"><span class="pill pill-adapt">Medium</span></div>
-        <div class="block-flow"><span class="block-tag">masthead-card</span><span class="block-tag">blurb-card</span><span class="block-tag">text</span><span class="block-tag">cards</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/healthcare-professionals/side-effects-quitting-smoking-patient-concerns" target="_blank">View live page &rarr;</a>
-      </div>
-      <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/real-people-real-success-marks-quit-smoking-testimonial-desktop-1440.png" alt="real-people-real-success desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/real-people-real-success-marks-quit-smoking-testimonial-desktop.png';" />
-        <div class="name">real-people-real-success</div>
-        <div class="page-count">9</div><div class="page-label">pages</div>
-        <div class="complexity"><span class="pill pill-adapt">Medium</span></div>
-        <div class="block-flow"><span class="block-tag">masthead-card</span><span class="block-tag">blog-card</span><span class="block-tag">cta</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/real-people-real-success/marks-quit-smoking-testimonial" target="_blank">View live page &rarr;</a>
-      </div>
-      <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/pouches-zonnic-mint-24-nicotine-pouches-desktop-1440.png" alt="pouches desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/pouches-zonnic-mint-24-nicotine-pouches-desktop.png';" />
-        <div class="name">pouches</div>
-        <div class="page-count">7</div><div class="page-label">pages</div>
+        <img class="thumb" src="../design-extract/screenshots/templates/pouches-zonnic-mint-24-nicotine-pouches-desktop-1440.png" alt="product detail desktop preview" loading="lazy" onerror="this.onerror=null;this.style.display='none'" />
+        <div class="name">Product Detail (pouches/*)</div>
+        <div><span class="page-count">12</span><span class="page-label">pages</span></div>
         <div class="complexity"><span class="pill pill-new">High</span></div>
-        <div class="block-flow"><span class="block-tag">product-hero</span><span class="block-tag">product-carousel</span><span class="block-tag">tabbed-carousel</span><span class="block-tag">faq</span><span class="block-tag">cta</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/pouches/zonnic-mint-24-nicotine-pouches" target="_blank">View live page &rarr;</a>
+        <div class="block-flow">
+          <span class="block-tag">product-header*</span><span class="block-tag">commerce*</span><span class="block-tag">cards (products)</span><span class="block-tag">text-image</span><span class="block-tag">embed</span><span class="block-tag">accordion</span>
+        </div>
+        <a class="live-link" href="https://www.zonnic.ca/ca/en/pouches/zonnic-mint-24-nicotine-pouches" target="_blank">View live page →</a>
       </div>
       <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/faq-old-donotindex-faq-general-information-desktop-1440.png" alt="faq-old-donotindex desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/faq-old-donotindex-faq-general-information-desktop.png';" />
-        <div class="name">faq-old-donotindex</div>
-        <div class="page-count">6</div><div class="page-label">pages</div>
+        <img class="thumb" src="../design-extract/screenshots/templates/blog-what-are-nicotine-pouches-desktop-1440.png" alt="blog article desktop preview" loading="lazy" onerror="this.onerror=null;this.style.display='none'" />
+        <div class="name">Blog Article</div>
+        <div><span class="page-count">8</span><span class="page-label">pages</span></div>
+        <div class="complexity"><span class="pill pill-adapt">Medium</span></div>
+        <div class="block-flow">
+          <span class="block-tag">article-header (auto)</span><span class="block-tag">default content</span><span class="block-tag">cards (articles)</span>
+        </div>
+        <a class="live-link" href="https://www.zonnic.ca/ca/en/blog/what-are-nicotine-pouches" target="_blank">View live page →</a>
+      </div>
+      <div class="template-card">
+        <img class="thumb" src="../design-extract/screenshots/templates/why-zonnic-desktop-1440.png" alt="campaign page desktop preview" loading="lazy" onerror="this.onerror=null;this.style.display='none'" />
+        <div class="name">Campaign (catch-all)</div>
+        <div><span class="page-count">~32</span><span class="page-label">pages</span></div>
         <div class="complexity"><span class="pill pill-reuse">Low</span></div>
-        <div class="block-flow"><span class="block-tag">faq</span><span class="block-tag">text</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/faq-old-donotindex/faq-general-information" target="_blank">View live page &rarr;</a>
+        <div class="block-flow">
+          <span class="block-tag">hero</span><span class="block-tag">marketing-banner</span><span class="block-tag">columns</span><span class="block-tag">text-image</span><span class="block-tag">carousel</span><span class="block-tag">accordion</span>
+        </div>
+        <a class="live-link" href="https://www.zonnic.ca/ca/en/why-zonnic" target="_blank">View live page →</a>
       </div>
       <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/faq-about-zonnic-desktop-1440.png" alt="faq desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/faq-about-zonnic-desktop.png';" />
-        <div class="name">faq</div>
-        <div class="page-count">6</div><div class="page-label">pages</div>
-        <div class="complexity"><span class="pill pill-reuse">Low</span></div>
-        <div class="block-flow"><span class="block-tag">faq</span><span class="block-tag">text</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/faq/about-zonnic" target="_blank">View live page &rarr;</a>
+        <img class="thumb" src="../design-extract/screenshots/templates/quit-zone-desktop-1440.png" alt="quit-zone desktop preview" loading="lazy" onerror="this.onerror=null;this.style.display='none'" />
+        <div class="name">Quit Zone (sub-product)</div>
+        <div><span class="page-count">2</span><span class="page-label">pages</span></div>
+        <div class="complexity"><span class="pill pill-adapt">Medium</span></div>
+        <div class="block-flow">
+          <span class="block-tag">hero</span><span class="block-tag">marketing-banner (navy)</span><span class="block-tag">cards (steps)</span><span class="block-tag">cards (app-steps)</span><span class="block-tag">accordion</span>
+        </div>
+        <a class="live-link" href="https://www.zonnic.ca/ca/en/quit-zone" target="_blank">View live page →</a>
       </div>
       <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/store-locator-desktop-1440.png" alt="store-locator desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/store-locator-desktop.png';" />
-        <div class="name">store-locator</div>
-        <div class="page-count">2</div><div class="page-label">pages</div>
+        <img class="thumb" src="../design-extract/screenshots/templates/store-locator-desktop-1440.png" alt="store-locator desktop preview" loading="lazy" onerror="this.onerror=null;this.style.display='none'" />
+        <div class="name">Store Locator</div>
+        <div><span class="page-count">1</span><span class="page-label">page</span></div>
         <div class="complexity"><span class="pill pill-new">High</span></div>
-        <div class="block-flow"><span class="block-tag">store-locator</span><span class="block-tag">text</span><span class="block-tag">cta</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/store-locator" target="_blank">View live page &rarr;</a>
+        <div class="block-flow">
+          <span class="block-tag">store-locator*</span><span class="block-tag">text-image</span><span class="block-tag">carousel</span>
+        </div>
+        <a class="live-link" href="https://www.zonnic.ca/ca/en/store-locator" target="_blank">View live page →</a>
       </div>
       <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/newsletter-desktop-1440.png" alt="newsletter desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/newsletter-desktop.png';" />
-        <div class="name">newsletter</div>
-        <div class="page-count">2</div><div class="page-label">pages</div>
-        <div class="complexity"><span class="pill pill-reuse">Low</span></div>
-        <div class="block-flow"><span class="block-tag">signup-form (newsletter)</span><span class="block-tag">text</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/newsletter" target="_blank">View live page &rarr;</a>
-      </div>
-      <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/zonnic-nicotine-pouches11-desktop-1440.png" alt="zonnic-nicotine-pouches desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/zonnic-nicotine-pouches11-desktop.png';" />
-        <div class="name">zonnic-nicotine-pouches</div>
-        <div class="page-count">2</div><div class="page-label">pages</div>
-        <div class="complexity"><span class="pill pill-adapt">Medium</span></div>
-        <div class="block-flow"><span class="block-tag">product-hero</span><span class="block-tag">text</span><span class="block-tag">cta</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/zonnic-nicotine-pouches11" target="_blank">View live page &rarr;</a>
-      </div>
-      <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/homepage-desktop-1440.png" alt="homepage desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/homepage-desktop.png';" />
-        <div class="name">homepage</div>
-        <div class="page-count">1</div><div class="page-label">page</div>
+        <img class="thumb" src="../design-extract/screenshots/templates/sign-up-desktop-1440.png" alt="sign-up form desktop preview" loading="lazy" onerror="this.onerror=null;this.style.display='none'" />
+        <div class="name">Form Page (sign-up, contact)</div>
+        <div><span class="page-count">3</span><span class="page-label">pages</span></div>
         <div class="complexity"><span class="pill pill-new">High</span></div>
-        <div class="block-flow"><span class="block-tag">hero</span><span class="block-tag">masthead-card</span><span class="block-tag">blurb-card</span><span class="block-tag">cards (blog)</span><span class="block-tag">cta</span><span class="block-tag">announcement-bar</span><span class="block-tag">age-gate</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en" target="_blank">View live page &rarr;</a>
+        <div class="block-flow">
+          <span class="block-tag">form (multi-section)*</span><span class="block-tag">form (contact)*</span>
+        </div>
+        <a class="live-link" href="https://www.zonnic.ca/ca/en/sign-up" target="_blank">View live page →</a>
       </div>
       <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/testingblogarticletemplate-desktop-1440.png" alt="testingblogarticletemplate desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/testingblogarticletemplate-desktop.png';" />
-        <div class="name">testingblogarticletemplate</div>
-        <div class="page-count">1</div><div class="page-label">page</div>
+        <img class="thumb" src="../design-extract/screenshots/templates/faq-about-zonnic-desktop-1440.png" alt="faq desktop preview" loading="lazy" onerror="this.onerror=null;this.style.display='none'" />
+        <div class="name">FAQ</div>
+        <div><span class="page-count">1+</span><span class="page-label">pages</span></div>
         <div class="complexity"><span class="pill pill-reuse">Low</span></div>
-        <div class="block-flow"><span class="block-tag">text</span><span class="block-tag">cards (blog)</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/testingblogarticletemplate" target="_blank">View live page &rarr;</a>
-      </div>
-      <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/why-zonnic-desktop-1440.png" alt="why-zonnic desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/why-zonnic-desktop.png';" />
-        <div class="name">why-zonnic</div>
-        <div class="page-count">1</div><div class="page-label">page</div>
-        <div class="complexity"><span class="pill pill-adapt">Medium</span></div>
-        <div class="block-flow"><span class="block-tag">masthead-card</span><span class="block-tag">blurb-card</span><span class="block-tag">tabbed-carousel</span><span class="block-tag">cta</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/why-zonnic" target="_blank">View live page &rarr;</a>
-      </div>
-      <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/what-is-zonnic-desktop-1440.png" alt="what-is-zonnic desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/what-is-zonnic-desktop.png';" />
-        <div class="name">what-is-zonnic</div>
-        <div class="page-count">1</div><div class="page-label">page</div>
-        <div class="complexity"><span class="pill pill-adapt">Medium</span></div>
-        <div class="block-flow"><span class="block-tag">masthead-card</span><span class="block-tag">blurb-card</span><span class="block-tag">product-carousel</span><span class="block-tag">cta</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/what-is-zonnic" target="_blank">View live page &rarr;</a>
-      </div>
-      <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/sign-up-desktop-1440.png" alt="sign-up desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/sign-up-desktop.png';" />
-        <div class="name">sign-up</div>
-        <div class="page-count">1</div><div class="page-label">page</div>
-        <div class="complexity"><span class="pill pill-adapt">Medium</span></div>
-        <div class="block-flow"><span class="block-tag">signup-form</span><span class="block-tag">text (box)</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/sign-up" target="_blank">View live page &rarr;</a>
-      </div>
-      <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/zonnic-helped-me-quit-desktop-1440.png" alt="zonnic-helped-me-quit desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/zonnic-helped-me-quit-desktop.png';" />
-        <div class="name">zonnic-helped-me-quit</div>
-        <div class="page-count">1</div><div class="page-label">page</div>
-        <div class="complexity"><span class="pill pill-reuse">Low</span></div>
-        <div class="block-flow"><span class="block-tag">masthead-card</span><span class="block-tag">blurb-card</span><span class="block-tag">cta</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/zonnic-helped-me-quit" target="_blank">View live page &rarr;</a>
-      </div>
-      <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/world-no-tobacco-day-desktop-1440.png" alt="world-no-tobacco-day desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/world-no-tobacco-day-desktop.png';" />
-        <div class="name">world-no-tobacco-day</div>
-        <div class="page-count">1</div><div class="page-label">page</div>
-        <div class="complexity"><span class="pill pill-reuse">Low</span></div>
-        <div class="block-flow"><span class="block-tag">masthead-card</span><span class="block-tag">text</span><span class="block-tag">cta</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/world-no-tobacco-day" target="_blank">View live page &rarr;</a>
-      </div>
-      <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/quit-zone-desktop-1440.png" alt="quit-zone desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/quit-zone-desktop.png';" />
-        <div class="name">quit-zone</div>
-        <div class="page-count">1</div><div class="page-label">page</div>
-        <div class="complexity"><span class="pill pill-adapt">Medium</span></div>
-        <div class="block-flow"><span class="block-tag">masthead-card</span><span class="block-tag">blurb-card</span><span class="block-tag">faq</span><span class="block-tag">cta</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/quit-zone" target="_blank">View live page &rarr;</a>
-      </div>
-      <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/keep-zonnic-accessible-desktop-1440.png" alt="keep-zonnic-accessible desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/keep-zonnic-accessible-desktop.png';" />
-        <div class="name">keep-zonnic-accessible</div>
-        <div class="page-count">1</div><div class="page-label">page</div>
-        <div class="complexity"><span class="pill pill-reuse">Low</span></div>
-        <div class="block-flow"><span class="block-tag">masthead-card</span><span class="block-tag">text</span><span class="block-tag">cta</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/keep-zonnic-accessible" target="_blank">View live page &rarr;</a>
-      </div>
-      <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/truth-about-zonnic-desktop-1440.png" alt="truth-about-zonnic desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/truth-about-zonnic-desktop.png';" />
-        <div class="name">truth-about-zonnic</div>
-        <div class="page-count">1</div><div class="page-label">page</div>
-        <div class="complexity"><span class="pill pill-adapt">Medium</span></div>
-        <div class="block-flow"><span class="block-tag">masthead-card</span><span class="block-tag">faq</span><span class="block-tag">cta</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/truth-about-zonnic" target="_blank">View live page &rarr;</a>
-      </div>
-      <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/quit-on-your-terms-desktop-1440.png" alt="quit-on-your-terms desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/quit-on-your-terms-desktop.png';" />
-        <div class="name">quit-on-your-terms</div>
-        <div class="page-count">1</div><div class="page-label">page</div>
-        <div class="complexity"><span class="pill pill-reuse">Low</span></div>
-        <div class="block-flow"><span class="block-tag">masthead-card</span><span class="block-tag">blurb-card</span><span class="block-tag">cta</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/quit-on-your-terms" target="_blank">View live page &rarr;</a>
-      </div>
-      <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/ask-your-pharmacist-desktop-1440.png" alt="ask-your-pharmacist desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/ask-your-pharmacist-desktop.png';" />
-        <div class="name">ask-your-pharmacist</div>
-        <div class="page-count">1</div><div class="page-label">page</div>
-        <div class="complexity"><span class="pill pill-reuse">Low</span></div>
-        <div class="block-flow"><span class="block-tag">masthead-card</span><span class="block-tag">cta</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/ask-your-pharmacist" target="_blank">View live page &rarr;</a>
-      </div>
-      <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/zonnic-insurance-reimbursement-desktop-1440.png" alt="zonnic-insurance-reimbursement desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/zonnic-insurance-reimbursement-desktop.png';" />
-        <div class="name">zonnic-insurance-reimbursement</div>
-        <div class="page-count">1</div><div class="page-label">page</div>
-        <div class="complexity"><span class="pill pill-reuse">Low</span></div>
-        <div class="block-flow"><span class="block-tag">masthead-card</span><span class="block-tag">text</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/zonnic-insurance-reimbursement" target="_blank">View live page &rarr;</a>
-      </div>
-      <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/quit-zone-archived-page-desktop-1440.png" alt="quit-zone-archived-page desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/quit-zone-archived-page-desktop.png';" />
-        <div class="name">quit-zone-archived-page</div>
-        <div class="page-count">1</div><div class="page-label">page</div>
-        <div class="complexity"><span class="pill pill-reuse">Low</span></div>
-        <div class="block-flow"><span class="block-tag">masthead-card</span><span class="block-tag">text</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/quit-zone-archived-page" target="_blank">View live page &rarr;</a>
-      </div>
-      <div class="template-card">
-        <img class="thumb" src="../design-extract/screenshots/email-verification-desktop-1440.png" alt="email-verification desktop preview" loading="lazy" onerror="this.onerror=null;this.src='../design-extract/screenshots/email-verification-desktop.png';" />
-        <div class="name">email-verification</div>
-        <div class="page-count">1</div><div class="page-label">page</div>
-        <div class="complexity"><span class="pill pill-reuse">Low</span></div>
-        <div class="block-flow"><span class="block-tag">text (box)</span></div>
-        <a class="live-link" href="https://www.zonnic.ca/ca/en/email-verification" target="_blank">View live page &rarr;</a>
+        <div class="block-flow">
+          <span class="block-tag">accordion</span><span class="block-tag">default content</span>
+        </div>
+        <a class="live-link" href="https://www.zonnic.ca/ca/en/faq/about-zonnic" target="_blank">View live page →</a>
       </div>
     </div>
+    <p style="font-size:11px;color:var(--text-secondary);margin-top:12px"><em>* = new block needed. Page count for "Campaign" includes the long tail of marketing pages: why-zonnic, what-is-zonnic, truth-about-zonnic, quit-on-your-terms, ask-your-pharmacist, zonnic-helped-me-quit, world-no-tobacco-day, keep-zonnic-accessible, real-people-real-success, healthcare-professionals/*, zonnic-insurance-reimbursement, contact-us/*, newsletter, sign-up, email-verification, archived pages.</em></p>
   </div>
 </section>
 
-<!-- 6. BLOCK INVENTORY — stat cards + table -->
 <section>
-  <h2>Block Inventory (27 blocks)</h2>
+  <h2>Block Inventory (19 blocks)</h2>
   <div class="content">
     <div class="stats-row" style="margin-bottom:20px">
-      <div class="stat-card success"><div class="value">3</div><div class="label">Reuse As-Is</div></div>
+      <div class="stat-card success"><div class="value">8</div><div class="label">Reuse As-Is</div></div>
       <div class="stat-card warning"><div class="value">4</div><div class="label">Adapt Existing</div></div>
-      <div class="stat-card danger"><div class="value">20</div><div class="label">Develop New</div></div>
+      <div class="stat-card danger"><div class="value">7</div><div class="label">Develop New</div></div>
     </div>
     <table>
-      <thead><tr><th>Block</th><th>Source Component</th><th>Status</th><th>Complexity</th><th class="num">Effort</th></tr></thead>
+      <thead><tr><th>Block</th><th>Source organism</th><th>Status</th><th>Complexity</th><th class="num">Effort</th></tr></thead>
       <tbody>
-                <tr><td>section metadata</td><td>bat-section-default</td><td><span class="pill pill-reuse">Reuse</span></td><td>None</td><td class="num">0h</td></tr>
-        <tr><td>button decoration</td><td>bat-cta-default</td><td><span class="pill pill-reuse">Reuse</span></td><td>None</td><td class="num">0h</td></tr>
-        <tr><td>default content</td><td>headline / text / image</td><td><span class="pill pill-reuse">Reuse</span></td><td>None</td><td class="num">0h</td></tr>
-        <tr><td>header</td><td>bat-header-zonnicheadless</td><td><span class="pill pill-adapt">Adapt</span></td><td>Medium</td><td class="num">M</td></tr>
-        <tr><td>footer</td><td>bat-footer-zonnic</td><td><span class="pill pill-adapt">Adapt</span></td><td>Low</td><td class="num">S</td></tr>
-        <tr><td>hero</td><td>bat-hero-zonnic</td><td><span class="pill pill-adapt">Adapt</span></td><td>Medium</td><td class="num">M</td></tr>
-        <tr><td>cards (blog)</td><td>blog listing / article</td><td><span class="pill pill-adapt">Adapt</span></td><td>Low</td><td class="num">S</td></tr>
-        <tr><td>age-gate</td><td>bat-agegate-*</td><td><span class="pill pill-new">New</span></td><td>High</td><td class="num">L</td></tr>
-        <tr><td>announcement-bar</td><td>bat-announcementbar-*</td><td><span class="pill pill-new">New</span></td><td>Low</td><td class="num">S</td></tr>
-        <tr><td>location-selector</td><td>bat-locationselector-*</td><td><span class="pill pill-new">New</span></td><td>Medium</td><td class="num">M</td></tr>
-        <tr><td>modal</td><td>shared container</td><td><span class="pill pill-new">New</span></td><td>Medium</td><td class="num">M</td></tr>
-        <tr><td>masthead-card</td><td>bat-masthead-card</td><td><span class="pill pill-new">New</span></td><td>Medium</td><td class="num">M</td></tr>
-        <tr><td>blurb-card</td><td>bat-blurb-card</td><td><span class="pill pill-new">New</span></td><td>Low</td><td class="num">S</td></tr>
-        <tr><td>blog-card</td><td>bat-blog-card</td><td><span class="pill pill-new">New</span></td><td>Low</td><td class="num">S</td></tr>
-        <tr><td>contact-card</td><td>bat-contact-card</td><td><span class="pill pill-new">New</span></td><td>Low</td><td class="num">S</td></tr>
-        <tr><td>faq</td><td>bat-faq</td><td><span class="pill pill-new">New</span></td><td>Medium</td><td class="num">M</td></tr>
-        <tr><td>cta</td><td>bat-cta-composite</td><td><span class="pill pill-new">New</span></td><td>Medium</td><td class="num">M</td></tr>
-        <tr><td>text (box)</td><td>bat-text-default (variant)</td><td><span class="pill pill-new">New</span></td><td>Low</td><td class="num">XS</td></tr>
-        <tr><td>signup-form</td><td>bat-signupform</td><td><span class="pill pill-new">New</span></td><td>High</td><td class="num">L</td></tr>
-        <tr><td>login-form</td><td>bat-loginform</td><td><span class="pill pill-new">New</span></td><td>High</td><td class="num">L</td></tr>
-        <tr><td>password-reset-form</td><td>bat-passwordresetform</td><td><span class="pill pill-new">New</span></td><td>Medium</td><td class="num">M</td></tr>
-        <tr><td>product-carousel</td><td>bat-product-carousel</td><td><span class="pill pill-new">New</span></td><td>High</td><td class="num">L</td></tr>
-        <tr><td>tabbed-carousel</td><td>bat-tabbed-carousel</td><td><span class="pill pill-new">New</span></td><td>High</td><td class="num">XL</td></tr>
-        <tr><td>product-hero</td><td>bat-product-hero</td><td><span class="pill pill-new">New</span></td><td>High</td><td class="num">L</td></tr>
-        <tr><td>product-card</td><td>bat-product-card</td><td><span class="pill pill-new">New</span></td><td>Low</td><td class="num">S</td></tr>
-        <tr><td>store-locator</td><td>bat-storelocator</td><td><span class="pill pill-new">New</span></td><td>High</td><td class="num">XL</td></tr>
-        <tr><td>minicart</td><td>bat-minicart-zonnic</td><td><span class="pill pill-new">New</span></td><td>High</td><td class="num">XL</td></tr>
+        <tr><td>header</td><td>BAT custom header</td><td><span class="pill pill-adapt">Adapt</span></td><td>Utility nav slot + responsive</td><td class="num">M</td></tr>
+        <tr><td>footer</td><td>BAT custom footer</td><td><span class="pill pill-adapt">Adapt</span></td><td>Newsletter slot + 4-col</td><td class="num">M</td></tr>
+        <tr><td>hero</td><td>3 BAT hero variants</td><td><span class="pill pill-adapt">Adapt</span></td><td>3 modifier styles on 1 block</td><td class="num">S</td></tr>
+        <tr><td>cards</td><td>5 BAT card variants</td><td><span class="pill pill-adapt">Adapt</span></td><td>4 new variants (products/articles/steps/app-steps)</td><td class="num">S</td></tr>
+        <tr><td>carousel</td><td>BAT testimonial carousel</td><td><span class="pill pill-reuse">Reuse</span></td><td>Block Collection + testimonial CSS variant</td><td class="num">S</td></tr>
+        <tr><td>accordion</td><td>BAT FAQ accordion</td><td><span class="pill pill-reuse">Reuse</span></td><td>Block Collection as-is</td><td class="num">XS</td></tr>
+        <tr><td>columns</td><td>BAT 50/50 split</td><td><span class="pill pill-reuse">Reuse</span></td><td>Block Collection as-is</td><td class="num">XS</td></tr>
+        <tr><td>embed</td><td>BAT video player</td><td><span class="pill pill-reuse">Reuse</span></td><td>Block Collection (video.js variant)</td><td class="num">XS</td></tr>
+        <tr><td>marketing-banner</td><td>BAT full-bleed CTA</td><td><span class="pill pill-new">New</span></td><td>2 colour variants, decorator-only</td><td class="num">S</td></tr>
+        <tr><td>text-image</td><td>BAT brand-panel</td><td><span class="pill pill-new">New</span></td><td>2 layouts, navy variant</td><td class="num">M</td></tr>
+        <tr><td>newsletter-strip</td><td>BAT newsletter CTA</td><td><span class="pill pill-new">New</span></td><td>Fragment + form integration</td><td class="num">M</td></tr>
+        <tr><td>form (multi-section)</td><td>BAT sign-up form</td><td><span class="pill pill-new">New</span></td><td>JSON-driven runtime, ARIA, Salesforce client</td><td class="num">L</td></tr>
+        <tr><td>form (contact)</td><td>BAT contact form</td><td><span class="pill pill-new">New</span></td><td>Form runtime variant</td><td class="num">M</td></tr>
+        <tr><td>commerce</td><td>BAT PriceSpider widget</td><td><span class="pill pill-new">New</span></td><td>Lazy-loaded vendor iframe</td><td class="num">M</td></tr>
+        <tr><td>product-header</td><td>BAT product hero</td><td><span class="pill pill-new">New</span></td><td>Auto-blocked from page metadata</td><td class="num">M</td></tr>
+        <tr><td>store-locator</td><td>BAT Mapbox locator</td><td><span class="pill pill-new">New</span></td><td>Mapbox GL + filter + geolocation + a11y</td><td class="num">XL</td></tr>
+        <tr><td>warning-banner (section style)</td><td>BAT health warning</td><td><span class="pill pill-reuse">Reuse</span></td><td>Section style only</td><td class="num">XS</td></tr>
+        <tr><td>quitzone-strip (fragment)</td><td>BAT QuitZone CTA</td><td><span class="pill pill-reuse">Reuse</span></td><td>Section + fragment loader</td><td class="num">XS</td></tr>
+        <tr><td>region-switcher</td><td>BAT region selector</td><td><span class="pill pill-reuse">Reuse</span></td><td>Header utility + cookie helper</td><td class="num">XS</td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<!-- 7. ATOMIC DESIGN MAPPING -->
 <section>
   <h2>Atomic Design Mapping</h2>
   <div class="content">
     <table>
       <thead><tr><th>Level</th><th class="num">Count</th><th>EDS Artifact</th><th>Description</th></tr></thead>
       <tbody>
-        <tr><td><strong>Foundations</strong></td><td class="num">98 tokens</td><td>CSS custom properties in <code>styles.css</code></td><td>27 colors, 15 type sizes, 8 weights, 18 spacing values, 10 shadows, 7 radii, 6 durations — flagged for normalization in DS phase</td></tr>
-        <tr><td><strong>Atoms</strong></td><td class="num">8 patterns</td><td>Default content + <code>scripts.js</code> decoration</td><td>Buttons (primary/secondary/accent), text links, form inputs, headlines (H1–H6), body copy, icons, eyebrow labels, images</td></tr>
-        <tr><td><strong>Molecules</strong></td><td class="num">6 composites</td><td>Internal block row/column structure</td><td>CTA group, form field, FAQ row, blurb unit, blog stub, product tile</td></tr>
-        <tr><td><strong>Organisms</strong></td><td class="num">27 blocks</td><td><code>blocks/{name}/</code></td><td>27 distinct blocks: 3 reuse (sections, buttons, default content) + 4 adapt (header, footer, hero, cards) + 20 new</td></tr>
-        <tr><td><strong>Templates</strong></td><td class="num">3 types</td><td>Auto-blocking rules + authoring guides</td><td>generic-template, blog-article-template, non-branded-generic-template</td></tr>
-        <tr><td><strong>Pages</strong></td><td class="num">106 pages</td><td>Authored content (Google Docs/Word)</td><td>106 pages across 25 template groups; largest groups are blog (39) and contact-us / healthcare-professionals / real-people-real-success (9 each)</td></tr>
+        <tr><td><strong>Foundations</strong></td><td class="num">45 tokens (normalised target)</td><td>CSS custom properties in <code>styles.css</code></td><td>13 colors + 11 type + 10 spacing + 2 shadow + 5 radius + 4 motion</td></tr>
+        <tr><td><strong>Atoms</strong></td><td class="num">7 patterns, 14 variants</td><td>Default content + <code>scripts.js</code> decoration</td><td>Button, link, icon, image, headline, text (incl. boxed), input — all extracted with live HTML + computed CSS</td></tr>
+        <tr><td><strong>Molecules</strong></td><td class="num">5 composites, 10 variants</td><td>Internal block row/column structure</td><td>form-field, cta-list (horizontal + logged-in + account audiences), nav-item, modal-shell, form-message</td></tr>
+        <tr><td><strong>Organisms</strong></td><td class="num">19 blocks</td><td><code>blocks/{name}/</code></td><td>age-gate, header, footer, message-bar, hero, masthead-card, blurb-card, blog-card, tab-sync-carousel, product-carousel, faq, signup-form, login-form, newsletter-form, contact-form, product-hero, store-locator, location-selector, mini-cart</td></tr>
+        <tr><td><strong>Templates</strong></td><td class="num">8 types</td><td>Auto-blocking rules + authoring guides</td><td>homepage, product-detail, blog-article, campaign-page, what-is-zonnic, store-locator, sign-up, contact-us</td></tr>
+        <tr><td><strong>Pages</strong></td><td class="num">92 pages</td><td>Authored content (Google Docs / Word)</td><td>Migrated in 6 batches with human review checkpoints</td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<!-- 8. THIRD-PARTY INTEGRATIONS -->
 <section>
-  <h2>Third-Party Integrations (15)</h2>
+  <h2>Forensic Component Inventory</h2>
+  <div class="content">
+    <p style="color:var(--text-secondary);margin-bottom:16px">
+      Every atom, molecule and organism below is backed by live-DOM evidence at
+      <code>migration-work/components/</code>: outer HTML captured from the page
+      (<code>anatomy.html</code>), per-variant <code>getComputedStyle()</code> snapshot
+      (<code>computed.css</code>), occurrence + page spread (<code>stats.json</code>),
+      and cropped screenshot per variant. Totals:
+      <strong>31</strong> components
+      (<strong>7</strong> atoms,
+      <strong>5</strong> molecules,
+      <strong>19</strong> organisms) —
+      <strong>43/43</strong> variants extracted with screenshot
+      evidence.
+    </p>
+    <p style="margin-bottom:16px">
+      <a href="../components/preview.html" target="_blank" style="display:inline-block;background:var(--navy);color:#fff;padding:10px 18px;border-radius:6px;text-decoration:none;font-weight:600;font-size:13px">
+        Open living styleguide — <code style="background:rgba(255,255,255,0.18);color:#fff;padding:1px 6px;border-radius:3px">components/preview.html</code> →
+      </a>
+      <span style="color:var(--text-secondary);margin-left:12px;font-size:12.5px">Single-page browser of tokens, atoms, molecules, organisms with variant screenshots + anatomy.</span>
+    </p>
+
+    <h3 class="subsection-title">Atoms</h3>
+    <div class="component-grid">
+      <a class="component-card" href="../components/atoms/button/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/atoms/button/evidence/primary.png" alt="button" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">button<span class="pill pill-advisory">advisory</span></div>
+          <div class="component-meta">3 variant · 377 uses · 8 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/atoms/link/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/atoms/link/evidence/utility.png" alt="link" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">link<span class="pill pill-advisory">advisory</span></div>
+          <div class="component-meta">1 variant</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/atoms/icon/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/atoms/icon/evidence/default.png" alt="icon" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">icon<span class="pill pill-advisory">advisory</span></div>
+          <div class="component-meta">1 variant · 206 uses · 8 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/atoms/image/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/atoms/image/evidence/default.png" alt="image" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">image<span class="pill pill-advisory">advisory</span></div>
+          <div class="component-meta">1 variant · 429 uses · 8 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/atoms/headline/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/atoms/headline/evidence/h1-display.png" alt="headline" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">headline<span class="pill pill-advisory">advisory</span></div>
+          <div class="component-meta">3 variant · 710 uses · 8 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/atoms/text/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/atoms/text/evidence/default.png" alt="text" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">text<span class="pill pill-advisory">advisory</span></div>
+          <div class="component-meta">1 variant · 351 uses · 8 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/atoms/input/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/atoms/input/evidence/text.png" alt="input" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">input<span class="pill pill-advisory">advisory</span></div>
+          <div class="component-meta">3 variant · 284 uses · 8 pages</div>
+        </div>
+      </a>
+    </div>
+
+    <h3 class="subsection-title">Molecules</h3>
+    <div class="component-grid">
+      <a class="component-card" href="../components/molecules/form-field/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/molecules/form-field/evidence/default.png" alt="form-field" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">form-field<span class="pill pill-advisory">advisory</span></div>
+          <div class="component-meta">2 variant · 444 uses · 8 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/molecules/cta-list/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/molecules/cta-list/evidence/horizontal.png" alt="cta-list" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">cta-list<span class="pill pill-advisory">advisory</span></div>
+          <div class="component-meta">1 variant · 80 uses · 8 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/molecules/nav-item/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/molecules/nav-item/evidence/desktop.png" alt="nav-item" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">nav-item<span class="pill pill-advisory">advisory</span></div>
+          <div class="component-meta">2 variant · 184 uses · 8 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/molecules/modal-shell/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/molecules/modal-shell/evidence/default.png" alt="modal-shell" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">modal-shell<span class="pill pill-advisory">advisory</span></div>
+          <div class="component-meta">1 variant · 189 uses · 8 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/molecules/form-message/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/molecules/form-message/evidence/error.png" alt="form-message" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">form-message<span class="pill pill-advisory">advisory</span></div>
+          <div class="component-meta">2 variant · 160 uses · 8 pages</div>
+        </div>
+      </a>
+    </div>
+
+    <h3 class="subsection-title">Organisms</h3>
+    <div class="component-grid">
+      <a class="component-card" href="../components/organisms/age-gate/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/organisms/age-gate/evidence/default.png" alt="age-gate" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">age-gate<span class="pill pill-new">new</span><span class="pill pill-critical">reg</span></div>
+          <div class="component-meta">1 variant · 104 uses · 8 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/organisms/header/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/organisms/header/evidence/default.png" alt="header" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">header<span class="pill pill-adapt">adapt</span></div>
+          <div class="component-meta">1 variant · 8 uses · 8 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/organisms/footer/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/organisms/footer/evidence/default.png" alt="footer" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">footer<span class="pill pill-adapt">adapt</span><span class="pill pill-critical">reg</span></div>
+          <div class="component-meta">1 variant · 208 uses · 8 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/organisms/message-bar/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/organisms/message-bar/evidence/default.png" alt="message-bar" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">message-bar<span class="pill pill-new">new</span></div>
+          <div class="component-meta">1 variant · 8 uses · 8 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/organisms/hero/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/organisms/hero/evidence/default.png" alt="hero" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">hero<span class="pill pill-adapt">adapt</span></div>
+          <div class="component-meta">1 variant · 82 uses · 4 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/organisms/masthead-card/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/organisms/masthead-card/evidence/default.png" alt="masthead-card" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">masthead-card<span class="pill pill-new">new</span></div>
+          <div class="component-meta">1 variant · 224 uses · 3 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/organisms/blurb-card/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/organisms/blurb-card/evidence/default.png" alt="blurb-card" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">blurb-card<span class="pill pill-reuse">reuse</span></div>
+          <div class="component-meta">1 variant · 204 uses · 2 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/organisms/blog-card/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/organisms/blog-card/evidence/default.png" alt="blog-card" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">blog-card<span class="pill pill-adapt">adapt</span></div>
+          <div class="component-meta">1 variant · 108 uses · 2 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/organisms/tab-sync-carousel/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/organisms/tab-sync-carousel/evidence/default.png" alt="tab-sync-carousel" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">tab-sync-carousel<span class="pill pill-new">new</span></div>
+          <div class="component-meta">1 variant · 12 uses · 3 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/organisms/product-carousel/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/organisms/product-carousel/evidence/default.png" alt="product-carousel" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">product-carousel<span class="pill pill-adapt">adapt</span></div>
+          <div class="component-meta">1 variant · 6 uses · 3 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/organisms/faq/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/organisms/faq/evidence/default.png" alt="faq" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">faq<span class="pill pill-reuse">reuse</span></div>
+          <div class="component-meta">1 variant · 6 uses · 3 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/organisms/signup-form/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/organisms/signup-form/evidence/default.png" alt="signup-form" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">signup-form<span class="pill pill-new">new</span></div>
+          <div class="component-meta">1 variant · 184 uses · 7 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/organisms/login-form/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/organisms/login-form/evidence/default.png" alt="login-form" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">login-form<span class="pill pill-new">new</span></div>
+          <div class="component-meta">1 variant · 48 uses · 8 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/organisms/newsletter-form/" target="_blank">
+        <div class="component-thumb-wrap"><div class="component-thumb component-thumb-placeholder">hidden or not extracted</div></div>
+        <div class="component-body">
+          <div class="component-name">newsletter-form<span class="pill pill-new">new</span></div>
+          <div class="component-meta">1 variant · 24 uses · 1 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/organisms/contact-form/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/organisms/contact-form/evidence/default.png" alt="contact-form" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">contact-form<span class="pill pill-adapt">adapt</span></div>
+          <div class="component-meta">1 variant · 16 uses · 1 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/organisms/product-hero/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/organisms/product-hero/evidence/default.png" alt="product-hero" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">product-hero<span class="pill pill-new">new</span></div>
+          <div class="component-meta">1 variant · 1 uses · 1 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/organisms/store-locator/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/organisms/store-locator/evidence/default.png" alt="store-locator" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">store-locator<span class="pill pill-new">new</span></div>
+          <div class="component-meta">1 variant · 1 uses · 1 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/organisms/location-selector/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/organisms/location-selector/evidence/default.png" alt="location-selector" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">location-selector<span class="pill pill-new">new</span><span class="pill pill-critical">reg</span></div>
+          <div class="component-meta">1 variant · 24 uses · 8 pages</div>
+        </div>
+      </a>
+      <a class="component-card" href="../components/organisms/mini-cart/" target="_blank">
+        <div class="component-thumb-wrap"><img class="component-thumb" src="../components/organisms/mini-cart/evidence/default.png" alt="mini-cart" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'component-thumb component-thumb-placeholder',textContent:'hidden or not extracted'}))"></div>
+        <div class="component-body">
+          <div class="component-name">mini-cart<span class="pill pill-new">new</span></div>
+          <div class="component-meta">1 variant · 16 uses · 8 pages</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <h2>Coverage Verification (31 components × 8 pages)</h2>
+  <div class="content">
+    <p style="color:var(--text-secondary);margin-bottom:16px">
+      Cross-checks every component selector against each representative page's DOM
+      to prove the inventory covers the whole site. Source of truth:
+      <code>migration-work/components/coverage-matrix.json</code> / <a href="../components/coverage-report.md">coverage-report.md</a>.
+      <br><br>
+      Run locally:
+      <code>node .claude/skills/migration-planner/scripts/verify-component-coverage.mjs</code>
+    </p>
+    <div class="metrics-grid" style="margin-bottom:24px">
+      <div class="metric"><div class="metric-value">8</div><div class="metric-label">representative pages</div></div>
+      <div class="metric"><div class="metric-value">31</div><div class="metric-label">components</div></div>
+      <div class="metric"><div class="metric-value">190 / 248</div><div class="metric-label">component × page cells with ≥1 DOM match (77%)</div></div>
+      <div class="metric" style="border-left-color:var(--green)"><div class="metric-value" style="color:var(--green)">0</div><div class="metric-label">observedPages mismatches</div></div>
+      <div class="metric" style="border-left-color:var(--green)"><div class="metric-value" style="color:var(--green)">0</div><div class="metric-label">dead components</div></div>
+      <div class="metric" style="border-left-color:var(--green)"><div class="metric-value" style="color:var(--green)">0</div><div class="metric-label">un-catalogued custom-element tags</div></div>
+    </div>
+
+    <style>
+      .coverage-matrix { font-size: 12px; border-collapse: collapse; width: 100%; }
+      .coverage-matrix th, .coverage-matrix td { padding: 4px 6px; border: 1px solid var(--border-light); text-align: center; white-space: nowrap; }
+      .coverage-matrix th.sticky-col, .coverage-matrix td.sticky-col { position: sticky; left: 0; background: var(--surface); text-align: left; }
+      .coverage-matrix td.hit { background: rgba(45,173,112,0.14); color: var(--green); font-weight: 600; }
+      .coverage-matrix td.miss { color: var(--border); }
+      .coverage-matrix th.col-header { writing-mode: horizontal-tb; font-weight: 600; font-size: 11px; }
+      .coverage-matrix tbody tr.level-head td { background: var(--bg-soft); text-transform: uppercase; font-size: 10px; letter-spacing: 0.1em; text-align: left; color: var(--text-secondary); }
+      .coverage-scroll { overflow-x: auto; border: 1px solid var(--border-light); border-radius: 8px; }
+    </style>
+    <div class="coverage-scroll">
+      <table class="coverage-matrix">
+        <thead>
+          <tr>
+            <th class="sticky-col">Component</th>
+            <th class="col-header">homepage</th>
+            <th class="col-header">why-zonnic</th>
+            <th class="col-header">what-is-zonnic</th>
+            <th class="col-header">PDP</th>
+            <th class="col-header">sign-up</th>
+            <th class="col-header">store-locator</th>
+            <th class="col-header">contact-us</th>
+            <th class="col-header">blog-article</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="level-head"><td colspan="9">Atoms</td></tr>
+          <tr><td class="sticky-col">button</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td></tr>
+          <tr><td class="sticky-col">link</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td></tr>
+          <tr><td class="sticky-col">icon</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td></tr>
+          <tr><td class="sticky-col">image</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td></tr>
+          <tr><td class="sticky-col">headline</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td></tr>
+          <tr><td class="sticky-col">text</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td></tr>
+          <tr><td class="sticky-col">input</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td></tr>
+          <tr class="level-head"><td colspan="9">Molecules</td></tr>
+          <tr><td class="sticky-col">form-field</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td></tr>
+          <tr><td class="sticky-col">cta-list</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td></tr>
+          <tr><td class="sticky-col">nav-item</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td></tr>
+          <tr><td class="sticky-col">modal-shell</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td></tr>
+          <tr><td class="sticky-col">form-message</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td></tr>
+          <tr class="level-head"><td colspan="9">Organisms</td></tr>
+          <tr><td class="sticky-col">age-gate</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td></tr>
+          <tr><td class="sticky-col">header</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td></tr>
+          <tr><td class="sticky-col">footer</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td></tr>
+          <tr><td class="sticky-col">message-bar</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td></tr>
+          <tr><td class="sticky-col">hero</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td></tr>
+          <tr><td class="sticky-col">masthead-card</td><td class="hit">•</td><td class="miss">·</td><td class="miss">·</td><td class="hit">•</td><td class="miss">·</td><td class="hit">•</td><td class="miss">·</td><td class="miss">·</td></tr>
+          <tr><td class="sticky-col">blurb-card</td><td class="hit">•</td><td class="hit">•</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td></tr>
+          <tr><td class="sticky-col">blog-card</td><td class="hit">•</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="hit">•</td></tr>
+          <tr><td class="sticky-col">tab-sync-carousel</td><td class="hit">•</td><td class="hit">•</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="hit">•</td><td class="miss">·</td><td class="miss">·</td></tr>
+          <tr><td class="sticky-col">product-carousel</td><td class="hit">•</td><td class="hit">•</td><td class="miss">·</td><td class="hit">•</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td></tr>
+          <tr><td class="sticky-col">faq</td><td class="miss">·</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td></tr>
+          <tr><td class="sticky-col">signup-form</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="miss">·</td></tr>
+          <tr><td class="sticky-col">login-form</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td></tr>
+          <tr><td class="sticky-col">newsletter-form</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="hit">•</td></tr>
+          <tr><td class="sticky-col">contact-form</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td></tr>
+          <tr><td class="sticky-col">product-hero</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="hit">•</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td></tr>
+          <tr><td class="sticky-col">store-locator</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="miss">·</td><td class="hit">•</td><td class="miss">·</td><td class="miss">·</td></tr>
+          <tr><td class="sticky-col">location-selector</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td></tr>
+          <tr><td class="sticky-col">mini-cart</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td><td class="hit">•</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="color:var(--text-secondary);margin-top:12px;font-size:13px">
+      <strong>Reading the matrix.</strong> Site-wide atoms, molecules and the
+      `header` / `footer` / `age-gate` / `location-selector` / `mini-cart` / `login-form`
+      / `contact-form` organisms appear on every template — these are priority-1
+      build targets. Template-scoped organisms (e.g.
+      <code>product-hero</code> on PDP only, <code>store-locator</code> on its own page)
+      ship alongside their owning template. The sparse cells are expected, not gaps.
+    </p>
+  </div>
+</section>
+
+
+<section>
+  <h2>Third-Party Integrations (28 origins → 9 work items)</h2>
   <div class="content">
     <table>
       <thead><tr><th>Service</th><th>Category</th><th>Strategy</th><th>Loading</th><th class="num">Effort</th></tr></thead>
       <tbody>
-                <tr><td>OneTrust</td><td>consent</td><td><span class="pill pill-reuse">snippet-drop</span></td><td>delayed.js (consent gate)</td><td class="num">S</td></tr>
-        <tr><td>Salesforce (login / signup / password-reset)</td><td>auth</td><td><span class="pill pill-reuse">snippet-drop</span></td><td>into form blocks</td><td class="num">S</td></tr>
-        <tr><td>Salesforce chat</td><td>messaging</td><td><span class="pill pill-reuse">snippet-drop</span></td><td>delayed.js</td><td class="num">XS</td></tr>
-        <tr><td>Qualtrics Site Intercept</td><td>survey</td><td><span class="pill pill-reuse">snippet-drop</span></td><td>delayed.js</td><td class="num">XS</td></tr>
-        <tr><td>AEM.live RUM</td><td>perf telemetry</td><td><span class="pill pill-preserve">preserve</span></td><td>eager (in aem.js)</td><td class="num">XS</td></tr>
-        <tr><td>ContentSquare</td><td>UX analytics</td><td><span class="pill pill-reuse">snippet-drop</span></td><td>delayed.js</td><td class="num">XS</td></tr>
-        <tr><td>Adobe DTM</td><td>tag manager</td><td><span class="pill pill-reuse">snippet-drop</span></td><td>delayed.js</td><td class="num">XS</td></tr>
-        <tr><td>Google Tag Manager</td><td>tag manager</td><td><span class="pill pill-reuse">snippet-drop</span></td><td>delayed.js</td><td class="num">XS</td></tr>
-        <tr><td>Adobe Target</td><td>experimentation</td><td><span class="pill pill-reuse">snippet-drop</span></td><td>delayed.js (flicker OK)</td><td class="num">XS</td></tr>
-        <tr><td>Adobe Audience Manager</td><td>DMP</td><td><span class="pill pill-reuse">snippet-drop</span></td><td>chain of DTM</td><td class="num">XS</td></tr>
-        <tr><td>Meta Pixel / ad pixels</td><td>advertising</td><td><span class="pill pill-reuse">snippet-drop</span></td><td>chain of GTM/DTM</td><td class="num">XS</td></tr>
-        <tr><td>ssapi.vuse.com</td><td>subscription</td><td><span class="pill pill-reuse">snippet-drop</span></td><td>if retained (DISC-02)</td><td class="num">XS</td></tr>
-        <tr><td>Mapbox</td><td>maps</td><td><span class="pill pill-reuse">snippet-drop</span></td><td>store-locator + IO lazy</td><td class="num">S</td></tr>
-        <tr><td>PriceSpider</td><td>commerce widget</td><td><span class="pill pill-reuse">snippet-drop</span></td><td>if retained (DISC-02)</td><td class="num">XS</td></tr>
-        <tr><td>unpkg / npmcdn</td><td>CDN</td><td><span class="pill pill-adapt">replace</span></td><td>self-host</td><td class="num">XS</td></tr>
+        <tr><td>Adobe DTM/Launch + Analytics + AAM + Target + Adcoud</td><td>analytics + personalisation</td><td><span class="pill pill-preserve">Preserve via delayed.js</span></td><td>≥ 3s after LCP</td><td class="num">M</td></tr>
+        <tr><td>Google Tag Manager + DoubleClick + Meta Pixel</td><td>analytics</td><td><span class="pill pill-preserve">Preserve via delayed.js</span></td><td>≥ 3s after LCP</td><td class="num">M (in BUILD-INT-09)</td></tr>
+        <tr><td>ContentSquare + Qualtrics SiteIntercept</td><td>RUM + survey</td><td><span class="pill pill-preserve">Preserve via delayed.js</span></td><td>≥ 3s after LCP</td><td class="num">M (in BUILD-INT-09)</td></tr>
+        <tr><td>OneTrust</td><td>consent</td><td><span class="pill pill-preserve">Preserve, delayed.js + per-block lazy</span></td><td>≥ 3s after LCP</td><td class="num">S</td></tr>
+        <tr><td>Salesforce Site API</td><td>account / forms</td><td><span class="pill pill-solution">Requires solution</span></td><td>API client per form block</td><td class="num">M</td></tr>
+        <tr><td>Salesforce Embedded Messaging</td><td>chat</td><td><span class="pill pill-preserve">Preserve via delayed.js</span></td><td>≥ 3s after LCP</td><td class="num">S</td></tr>
+        <tr><td>Mapbox</td><td>maps</td><td><span class="pill pill-preserve">Block-scoped, IntersectionObserver-lazy</span></td><td>On store-locator scroll</td><td class="num">XS</td></tr>
+        <tr><td>PriceSpider</td><td>commerce widget</td><td><span class="pill pill-solution">Requires solution</span></td><td>IntersectionObserver-lazy on product</td><td class="num">S</td></tr>
+        <tr><td>Edge worker (age-gate + region cookie)</td><td>infrastructure</td><td><span class="pill pill-solution">New build (CDN function)</span></td><td>Edge / pre-origin</td><td class="num">XL</td></tr>
+        <tr><td>AdSrvr / AppNexus / Avocet (programmatic)</td><td>ad tech</td><td><span class="pill pill-medium">Review with marketing</span></td><td>Likely retire</td><td class="num">—</td></tr>
+        <tr><td>Adobe EDS RUM (already present)</td><td>RUM</td><td><span class="pill pill-reuse">Inherit</span></td><td>Edge pixel</td><td class="num">—</td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<!-- 9 + 10. WORK ITEMS + EFFORT (two-column) -->
 <div class="two-col">
   <section>
-    <h2>Work Items by Phase (99 total)</h2>
+    <h2>Work Items by Phase (84 total)</h2>
     <div class="content">
       <div class="bar-chart">
-        <div class="bar-row"><div class="bar-label">Discovery</div><div class="bar-track"><div class="bar-fill navy" style="width:29%">13</div></div></div>
-        <div class="bar-row"><div class="bar-label">Design System</div><div class="bar-track"><div class="bar-fill navy" style="width:33%">15</div></div></div>
-        <div class="bar-row"><div class="bar-label">Site Build</div><div class="bar-track"><div class="bar-fill navy" style="width:100%">45</div></div></div>
-        <div class="bar-row"><div class="bar-label">Migration</div><div class="bar-track"><div class="bar-fill navy" style="width:31%">14</div></div></div>
-        <div class="bar-row"><div class="bar-label">Testing & UAT</div><div class="bar-track"><div class="bar-fill navy" style="width:27%">12</div></div></div>
+        <div class="bar-row"><div class="bar-label">1. Discovery</div><div class="bar-track"><div class="bar-fill navy" style="width:60%">15</div></div></div>
+        <div class="bar-row"><div class="bar-label">2. Design System</div><div class="bar-track"><div class="bar-fill navy" style="width:56%">14</div></div></div>
+        <div class="bar-row"><div class="bar-label">3. Site Build</div><div class="bar-track"><div class="bar-fill navy" style="width:100%">30</div></div></div>
+        <div class="bar-row"><div class="bar-label">4. Migration</div><div class="bar-track"><div class="bar-fill navy" style="width:56%">14</div></div></div>
+        <div class="bar-row"><div class="bar-label">5. Testing &amp; UAT</div><div class="bar-track"><div class="bar-fill navy" style="width:44%">11</div></div></div>
       </div>
     </div>
   </section>
@@ -642,146 +696,135 @@
     <h2>Effort by Phase (hours)</h2>
     <div class="content">
       <div class="bar-chart">
-                <div class="bar-row"><div class="bar-label">Discovery</div><div class="bar-track"><div class="bar-fill navy" style="width:9%">36h</div><div class="bar-secondary navy" style="width:12%"></div></div></div>
-        <div class="bar-row"><div class="bar-label">Design System</div><div class="bar-track"><div class="bar-fill navy" style="width:23%">91h</div><div class="bar-secondary navy" style="width:29%"></div></div></div>
-        <div class="bar-row"><div class="bar-label">Site Build</div><div class="bar-track"><div class="bar-fill navy" style="width:73%">290h</div><div class="bar-secondary navy" style="width:100%"></div></div></div>
-        <div class="bar-row"><div class="bar-label">Migration</div><div class="bar-track"><div class="bar-fill navy" style="width:20%">78h</div><div class="bar-secondary navy" style="width:25%"></div></div></div>
-        <div class="bar-row"><div class="bar-label">Testing & UAT</div><div class="bar-track"><div class="bar-fill navy" style="width:19%">76h</div><div class="bar-secondary navy" style="width:24%"></div></div></div></div>
+        <div class="bar-row"><div class="bar-label">1. Discovery</div><div class="bar-track"><div class="bar-fill navy" style="width:28%">95h</div><div class="bar-secondary" style="width:33%"></div></div></div>
+        <div class="bar-row"><div class="bar-label">2. Design System</div><div class="bar-track"><div class="bar-fill navy" style="width:31%">110h</div><div class="bar-secondary" style="width:39%"></div></div></div>
+        <div class="bar-row"><div class="bar-label">3. Site Build</div><div class="bar-track"><div class="bar-fill navy" style="width:84%">280h</div><div class="bar-secondary" style="width:100%"></div></div></div>
+        <div class="bar-row"><div class="bar-label">4. Migration</div><div class="bar-track"><div class="bar-fill navy" style="width:28%">95h</div><div class="bar-secondary" style="width:36%"></div></div></div>
+        <div class="bar-row"><div class="bar-label">5. Testing &amp; UAT</div><div class="bar-track"><div class="bar-fill navy" style="width:31%">110h</div><div class="bar-secondary" style="width:39%"></div></div></div>
       </div>
-      <p style="font-size:11px;color:var(--text-secondary);margin-top:12px">Bars show midpoint estimates. Shaded region shows max range.</p>
+      <p style="font-size:11px;color:var(--text-secondary);margin-top:12px">Bars show midpoint estimates. Shaded region shows max range. Total: 580–840h.</p>
     </div>
   </section>
 </div>
 
-<!-- 11. T-SHIRT SIZE DISTRIBUTION -->
 <section>
   <h2>Effort Distribution by T-Shirt Size</h2>
   <div class="content">
     <table>
       <thead><tr><th>Size</th><th>Hours Each</th><th class="num">Count</th><th class="num">Midpoint Total</th><th class="num">Max Total</th><th>Proportion</th></tr></thead>
       <tbody>
-        <tr><td><strong>XS</strong> (1.5–2h)</td><td>1.8h</td><td class="num">19</td><td class="num">28.5h</td><td class="num">38h</td><td><div class="bar-track" style="width:200px;height:14px;display:inline-block"><div class="bar-fill green" style="width:12%;font-size:0"></div></div></td></tr>
-        <tr><td><strong>S</strong> (3–4h)</td><td>3.5h</td><td class="num">32</td><td class="num">96h</td><td class="num">128h</td><td><div class="bar-track" style="width:200px;height:14px;display:inline-block"><div class="bar-fill navy" style="width:40%;font-size:0"></div></div></td></tr>
-        <tr><td><strong>M</strong> (6–8h)</td><td>7.0h</td><td class="num">40</td><td class="num">240h</td><td class="num">320h</td><td><div class="bar-track" style="width:200px;height:14px;display:inline-block"><div class="bar-fill navy" style="width:100%;font-size:0"></div></div></td></tr>
-        <tr><td><strong>L</strong> (12–16h)</td><td>14.0h</td><td class="num">6</td><td class="num">72h</td><td class="num">96h</td><td><div class="bar-track" style="width:200px;height:14px;display:inline-block"><div class="bar-fill amber" style="width:30%;font-size:0"></div></div></td></tr>
-        <tr><td><strong>XL</strong> (28–40h)</td><td>34.0h</td><td class="num">1</td><td class="num">28h</td><td class="num">40h</td><td><div class="bar-track" style="width:200px;height:14px;display:inline-block"><div class="bar-fill red" style="width:13%;font-size:0"></div></div></td></tr>
+        <tr><td><strong>XS</strong> (1–2h)</td><td>1.5h</td><td class="num">12</td><td class="num">18h</td><td class="num">24h</td><td><div class="bar-track" style="width:200px;height:14px;display:inline-block"><div class="bar-fill green" style="width:30%;font-size:0"></div></div></td></tr>
+        <tr><td><strong>S</strong> (2–4h)</td><td>3h</td><td class="num">31</td><td class="num">93h</td><td class="num">124h</td><td><div class="bar-track" style="width:200px;height:14px;display:inline-block"><div class="bar-fill navy" style="width:155%;max-width:100%;font-size:0"></div></div></td></tr>
+        <tr><td><strong>M</strong> (4–8h)</td><td>6h</td><td class="num">32</td><td class="num">192h</td><td class="num">256h</td><td><div class="bar-track" style="width:200px;height:14px;display:inline-block"><div class="bar-fill navy" style="width:100%;font-size:0"></div></div></td></tr>
+        <tr><td><strong>L</strong> (8–16h)</td><td>12h</td><td class="num">2</td><td class="num">24h</td><td class="num">32h</td><td><div class="bar-track" style="width:200px;height:14px;display:inline-block"><div class="bar-fill amber" style="width:13%;font-size:0"></div></div></td></tr>
+        <tr><td><strong>XL</strong> (16–40h)</td><td>28h</td><td class="num">2</td><td class="num">56h</td><td class="num">80h</td><td><div class="bar-track" style="width:200px;height:14px;display:inline-block"><div class="bar-fill red" style="width:31%;font-size:0"></div></div></td></tr>
       </tbody>
     </table>
+    <p style="font-size:11px;color:var(--text-secondary);margin-top:12px">XL items: <code>BLOCK-NEW-08 store-locator</code>, <code>BUILD-INT-01 age-gate edge worker</code>. L items: <code>FOUND-06 Pencil design system</code>, <code>BLOCK-NEW-04 form (multi-section)</code>.</p>
   </div>
 </section>
 
-<!-- 12. PROJECT TIMELINE (Gantt) -->
 <section>
-  <h2>Project Timeline (14 weeks including hypercare)</h2>
+  <h2>Project Timeline (16–20 weeks)</h2>
   <div class="content">
     <div class="gantt">
       <div class="gantt-weeks">
-      <div class="gantt-week" style="flex:1">W1</div>
-      <div class="gantt-week" style="flex:1">W2</div>
-      <div class="gantt-week" style="flex:1">W3</div>
-      <div class="gantt-week" style="flex:1">W4</div>
-      <div class="gantt-week" style="flex:1">W5</div>
-      <div class="gantt-week" style="flex:1">W6</div>
-      <div class="gantt-week" style="flex:1">W7</div>
-      <div class="gantt-week" style="flex:1">W8</div>
-      <div class="gantt-week" style="flex:1">W9</div>
-      <div class="gantt-week" style="flex:1">W10</div>
-      <div class="gantt-week" style="flex:1">W11</div>
-      <div class="gantt-week" style="flex:1">W12</div>
-      <div class="gantt-week" style="flex:1">W13</div>
-      <div class="gantt-week" style="flex:1">W14</div>
+        <div class="gantt-week" style="flex:1">W1</div><div class="gantt-week" style="flex:1">W2</div><div class="gantt-week" style="flex:1">W3</div><div class="gantt-week" style="flex:1">W4</div><div class="gantt-week" style="flex:1">W5</div><div class="gantt-week" style="flex:1">W6</div><div class="gantt-week" style="flex:1">W7</div><div class="gantt-week" style="flex:1">W8</div><div class="gantt-week" style="flex:1">W9</div><div class="gantt-week" style="flex:1">W10</div><div class="gantt-week" style="flex:1">W11</div><div class="gantt-week" style="flex:1">W12</div><div class="gantt-week" style="flex:1">W13</div><div class="gantt-week" style="flex:1">W14</div><div class="gantt-week" style="flex:1">W15</div><div class="gantt-week" style="flex:1">W16</div><div class="gantt-week" style="flex:1">W17</div><div class="gantt-week" style="flex:1">W18</div><div class="gantt-week" style="flex:1">W19</div><div class="gantt-week" style="flex:1">W20</div>
       </div>
-            <div class="gantt-row"><div class="gantt-label">1. Discovery</div><div class="gantt-track"><div class="gantt-bar" style="left:0.00%;width:7.14%;background:var(--navy)">1w</div></div></div>
-      <div class="gantt-row"><div class="gantt-label">2. Design System</div><div class="gantt-track"><div class="gantt-bar" style="left:7.14%;width:21.43%;background:var(--navy-light)">3w</div></div></div>
-      <div class="gantt-row"><div class="gantt-label">3. Site Build</div><div class="gantt-track"><div class="gantt-bar" style="left:21.43%;width:35.71%;background:var(--green)">5w</div></div></div>
-      <div class="gantt-row"><div class="gantt-label">Vendor snippet drops</div><div class="gantt-track"><div class="gantt-bar" style="left:21.43%;width:35.71%;background:var(--amber)">5w</div></div></div>
-      <div class="gantt-row"><div class="gantt-label">Critical: tabbed-carousel</div><div class="gantt-track"><div class="gantt-bar" style="left:50.00%;width:7.14%;background:var(--red)">1w</div></div></div>
-      <div class="gantt-row"><div class="gantt-label">4. Migration</div><div class="gantt-track"><div class="gantt-bar" style="left:50.00%;width:21.43%;background:var(--navy-light)">3w</div></div></div>
-      <div class="gantt-row"><div class="gantt-label">5. Testing & UAT</div><div class="gantt-track"><div class="gantt-bar" style="left:57.14%;width:21.43%;background:var(--navy)">3w</div></div></div>
-      <div class="gantt-row"><div class="gantt-label">Go-live</div><div class="gantt-track"><div class="gantt-bar" style="left:78.57%;width:7.14%;background:var(--red)">1w</div></div></div>
-      <div class="gantt-row"><div class="gantt-label">Hypercare</div><div class="gantt-track"><div class="gantt-bar" style="left:85.71%;width:14.29%;background:#555568">2w</div></div></div></div>
+      <div class="gantt-row"><div class="gantt-label">1. Discovery</div><div class="gantt-track"><div class="gantt-bar" style="left:0%;width:10%;background:var(--navy)">2 wk</div></div></div>
+      <div class="gantt-row"><div class="gantt-label">2. Design System</div><div class="gantt-track"><div class="gantt-bar" style="left:10%;width:15%;background:var(--navy-light)">3 wk</div></div></div>
+      <div class="gantt-row"><div class="gantt-label">3a. Site Build — Wave A (chrome + edge)</div><div class="gantt-track"><div class="gantt-bar" style="left:25%;width:5%;background:var(--green)">1 wk</div></div></div>
+      <div class="gantt-row"><div class="gantt-label">3b. Site Build — Wave B (marketing)</div><div class="gantt-track"><div class="gantt-bar" style="left:30%;width:10%;background:var(--green)">2 wk</div></div></div>
+      <div class="gantt-row"><div class="gantt-label">3c. Site Build — Wave C (forms + commerce)</div><div class="gantt-track"><div class="gantt-bar" style="left:40%;width:15%;background:var(--amber)">3 wk</div></div></div>
+      <div class="gantt-row"><div class="gantt-label">3d. Site Build — Wave D (store + Adobe)</div><div class="gantt-track"><div class="gantt-bar" style="left:50%;width:10%;background:var(--red)">2 wk</div></div></div>
+      <div class="gantt-row"><div class="gantt-label">3e. Site Build — Wave E (hardening)</div><div class="gantt-track"><div class="gantt-bar" style="left:60%;width:10%;background:var(--green)">2 wk</div></div></div>
+      <div class="gantt-row"><div class="gantt-label">4. Content Migration</div><div class="gantt-track"><div class="gantt-bar" style="left:65%;width:20%;background:var(--navy-light)">4 wk</div></div></div>
+      <div class="gantt-row"><div class="gantt-label">5. Testing &amp; UAT</div><div class="gantt-track"><div class="gantt-bar" style="left:80%;width:15%;background:var(--navy)">3 wk</div></div></div>
+      <div class="gantt-row"><div class="gantt-label">Cutover + Hypercare</div><div class="gantt-track"><div class="gantt-bar" style="left:95%;width:10%;background:#555568">2 wk</div></div></div>
     </div>
+    <p style="font-size:11px;color:var(--text-secondary);margin-top:12px">Wave colours: <span style="color:var(--green)">green</span> = standard build · <span style="color:var(--amber)">amber</span> = forms+commerce (cross-team dependency) · <span style="color:var(--red)">red</span> = critical path (store-locator XL + Adobe stack).</p>
   </div>
 </section>
 
-<!-- 13. RESOURCE ALLOCATION -->
 <section>
   <h2>Resource Allocation</h2>
   <div class="content">
     <table>
-      <thead><tr><th>Role</th><th class="num">Hours</th><th>P1 Discovery</th><th>P2 Design</th><th>P3 Build</th><th>P4 Migration</th><th>P5 Test</th></tr></thead>
+      <thead><tr><th>Role</th><th class="num">Total hours</th><th>P1 Discovery</th><th>P2 Design</th><th>P3 Build</th><th>P4 Migration</th><th>P5 Test</th></tr></thead>
       <tbody>
-        <tr><td>EDS Developer A</td><td class="num">230h</td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-reuse">Full</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-reuse">Full</span></td></tr>
-        <tr><td>EDS Developer B</td><td class="num">160h</td><td><span class="pill pill-inactive">—</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-reuse">Full</span></td><td><span class="pill pill-inactive">—</span></td><td><span class="pill pill-advisory">Advisory</span></td></tr>
-        <tr><td>Designer</td><td class="num">110h</td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-reuse">Full</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-inactive">—</span></td><td><span class="pill pill-advisory">Advisory</span></td></tr>
-        <tr><td>Content Author</td><td class="num">90h</td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-inactive">—</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-reuse">Full</span></td><td><span class="pill pill-advisory">Advisory</span></td></tr>
-        <tr><td>QA</td><td class="num">60h</td><td><span class="pill pill-inactive">—</span></td><td><span class="pill pill-inactive">—</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-reuse">Full</span></td></tr>
-        <tr><td>SEO</td><td class="num">20h</td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-inactive">—</span></td><td><span class="pill pill-inactive">—</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-advisory">Advisory</span></td></tr>
-        <tr><td>Architect / PM</td><td class="num">70h</td><td><span class="pill pill-reuse">Full</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-advisory">Advisory</span></td></tr>
+        <tr><td>Project Manager</td><td class="num">~80h</td><td><span class="pill pill-reuse">Full</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-advisory">Advisory</span></td></tr>
+        <tr><td>EDS Developer A (lead)</td><td class="num">~280h</td><td><span class="pill pill-advisory">Partial</span></td><td><span class="pill pill-reuse">Full</span></td><td><span class="pill pill-reuse">Full</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-advisory">Partial</span></td></tr>
+        <tr><td>EDS Developer B</td><td class="num">~220h</td><td><span class="pill pill-advisory">Partial</span></td><td><span class="pill pill-advisory">Partial</span></td><td><span class="pill pill-reuse">Full</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-advisory">Partial</span></td></tr>
+        <tr><td>Designer</td><td class="num">~120h</td><td><span class="pill pill-advisory">Partial</span></td><td><span class="pill pill-reuse">Full</span></td><td><span class="pill pill-advisory">Partial</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-advisory">Advisory</span></td></tr>
+        <tr><td>Content Lead</td><td class="num">~80h</td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-reuse">Full</span></td><td><span class="pill pill-advisory">Partial</span></td></tr>
+        <tr><td>QA</td><td class="num">~80h</td><td><span class="pill pill-inactive">—</span></td><td><span class="pill pill-inactive">—</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-reuse">Full</span></td></tr>
+        <tr><td>Platform / SRE</td><td class="num">~40h</td><td><span class="pill pill-advisory">Advisory</span></td><td><span class="pill pill-inactive">—</span></td><td><span class="pill pill-advisory">Partial (BUILD-INT-01)</span></td><td><span class="pill pill-inactive">—</span></td><td><span class="pill pill-advisory">Partial (cutover)</span></td></tr>
       </tbody>
     </table>
-    <p style="font-size:12px;color:var(--text-secondary);margin-top:12px"><strong>Total team effort:</strong> 475–870h across 7 roles. Peak staffing at weeks W7–W10 (all roles active).</p>
+    <p style="font-size:12px;color:var(--text-secondary);margin-top:12px"><strong>Total team effort:</strong> 580–840h across 7 roles. Peak staffing at weeks 7–10 (Waves B/C, all roles active).</p>
   </div>
 </section>
 
-<!-- 14. RISK REGISTER -->
 <section>
-  <h2>Risk Register (15 risks)</h2>
+  <h2>Risk Register (20 risks)</h2>
   <div class="content">
     <div class="stats-row" style="margin-bottom:20px">
-      <div class="stat-card danger"><div class="value">1</div><div class="label">Critical</div></div>
-      <div class="stat-card warning"><div class="value">6</div><div class="label">High</div></div>
-      <div class="stat-card"><div class="value">6</div><div class="label">Medium</div></div>
-      <div class="stat-card success"><div class="value">2</div><div class="label">Low</div></div>
+      <div class="stat-card danger"><div class="value">0</div><div class="label">Critical</div></div>
+      <div class="stat-card warning"><div class="value">5</div><div class="label">High</div></div>
+      <div class="stat-card"><div class="value">11</div><div class="label">Medium</div></div>
+      <div class="stat-card success"><div class="value">4</div><div class="label">Low</div></div>
     </div>
     <table>
       <thead><tr><th>Risk</th><th>Category</th><th>Severity</th><th>Mitigation</th></tr></thead>
       <tbody>
-                <tr><td><strong>R-02</strong> — Component anatomy LOW — anatomy covers 0% of DOM patterns; block inventory biased</td><td>Discovery</td><td><span class="pill pill-critical">critical</span></td><td>Re-scrape 25 templates (DISC-04); budget 10–20% block-count headroom</td></tr>
-        <tr><td><strong>R-01</strong> — Bypass integrity LOW — consent/chat fingerprints leaked into designlang output</td><td>Discovery</td><td><span class="pill pill-high">high</span></td><td>Re-run designlang with stronger --ignore + verify clean bypass-leak scan</td></tr>
-        <tr><td><strong>R-04</strong> — Accessibility LOW — 3 critical + 11 serious WCAG 2.2 AA violations live today</td><td>Accessibility</td><td><span class="pill pill-high">high</span></td><td>Assign every violation to owner block in DISC-08; gate Phase 5 on zero critical</td></tr>
-        <tr><td><strong>R-05</strong> — Typography score 35/100 — 5 families / 8 weights; Santral has no 400 weight</td><td>Design system</td><td><span class="pill pill-high">high</span></td><td>DS-04/05 normalize to 2-family / 4-weight / 7-size scale</td></tr>
-        <tr><td><strong>R-09</strong> — Vendor snippet availability & change control — build depends on client-delivered snippets</td><td>Integration</td><td><span class="pill pill-high">high</span></td><td>DISC-02 collects manifest with owners + delivery dates; weekly check-in in Phase 3</td></tr>
-        <tr><td><strong>R-10</strong> — Lighthouse 100 with vendor snippets — OneTrust may demand eager placement</td><td>Delivery</td><td><span class="pill pill-high">high</span></td><td>Default everything into delayed.js; escalate any eager demand to trade-off decision; verify via BUILD-INT-14</td></tr>
-        <tr><td><strong>R-12</strong> — Content freeze feasibility — marketing may push campaigns mid-migration</td><td>Content</td><td><span class="pill pill-high">high</span></td><td>Coordinate 3-week freeze (DISC-10); capture mid-flight updates via change log</td></tr>
-        <tr><td><strong>R-03</strong> — Template coverage MEDIUM — only 10/25 representatives scraped</td><td>Discovery</td><td><span class="pill pill-medium">medium</span></td><td>Complete scrape in DISC-04</td></tr>
-        <tr><td><strong>R-06</strong> — CSS Health 35/100 — 179 !important rules, 92% unused CSS</td><td>Design system</td><td><span class="pill pill-medium">medium</span></td><td>Forensic audit + visual-diff during normalization</td></tr>
-        <tr><td><strong>R-07</strong> — 2 WCAG contrast failures in token audit</td><td>Design system</td><td><span class="pill pill-medium">medium</span></td><td>Remap affected tokens; re-audit in DS-03</td></tr>
-        <tr><td><strong>R-11</strong> — OneTrust consent gating ordering in delayed.js</td><td>Integration</td><td><span class="pill pill-medium">medium</span></td><td>BUILD-INT-03 loads OneTrust first; verify network waterfall in BUILD-INT-14</td></tr>
-        <tr><td><strong>R-13</strong> — Authoring model unfamiliar to marketing team</td><td>Content</td><td><span class="pill pill-medium">medium</span></td><td>2× author training sessions + cheat sheet per template</td></tr>
-        <tr><td><strong>R-14</strong> — Image re-hosting — product/hero images on BAT CDN</td><td>Content</td><td><span class="pill pill-medium">medium</span></td><td>MIGRATE-11 ingests images into AEM DAM</td></tr>
-        <tr><td><strong>R-08</strong> — Santral font licensing under EDS unknown</td><td>Design system</td><td><span class="pill pill-low">low</span></td><td>DISC-07 confirms; fallback font is DS-16 option</td></tr>
-        <tr><td><strong>R-15</strong> — Age-gate is regulatory requirement (Health Canada) — must remain</td><td>Delivery</td><td><span class="pill pill-low">low</span></td><td>BUILD-CHROME-08 reproduces gate with cookie memory; legal sign-off</td></tr>
+        <tr><td>R1 — Age-gate must be replicated as edge middleware</td><td>Backend</td><td><span class="pill pill-high">High</span></td><td>Build CDN edge worker (BUILD-INT-01), static <code>/age-gate</code> page</td></tr>
+        <tr><td>R2 — Adobe Experience Cloud stack incompatible with Lighthouse 100</td><td>Performance</td><td><span class="pill pill-high">High</span></td><td>All Adobe + GTM + Meta + ContentSquare loaded by <code>delayed.js</code> ≥ 3s after LCP; PSI bot enforces in CI</td></tr>
+        <tr><td>R4 — PriceSpider + Felix iframe vendor-controlled</td><td>Integration</td><td><span class="pill pill-high">High</span></td><td>Negotiate vendor lazy-load contract; IntersectionObserver wrapping; static fallback if budget unmet</td></tr>
+        <tr><td>R9 — Salesforce Site + Embedded Messaging owned by BAT platform</td><td>Integration</td><td><span class="pill pill-high">High</span></td><td>DISC-05 negotiates API contract early; named platform-team contact</td></tr>
+        <tr><td>R18 — Regulated product (NRT) requires legal sign-off</td><td>Process</td><td><span class="pill pill-high">High</span></td><td>Loop legal in Discovery; track regulator copy as unmigratable</td></tr>
+        <tr><td>R3 — Santral typeface license</td><td>Design</td><td><span class="pill pill-medium">Medium</span></td><td>Confirm in DISC-02; self-host with font-fallback technique</td></tr>
+        <tr><td>R5 — Salesforce chat second-origin TLS handshake</td><td>Integration</td><td><span class="pill pill-medium">Medium</span></td><td><code>delayed.js</code> ≥ 3s after LCP</td></tr>
+        <tr><td>R6 — Health-warning banner locks LCP candidate</td><td>Design</td><td><span class="pill pill-medium">Medium</span></td><td>Keep banner lightweight; pre-render in HTML</td></tr>
+        <tr><td>R7 — Source has WCAG AA contrast failures</td><td>Accessibility</td><td><span class="pill pill-medium">Medium</span></td><td>Normalise text colours in design system; TEST-03 enforces</td></tr>
+        <tr><td>R10 — Adobe Target experiment inventory unknown</td><td>Integration</td><td><span class="pill pill-medium">Medium</span></td><td>DISC-03 audits; decide migrate / retire per experiment</td></tr>
+        <tr><td>R11 — ContentSquare + Qualtrics sync JS heavy</td><td>Performance</td><td><span class="pill pill-medium">Medium</span></td><td>Same as R2 — <code>delayed.js</code> + budget enforcement</td></tr>
+        <tr><td>R13 — ~92 pages with bespoke campaign layouts</td><td>Content</td><td><span class="pill pill-medium">Medium</span></td><td>Phase 4 has per-batch checkpoint; bespoke pages flagged for designer pass</td></tr>
+        <tr><td>R14 — URL canonical + redirects on cutover</td><td>SEO</td><td><span class="pill pill-medium">Medium</span></td><td>MIGRATE-13 redirect spreadsheet validated by SEO lead</td></tr>
+        <tr><td>R16 — Bot-detection limited automated probe depth</td><td>Process</td><td><span class="pill pill-medium">Medium</span></td><td>Verification report flags LOW-confidence dimensions; Discovery walks through with platform team</td></tr>
+        <tr><td>R17 — Parallel BAT EDS programme may exist</td><td>Backend</td><td><span class="pill pill-medium">Medium</span></td><td>DISC-01 surfaces this with stakeholder; align with global EDS programme</td></tr>
+        <tr><td>R20 — 2-week hypercare may be short</td><td>Operations</td><td><span class="pill pill-medium">Medium</span></td><td>Hypercare runbook for post-window incidents; option to extend</td></tr>
+        <tr><td>R8 — Brand resists normalisation deltas</td><td>Process</td><td><span class="pill pill-low">Low</span></td><td>DISC-14 secures sign-off; Pencil renders deltas visually</td></tr>
+        <tr><td>R12 — Font reduction changes visual feel</td><td>Content</td><td><span class="pill pill-low">Low</span></td><td>Pencil walkthrough + 02-normalization-report documented</td></tr>
+        <tr><td>R15 — Mapbox API key tied to legacy domain</td><td>Backend</td><td><span class="pill pill-low">Low</span></td><td>DISC-07 confirms key transferability or provisions new key</td></tr>
+        <tr><td>R19 — Magenta campaign palette one-off</td><td>Design</td><td><span class="pill pill-low">Low</span></td><td>DISC-14 resolves; default plan = retire</td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<!-- 15. METHODOLOGY -->
 <section>
   <h2>Methodology</h2>
   <div class="content">
     <div class="three-col">
       <div>
         <h3 style="font-size:14px;margin-bottom:8px;color:var(--text)">Design System</h3>
-        <p style="font-size:13px;color:var(--text-secondary)">Pencil (.pen files) with normalized tokens. Atomic design: foundations → atoms → molecules → organisms → templates. CSS custom properties exported for styles.css.</p>
+        <p style="font-size:13px;color:var(--text-secondary)">Pencil (.pen files) committed alongside code. Atomic structure: foundations → atoms → molecules → organisms → templates. CSS custom properties published to <code>styles/styles.css</code>. <code>designlang drift</code> enforces consistency vs. the source.</p>
       </div>
       <div>
         <h3 style="font-size:14px;margin-bottom:8px;color:var(--text)">Block Development</h3>
-        <p style="font-size:13px;color:var(--text-secondary)">Spec-Driven Development (SDD) via speckit. Content-first: author-friendly content models before code. Block Collection consulted for reusable starting points.</p>
+        <p style="font-size:13px;color:var(--text-secondary)">Spec-Driven Development (SDD) via <code>speckit</code> per block. Each block runs through <code>building-blocks</code> + <code>content-driven-development</code> + <code>eds-styles</code> + <code>eds-wcag</code> + <code>eds-analytics</code> + <code>eds-documentation</code> skills. Lighthouse 100 enforced via PSI bot per PR.</p>
       </div>
       <div>
         <h3 style="font-size:14px;margin-bottom:8px;color:var(--text)">Content Migration</h3>
-        <p style="font-size:13px;color:var(--text-secondary)">Agentic batch via page-import skill. Template-grouped batches with human review checkpoints. SEO redirect mapping. Visual regression at each gate.</p>
+        <p style="font-size:13px;color:var(--text-secondary)">Agentic batch via <code>page-import</code> skill, orchestrated by <code>migration-content</code>. 6 batches grouped by template family with human review checkpoint per batch. Redirect mapping + bulk metadata sheet published. Visual regression (designlang visual-diff) at the Phase-5 gate.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 16. FOOTER -->
 <footer class="page-footer">
   Generated by migration-planner skill — v1 draft based on automated discovery of https://www.zonnic.ca/ca/en.<br>
-  Refine during Execution Phase 1 (Discovery). Data extracted 2026-04-29 via designlang + Playwright.
+  Refine during Execution Phase 1 (Discovery). Data extracted 2026-04-30 via designlang@12.1.0 + Playwright (post age-gate bypass).
 </footer>
 
 </div>

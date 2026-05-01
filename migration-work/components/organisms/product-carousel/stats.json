@@ -1,0 +1,20 @@
+{
+  "component": "product-carousel",
+  "stats": {
+    "total": 6,
+    "perPage": {
+      "homepage": 2,
+      "pouches-zonnic-mint-24-nicotine-pouches": 2,
+      "why-zonnic": 2
+    },
+    "pages": 3
+  },
+  "variants": [
+    {
+      "name": "default",
+      "ok": true,
+      "hiddenFallback": true,
+      "selector": "bat-carousel-product"
+    }
+  ]
+}

@@ -1,14 +1,16 @@
 # Anatomy vs DOM-Structure Diff
 
-**Signal:** LOW
+**Signal:** UNDERSUPPLIED
 
+- Anatomy components (canonical): 2
+- DOM organisms (canonical): 8
 - Overlap (Jaccard): 0.0%
 - DOM patterns covered by anatomy: 0.0%
 - Anatomy-only names: 2
 - DOM-only patterns: 8
 - Overlap (both): 0
 
-> **Warning:** anatomy is a poor reflection of DOM evidence. Either designlang analyzed the homepage only (under-extraction) or anatomy was synthesized from tokens rather than live DOM.
+> **Note:** anatomy.tsx is thinly populated (<5 components). This is common — designlang's anatomy output is often a weak reflection of the live component palette. Use the `*-screenshots.json` manifest, DOM structure aggregate, and `identify-page-structure` output as the primary component inventory. Do not interpret this signal as an extraction failure.
 
 ## Organisms in anatomy but not seen in DOM
 
@@ -21,11 +23,11 @@ These may be over-extraction (designlang imagined them) or reflect a template we
 
 These are likely real organisms designlang missed. Each has the pages where the fingerprint appears.
 
-- `div.QSIFeedbackButton` (canonical: `qsifeedback-button`, pages: blog-what-are-nicotine-pouches, contact-us-let-us-talk-testimonials, homepage, newsletter, pouches-zonnic-mint-24-nicotine-pouches...)
-- `section.ot-sdk-row` (canonical: `ot-sdk-row`, pages: blog-what-are-nicotine-pouches, contact-us-let-us-talk-testimonials, homepage, newsletter, pouches-zonnic-mint-24-nicotine-pouches...)
-- `section.ot-hide` (canonical: `ot-hide`, pages: blog-what-are-nicotine-pouches, contact-us-let-us-talk-testimonials, homepage, newsletter, pouches-zonnic-mint-24-nicotine-pouches...)
-- `section` (canonical: `section`, pages: blog-what-are-nicotine-pouches, contact-us-let-us-talk-testimonials, homepage, newsletter, pouches-zonnic-mint-24-nicotine-pouches...)
-- `section.ot-host-cnt` (canonical: `ot-host-cnt`, pages: blog-what-are-nicotine-pouches, contact-us-let-us-talk-testimonials, homepage, newsletter, pouches-zonnic-mint-24-nicotine-pouches...)
-- `div.bat-wrapper` (canonical: `bat-wrapper`, pages: blog-what-are-nicotine-pouches, contact-us-let-us-talk-testimonials, homepage, newsletter, pouches-zonnic-mint-24-nicotine-pouches...)
-- `div` (canonical: `div`, pages: blog-what-are-nicotine-pouches, contact-us-let-us-talk-testimonials, homepage, newsletter, pouches-zonnic-mint-24-nicotine-pouches...)
-- `div.embedded-messaging` (canonical: `embedded-messaging`, pages: contact-us-let-us-talk-testimonials, homepage, newsletter, pouches-zonnic-mint-24-nicotine-pouches, sign-up...)
+- `div.QSIFeedbackButton` (canonical: `qsifeedback-button`, pages: contact-us-testimonials, homepage, pouches-zonnic-mint-24-nicotine-pouches, sign-up, store-locator...)
+- `section.ot-sdk-row` (canonical: `ot-sdk-row`, pages: contact-us-testimonials, homepage, pouches-zonnic-mint-24-nicotine-pouches, sign-up, store-locator...)
+- `section.ot-hide` (canonical: `ot-hide`, pages: contact-us-testimonials, homepage, pouches-zonnic-mint-24-nicotine-pouches, sign-up, store-locator...)
+- `section` (canonical: `section`, pages: contact-us-testimonials, homepage, pouches-zonnic-mint-24-nicotine-pouches, sign-up, store-locator...)
+- `section.ot-host-cnt` (canonical: `ot-host-cnt`, pages: contact-us-testimonials, homepage, pouches-zonnic-mint-24-nicotine-pouches, sign-up, store-locator...)
+- `div.bat-wrapper` (canonical: `bat-wrapper`, pages: contact-us-testimonials, homepage, pouches-zonnic-mint-24-nicotine-pouches, sign-up, store-locator...)
+- `div` (canonical: `div`, pages: contact-us-testimonials, homepage, pouches-zonnic-mint-24-nicotine-pouches, sign-up, store-locator...)
+- `div.embedded-messaging` (canonical: `embedded-messaging`, pages: contact-us-testimonials, homepage, pouches-zonnic-mint-24-nicotine-pouches, sign-up, store-locator...)

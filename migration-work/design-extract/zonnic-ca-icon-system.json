@@ -3,9 +3,9 @@
   "confidence": 0,
   "alternates": [],
   "stats": {
-    "count": 12,
+    "count": 11,
     "strokeOnly": 0,
-    "fillOnly": 12,
+    "fillOnly": 11,
     "mixed": 0,
     "avgStrokeWidth": 0,
     "gridDistribution": {},
@@ -77,12 +77,6 @@
     },
     {
       "class": "",
-      "grid": null,
-      "strokeWidth": null,
-      "style": "fill"
-    },
-    {
-      "class": "embeddedMessagingIconChat",
       "grid": null,
       "strokeWidth": null,
       "style": "fill"

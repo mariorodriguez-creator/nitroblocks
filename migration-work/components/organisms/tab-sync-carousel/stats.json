@@ -1,0 +1,20 @@
+{
+  "component": "tab-sync-carousel",
+  "stats": {
+    "total": 12,
+    "perPage": {
+      "homepage": 4,
+      "store-locator": 4,
+      "why-zonnic": 4
+    },
+    "pages": 3
+  },
+  "variants": [
+    {
+      "name": "default",
+      "ok": true,
+      "hiddenFallback": true,
+      "selector": "bat-carousel-zonnictabsync"
+    }
+  ]
+}

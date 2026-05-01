@@ -3,7 +3,7 @@
 This project follows the design system extracted from https://www.zonnic.ca/ca/en.
 Any coding agent working here must use the tokens below and avoid inventing new ones.
 Source: https://www.zonnic.ca/ca/en
-Extracted by designlang v7.0.0 on 2026-04-29T19:53:03.108Z
+Extracted by designlang v7.0.0 on 2026-04-30T13:30:57.092Z
 
 ## Semantic tokens (use these)
 - color.action.primary: #182465

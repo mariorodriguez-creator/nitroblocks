@@ -1,5 +1,5 @@
 [compare] Anatomy file: /Users/2245328/Repos/nitroblocks/migration-work/design-extract/zonnic-ca-anatomy.tsx (2 names)
 [compare] Structure: 8 organisms
-[compare] Signal=LOW overlap=0.0% coverage=0.0%
+[compare] Signal=UNDERSUPPLIED overlap=0.0% coverage=0.0%
 [compare] Wrote /Users/2245328/Repos/nitroblocks/migration-work/verification/anatomy-diff.json
 [compare] Wrote /Users/2245328/Repos/nitroblocks/migration-work/verification/anatomy-diff.md

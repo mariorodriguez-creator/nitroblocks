@@ -1,0 +1,25 @@
+{
+  "component": "modal-shell",
+  "stats": {
+    "total": 189,
+    "perPage": {
+      "contact-us-testimonials": 23,
+      "homepage": 23,
+      "pouches-zonnic-mint-24-nicotine-pouches": 23,
+      "sign-up": 28,
+      "store-locator": 23,
+      "testingblogarticletemplate": 23,
+      "what-is-zonnic": 23,
+      "why-zonnic": 23
+    },
+    "pages": 8
+  },
+  "variants": [
+    {
+      "name": "default",
+      "ok": true,
+      "hiddenFallback": true,
+      "selector": ".bat-modal"
+    }
+  ]
+}

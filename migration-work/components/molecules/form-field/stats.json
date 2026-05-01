@@ -1,0 +1,31 @@
+{
+  "component": "form-field",
+  "stats": {
+    "total": 444,
+    "perPage": {
+      "contact-us-testimonials": 69,
+      "homepage": 49,
+      "pouches-zonnic-mint-24-nicotine-pouches": 49,
+      "sign-up": 84,
+      "store-locator": 49,
+      "testingblogarticletemplate": 46,
+      "what-is-zonnic": 49,
+      "why-zonnic": 49
+    },
+    "pages": 8
+  },
+  "variants": [
+    {
+      "name": "default",
+      "ok": true,
+      "hiddenFallback": false,
+      "selector": ".bat-form-field:not(.bat-form-field--hidden)"
+    },
+    {
+      "name": "error",
+      "ok": true,
+      "hiddenFallback": true,
+      "selector": ".bat-form-field .bat-form-msg:not(:empty)"
+    }
+  ]
+}

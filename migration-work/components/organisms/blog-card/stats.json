@@ -1,0 +1,19 @@
+{
+  "component": "blog-card",
+  "stats": {
+    "total": 108,
+    "perPage": {
+      "homepage": 90,
+      "testingblogarticletemplate": 18
+    },
+    "pages": 2
+  },
+  "variants": [
+    {
+      "name": "default",
+      "ok": true,
+      "hiddenFallback": false,
+      "selector": "bat-card-blog"
+    }
+  ]
+}

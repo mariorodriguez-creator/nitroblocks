@@ -197,16 +197,37 @@ async function main() {
     ? intersection.length / structureCanonical.size
     : 0;
 
+  // Anatomy.tsx from designlang is frequently thin or empty on real sites
+  // (e.g. Zonnic extraction produced just Card + Button). When anatomy has
+  // fewer than 5 components, comparing it against DOM structure produces
+  // a false LOW signal — the anatomy is simply undersupplied, not wrong.
+  // Treat these as UNDERSUPPLIED so the verification report can avoid
+  // penalizing the whole extraction.
+  const UNDERSUPPLIED_THRESHOLD = 5;
+  const undersupplied = anatomyCanonical.size < UNDERSUPPLIED_THRESHOLD;
+
   // Signal level:
-  //   HIGH   — structureCovered >= 0.7 and onlyInAnatomy <= 10% of anatomy
-  //   MEDIUM — 0.4 <= structureCovered < 0.7
-  //   LOW    — structureCovered < 0.4 (anatomy is not grounded in DOM)
-  let signal = 'HIGH';
-  if (structureCovered < 0.4) signal = 'LOW';
-  else if (structureCovered < 0.7) signal = 'MEDIUM';
+  //   UNDERSUPPLIED — anatomy has <5 components (designlang output too thin
+  //                   to diff meaningfully; downstream skills should rely
+  //                   on *-screenshots.json and DOM structure instead)
+  //   HIGH          — structureCovered >= 0.7
+  //   MEDIUM        — 0.4 <= structureCovered < 0.7
+  //   LOW           — structureCovered < 0.4 (anatomy not grounded in DOM)
+  let signal;
+  if (undersupplied) {
+    signal = 'UNDERSUPPLIED';
+  } else if (structureCovered < 0.4) {
+    signal = 'LOW';
+  } else if (structureCovered < 0.7) {
+    signal = 'MEDIUM';
+  } else {
+    signal = 'HIGH';
+  }
 
   const result = {
     signal,
+    undersupplied,
+    undersupplied_threshold: UNDERSUPPLIED_THRESHOLD,
     overlap_ratio: Number(overlap.toFixed(3)),
     structure_covered_by_anatomy: Number(structureCovered.toFixed(3)),
     anatomy_only_count: onlyInAnatomy.length,
@@ -228,14 +249,19 @@ async function main() {
   md.push('');
   md.push(`**Signal:** ${signal}`);
   md.push('');
+  md.push(`- Anatomy components (canonical): ${anatomyCanonical.size}`);
+  md.push(`- DOM organisms (canonical): ${structureCanonical.size}`);
   md.push(`- Overlap (Jaccard): ${(overlap * 100).toFixed(1)}%`);
   md.push(`- DOM patterns covered by anatomy: ${(structureCovered * 100).toFixed(1)}%`);
   md.push(`- Anatomy-only names: ${onlyInAnatomy.length}`);
   md.push(`- DOM-only patterns: ${onlyInStructure.length}`);
   md.push(`- Overlap (both): ${intersection.length}`);
   md.push('');
-  if (signal === 'LOW') {
-    md.push('> **Warning:** anatomy is a poor reflection of DOM evidence. Either designlang analyzed the homepage only (under-extraction) or anatomy was synthesized from tokens rather than live DOM.');
+  if (signal === 'UNDERSUPPLIED') {
+    md.push(`> **Note:** anatomy.tsx is thinly populated (<${UNDERSUPPLIED_THRESHOLD} components). This is common — designlang's anatomy output is often a weak reflection of the live component palette. Use the \`*-screenshots.json\` manifest, DOM structure aggregate, and \`identify-page-structure\` output as the primary component inventory. Do not interpret this signal as an extraction failure.`);
+    md.push('');
+  } else if (signal === 'LOW') {
+    md.push('> **Warning:** anatomy has enough components to compare, but is a poor reflection of DOM evidence. Either designlang analyzed the homepage only (under-extraction) or anatomy was synthesized from tokens rather than live DOM.');
     md.push('');
   }
 

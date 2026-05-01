@@ -1,7 +1,7 @@
 ---
 site: "Nicotine Pouches To Quit Smoking | ZONNIC Canada"
 url: "https://www.zonnic.ca/ca/en"
-generated_at: "2026-04-29T19:58:57.145Z"
+generated_at: "2026-04-30T13:37:56.557Z"
 generator: "designlang@12.1.0"
 intent: legal
 material: flat
@@ -9,7 +9,7 @@ tokens:
   colors:
     primary: "#182465"
     secondary: "#3860be"
-    accent: "#a0ff9d"
+    accent: "#e3ffe2"
     background: "#ffffff"
     foreground: "#000000"
   typography:
@@ -17,7 +17,7 @@ tokens:
     base: 16
   spacing:
     base: 2
-    scale: "[0, 38, 48, 55, 60, 70, 78, 95, 102, 120]"
+    scale: "[0, 38, 48, 55, 60, 70, 80, 95, 102, 120]"
   radii:
     xs: 1
     md: 6
@@ -45,9 +45,9 @@ Source: <https://www.zonnic.ca/ca/en>.
 
 | role | hex | usage |
 |---|---|---|
-| primary | `#182465` | 4535 |
-| secondary | `#3860be` | 28 |
-| accent | `#a0ff9d` | 8 |
+| primary | `#182465` | 3776 |
+| secondary | `#3860be` | 24 |
+| accent | `#e3ffe2` | 7 |
 | background | `#ffffff` | — |
 | foreground | `#000000` | — |
 
@@ -58,10 +58,10 @@ Source: <https://www.zonnic.ca/ca/en>.
 # Typography
 
 **Families**
-- `Santral` · 10218 uses
-- `Arial` · 440 uses
-- `Times` · 298 uses
-- `Font Awesome 5 Free` · 22 uses
+- `Santral` · 8442 uses
+- `Arial` · 363 uses
+- `Times New Roman` · 220 uses
+- `Times` · 40 uses
 
 **Body size:** `16px` / line-height `normal`.
 
@@ -76,9 +76,9 @@ Source: <https://www.zonnic.ca/ca/en>.
 # Layout
 
 **Spacing base:** `2px` increments.
-**Scale:** `0px` · `38px` · `48px` · `55px` · `60px` · `70px` · `78px` · `95px` · `102px` · `120px`
+**Scale:** `0px` · `38px` · `48px` · `55px` · `60px` · `70px` · `80px` · `95px` · `102px` · `120px`
 
-**Layout primitives:** 20 grid containers · 1574 flex containers.
+**Layout primitives:** 12 grid containers · 1317 flex containers.
 
 **Breakpoints:** `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px` · `[object Object]px`
 
@@ -112,7 +112,7 @@ Source: <https://www.zonnic.ca/ca/en>.
 | kind | variants | sizes | instances |
 |---|---|---|---|
 | card | — | sm | 65 |
-| button | secondary | — | 14 |
+| button | secondary | — | 11 |
 
 # Do's and Don'ts
 
@@ -123,10 +123,10 @@ Source: <https://www.zonnic.ca/ca/en>.
 - Stay inside the **flat** material — match shadow and radius habits.
 
 **Don'ts**
-- Don't ship copy on the colors flagged in accessibility — 6 contrast pair(s) fail WCAG AA on the source itself.
-- Don't 5 font families — consider limiting to 2 (heading + body).
+- Don't ship copy on the colors flagged in accessibility — 4 contrast pair(s) fail WCAG AA on the source itself.
+- Don't 6 font families — consider limiting to 2 (heading + body).
 - Don't 8 font weights in use — consider standardizing to 3 (regular, medium, bold).
-- Don't 6 wcag contrast failures.
+- Don't 4 wcag contrast failures.
 - Don't 179 !important rules — prefer specificity over overrides.
 
 ---
