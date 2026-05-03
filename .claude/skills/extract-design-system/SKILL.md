@@ -51,7 +51,8 @@ Copy this checklist into the conversation and tick items off:
 - [ ] 1. Capture the live site
        a. Discover 3–6 representative pages (home + long-form + listing + form + style guide if any)
        b. Run scripts/capture.js with all discovered URLs (--interactions for hover/focus) → .capture/
-       c. Skim .capture/manifest.json to confirm every page captured ok
+       c. Confirm screenshots show actual page content, not overlays
+       d. Skim .capture/manifest.json to confirm every page captured ok
 - [ ] 2. Harvest raw style sources from .capture/ (custom-properties → computed-styles → CSS files via curl)
 - [ ] 3. Download brand assets (fonts, logos, icons) → assets/ + MANIFEST.md
 - [ ] 4. Distill into the Google token schema
@@ -108,6 +109,20 @@ node .claude/skills/extract-design-system/scripts/capture.js \
   --interactions
 ```
 
+The capturer dismisses common overlays by default before screenshots and style reads: cookie banners, consent managers, age/region interstitials, newsletter popups, surveys, and generic onload modals. It first tries visible buttons/links such as "Accept all", "I agree", "Continue", "Close", "No thanks", and "Skip"; then removes blocking fixed/modal layers whose ids, classes, roles, or labels identify them as overlays. Keep this enabled unless the overlay itself is part of the site's design system.
+
+If a site requires a specific cookie to unlock content, pre-seed it with repeatable `--cookie name=value` flags:
+
+```bash
+node .claude/skills/extract-design-system/scripts/capture.js \
+  https://www.example.com/ \
+  --out .capture \
+  --interactions \
+  --cookie OptanonConsent=accepted
+```
+
+If the overlay is itself the subject of analysis, disable bypassing with `--no-dismiss-overlays`.
+
 For each URL the script writes:
 
 ```text
@@ -131,7 +146,7 @@ Use `--interactions` whenever the design system has interactive variants you nee
 
 #### 1c. Confirm capture and prepare for step 2
 
-Read `.capture/manifest.json`. If any page reports `status: error`, decide whether to fix (longer `--timeout`, different URL) or proceed without it. Open `desktop.png` and `mobile.png` for at least the homepage and the style guide (if any) to ground your prose visually.
+Read `.capture/manifest.json`. If any page reports `status: error`, decide whether to fix (longer `--timeout`, different URL, or a site-specific `--cookie`) or proceed without it. Open `desktop.png` and `mobile.png` for at least the homepage and the style guide (if any). If a cookie banner, modal, survey, age gate, newsletter prompt, or other overlay still covers the real page, re-run that URL with the correct `--cookie` values or a cleaner representative page; do not use overlay-obscured screenshots as design-system evidence unless the overlay is the design subject.
 
 You now have the full raw material for steps 2 and 3. The browser is no longer needed — every subsequent step works against the JSON, HTML, and PNG files in `.capture/`.
 

@@ -25,7 +25,9 @@ node .claude/skills/extract-design-system/scripts/capture.js <url> [<url>...] [o
 |---|---|---|
 | `--out <dir>` | `.capture` | Output directory. |
 | `--interactions` | off | Also capture hover/focus states for buttons, nav links, and inputs. Adds an `interactions/` subfolder per page. |
+| `--no-dismiss-overlays` | off | Disable the default pass that clicks or removes common cookie banners, consent managers, age/region interstitials, newsletter popups, surveys, and onload modals. |
 | `--timeout <ms>` | `30000` | Per-page navigation timeout. |
+| `--cookie name=val` | none | Pre-seed a cookie on the URL's domain. Repeatable. Use when a site needs a specific consent, age-gate, or region cookie to reveal page content. |
 | `--help`, `-h` | — | Print help. |
 
 ### Example
@@ -38,6 +40,16 @@ node .claude/skills/extract-design-system/scripts/capture.js \
   https://www.example.com/contact \
   --out .capture \
   --interactions
+```
+
+Overlay dismissal is enabled by default. For a site that needs a known consent or age-gate cookie, add repeatable `--cookie` flags:
+
+```bash
+node .claude/skills/extract-design-system/scripts/capture.js \
+  https://www.example.com/ \
+  --out .capture \
+  --interactions \
+  --cookie OptanonConsent=accepted
 ```
 
 ## Output structure
@@ -108,7 +120,7 @@ For nav links, buttons, and text inputs: `base`, `hover`, and `focus` computed-s
 | `Executable doesn't exist` from chromium.launch() | Browser binary missing | `npx playwright install chromium` |
 | `Timeout 30000ms exceeded` | Slow page or `networkidle` never reached (long-poll, infinite scripts) | `--timeout 60000` |
 | Capture run shows `status: error` for one URL but others succeed | Per-page failure isolated; manifest records the error | Inspect `manifest.json` → `error`; re-run just that URL |
-| Cookie banner or modal covers the screenshot | Site forces a consent UI before content | Run interactively in a real browser to dismiss, or accept the banner-in-screenshot for prose grounding |
+| Cookie banner or modal covers the screenshot | Site forces a consent UI before content and the generic overlay pass did not match it | Re-run with the required `--cookie name=val`, or choose a cleaner representative page. Do not use overlay-obscured screenshots as design-system evidence unless the overlay itself is being documented |
 | Some `computed-styles` values are `rgba(0,0,0,0)` | Element exists but isn't visible (e.g. mobile-only nav) | Cross-check the desktop vs mobile JSON; the visible viewport's value is the canonical one |
 
 ## Why this exists (vs invoking browser tools directly)

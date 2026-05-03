@@ -55,6 +55,30 @@ const PROPS_OF_INTEREST = [
   'width', 'height', 'min-height', 'max-width',
 ];
 
+const OVERLAY_BUTTON_NAMES = [
+  /^(accept|accept all|allow all|agree|i agree|got it|ok|okay)$/i,
+  /^(continue|continue to site|enter site|start browsing)$/i,
+  /^(close|dismiss|no thanks|not now|skip)$/i,
+  /^(reject all|decline all|manage choices|save choices)$/i,
+];
+
+const OVERLAY_SELECTORS = [
+  '#onetrust-accept-btn-handler',
+  '#onetrust-reject-all-handler',
+  '#truste-consent-button',
+  '.ot-sdk-container button',
+  '[id*="cookie" i] button',
+  '[class*="cookie" i] button',
+  '[id*="consent" i] button',
+  '[class*="consent" i] button',
+  '[id*="privacy" i] button',
+  '[class*="privacy" i] button',
+  '[aria-label*="close" i]',
+  '[aria-label*="dismiss" i]',
+  '[data-testid*="close" i]',
+  '[class*="close" i]',
+];
+
 function slugify(url) {
   const u = new URL(url);
   let body = `${u.hostname}${u.pathname}`.replace(/\/+$/, '');
@@ -63,11 +87,92 @@ function slugify(url) {
   return slug;
 }
 
-async function captureViewport(page, viewport, outDir, name) {
+async function clickFirstVisible(locator) {
+  const count = Math.min(await locator.count().catch(() => 0), 5);
+  for (let i = 0; i < count; i += 1) {
+    const item = locator.nth(i);
+    try {
+      if (await item.isVisible()) {
+        await item.click({ timeout: 1000 });
+        return true;
+      }
+    } catch {}
+  }
+  return false;
+}
+
+async function clickOverlayControls(page) {
+  let clicked = false;
+  for (const frame of page.frames()) {
+    for (const name of OVERLAY_BUTTON_NAMES) {
+      clicked = await clickFirstVisible(frame.getByRole('button', { name })) || clicked;
+      clicked = await clickFirstVisible(frame.getByRole('link', { name })) || clicked;
+    }
+    for (const selector of OVERLAY_SELECTORS) {
+      clicked = await clickFirstVisible(frame.locator(selector)) || clicked;
+    }
+  }
+  return clicked;
+}
+
+async function removeBlockingOverlays(page) {
+  return page.evaluate(() => {
+    const keywords =
+      /cookie|consent|privacy|gdpr|ccpa|onetrust|trustarc|didomi|modal|popup|pop-up|survey|newsletter|interstitial|age-gate|agegate|overlay/i;
+    const viewportArea = window.innerWidth * window.innerHeight;
+    const candidates = Array.from(document.body ? document.body.querySelectorAll('*') : []);
+    let removed = 0;
+
+    candidates.forEach((el) => {
+      const style = window.getComputedStyle(el);
+      if (style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0') return;
+
+      const rect = el.getBoundingClientRect();
+      if (rect.width < 100 || rect.height < 60) return;
+
+      const name = [
+        el.id,
+        typeof el.className === 'string' ? el.className : '',
+        el.getAttribute('role') || '',
+        el.getAttribute('aria-label') || '',
+        el.getAttribute('data-testid') || '',
+      ].join(' ');
+      const roleDialog = el.getAttribute('role') === 'dialog' || el.getAttribute('aria-modal') === 'true';
+      const fixedLayer = style.position === 'fixed' || style.position === 'sticky';
+      const zIndex = Number.parseInt(style.zIndex, 10);
+      const hasOverlayName = keywords.test(name);
+      const coversEnough = (rect.width * rect.height) / viewportArea > 0.12;
+
+      if ((roleDialog || hasOverlayName) && (fixedLayer || coversEnough || zIndex > 10)) {
+        el.remove();
+        removed += 1;
+      }
+    });
+
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    return removed;
+  }).catch(() => 0);
+}
+
+async function dismissOverlays(page) {
+  // Handle common consent, survey, newsletter, and interstitial layers before
+  // screenshots so design-system evidence reflects the actual page.
+  for (let i = 0; i < 3; i += 1) {
+    const clicked = await clickOverlayControls(page);
+    if (clicked) await page.waitForTimeout(500);
+  }
+  const removed = await removeBlockingOverlays(page);
+  if (removed) await page.waitForTimeout(300);
+}
+
+async function captureViewport(page, viewport, outDir, name, opts) {
   await page.setViewportSize(viewport);
   await page.evaluate(() => window.scrollTo(0, 0));
   // Wait for any responsive layout shifts and webfont swaps to settle.
   await page.evaluate(() => document.fonts && document.fonts.ready);
+  if (opts.dismissOverlays) await dismissOverlays(page);
   await page.waitForTimeout(300);
 
   await page.screenshot({
@@ -258,8 +363,9 @@ async function capturePage(browser, url, outRoot, opts) {
       result.httpStatus = resp.status();
     }
 
-    await captureViewport(page, DESKTOP, outDir, 'desktop');
-    await captureViewport(page, MOBILE, outDir, 'mobile');
+    if (opts.dismissOverlays) await dismissOverlays(page);
+    await captureViewport(page, DESKTOP, outDir, 'desktop', opts);
+    await captureViewport(page, MOBILE, outDir, 'mobile', opts);
     await page.setViewportSize(DESKTOP);
     await captureCustomProperties(page, outDir);
 
@@ -291,6 +397,11 @@ Options:
   --out <dir>        Output directory (default: .capture)
   --interactions     Also capture hover/focus states for buttons, nav links,
                      and inputs (writes interactions/ subfolder per page).
+  --no-dismiss-overlays
+                     Disable default overlay dismissal. By default the script
+                     clicks or removes common cookie banners, onload popups,
+                     surveys, newsletter modals, and interstitials before
+                     taking screenshots or reading computed styles.
   --timeout <ms>     Per-page navigation timeout (default: 30000).
   --cookie name=val  Pre-seed a cookie on the URL's domain. Repeatable.
                      Use to dismiss age gates, region pickers, or consent
@@ -318,6 +429,7 @@ async function main() {
   const urls = [];
   let outRoot = '.capture';
   let interactions = false;
+  let dismissOverlaysOption = true;
   let timeout = 30000;
   const cookies = [];
 
@@ -325,6 +437,7 @@ async function main() {
     const a = args[i];
     if (a === '--out') { outRoot = args[++i]; continue; }
     if (a === '--interactions') { interactions = true; continue; }
+    if (a === '--no-dismiss-overlays') { dismissOverlaysOption = false; continue; }
     if (a === '--timeout') { timeout = parseInt(args[++i], 10) || 30000; continue; }
     if (a === '--cookie') {
       const raw = args[++i] || '';
@@ -348,13 +461,23 @@ async function main() {
   const browser = await chromium.launch();
   const manifest = {
     capturedAt: new Date().toISOString(),
-    options: { interactions, timeout, viewport: { desktop: DESKTOP, mobile: MOBILE } },
+    options: {
+      interactions,
+      dismissOverlays: dismissOverlaysOption,
+      timeout,
+      viewport: { desktop: DESKTOP, mobile: MOBILE },
+    },
     pages: [],
   };
 
   for (const url of urls) {
     process.stderr.write(`capture: ${url} ... `);
-    const result = await capturePage(browser, url, outRoot, { interactions, timeout, cookies });
+    const result = await capturePage(browser, url, outRoot, {
+      interactions,
+      dismissOverlays: dismissOverlaysOption,
+      timeout,
+      cookies,
+    });
     process.stderr.write(`${result.status}${result.error ? ` (${result.error})` : ''}\n`);
     manifest.pages.push(result);
   }
