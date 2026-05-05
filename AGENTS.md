@@ -49,7 +49,7 @@ Skills will be added to `.claude/skills/` as needed for this project. Check the 
 
 **For ALL development work involving blocks, core scripts, or functionality, you MUST start with the content-driven-development skill.** It will orchestrate other skills as needed throughout the development workflow.
 
-**EDS-specific skills** (for AEM Edge Delivery Services): eds-analytics, eds-documentation, eds-naming, eds-styles, eds-wcag. Retired aem-* skills are archived in `.claude/skills/archive/`.
+**EDS-specific skills** (for AEM Edge Delivery Services): eds-analytics, eds-documentation, eds-wcag. Retired aem-* skills are archived in `.claude/skills/archive/`. Block CSS conventions live in the **building-blocks** skill (`resources/css-guidelines.md`).
 
 ## Project Overview
 

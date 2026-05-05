@@ -1,6 +1,6 @@
 ---
 name: speckit-testcases
-description: Generate a testcases.csv from a speckit feature spec. Explicit invocation only — never load from context or topic. Use only when the user types the exact command "speckit-testcases".
+description: Generate testcases.csv from a speckit feature spec for EDS (Document Authoring / doc-based authoring and published site). Explicit invocation only — never load from context or topic. Use only when the user types the exact command "speckit-testcases".
 disable-model-invocation: true
 ---
 
@@ -8,75 +8,82 @@ disable-model-invocation: true
 
 Generates `testcases.csv` from the feature spec, covering all user journeys, acceptance criteria, and edge cases.
 
-**Workflow position:** Suggested after `/speckit-specify` or `/speckit-clarify` when spec.md is ready. Can be run at any later phase — not tied to a specific position in the pipeline.
+**Workflow position:** After `/speckit-specify` or `/speckit-clarify` when `spec.md` is ready. May be run at any later phase.
 
 ## Setup
 
 Run: `.specify/scripts/bash/check-prerequisites.sh --json` from repo root. Parse `FEATURE_DIR`.
 
-## Load Context
+## Load context
 
 - **REQUIRED**: `FEATURE_DIR/spec.md` — user stories, acceptance criteria, edge cases
-- **OPTIONAL**: `FEATURE_DIR/quickstart.md`
-- Load `.specify/templates/test-cases.csv` for column structure
+- **OPTIONAL**: `FEATURE_DIR/quickstart.md`, `FEATURE_DIR/data-model.md` — concrete authoring examples and preview URLs
+- **OPTIONAL**: `.specify/templates/testcases.csv` — column header row and format reference (file may include markdown preamble; use the CSV header and row pattern from it)
 
-## Coverage Requirements
+## Coverage requirements
 
 | Source | Type | Minimum |
 |--------|------|---------|
-| User journeys/primary flows | Happy path | One per distinct journey |
-| Acceptance Criteria | Functional verification | One or more per AC |
-| Edge cases/boundary conditions | Negative/boundary | One per edge case |
-| Published page behaviour | Publication verification | At least one end-to-end |
+| User journeys / primary flows | Happy path | One per distinct journey |
+| Acceptance criteria | Functional verification | One or more per AC |
+| Edge cases / boundary conditions | Negative / boundary | One per edge case |
+| Published / preview behaviour | End-to-end | At least one (preview or live URL) |
 
-## Test Case Writing Rules
+## Test case writing rules
 
-1. **Author perspective**: All steps executable by content author in AEM Editor or published site — no dev tools, no code inspection
-2. **Atomic steps**: One action per step
-3. **Unambiguous expected results**: Every step has clear, observable expected result
-4. **Title pattern**: `[Component / Feature Area] | [What is verified]`
-5. **Preconditions in step 1**: First step sets up starting state
-6. **No implementation details**: No Java, Sling Models, HTL, or AEM APIs in steps
+1. **Author perspective only**: Steps use the **document** or **DA** workflow (edit block table, section metadata, placeholders, preview/publish via Sidekick or DA). No browser DevTools, no “inspect network”, no reading source or block JS/CSS/repo paths unless the **expected result** is visibly on the page for any visitor.
+2. **Atomic steps**: One author action per step where possible.
+3. **Unambiguous expected results**: Observable outcome on the page or in the authoring surface (e.g. “Block appears with title and image”, “Preview shows two columns on desktop”).
+4. **Title pattern**: `[Block or feature area] | [What is verified]`
+5. **Preconditions in step 1**: Starting state (e.g. “Author has edit access to test doc X”, “Page exists in drafts at path Y”).
+6. **No implementation details**: No HTML/CSS/JS, or **block implementation file names**. You may name the **block as authors see it** (block table name) and **variant labels** from the spec.
 
-## CSV Format
+## CSV format
+
+Use the same columns as `.specify/templates/testcases.csv`:
 
 ```
 ID,Work Item Type,Title,Test Step,Step Action,Step Expected,Area Path,Assigned To,State
-"","Test Case","[Title]",,,,"Consumer Platforms\Adobe Experience Manager (AEM)","","Design"
+```
+
+Example header row for step rows (adjust Area Path for your tracker):
+
+- `ID`: always empty
+- `Work Item Type`: always `"Test Case"` for the testcase title row
+- `Area Path`: use a consistent EDS-oriented value, e.g. `Edge Delivery Services` or `Edge Delivery Services\<site-or-program-name>` (backslash as in the template tool)
+- `State`: `"Design"` on the testcase header row; empty on step rows
+
+```text
+"","Test Case","[Title]",,,,"Edge Delivery Services","","Design"
 ,,,"1","[Action]","[Expected]",,,
 ,,,"2","[Action]","[Expected]",,,
 ```
 
-- `ID`: always empty
-- `Work Item Type`: always `"Test Case"` for header row
-- `Area Path`: always `"Consumer Platforms\Adobe Experience Manager (AEM)"`
-- `State`: `"Design"` for test case header; empty for step rows
+## Test case organization
 
-## Test Case Organization
+1. **Authoring** — add block, fill cells/rows, apply variants (parentheses options), section styling if spec requires
+2. **Functional / AC** — one or more cases per acceptance criterion
+3. **Variants and combinations** — each distinct option from the spec
+4. **Responsive / device** — if spec requires layout at 600px / 900px / 1200px behaviour, verify via author-visible preview at those widths (describe author steps, not CSS)
+5. **Preview and publish** — Sidekick/DA preview, and published or production URL if applicable
+6. **Edge cases and negative tests** — empty fields, invalid URLs, missing images per spec
+7. **Regression guard** — if spec calls out backwards compatibility with existing authored content
 
-1. Author experience (finding/using component in AEM Editor)
-2. Functional / AC verification (one per AC)
-3. Variations and combinations
-4. Responsive / cross-device (if relevant)
-5. Publication verification
-6. Edge cases and negative tests
-7. Regression guard
-
-## Quality Checklist Before Writing
+## Quality checklist before writing
 
 - [ ] Every user journey has at least one test case
 - [ ] Every acceptance criterion has at least one test case
 - [ ] Every identified edge case has at least one test case
 - [ ] All test case titles are unique
 - [ ] All steps have both action and expected result
-- [ ] No step references implementation details
-- [ ] At least one test case verifies published page behaviour
+- [ ] No step references implementation files, APIs, or DevTools
+- [ ] At least one test case verifies preview or published page behaviour
 
 ## Report
 
-Output: testcases.csv path, total count, coverage breakdown (journeys, ACs, edge cases), unmapped spec sections, and readiness for next phase: `/speckit-testcontent` (recommended to generate reference content in digitalxn-aem-nc-sites-reference-content).
+Output: path to `FEATURE_DIR/testcases.csv` (or path used), total testcase count, coverage breakdown (journeys, ACs, edge cases), any spec sections without coverage, and suggested next steps: e.g. `/speckit-testcontent` for DA Library upload, or creating/updating draft pages under `drafts/` and a **branch preview URL** `https://{branch}--{repo}--{owner}.aem.page/...` for execution.
 
 ## Errors
 
 - ERROR if `spec.md` not found
-- ERROR if `spec.md` contains `[NEEDS CLARIFICATION]` markers
+- ERROR if `spec.md` contains unresolved `[NEEDS CLARIFICATION]` markers (same bar as implementation)

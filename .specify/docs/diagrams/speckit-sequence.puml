@@ -1,18 +1,18 @@
 @startuml speckit-sequence
 !theme plain
 actor User
-participant "speckit.specify" as specify
-participant "speckit.figma-specify" as figma
-participant "speckit.clarify" as clarify
-participant "speckit.plan" as plan
-participant "speckit.tasks" as tasks
-participant "speckit.analyze" as analyze
-participant "speckit.implement" as implement
-participant "speckit.validate" as validate
-participant "speckit.design-compliance" as dc
-participant "speckit.testcases" as tc
-participant "speckit.testcontent" as tcontent
-participant "speckit.document" as doc
+participant "speckit-specify" as specify
+participant "speckit-figma-specify" as figma
+participant "speckit-clarify" as clarify
+participant "speckit-plan" as plan
+participant "speckit-tasks" as tasks
+participant "speckit-analyze" as analyze
+participant "speckit-implement" as implement
+participant "speckit-validate" as validate
+participant "speckit-design-compliance" as dc
+participant "speckit-testcases" as tc
+participant "speckit-testcontent" as tcontent
+participant "speckit-document" as doc
 
 User -> specify : describe feature
 specify --> User : spec.md, branch
@@ -40,7 +40,7 @@ opt QA optional
   User -> tc : testcases
   tc --> User : testcases.csv
   User -> tcontent : testcontent
-  tcontent --> User : reference content
+  tcontent --> User : DA Library / drafts
   User -> doc : document
   doc --> User : authoring guide
 end

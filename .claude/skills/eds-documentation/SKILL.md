@@ -7,36 +7,13 @@ description: EDS block documentation authoring. Trigger when creating or updatin
 
 Apply when creating or updating documentation for EDS blocks. Skip for temporary files or personal notes.
 
-## Block README Template
+## Document structure
 
-```markdown
-# [Block Name] Block
+**Canonical section order and placeholders for full block authoring guides:** `.specify/templates/authoring-guide-template.md`
 
-## Overview
-Brief description of the block's purpose and functionality.
+That file includes an **AGENT INSTRUCTIONS** comment block at the top (output paths, authoring surfaces, Mermaid, tone) — apply when generating from the template; strip comments from author-facing deliverables.
 
-## Block Details
-- **Block Name**: `[block-name]`
-- **Files**: `blocks/[block-name]/[block-name].js`, `blocks/[block-name]/[block-name].css`
-- **Content Model**: [Describe the block table structure authors use]
-
-## Content Model
-| Column | Content | Required |
-|--------|---------|----------|
-| [column-name] | [description] | yes/no |
-
-## Authoring
-[How authors add and configure the block in the CMS]
-
-## Variants
-[Document any variant classes and their effects]
-
-## Accessibility
-[Document accessibility features and WCAG compliance]
-
-## Testing
-[Document testing requirements and test content paths]
-```
+For a **short** README, you may condense sections but keep the same concepts (overview, content model, authoring, variants, a11y, testing) so authors and QA can still find them.
 
 ## Diagram Standards
 

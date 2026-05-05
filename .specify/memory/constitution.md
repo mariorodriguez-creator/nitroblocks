@@ -9,7 +9,6 @@ Templates validated:
   - .specify/templates/plan-template.md ✅ UPDATED
   - .specify/templates/spec-template.md ✅ UPDATED
   - .specify/templates/tasks-template.md ✅ UPDATED
-  - .specify/templates/checklist-template.md ✅ UPDATED
   - .specify/templates/authoring-guide-template.md ✅ UPDATED
   - .specify/templates/testcases.csv ✅ UPDATED
   - No command templates found in .specify/templates/commands/
